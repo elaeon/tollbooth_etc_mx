@@ -1,0 +1,645 @@
+id|name|coords|open|||||||||
+155|El arenal tequila|20.854354276478155, -103.86093857355817|1|autopista guadalajara tepic s.a de cv.||15D-tequila-15D||||||
+155|El arenal|20.77880582437672, -103.6624541764846|1|ideal (https://www.autopistaguadalajaratepic.com.mx/tarifas/)||15D||||||
+156|plan de barracas|20.947510076183264, -104.06317924150714|1|ideal||15D||||||
+581|Amado Nervo|21.08905122568959, -104.71712291858833|1|ocacsa (https://www.autopistajalacompostela.com/tarifas)|205|70D||||||
+581|Amado Nervo|21.20443708269734, -104.88636807996299|1|ocacsa|164|200D||||||
+446|la cantera|21.4984932062581, -104.81339318530127|1|ideal||libramiento norte||||||
+407|san blas|21.507309681661752, -105.20102818503696|1|rco|96|76D||||||
+407|san blas||1|rco|65|||||||
+53|Compostela|21.229471957714843, -104.88745147168034|1|capufe||68D||||||
+157|santa maria del oro|21.37419440266569, -104.70892364241206|1|ideal|179|15D||||||
+157|santa maria del oro|21.327068295725205, -104.66478613578181|1|ideal|98|15D-15||||||
+157|santa maria del oro|21.327068295725205, -104.66478613578181|1|ideal|84|15-15D||||||
+157|santa maria del oro|21.32799628437043, -104.66320135768107|1|ideal|84|15D-15||||||
+157|santa maria del oro|21.32799628437043, -104.66320135768107|1|ideal|98|15-15D||||||
+407|benito juarez-san blas|24.87712983589735, -107.65540724462751|1|orler|89|1D-san blas||||||
+407|benito juarez-san blas|24.877674384700395, -107.65578946905174|1|orler|89|vitaruto-1D||||||
+403|trapichillo|21.571748191967007, -104.98744288122955|1|ideal (https://www.tepicmazatlan.com.mx/tarifas/)||15D||||||
+582|Compostela|21.20443708269734, -104.88636807996299|1|ocacsa||200D||||||
+404|trapichillo bis|21.56062066705083, -104.97105441327322|1|ideal||76D-15D||||||
+404|trapichillo bis|21.562171828826678, -104.97045421874749|1|ideal||15D-76D||||||
+404|trapichillo bis|21.56081377769309, -104.96787315603535|1|ideal||15D-libramiento norte||||||
+200|mesillas|23.255032547366838, -106.05401113680439|1|capufe|202|40D||||||
+200|mesillas|23.258718028545413, -106.05134405187057|1|capufe|151|553-40D||||||
+200|mesillas|23.258244888136353, -106.0505346631734|1|capufe|50|40D-553||||||
+197|coscomate|23.70623004897004, -105.5712724585594|1|capufe||40D||||||
+96|llano grande|23.87080501593667, -105.19143576001282|1|capufe||40D||||||
+198|durango capufe|24.005170, -104.734501|1|capufe||40D||||||
+480|durango|24.131767854758614, -104.53405823873932|1|acsa||40D||||||
+481|yerbanis|24.730753, -103.861954|1|acsa||40D||||||
+482|cuencame|24.9813571463491, -103.7353172421232|1|acsa|179|40D||||||
+482|cuencame|24.980414562990983, -103.7343023066057|1|acsa|70|49-40D||||||
+482|cuencame|24.980446552034483, -103.73444105805764|1|acsa|109|40D-49||||||
+482|cuencame|24.981335021024417, -103.73653377211951|1|acsa|70|40D-49||||||
+482|cuencame|24.981189136410038, -103.7364457670883|1|acsa|109|49-40D||||||
+483|león guzmán|25.52064518468109, -103.63952943055672|1|acsa|238|40D||||||
+483|león guzmán|25.51954981069483, -103.63973303960874|1|acsa|174|49-40D||||||
+483|león guzmán|25.52065277795001, -103.6396947716176|1|acsa|64|40D-49||||||
+483|león guzmán|25.519241201032344, -103.63934352296329|1|acsa|174|40D-49||||||
+488|san pedro torreón|25.650567429575855, -103.36921190203982|1|acsa|127|40D||||||
+488|san pedro torreón|25.650417, -103.369246|1|acsa|54|40D-11||||||
+488|san pedro torreón|25.650671, -103.369189|1|acsa|54|11-40D||||||
+488|san pedro torreón|25.649015462206382, -103.36150347030308|1|acsa|73|11-40D||||||
+488|san pedro torreón|25.649296604243407, -103.3613858783549|1|acsa|73|40D-11||||||
+163|la cuchilla|25.627012, -102.878353|1|capufe||||||||
+162|play de ayala|25.444191157914947, -101.30391307212743|1|capufe||||||||
+160|bermejillo|25.923805233917303, -103.62220573508567|1|capufe||||||||
+161|ceballos|26.58669003672382, -104.05768607710337|1|capufe||||||||
+229|sacramento|28.860269403046257, -106.21648802175598|1|Construcarr Y De La Garza S.A.P.I De C.V. (C&G)||45D||||||
+228|jiménez|28.60349979085975, -105.95136557387647|1|C&G||45D|A2|||||
+492|torreón|25.448355650041897, -101.0670764976156|1|cams|76|40D||||||
+492|torreón|25.456933986702083, -101.06352725893902|1|cams|25|40-40D||||||
+492|torreón|25.457011483944147, -101.06387058168893|1|cams|25|40D-40||||||
+492|torreón|25.448273196014465, -101.06686628986269|1|cams|51|40D-40||||||
+492|torreón|25.448329651622657, -101.06729266025827|1|cams|51|40-40D||||||
+491|ojo caliente|25.612267190568296, -100.91350636272064|1|cams|59|40D||||||
+491|ojo caliente|25.612126713686568, -100.91332109516246|1|cams|31|40D-57||||||
+491|ojo caliente|25.612426, -100.913533|1|cams|31|57-40D||||||
+491|ojo caliente|25.616259683530693, -100.90842282785383|1|cams|28|40D-57||||||
+491|ojo caliente|25.615645079472433, -100.90846814541047|1|cams|28|57-40D||||||
+490|periferico|25.696248749290216, -100.57730126136622|1|cams|143|40D||||||
+490|periferico|25.69644184190003, -100.57739256734124|1|cams|98|100-40||||||
+490|periferico|25.696033569043514, -100.57733808631143|1|cams|98|40D-100||||||
+490|periferico|25.694580992338835, -100.56967095016509|1|cams|45|100-40D||||||
+490|periferico|25.69335991282253, -100.56536561793226|1|cams|45|40D-100||||||
+140|la carbonera|25.511105888290206, -100.86831027589685|1|capufe||57D||||||
+141|los chorros|25.186752731729825, -100.7319750568648|1|capufe||57D||||||
+142|huachichil|25.24550779007953, -100.80146602534519|1|capufe||57D||||||
+421|libramiento matehuala|23.66415230592038, -100.60728679211601|1|omega||57D||||||
+499|lincon|25.790548, -100.463523|1|reanl|221|100D||||||
+499|lincon|25.790239538739225, -100.46330404454031|1|reanl|133|100D||||||
+499|lincon|25.790642878683972, -100.46366470635019|1|reanl|133|100D||||||
+499|lincon|25.782482907580047, -100.47237090185433|1|reanl|83|100D-lincon||||||
+499|lincon|25.78512947943162, -100.47058198933826|1|reanl|83|Lincon-100D||||||
+499|lincon|25.784563, -100.475303|1|reanl|66|Lincon-100D||||||
+499|lincon|25.833756518573473, -100.30543954307433|1|reanl|45|53-100D||||||
+499|lincon|25.83438824921424, -100.3057857090581|1|reanl|45|100D-53||||||
+452|apodaca|25.81779074629236, -100.39295099912373|1|reanl|76|pedreras-100D||||||
+452|apodaca|25.818363, -100.393292|1|reanl|76|100D-pedreras||||||
+452|apodaca|25.78768393104481, -100.16852243161188|1|reanl|174|100D||||||
+452|apodaca|25.787814394813687, -100.16830122382288|1|reanl|76|54-100D||||||
+452|apodaca|25.774741986749145, -100.15873839223364|1|reanl|109|100D-54||||||
+452|apodaca|25.78767359482775, -100.16871932350976|1|reanl|76|54-100D||||||
+452|apodaca|25.774631193528904, -100.15911947782088|1|reanl|109|54-100D||||||
+505|juárez|25.622238, -100.071266|1|reanl|172|100D|169|164||||
+505|juárez||1|reanl|20|||||||
+450|cadereyta|25.60745636702586, -100.00115562352744|1|reanl|83|40D|79|||||
+451|guadalupe|25.691712503633664, -100.15775784274207|1|reanl|84|40D||||||
+451|guadalupe|25.69193970565599, -100.15764518997108|1|reanl|60|40D-39|57||50|||
+451|guadalupe|25.691470798881486, -100.15786513110776|1|reanl|60|39-40D|57||50|||
+40|cadereyta||1|||||||puente caderayta||
+586|Agujita-allende|28.303418269595824, -100.91005536599042|1|super carreteras del norte|136|57D||||||100
+65|acuña||1|||||||puente acuña||
+108|sabinas|26.512073364202653, -100.00724465940853|1|Capufe (opan)||85D||||||
+109|agualeguas|26.340284542482802, -100.07044714502695|1|Capufe (opan)|136|85D-6|128|||||
+109|agualeguas|26.33975566337255, -100.07215041964295|1|Capufe (opan)|136|6-85D|128|||||
+110|parás|26.508378, -100.008159|1|opan (operadora de autopistas del noreste)|190|85D-2|179|||||
+110|parás|26.507980, -100.009575|1|opan|190|2-85D|179|||||
+110|parás|26.508623, -100.009173|1|opan|145|85D-2||||||
+938|nuevo laredo pinfra|27.268880701339945, -99.61533870996095|1|capufe|138||130|||||
+128|general bravo|25.813590450643296, -99.16948452268444|1|Capufe (opan)|345|40D||||||
+131|doctor cross|25.81186953715244, -99.17366891656357|1|Capufe (opan)|192|40D-escobedo||||||
+131|doctor cross|25.81388649127608, -99.17383357863838|1|Capufe (opan)|192|escobedo-40D||||||
+128|general bravo|25.813355125068806, -99.16955166633859|1|Capufe (opan)|154|escobedo-40D||||||
+128|general bravo|25.813721009266057, -99.16960677378295|1|Capufe (opan)|154|40D-escobedo||||||
+129|los herrera|25.75945175633943, -99.3740971405496|1|opan|200|40D-5||||||
+129|los herrera|25.759381701928543, -99.37420979332224|1|opan|145|5-40D||||||
+129|los herrera|25.757243907864847, -99.37383676950328|1|opan|200|5-40D||||||
+129|los herrera|25.757300552279695, -99.37391967430322|1|opan|145|40D-5||||||
+130|los ramones|25.663010981887815, -99.62862545881767|1|opan|253|40D-15||||||
+130|los ramones|25.662851133897288, -99.62864343204741|1|opan|94|15-40D||||||
+130|los ramones|25.656113650916502, -99.63109784396785|1|opan|253|15-40D||||||
+130|los ramones|25.655945558818935, -99.63101674627994|1|opan|94|40D-15||||||
+15|lucio blanco|25.987608745411176, -98.43165823714757|1|opan||2D||||||
+194|san fernando|25.944745028315666, -98.22755243491738|1|opan||2D||||||
+75|reynosa phar|26.041937654320968, -98.208860108402|1|opan||puente||||||
+171|ignacio zaragoza “los tomates”|25.874563829872027, -97.47466275114387|1|opan||puente||||||
+170|nuevo progreso|26.03629264656662, -97.954364453689|1|opan|101|2D||||||
+170|nuevo progreso|26.03540443569933, -97.9544343074905|1|opan|51|47-2D-47||||||
+170|nuevo progreso|26.037096937671034, -97.95454245738237|1|opan|51|47-2D-47||||||
+74|Juárez-lincon|27.498297389701765, -99.50254431626057|1|capufe||puente||||||
+31|miguel alemán|26.401138818877474, -99.01985986558886|1|capufe||puente||||||
+48|san juan|26.31191164483669, -98.84195473768678|1|capufe||puente||||||
+30|camargo|26.36244410998924, -98.80645113559994|1|capufe||puente||||||
+37|reynosa|26.093210481258584, -98.27100126150383|1|capufe||puente||||||
+47|las flores|26.06052267696973, -97.95043461194285|1|capufe||puente||||||
+50|ojinaga|29.56056529180206, -104.39648666433295|1|capufe||puente||||||
+20|matamoros|25.891424629609347, -97.50393755311129|1|copa (compañia operadora de puentes y autopistas)||puente||||||
+62|piedras negras|28.69729587043689, -100.51288481620882|1|Hoatsa||puente||||||
+419|libramiento de mexicalli|32.53347170442716, -115.42057787903065|1|omega|115|2D||||||
+419|libramiento de mexicalli|32.532877560295276, -115.40989036921847|1|omega|35|5-2D||||||
+419|libramiento de mexicalli|32.53358220978127, -115.4085236622782|1|omega|35|2D-5||||||
+83|el hongo|32.5212604163324, -116.32042965977168|1|capufe|47|2D-2-2D||||||
+83|el hongo|32.52186057317686, -116.32001574618872|1|capufe|103|2D||||||
+83|el hongo|32.52248943941944, -116.3198006383681|1|capufe|47|2-2D||||||
+34|tijuana|32.51416293952504, -117.10948976541157|1|capufe||1D||||||
+35|rosarito|32.31112491303154, -117.0444151721061|1|capufe||1D||||||
+189|nodo popotla|32.283788556971906, -117.03057131436263|1|capufe||201-1D||||||
+189|nodo popotla|32.28383965784465, -117.02961694282466|1|capufe||1D-201||||||
+415|tecate|32.545696, -116.852193|1|ideal||TIJUANA-TECAT Y -LIB. DE TECATE||||||
+418|paso del aguila|32.527353, -116.692395|1|ideal|93|ENT. PASO DEL AGUILA-TIJUANA||||||
+467|paso del aguila bis|32.52585510316473, -116.69026781800218|1|ideal|67|ENT. SANDOVAL - ENT. PASO DEL AGUILA||||||
+417|dart|32.54103924867271, -116.75769348313429|1|ideal||PLANTA DART-VALLE REDONDO TIJUANA||||||
+422|las esperanzas|32.550756, -116.621901|1|ideal||LAS ESPERANZAS 3-2D||||||
+150|esperanza|27.603792376513166, -109.93907790959305|1|capufe||15D||||||
+422|las esperanzas|32.55166253746689, -116.62114602836968|1|ideal||LAS ESPERANZAS 2D-3||||||
+36|ensenada|31.90316954366235, -116.73273532000844|1|capufe|Moto 25,auto 51, bus 2,3,4 104,camion 2,3 100,camion 4,5 124, camion 6,7,8,9 145, eje excedente ligero 26, eje excedente carga 50|1D||||||
+71|chalco|19.292134356704867, -98.8817066361272|1|capufe||150D-115||||||
+7|san marcos|19.296334046022135, -98.87071124106612|1|capufe||150D-57D||||||
+926|ixtapaluca|19.28998073493131, -98.88030893714964|1|capufe||115||||||
+188|san barcos bis|19.293391129274873, -98.87598767837207|1|capufe|Moto 13, auto 26, bus 2,3,4 45, camion 2,3 44, camion 4,5 72, camion 6,7,8,9 111, eje excedente ligero 13, eje excedente carga 23. year 2024|||||||
+71|chalco|19.293292563929672, -98.88284509632994|1|capufe||150D-115||||||
+71|chalco|19.29321867493075, -98.88354314227342|1|capufe||150D||||||
+71|chalco|19.293101683947743, -98.88409983935685|1|capufe||150D||||||
+316|circuito exterior mexiquense-T4 chalco|19.30011531384209, -98.87526308409201|1|Grupo Autopistas Nacionales S.A de C.V||57D||||||
+316|circuito exterior mexiquense-T0 jorobas|19.819935517430253, -99.23987695454564|1|Grupo Autopistas Nacionales S.A de C.V||57D||||||
+316|circuito exterior mexiquense-T1 tultepec|19.694018113202613, -99.08049510414101|1|SAASCAEM||57D||||||
+316|circuito exterior mexiquense-T2 conmex|19.57550558337962, -99.02055090706814|1|SAASCAEM||57D||||||
+316|circuito exterior mexiquense-T3 nabor carillo|19.435829533797794, -98.99837849230546|1|SAASCAEM||57D||||||
+316|circuito exterior mexiquense-T3 nabor carillo|19.435842542383828, -98.9980775290402|1|SAASCAEM||57D||||||
+316|circuito exterior mexiquense-T3 nabor carillo|19.435821576260775, -98.9986457077775|1|SAASCAEM||57D-bordo de xochiaca||||||
+316|circuito exterior mexiquense-A-1A huehuetoca|19.822136243927932, -99.23624388243783|1|Grupo Autopistas Nacionales S.A de C.V||57D||||||
+316|circuito exterior mexiquense-A-1B huehuetoca|19.82323588025471, -99.23553122514845|1|Grupo Autopistas Nacionales S.A de C.V||57D||||||
+316|circuito exterior mexiquense-A-2 los reyes|19.610865684904677, -99.03855181117322|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-A-5 Hank gonzalez|19.584821045498185, -99.0280728965625|1|SAASCAEM||57D||||||
+316|circuito exterior mexiquense-A-6 periférico|19.487226638901856, -99.01638088730647|1|SAASCAEM||periferico-57D||||||
+316|circuito exterior mexiquense-A-7 periférico|19.48571434815351, -99.01516948213126|1|SAASCAEM||57D-periferico||||||
+316|circuito exterior mexiquense-A-8 pichardo|19.50675004109767, -99.01494561583014|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-A-9 ctm|19.488141617143278, -99.01916655955476|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-T1 jaltengo|19.694018113202613, -99.08049510414101|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-A-3 pachuca||1|Grupo Autopistas Nacionales S.A de C.V||||||||
+316|circuito exterior mexiquense-A-4 pachuca|19.603392599771386, -99.03724320021398|1|Grupo Autopistas Nacionales S.A de C.V||||||||
+316|circuito exterior mexiquense-A-21 bordo xochiaca|19.42563391931527, -98.99855888788431|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-A-22 bordo xochiaca|19.425677149229696, -98.9987669281238|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-T-7 -Texcoco||1|Grupo Autopistas Nacionales S.A de C.V||||||||
+316|circuito exterior mexiquense-A-27 san buena aventura|19.307078162910116, -98.87179988486967|1|Grupo Autopistas Nacionales S.A de C.V||57D||||||
+316|circuito exterior mexiquense-A-28 San buena aventura|19.30000445615856, -98.87506324293571|1|Grupo Autopistas Nacionales S.A de C.V||||||||
+316|circuito exterior mexiquense-A-31 ent. Tultepec|19.702468885399043, -99.08493839202771|1|SAASCAEM||57D||||||
+316|circuito exterior mexiquense-A-32 ent. Tultepec|19.704260124031222, -99.0872982554282|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-A-34 vialidad mexiquense|19.637483745523515, -99.1644306487261|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-A-36 vialidad mexiquense|19.63833645324367, -99.15919830842724|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-A-33 vialidad mexiquense|19.638353310850967, -99.15622648744971|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-A-35 vialidad mexiquense|19.638255062879892, -99.1588980094212|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-T-5 tultitlán|19.63777430447426, -99.16447908889505|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-T6 cuautitlan izcalli|19.63545513882053, -99.20516937360027|1|Grupo Autopistas Nacionales S.A de C.V||||||||
+316|circuito exterior mexiquense-AIFA T5 de distribuidor santa ines|19.63777430447426, -99.16447908889505|1|SAASCAEM||||||||
+316|circuito exterior mexiquense-AIFA A35 de distribuidor santa ines||1|Grupo Autopistas Nacionales S.A de C.V||||||||
+316|circuito exterior mexiquense-A-12 entronque santa inés|19.702077285061986, -99.0857239049988|1|SAASCAEM (aleatica)|27.00 55.00 125.00 125.00 211.00 311.00 31.00, 2025 https://www.circuitoexterior.mx/rutas-y-tarifas/|57D-aifa||||||
+8|san marti puebla|19.241420092520407, -98.3855948874618|1|capufe||150D||||||
+69|jorobas|19.826189088641254, -99.24975024585362|1|capufe||57-57D||||||
+69|jorobas|19.82567313930489, -99.25007932058412|1|capufe||57D-57||||||
+939|nabor carrillo|19.496018629965608, -98.94732483754643|1|promotora de carreteras ecatepec pirámides s.a de c.v|104|pirámides-136D|||39|||
+939|nabor carrillo|||SAASCAEM|44|||||||
+939|nabor carrillo|||SAASCAEM|24|||||||
+575|Tizatyca (ojo de agua)|19.618844090389594, -99.02953259081578|1|Golfo Centro S.A. de C.V.||85D||||||
+576|entronque ojo de agua|19.665029989506003, -99.00174021673337|1|Golfo Centro S.A. de C.V.||||||||
+576|entronque ojo de agua|19.665375829654206, -99.00203390912596|1|Golfo Centro S.A. de C.V.||||||||
+914|texcoco|19.50279435886103, -98.91267169397241|1|desarrollo global de concesiones s.a de c.v||136D||||||
+914|texcoco|19.502074032237623, -98.91498952424638|1|desarrollo global de concesiones s.a de c.v||||||||
+196|ozumba|19.046046108219354, -98.82833862020823|1|capufe||115D||||||
+917|san martín texmelucan|19.30158972628332, -98.40401709219253|1|viapass (pinfra)||117D||||||
+558|el higueron|18.652765075251022, -99.00169876378389|1|pinfra|109|94D-san rafael||||||
+558|el higueron|18.652397034134513, -99.0012437005927|1|pinfra|109|san rafael-94D||||||
+558|el higueron|18.65278399304689, -99.00879375326478|1|pinfra|223|94D||||||
+558|el higueron|18.65262330865848, -99.0088059643153|1|pinfra|124|cuautla 94D||||||
+558|el higueron|18.652936805156926, -99.00879585189807|1|pinfra|124|chinameca 94D||||||
+|siglo xxi|18.916384904608535, -98.48469847669594|1|pinfra (https://www.viapass.com.mx/Portal_web/tarifas)||438D||||||
+26|amozoc|19.049814106676887, -98.03229883255135|1|capufe|90|150D||||||
+26|amozoc|19.050119904548755, -98.03273942128622|1|capufe|46|129-150D||||||
+26|amozoc|19.049481004303374, -98.03199376721965|1|capufe|46|150D-129||||||
+990|Amazoc-perote (amozoc)|19.06367676920489, -98.06905247192356|1|gana (grupo de autopistas nacionales)||140D||||||
+990|AMOZOC-PEROTE (CUAPIAXTLA)|19.310336909941974, -97.79749106268908|1|gana (aleatica) https://www.ganamexico.com.mx/rutas-y-tarifas/|122|140D||||||
+990|AMOZOC-PEROTE (CUAPIAXTLA)|19.310494979627016, -97.79765684970214|1|gana|53|140D-136||||||
+990|AMOZOC-PEROTE (CUAPIAXTLA)|19.30442649961914, -97.80562494517584|1|gana|53|136-140D||||||
+990|AMOZOC-PEROTE (CUAPIAXTLA)|19.304229050075733, -97.80536745312408|1|gana|53|140D-136||||||
+990|AMOZOC-PEROTE (CUAPIAXTLA)|19.310262427822185, -97.79738622422764|1|gana|69|136-140D||||||
+990|AMOZOC-PEROTE (CANTONA)|19.507561429295745, -97.49775753734808|1|gana|197|140D||||||
+990|AMOZOC-PEROTE (CANTONA)|19.508966128731377, -97.49726290567534|1|gana|63|tezontepec-140D||||||
+990|AMOZOC-PEROTE (CANTONA)|19.509049846096197, -97.49713604623201|1|gana|134|140D-tezontepec||||||
+990|AMOZOC-PEROTE (CANTONA)|19.506527901068193, -97.49553112715623|1|gana|63|140D-tepeyahualco||||||
+990|AMOZOC-PEROTE (CANTONA)|19.506604692290207, -97.49539607155636|1|gana|134|tepeyahualco-140D||||||
+990|AMOZOC-PEROTE (PEROTE)|19.55180358512678, -97.2895397511599|1|gana||140D||||||
+990|AMOZOC-PEROTE (AUDI)|19.2748076029236, -97.82644861937351|1|gana||140D-san jose chiapa||||||
+990|AMOZOC-PEROTE (AUDI CUAPIAXTLA A1 Y A2)|||gana||||||||
+990|AMOZOC-PEROTE (AUDI CUAPIAXTLA)|||gana||||||||
+|el seco|19.108709327216882, -97.67094209664745|1|||Cuapixtla-cuacnopalan||||||
+|el seco|19.099144440107228, -97.66402773206636|1|||Cuapixtla-cuacnopalan-40||||||
+|el seco|19.09904305753429, -97.66425303761164|1|||40-Cuapixtla-cuacnopalan||||||
+460|las vigas|19.63050334663006, -97.12810988726302|1|copexa (https://copexa.com/)||140D||||||
+461|miradores|19.47442649208741, -96.77540785070767|1|copexa||140D||||||
+457|antigua|19.320358332294518, -96.31080675212831|1|Cardel-veracruz (www.caseta.mx)||180||||||
+458|san julián|19.239275776082334, -96.25793916522964|1|cardel-veracruz (www.caseta.mx)||180||||||
+459|plan del rio|19.39702975258441, -96.62161792844606|1|Concesiones y Promociones Malibrán, SA de CV||140D||||||
+33|nautla|20.210280415991797, -96.77875821221821|1|capufe||180||||||
+179|las chopas|17.944804133791894, -94.17238783129227|1|capufe||145D||||||
+179|las chopas|17.94271202289427, -94.1722361431873|1|capufe|71|raudales||||||
+179|las chopas|17.94271202289427, -94.1722361431873|1|capufe|33|coatzacoalcos||||||
+181|malpasito|17.349087839669902, -93.58646289945288|1|capufe||145D||||||
+181|malpasito|17.349151939150083, -93.58552070834183|1|capufe|55|145D villahermosa||||||
+181|malpasito|17.348297051606647, -93.5869275563107|1|capufe|46|145D malpasito||||||
+182|OCOZOCOAUTLA (OCUILAPA)|16.86321123895634, -93.40697896560285|1|capufe||145D||||||
+929|chiapa de corzo viapass|16.73069880833294, -93.0095605957671|1|cas https://casmexico.com/mapasytarifas||190D||||||
+930|arriaga viapass|16.2572922499705, -93.87556474022145|1|cas||190D||||||
+931|coita viapass|16.73848720114777, -93.40040439428998|1|cas||190D||||||
+932|jiquipilas|16.620601242361506, -93.60207418382952|1|cas|140|190D||||||
+932|jiquipilas|16.620658362481585, -93.60052411025286|1|cas|110|190D-cam quintana roo||||||
+932|jiquipilas|16.620658362481585, -93.60052411025286|1|cas|30|cam quintana roo-190D||||||
+932|jiquipilas|16.62228828568551, -93.60244789690498|1|cas|30|190D-cam quintana roo||||||
+932|jiquipilas|16.62228828568551, -93.60244789690498|1|cas|110|cam quintana roo-190D||||||
+176|sánchez magallanes|18.030589330351706, -93.81297768258969|1|capufe|101|180D||||||
+176|sánchez magallanes|18.02995167744411, -93.81311701585584|1|capufe|47|180D-180||||||
+176|sánchez magallanes|18.031614594727525, -93.8136802797191|1|capufe|49|180-180D||||||
+176|sánchez magallanes|18.02995167744411, -93.81311701585584|1|capufe|47|180-180D||||||
+176|sánchez magallanes|18.031614594727525, -93.8136802797191|1|capufe|49|180D-180||||||
+227|nacajuca|18.0760915396505, -92.93060986166415|1|operadora de autopistas villahermosa|74|180D||||||
+227|nacajuca|18.07666157765094, -92.93672440295111|1|oav|39|180D-comanalco||||||
+227|nacajuca|18.07670237478273, -92.93665466552045|1|oav|35|180D-villahermosa||||||
+227|nacajuca|18.076523530185934, -92.93674068679093|1|oav|39|180D (coatzacoalcos)||||||
+227|nacajuca|18.07661022414781, -92.93674605120867|1|oav|35|180D (escarcega)||||||
+38|grijalva|17.947627564334667, -92.78522960182543|1|capufe||Puente 186||||||
+39|usumacinta|17.85985411700456, -91.78368368662966|1|capufe||Puente 186||||||
+164|zacatal|18.61285469724088, -91.86082881006844|1|capufe||Puente 180||||||
+132|la seyba|19.636185605778753, -90.67162336120326|1|capufe|95|180D||||||
+132|la seyba|19.637598040524278, -90.672962861246|1|capufe|58|180D-60||||||
+132|la seyba|19.63694826473345, -90.6723493621941|1|capufe|40|60-180D||||||
+573|ecatepec (san cristobal)|19.58786117888355, -99.04234083982114|1|pinfra (https://www.pinfra.com.mx/concesiones)||revolucion-85D||||||
+573|ecatepec (san cristobal)|19.587719667632797, -99.0417185673369|1|pinfra||85D-revolucion||||||
+574|revolución|19.60298681509855, -99.03840138394324|1|Operadora y Mantenedora Golfo Centro S.A. de C.V. (http://autopistagolfocentro.com/tarifas)|35|(lecheria-piramides-mexiquense)-85D||||||
+574|revolución|19.60269450237185, -99.03778784154211|1|operadora y Mantenedora Golfo Centro S.A. de C.V|35|85D-(lecheria-piramides-mexiquense)||||||
+574|revolución|19.602269319275813, -99.03747049202427|1|operadora y Mantenedora Golfo Centro S.A. de C.V|43|85D-mexiquense||||||
+904|ecatepec (pirámidesl)|19.611774234553486, -99.02571541373743|1|pinfra||132D||||||
+905|tepexpan|19.61619139392161, -98.94827478124297|1|pinfra||132-132D||||||
+928|Tezoyuca (589)|19.60065751148438, -98.92553806692317|1|pinfra||Pirámides-texcoco||||||
+913|peñón|19.458599188412503, -99.03372456231982|1|pinfra||136D-57D||||||
+914|texcoco|19.502827156048728, -98.91271008878584|1|pinfra||142-136D||||||
+915|ent. Peñón|19.468842305639424, -99.00443193350293|1|pinfra||57D-136D||||||
+577|tejocotal|20.147452027701544, -98.28579586935979|1|capufe|111|132D||||||
+577|tejocotal|20.146423946409143, -98.28698039006906|1|capufe|75|130-132D||||||
+577|tejocotal|20.14645053387763, -98.28754989238011|1|capufe|38|132D-130||||||
+577|tejocotal|20.149066259918875, -98.28660601538354|1|capufe|75|132D-130||||||
+577|tejocotal|20.149236873728665, -98.28793400259666|1|capufe|75|132D-130||||||
+577|tejocotal|20.14940233576609, -98.28804616092576|1|capufe|38|130-132D||||||
+578|nuevo necaxa|20.13553818375597, -98.12274541411739|1|capufe||132D-130||||||
+578|nuevo necaxa|20.13504779438768, -98.12271685018949|1|capufe||130-132D||||||
+92|nuevo necaxa|20.186654458099976, -98.02982528492036|0|capufe||130-132D||||||
+585|el piñal|20.45880801422499, -97.85388430021331|1|auneti (https://www.auneti.mx/auneti/)||132D||||||
+584|miahuapan|20.610946872659845, -97.61455984847666|1|auneti||132D||||||
+579|tuxpan|20.75294757213223, -97.48237398090423|1|operadora y Mantenedora Golfo Centro S.A. de C.V||130D||||||
+580|tihuatlan|20.688195588486952, -97.49490448458995|1|operadora y Mantenedora Golfo Centro S.A. de C.V||130D-132D||||||
+580|tihuatlan|20.68876105853986, -97.49425308675715|1|operadora y Mantenedora Golfo Centro S.A. de C.V||132D-130D||||||
+556|naranjos|21.32437866679742, -97.6251432274458|1|Tuxpan-tampico|171|180D-naranjos||||||
+556|naranjos|21.32710891478247, -97.62732630460962|1|Tuxpan-tampico|359|180D||||||
+556|naranjos|21.327219839603366, -97.627142719318|1|Tuxpan-tampico|188|naranjos-180D||||||
+556|naranjos|21.327001749005113, -97.62752086691968|1|Tuxpan-tampico|188|180D-naranjos||||||
+556|naranjos|21.324306515229246, -97.62621732295528|1|Tuxpan-tampico|171|naranjos-180D||||||
+464|los gil|20.886139893589686, -97.46680176876609|1|Tuxpan-tampico||180D||||||
+177|totomoxtle|20.461974987354953, -97.24605444541805|1|Cardel-poza rica|57|180-180D||||||
+555|totomoxtle II|20.461011072323934, -97.24781863003669|1|Cardel-poza rica|57|180D-180||||||
+555|totomoxtle II|20.459087395236324, -97.24651992765443|1|Cardel-poza rica|191|180-180D||||||
+555|totomoxtle II|20.459503803376315, -97.24635871125814|1|Cardel-poza rica|248|180D||||||
+555|totomoxtle II|20.460316524462794, -97.24548638162649|1|Cardel-poza rica|191|180D-180||||||
+569|vega de alatorre|20.04417092326033, -96.68422137024868|1|Cardel-poza rica|122|180-180D||||||
+569|vega de alatorre|20.04407428119602, -96.68433398834017|1|Cardel-poza rica|306|180D||||||
+569|vega de alatorre|20.03998201348272, -96.68076608232805|1|Cardel-poza rica|184|180-180D||||||
+569|vega de alatorre|20.04395398216332, -96.68447282213222|1|Cardel-poza rica|122|180D-180||||||
+569|vega de alatorre|20.040344219799305, -96.68030517920202|1|Cardel-poza rica|184|180D-180||||||
+43|tecolutla|20.437759799198123, -97.0865232075881|1|capufe||180-puente||||||
+112|Libramiento poniente tampico|22.275294871573323, -97.89345319605991|1|capufe|37|70D||||||
+112|Libramiento poniente tampico|22.27642286116995, -97.89327737834991|1|capufe|17|||||||
+112|Libramiento poniente tampico|22.276503353087982, -97.89333174329877|1|capufe|18|||||||
+49|puente nacional tampico|22.21834449747909, -97.82472994010956|1|capufe||180||||||
+14|puente nacional pánuco|22.1488043994695, -98.14490483733022|1|capufe||127||||||
+4|tepotzotlan|19.715339738927977, -99.20753039475355|1|capufe||57D||||||
+5|palmillas|20.296119371827448, -99.92907113882305|1|capufe||57D||||||
+207|palmillas bis|20.290557094539224, -99.92058085361074|1|capufe||47D-57D||||||
+207|palmillas bis|20.290993657143467, -99.91859918217719|1|capufe||57D-47D||||||
+70|polotitlan|20.22649405588257, -99.81069911854836|1|capufe||polotitlan-57D||||||
+6|querétaro|20.572130171222657, -100.47284943605749|1|capufe||45D||||||
+61|libramiento sur poniente querétaro|20.572020757496592, -100.48072833693045|1|capufe|96|lib.poniente-45D||||||
+61|libramiento sur poniente querétaro|20.572328964633407, -100.48087888416393|1|capufe|14|45D-lib. Poniente||||||
+61|libramiento sur poniente querétaro|20.570339452320177, -100.48049414471346|1|capufe|14|lib.poniente-45D||||||
+61|libramiento sur poniente querétaro|20.5698830800817, -100.48137156772206|1|capufe|96|45D-lib. Poniente||||||
+590|crespo|20.506685631721385, -100.87088731280276|1|Concesionaria Bicentenario S.A. de C.V. (https://libramientocelaya.com.mx/tarifas/)||45D||||||
+591|laja|20.509691619406876, -100.76522819495591|1|Concesionaria Bicentenario S.A. de C.V.||45D||||||
+592|san miguel|20.580993488317887, -100.79532000011167|1|Concesionaria Bicentenario S.A. de C.V.||45D||||||
+183|villagran|20.57945698935768, -100.99235156985912|1|capufe||villagran-45D||||||
+185|cerro gordo|20.590133113132463, -101.13623196099414|1|capufe|58|45D-celaya||||||
+185|cerro gordo|20.59191470722084, -101.1372905330159|1|capufe|58|43D-45D||||||
+185|cerro gordo|20.59216782205415, -101.14139312299795|1|capufe|51|45D-43D||||||
+185|cerro gordo|20.591853315565057, -101.13734514847903|1|capufe|14|43D-45D||||||
+185|cerro gordo|20.59227578797495, -101.14149236473037|1|capufe|14|43D-45D||||||
+185|cerro gordo|20.592272382676825, -101.14148963865495|1|capufe|51|43D-45D||||||
+41|salamanca|20.598480019780304, -101.18096373306501|1|capufe|102|45D||||||
+41|salamanca|20.599168834231897, -101.18070972620217|1|capufe|70|45D-manuel clutier||||||
+41|salamanca|20.597596386742083, -101.18101272807726|1|capufe|36|45D-manuel clutier||||||
+41|salamanca|20.599168834231897, -101.18070972620217|1|capufe|70|manuel clutier-45D||||||
+41|salamanca|20.597596386742083, -101.18101272807726|1|capufe|36|manuel clutier-45D||||||
+564|arandas|20.737489290873498, -101.38000868117318|1|Hoatsa (http://libramientoirapuato.mx/tarifas.html)|62|20D||||||
+564|arandas|20.735267853783842, -101.3831940318438|1|Hoatsa|43|arandas-20D||||||
+564|arandas|20.73352001610326, -101.38124091013248|1|Hoatsa|18|arandas-20D||||||
+564|arandas|20.73352001610326, -101.38124091013248|1|Hoatsa|18|20D-arandas||||||
+563|yostiro|20.601076943446127, -101.43854055492513|1|Hoatsa||20D||||||
+550|mendoza|20.673036563093145, -101.21357279709022|1|grupo mexico autopistas (https://www.gmautopista.com/Paginas/Tarifas.aspx)||43D||||||
+551|puerto interior|20.98387104285751, -101.54226803012496|1|grupo mexico autopistas||43D||||||
+350|silao|20.961454867265935, -101.3847850937014|1|grupo mexico autopistas||guanajuato eje metropolitano||||||
+351|cervera|20.971943042997328, -101.2995001292804|1|Operadora Valle de la Independencia ||lucas aleman-110D-lucas aleman||||||
+314|aguas buenas|20.9614766917172, -101.38477623810958|1|grupo mexico autopistas||guanajuato eje metropolitano||||||
+120|león|21.102792570631095, -101.78459803456431|1|rco Red De Carreteras De Occidente S.A.P.I.B. de C.V. (https://redviacorta.mx/es/tarifas)|178|45D||||||
+120|león|21.098289931806878, -101.7786979590263|1|rco|68|las joyas-45D||||||
+120|león|21.09742978712952, -101.7769293532643|1|rco|68|45D-las joyas||||||
+123|encarnación de díaz|21.489682693175443, -102.24315141209509|1|rco|169|lagos de moreno-45D-aguascalientes||||||
+123|encarnación de díaz|21.489682693175443, -102.24315141209509|1|rco|71|encarnación de díaz-45D-aguascalientes||||||
+583|chichimeco|22.005925608993348, -102.35775901321384|1|pinfra|77|libramiento aguascalientes||||||
+583|chichimeco||||42|||||||
+583|chichimeco||||35|||||||
+87|zacatecas|22.71077952370501, -102.4488686413797|1|capufe||45D||||||
+114|jalostotitlan|21.117606005742108, -102.45806476923244|1|rco|202|80D||||||
+114|jalostotitlan|21.117625940528182, -102.45817194718218|1|rco|118|jalostitlan-80D||||||
+114|jalostotitlan|21.117441142045102, -102.45796734964047|1|rco|118|80D-jalostitlan||||||
+114|jalostotitlan|21.120225227194027, -102.45558675084618|1|rco|85|80D-jalostitlan||||||
+114|jalostotitlan|21.11904546238283, -102.4557563878855|1|rco|85|jalostitlan-80D||||||
+114|jalostotitlan||||70|||||||
+114|jalostotitlan||||34|||||||
+113|tepatitlan|20.82458772174976, -102.79500119203935|1|rco|246|80D||||||
+113|tepatitlan|20.820927144547603, -102.79384973598117|1|rco|201|Colosio-80D||||||
+113|tepatitlan|20.820772768883852, -102.79406376644803|1|rco|201|80D-colosio||||||
+113|tepatitlan||||196|||||||
+113|tepatitlan||||172|||||||
+113|tepatitlan||||146|||||||
+113|tepatitlan||||72|||||||
+113|tepatitlan||||127|||||||
+113|tepatitlan||||98|||||||
+113|tepatitlan||||53|||||||
+113|tepatitlan|20.820850490911763, -102.79393016580364|1|rco|44|Colosio-80D||||||
+199|lagos de moreno|21.49019916795546, -101.76328341241077|1|capufe||80D||||||
+454|Ventura-el peyote|22.52091754877761, -100.6564056074358|1|meta mexicana de técnicos en autopistas s.a de c.v (https://www.libramientoslp.mx/meta#tabs)||57D||||||
+426|libramiento arco norte san luis potosi|22.29983797563336, -100.97126657665335|1|meta||libramiento norte san luis potosi||||||
+504|libramiento poniente san luis potosi|22.16361309699705, -101.0792319588635|1|meta|81|libramiento poniente san luis potosi||||||
+504|libramiento poniente san luis potosi||1|meta|56|||||||
+504|libramiento poniente san luis potosi||1|meta|28|||||||
+425|libramiento oriente san luis potosi|22.129746570238748, -100.82509189514816|1|meta|105|57D||||||
+425|libramiento oriente san luis potosi|22.126038672449212, -100.82507989656916|1|meta|33|70-57D||||||
+127|chichimequillas|20.70558491390206, -100.34373413115131|1|capufe||57D||||||
+486|cerritos (san luis-rio verde)|22.428865895747066, -100.32041862385992|1|coinsan||75D||||||
+486|cerritos (rioverde-cemosa-rioverde)||1|coinsan||75D||||||
+486|cerritos (charco blanco-rioverde-charco blanco)|22.441384551244493, -100.33936852467664|1|coinsan|144|75D||||||
+486|cerritos (cerritos-rioverde)|22.427612024118517, -100.31850050729386|1|coinsan||75D||||||
+486|cerritos (san luis-cerritos-san luis)|22.440333503824185, -100.3345710388101|1|coinsan||75D||||||
+486|cerritos (san luis-charco blanco-san luis)|22.441825675240864, -100.3399436115878|1|coinsan|59|75D||||||
+486|cerritos (charco blanco-cemosa)||1|coinsan||75D||||||
+486|cerritos (charco blanco-cerritos-charco blanco)|22.443339620963453, -100.33880485161151|1|coinsan||75D||||||
+498|cemosa (rioverde-cemosa-rioverde)||1|coinsan||75D||||||
+493|la calera|21.904200038149103, -98.95552718590129|1|opasa |122|70D||||||
+493|la calera|21.905379436943097, -98.95284489335644|1|opasa |71|70D-85||||||
+493|la calera|21.905503864727557, -98.95287707986425|1|opasa |51|85-70D||||||
+493|la calera|21.902303432986486, -98.95295350980425|1|opasa |71|85-70D||||||
+493|la calera|21.902196295042685, -98.95302419807835|1|opasa |51|70D-85||||||
+909|santa fe|19.359158954537214, -99.27360380223307|1|pinfra||15D||||||
+908|marquesa|19.33277053011677, -99.31417230288255|1|pinfra|111|15D||||||
+908|marquesa|19.33176757989978, -99.315122002156|1|pinfra|55|57D-15D||||||
+934|marquesa t2|19.290581367921927, -99.43444141405219|1|pinfra|72|15D||||||
+410|la venta|19.335807155041156, -99.3110191569385|1|pinfra|55|15D-arriaga||||||
+835|la finca|18.906345950224217, -99.65462495610822|1|SAASCAEM (https://saascaem.edomex.gob.mx/tarifas-red-estatal-autopistas)|73|55D||||||
+835|la finca|18.89982802295817, -99.65321250708395|1|SAASCAEM|36|55-55D||||||
+835|la finca|18.89982802295817, -99.65321250708395|1|SAASCAEM|36|55D-55||||||
+836|villa guerrero|18.989328269782845, -99.65656768903688|1|SAASCAEM||55D||||||
+837|tenango|19.12245612481182, -99.60212868246006|1|SAASCAEM||55D||||||
+470|chapultepec|19.196568898036464, -99.5251963918216|1|SAASCAEM||Lerma-tenango||||||
+471|rayón|19.151241223240984, -99.5437285216713|1|SAASCAEM|47|Lerma-tenango||||||
+471|rayón|19.15139653006734, -99.54371973077879|1|SAASCAEM|49|Lerma-tenango (malinalco)||||||
+471|rayón|19.15139653006734, -99.54371973077879|1|SAASCAEM|49|Lerma-tenango (lerma)||||||
+471|rayón|19.151453282154144, -99.54833025312512|1|SAASCAEM|40|6-lerma-tenango||||||
+471|rayón|19.149986747686476, -99.54999927946027|1|SAASCAEM|40|Lerma-tenango-6||||||
+416|xonacatlan|19.375790401297618, -99.5494633032343|1|ideal (https://www.libramientotoluca.com.mx/tarifas/)|107|6D||||||
+416|xonacatlan|19.38125410425941, -99.55553467754922|1|ideal|67|toluca-naucalpan-6D||||||
+416|xonacatlan|19.38125410425941, -99.55553467754922|1|ideal|67|6D-toluca-naucalpan||||||
+416|xonacatlan|19.37596487076062, -99.54927807470443|1|ideal|40|6D-toluca-naucalpan||||||
+416|xonacatlan|19.375622298900062, -99.54961788801694|1|ideal|40|toluca-naucalpan-6D||||||
+532|la hortaliza|19.38141941343298, -99.80469301511961|1|acomex|177|7D||||||
+532|la hortaliza|19.3818064512847, -99.80876509673591|1|acomex|131|15-7D||||||
+532|la hortaliza|19.381264677056866, -99.80470538214621|1|acomex|47|15-7D||||||
+532|la hortaliza|19.38188115653965, -99.80688394241304|1|acomex|47|7D-15||||||
+531|valle de bravo|||||||||||
+530|amanalco|19.233676136929883, -100.0722562094995|1|operadora de autopistas s.a de c.v|133|valle de bravo-toluca||||||
+530|amanalco|||||||||||
+530|amanalco|||||||||||
+489|monumento|19.401350551047607, -100.11226498730267|1|acomex||7D||||||
+940|zitacuaro|19.452462358545343, -100.28186781918753|1|coconal||||||||
+444|el dorado|19.40822406226161, -99.71605380738103|1|ideal||55D||||||
+445|atlacomulco sur|19.76244187304768, -99.85557471420928|1|ideal||55D||||||
+448|atlacomulco|19.83763532632644, -99.94555691658852|1|MRO Estado de México-Michoacán S.A.P.I. de C.V (https://website.autopistaatlacomulcomaravatio.com/index.php/tarifas/)||15D||||||
+449|contepec|19.875723603610318, -100.18810711049277|1|MRO Estado de México-Michoacán S.A.P.I. de C.V||15D||||||
+144|zinapecuaro|19.90180502042515, -100.78852838862753|1|rco|193|15D||||||
+144|zinapecuaro|19.902385792857192, -100.7875950406106|1|rco|100|120-15D||||||
+144|zinapecuaro|19.902385792857192, -100.7875950406106|1|rco|93|15D-120||||||
+144|zinapecuaro|19.900959002175483, -100.78903312126769|1|rco|100|15D-120||||||
+144|zinapecuaro|19.900959002175483, -100.78903312126769|1|rco|93|120-15D||||||
+144|Zinapecuaro-jerahuaro|19.894506686108024, -100.64672904599067|1|rco|55|15D-126||||||
+144|Zinapecuaro-copandaro|19.882261879344206, -101.20206227375931|1|rco|18|15D-37D||||||
+144|Zinapecuaro-cuto|19.880442015368214, -101.20335492528764|1|rco|18|37D-15D||||||
+145|panindicuaro|19.972243068746103, -101.75696103966796|1|rco|251|15D||||||
+145|panindicuaro|19.971509971137188, -101.7568972199435|1|rco|163|5-15D||||||
+145|Panindicuaro-huariqueo|19.884202813395508, -101.51047755873668|1|rco|97|15-huariqueo||||||
+145|panindicuaro|19.972415299638744, -101.75699541974464|1|rco|88|5-15D||||||
+145|panindicuaro|19.971509971137188, -101.7568972199435|1|rco|88|15D-5||||||
+146|ecuandureo|20.17501028780369, -102.19131425463095|1|rco|135|15D||||||
+146|ecuandureo|20.175166381288125, -102.19130889021298|1|rco|77|(la barca)37-15D||||||
+146|Ecuandureo-vista hermosa|20.269198485914973, -102.44313075658646|1|rco|39|15D-110-vista hermosa||||||
+146|ecuandureo|20.175166381288125, -102.19130889021298|1|rco|26|15D-37(ecuandureo)||||||
+146|ecuandureo|20.174896994036757, -102.19131919916147|1|rco|77|15D-37(la barca)||||||
+146|ecuandureo|20.174896994036757, -102.19131919916147|1|rco|26|37(ecuandureo)-15D||||||
+328|zamora|20.1736456958063, -102.24387067817835|1|rco||zamora-ecurandureo-15D||||||
+328|zamora|20.1736456958063, -102.24387067817835|1|rco||15D-zamora-ecurandureo||||||
+146|Ecuandureo-vista hermosa|20.269867572421518, -102.43916756488186|1|rco||110-15D||||||
+147|ocotlan|20.40589744066098, -102.73893693188674|1|rco|265|15D||||||
+147|ocotlan|20.40491015712817, -102.7393417397185|1|rco|198|15D-122||||||
+147|ocotlan||0|rco|117|||||||
+147|ocotlan|20.40491015712817, -102.7393417397185|1|rco|67|122-15D||||||
+147|ocotlan||0|rco|50|||||||
+147|ocotlan|20.406985874135305, -102.73894151207523|1|rco|198|122-15D||||||
+147|ocotlan|20.406985874135305, -102.73894151207523|1|rco|67|15D-122||||||
+42|Puente la piedad|20.35279745966371, -102.0251800282009|1|capufe||90||||||
+463|libramiento la piedad|20.395607639642904, -101.99336212480873|1|libramiento ica la piedad s.a de c.v|61|90D||||||
+463|libramiento la piedad|20.395482253339235, -101.99808250182039|1|libramiento ica la piedad s.a de c.v|51|84-90D||||||
+463|libramiento la piedad|20.395482253339235, -101.99808250182039|1|libramiento ica la piedad s.a de c.v|17|84-90D||||||
+463|libramiento la piedad|20.395482253339235, -101.99808250182039|1|libramiento ica la piedad s.a de c.v|51|90D-84||||||
+463|libramiento la piedad|20.395482253339235, -101.99808250182039|1|libramiento ica la piedad s.a de c.v|17|90D-84||||||
+941|Morelia-aeropuerto1|19.741222026648433, -101.10053884205266|1|pinfra||48D||||||
+942|Morelia-aeropuerto2|19.885488559768774, -101.0100155313537|1|pinfra||48D||||||
+933|capula (cuto)|19.71079159182471, -101.33717772977289|1|Autopistas De Michoacán S. A. De C. V.||37D||||||
+927|chapultepec morelia|19.54553155733181, -101.53587842530557|1|Autopistas De Michoacán S. A. De C. V.||14D||||||
+911|zirahuen|19.50557883733148, -101.65933785839606|1|Autopistas De Michoacán S. A. De C. V.||14D||||||
+910|auxiliar zirahuen|19.482383620672607, -101.7310414470312|1|Autopistas De Michoacán S. A. De C. V.||14-14D-14||||||
+912|san ángel zurumicapio|19.441955344304443, -101.88380345321947|1|Autopistas De Michoacán S. A. De C. V.||lazaro-14D-lazaro||||||
+925|taretan|19.35550332462252, -101.91797481122194|1|Autopistas De Michoacán S. A. De C. V.|78|37D||||||
+925|taretan|19.351925751280497, -101.91737741595243|1|Autopistas De Michoacán S. A. De C. V.|60|revolución-37D||||||
+925|taretan|19.351925751280497, -101.91737741595243|1|Autopistas De Michoacán S. A. De C. V.|18|37D-revolución||||||
+924|santa casilda|19.152969991209883, -101.97814872598207|1|Autopistas De Michoacán S. A. De C. V.|78|37D||||||
+924|santa casilda|19.156501301254124, -101.97616785429577|1|Autopistas De Michoacán S. A. De C. V.|59|37D-zamora-37D||||||
+924|santa casilda|19.156501301254124, -101.97616785429577|1|Autopistas De Michoacán S. A. De C. V.|21|37D-zamora-37D||||||
+920|las cañas|18.554208902926476, -101.97035200627485|1|Autopistas De Michoacán S. A. De C. V.||37D||||||
+920|las cañas|18.553670344865356, -101.97299792594691|1|Autopistas De Michoacán S. A. De C. V.||37D-37-37D||||||
+919|feliciano|18.006468561169285, -101.9617523000505|1|Autopistas De Michoacán S. A. De C. V.|213|37D||||||
+919|feliciano|18.006526006775108, -101.96188932343809|1|Autopistas De Michoacán S. A. De C. V.|144|37D-200||||||
+919|feliciano|18.004650105291415, -101.96386122710601|1|Autopistas De Michoacán S. A. De C. V.|71|200-37D||||||
+919|feliciano|18.004073742621376, -101.96190516017815|1|Autopistas De Michoacán S. A. De C. V.|71|37D-200||||||
+919|feliciano|18.006398641167262, -101.96163109640693|1|Autopistas De Michoacán S. A. De C. V.|144|200-37D||||||
+1|tlalpan|19.242521574586622, -99.1487255384838|1|capufe||95D||||||
+195|tres marías|19.05636991076728, -99.24108055363567|1|capufe||95D-aldama-95D||||||
+224|tepoztlán bis|18.984739462103477, -99.1105872756711|1|capufe||115D-del tesoro||||||
+24|tepoztlán||1|capufe|82|115D||||||
+24|tepoztlán|18.98703912832627, -99.11250613593504|1|capufe|63|La pera-oacalco||||||
+24|tepoztlán||1|capufe|60|||||||
+24|tepoztlán|18.98703912832627, -99.11250613593504|1|capufe|51|la pera-tepoztan||||||
+24|tepoztlán|18.98703912832627, -99.11250613593504|1|capufe|42|Tepoztlan-oaxtepec||||||
+24|tepoztlán|18.98703912832627, -99.11250613593504|1|capufe|32|Tepoztlan-oacalco||||||
+24|tepoztlán|18.98703912832627, -99.11250613593504|1|capufe|19|Tepoztlan-la pera||||||
+25|oacalco|18.930506223186416, -99.02597134159102|1|capufe|32|Tepoztlan-oacalco||||||
+25|oacalco|18.930506223186416, -99.02597134159102|1|capufe|32|Oacalco-tepoztlan||||||
+25|oacalco|18.93137488786192, -99.02496837534386|1|capufe|11|Oacalco-oaxtepec||||||
+25|oacalco|18.931099724605644, -99.02561158092688|1|capufe|51|Oacalco-la pera||||||
+465|oaxtepec||1|capufe|82|||||||
+465|oaxtepec||1|capufe|63|Oaxtepec-la pera||||||
+465|oaxtepec|18.905473422168466, -98.98750014125824|1|capufe|63|la pera-oaxtepec||||||
+465|oaxtepec|18.903688269885, -98.98528155377122|1|capufe|61|Oaxtepec-cuautla (115D)||||||
+465|oaxtepec|18.903688269885, -98.98528155377122|1|capufe|44|Oaxtepec-tepoztlan||||||
+465|oaxtepec||1|capufe|32|||||||
+465|oaxtepec|18.903688269885, -98.98528155377122|1|capufe|11|Oaxtepec-oacalco||||||
+107|emiliano zapata|18.838165990983903, -99.21661683104453|1|capufe||95D||||||
+107|emiliano zapata|18.83809491199498, -99.21699770472021|1|capufe||95D||||||
+107|emiliano zapata|18.838110143209416, -99.21737321397795|1|capufe||95D||||||
+107|emiliano zapata|18.8383843048332, -99.21754487535291|1|capufe||95D||||||
+106|aeropuerto|18.80235020704474, -99.22129303952534|1|capufe||95D-aeropuerto||||||
+106|aeropuerto|18.802734069561744, -99.21986144057885|1|capufe||aeropuerto-95D||||||
+105|xochitepec|18.77499093810084, -99.22532537700091|1|capufe||xochitepec-95D-xochitepec||||||
+184|alpuyeca|18.69852562527147, -99.2780406209234|1|capufe||95D||||||
+101|alpuyeca balnearios|18.722497449540814, -99.25992685715259|1|capufe||21-95D||||||
+101|alpuyeca balnearios|18.72387184059692, -99.26024357551562|1|capufe||95D-21||||||
+102|paso morelos|18.231497855655913, -99.21549921330978|1|capufe|200|95D||||||
+102|paso morelos|18.231497855655913, -99.21549921330978|1|capufe|120|95D-1 MORELOS-CHILPANCINGO||||||
+102|paso morelos|18.231497855655913, -99.21549921330978|1|capufe|76|1-95D||||||
+103|palo blanco|17.42396603794243, -99.4668808284532|1|capufe||95D||||||
+104|la venta|16.92830587416863, -99.80187944058898|1|capufe||95D||||||
+223|la venta bis|16.938358316580988, -99.81995535427467|1|capufe||200D||||||
+223|la venta bis|16.942207675008497, -99.82249843452567|1|capufe||200D||||||
+56|zacapalco|18.5379427134007, -99.44741509547512|1|capufe||95D||||||
+99|taxco|18.58865074498465, -99.55997457790419|1|capufe||95D||||||
+3|iguala|18.336205090551918, -99.50832571676023|1|capufe||91D||||||
+423|las cruces (maxitunel)|16.885991421590315, -99.83927944269888|1|tuca||95D||||||
+429|cayaco (macrotunel)|16.817726468954287, -99.81749010113987|1|ideal||Autopista macrotúnel||||||
+420|libramiento tecpan|17.196983036834542, -100.62673256934033|1|omega||200D||||||
+159|zapotlanejo|20.615679214047034, -103.08930548760945|1|rco|74|90-80D-90||||||
+159|zapotlanejo||1|rco|172|||||||
+159|zapotlanejo||1|rco|127|||||||
+159|zapotlanejo||1|rco|191|||||||
+159|zapotlanejo||1|rco|124|||||||
+159|zapotlanejo||1|rco|72|||||||
+159|zapotlanejo||1|rco|73|||||||
+159|zapotlanejo||1|rco|68|||||||
+159|zapotlanejo (el vado)|20.60474405077011, -103.15867664246217|1|rco|37|90D||||||
+159|zapotlanejo (el vado)|20.60477043446359, -103.15964438905226|1|rco|37|90D-union||||||
+159|zapotlanejo (el cortijo)|20.619696155309637, -103.20616055682282|1|rco|26|90D-al vado||||||
+159|zapotlanejo (el cortijo)|20.620155091535022, -103.20505508901797|1|rco|26|90D (guadalajara)||||||
+159|Zapotlanejo (periférico)|20.619340547812097, -103.21627392270057|1|rco|24|periferco ote-90D||||||
+159|Zapotlanejo (periférico)|20.619128181442314, -103.21552433484176|1|rco|24|90D-periferico ote||||||
+159|zapotlanejo (arroyo de enmedio)|20.615813352143217, -103.24281556995683|1|rco|17|90D zapotlanejo guadalajara (entrada)||||||
+159|zapotlanejo (arroyo de enmedio)|20.615478327544395, -103.24277370516198|1|rco|17|90D-tonalá (salida)||||||
+447|libramiento sur guadalajara (macrolibramiento)|20.587536559203606, -103.10161805782742|1|rco|74|15D-macrolibramiento||||||
+447|libramiento sur guadalajara (macrolibramiento)|20.588657766545925, -103.1017441931241|1|rco|74|macrolibramiento-15D||||||
+447|libramiento sur guadalajara (la laja)|20.58802769070722, -103.09844669831183|1|ideal|10|15D-macrolibramiento||||||
+447|libramiento sur guadalajara (la laja)|20.585980427706755, -103.10065602868633|1|ideal|10|macrolibramiento-15D||||||
+447|libramiento guadalajara|20.572774701753723, -103.10136553143488|1|ideal|94|15D-macrolibramiento-15D||||||
+325|chapala|20.3902079228279, -103.30216670470058|1|ideal (https://www.autopistaguadalajaratepic.com.mx/tarifas/)||macrolibramiento||||||
+405|santa cecilia|20.442508658542227, -103.5457950992952|1|ideal|295|macrolibramiento||||||
+405|santa cecilia||-1|ideal|218|||||||
+405|santa cecilia||-1|ideal|13|||||||
+57|acatlan II|20.37345667603661, -103.57631833223074|1|Operadora de Autopistas Sayula (https://autopistaguadalajaracolima.com/mapas-y-tarifas/)||54D||||||
+58|sayula|19.933263452542814, -103.52992416171546|1|operadora de Autopistas Sayula||54D||||||
+59|sayula remota|19.879130875216404, -103.51932985418757|1|operadora de Autopistas Sayula||401-54D-401||||||
+60|san marcos II|19.40918518118616, -103.52790845500914|1|operadora de Autopistas Sayula||54D||||||
+901|armería|18.927824674673065, -104.0814923971006|1|pinfra||200D||||||
+409|yago|21.84466834652707, -105.08490605969492|1|ideal|75|15D-yago||||||
+409|yago|21.84378680616447, -105.08535830137257|1|ideal|75|yago-15D||||||
+409|yago|21.845224422430572, -105.08652478506053|1|ideal||yago-15D||||||
+409|yago|21.846888493745354, -105.08519028311795|1|ideal||15D-yago||||||
+401|estación ruiz|21.95182991382481, -105.11604882560371|1|ideal|205|15D||||||
+401|estación ruiz|21.9530887161182, -105.12088735876337|1|ideal|95|15D-carr. Tijuana||||||
+402|acaponeta|22.453868558300147, -105.42474122248902|1|ideal|420|15D||||||
+402|acaponeta|22.45409818879467, -105.41878797767092|1|ideal|210|68-15D-68||||||
+400|El rosario|22.984690332700566, -105.87807412490908|1|ideal|240|15D||||||
+400|El rosario|22.985110789150852, -105.87525673957157|1|ideal|120|rosario-15D-rosario||||||
+604|vainillo|23.216168571820468, -106.26034479817824|1|ideal (https://www.mazatlanculiacan.com.mx/tarifas/)|71|15D||||||
+604|vainillo|23.216693492810215, -106.26487451698048|1|ideal|60|15-15D-15||||||
+604|vainillo|23.216693492810215, -106.26487451698048|1|ideal|27|15D-15||||||
+124|mármol|23.47117593583882, -106.56953131594183|1|ideal||15D||||||
+601|costa rica|24.570263179009334, -107.43020062145355|1|ideal||15D||||||
+408|quila||-1|ideal|218|||||||
+408|quila|24.3966229440113, -107.27190764118328|1|ideal|154|la cruz-quila||||||
+408|quila|24.397647820170135, -107.26999773733633|1|ideal|64|Quila-costa rica||||||
+603|san pedro-libramiento culhuacan|24.69342264306318, -107.52545219771793|1|ideal||15D||||||
+10|puente nacional culiacan|24.94886733155921, -107.5456562983661|1|capufe||15||||||
+11|puente nacional sinaloa|25.51285551119112, -108.34763370725857|1|capufe||15||||||
+557|esperanza hornos|27.60454026623095, -109.89877533004463|1|libramiento ciudad obregón s.a de c.v (https://lico.mx/)|215|libramiento ciudad obregón||||||
+557|esperanza hornos|27.604245909616175, -109.90163876813612|1|libramiento ciudad obregón s.a de c.v|115|libramiento ciudad obregón-117||||||
+557|esperanza hornos|27.606910229393343, -109.90310133337965|1|libramiento ciudad obregón s.a de c.v|115|117-libramiento ciudad obregon||||||
+150|esperanza|27.603744667460937, -109.93908526422884|1|capufe|109|15||||||
+148|estación don|26.849791001665388, -109.37326206852237|1|capufe|109|15||||||
+149|fundición|27.32039761314023, -109.71978637933714|1|capufe||15||||||
+151|guaymas|28.036517969585383, -110.92414646858674|1|capufe||15D||||||
+152|hermosillo|29.2207043648971, -110.93020256801417|1|capufe||15||||||
+153|magdalena|30.629278285658106, -110.94871876882378|1|capufe||15D||||||
+559|sahuaripa|29.030222826340893, -110.85554085804226|1|ocasa|74|10D-20-10D||||||
+559|sahuaripa|29.02970183857509, -110.85426082999997|1|ocasa|151|10D|A2|||||
+559|sahuaripa|29.030270982054017, -110.85305613473392|1|ocasa|77|20-10D-20||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|1|ideal||arco norte (40D)||||||
+442|acambay|19.923420387940723, -99.84427680708129|1|ideal||||||||
+442|jilotepec|19.976578425529574, -99.53150130772515|1|ideal||||||||
+440|Queretaro-arco norte|19.997873125950655, -99.49206331200297|1|ideal||||||||
+440|Queretaro-arco norte|19.997798680886277, -99.49186221077878|1|ideal||||||||
+440|Queretaro-arco norte|19.996284694989978, -99.49039081182553|1|ideal||||||||
+440|Queretaro-arco norte|19.99614342800426, -99.48965419693805|1|ideal||||||||
+440|Queretaro-arco norte|19.998659745025932, -99.48778711267755|1|ideal||||||||
+440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|1|ideal||||||||
+440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|1|ideal||||||||
+439|tula II|20.10007105433363, -99.28348673487717|1|ideal||||||||
+439|tula II|20.09816905576414, -99.28317564889447|1|ideal||||||||
+438|tula I|20.09813858310726, -99.28607748173283|1|ideal||||||||
+438|tula I|20.099718800488123, -99.28059830215831|1|ideal||||||||
+437|atitalaquia|20.065042150758917, -99.21866529462685|1|ideal||||||||
+437|atitalaquia|20.067272236262596, -99.21852556535966|1|ideal||||||||
+436|ajoloapan|19.956441521975105, -99.05548785748188|1|ideal||||||||
+436|ajoloapan|19.955877232274915, -99.05544188568793|1|ideal||||||||
+436|ajoloapan|19.956107705143303, -99.05336177908266|1|ideal||||||||
+436|ajoloapan|19.955471686502346, -99.05277825226608|1|ideal||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|1|ideal||||||||
+434|tulancingo|19.83365049678555, -98.701529139612|1|ideal||||||||
+434|tulancingo|19.83246878481612, -98.7001384849097|1|ideal||||||||
+434|tulancingo|19.834854002542162, -98.70015239145316|1|ideal||||||||
+434|tulancingo|19.833676660062046, -98.69879882086872|1|ideal||||||||
+433|shagún|19.756043438033146, -98.63055170365965|1|ideal||||||||
+433|shagún|19.755939830461024, -98.62811909845483|1|ideal||||||||
+432|calpulalpan|19.620137757867894, -98.54701875042406|1|ideal||||||||
+432|calpulalpan|19.621486505776243, -98.54808879082856|1|ideal||||||||
+432|calpulalpan|19.619437676918853, -98.54964364658991|1|ideal||||||||
+432|calpulalpan|19.619192921053266, -98.54940895138267|1|ideal||||||||
+431|sanctorum|19.51386945346915, -98.46985777777844|1|ideal||||||||
+431|sanctorum|19.512714616051102, -98.46881769457083|1|ideal||||||||
+431|sanctorum|19.512703988869728, -98.46690850906491|1|ideal||||||||
+431|sanctorum|19.515585183552982, -98.46900306133793|1|ideal||||||||
+431|sanctorum|19.516555779290446, -98.46936385230599|1|ideal||||||||
+430|san martín texmelucan|19.297149073542343, -98.4110640873011|1|ideal||||||||
+430|san martín texmelucan|19.296346581160403, -98.40976053372385|1|ideal||||||||
+462|apaxco|19.997838843691188, -99.14140963834238|1|ideal||||||||
+466|liverpool|19.97860092447916, -99.52342931107276|1|ideal||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|1|ideal||||||||
+568|chamapa autovan|19.4345103287221, -99.30373263946012|1|autovan||134D||||||
+566|san nicolas|19.353905509127546, -99.48032757375664|1|autovan||134D-san nicolas-134D||||||
+566|san nicolas|19.355660700140408, -99.48127465003711|1|autovan||134D-san nicolas-134D||||||
+567|ayotuxco|19.401448528578268, -99.38100885600021|1|autovan||134D-ayotuzco-134D||||||
+567|ayotuxco|19.39997992697767, -99.38094182226153|1|autovan||134D-ayotuzco-134D||||||
+565|cerrillo|19.326359656928048, -99.51592085001816|1|autovan||134D||||||
+86|san josé del cabo|23.049953752038192, -109.71956680893206|1|capufe||1D||||||
+330|aeropuerto de los cabos|23.150499203637988, -109.74050665703166|1|capufe||1D||||||
+332|san lucas|22.92430800546661, -109.91732401751469|1|capufe||1D||||||
+332|el mangle|22.953998414854038, -109.97393402303173|1|capufe||1D||||||
