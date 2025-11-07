@@ -1,53 +1,77 @@
-parent_id|short_name|name|area_webpage|tariffs_ref
+parent_id|short_name|project_or_owner_name|area_webpage|tariffs_ref
 |ideal|Impulsora del Desarrollo y el Empleo en América Latina|https://www.ideal.com.mx/|
 |rco|red via corta|https://redviacorta.mx/|https://redviacorta.mx/es/tarifas
 |aleatica|aleatica|https://www.aleatica.com/|
-ideal||autopista guadalajara tepic s.a de cv.|https://www.autopistaguadalajaratepic.com.mx/tarifas/|
-|ocacsa|Operación y Conservación de Autopistas Concesionadas S.A. de C.V.|https://www.autopistajalacompostela.com/tarifas|
-|capufe|caminos y puentes federales|https://pot.capufe.mx/gobmx/transparencia/tarifas.html|
-ideal||autopista tepic mazatlan|https://www.tepicmazatlan.com.mx/tarifas/|
-coconal|acsa|autopistas de cuota s.a de c.v|https://autopistasdecuota.com/ruta/durango-coahuila|
-coconal|acsa|autopistas de cuota s.a de c.v|https://autopistasdecuota.com/ruta/chihuahua|
+ideal|Guadalajara-tepic|autopista guadalajara tepic s.a de cv.|https://www.autopistaguadalajaratepic.com.mx|https://www.autopistaguadalajaratepic.com.mx/tarifas/
+|ocacsa|Operación y Conservación de Autopistas Concesionadas S.A. de C.V.|https://www.autopistajalacompostela.com|https://www.autopistajalacompostela.com/tarifas
+|capufe|caminos y puentes federales|https://pot.capufe.mx/gobmx/transparencia|https://pot.capufe.mx/gobmx/transparencia/tarifas.html
+ideal|Tepic-mazatlan|autopista tepic mazatlan|https://www.tepicmazatlan.com.mx|https://www.tepicmazatlan.com.mx/tarifas/
+coconal|acsa|autopistas de cuota s.a de c.v|https://autopistasdecuota.com/ruta/durango-coahuila|https://autopistasdecuota.com/ruta/durango-coahuila
+coconal|acsa|autopistas de cuota s.a de c.v|https://autopistasdecuota.com/ruta/chihuahua|https://autopistasdecuota.com/ruta/chihuahua
 |c&g|MRO Construcarr Y De La Garza S.A.P.I De C.V.|https://construobrasdelagarza.com/|
-|cams|Concesionaria Autopista Monterrey-Saltillo|https://operadoravial.com/tarifas/|
+|cams|Concesionaria Autopista Monterrey-Saltillo|https://operadoravial.com|https://operadoravial.com/tarifas/
 |omega|omega|https://grupo-omega.com/|
-|reanal|red estatal de autopistas de nuevo león|https://reanl.com.mx/nosotros/tarifas/|
-||super carreteras del norte|http://supercarreteras.com/|
-coconal|opan|operadora de autopistas del noreste|https://autopistasdecuota.com/ruta/nuevo-leon-tamaulipas|
+|reanal|red estatal de autopistas de nuevo león|https://reanl.com.mx|https://reanl.com.mx/nosotros/tarifas/
+|supercarreteras|super carreteras del norte|http://supercarreteras.com/|
+coconal|opan|operadora de autopistas del noreste|https://autopistasdecuota.com/ruta/nuevo-leon-tamaulipas|https://autopistasdecuota.com/ruta/nuevo-leon-tamaulipas
 |copa|compañia operadora de puentes y autopistas|https://copaoperacion.com/|
-aleatica|gana|Grupo Autopistas Nacionales S.A de C.V|https://www.ganamexico.com.mx/rutas-y-tarifas/|
-|pinfra|promotora de carreteras ecatepec pirámides s.a de c.v||
-||MRO Autopista Golfo Centro S.A. de C.V.|https://autopistagolfocentro.com/tarifas|
-|pinfra|desarrollo global de concesiones s.a de c.v||
+aleatica|gana|Grupo Autopistas Nacionales S.A de C.V|https://www.ganamexico.com.mx|https://www.ganamexico.com.mx/rutas-y-tarifas/
+pinfra|Ecatepec-piramides|promotora de carreteras ecatepec pirámides s.a de c.v||
+|Golfo-centro|MRO Autopista Golfo Centro S.A. de C.V.|https://autopistagolfocentro.com|https://autopistagolfocentro.com/tarifas
+pinfra|Desarrollo-global|desarrollo global de concesiones s.a de c.v||
 |pinfra|Promotora y Operadora de Infraestructura, S.A.B. de C.V|https://www.pinfra.com.mx/concesiones|
-|copexa|Concesionaria Autopista Perote Xalapa, S.A de C.V. |https://copexa.com/tarifas|
-||Cardel-Veracruz|https://caseta.mx/servicios/tarifario/|
+|copexa|Concesionaria Autopista Perote Xalapa, S.A de C.V. |https://copexa.com|https://copexa.com/tarifas
+|Cardel-veracruz|Cardel-Veracruz|https://caseta.mx|https://caseta.mx/servicios/tarifario/
 |cpm|Concesiones y Promociones Malibrán, SA de CV||
-|cas|Concesionaria de Autopistas del Sureste|https://casmexico.com/mapasytarifas|
+|cas|Concesionaria de Autopistas del Sureste|https://casmexico.com|https://casmexico.com/mapasytarifas
 |oav|operadora de autopistas villahermosa||
-||Operadora y Mantenedora Golfo Centro S.A. de C.V|http://autopistagolfocentro.com/tarifas|
 |orler|Servicios y Construcciones ORLER, S.A. de C.V.|https://orler.com.mx/|
 |hoatsa|operadora y administración técnica s.a de cv.|http://hoatsa.com.mx/|
-|auneti|Autovía Nuevo Necaxa - Tihuatlán, S.A de C.V|https://www.auneti.mx/auneti/tarifas.jsp|
-|Mota Engil|Autopista Tuxpan-Tampico S.A de C.V|https://autopistatuxpantampico.com/tarifas/|
-||Autopista Cardel-Poza Rica S.A. de C.V|https://autopistacardelpozarica.com/tarifas/|
-||Concesionaria Bicentenario S.A. de C.V.|https://libramientocelaya.com.mx/tarifas/|
-hoatsa||libramiento irapuato|http://libramientoirapuato.mx/tarifas.html|
-|gma|grupo mexico autopistas|https://www.gmautopista.com/Paginas/Tarifas.aspx|
+|auneti|Autovía Nuevo Necaxa - Tihuatlán, S.A de C.V|https://www.auneti.mx|https://www.auneti.mx/auneti/tarifas.jsp
+|Mota Engil|Autopista Tuxpan-Tampico S.A de C.V|https://autopistatuxpantampico.com|https://autopistatuxpantampico.com/tarifas/
+|Cardel-pozarica|Autopista Cardel-Poza Rica S.A. de C.V|https://autopistacardelpozarica.com|https://autopistacardelpozarica.com/tarifas/
+|bicentenario|Concesionaria Bicentenario S.A. de C.V.|https://libramientocelaya.com.mx|https://libramientocelaya.com.mx/tarifas/
+hoatsa|Libramiento-irapuato|libramiento irapuato|http://libramientoirapuato.mx|http://libramientoirapuato.mx/tarifas.html
+|gma|grupo mexico autopistas|https://www.gmautopista.com|https://www.gmautopista.com/Paginas/Tarifas.aspx
 |ovi|Operadora Valle de la Independencia ||
-rco||Red De Carreteras De Occidente S.A.P.I.B. de C.V.|https://redviacorta.mx/es/tarifas|
-|meta|mexicana de técnicos en autopistas s.a de c.v|https://www.libramientoslp.mx/meta#tabs|
-coconal|coinsan|Concesionaria de Infraestructura de San Luis, S.A. de C.V.|https://autopistasdecuota.com/ruta/san-luis-potosi|
-ideal||libramiento toluca|https://www.libramientotoluca.com.mx/tarifas/|
-|SAASCAEM|SAASCAEM|https://saascaem.edomex.gob.mx/tarifas-red-estatal-autopistas|
-coconal|acomex|AUTOVÍAS CONCESIONADAS MEXIQUENSES, S.A. DE C.V|https://autopistasdecuota.com/ruta/estado-de-mexico|
+rco|Carreteras-occidente|Red De Carreteras De Occidente S.A.P.I.B. de C.V.|https://redviacorta.mx|https://redviacorta.mx/es/tarifas
+|meta|mexicana de técnicos en autopistas s.a de c.v|https://www.libramientoslp.mx|https://www.libramientoslp.mx/meta#tabs
+coconal|coinsan|Concesionaria de Infraestructura de San Luis, S.A. de C.V.|https://autopistasdecuota.com/ruta/san-luis-potosi|https://autopistasdecuota.com/ruta/san-luis-potosi
+ideal|Libramiento-toluca|libramiento toluca|https://www.libramientotoluca.com.mx|https://www.libramientotoluca.com.mx/tarifas/
+|SAASCAEM|SAASCAEM|https://saascaem.edomex.gob.mx|https://saascaem.edomex.gob.mx/tarifas-red-estatal-autopistas
+coconal|acomex|AUTOVÍAS CONCESIONADAS MEXIQUENSES, S.A. DE C.V|https://autopistasdecuota.com/ruta/estado-de-mexico|https://autopistasdecuota.com/ruta/estado-de-mexico
 coconal|opasa|operadora de autopistas s.a de c.v|http://www.autopistavallestamuin.mx/|
 |coconal|Compañía Contratista Nacional, S.A.P.I. de C.V.|https://autopistasdecuota.com/|
-||MRO Estado de México-Michoacán S.A.P.I. de C.V|https://website.autopistaatlacomulcomaravatio.com/index.php/tarifas/|
+|Mexico-michoacan|MRO Estado de México-Michoacán S.A.P.I. de C.V|https://website.autopistaatlacomulcomaravatio.com|https://website.autopistaatlacomulcomaravatio.com/index.php/tarifas/
 |lipsa|libramiento ica-la piedad s.a de c.v||
-||Autopistas De Michoacán S. A. De C. V.|https://www.autopistasmichoacan.mx/prepara_tu_viaje.php|
-|tuca|Autopista tuxpán tampico|https://autopistatuxpantampico.com/tarifas|
-||Operadora de Autopistas Sayula|https://autopistaguadalajaracolima.com/mapas-y-tarifas/|
-ideal||autopista mazatlán culiacán|https://www.mazatlanculiacan.com.mx/tarifas/|
+|Autopistas-michoacan|Autopistas De Michoacán S. A. De C. V.|https://www.autopistasmichoacan.mx|https://www.autopistasmichoacan.mx/prepara_tu_viaje.php
+|Autopista-tuxpan-tampico|Autopista tuxpán tampico|https://autopistatuxpantampico.com|https://autopistatuxpantampico.com/tarifas
+|Autopistas-sayula|Operadora de Autopistas Sayula|https://autopistaguadalajaracolima.com|https://autopistaguadalajaracolima.com/mapas-y-tarifas/
+ideal|Mazatlan-culiacan|autopista mazatlán culiacán|https://www.mazatlanculiacan.com.mx|https://www.mazatlanculiacan.com.mx/tarifas/
 |lico|libramiento ciudad obregón s.a de c.v |https://lico.mx/|
 |autovan|Autopistas de Vanguardia S.A. de C.V.|https://www.autovan.mx/|
+lipsa|autovia|||
+|lep|Libramiento Elevado de Puebla, S.A. de C.V.|https://www.clepsa.com|https://www.clepsa.com/rutas_tarifas.html
+|quantum|Exi operadora quantum|https://infraquantum.com/|
+quantum|macrolibramiento-queretaro|macro libramiento queretaro|https://infraquantum.com/proyecto-macro-libramiento/|
+|ica||https://ica.com.mx/|
+|anesa|ANESA HOLDING. S.A. de C.V.||
+quantum|mayab|Autopista del mayab|https://infraquantum.com/autopista-del-mayab/|
+|camssa|Autopista morelia salamanca s.a de c.v|https://camssa.com.mx|https://camssa.com.mx/tarifas/
+pinfra|ccp|Carreteras de Cuota Puebla||
+|Puente-colorado|Fideicomiso Puente Colorado del Estado de Sonora|https://puentecolorado.sonora.gob.mx|https://puentecolorado.sonora.gob.mx/tarifas
+|Vias-norte|VÍAS CONCESIONADAS DEL NORTE S.A. DE C.V.|http://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=39|
+|Gob-chihuahua|Gobierno Del Estado De Chihuahua|https://carreteras.chihuahua.gob.mx|https://carreteras.chihuahua.gob.mx/tarifas
+|zonalta|zonalta s.a de c.v||
+quantum|atuca|maxitunel acapulco|https://infraquantum.com/maxitunel-acapulco/|
+ideal|macrotuca|macro tunel acapulco|https://www.macrotunelacapulco.com.mx|https://www.macrotunelacapulco.com.mx/tarifas/
+ideal|Tijuana-tecate|autopista tijuana tecate|https://www.tijuanatecate.com.mx|https://www.tijuanatecate.com.mx/tarifas/
+meta|libramientoslp|libramiento san luis potosi|https://www.libramientoslp.mx|https://www.libramientoslp.mx/meta#tabs
+ocacsa|libramientohermosillo|libramiento hermosillo|https://libramientohermosillo.com|https://libramientohermosillo.com
+ideal|arconorte|arco norte|https://www.arconorte.com.mx|https://www.arconorte.com.mx/tarifas/
+quantum|Rioverde-valles|rio verde-ciudad valles|https://infraquantum.com/proyecto-rioverde-cd-valles/|
+ideal|Chamapa-laventa|Autopista chamapa-la venta|https://www.chamapalaventa.com.mx|https://www.chamapalaventa.com.mx/tarifas/
+ideal|Lasvaras-vallarta|Autopista las varas-vallarta|https://www.lasvaras-ptovallarta.com.mx/|https://www.lasvaras-ptovallarta.com.mx/tarifas/
+ideal|Tunel-coatzacoalcos|Tunel Coatzacoalcos|https://www.tunelcoatzacoalcos.com.mx|https://www.tunelcoatzacoalcos.com.mx/tarifas/
+ideal|mitlatehuantepec|Autopista Mitla Tehuantepec|https://www.autopistamitlatehuantepec.com.mx|https://www.autopistamitlatehuantepec.com.mx/tarifas/
+|Gob-nuevo leon|Puente Colombia|https://www.puentecolombia.mx/|https://www.puentecolombia.mx/preguntas-frecuentes-puente-colombia/
