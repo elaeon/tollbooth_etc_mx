@@ -1,4 +1,4 @@
-id|tollbooth_id|strech_name|motorbike|car|Car-axle|bus-2axle|bus-3axle|bus-4axle|truck-2axle|truck-3axle|truck-4axle|truck-5axle|truck-6axle|truck-7axle|truck-8axle|truck-9axle|Load-axle|road_length_km|fair_ref|sct_idVia|via|Motorbike-axle|Car-rush-hour|Car-evening-hour
+id|tollbooth_id|strech_name|motorbike|car|car-axle|bus-2axle|bus-3axle|bus-4axle|truck-2axle|truck-3axle|truck-4axle|truck-5axle|truck-6axle|truck-7axle|truck-8axle|truck-9axle|load-axle|strech_length_km|fair_ref|sct_idVia|via|motorbike-axle|car-rush-hour|car-evening-hour
 1|71|Mexico-chalco|$12.00|$25.00|$13.00|$47.00|$47.00|$47.00|$46.00|$46.00|$74.00|$74.00|$114.00|$114.00|$114.00|$114.00|$23.00|15.055|pase|57|Mexico-puebla|||
 2|926|Chalco-mexico|$12.00|$25.00|$13.00|$47.00|$47.00|$47.00|$46.00|$46.00|$74.00|$74.00|$116.00|$116.00|$116.00|$116.00|$23.00|15.055|pase|57|Mexico-puebla|||
 3|7|Mexico-san martin texmelucan|$82.00|$        1 65.00|$      8 3.00|$    3 19.00|$    3 19.00|$    3 19.00|$    3 06.00|$    3 06.00|$        6 28.00|$        6 28.00|$       8 60.00|$       8 60.00|$         8 60.00|$        8 60.00|$   1 53.00|74.555|pase|57|Mexico-puebla|||
