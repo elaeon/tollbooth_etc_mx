@@ -62,7 +62,7 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 50|ojinaga|capufe|bridge|
 20|matamoros|copa|bridge|
 62|piedras negras|Hoatsa|bridge|
-|piedras negras 2|Hoatsa|bridge|
+1023|piedras negras 2|Hoatsa|bridge|
 419|libramiento de mexicalli|omega||LIBRAMIENTO MEXICALI
 83|el hongo|capufe||LA RUMOROSA-TECATE
 34|tijuana|capufe||TIJUANA-ENSENADA
@@ -88,8 +88,8 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 196|ozumba|capufe||LIBRAMIENTO AMECAMECA-NEPANTLA
 917|san martín texmelucan|pinfra||SAN MARTÍN TEXMELUCAN-TLAXCALA
 558|el higueron|pinfra||JANTETELCO - EL HIGUERON
-|atlixco|pinfra||Atlixco-jantetelco
-|atlixco sur|pinfra||Atlixco-jantetelco
+1001|atlixco|pinfra||Atlixco-jantetelco
+1001|atlixco sur|pinfra||Atlixco-jantetelco
 26|amozoc|capufe||PUEBLA-ACATZINGO
 990|Amazoc-perote|gana||PUEBLA-ACATZINGO
 594|mazapiltepec|ccp||CUAPIAXTLA-CUACNOPALAN
@@ -332,7 +332,7 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 515|la cinta|camssa||MORELIA-SALAMANCA
 516|cuitzeo|camssa||MORELIA-SALAMANCA
 517|la cinta|camssa||MORELIA-SALAMANCA
-|vía atlixcayotl|ccp||Puebla-atlixco
+1002|vía atlixcayotl|ccp||Puebla-atlixco
 |santa ana|ccp||
 |san luis rio colorado II|capufe|puente|San luis rio colorado II
 |San luis rio colorado|Puente-colorado|puente|Mexicalli-san luis rio colorado
@@ -377,3 +377,4 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 99|Refinería lazaro cárdenas|capufe||Minatitlán-mundo nuevo
 60|rodolfo robles|capufe|bridge|
 85|suchiate II|capufe|bridge|
+1022|puente colombia|Gob-nuevo leon|bridge|nuevo león
