@@ -334,11 +334,11 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 517|la cinta|camssa||MORELIA-SALAMANCA
 1002|vía atlixcayotl|ccp||Puebla-atlixco
 |santa ana|ccp||
-|san luis rio colorado II|capufe|puente|San luis rio colorado II
-|San luis rio colorado|Puente-colorado|puente|Mexicalli-san luis rio colorado
+|san luis rio colorado II|capufe|bridge|San luis rio colorado II
+|San luis rio colorado|Puente-colorado|bridge|Mexicali-san luis rio colorado
 |estacion doctor|pinfra||san luis rio colorado-santa clara
 |nogales|Vias-norte||libramiento de nogales
-|villa ahumada|Gob-chihuahua||
+1006|villa ahumada|Gob-chihuahua||
 |galeana|Gob-chihuahua||
 |ojo laguna|Gob-chihuahua||
 |cuahutémoc|Gob-chihuahua||
@@ -359,7 +359,7 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 89|tehuantepec|capufe||SALINA CRUZ-LA VENTOSA
 90|ixtepec|capufe||SALINA CRUZ-LA VENTOSA
 22|alvarado|capufe|bridge|
-63|tlacotalpan|capufe|bridge|
+63|tlacotalpan|capufe|bridge|Alvarado-cosamaloapan
 29|caracol|capufe|bridge|
 28|papaloapan|capufe|bridge|
 67|dovali|capufe|bridge|
@@ -375,8 +375,8 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 118|cosamaloapan|capufe||la tinaja-cosoleacaque
 119|acayucan (sayula)|capufe||la tinaja-cosoleacaque
 99|Refinería lazaro cárdenas|capufe||Minatitlán-mundo nuevo
-60|rodolfo robles|capufe|bridge|
-85|suchiate II|capufe|bridge|
+60|rodolfo robles|capufe|International-bridge|chiapas
+85|suchiate II|capufe|International-bridge|chiapas
 1022|puente colombia|Gob-nuevo leon|International-bridge|nuevo león
 1023|puente anzalduas|consecionaria internacional anzalduas s.a de c.v|International-bridge|tamaulipas
 1024|puente coatzacoalcos|capufe|bridge|veracruz
@@ -387,6 +387,9 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 1029|puente josé lópez portillo|Gob-veracruz|bridge|Tantoyuca-alamo
 1030|puente la unidad|Gob-campeche|International-bridge|campeche
 1031|puente laredo I|capufe|International-bridge|tamaulipas
-46|puente libre comercio|capufe|International-bridge|tamaulipas
+46|puente libre comercio (lucio blanco)|copa|International-bridge|tamaulipas
 1032|puente nuevo laredo iii|Gob-tamaulipas|International-bridge|tamaulipas
 1033|puente paso del norte|Gob-chihuahua|International-bridge|chihuahua
+1034|puente río bravo-donna|copa|International-bridge|tamaulipas
+1035|puente san miguel|orler|bridge|los mochis-navojoa
+1036|puente zaragoza-ysleta|Gob-chihuahua|International-bridge|chihuahua

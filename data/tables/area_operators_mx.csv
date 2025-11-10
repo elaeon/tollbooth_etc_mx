@@ -1,4 +1,4 @@
-parent_id|short_name|project_or_owner_name|area_webpage|tariffs_ref
+parent_id|short_name|project_or_owner_name|area_webpage|toll_ref
 |ideal|Impulsora del Desarrollo y el Empleo en América Latina|https://www.ideal.com.mx/|
 |rco|red via corta|https://redviacorta.mx/|https://redviacorta.mx/es/tarifas
 |aleatica|aleatica|https://www.aleatica.com/|
@@ -14,7 +14,7 @@ coconal|acsa|autopistas de cuota s.a de c.v|https://autopistasdecuota.com/ruta/c
 |reanal|red estatal de autopistas de nuevo león|https://reanl.com.mx|https://reanl.com.mx/nosotros/tarifas/
 |supercarreteras|super carreteras del norte|http://supercarreteras.com/|
 coconal|opan|operadora de autopistas del noreste|https://autopistasdecuota.com/ruta/nuevo-leon-tamaulipas|https://autopistasdecuota.com/ruta/nuevo-leon-tamaulipas
-|copa|compañia operadora de puentes y autopistas|https://copaoperacion.com/|
+|copa|compañia operadora de puentes y autopistas|https://copaoperacion.com/|https://copaoperacion.com/operacion/
 aleatica|gana|Grupo Autopistas Nacionales S.A de C.V|https://www.ganamexico.com.mx|https://www.ganamexico.com.mx/rutas-y-tarifas/
 pinfra|Ecatepec-piramides|promotora de carreteras ecatepec pirámides s.a de c.v||
 |Golfo-centro|MRO Autopista Golfo Centro S.A. de C.V.|https://autopistagolfocentro.com|https://autopistagolfocentro.com/tarifas
@@ -75,3 +75,5 @@ ideal|Lasvaras-vallarta|Autopista las varas-vallarta|https://www.lasvaras-ptoval
 ideal|Tunel-coatzacoalcos|Tunel Coatzacoalcos|https://www.tunelcoatzacoalcos.com.mx|https://www.tunelcoatzacoalcos.com.mx/tarifas/
 ideal|mitlatehuantepec|Autopista Mitla Tehuantepec|https://www.autopistamitlatehuantepec.com.mx|https://www.autopistamitlatehuantepec.com.mx/tarifas/
 |Gob-nuevo leon|Puente Colombia|https://www.puentecolombia.mx/|https://www.puentecolombia.mx/preguntas-frecuentes-puente-colombia/
+aleatica|aunorte|Autopista urbana norte|https://www.aunorte.com.mx/|https://www.aunorte.com.mx/rutas-y-tarifas/
+ideal|asur|Autopista urbana sur|https://www.ausur.com.mx|https://www.ausur.com.mx/tarifas/

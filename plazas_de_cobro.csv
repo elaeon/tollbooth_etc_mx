@@ -114,7 +114,7 @@ id|name|coords|open|||||||||
 15|lucio blanco|25.987608745411176, -98.43165823714757|1|opan||2D||||||
 194|san fernando|25.944745028315666, -98.22755243491738|1|opan||2D||||||
 75|reynosa phar|26.041797924744227, -98.2088305959957|1|opan||puente||||||
-171|ignacio zaragoza “los tomates”|25.874563829872027, -97.47466275114387|1|opan||puente||||||
+171|ignacio zaragoza “los tomates”|25.87421722363984, -97.47467004872608|1|opan||puente||||||
 170|nuevo progreso|26.03629264656662, -97.954364453689|1|opan|101|2D||||||
 170|nuevo progreso|26.03540443569933, -97.9544343074905|1|opan|51|47-2D-47||||||
 170|nuevo progreso|26.037096937671034, -97.95454245738237|1|opan|51|47-2D-47||||||
@@ -816,7 +816,10 @@ x5|santa ana|30.593605030395324, -111.51849090106008|1|pinfra||2 santa ana-altar
 1029|puente josé lópez portillo|20.930077128775718, -97.68070867063416|1|Gob-veracruz||||||||
 1030|puente la unidad|18.78552715534909, -91.49486877982353|1|Gob-campeche||||||||
 1031|puente laredo I|27.498588024321077, -99.50741284517355|1|capufe||||||||
-46|puente libre comercio|26.021625856783977, -97.73879648386234|1|capufe||||||||
+46|puente libre comercio|26.021625856783977, -97.73879648386234|1|copa (compañia operadora de puentes y autopistas)||||||||
 1032|puente nuevo laredo iii|27.595096207338816, -99.5415178899868|1|Gob-tamaulipas||||||||
 1033|puente paso del norte|31.74590805171759, -106.48642661061412|1|||||||||
 |puente albatros|17.9406605480882, -102.18800974908346||||||||||
+1034|puente rio bravo-donna|26.05935477361723, -98.08018613300814|1|copa (compañia operadora de puentes y autopistas)||||||||
+1035|puente san miguel|25.976339937564482, -109.03356353068048|1|orler||||||||
+1036|puente zaragoza-ysleta|31.671026235025284, -106.34020578274493|1|Gob-chihuahua||||||||
