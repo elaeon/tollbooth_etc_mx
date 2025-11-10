@@ -1,4 +1,4 @@
-strech_id,motorbike,car,car-axle,bus-2axle,bus-3axle,bus-4axle,truck-2axle,truck-3axle,truck-4axle,truck-5axle,truck-6axle,truck-7axle,truck-8axle,truck-9axle,load-axle,fair_ref,motorbike-axle,car-rush-hour,car-evening-hour
+strech_id,motorbike,car,car-axle,bus-2axle,bus-3axle,bus-4axle,truck-2axle,truck-3axle,truck-4axle,truck-5axle,truck-6axle,truck-7axle,truck-8axle,truck-9axle,load-axle,toll_ref,motorbike-axle,car-rush-hour,car-evening-hour
 1,12,25,13,47,47,47,46,46,74,74,114,114,114,114,23,pase,,,
 2,12,25,13,47,47,47,46,46,74,74,116,116,116,116,23,pase,,,
 3,82,165,83,319,319,319,306,306,628,628,860,860,860,860,153,pase,,,
@@ -1365,3 +1365,8 @@ strech_id,motorbike,car,car-axle,bus-2axle,bus-3axle,bus-4axle,truck-2axle,truck
 1364,80,80,40,200,200,200,200,200,200,200,200,200,200,200,100,reporte_puentes_site,,,
 1365,7,15,11,30,30,30,30,30,30,59,59,108,108,108,19,sct_site,,,
 1366,48,97,,244,339,339,244,339,339,485,485,485,485,485,,sct_site,,,
+1367,15,30,,60,60,60,60,60,60,60,60,60,60,60,,sct_site,,,
+1368,34,69,,140,140,140,140,140,282,282,453,453,453,453,,sct_site,,,
+1369,15,30,,65,65,65,65,65,144,144,214,214,214,214,,sct_site,,,
+1370,20,39,19,67,67,67,67,67,67,67,67,67,67,67,35,puentes_fronterizos_site,,,
+1371,20,42,20,88,88,88,86,86,86,178,178,285,285,285,43,operator_site,,,

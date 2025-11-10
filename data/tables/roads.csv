@@ -113,23 +113,23 @@ road_id,road_name,operation_date,number_of_lines
 99,puente juárez-lincon,11/10/1979,
 52,puente la piedad,17/04/1969,
 145,puente la unidad-eugenio echeverria castellot,15/03/2005,
-146,puente laredo I,11/10/1979,
+146,puente laredo I,11/10/1979,4
 103,puente las flores,16/03/1971,
-,puente libre comercio,01/12/1992,
+147,puente libre comercio,01/12/1992,4
 97,puente los tomates,30/04/1999,
 105,puente matamoros,16/06/1964,
 100,puente miguel alemán,01/06/1967,
 14,puente nautla,01/04/1967,
-,puente nuevo laredo iii,24/04/2000,
+148,puente nuevo laredo iii,24/04/2000,6
 104,puente ojinaga,12/03/1973,
-,puente papaloapan,15/05/1966,
-,puente paso del norte,14/08/1973,
+149,puente papaloapan,15/05/1966,2
+150,puente paso del norte,14/08/1973,4
 34,puente pánuco,23/09/1961,
 106,puente piedras negras,13/11/1975,
 107,puente piedras negras ii,24/09/1999,
-,puente refinería lázaro cárdenas,01/03/2012,
-,puente reynosa,01/06/1967,
-96,puente reynosa-pharr,10/01/1995,
+151,puente refinería lázaro cárdenas,01/03/2012,
+96,puente reynosa,01/06/1967,
+152,puente reynosa-pharr,10/01/1995,
 ,puente río bravo-donna,14/12/2010,
 ,puente rodolfo robles,31/05/1975,
 101,puente san juan,04/07/1972,

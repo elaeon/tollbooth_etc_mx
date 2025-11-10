@@ -50,14 +50,14 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 130|los ramones|opan||CADEREYTA-REYNOSA
 15|lucio blanco|opan||LIBRAMIENTO SUR II DE REYNOSA
 194|san fernando|opan||LIBRAMIENTO SUR II DE REYNOSA
-75|reynosa phar|opan|bridge|
-171|ignacio zaragoza “los tomates”|opan|bridge|
+75|reynosa phar|opan|International-bridge|
+171|ignacio zaragoza “los tomates”|opan|International-bridge|
 170|nuevo progreso|opan||REYNOSA-MATAMOROS
-74|Juárez-lincon|capufe|bridge|
+74|Juárez-lincon|capufe|International-bridge|
 31|miguel alemán|capufe|bridge|
 48|san juan|capufe|bridge|
 30|camargo|capufe|bridge|
-37|reynosa|capufe|bridge|
+37|reynosa|capufe|International-bridge|
 47|las flores|capufe|bridge|
 50|ojinaga|capufe|bridge|
 20|matamoros|copa|bridge|
@@ -377,12 +377,16 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 99|Refinería lazaro cárdenas|capufe||Minatitlán-mundo nuevo
 60|rodolfo robles|capufe|bridge|
 85|suchiate II|capufe|bridge|
-1022|puente colombia|Gob-nuevo leon|bridge|nuevo león
-1023|puente anzalduas|consecionaria internacional anzalduas s.a de c.v|bridge|tamaulipas
+1022|puente colombia|Gob-nuevo leon|International-bridge|nuevo león
+1023|puente anzalduas|consecionaria internacional anzalduas s.a de c.v|International-bridge|tamaulipas
 1024|puente coatzacoalcos|capufe|bridge|veracruz
 1025|puente ignacio chávez|capufe|bridge|michoacán
 1026|guadalupe|coconal||libramiento de ciudad juárez
-1027|puente guadalupe tornillo||bridge|chihuahua
-1028|puente lerdo-stanton|capufe|bridge|chihuahua
+1027|puente guadalupe tornillo|Gob-chihuahua|International-bridge|chihuahua
+1028|puente lerdo-stanton|capufe|International-bridge|chihuahua
 1029|puente josé lópez portillo|Gob-veracruz|bridge|Tantoyuca-alamo
-1030|puente la unidad|Gob-campeche|bridge|campeche
+1030|puente la unidad|Gob-campeche|International-bridge|campeche
+1031|puente laredo I|capufe|International-bridge|tamaulipas
+46|puente libre comercio|capufe|International-bridge|tamaulipas
+1032|puente nuevo laredo iii|Gob-tamaulipas|International-bridge|tamaulipas
+1033|puente paso del norte|Gob-chihuahua|International-bridge|chihuahua
