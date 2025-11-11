@@ -1,7 +1,7 @@
 id|name|coords|open|||||||||
 155|El arenal tequila|20.854354276478155, -103.86093857355817|1|autopista guadalajara tepic s.a de cv.||15D-tequila-15D||||||
 155|El arenal|20.77880582437672, -103.6624541764846|1|ideal (https://www.autopistaguadalajaratepic.com.mx/tarifas/)||15D||||||
-156|plan de barracas|20.947510076183264, -104.06317924150714|1|ideal||15D||||||
+156|plan de barracas|20.9475192710524, -104.0629590236778|1|ideal||15D||||||
 581|Amado Nervo|21.08905122568959, -104.71712291858833|1|ocacsa (https://www.autopistajalacompostela.com/tarifas)|205|70D||||||
 581|Amado Nervo|21.20443708269734, -104.88636807996299|1|ocacsa|164|200D||||||
 446|la cantera|21.4984932062581, -104.81339318530127|1|ideal||libramiento norte||||||
@@ -128,10 +128,10 @@ id|name|coords|open|||||||||
 20|matamoros|25.891424629609347, -97.50393755311129|1|copa (compañia operadora de puentes y autopistas)||puente||||||
 62|piedras negras|28.705244852430557, -100.51302386596953|1|Hoatsa||puente||||||
 1023|piedras negras 2|28.697075905761523, -100.51248297635908|1|hoatsa (http://pipnii.hoatsa.com.mx/tarifas.html)||||||||
-419|libramiento de mexicalli|32.53347170442716, -115.42057787903065|1|omega|115|2D||||||
-419|libramiento de mexicalli|32.532877560295276, -115.40989036921847|1|omega|35|5-2D||||||
-419|libramiento de mexicalli|32.53358220978127, -115.4085236622782|1|omega|35|2D-5||||||
-83|el hongo|32.5212604163324, -116.32042965977168|1|capufe|47|2D-2-2D||||||
+419|libramiento de mexicalli|32.53350175529058, -115.42075475662338|1|omega|115|2D||||||
+419|libramiento de mexicalli|32.53282772801545, -115.40982310215688|1|omega|35|5-2D||||||
+419|libramiento de mexicalli|32.53361579257065, -115.40876421355513|1|omega|35|2D-5||||||
+83|el hongo|32.52118038602374, -116.32013900623957|1|capufe|47|2D-2-2D||||||
 83|el hongo|32.52186057317686, -116.32001574618872|1|capufe|103|2D||||||
 83|el hongo|32.52248943941944, -116.3198006383681|1|capufe|47|2-2D||||||
 34|tijuana|32.51416293952504, -117.10948976541157|1|capufe||1D||||||
@@ -825,3 +825,14 @@ x5|santa ana|30.593605030395324, -111.51849090106008|1|pinfra||2 santa ana-altar
 1036|puente zaragoza-ysleta|31.671026235025284, -106.34020578274493|1|Gob-chihuahua||||||||
 1037|fortin|18.90703063377368, -97.01125072608713|0|capufe||150D||||||
 1038|puente el prieto|22.20334262325166, -97.93743420014539|1|pinfra||||||||
+1039|la rumorosa|32.56267573086791, -116.04793581314304|1|||||||||
+1039|la rumorosa|32.55584703668523, -116.03649197659311|1|Gob-baja california||2D||||||
+1040|Chilpancingo-tixtla|17.608032305771125, -99.50959853228049|1|cicaeg||93D||||||
+1041|mofin chavez|23.177937723421824, -102.82869108608446|1|profrezac||45D||||||
+1042|calera|22.941852910186196, -102.6898648491811|1|profrezac||45D||||||
+1043|vetagrande|22.847053541371594, -102.56331543839086|1|profrezac||45D||||||
+1043|vetagrande aux.1|22.846729179454588, -102.56702270691699|1|profrezac||45D||||||
+1043|vetagrande aux.2|22.846376155278673, -102.5669998366264|1|profrezac||45D||||||
+1044|felipe carrillo puerto|19.59038768114135, -88.0712857740722|1|||||||||
+1044|felipe carrillo puerto aux. 1|19.587657509496516, -88.07045984305593|1|||||||||
+1044|felipe carrillo puerto aux. 2|19.58884792061388, -88.07274606869495|1|||||||||
