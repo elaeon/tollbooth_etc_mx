@@ -135,7 +135,7 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 43|tecolutla|capufe|bridge|
 112|tampico|capufe||libramiento poniente tampico
 49|puente nacional tampico|capufe|bridge|
-14|puente nacional pánuco|capufe|bridge|
+14|puente nacional pánuco|capufe|bridge|Canoas-pánuco
 4|tepotzotlan|capufe||MEXICO-QUERETARO
 5|palmillas|capufe||MEXICO-QUERETARO
 207|palmillas bis|capufe||MEXICO-QUERETARO
@@ -393,3 +393,5 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 1034|puente río bravo-donna|copa|International-bridge|tamaulipas
 1035|puente san miguel|orler|bridge|los mochis-navojoa
 1036|puente zaragoza-ysleta|Gob-chihuahua|International-bridge|chihuahua
+1037|fortin|capufe||cd. mendoza-cordoba
+1038|puente el prieto|pinfra|bridge|cd. valles-tampico
