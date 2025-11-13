@@ -287,9 +287,9 @@ id|name|coords|open|||||||||
 92|nuevo necaxa|20.186654458099976, -98.02982528492036|0|capufe||130-132D||||||
 585|el piñal|20.45880801422499, -97.85388430021331|1|auneti (https://www.auneti.mx/auneti/)||132D||||||
 584|miahuapan|20.610946872659845, -97.61455984847666|1|auneti||132D||||||
-579|tuxpan|20.75294757213223, -97.48237398090423|1|operadora y Mantenedora Golfo Centro S.A. de C.V||130D||||||
-580|tihuatlan|20.688195588486952, -97.49490448458995|1|operadora y Mantenedora Golfo Centro S.A. de C.V||130D-132D||||||
-580|tihuatlan|20.68876105853986, -97.49425308675715|1|operadora y Mantenedora Golfo Centro S.A. de C.V||132D-130D||||||
+579|Puente tuxpan|20.75294757213223, -97.48237398090423|1|operadora y Mantenedora Golfo Centro S.A. de C.V||130D||||||
+580|Puente tuxpan aux. 1 (tihuatlan)|20.688195588486952, -97.49490448458995|1|operadora y Mantenedora Golfo Centro S.A. de C.V||130D-132D||||||
+580|Puente tuxpan axu. 2 (tihuatlan)|20.68876105853986, -97.49425308675715|1|operadora y Mantenedora Golfo Centro S.A. de C.V||132D-130D||||||
 556|naranjos|21.32437866679742, -97.6251432274458|1|Tuxpan-tampico|171|180D-naranjos||||||
 556|naranjos|21.32710891478247, -97.62732630460962|1|Tuxpan-tampico|359|180D||||||
 556|naranjos|21.327219839603366, -97.627142719318|1|Tuxpan-tampico|188|naranjos-180D||||||
@@ -352,9 +352,9 @@ id|name|coords|open|||||||||
 120|león|21.09742978712952, -101.7769293532643|1|rco|68|45D-las joyas||||||
 123|encarnación de díaz|21.489682693175443, -102.24315141209509|1|rco|169|lagos de moreno-45D-aguascalientes||||||
 123|encarnación de díaz|21.489682693175443, -102.24315141209509|1|rco|71|encarnación de díaz-45D-aguascalientes||||||
-583|chichimeco|22.005925608993348, -102.35775901321384|1|pinfra|77|libramiento aguascalientes||||||
-583|chichimeco||||42|||||||
-583|chichimeco||||35|||||||
+583|chichimeco|22.005821389499083, -102.35777833294763|1|ops|77|libramiento aguascalientes||||||
+583|Ent. Chichimeco||1|ops|42|||||||
+583|Ent. La escondida||1|ops|35|||||||
 87|zacatecas|22.71077952370501, -102.4488686413797|1|capufe||45D||||||
 114|jalostotitlan|21.117606005742108, -102.45806476923244|1|rco|202|80D||||||
 114|jalostotitlan|21.117625940528182, -102.45817194718218|1|rco|118|jalostitlan-80D||||||

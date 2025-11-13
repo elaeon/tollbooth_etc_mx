@@ -85,7 +85,7 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 575|Tizatyca (ojo de agua)|Golfo-centro||MÉXICO-PACHUCA
 576|entronque ojo de agua|Golfo-centro||MÉXICO-PACHUCA
 914|texcoco|Desarrollo-global||PEÑON-TEXCOCO
-196|ozumba|capufe||LIBRAMIENTO AMECAMECA-NEPANTLA
+196|ozumba|capufe|bypass|LIBRAMIENTO AMECAMECA-NEPANTLA
 917|san martín texmelucan|pinfra||SAN MARTÍN TEXMELUCAN-TLAXCALA
 558|el higueron|pinfra||JANTETELCO - EL HIGUERON
 1001|atlixco|pinfra||Atlixco-jantetelco
@@ -112,7 +112,7 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 39|usumacinta|capufe|bridge|
 164|zacatal|capufe|bridge|
 132|seybaplaya|capufe||Champoton-campeche
-573|ecatepec (san cristobal)|pinfra||MÉXICO-PACHUCA
+573|ecatepec (san cristobal)|Golfo-centro||MÉXICO-PACHUCA
 574|revolución|Golfo-centro||MÉXICO-PACHUCA
 904|ecatepec (pirámidesl)|Ecatepec-piramides||ECATEPEC-PIRÁMIDES
 905|tepexpan|Ecatepec-piramides||ECATEPEC-PIRÁMIDES
@@ -125,8 +125,8 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 92|nuevo necaxa|capufe||libramiento tulancingo-nuevo necaxa
 585|el piñal|auneti||AVILA CAMACHO - TIHUATLAN
 584|miahuapan|auneti||AVILA CAMACHO - TIHUATLAN
-579|tuxpan|Golfo-centro||TIHUATLAN-TUXPAN
-580|tihuatlan|Golfo-centro||TIHUATLAN-TUXPAN
+579|Puente tuxpan|Golfo-centro||TIHUATLAN-TUXPAN
+580|Puente tuxpan (tihuatlan)|Golfo-centro||TIHUATLAN-TUXPAN
 556|naranjos|Autopista-tuxpan-tampico||TUXPAN- TAMPICO
 464|los gil|Autopista-tuxpan-tampico||TUXPAN- TAMPICO
 177|totomoxtle|Cardel-pozarica||TIHUATLAN-GUTIERREZ ZAMORA
@@ -148,8 +148,8 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 183|villagran|capufe||QUERETARO-IRAPUATO
 185|cerro gordo|capufe||QUERETARO-IRAPUATO
 41|salamanca|capufe||QUERETARO-IRAPUATO
-564|arandas|Libramiento-irapuato||LIBRAMIENTO NORPONIENTE DE IRAPUATO
-563|yostiro|Libramiento-irapuato||LIBRAMIENTO NORPONIENTE DE IRAPUATO
+564|arandas|Libramiento-irapuato|bypass|LIBRAMIENTO NORPONIENTE DE IRAPUATO
+563|yostiro|Libramiento-irapuato|bypass|LIBRAMIENTO NORPONIENTE DE IRAPUATO
 550|mendoza|gma||SALAMANCA-LEON
 551|puerto interior|gma||SALAMANCA-LEON
 350|silao|gma||GUANAJUATO-SILAO
@@ -157,19 +157,19 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 314|aguas buenas|gma||LIBRAMIENTO SILAO
 120|león|rco||LEÓN-AGUASCALIENTES
 123|encarnación de díaz|rco||LEÓN-AGUASCALIENTES
-583|chichimeco|pinfra||LIBRAMIENTO AGUASCALIENTES
+583|chichimeco|ops||LIBRAMIENTO AGUASCALIENTES
 87|zacatecas|capufe||CD. CUAUHTEMOC-OSIRIS
 114|jalostotitlan|rco||ZAPOTLANEJO-LAGOS DE MORENO
 113|tepatitlan|rco||ZAPOTLANEJO-LAGOS DE MORENO
 199|lagos de moreno|capufe||LAGOS DE MORENO-SAN LUIS POTOSÍ
 454|Ventura-el peyote|libramientoslp||VENTURA-EL PEYOTE
-426|libramiento arco norte san luis potosi|libramientoslp||libramiento arco norte san luis potosi
-504|libramiento poniente san luis potosi|libramientoslp||LIBRAMIENTO PONIENTE SAN LUIS POTOSI
-425|libramiento oriente san luis potosi|libramientoslp||LIBRAMIENTO ORIENTE SAN LUIS POTOSI
-127|chichimequillas|capufe||libramiento noreste queretaro
+426|libramiento arco norte san luis potosi|libramientoslp|bypass|libramiento arco norte san luis potosi
+504|libramiento poniente san luis potosi|libramientoslp|bypass|LIBRAMIENTO PONIENTE SAN LUIS POTOSI
+425|libramiento oriente san luis potosi|libramientoslp|bypass|LIBRAMIENTO ORIENTE SAN LUIS POTOSI
+127|chichimequillas|capufe|bypass|libramiento noreste queretaro
 486|cerritos|coinsan||LIBRAMIENTO NORESTE QUERETARO
 498|cemosa (rioverde-cemosa-rioverde)|coinsan||SAN LUIS POTOSÍ-RIOVERDE
-493|la calera|opasa||LIBRAMIENTO CIUDAD VALLES-TAMUÍN
+493|la calera|opasa|bypass|LIBRAMIENTO CIUDAD VALLES-TAMUÍN
 909|santa fe|pinfra||MÉXICO-LA MARQUESA
 908|marquesa|pinfra||MÉXICO-LA MARQUESA
 934|marquesa t2|pinfra||MÉXICO-LA MARQUESA
@@ -255,7 +255,7 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 151|guaymas|capufe||ESTACION DON - NOGALES
 152|hermosillo|capufe||ESTACION DON - NOGALES
 153|magdalena|capufe||ESTACION DON - NOGALES
-559|sahuaripa|libramientohermosillo||LIBRAMIENTO HERMOSILLO
+559|sahuaripa|libramientohermosillo|bypass|LIBRAMIENTO HERMOSILLO
 443|atlacomulco|arconorte||AUTOPISTA ARCO NORTE
 442|acambay|arconorte||AUTOPISTA ARCO NORTE
 441|jilotepec|arconorte||AUTOPISTA ARCO NORTE
@@ -284,14 +284,14 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 474|tamasopo|Rioverde-valles||RIO VERDE-CIUDAD VALLES
 475|tambaca|Rioverde-valles||RIO VERDE-CIUDAD VALLES
 476|la pitahaya|Rioverde-valles||RIO VERDE-CIUDAD VALLES
-825|libramiento elevado de puebla|lep||LIBRAMIENTO ELEVADO DE PUEBLA
-317|atlacomulco|macrolibramiento-queretaro||MACROLIBRAMIENTO DE QUERÉTARO
-318|apaseo el grande|macrolibramiento-queretaro||MACROLIBRAMIENTO DE QUERÉTARO
-319|apaseo el alto|macrolibramiento-queretaro||MACROLIBRAMIENTO DE QUERÉTARO
-320|coroneo|macrolibramiento-queretaro||MACROLIBRAMIENTO DE QUERÉTARO
-321|huimilpan|macrolibramiento-queretaro||MACROLIBRAMIENTO DE QUERÉTARO
-322|amealco I|macrolibramiento-queretaro||MACROLIBRAMIENTO DE QUERÉTARO
-323|apaseo|macrolibramiento-queretaro||MACROLIBRAMIENTO DE QUERÉTARO
+825|libramiento elevado de puebla|lep|bypass|LIBRAMIENTO ELEVADO DE PUEBLA
+317|atlacomulco|macrolibramiento-queretaro|bypass|MACROLIBRAMIENTO DE QUERÉTARO
+318|apaseo el grande|macrolibramiento-queretaro|bypass|MACROLIBRAMIENTO DE QUERÉTARO
+319|apaseo el alto|macrolibramiento-queretaro|bypass|MACROLIBRAMIENTO DE QUERÉTARO
+320|coroneo|macrolibramiento-queretaro|bypass|MACROLIBRAMIENTO DE QUERÉTARO
+321|huimilpan|macrolibramiento-queretaro|bypass|MACROLIBRAMIENTO DE QUERÉTARO
+322|amealco I|macrolibramiento-queretaro|bypass|MACROLIBRAMIENTO DE QUERÉTARO
+323|apaseo|macrolibramiento-queretaro|bypass|MACROLIBRAMIENTO DE QUERÉTARO
 572|Mexico-pachuca|ica||MACROLIBRAMIENTO MEXIQUENSE
 399|ent. Gran canal anesa|anesa||MACROLIBRAMIENTO MEXIQUENSE
 588|indios verdes ent.|anesa||MACROLIBRAMIENTO MEXIQUENSE
