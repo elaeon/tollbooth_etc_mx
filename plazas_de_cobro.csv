@@ -353,8 +353,8 @@ id|name|coords|open|||||||||
 123|encarnación de díaz|21.489682693175443, -102.24315141209509|1|rco|169|lagos de moreno-45D-aguascalientes||||||
 123|encarnación de díaz|21.489682693175443, -102.24315141209509|1|rco|71|encarnación de díaz-45D-aguascalientes||||||
 583|chichimeco|22.005821389499083, -102.35777833294763|1|ops|77|libramiento aguascalientes||||||
-583|Ent. Chichimeco||1|ops|42|||||||
-583|Ent. La escondida||1|ops|35|||||||
+583|Ent. Chichimeco|22.000712228342167, -102.36006126095177|1|ops|42|||||||
+583|Ent. La escondida|22.000975257831087, -102.35961333194552|1|ops|35|||||||
 87|zacatecas|22.71077952370501, -102.4488686413797|1|capufe||45D||||||
 114|jalostotitlan|21.117606005742108, -102.45806476923244|1|rco|202|80D||||||
 114|jalostotitlan|21.117625940528182, -102.45817194718218|1|rco|118|jalostitlan-80D||||||
@@ -402,11 +402,11 @@ id|name|coords|open|||||||||
 908|marquesa|19.33176757989978, -99.315122002156|1|pinfra|55|57D-15D||||||
 934|marquesa t2|19.290581367921927, -99.43444141405219|1|pinfra|72|15D||||||
 410|la venta|19.335807155041156, -99.3110191569385|1|pinfra|55|15D-arriaga||||||
-835|la finca|18.906345950224217, -99.65462495610822|1|SAASCAEM (https://saascaem.edomex.gob.mx/tarifas-red-estatal-autopistas)|73|55D||||||
-835|la finca|18.89982802295817, -99.65321250708395|1|SAASCAEM|36|55-55D||||||
-835|la finca|18.89982802295817, -99.65321250708395|1|SAASCAEM|36|55D-55||||||
-836|villa guerrero|18.989328269782845, -99.65656768903688|1|SAASCAEM||55D||||||
-837|tenango|19.12245612481182, -99.60212868246006|1|SAASCAEM||55D||||||
+835|la finca|18.906345950224217, -99.65462495610822|1|omc|73|55D||||||
+835|la finca|18.89982802295817, -99.65321250708395|1|omc|36|55-55D||||||
+835|la finca|18.89982802295817, -99.65321250708395|1|omc|36|55D-55||||||
+836|villa guerrero|18.989328269782845, -99.65656768903688|1|omc||55D||||||
+837|tenango|19.12245612481182, -99.60212868246006|1|omc||55D||||||
 470|chapultepec|19.196568898036464, -99.5251963918216|1|SAASCAEM||Lerma-tenango||||||
 471|rayón|19.151241223240984, -99.5437285216713|1|SAASCAEM|47|Lerma-tenango||||||
 471|rayón|19.15139653006734, -99.54371973077879|1|SAASCAEM|49|Lerma-tenango (malinalco)||||||
@@ -423,11 +423,11 @@ id|name|coords|open|||||||||
 532|la hortaliza|19.381264677056866, -99.80470538214621|1|acomex|47|15-7D||||||
 532|la hortaliza|19.38188115653965, -99.80688394241304|1|acomex|47|7D-15||||||
 531|valle de bravo|||||||||||
-530|amanalco|19.233676136929883, -100.0722562094995|1|operadora de autopistas s.a de c.v|133|valle de bravo-toluca||||||
+530|amanalco|19.233676136929883, -100.0722562094995|1|acomex|133|valle de bravo-toluca||||||
 530|amanalco|||||||||||
 530|amanalco|||||||||||
 489|monumento|19.401350551047607, -100.11226498730267|1|acomex||7D||||||
-940|zitacuaro|19.452462358545343, -100.28186781918753|1|coconal||||||||
+940|zitacuaro|19.452462358545343, -100.28186781918753|1|acomex||||||||
 444|el dorado|19.40822406226161, -99.71605380738103|1|ideal||55D||||||
 445|atlacomulco sur|19.76244187304768, -99.85557471420928|1|ideal||55D||||||
 448|atlacomulco|19.83763532632644, -99.94555691658852|1|MRO Estado de México-Michoacán S.A.P.I. de C.V (https://website.autopistaatlacomulcomaravatio.com/index.php/tarifas/)||15D||||||

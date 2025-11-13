@@ -173,17 +173,17 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 909|santa fe|pinfra||MÉXICO-LA MARQUESA
 908|marquesa|pinfra||MÉXICO-LA MARQUESA
 934|marquesa t2|pinfra||MÉXICO-LA MARQUESA
-835|la finca|SAASCAEM||TENANGO - IXTAPAN
-836|villa guerrero|SAASCAEM||TENANGO - IXTAPAN
-837|tenango|SAASCAEM||TENANGO - IXTAPAN
+835|la finca|omc||TENANGO - IXTAPAN
+836|villa guerrero|omc||TENANGO - IXTAPAN
+837|tenango|omc||TENANGO - IXTAPAN
 470|chapultepec|SAASCAEM||LERMA-SANTIAGO
 471|rayón|SAASCAEM||LERMA-SANTIAGO
 416|xonacatlan|Libramiento-toluca||LIBRAMIENTO TOLUCA
 532|la hortaliza|acomex||TOLUCA-ZITACUARO
-531|valle de bravo|||TOLUCA-ZITACUARO
-530|amanalco|opasa||TOLUCA-ZITACUARO
+531|valle de bravo|acomex||TOLUCA-ZITACUARO
+530|amanalco|acomex||TOLUCA-ZITACUARO
 489|monumento|acomex||TOLUCA-ZITACUARO
-940|zitacuaro|coconal||ZITACUARO-LENGUA DE VACA
+940|zitacuaro|acomex||ZITACUARO-LENGUA DE VACA
 444|el dorado|ideal||TOLUCA-ATLACOMULCO
 445|atlacomulco sur|ideal||TOLUCA-ATLACOMULCO
 448|atlacomulco|Mexico-michoacan||ATLACOMULCO-MARAVATIO
