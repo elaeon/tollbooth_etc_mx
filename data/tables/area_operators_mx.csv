@@ -28,9 +28,9 @@ pinfra|Desarrollo-global|desarrollo global de concesiones s.a de c.v||
 |orler|Servicios y Construcciones ORLER, S.A. de C.V.|https://orler.com.mx/|
 |hoatsa|operadora y administración técnica s.a de cv.|http://hoatsa.com.mx/|
 |auneti|Autovía Nuevo Necaxa - Tihuatlán, S.A de C.V|https://www.auneti.mx|https://www.auneti.mx/auneti/tarifas.jsp
-|Mota Engil|Autopista Tuxpan-Tampico S.A de C.V|https://autopistatuxpantampico.com|https://autopistatuxpantampico.com/tarifas/
-|Cardel-pozarica|Autopista Cardel-Poza Rica S.A. de C.V|https://autopistacardelpozarica.com|https://autopistacardelpozarica.com/tarifas/
-|bicentenario|Concesionaria Bicentenario S.A. de C.V.|https://libramientocelaya.com.mx|https://libramientocelaya.com.mx/tarifas/
+mota-engil|tuxpan-tampico|Autopista Tuxpan-Tampico S.A de C.V|https://autopistatuxpantampico.com|https://autopistatuxpantampico.com/tarifas/
+mota-engil|cardel-pozarica|Autopista Cardel-Poza Rica S.A. de C.V|https://autopistacardelpozarica.com|https://autopistacardelpozarica.com/tarifas/
+vice|bicentenario|Concesionaria Bicentenario S.A. de C.V.|https://libramientocelaya.com.mx|https://libramientocelaya.com.mx/tarifas/
 hoatsa|Libramiento-irapuato|libramiento irapuato|http://libramientoirapuato.mx|http://libramientoirapuato.mx/tarifas.html
 |gma|grupo mexico autopistas|https://www.gmautopista.com|https://www.gmautopista.com/Paginas/Tarifas.aspx
 |ovi|Operadora Valle de la Independencia ||
@@ -83,4 +83,6 @@ ideal|asur|Autopista urbana sur|https://www.ausur.com.mx|https://www.ausur.com.m
 ops|libramiento aguascalientes|libramiento aguscalientes|https://operadoradelasultana.com.mx/libramiento-aguascalientes|https://operadoradelasultana.com.mx/libramiento-aguascalientes/index.php?p=tarifas
 pinfra|ops|operadora de la sultana s.a de c.v|https://operadoradelasultana.com.mx/|
 pinfra|omc|operadora metropolitana de carreteras s.a de c.v||
-hoatsa|Lerma-santiago|autopista lerma santiago|http://autopista-lerma-tenango.com.mx/|http://autopista-lerma-tenango.com.mx/tarifas.html
+hoatsa|lerma-santiago|autopista lerma santiago|http://autopista-lerma-tenango.com.mx/|http://autopista-lerma-tenango.com.mx/tarifas.html
+|mota-engil|Mota-Engil O&M Mexico S.A.P.I de C.V||
+|vice|vice|https://www.vise.com.mx/|

@@ -142,9 +142,9 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 70|polotitlan|capufe||MEXICO-QUERETARO
 6|querétaro|capufe||QUERETARO-IRAPUATO
 61|libramiento sur poniente querétaro|capufe||QUERETARO-IRAPUATO
-590|crespo|bicentenario||LIBRAMIENTO DE CELAYA
-591|laja|bicentenario||LIBRAMIENTO DE CELAYA
-592|san miguel|bicentenario||LIBRAMIENTO DE CELAYA
+590|crespo|bicentenario|bypass|LIBRAMIENTO DE CELAYA
+591|laja|bicentenario|bypass|LIBRAMIENTO DE CELAYA
+592|san miguel|bicentenario|bypass|LIBRAMIENTO DE CELAYA
 183|villagran|capufe||QUERETARO-IRAPUATO
 185|cerro gordo|capufe||QUERETARO-IRAPUATO
 41|salamanca|capufe||QUERETARO-IRAPUATO
