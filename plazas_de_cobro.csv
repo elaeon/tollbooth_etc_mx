@@ -206,7 +206,7 @@ id|name|coords|open|||||||||
 558|el higueron|18.65262330865848, -99.0088059643153|1|pinfra|124|cuautla 94D||||||
 558|el higueron|18.652936805156926, -99.00879585189807|1|pinfra|124|chinameca 94D||||||
 1001|atlixco|18.916384904608535, -98.48469847669594|1|pinfra (https://www.viapass.com.mx/Portal_web/tarifas)||438D||||||
-1002|atlixco sur|18.895077579315473, -98.48938276402062|1|pinfra||Atlixco-jantetelco||||||
+1001|atlixco sur|18.895077579315473, -98.48938276402062|1|pinfra||Atlixco-jantetelco||||||
 26|amozoc|19.049814106676887, -98.03229883255135|1|capufe|90|150D||||||
 26|amozoc|19.050119904548755, -98.03273942128622|1|capufe|46|129-150D||||||
 26|amozoc|19.049481004303374, -98.03199376721965|1|capufe|46|150D-129||||||
@@ -741,28 +741,28 @@ id|name|coords|open|||||||||
 516|cuitzeo|19.968891088671075, -101.15971284532013|1|camssa||43D||||||
 517|la cinta|20.077505375275674, -101.13779386528905|1|camssa||43D||||||
 1002|vía atlixcayotl|19.003927491774967, -98.27266874132327|1|Carreteras de Cuota Puebla (viapass)||438D (puebla atlixco)||||||
-x5|santa ana|30.593605030395324, -111.51849090106008|1|pinfra||2 santa ana-altar||||||
+1005|santa ana|30.593605030395324, -111.51849090106008|1|pinfra||2 santa ana-altar||||||
 1003|San luis rio colorado|32.491709027557654, -114.80886049172051|1|Fideicomiso Puente Colorado del Estado de Sonora (https://puentecolorado.sonora.gob.mx/tarifas)||2||||||
 1020|san luis rio colorado II|32.45707572588469, -114.70138923845028|1|capufe||||||||
 1021|estacion doctor|32.375141903051095, -114.7606972591478|1|pinfra|$110 (autos)|3||||||
-|nogales|31.25838242526108, -110.97471362406507|1|VÍAS CONCESIONADAS DEL NORTE S.A. DE C.V.||15D||||||
+1019|nogales|31.25838242526108, -110.97471362406507|1|VÍAS CONCESIONADAS DEL NORTE S.A. DE C.V.||15D||||||
 1006|villa ahumada|30.437087967149225, -106.5218766044891|1|Gobierno Del Estado De Chihuahua (https://carreteras.chihuahua.gob.mx/tarifas)||45D||||||
-|galeana|30.00432144140382, -107.24252575729135|1|gobierno del estado de chihuahua||56D||||||
-|ojo laguna|29.481682352092374, -106.4067331606081|1|gobierno del estado de chihuahua||7D||||||
-|cuahutémoc|28.327357410025662, -106.5503755085411|1|gobierno del estado de chihuahua||16||||||
-|sacramento|28.860226989097075, -106.21652591087548|1|gobierno del estado de chihuahua||45D||||||
-|saucillo|28.04639514914993, -105.32936473466903|1|gobierno del estado de chihuahua||45D||||||
-|camargo|27.730899758183725, -105.19771954102012|1|gobierno del estado de chihuahua||45D||||||
-|jiménez|27.244963784334544, -104.933297098061|1|gobierno del estado de chihuahua||45D||||||
-|salvaza|27.082269429185967, -104.84153742390166|1|gobierno del estado de chihuahua||49D||||||
-|jerónimo|31.576852259899322, -106.6666867514863|1|gobierno del estado de chihuahua||45D||||||
+1015|galeana|30.00432144140382, -107.24252575729135|1|gobierno del estado de chihuahua||56D||||||
+1012|ojo laguna|29.481682352092374, -106.4067331606081|1|gobierno del estado de chihuahua||7D||||||
+1013|cuahutémoc|28.327357410025662, -106.5503755085411|1|gobierno del estado de chihuahua||16||||||
+1011|sacramento|28.860226989097075, -106.21652591087548|1|gobierno del estado de chihuahua||45D||||||
+1008|saucillo|28.04639514914993, -105.32936473466903|1|gobierno del estado de chihuahua||45D||||||
+1009|camargo|27.730899758183725, -105.19771954102012|1|gobierno del estado de chihuahua||45D||||||
+1010|jiménez|27.244963784334544, -104.933297098061|1|gobierno del estado de chihuahua||45D||||||
+1014|savalza|27.082269429185967, -104.84153742390166|1|gobierno del estado de chihuahua||49D||||||
+1016|jerónimo|31.576852259899322, -106.6666867514863|1|gobierno del estado de chihuahua||45D||||||
 1017|ojinaga|29.05524800729837, -105.1049993182869|1|gobierno del estado de chihuahua||80D||||||
 |cuyutlan|18.927822698664883, -104.08150460984416|1|zonalta s.a de c.v (operadora de carreteras s.a de c.v)||200D||||||
 |michac|19.861459624532184, -98.06073497874284|1|pinfra (opervite s.a de c.v)||119D||||||
 |michac|19.863286204961728, -98.05627705190592|1|pinfra (opervite s.a de c.v)||||||||
 937|huejotzingo|19.253616263645334, -98.44221943845149|1|cap||||||||
-|zacatelco|19.211554392759968, -98.26491395571294|1|pinfra||119D||||||
-|zacatelco II|19.211451145684354, -98.26312955440767|1|pinfra|Moto 18, auto 36, autobus 2,4 71, 5-9 ejes 107|119D-zacatelco-119D||||||
+1018|zacatelco|19.211554392759968, -98.26491395571294|1|pinfra||119D||||||
+1018|zacatelco II|19.211451145684354, -98.26312955440767|1|pinfra|Moto 18, auto 36, autobus 2,4 71, 5-9 ejes 107|119D-zacatelco-119D||||||
 428|allende|18.147122277980056, -94.39695175315569|1|ideal||||||||
 212|mitla|16.90835636383644, -96.36115487153991|1|mitlatehuantepec||190D||||||
 212|ENT. MITLA-LACHIXILA|16.924598206881765, -96.32698577635352|1|||||||||

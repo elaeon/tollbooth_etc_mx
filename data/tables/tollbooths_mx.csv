@@ -333,27 +333,27 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 516|cuitzeo|camssa||MORELIA-SALAMANCA
 517|la cinta|camssa||MORELIA-SALAMANCA
 1002|vía atlixcayotl|ccp||Puebla-atlixco
-|santa ana|ccp||
-|san luis rio colorado II|capufe|bridge|San luis rio colorado II
-|San luis rio colorado|Puente-colorado|bridge|Mexicali-san luis rio colorado
-|estacion doctor|pinfra||san luis rio colorado-santa clara
-|nogales|Vias-norte||libramiento de nogales
+1005|santa ana|ccp||santa ana-altar
+1003|san luis rio colorado II|capufe|bridge|San luis rio colorado II
+1020|San luis rio colorado|Puente-colorado|bridge|Mexicali-san luis rio colorado
+1021|estacion doctor|pinfra||san luis rio colorado-santa clara
+1019|nogales|Vias-norte||libramiento de nogales
 1006|villa ahumada|Gob-chihuahua||
-|galeana|Gob-chihuahua||
-|ojo laguna|Gob-chihuahua||
-|cuahutémoc|Gob-chihuahua||
-|sacramento|Gob-chihuahua||LIBRAMIENTO ORIENTE DE CHIHUAHUA
-|saucillo|Gob-chihuahua||
-|camargo|Gob-chihuahua||
-|jiménez|Gob-chihuahua||LIBRAMIENTO ORIENTE DE CHIHUAHUA
-|salvaza|Gob-chihuahua||Jiménez-torreón
-|jerónimo|Gob-chihuahua||libramiento samalayuca-san jerónimo
-|ojinaga|Gob-chihuahua||
+1015|galeana|Gob-chihuahua||
+1012|ojo laguna|Gob-chihuahua||
+1013|cuahutémoc|Gob-chihuahua||
+1011|sacramento|Gob-chihuahua||LIBRAMIENTO ORIENTE DE CHIHUAHUA
+1008|saucillo|Gob-chihuahua||
+1009|camargo|Gob-chihuahua||
+1010|jiménez|Gob-chihuahua||LIBRAMIENTO ORIENTE DE CHIHUAHUA
+1014|savalza|Gob-chihuahua||Jiménez-torreón
+1016|jerónimo|Gob-chihuahua||libramiento samalayuca-san jerónimo
+1017|ojinaga|Gob-chihuahua||
 |cuyutlan|zonalta||Armería-manzanillo
 |michac|pinfra||Apizaco-huauchinango
 937|huejotzingo|cap||san martín-huejotzingo
-|zacatelco|pinfra||Tlaxcala-puebla
-|zacatelco II|pinfra||Tlaxcala-puebla
+1018|zacatelco|pinfra||Tlaxcala-puebla
+1018|zacatelco II|pinfra||Tlaxcala-puebla
 428|allende|Tunel-coatzacoalcos|tunnel|
 212|mitla|mitlatehuantepec||Mitla-tehuantepec
 89|tehuantepec|capufe||SALINA CRUZ-LA VENTOSA
@@ -401,5 +401,3 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 1042|calera|profrezac||zacatecas
 1043|vetagrande|profrezac||zacatecas
 1044|felipe carrillo puerto|libramiento carrillo puerto||quintana roo
-1021|estacion doctor|pinfra||
-1020|san luis rio colorado II|capufe||
