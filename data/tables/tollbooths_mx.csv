@@ -133,7 +133,7 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 555|totomoxtle II|Cardel-pozarica||TUXPAN-CARDEL
 569|vega de alatorre|Cardel-pozarica||TUXPAN-CARDEL
 43|tecolutla|capufe|bridge|
-112|tampico|capufe||libramiento poniente tampico
+112|tampico|capufe|bypass|libramiento poniente tampico
 49|puente nacional tampico|capufe|bridge|
 14|puente nacional pánuco|capufe|bridge|Canoas-pánuco
 4|tepotzotlan|capufe||MEXICO-QUERETARO
@@ -401,3 +401,5 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 1042|calera|profrezac||zacatecas
 1043|vetagrande|profrezac||zacatecas
 1044|felipe carrillo puerto|libramiento carrillo puerto||quintana roo
+1021|estacion doctor|pinfra||
+1020|san luis rio colorado II|capufe||
