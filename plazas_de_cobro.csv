@@ -407,12 +407,12 @@ id|name|coords|open|||||||||
 835|la finca|18.89982802295817, -99.65321250708395|1|omc|36|55D-55||||||
 836|villa guerrero|18.989328269782845, -99.65656768903688|1|omc||55D||||||
 837|tenango|19.12245612481182, -99.60212868246006|1|omc||55D||||||
-470|chapultepec|19.196568898036464, -99.5251963918216|1|SAASCAEM||Lerma-tenango||||||
-471|rayón|19.151241223240984, -99.5437285216713|1|SAASCAEM|47|Lerma-tenango||||||
-471|rayón|19.15139653006734, -99.54371973077879|1|SAASCAEM|49|Lerma-tenango (malinalco)||||||
-471|rayón|19.15139653006734, -99.54371973077879|1|SAASCAEM|49|Lerma-tenango (lerma)||||||
-471|rayón|19.151453282154144, -99.54833025312512|1|SAASCAEM|40|6-lerma-tenango||||||
-471|rayón|19.149986747686476, -99.54999927946027|1|SAASCAEM|40|Lerma-tenango-6||||||
+470|chapultepec|19.196568898036464, -99.5251963918216|1|Lerma-santiago||Lerma-tenango||||||
+471|rayón|19.151241223240984, -99.5437285216713|1|Lerma-santiago|47|Lerma-tenango||||||
+471|rayón|19.15139653006734, -99.54371973077879|1|Lerma-santiago|49|Lerma-tenango (malinalco)||||||
+471|rayón|19.15139653006734, -99.54371973077879|1|Lerma-santiago|49|Lerma-tenango (lerma)||||||
+471|rayón|19.151453282154144, -99.54833025312512|1|Lerma-santiago|40|6-lerma-tenango||||||
+471|rayón|19.149986747686476, -99.54999927946027|1|Lerma-santiago|40|Lerma-tenango-6||||||
 416|xonacatlan|19.375790401297618, -99.5494633032343|1|ideal (https://www.libramientotoluca.com.mx/tarifas/)|107|6D||||||
 416|xonacatlan|19.38125410425941, -99.55553467754922|1|ideal|67|toluca-naucalpan-6D||||||
 416|xonacatlan|19.38125410425941, -99.55553467754922|1|ideal|67|6D-toluca-naucalpan||||||
@@ -667,11 +667,11 @@ id|name|coords|open|||||||||
 322|amealco I|20.277779734675175, -100.05914463423336|1|Exi operadora quantum||47D-300-47D||||||
 323|apaseo|20.533607563200647, -100.62788333530811|0|Exi operadora quantum||45D-47D||||||
 323|apaseo|20.531468678512535, -100.6207433993163|0|Exi operadora quantum||47D-45D||||||
-572|Mexico-pachuca|19.515917027396377, -99.10308752750072|1|ica||Naucalpan-ecatepec||||||
-399|ent. Gran canal anesa|19.507180373748675, -99.08436461232509|1|ANESA HOLDING. S.A. de C.V.||Naucalpan-ecatepec||||||
-588|indios verdes ent.|19.513536586192522, -99.09886289626725|1|ANESA HOLDING. S.A. de C.V.||Naucalpan-ecatepec||||||
-|cien metros r1|19.515508731954846, -99.1529543236422|1|ANESA HOLDING. S.A. de C.V.||Naucalpan-ecatepec||||||
-|cien metros r3|19.514145130325566, -99.15676116039323|1|ANESA HOLDING. S.A. de C.V.||Naucalpan-ecatepec||||||
+572|Mexico-pachuca|19.515917027396377, -99.10308752750072|1|ANESA HOLDING. S.A. de C.V.||Naucalpan-ecatepec||||||
+399|ent. Gran canal|19.507180373748675, -99.08436461232509|1|ANESA HOLDING. S.A. de C.V.||Naucalpan-ecatepec||||||
+588|Ent. Indios verdes|19.513536586192522, -99.09886289626725|1|ANESA HOLDING. S.A. de C.V.||Naucalpan-ecatepec||||||
+|cien metros r1 (ticket)|19.515508731954846, -99.1529543236422|1|ANESA HOLDING. S.A. de C.V.||Naucalpan-ecatepec||||||
+1045|cien metros r3|19.514145130325566, -99.15676116039323|1|ANESA HOLDING. S.A. de C.V.||Naucalpan-ecatepec||||||
 |cien metros r2|19.513765331801263, -99.15879639273003|1|ANESA HOLDING. S.A. de C.V.||Naucalpan-ecatepec||||||
 |vallejo r5|19.512542983780495, -99.161413017901|1|ANESA HOLDING. S.A. de C.V.||Naucalpan-ecatepec||||||
 |vallejo r4|19.512135301468586, -99.16267747575256|1|ANESA HOLDING. S.A. de C.V.||Naucalpan-ecatepec||||||
