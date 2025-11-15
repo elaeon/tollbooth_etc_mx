@@ -193,10 +193,16 @@ road_id,road_name,operation_date,project_mx_id,fonadin,length_km,
 191,rio colorado-estacion doctor,,,,49,
 192,Tlaxcala-puebla,01-01-2015,,,17.5,
 193,Atlixco-jantetelco,,,,,
-194,Puebla-atlixco,,,,,
+194,Puebla-atlixco,,,,19,
 195,Piramides-texcoco,26-04-2022,,,13,
 196,libramiento plan del rio,,,,13,
 197,barranca larga-ventanilla,04-02-2024,,,104.2,
+198,autopista siglo xxi (jantetelco-el higuerton),16-11-2018,143,https://www.fonadin.gob.mx/fni2/fp45/,61.8,
+199,libramiento elevado de puebla,20-10-2016,,,15.3,
+200,san luís potosí-villa de arriaga,,,,76,
+201,Monterrey-cadereyta,,,,,
 ,autopista vialidad poniente,,,,2.1,en construcción
 ,autopista conexión oriente,,,,7,en construcción
 ,Silao-san miguel de allende,,,,52.17,en construcción
+,Atizapan-atlacomulco,,142,https://www.fonadin.gob.mx/fni2/fp111/,77.2,en construcción
+,Atlacomulco-popotitlan,,913,,82.8,en construcción
