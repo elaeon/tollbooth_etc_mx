@@ -296,24 +296,24 @@ strech_id,tollbooth_id,tollbooth_name,motorbike,car,car-axle,bus-2axle,bus-3axle
 319,919,FELICIANO,33,67,35,139,139,139,137,137,137,204,204,270,270,270,,pase,,,,,,,,
 320,1,TLALPAN,68,136,68,252,252,252,250,250,250,427,427,624,624,624,125,pase,,,,,,,,
 321,195,TRES MARIAS,25,51,26,114,114,114,111,111,111,218,218,315,315,315,56,pase,,,,,,,,
-322,224,LA PERA A - CUAUTLA A,9,18,10,32,32,32,32,32,32,52,52,77,77,77,16,capufe,,,,,15-11-2023,,,
-323,24,la pera-tepoztlan,38,77,40,136,136,136,133,133,133,220,220,323,323,323,67,capufe,,,,,15-11-2023,,,
-324,24,LA PERA A - CUAUTLA A,30,60,31,105,105,105,103,103,103,169,169,249,249,249,52,capufe,,,,,15-11-2023,,,
-325,24,LA PERA A - CUAUTLA A,28,57,30,101,101,101,99,99,99,163,163,240,240,240,50,capufe,,,,,15-11-2023,,,
-326,24,LA PERA A - CUAUTLA A,24,48,25,85,85,85,83,83,83,137,137,201,201,201,42,capufe,,,,,15-11-2023,,,
-327,24,LA PERA A - CUAUTLA A,19,39,20,69,69,69,68,68,68,112,112,164,164,164,34,capufe,,,,,15-11-2023,,,
-328,24,LA PERA A - CUAUTLA A,14,29,15,51,51,51,49,49,49,82,82,120,120,120,25,capufe,,,,,15-11-2023,,,
-329,24,LA PERA A - CUAUTLA A,9,19,10,33,33,33,33,33,33,54,54,79,79,79,16,capufe,,,,,15-11-2023,,,
-330,25,Tepoztlan-cuautla,14,29,15,52,52,52,50,50,50,83,83,122,122,122,25,capufe,,,,,15-11-2023,,,
-331,25,LA PERA A - CUAUTLA A,14,29,15,51,51,51,49,49,49,82,82,120,120,120,25,capufe,,,,,15-11-2023,,,
-332,25,LA PERA A - CUAUTLA A,5,11,6,20,20,20,20,20,20,32,32,48,48,48,10,capufe,,,,,15-11-2023,,,
-333,25,LA PERA A - CUAUTLA A,24,48,25,85,85,85,83,83,83,137,137,201,201,201,42,capufe,,,,,15-11-2023,,,
-334,465,LA PERA A - CUAUTLA A,38,77,40,136,136,136,133,133,133,220,220,323,323,323,67,capufe,,,,,15-11-2023,,,
-335,465,LA PERA A - CUAUTLA A,30,60,31,105,105,105,103,103,103,169,169,249,249,249,52,capufe,,,,,15-11-2023,,,
-336,465,LA PERA A - CUAUTLA A,29,58,30,102,102,102,100,100,100,165,165,242,242,242,50,capufe,,,,,15-11-2023,,,
-337,465,LA PERA A - CUAUTLA A,20,41,21,72,72,72,70,70,70,116,116,170,170,170,35,capufe,,,,,15-11-2023,,,
-338,465,LA PERA A - CUAUTLA A,14,29,15,51,51,51,49,49,49,82,82,120,120,120,25,capufe,,,,,15-11-2023,,,
-339,465,LA PERA A - CUAUTLA A,5,11,6,20,20,20,20,20,20,32,32,48,48,48,10,capufe,,,,,15-11-2023,,,
+322,224,La Pera A - Tepoztlán A,9,18,10,32,32,32,32,32,32,52,52,77,77,77,16,capufe,,,,,15-11-2023,,,
+323,24,Cuautla-la pera,38,77,40,136,136,136,133,133,133,220,220,323,323,323,67,capufe,,,,,15-11-2023,,,
+324,24,La Pera A - Oaxtepec A,30,60,31,105,105,105,103,103,103,169,169,249,249,249,52,capufe,,,,,15-11-2023,,,
+325,24,Cuautla B - Tepoztlán B,28,57,30,101,101,101,99,99,99,163,163,240,240,240,50,capufe,,,,,15-11-2023,,,
+326,24,La Pera A - Oacalco A,24,48,25,85,85,85,83,83,83,137,137,201,201,201,42,capufe,,,,,15-11-2023,,,
+327,24,Oaxtepec B - Tepoztlán B,19,39,20,69,69,69,68,68,68,112,112,164,164,164,34,capufe,,,,,15-11-2023,,,
+328,24,Oacalco B - Tepoztlán B,14,29,15,51,51,51,49,49,49,82,82,120,120,120,25,capufe,,,,,15-11-2023,,,
+329,24,Tepoztlán B - La Pera B,9,19,10,33,33,33,33,33,33,54,54,79,79,79,16,capufe,,,,,15-11-2023,,,
+330,25,Tepoztlán A - Oacalco A,14,29,15,52,52,52,50,50,50,83,83,122,122,122,25,capufe,,,,,15-11-2023,,,
+331,25,Oacalco A - Cuautla A,14,29,15,51,51,51,49,49,49,82,82,120,120,120,25,capufe,,,,,15-11-2023,,,
+332,25,Oacalco A - Oaxtepec A,5,11,6,20,20,20,20,20,20,32,32,48,48,48,10,capufe,,,,,15-11-2023,,,
+333,25,Oacalco B - La Pera B,24,48,25,85,85,85,83,83,83,137,137,201,201,201,42,capufe,,,,,15-11-2023,,,
+334,465,la pera-cuautla,38,77,40,136,136,136,133,133,133,220,220,323,323,323,67,capufe,,,,,15-11-2023,,,
+335,465,Oaxtepec B - La Pera B,30,60,31,105,105,105,103,103,103,169,169,249,249,249,52,capufe,,,,,15-11-2023,,,
+336,465,Tepoztlán A - Cuautla A,29,58,30,102,102,102,100,100,100,165,165,242,242,242,50,capufe,,,,,15-11-2023,,,
+337,465,Tepoztlán A - Oaxtepec A,20,41,21,72,72,72,70,70,70,116,116,170,170,170,35,capufe,,,,,15-11-2023,,,
+338,465,Cuautla B - Oacalco B,14,29,15,51,51,51,49,49,49,82,82,120,120,120,25,capufe,,,,,15-11-2023,,,
+339,465,Oaxtepec B - Oacalco B,5,11,6,20,20,20,20,20,20,32,32,48,48,48,10,capufe,,,,,15-11-2023,,,
 340,107,EMILIANO ZAPATA (CENTRAL DE ABASTOS),5,10,5,15,15,15,14,14,14,21,21,26,26,26,8,pase,,,,,,,,
 341,106,AEROPUERTO,8,15,8,30,30,30,29,29,29,37,37,39,39,39,14,pase,,,,,,,,
 342,105,XOCHITEPEC,14,29,14,37,37,37,36,36,36,42,42,45,45,45,18,pase,,,,,,,,
@@ -991,12 +991,12 @@ strech_id,tollbooth_id,tollbooth_name,motorbike,car,car-axle,bus-2axle,bus-3axle
 1035,,INTERLOMAS - LA VENTA,26,53,26,101,146,182,101,146,182,254,286,357,403,428,47,pase,,,,,,,,
 1079,,SAN JERÓNIMO - PICACHO,,9 .76,,,,,,,,,,,,,,pase,,,,,,,,
 1080,,SAN JERÓNIMO - STA. TERESA,,15.78,,,,,,,,,,,,,,pase,,,,,,,,
-1081,,SAN JERÓNIMO - ESTADIO AZTECA,,27.50,,,,,,,,,,,,,,pase,,,,,,,,
+1081,,SAN JERÓNIMO - ESTADIO AZTECA,,27.5,,,,,,,,,,,,,,pase,,,,,,,,
 1082,,SAN JERÓNIMO - VIADUCTO TLALPAN,,35.95,,,,,,,,,,,,,,pase,,,,,,,,
 1083,,SAN JERÓNIMO - TEPEPAN,,35.88,,,,,,,,,,,,,,pase,,,,,,,,
 1084,,SAN JERÓNIMO - ENTRADA SUPERVIA PTE.,,4 .65,,,,,,,,,,,,,,pase,,,,,,,,
 1085,,SAN JERÓNIMO - CAMINERO,,39.44,,,,,,,,,,,,,,pase,,,,,,,,
-1086,,SAN JERÓNIMO - CAMINERO BIS (INTERCONEXIÓN VET),,41.20,,,,,,,,,,,,,,pase,,,,,,,,
+1086,,SAN JERÓNIMO - CAMINERO BIS (INTERCONEXIÓN VET),,41.2,,,,,,,,,,,,,,pase,,,,,,,,
 1087,,BLVD DE LA LUZ - PICACHO,,7 .17,,,,,,,,,,,,,,pase,,,,,,,,
 1088,,BLVD. DE LA LUZ - STA. TERESA,,13.19,,,,,,,,,,,,,,pase,,,,,,,,
 1089,,BLVD. DE LA LUZ - ESTADIO AZTECA,,24.91,,,,,,,,,,,,,,pase,,,,,,,,
@@ -1007,7 +1007,7 @@ strech_id,tollbooth_id,tollbooth_name,motorbike,car,car-axle,bus-2axle,bus-3axle
 1094,,BLVD. DE LA LUZ - CAMINERO BIS (INTERCONEXIÓN VET),,38.61,,,,,,,,,,,,,,pase,,,,,,,,
 1095,,L. CABRERA - PICACHO,,4 .76,,,,,,,,,,,,,,pase,,,,,,,,
 1096,,L. CABRERA - STA. TERESA,,10.78,,,,,,,,,,,,,,pase,,,,,,,,
-1097,,L. CABRERA - ESTADIO AZTECA,,22.50,,,,,,,,,,,,,,pase,,,,,,,,
+1097,,L. CABRERA - ESTADIO AZTECA,,22.5,,,,,,,,,,,,,,pase,,,,,,,,
 1098,,L. CABRERA - VIADUCTO TLALPAN,,30.94,,,,,,,,,,,,,,pase,,,,,,,,
 1099,,L. CABRERA - TEPEPAN,,30.87,,,,,,,,,,,,,,pase,,,,,,,,
 1100,,L. CABRERA - CAMINERO,,34.44,,,,,,,,,,,,,,pase,,,,,,,,
@@ -1018,12 +1018,12 @@ strech_id,tollbooth_id,tollbooth_name,motorbike,car,car-axle,bus-2axle,bus-3axle
 1105,,CUICUILCO - CAMINERO,,15.83,,,,,,,,,,,,,,pase,,,,,,,,
 1106,,CUICUILCO - CAMINERO BIS (INTERCONEXIÓN VET),,17.58,,,,,,,,,,,,,,pase,,,,,,,,
 1107,,TEPEPAN - PEDREGAL DEL SUR,,12.06,,,,,,,,,,,,,,pase,,,,,,,,
-1108,,TEPEPAN - LUIS CABRERA,,31.00,,,,,,,,,,,,,,pase,,,,,,,,
+1108,,TEPEPAN - LUIS CABRERA,,31,,,,,,,,,,,,,,pase,,,,,,,,
 1109,,TEPEPAN - BLVD. DE LA LUZ,,33.61,,,,,,,,,,,,,,pase,,,,,,,,
 1110,,TEPEPAN - SAN JERÓNIMO,,36.05,,,,,,,,,,,,,,pase,,,,,,,,
 1111,,VIADUCTO TLALPAN - PEDREGAL DEL SUR,,11.54,,,,,,,,,,,,,,pase,,,,,,,,
 1112,,VIADUCTO TLALPAN - LUIS CABRERA,,30.48,,,,,,,,,,,,,,pase,,,,,,,,
-1113,,VIADUCTO TLALPAN - BLVD. DE LA LUZ,,33.10,,,,,,,,,,,,,,pase,,,,,,,,
+1113,,VIADUCTO TLALPAN - BLVD. DE LA LUZ,,33.1,,,,,,,,,,,,,,pase,,,,,,,,
 1114,,VIADUCTO TLALPAN - SAN JERÓNIMO,,35.54,,,,,,,,,,,,,,pase,,,,,,,,
 1115,,CAMINERO - PEDREGAL DEL SUR,,14.97,,,,,,,,,,,,,,pase,,,,,,,,
 1116,,CAMINERO - LUIS CABRERA,,33.91,,,,,,,,,,,,,,pase,,,,,,,,
@@ -1043,43 +1043,43 @@ strech_id,tollbooth_id,tollbooth_name,motorbike,car,car-axle,bus-2axle,bus-3axle
 1130,,CAMINERO BIS (INTERCONEXIÓN VET) - BLVD DE LA LUZ,,37.25,,,,,,,,,,,,,,pase,,,,,,,,
 1131,,CAMINERO BIS (INTERCONEXIÓN VET)- LUIS CABRERA,,34.63,,,,,,,,,,,,,,pase,,,,,,,,
 1132,,CAMINERO BIS (INTERCONEXIÓN VET) - PEDREGAL DEL S.,,15.69,,,,,,,,,,,,,,pase,,,,,,,,
-1133,,AUSUR BANOBRAS (VIADUCTO ELEVADO DE TLALPAN),,164.00,,,,,,,,,,,,,,pase,,,,,,,,
-1134,,POETAS -AGUILAS,,58.00,,,,,,,,,,,,,,pase,,,,,,,,
-1135,,POETAS -TORRES,,68.00,,,,,,,,,,,,,,pase,,,,,,,,
-1136,,POETAS LUIS CABRERA,,68.00,,,,,,,,,,,,,,pase,,,,,,,,
-1137,,POETAS-VELC,,91.00,,,,,,,,,,,,,,pase,,,,,,,,
-1138,,CENTENARIO-AGUILAS,,58.00,,,,,,,,,,,,,,pase,,,,,,,,
-1139,,CENTENARIO-LAS TORRES,,68.00,,,,,,,,,,,,,,pase,,,,,,,,
-1140,,CENTENARIO- LUIS CABRERA,,68.00,,,,,,,,,,,,,,pase,,,,,,,,
-1141,,CENTENARIO-VELC,,91.00,,,,,,,,,,,,,,pase,,,,,,,,
-1142,,AGUILAS SUR-TORRES,,68.00,,,,,,,,,,,,,,pase,,,,,,,,
-1143,,AGUILAS SUR-LUIS CABRERA,,68.00,,,,,,,,,,,,,,pase,,,,,,,,
-1144,,AGUILAS SUR-VELC,,91.00,,,,,,,,,,,,,,pase,,,,,,,,
-1145,,TORRES SUR-LUIS CABRERA,,68.00,,,,,,,,,,,,,,pase,,,,,,,,
-1146,,TORRES SUR-VELC,,91.00,,,,,,,,,,,,,,pase,,,,,,,,
+1133,,AUSUR BANOBRAS (VIADUCTO ELEVADO DE TLALPAN),,164,,,,,,,,,,,,,,pase,,,,,,,,
+1134,,POETAS -AGUILAS,,58,,,,,,,,,,,,,,pase,,,,,,,,
+1135,,POETAS -TORRES,,68,,,,,,,,,,,,,,pase,,,,,,,,
+1136,,POETAS LUIS CABRERA,,68,,,,,,,,,,,,,,pase,,,,,,,,
+1137,,POETAS-VELC,,91,,,,,,,,,,,,,,pase,,,,,,,,
+1138,,CENTENARIO-AGUILAS,,58,,,,,,,,,,,,,,pase,,,,,,,,
+1139,,CENTENARIO-LAS TORRES,,68,,,,,,,,,,,,,,pase,,,,,,,,
+1140,,CENTENARIO- LUIS CABRERA,,68,,,,,,,,,,,,,,pase,,,,,,,,
+1141,,CENTENARIO-VELC,,91,,,,,,,,,,,,,,pase,,,,,,,,
+1142,,AGUILAS SUR-TORRES,,68,,,,,,,,,,,,,,pase,,,,,,,,
+1143,,AGUILAS SUR-LUIS CABRERA,,68,,,,,,,,,,,,,,pase,,,,,,,,
+1144,,AGUILAS SUR-VELC,,91,,,,,,,,,,,,,,pase,,,,,,,,
+1145,,TORRES SUR-LUIS CABRERA,,68,,,,,,,,,,,,,,pase,,,,,,,,
+1146,,TORRES SUR-VELC,,91,,,,,,,,,,,,,,pase,,,,,,,,
 1147,,"VIADUCTO ELEVADO LUIS CABRERA (VELC)- DISTRIBUIDOR
 VIAL",,2 3.00,,,,,,,,,,,,,,pase,,,,,,,,
-1148,,VELC -LUIS CABRERA,,23.00,,,,,,,,,,,,,,pase,,,,,,,,
-1149,,VELC-TORRES,,91.00,,,,,,,,,,,,,,pase,,,,,,,,
-1150,,VELC-ÁGUILAS,,91.00,,,,,,,,,,,,,,pase,,,,,,,,
-1151,,VELC-POETAS,,91.00,,,,,,,,,,,,,,pase,,,,,,,,
-1152,,LUIS CABRERA-TORRES,,68.00,,,,,,,,,,,,,,pase,,,,,,,,
-1153,,LUIS CABRERA-AGUILAS,,68.00,,,,,,,,,,,,,,pase,,,,,,,,
-1154,,LUIS CABRERA-POETAS,,68.00,,,,,,,,,,,,,,pase,,,,,,,,
-1155,,TORRES-AGUILAS,,68.00,,,,,,,,,,,,,,pase,,,,,,,,
-1156,,TORRES-POETAS,,68.00,,,,,,,,,,,,,,pase,,,,,,,,
-1157,,AGUILAS-POETAS,,58.00,,,,,,,,,,,,,,pase,,,,,,,,
+1148,,VELC -LUIS CABRERA,,23,,,,,,,,,,,,,,pase,,,,,,,,
+1149,,VELC-TORRES,,91,,,,,,,,,,,,,,pase,,,,,,,,
+1150,,VELC-ÁGUILAS,,91,,,,,,,,,,,,,,pase,,,,,,,,
+1151,,VELC-POETAS,,91,,,,,,,,,,,,,,pase,,,,,,,,
+1152,,LUIS CABRERA-TORRES,,68,,,,,,,,,,,,,,pase,,,,,,,,
+1153,,LUIS CABRERA-AGUILAS,,68,,,,,,,,,,,,,,pase,,,,,,,,
+1154,,LUIS CABRERA-POETAS,,68,,,,,,,,,,,,,,pase,,,,,,,,
+1155,,TORRES-AGUILAS,,68,,,,,,,,,,,,,,pase,,,,,,,,
+1156,,TORRES-POETAS,,68,,,,,,,,,,,,,,pase,,,,,,,,
+1157,,AGUILAS-POETAS,,58,,,,,,,,,,,,,,pase,,,,,,,,
 1158,,TEPALCAPA-VALLEJO,,43.7,,,,,,,,,,,,,,pase,,,,,,,,
-1159,,TEPALCAPA-CIRCUNVALACIÓN,,82.80,,,,,,,,,,,,,,pase,,,,,,,,
+1159,,TEPALCAPA-CIRCUNVALACIÓN,,82.8,,,,,,,,,,,,,,pase,,,,,,,,
 1160,,TEPALCAPA-1° DE MAYO,,119.17,,,,,,,,,,,,,,pase,,,,,,,,
 1161,,TEPALCAPA-SAN JOAQUÍN,,125.77,,,,,,,,,,,,,,pase,,,,,,,,
 1162,,TEPALCAPA-ENT. AUT. URBANA NTE.,,127.58,,,,,,,,,,,,,,pase,,,,,,,,
-1163,,LÓPEZ PORTILLO (PERINORTE)-VALLEJO,,29.20,,,,,,,,,,,,,,pase,,,,,,,,
-1164,,LÓPEZ PORTILLO (PERINORTE)-CIRCUNVALACIÓN,,68.30,,,,,,,,,,,,,,pase,,,,,,,,
+1163,,LÓPEZ PORTILLO (PERINORTE)-VALLEJO,,29.2,,,,,,,,,,,,,,pase,,,,,,,,
+1164,,LÓPEZ PORTILLO (PERINORTE)-CIRCUNVALACIÓN,,68.3,,,,,,,,,,,,,,pase,,,,,,,,
 1165,,LÓPEZ PORTILLO (PERINORTE)-1° DE MAYO,,104.67,,,,,,,,,,,,,,pase,,,,,,,,
 1166,,LÓPEZ PORTILLO (PERINORTE)-SAN JOAQUÍN,,111.26,,,,,,,,,,,,,,pase,,,,,,,,
 1167,,LÓPEZ PORTILLO (PERINORTE)-ENT. AUT. URBANA NTE.,,113.08,,,,,,,,,,,,,,pase,,,,,,,,
-1168,,LECHERÍA-VALLEJO,,21.80,,,,,,,,,,,,,,pase,,,,,,,,
+1168,,LECHERÍA-VALLEJO,,21.8,,,,,,,,,,,,,,pase,,,,,,,,
 1169,,LECHERÍA-CIRCUNVALACIÓN,,60.91,,,,,,,,,,,,,,pase,,,,,,,,
 1170,,LECHERÍA-1° DE MAYO,,97.27,,,,,,,,,,,,,,pase,,,,,,,,
 1171,,LECHERÍA-SAN JOAQUÍN,,103.87,,,,,,,,,,,,,,pase,,,,,,,,
@@ -1092,7 +1092,7 @@ VIAL",,2 3.00,,,,,,,,,,,,,,pase,,,,,,,,
 1178,,VALLE DORADO-CIRCUNVALACIÓN,,29.32,,,,,,,,,,,,,,pase,,,,,,,,
 1179,,VALLE DORADO-1° DE MAYO,,65.69,,,,,,,,,,,,,,pase,,,,,,,,
 1180,,VALLE DORADO-SAN JOAQUÍN,,72.29,,,,,,,,,,,,,,pase,,,,,,,,
-1181,,VALLE DORADO-ENT. AUT. URBANA NTE.,,74.10,,,,,,,,,,,,,,pase,,,,,,,,
+1181,,VALLE DORADO-ENT. AUT. URBANA NTE.,,74.1,,,,,,,,,,,,,,pase,,,,,,,,
 1182,,SANTA MÓNICA-CIRCUNVALACIÓN,,13.47,,,,,,,,,,,,,,pase,,,,,,,,
 1183,,SANTA MÓNICA-1° DE MAYO,,49.84,,,,,,,,,,,,,,pase,,,,,,,,
 1184,,SANTA MÓNICA-SAN JOAQUÍN,,56.44,,,,,,,,,,,,,,pase,,,,,,,,
@@ -1101,7 +1101,7 @@ VIAL",,2 3.00,,,,,,,,,,,,,,pase,,,,,,,,
 1187,,NAUCALLI-SAN JOAQUÍN,,26.13,,,,,,,,,,,,,,pase,,,,,,,,
 1188,,NAUCALLI-ENT. AUT. URBANA NTE.,,27.94,,,,,,,,,,,,,,pase,,,,,,,,
 1189,,LOMAS VERDES-1° DE MAYO,,20.31,,,,,,,,,,,,,,pase,,,,,,,,
-1190,,LOMAS VERDES-SAN JOAQUÍN,,26.90,,,,,,,,,,,,,,pase,,,,,,,,
+1190,,LOMAS VERDES-SAN JOAQUÍN,,26.9,,,,,,,,,,,,,,pase,,,,,,,,
 1191,,LOMAS VERDES-ENT. AUT. URBANA NTE.,,28.72,,,,,,,,,,,,,,pase,,,,,,,,
 1192,,GUSTAVO BAZ-1° DE MAYO,,11.93,,,,,,,,,,,,,,pase,,,,,,,,
 1193,,GUSTAVO BAZ-SAN JOAQUÍN,,16.31,,,,,,,,,,,,,,pase,,,,,,,,
@@ -1118,7 +1118,7 @@ VIAL",,2 3.00,,,,,,,,,,,,,,pase,,,,,,,,
 1204,,ENT. AUT. URBANA NTE.-LÓPEZ PORTILLO,,113.82,,,,,,,,,,,,,,pase,,,,,,,,
 1205,,ENT. AUT. URBANA NTE.-TEPALCAPA,,128.09,,,,,,,,,,,,,,pase,,,,,,,,
 1206,,TOREO-G.BAZ,,22.19,,,,,,,,,,,,,,pase,,,,,,,,
-1207,,TOREO-LOMAS VERDES,,27.50,,,,,,,,,,,,,,pase,,,,,,,,
+1207,,TOREO-LOMAS VERDES,,27.5,,,,,,,,,,,,,,pase,,,,,,,,
 1208,,TOREO-CIRCUNVALACIÓN,,50.22,,,,,,,,,,,,,,pase,,,,,,,,
 1209,,TOREO-SANTA MÓNICA,,58.73,,,,,,,,,,,,,,pase,,,,,,,,
 1210,,TOREO-VALLE DORADO,,74.58,,,,,,,,,,,,,,pase,,,,,,,,
@@ -1140,8 +1140,8 @@ VIAL",,2 3.00,,,,,,,,,,,,,,pase,,,,,,,,
 1226,,GUSTAVO BAZ-SANTA MÓNICA,,35.67,,,,,,,,,,,,,,pase,,,,,,,,
 1227,,GUSTAVO BAZ-VALLE DORADO,,51.52,,,,,,,,,,,,,,pase,,,,,,,,
 1228,,GUSTAVO BAZ-L GPE.,,68.27,,,,,,,,,,,,,,pase,,,,,,,,
-1229,,GUSTAVO BAZ-LECHERÍA,,83.10,,,,,,,,,,,,,,pase,,,,,,,,
-1230,,GUSTAVO BAZ-LÓPEZ PORTILLO,,90.50,,,,,,,,,,,,,,pase,,,,,,,,
+1229,,GUSTAVO BAZ-LECHERÍA,,83.1,,,,,,,,,,,,,,pase,,,,,,,,
+1230,,GUSTAVO BAZ-LÓPEZ PORTILLO,,90.5,,,,,,,,,,,,,,pase,,,,,,,,
 1231,,GUSTAVO BAZ-TEPALCAPA,,104.77,,,,,,,,,,,,,,pase,,,,,,,,
 1232,,CIRCUNVALACIÓN-SANTA MÓNICA,,14.63,,,,,,,,,,,,,,pase,,,,,,,,
 1233,,CIRCUNVALACIÓN-VALLE DORADO,,30.48,,,,,,,,,,,,,,pase,,,,,,,,
@@ -1150,18 +1150,18 @@ VIAL",,2 3.00,,,,,,,,,,,,,,pase,,,,,,,,
 1236,,CIRCUNVALACIÓN-LÓPEZ PORTILLO,,69.45,,,,,,,,,,,,,,pase,,,,,,,,
 1237,,CIRCUNVALACIÓN-TEPALCAPA,,83.72,,,,,,,,,,,,,,pase,,,,,,,,
 1238,,VALLEJO/VALLEJO-L GPE.,,6.96,,,,,,,,,,,,,,pase,,,,,,,,
-1239,,VALLEJO/VALLEJO-LECHERÍA,,21.80,,,,,,,,,,,,,,pase,,,,,,,,
-1240,,VALLEJO/ VALLEJO-LÓPEZ PORTILLO,,29.20,,,,,,,,,,,,,,pase,,,,,,,,
+1239,,VALLEJO/VALLEJO-LECHERÍA,,21.8,,,,,,,,,,,,,,pase,,,,,,,,
+1240,,VALLEJO/ VALLEJO-LÓPEZ PORTILLO,,29.2,,,,,,,,,,,,,,pase,,,,,,,,
 1241,,VALLEJO/ VALLEJO-TEPALCAPA,,43.46,,,,,,,,,,,,,,pase,,,,,,,,
 1242,,VALLEJO /PERIFÉRICO-L GPE.,,6.86,,,,,,,,,,,,,,pase,,,,,,,,
-1243,,VALLEJO /PERIFÉRICO-LECHERÍA,,21.70,,,,,,,,,,,,,,pase,,,,,,,,
+1243,,VALLEJO /PERIFÉRICO-LECHERÍA,,21.7,,,,,,,,,,,,,,pase,,,,,,,,
 1244,,VALLEJO /PERIFÉRICO-LÓPEZ PORTILLO,,29.09,,,,,,,,,,,,,,pase,,,,,,,,
 1245,,VALLEJO /PERIFÉRICO-TEPALCAPA,,43.36,,,,,,,,,,,,,,pase,,,,,,,,
 1246,,VEB PTE.-CDI PTE.,,2.56,,,,,,,,,,,,,,pase,,3.94,,,,,,
 1247,,VEB PTE.-EJERCITO NACIONAL PTE.,,11.61,,,,,,,,,,,,,,pase,,17.89,,,,,,
 1248,,VEB PTE.-PALMAS PTE.,,20.68,,,,,,,,,,,,,,pase,,31.86,,,,,,
 1249,,VEB PTE.-REFORMA CENTRO,,26.97,,,,,,,,,,,,,,pase,,41.54,,,,,,
-1250,,VEB PTE.-PARQUE PELVOUX,,26.48,,,,,,,,,,,,,,pase,,40.80,,,,,,
+1250,,VEB PTE.-PARQUE PELVOUX,,26.48,,,,,,,,,,,,,,pase,,40.8,,,,,,
 1251,,VEB PTE.-CONSTITUYENTES PTE.,,41.89,,,,,,,,,,,,,,pase,,64.53,,,,,,
 1252,,VEB PTE.-MINERIA PTE.,,49.05,,,,,,,,,,,,,,pase,,75.56,,,,,,
 1253,,VEB PTE.-SAN ANTONIO PTE.,,71.51,,,,,,,,,,,,,,pase,,110.17,,,,,,
@@ -1169,21 +1169,21 @@ VIAL",,2 3.00,,,,,,,,,,,,,,pase,,,,,,,,
 1255,,CDI PTE.-PALMAS PTE.,,17.65,,,,,,,,,,,,,,pase,,27.19,,,,,,
 1256,,CDI PTE.-REFORMA CENTRO,,23.96,,,,,,,,,,,,,,pase,,36.91,,,,,,
 1257,,CDI PTE.-PARQUE PELVOUX,,23.48,,,,,,,,,,,,,,pase,,36.17,,,,,,
-1258,,CDI PTE.-CONSTITUYENTES PTE.,,38.88,,,,,,,,,,,,,,pase,,59.90,,,,,,
+1258,,CDI PTE.-CONSTITUYENTES PTE.,,38.88,,,,,,,,,,,,,,pase,,59.9,,,,,,
 1259,,CDI PTE.-MINERIA PTE.,,46.04,,,,,,,,,,,,,,pase,,70.93,,,,,,
-1260,,CDI PTE.-SAN ANTONIO PTE.,,68.50,,,,,,,,,,,,,,pase,,105.53,,,,,,
+1260,,CDI PTE.-SAN ANTONIO PTE.,,68.5,,,,,,,,,,,,,,pase,,105.53,,,,,,
 1261,,CONSCRIPTO PTE.-EJERCITO NACIONAL PTE.,,6.06,,,,,,,,,,,,,,pase,,9.33,,,,,,
-1262,,CONSCRIPTO PTE.-PALMAS PTE.,,15.10,,,,,,,,,,,,,,pase,,23.27,,,,,,
+1262,,CONSCRIPTO PTE.-PALMAS PTE.,,15.1,,,,,,,,,,,,,,pase,,23.27,,,,,,
 1263,,CONSCRIPTO PTE.-REFORMA CENTRO,,21.41,,,,,,,,,,,,,,pase,,32.98,,,,,,
 1264,,CONSCRIPTO PTE.-PARQUE PELVOUX,,20.94,,,,,,,,,,,,,,pase,,32.25,,,,,,
 1265,,CONSCRIPTO PTE.-CONSTITUYENTES PTE.,,36.33,,,,,,,,,,,,,,pase,,55.97,,,,,,
-1266,,CONSCRIPTO PTE.-MINERIA PTE.,,43.49,,,,,,,,,,,,,,pase,,67.00,,,,,,
+1266,,CONSCRIPTO PTE.-MINERIA PTE.,,43.49,,,,,,,,,,,,,,pase,,67,,,,,,
 1267,,CONSCRIPTO PTE.-SAN ANTONIO PTE.,,65.96,,,,,,,,,,,,,,pase,,101.61,,,,,,
 1268,,EJÉRCITO NACIONAL PTE.-PALMAS PTE.,,7.19,,,,,,,,,,,,,,pase,,11.07,,,,,,
 1269,,EJÉRCITO NACIONAL PTE.-REFORMA CENTRO,,13.49,,,,,,,,,,,,,,pase,,20.79,,,,,,
 1270,,EJÉRCITO NACIONAL PTE.-PARQUE PELVOUX,,13.02,,,,,,,,,,,,,,pase,,20.06,,,,,,
 1271,,EJÉRCITO NACIONAL PTE.-CONSTITUYENTES P,,28.42,,,,,,,,,,,,,,pase,,$43.77,,,,,,
-1272,,EJÉRCITO NACIONAL PTE.-MINERIA PTE.,,35.58,,,,,,,,,,,,,,pase,,54.80,,,,,,
+1272,,EJÉRCITO NACIONAL PTE.-MINERIA PTE.,,35.58,,,,,,,,,,,,,,pase,,54.8,,,,,,
 1273,,EJÉRCITO NACIONAL PTE.-SAN ANTONIO PTE.,,58.04,,,,,,,,,,,,,,pase,,89.41,,,,,,
 1274,,PALMAS PTE.-REFORMA CENTRO,,7.51,,,,,,,,,,,,,,pase,,11.57,,,,,,
 1275,,PALMAS PTE.-PARQUE PELVOUX,,7.03,,,,,,,,,,,,,,pase,,10.83,,,,,,
@@ -1193,20 +1193,20 @@ VIAL",,2 3.00,,,,,,,,,,,,,,pase,,,,,,,,
 1279,,ROSARIO CASTELLANOS-CONSTITUYENTES PT,,13.22,,,,,,,,,,,,,,pase,,$20.36,,,,,,
 1280,,ROSARIO CASTELLANOS-MINERIA PTE.,,20.38,,,,,,,,,,,,,,pase,,31.39,,,,,,
 1281,,ROSARIO CASTELLANOS-SAN ANTONIO PTE.,,42.84,,,,,,,,,,,,,,pase,,65.99,,,,,,
-1282,,ALENCASTRE PTE.-CONSTITUYENTES PTE.,,5.32,,,,,,,,,,,,,,pase,,8.20,,,,,,
-1283,,ALENCASTRE PTE.-MINERIA PTE.,,12.80,,,,,,,,,,,,,,pase,,19.72,,,,,,
+1282,,ALENCASTRE PTE.-CONSTITUYENTES PTE.,,5.32,,,,,,,,,,,,,,pase,,8.2,,,,,,
+1283,,ALENCASTRE PTE.-MINERIA PTE.,,12.8,,,,,,,,,,,,,,pase,,19.72,,,,,,
 1284,,ALENCASTRE PTE.-SAN ANTONIO PTE.,,34.94,,,,,,,,,,,,,,pase,,53.83,,,,,,
 1285,,SAN ANTONIO OTE.-ALENCASTRE OTE.,,30.63,,,,,,,,,,,,,,pase,,47.18,,,,,,
 1286,,SAN ANTONIO OTE.-CHAPULTEPEC / REFORMA OTE,,35.63,,,,,,,,,,,,,,pase,,$54.89,,,,,,
-1287,,SAN ANTONIO OTE.-CONSCRIPTO OTE.,,64.20,,,,,,,,,,,,,,pase,,98.89,,,,,,
+1287,,SAN ANTONIO OTE.-CONSCRIPTO OTE.,,64.2,,,,,,,,,,,,,,pase,,98.89,,,,,,
 1288,,SAN ANTONIO OTE.-CDI OTE.,,64.43,,,,,,,,,,,,,,pase,,99.25,,,,,,
 1289,,SAN ANTONIO OTE.-VEB OTE.,,66.88,,,,,,,,,,,,,,pase,,103.02,,,,,,
-1290,,SOSTENES ROCHA OTE.-ALENCASTRE OTE.,,11.00,,,,,,,,,,,,,,pase,,16.95,,,,,,
+1290,,SOSTENES ROCHA OTE.-ALENCASTRE OTE.,,11,,,,,,,,,,,,,,pase,,16.95,,,,,,
 1291,,SOSTENES ROCHA OTE.-CHAPULTEPEC/REFORMA O,,15.97,,,,,,,,,,,,,,pase,,$24.60,,,,,,
 1292,,SOSTENES ROCHA OTE.-CONSCRIPTO OTE.,,44.53,,,,,,,,,,,,,,pase,,68.59,,,,,,
 1293,,SOSTENES ROCHA OTE.-CDI OTE.,,44.76,,,,,,,,,,,,,,pase,,68.95,,,,,,
 1294,,SOSTENES ROCHA OTE.-VEB OTE.,,47.22,,,,,,,,,,,,,,pase,,72.74,,,,,,
-1295,,CONSTITUYENTES OTE.-ALENCASTRE OTE.,,8.00,,,,,,,,,,,,,,pase,,12.32,,,,,,
+1295,,CONSTITUYENTES OTE.-ALENCASTRE OTE.,,8,,,,,,,,,,,,,,pase,,12.32,,,,,,
 1296,,CONSTITUYENTES OTE.-CHAPULTEPEC / REFORMA,,12.94,,,,,,,,,,,,,,pase,,$19.93,,,,,,
 1297,,CONSTITUYENTES OTE.-CONSCRIPTO OTE.,,41.49,,,,,,,,,,,,,,pase,,63.92,,,,,,
 1298,,CONSTITUYENTES OTE.-CDI OTE.,,41.74,,,,,,,,,,,,,,pase,,64.29,,,,,,
@@ -1217,35 +1217,35 @@ VIAL",,2 3.00,,,,,,,,,,,,,,pase,,,,,,,,
 1303,,EJÉRCITO NACIONAL OTE.-CONSCRIPTO OTE.,,9.46,,,,,,,,,,,,,,pase,,14.58,,,,,,
 1304,,EJÉRCITO NACIONAL OTE.-CDI OTE.,,9.66,,,,,,,,,,,,,,pase,,14.88,,,,,,
 1305,,EJÉRCITO NACIONAL OTE.-VEB OTE.,,12.22,,,,,,,,,,,,,,pase,,18.82,,,,,,
-1306,,RÍO DE LOS REMEDIOS (TSN) - ALFREDO DEL MAZO (A),,10.00,,,,,,,,,,,,,,pase,,14.00,14.00,,,19.00,19.00,14.00
-1307,,RIO DE LOS REMEDIOS (TSN) - CIRCUNVALACIÓN (A),,27.00,,,,,,,,,,,,,,pase,,40.00,39.00,,,55.00,54.00,37.00
-1308,,RIO DE LOS REMEDIOS (TSN) - CIRCUITO EXTERIOR M. (B),,42.00,,,,,,,,,,,,,,pase,,64.00,61.00,,,88.00,84.00,58.00
-1309,,RÍO DE LOS REMEDIOS (TSN) - JARDINES DE MORELOS (B),,53.00,,,,,,,,,,,,,,pase,,79.00,76.00,,,109.00,105.00,73.00
-1310,,RÍO DE LOS REMEDIOS (D/E) - ALFREDO DEL MAZO (A),,8.00,,,,,,,,,,,,,,pase,,12.00,12.00,,,17.00,17.00,11.00
-1311,,RIO DE LOS REMEDIOS (D/E) - CIRCUNVALACIÓN (A),,25.00,,,,,,,,,,,,,,pase,,38.00,37.00,,,52.00,51.00,35.00
-1312,,RIO DE LOS REMEDIOS (D/E) - CIRCUITO EXTERIOR M. (B),,41.00,,,,,,,,,,,,,,pase,,62.00,59.00,,,86.00,81.00,57.00
-1313,,RÍO DE LOS REMEDIOS (D/E) - JARDINES DE MORELOS (B),,51.00,,,,,,,,,,,,,,pase,,77.00,75.00,,,106.00,104.00,70.00
-1314,,ALFREDO DEL MAZO (E) - CIRCUNVALACIÓN (A),,16.00,,,,,,,,,,,,,,pase,,24.00,23.00,,,33.00,32.00,22.00
-1315,,ALFREDO DEL MAZO (E) - CIRCUITO EXTERIOR M. (B),,32.00,,,,,,,,,,,,,,pase,,48.00,46.00,,,66.00,63.00,44.00
-1316,,ALFREDO DEL MAZO (E) - JARDINES DE MORELOS (B),,42.00,,,,,,,,,,,,,,pase,,63.00,61.00,,,87.00,84.00,58.00
-1317,,CIRCUNVALACIÓN SUR(E) - CIRCUITO EXTERIOR M. (B),,16.00,,,,,,,,,,,,,,pase,,24.00,23.00,,,33.00,32.00,22.00
-1318,,CIRCUNVALACIÓN SUR (E) - JARDINES DE MORELOS (B),,26.00,,,,,,,,,,,,,,pase,,40.00,38.00,,,55.00,52.00,36.00
-1319,,VENTA DE CARPIO - CIRCUNVALACIÓN (C),,30.00,,,,,,,,,,,,,,pase,,45.00,43.00,,,62.00,59.00,41.00
-1320,,VENTA DE CARPIO - ALFREDO DEL MAZO (C),,46.00,,,,,,,,,,,,,,pase,,69.00,66.00,,,95.00,91.00,63.00
-1321,,VENTA DE CARPIO - RÍO DE LOS REMEDIOS (TSN),,54.00,,,,,,,,,,,,,,pase,,81.00,78.00,,,112.00,108.00,75.00
-1322,,VENTA DE CARPIO - RÍO DE LOS REMEDIOS (A),,55.00,,,,,,,,,,,,,,pase,,82.00,79.00,,,113.00,109.00,76.00
-1323,,JARDINES DE MORELOS (A) - CIRCUNVALACIÓN (C),,29.00,,,,,,,,,,,,,,pase,,43.00,41.00,,,59.00,57.00,40.00
-1324,,JARDINES DE MORELOS (A) - ALFREDO DEL MAZO (C),,44.00,,,,,,,,,,,,,,pase,,67.00,64.00,,,92.00,88.00,61.00
-1325,,JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (TNS),,53.00,,,,,,,,,,,,,,pase,,79.00,76.00,,,109.00,105.00,73.00
-1326,,JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (A),,53.00,,,,,,,,,,,,,,pase,,80.00,77.00,,,110.00,106.00,73.00
-1327,,CIRCUITO EXTERIOR M. (A) - CIRCUNVALACIÓN (C),,16.00,,,,,,,,,,,,,,pase,,24.00,23.00,,,33.00,32.00,22.00
-1328,,CIRCUITO EXTERIOR M. (A) - ALFREDO DEL MAZO (C),,32.00,,,,,,,,,,,,,,pase,,48.00,46.00,,,66.00,63.00,44.00
-1329,,CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (TNS),,40.00,,,,,,,,,,,,,,pase,,60.00,58.00,,,83.00,80.00,55.00
-1330,,CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (A),,41.00,,,,,,,,,,,,,,pase,,61.00,59.00,,,84.00,81.00,57.00
-1331,,CIRCUNVALACIÓN SUR (D) - ALFREDO DEL MAZO (C),,16.00,,,,,,,,,,,,,,pase,,24.00,23.00,,,33.00,32.00,22.00
-1332,,CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (TNS),,24.00,,,,,,,,,,,,,,pase,,37.00,35.00,,,51.00,48.00,33.00
-1333,,CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (A),,25.00,,,,,,,,,,,,,,pase,,38.00,36.00,,,52.00,50.00,35.00
-1334,,ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (TNS),,7.00,,,,,,,,,,,,,,pase,,11.00,11.00,,,15.00,15.00,10.00
-1335,,ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (A),,8.00,,,,,,,,,,,,,,pase,,12.00,12.00,,,17.00,17.00,11.00
+1306,,RÍO DE LOS REMEDIOS (TSN) - ALFREDO DEL MAZO (A),,10,,,,,,,,,,,,,,pase,,14,14,,,19,19,14
+1307,,RIO DE LOS REMEDIOS (TSN) - CIRCUNVALACIÓN (A),,27,,,,,,,,,,,,,,pase,,40,39,,,55,54,37
+1308,,RIO DE LOS REMEDIOS (TSN) - CIRCUITO EXTERIOR M. (B),,42,,,,,,,,,,,,,,pase,,64,61,,,88,84,58
+1309,,RÍO DE LOS REMEDIOS (TSN) - JARDINES DE MORELOS (B),,53,,,,,,,,,,,,,,pase,,79,76,,,109,105,73
+1310,,RÍO DE LOS REMEDIOS (D/E) - ALFREDO DEL MAZO (A),,8,,,,,,,,,,,,,,pase,,12,12,,,17,17,11
+1311,,RIO DE LOS REMEDIOS (D/E) - CIRCUNVALACIÓN (A),,25,,,,,,,,,,,,,,pase,,38,37,,,52,51,35
+1312,,RIO DE LOS REMEDIOS (D/E) - CIRCUITO EXTERIOR M. (B),,41,,,,,,,,,,,,,,pase,,62,59,,,86,81,57
+1313,,RÍO DE LOS REMEDIOS (D/E) - JARDINES DE MORELOS (B),,51,,,,,,,,,,,,,,pase,,77,75,,,106,104,70
+1314,,ALFREDO DEL MAZO (E) - CIRCUNVALACIÓN (A),,16,,,,,,,,,,,,,,pase,,24,23,,,33,32,22
+1315,,ALFREDO DEL MAZO (E) - CIRCUITO EXTERIOR M. (B),,32,,,,,,,,,,,,,,pase,,48,46,,,66,63,44
+1316,,ALFREDO DEL MAZO (E) - JARDINES DE MORELOS (B),,42,,,,,,,,,,,,,,pase,,63,61,,,87,84,58
+1317,,CIRCUNVALACIÓN SUR(E) - CIRCUITO EXTERIOR M. (B),,16,,,,,,,,,,,,,,pase,,24,23,,,33,32,22
+1318,,CIRCUNVALACIÓN SUR (E) - JARDINES DE MORELOS (B),,26,,,,,,,,,,,,,,pase,,40,38,,,55,52,36
+1319,,VENTA DE CARPIO - CIRCUNVALACIÓN (C),,30,,,,,,,,,,,,,,pase,,45,43,,,62,59,41
+1320,,VENTA DE CARPIO - ALFREDO DEL MAZO (C),,46,,,,,,,,,,,,,,pase,,69,66,,,95,91,63
+1321,,VENTA DE CARPIO - RÍO DE LOS REMEDIOS (TSN),,54,,,,,,,,,,,,,,pase,,81,78,,,112,108,75
+1322,,VENTA DE CARPIO - RÍO DE LOS REMEDIOS (A),,55,,,,,,,,,,,,,,pase,,82,79,,,113,109,76
+1323,,JARDINES DE MORELOS (A) - CIRCUNVALACIÓN (C),,29,,,,,,,,,,,,,,pase,,43,41,,,59,57,40
+1324,,JARDINES DE MORELOS (A) - ALFREDO DEL MAZO (C),,44,,,,,,,,,,,,,,pase,,67,64,,,92,88,61
+1325,,JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (TNS),,53,,,,,,,,,,,,,,pase,,79,76,,,109,105,73
+1326,,JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (A),,53,,,,,,,,,,,,,,pase,,80,77,,,110,106,73
+1327,,CIRCUITO EXTERIOR M. (A) - CIRCUNVALACIÓN (C),,16,,,,,,,,,,,,,,pase,,24,23,,,33,32,22
+1328,,CIRCUITO EXTERIOR M. (A) - ALFREDO DEL MAZO (C),,32,,,,,,,,,,,,,,pase,,48,46,,,66,63,44
+1329,,CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (TNS),,40,,,,,,,,,,,,,,pase,,60,58,,,83,80,55
+1330,,CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (A),,41,,,,,,,,,,,,,,pase,,61,59,,,84,81,57
+1331,,CIRCUNVALACIÓN SUR (D) - ALFREDO DEL MAZO (C),,16,,,,,,,,,,,,,,pase,,24,23,,,33,32,22
+1332,,CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (TNS),,24,,,,,,,,,,,,,,pase,,37,35,,,51,48,33
+1333,,CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (A),,25,,,,,,,,,,,,,,pase,,38,36,,,52,50,35
+1334,,ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (TNS),,7,,,,,,,,,,,,,,pase,,11,11,,,15,15,10
+1335,,ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (A),,8,,,,,,,,,,,,,,pase,,12,12,,,17,17,11
 1374,60,puente rodolfo robles,10,20,11,35,35,35,35,35,68,68,97,97,97,97,17,capufe,,,,,01-07-2023,,,
 511,50,PUENTE INTERNACIONAL OJINAGA,15,30,15,58,58,58,58,58,58,58,58,58,58,58,29,capufe,,,,5,01-07-2023,,,
