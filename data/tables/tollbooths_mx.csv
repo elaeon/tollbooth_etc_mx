@@ -386,7 +386,7 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 1028|puente lerdo-stanton|capufe|International-bridge|chihuahua
 1029|puente josé lópez portillo|Gob-veracruz|bridge|Tantoyuca-alamo
 1030|puente la unidad|Gob-campeche|International-bridge|campeche
-1031|puente laredo I|capufe|International-bridge|tamaulipas
+66|puente laredo I|capufe|International-bridge|tamaulipas
 46|puente libre comercio (lucio blanco)|copa|International-bridge|tamaulipas
 1032|puente nuevo laredo iii|Gob-tamaulipas|International-bridge|tamaulipas
 1033|puente paso del norte|Gob-chihuahua|International-bridge|chihuahua
@@ -401,3 +401,4 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 1042|calera|profrezac||zacatecas
 1043|vetagrande|profrezac||zacatecas
 1044|felipe carrillo puerto|libramiento carrillo puerto||quintana roo
+1031||||
