@@ -39,7 +39,7 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 451|guadalupe|reanal||MONTERREY-CADEREYTA
 40|cadereyta|capufe|bridge|
 586|Agujita-allende|supercarreteras||AGUJITA-ALLENDE
-65|acuña|capufe|bridge|
+65|acuña|capufe|International-bridge|
 108|sabinas|opan||MONTERREY-NUEVO LAREDO
 109|agualeguas|opan||MONTERREY-NUEVO LAREDO
 110|parás|opan||MONTERREY-NUEVO LAREDO
@@ -54,15 +54,15 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 171|ignacio zaragoza “los tomates”|opan|International-bridge|
 170|nuevo progreso|opan||REYNOSA-MATAMOROS
 74|Juárez-lincon|capufe|International-bridge|
-31|miguel alemán|capufe|bridge|
+31|miguel alemán|capufe|International-bridge|
 48|san juan|capufe|bridge|
-30|camargo|capufe|bridge|
+30|camargo|capufe|International-bridge|
 37|reynosa|capufe|International-bridge|
-47|las flores|capufe|bridge|
-50|ojinaga|capufe|bridge|
-20|matamoros|copa|bridge|
-62|piedras negras|Hoatsa|bridge|
-1023|piedras negras 2|Hoatsa|bridge|
+47|las flores|capufe|International-bridge|
+50|ojinaga|capufe|International-bridge|
+20|matamoros|copa|International-bridge|
+62|piedras negras|Hoatsa|International-bridge|
+1023|piedras negras 2|Hoatsa|International-bridge|
 419|libramiento de mexicalli|omega||LIBRAMIENTO MEXICALI
 83|el hongo|capufe||LA RUMOROSA-TECATE
 34|tijuana|capufe||TIJUANA-ENSENADA
@@ -335,7 +335,7 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 1002|vía atlixcayotl|ccp||Puebla-atlixco
 1005|santa ana|ccp||santa ana-altar
 1003|san luis rio colorado II|capufe|bridge|San luis rio colorado II
-1020|San luis rio colorado|Puente-colorado|bridge|Mexicali-san luis rio colorado
+1020|San luis rio colorado|Puente-colorado|International-bridge|Mexicali-san luis rio colorado
 1021|estacion doctor|pinfra||san luis rio colorado-santa clara
 1019|nogales|Vias-norte||libramiento de nogales
 1006|villa ahumada|Gob-chihuahua||
@@ -385,7 +385,7 @@ id|tollbooth_name|operator_2025|gate_to|area_name
 1027|puente guadalupe tornillo|Gob-chihuahua|International-bridge|chihuahua
 1028|puente lerdo-stanton|capufe|International-bridge|chihuahua
 1029|puente josé lópez portillo|Gob-veracruz|bridge|Tantoyuca-alamo
-1030|puente la unidad|Gob-campeche|International-bridge|campeche
+1030|puente la unidad|Gob-campeche|bridge|campeche
 66|puente laredo I|capufe|International-bridge|tamaulipas
 46|puente libre comercio (lucio blanco)|copa|International-bridge|tamaulipas
 1032|puente nuevo laredo iii|Gob-tamaulipas|International-bridge|tamaulipas
