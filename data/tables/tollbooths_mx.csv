@@ -236,7 +236,7 @@ tollbooth_id|tollbooth_name|operator_2025|gate_to|area_name
 58|sayula|Autopistas-sayula||GUADALAJARA-COLIMA
 59|sayula remota|Autopistas-sayula||GUADALAJARA-COLIMA
 60|san marcos II|Autopistas-sayula||GUADALAJARA-COLIMA
-901|armería|pinfra||GUADALAJARA-COLIMA
+901|cuyutlan|pinfra||GUADALAJARA-COLIMA
 409|yago|Mazatlan-culiacan||TEPIC-MAZATLÁN
 401|estación ruiz|Mazatlan-culiacan||TEPIC-MAZATLÁN
 402|acaponeta|Mazatlan-culiacan||TEPIC-MAZATLÁN
@@ -296,9 +296,9 @@ tollbooth_id|tollbooth_name|operator_2025|gate_to|area_name
 399|ent. Gran canal|anesa||MACROLIBRAMIENTO MEXIQUENSE
 588|Ent. indios verdes|anesa||MACROLIBRAMIENTO MEXIQUENSE
 1045|cien metros|anesa||MACROLIBRAMIENTO MEXIQUENSE
-|vallejo|anesa||MACROLIBRAMIENTO MEXIQUENSE
-|ceylan|anesa||MACROLIBRAMIENTO MEXIQUENSE
-|puente de vigas|anesa||MACROLIBRAMIENTO MEXIQUENSE
+1046|vallejo|anesa||MACROLIBRAMIENTO MEXIQUENSE
+1047|ceylan|anesa||MACROLIBRAMIENTO MEXIQUENSE
+1031|puente de vigas|anesa||MACROLIBRAMIENTO MEXIQUENSE
 487|calderon (villa de arriaga)|coinsan||SAN LUIS POTOSÍ - VILLA DE ARRIAGA
 495|san felipe|coinsan||SAN LUIS POTOSÍ - VILLA DE ARRIAGA
 497|logistik|coinsan||SAN LUIS POTOSÍ - VILLA DE ARRIAGA
@@ -349,8 +349,7 @@ tollbooth_id|tollbooth_name|operator_2025|gate_to|area_name
 1014|savalza|Gob-chihuahua||Jiménez-torreón
 1016|jerónimo|Gob-chihuahua||libramiento samalayuca-san jerónimo
 1017|ojinaga|Gob-chihuahua||
-|cuyutlan|zonalta||Armería-manzanillo
-|michac|pinfra||Apizaco-huauchinango
+1004|michac|pinfra||Apizaco-huauchinango
 937|huejotzingo|cap||san martín-huejotzingo
 1018|zacatelco|pinfra||Tlaxcala-puebla
 1018|zacatelco II|pinfra||Tlaxcala-puebla
@@ -393,7 +392,7 @@ tollbooth_id|tollbooth_name|operator_2025|gate_to|area_name
 1034|puente río bravo-donna|copa|International-bridge|tamaulipas
 1035|puente san miguel|orler|bridge|los mochis-navojoa
 1036|puente zaragoza-ysleta|Gob-chihuahua|International-bridge|chihuahua
-1037|fortin|capufe||cd. mendoza-cordoba
+45|fortin|capufe||cd. mendoza-cordoba
 1038|puente el prieto|pinfra|bridge|cd. valles-tampico
 1039|la rumorosa|Gob-baja california||el centinela-la rumorosa
 1040|Chilpancingo-tixtla|cicaeg||Chilpancingo-tixtla
@@ -401,4 +400,3 @@ tollbooth_id|tollbooth_name|operator_2025|gate_to|area_name
 1042|calera|profrezac||zacatecas
 1043|vetagrande|profrezac||zacatecas
 1044|felipe carrillo puerto|libramiento carrillo puerto||quintana roo
-1031||||
