@@ -1,4 +1,4 @@
-road_id,road_name,operation_date,project_mx_id,fonadin,length_km,
+road_id,road_name,operation_date,project_mx_id,fonadin,length_km,notes
 5,acatzingo-cd. mendoza,29-03-1969,,,,
 11,amozoc-perote y libramiento perote,02-07-2004,,,,
 68,armería-manzanillo,11-08-1991,,,,
@@ -42,7 +42,6 @@ road_id,road_name,operation_date,project_mx_id,fonadin,length_km,
 49,la marquesa-lerma,21-07-2016,,,,
 59,la pera-cuautla,11-08-1994,,,,
 8,la tinaja-cosoleacaque,20-10-1993,,,,
-115,la venta-chamapa,16-02-1998,,,,
 42,lagos de moreno villa de arriaga,25-07-2012,,,,
 15,las chopas-ocozocuautla,06-09-2002,,,,
 116,las varas-vallarta,28-12-2024,,,,
@@ -201,6 +200,7 @@ road_id,road_name,operation_date,project_mx_id,fonadin,length_km,
 199,libramiento elevado de puebla,20-10-2016,,,15.3,
 200,san luís potosí-villa de arriaga,,,,76,
 201,Monterrey-cadereyta,,,,,
+202,la venta-chamapa,16-02-1998,,,,
 ,autopista vialidad poniente,,,,2.1,en construcción
 ,autopista conexión oriente,,,,7,en construcción
 ,Silao-san miguel de allende,,,,52.17,en construcción

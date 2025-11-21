@@ -1,4 +1,4 @@
-tollbooth_id|name|coords|status|strech_id|type||||||||
+tollbooth_id|name|coords|status|strech_id|type|descr|highway||||||
 155|El arenal tequila|20.854354276478155, -103.86093857355817|1||||15D-tequila-15D||||||
 155|El arenal|20.77880582437672, -103.6624541764846|1||||15D||||||
 156|plan de barracas|20.9475192710524, -104.0629590236778|open|382|||15D||||||
@@ -680,7 +680,7 @@ tollbooth_id|name|coords|status|strech_id|type||||||||
 1046|vallejo r7|19.51368578973936, -99.16497289223881|1||||Naucalpan-ecatepec||||||
 1047|ceylan sur|19.513853992216145, -99.17480678394787|1||||Naucalpan-ecatepec||||||
 1047|ceylan norte|19.513587019649623, -99.17589375728237|1||||Naucalpan-ecatepec||||||
-1031|puente de vigas|19.516143583518694, -99.2079068928162|1|834|||Naucalpan-ecatepec||||||
+1031|puente de vigas|19.516143583518694, -99.2079068928162|1||||Naucalpan-ecatepec||||||
 487|calderon (villa de arriaga)|21.813348719104496, -101.0127706937438|1||||80D||||||
 495|san felipe|21.805173321301236, -101.01439602588654|1||||san felipe-80D-san felipe||||||
 497|logistik|21.983878964416437, -100.87325018818068|1||||80D||||||
