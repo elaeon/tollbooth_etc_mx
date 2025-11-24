@@ -1,22 +1,23 @@
 tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
-155|El arenal tequila|20.854354276478155, -103.86093857355817|1||jalisco|entronque|||15D-tequila||||||
-155|El arenal|20.77880582437672, -103.6624541764846|1||jalisco|troncal|||15D||||||
-156|plan de barracas|20.9475192710524, -104.0629590236778|open|382|jalisco|troncal|||15D||||||
-581|Amado Nervo|21.08905122568959, -104.71712291858833|1||nayarit|troncal||205|70D||||||
-581|Amado Nervo|21.20443708269734, -104.88636807996299|1||nayarit|troncal||164|200D||||||
-446|la cantera|21.4984932062581, -104.81339318530127|open|386|nayarit|troncal|||libramiento norte||||||
-407|san blas|21.507309681661752, -105.20102818503696|1||nayarit|troncal||96|76D||||||
-407|san blas||1|||||65|||||||
-53|Compostela|21.229471957714843, -104.88745147168034|open|389|nayarit|troncal|||68D||||||
-157|santa maria del oro|21.37419440266569, -104.70892364241206|1||nayarit|troncal||179|15D||||||
-157|santa maria del oro|21.327068295725205, -104.66478613578181|1||nayarit|entronque||98|15D-15||||||
-157|santa maria del oro|21.327068295725205, -104.66478613578181|1||nayarit|entronque||84|15-15D||||||
-157|santa maria del oro|21.32799628437043, -104.66320135768107|1||nayarit|entronque||84|15D-15||||||
-157|santa maria del oro|21.32799628437043, -104.66320135768107|1||nayarit|entronque||98|15-15D||||||
-407|benito juarez-san blas|24.87712983589735, -107.65540724462751|1||sinaloa|entronque||89|1D-san blas||||||
-407|benito juarez-san blas|24.877674384700395, -107.65578946905174|1||sinaloa|entronque||89|vitaruto-1D||||||
+155|El arenal tequila|20.854354276478155, -103.86093857355817|open|381|jalisco|entronque|2||15D-tequila||||||
+155|El arenal|20.77880582437672, -103.6624541764846|open|380|jalisco|troncal|6||15D||||||
+156|plan de barracas|20.9475192710524, -104.0629590236778|open|382|jalisco|troncal|4||15D||||||
+581|Amado Nervo|21.08905122568959, -104.71712291858833|open|390|nayarit|troncal|3|205|70D||||||
+581|Amado Nervo|21.088907596279125, -104.71728724855063|open|391|nayarit|troncal|3||70D||||||
+581|Amado Nervo||not_found|392|nayarit|troncal||104|200D||||||
+446|la cantera|21.4984932062581, -104.81339318530127|open|386|nayarit|troncal|6||libramiento norte||||||
+407|san blas|21.507309681661752, -105.20102818503696|open|387|nayarit|troncal|3|96|76D||||||
+407|san blas|21.507309681661752, -105.20102818503696|open|388|nayarit|troncal|3|65|||||||
+53|Compostela|21.229471957714843, -104.88745147168034|open|389|nayarit|troncal|4||68D||||||
+157|santa maria del oro|21.37419440266569, -104.70892364241206|open|383|nayarit|troncal|8|179|15D||||||
+157|santa maria del oro|21.327068295725205, -104.66478613578181|open|384|nayarit|entronque|1|98|15D-15||||||
+157|santa maria del oro|21.327068295725205, -104.66478613578181|open|385|nayarit|entronque|1|84|15-15D||||||
+157|santa maria del oro|21.32799628437043, -104.66320135768107|open|385|nayarit|entronque|1|84|15D-15||||||
+157|santa maria del oro|21.32799628437043, -104.66320135768107|open|384|nayarit|entronque|1|98|15-15D||||||
+|benito juarez-san blas|24.87712983589735, -107.65540724462751|open||sinaloa|entronque|1|89|1D-san blas||||||
+|benito juarez-san blas|24.877674384700395, -107.65578946905174|open||sinaloa|entronque|1|89|vitaruto-1D||||||
 403|trapichillo|21.571748191967007, -104.98744288122955|open|395|nayarit|troncal|||15D||||||
-582|Compostela|21.20443708269734, -104.88636807996299|open|393|nayarit|troncal|||200D||||||
+582|Compostela|21.20443708269734, -104.88636807996299|open|393|nayarit|troncal|3||200D||||||
 404|trapichillo bis|21.56062066705083, -104.97105441327322|open|394|nayarit|entronque|||76D-15D||||||
 404|trapichillo bis|21.562171828826678, -104.97045421874749|open|394|nayarit|entronque|||15D-76D||||||
 404|trapichillo bis|21.56081377769309, -104.96787315603535|open|394|nayarit|entronque|||15D-libramiento norte||||||
