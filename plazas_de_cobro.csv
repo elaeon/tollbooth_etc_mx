@@ -14,56 +14,60 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 157|santa maria del oro|21.327068295725205, -104.66478613578181|open|385|nayarit|entronque|1|84|15-15D||||||
 157|santa maria del oro|21.32799628437043, -104.66320135768107|open|385|nayarit|entronque|1|84|15D-15||||||
 157|santa maria del oro|21.32799628437043, -104.66320135768107|open|384|nayarit|entronque|1|98|15-15D||||||
-|benito juarez-san blas|24.87712983589735, -107.65540724462751|open||sinaloa|entronque|1|89|1D-san blas||||||
-|benito juarez-san blas|24.877674384700395, -107.65578946905174|open||sinaloa|entronque|1|89|vitaruto-1D||||||
-403|trapichillo|21.571748191967007, -104.98744288122955|open|395|nayarit|troncal|||15D||||||
+1048|benito juarez-san blas|24.87712983589735, -107.65540724462751|open|1392|sinaloa|entronque|1|89|1D-san blas||||||
+1048|benito juarez-san blas|24.877674384700395, -107.65578946905174|open|1392|sinaloa|entronque|1|89|vitaruto-1D||||||
+1048|el pisal|24.83234345797897, -107.59759276457869|open|1392|sinaloa|troncal|6||||||||
+1048|las brisas|25.394879066498863, -108.12987936058656|open|1392|sinaloa|troncal|4||||||||
+1048|caimanero|24.954241450436875, -107.75827435109706|open|1392|sinaloa|entronque|1||||||||
+1048|alhuey|25.39331025635012, -108.12706942358452|open|1392|sinaloa|entronque|1||||||||
+403|trapichillo|21.571748191967007, -104.98744288122955|open|395|nayarit|troncal|8||15D||||||
 582|Compostela|21.20443708269734, -104.88636807996299|open|393|nayarit|troncal|3||200D||||||
-404|trapichillo bis|21.56062066705083, -104.97105441327322|open|394|nayarit|entronque|||76D-15D||||||
-404|trapichillo bis|21.562171828826678, -104.97045421874749|open|394|nayarit|entronque|||15D-76D||||||
-404|trapichillo bis|21.56081377769309, -104.96787315603535|open|394|nayarit|entronque|||15D-libramiento norte||||||
-200|mesillas|23.255032547366838, -106.05401113680439|1||sinaloa|troncal||202|40D||||||
-200|mesillas|23.258718028545413, -106.05134405187057|1||sinaloa|entronque||151|553-40D||||||
-200|mesillas|23.258244888136353, -106.0505346631734|1||sinaloa|entronque||50|40D-553||||||
-197|coscomate|23.70623004897004, -105.5712724585594|open|428|durango|troncal|||40D||||||
-96|llano grande|23.87080501593667, -105.19143576001282|open|429|durango|troncal|||40D||||||
-198|durango capufe|24.005170, -104.734501|open|430|durango|troncal|||40D||||||
-480|durango|24.131767854758614, -104.53405823873932|open|431|durango|troncal|||40D||||||
-481|yerbanis|24.730753, -103.861954|open|432|durango|troncal|||40D||||||
-482|cuencame|24.9813571463491, -103.7353172421232|1||durango|troncal||179|40D||||||
-482|cuencame|24.980414562990983, -103.7343023066057|1||durango|entronque||70|49-40D||||||
-482|cuencame|24.980446552034483, -103.73444105805764|1||durango|entronque||109|40D-49||||||
-482|cuencame|24.981335021024417, -103.73653377211951|1||durango|entronque||70|40D-49||||||
-482|cuencame|24.981189136410038, -103.7364457670883|1||durango|entronque||109|49-40D||||||
-483|león guzmán|25.52064518468109, -103.63952943055672|1||durango|troncal||238|40D||||||
-483|león guzmán|25.51954981069483, -103.63973303960874|1||durango|entronque||174|49-40D||||||
-483|león guzmán|25.52065277795001, -103.6396947716176|1||durango|entronque||64|40D-49||||||
-483|león guzmán|25.519241201032344, -103.63934352296329|1||durango|entronque||174|40D-49||||||
-488|san pedro torreón|25.650567429575855, -103.36921190203982|1||coahuila|troncal||127|40D||||||
-488|san pedro torreón|25.650417, -103.369246|1||coahuila|entronque||54|40D-11||||||
-488|san pedro torreón|25.650671, -103.369189|1||coahuila|entronque||54|11-40D||||||
-488|san pedro torreón|25.649015462206382, -103.36150347030308|1||coahuila|entronque||73|11-40D||||||
-488|san pedro torreón|25.649296604243407, -103.3613858783549|1||coahuila|entronque||73|40D-11||||||
-163|la cuchilla|25.627012, -102.878353|open|442|coahuila|troncal|||40D||||||
-162|play de ayala|25.444191157914947, -101.30391307212743|open|443|coahuila|troncal|||40D||||||
-160|bermejillo|25.923805233917303, -103.62220573508567|open|444|durango|troncal|||49D||||||
-161|ceballos|26.58669003672382, -104.05768607710337|open|445|durango|troncal|||49D||||||
-229|sacramento|28.790512847696398, -106.1393004118434|open|446|chihuahua|troncal|||45D||||||
-228|jiménez|28.60349979085975, -105.95136557387647|open|447|chihuahua|troncal|||45D|A2|||||
-492|torreón|25.448355650041897, -101.0670764976156|1||coahuila|troncal||76|40D||||||
-492|torreón|25.456933986702083, -101.06352725893902|1||coahuila|entronque||25|40-40D||||||
-492|torreón|25.457011483944147, -101.06387058168893|1||coahuila|entronque||25|40D-40||||||
-492|torreón|25.448273196014465, -101.06686628986269|1||coahuila|entronque||51|40D-40||||||
-492|torreón|25.448329651622657, -101.06729266025827|1||coahuila|entronque||51|40-40D||||||
-491|ojo caliente|25.612267190568296, -100.91350636272064|1||coahuila|troncal||59|40D||||||
-491|ojo caliente|25.612126713686568, -100.91332109516246|1||coahuila|entronque||31|40D-57||||||
-491|ojo caliente|25.612426, -100.913533|1||coahuila|entronque||31|57-40D||||||
-491|ojo caliente|25.616259683530693, -100.90842282785383|1||coahuila|entronque||28|40D-57||||||
-491|ojo caliente|25.615645079472433, -100.90846814541047|1||coahuila|entronque||28|57-40D||||||
-490|periferico|25.696248749290216, -100.57730126136622|1||nuevo leon|troncal||143|40D||||||
-490|periferico|25.69644184190003, -100.57739256734124|1||nuevo leon|entronque||98|100-40||||||
-490|periferico|25.696033569043514, -100.57733808631143|1||nuevo leon|entronque||98|40D-100||||||
-490|periferico|25.694580992338835, -100.56967095016509|1||nuevo leon|entronque||45|100-40D||||||
-490|periferico|25.69335991282253, -100.56536561793226|1||nuevo leon|entronque||45|40D-100||||||
+404|trapichillo bis|21.56062066705083, -104.97105441327322|open|394|nayarit|entronque|2||76D-15D||||||
+404|trapichillo bis|21.562171828826678, -104.97045421874749|open|394|nayarit|entronque|2||15D-76D||||||
+404|trapichillo bis|21.56081377769309, -104.96787315603535|open|394|nayarit|entronque|2||15D-libramiento norte||||||
+200|mesillas|23.255032547366838, -106.05401113680439|open|425|sinaloa|troncal|6|202|40D||||||
+200|mesillas|23.258718028545413, -106.05134405187057|open|426|sinaloa|entronque|1|151|553-40D||||||
+200|mesillas|23.258244888136353, -106.0505346631734|open|427|sinaloa|entronque|1|50|40D-553||||||
+197|coscomate|23.70623004897004, -105.5712724585594|open|428|durango|troncal|7||40D||||||
+96|llano grande|23.87080501593667, -105.19143576001282|open|429|durango|troncal|5||40D||||||
+198|durango capufe|24.005170, -104.734501|open|430|durango|troncal|7||40D||||||
+480|durango|24.131767854758614, -104.53405823873932|open|431|durango|troncal|6||40D||||||
+481|yerbanis|24.730753, -103.861954|open|432|durango|troncal|6||40D||||||
+482|cuencame|24.98166810801528, -103.73523300618832|open|433|durango|troncal|6|179|40D||||||
+482|cuencame|24.980414562990983, -103.7343023066057|open|435|durango|entronque|2|70|49-40D||||||
+482|cuencame|24.980446552034483, -103.73444105805764|open|434|durango|entronque|1|109|40D-49||||||
+482|cuencame|24.981086359403026, -103.73667524849208|open|435|durango|entronque|2|70|40D-49||||||
+482|cuencame|24.98101404641049, -103.73659332183487|open|434|durango|entronque|1|109|49-40D||||||
+483|león guzmán|25.52064518468109, -103.63952943055672|open|436|durango|troncal|6|238|40D||||||
+483|león guzmán|25.51954981069483, -103.63973303960874|open|437|durango|entronque|2|174|49-40D||||||
+483|león guzmán|25.52065277795001, -103.6396947716176|open|438|durango|entronque|1|64|40D-49||||||
+483|león guzmán|25.519453445472806, -103.63931842448713|open|437|durango|entronque|2|174|40D-49||||||
+488|san pedro torreón|25.650567429575855, -103.36921190203982|open|439|coahuila|troncal|4|127|40D||||||
+488|san pedro torreón|25.650417, -103.369246|open|441|coahuila|entronque|1|54|40D-11||||||
+488|san pedro torreón|25.650671, -103.369189|open|441|coahuila|entronque|1|54|11-40D||||||
+488|san pedro torreón|25.649015462206382, -103.36150347030308|open|440|coahuila|entronque|1|73|11-40D||||||
+488|san pedro torreón|25.649296604243407, -103.3613858783549|open|440|coahuila|entronque|1|73|40D-11||||||
+163|la cuchilla|25.627012, -102.878353|open|442|coahuila|troncal|8||40D||||||
+162|play de ayala|25.444191157914947, -101.30391307212743|open|443|coahuila|troncal|4||40D||||||
+160|bermejillo|25.923805233917303, -103.62220573508567|open|444|durango|troncal|4||49D||||||
+161|ceballos|26.58669003672382, -104.05768607710337|open|445|durango|troncal|4||49D||||||
+229|sacramento|28.790512847696398, -106.1393004118434|open|446|chihuahua|troncal|4||45D||||||
+228|jiménez|28.60349979085975, -105.95136557387647|open|447|chihuahua|troncal|4||45D|A2|||||
+492|torreón|25.448355650041897, -101.0670764976156|open|448|coahuila|troncal|6|76|40D||||||
+492|torreón|25.456933986702083, -101.06352725893902|open|450|coahuila|entronque|3|25|40-40D||||||
+492|torreón|25.457011483944147, -101.06387058168893|open|450|coahuila|entronque|3|25|40D-40||||||
+492|torreón|25.448273196014465, -101.06686628986269|open|449|coahuila|entronque|1|51|40D-40||||||
+492|torreón|25.448329651622657, -101.06729266025827|open|449|coahuila|entronque|1|51|40-40D||||||
+491|ojo caliente|25.612267190568296, -100.91350636272064|open|451|coahuila|troncal|5|59|40D||||||
+491|ojo caliente|25.612126713686568, -100.91332109516246|open|452|coahuila|entronque|2|31|40D-57||||||
+491|ojo caliente|25.612426, -100.913533|open|452|coahuila|entronque|2|31|57-40D||||||
+491|ojo caliente|25.616259683530693, -100.90842282785383|open|453|coahuila|entronque|2|28|40D-57||||||
+491|ojo caliente|25.615645079472433, -100.90846814541047|open|453|coahuila|entronque|2|28|57-40D||||||
+490|periferico|25.69327454356687, -100.56560891978498|open|454|nuevo leon|troncal|8|143|40D||||||
+490|periferico|25.69642001908078, -100.57738188253438|open|455|nuevo leon|entronque|4|98|100-40||||||
+490|periferico|25.696033569043514, -100.57733808631143|open|455|nuevo leon|entronque|4|98|40D-100||||||
+490|periferico|25.694580992338835, -100.56967095016509|open|456|nuevo leon|entronque|2|45|100-40D||||||
+490|periferico|25.694997552477812, -100.56942967626756|open|456|nuevo leon|entronque|2|45|40D-100||||||
 140|la carbonera|25.511105888290206, -100.86831027589685|open|459|coahuila|troncal|||57D||||||
 141|los chorros|25.186752731729825, -100.7319750568648|open|460|nuevo leon|troncal|||57D||||||
 142|huachichil|25.24550779007953, -100.80146602534519|open|461|coahuila|troncal|||57D||||||

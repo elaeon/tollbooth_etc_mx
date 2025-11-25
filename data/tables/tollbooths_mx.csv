@@ -6,7 +6,11 @@ tollbooth_id|tollbooth_name|operator_2025|gate_to|area_name
 407|san blas|rco||TEPIC-SAN BLAS
 53|Compostela|capufe||CHAPALILLA-COMPOSTELA
 157|santa maria del oro|Guadalajara-tepic||GUADALAJARA-TEPIC
-407|benito juarez-san blas|orler||TEPIC-SAN BLAS
+1048|benito juarez-san blas|orler||benito juarez
+1048|el pistal|orler||benito juarez
+1048|las brisas|orler||benito juarez
+1048|caimanero|orler||benito juarez
+1048|alhuey|orler||benito juarez
 403|trapichillo|Tepic-mazatlan||TEPIC-MAZATLÁN
 582|Compostela|ocacsa||JALA-COMPOSTELA
 404|trapichillo bis|Tepic-mazatlan||TEPIC-MAZATLÁN
