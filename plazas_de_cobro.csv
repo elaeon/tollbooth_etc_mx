@@ -95,68 +95,74 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 451|guadalupe|25.691712503633664, -100.15775784274207|open|474|nuevo leon|troncal|9|84|40D||||||
 451|guadalupe|25.69193970565599, -100.15764518997108|open|475|nuevo leon|entronque|2|60|40D-39|57||50|||
 451|guadalupe|25.691470798881486, -100.15786513110776|open|475|nuevo leon|entronque|2|60|39-40D|57||50|||
-40|cadereyta|25.601082077713865, -100.00577052864378|open|476|nuevo leon|troncal|||41||||puente caderayta||
-586|Agujita-allende|28.303418269595824, -100.91005536599042|open|477|coahuila|troncal||136|57D||||||100
-65|acuña|29.32526434299446, -100.92843441545274|open|478|coahuila|troncal|||||||puente acuña||
-108|sabinas|26.512073364202653, -100.00724465940853|open|479|nuevo leon|troncal|||85D||||||
-109|agualeguas|26.340284542482802, -100.07044714502695|open|480|nuevo leon|entronque||136|85D-6|128|||||
-109|agualeguas|26.33975566337255, -100.07215041964295|open|480|nuevo leon|entronque||136|6-85D|128|||||
-110|parás|26.508378, -100.008159|1||nuevo leon|entronque||190|85D-2|179|||||
-110|parás|26.507980, -100.009575|1||nuevo leon|entronque||190|2-85D|179|||||
-110|parás|26.508623, -100.009173|1||nuevo leon|entronque||145|85D-2||||||
-938|nuevo laredo pinfra|27.268880701339945, -99.61533870996095|open|483|tamaulipas|troncal||138||130|||||
-128|general bravo|25.813590450643296, -99.16948452268444|1||nuevo leon|troncal||345|40D||||||
-131|doctor cross|25.81186953715244, -99.17366891656357|1||nuevo leon|entronque||192|40D-escobedo||||||
-131|doctor cross|25.81388649127608, -99.17383357863838|1||nuevo leon|entronque||192|escobedo-40D||||||
-128|general bravo|25.813355125068806, -99.16955166633859|1||nuevo leon|entronque||154|escobedo-40D||||||
-128|general bravo|25.813721009266057, -99.16960677378295|1||nuevo leon|entronque||154|40D-escobedo||||||
-129|los herrera|25.75945175633943, -99.3740971405496|1||nuevo leon|entronque||200|40D-5||||||
-129|los herrera|25.759381701928543, -99.37420979332224|1||nuevo leon|entronque||145|5-40D||||||
-129|los herrera|25.757243907864847, -99.37383676950328|1||nuevo leon|entronque||200|5-40D||||||
-129|los herrera|25.757300552279695, -99.37391967430322|1||nuevo leon|entronque||145|40D-5||||||
-130|los ramones|25.663010981887815, -99.62862545881767|1||nuevo leon|entronque||253|40D-15||||||
-130|los ramones|25.662851133897288, -99.62864343204741|1||nuevo leon|entronque||94|15-40D||||||
-130|los ramones|25.656113650916502, -99.63109784396785|1||nuevo leon|entronque||253|15-40D||||||
-130|los ramones|25.655945558818935, -99.63101674627994|1||nuevo leon|entronque||94|40D-15||||||
-15|lucio blanco|25.987608745411176, -98.43165823714757|open||tamaulipas|troncal|||2D||||||
-194|san fernando|25.944745028315666, -98.22755243491738|1||tamaulipas|troncal|||2D||||||
-75|reynosa phar|26.041797924744227, -98.2088305959957|open|500|tamaulipas|troncal|||puente||||||
-171|ignacio zaragoza “los tomates”|25.87421722363984, -97.47467004872608|open|501|tamaulipas|troncal|||puente||||||
-170|nuevo progreso|26.03629264656662, -97.954364453689|1||tamaulipas|troncal||101|2D||||||
-170|nuevo progreso|26.03540443569933, -97.9544343074905|1||tamaulipas|entronque||51|47-2D-47||||||
-170|nuevo progreso|26.037096937671034, -97.95454245738237|1||tamaulipas|entronque||51|47-2D-47||||||
-74|Juárez-lincon|27.498297389701765, -99.50254431626057|open|505|tamaulipas|troncal|||puente||||||
-31|miguel alemán|26.401138818877474, -99.01985986558886|open|506|tamaulipas|troncal|||puente||||||
-48|san juan|26.31191164483669, -98.84195473768678|open|507|tamaulipas|troncal|||puente||||||
-30|camargo|26.36244410998924, -98.80645113559994|open|508|tamaulipas|troncal|||puente||||||
-37|reynosa|26.093210481258584, -98.27100126150383|open|509|tamaulipas|troncal|||puente||||||
-47|las flores|26.06052267696973, -97.95043461194285|open|510|tamaulipas|troncal|||puente||||||
-50|ojinaga|29.56056529180206, -104.39648666433295|open|511|chihuahua|troncal|||puente||||||
-20|matamoros|25.891424629609347, -97.50393755311129|open|512|tamaulipas|troncal|||puente||||||
-62|piedras negras|28.705244852430557, -100.51302386596953|open|513|coahuila|troncal|||puente||||||
-1023|piedras negras 2|28.697075905761523, -100.51248297635908|open|514|coahuila|troncal|||puente||||||
-419|libramiento de mexicalli|32.53350175529058, -115.42075475662338|1||baja california|troncal||115|2D||||||
-419|libramiento de mexicalli|32.53282772801545, -115.40982310215688|1||baja california|entronque||35|5-2D||||||
-419|libramiento de mexicalli|32.53361579257065, -115.40876421355513|1||baja california|entronque||35|2D-5||||||
-83|el hongo|32.52118038602374, -116.32013900623957|1||baja california|entronque||47|2D-2-2D||||||
-83|el hongo|32.52186057317686, -116.32001574618872|1||baja california|troncal||103|2D||||||
-83|el hongo|32.52248943941944, -116.3198006383681|1||baja california|entronque||47|2-2D||||||
-34|tijuana|32.51416293952504, -117.10948976541157|open|520|baja california|troncal|||1D||||||
-35|rosarito|32.31112491303154, -117.0444151721061|open|521|baja california|troncal|||1D||||||
-189|nodo popotla|32.283788556971906, -117.03057131436263|open|522|baja california|entronque|||201-1D||||||
-189|nodo popotla|32.28383965784465, -117.02961694282466|open|522|baja california|entronque|||1D-201||||||
-415|tecate|32.545696, -116.852193|open||baja california|troncal|||TIJUANA-TECAT Y -LIB. DE TECATE||||||
-418|paso del aguila|32.527353, -116.692395|open|751|baja california|entronque||93|2D-ENT. PASO DEL AGUILA-TIJUANA||||||
-467|paso del aguila bis|32.52585510316473, -116.69026781800218|open|752|baja california|entronque||67|2D-ENT. SANDOVAL - ENT. PASO DEL AGUILA||||||
-417|dart|32.54103924867271, -116.75769348313429|open|754|baja california|entronque|||2D-PLANTA DART-VALLE REDONDO TIJUANA||||||
-422|las esperanzas|32.550756, -116.621901|open||baja california|entronque|||LAS ESPERANZAS 3-2D||||||
-150|esperanza|27.603792376513166, -109.93907790959305|open|418|sonora|troncal|||15D||||||
-422|las esperanzas|32.55166253746689, -116.62114602836968|1||baja california|entronque|||LAS ESPERANZAS 2D-3||||||
-36|ensenada|31.90316954366235, -116.73273532000844|open|523|baja california|troncal||Moto 25,auto 51, bus 2,3,4 104,camion 2,3 100,camion 4,5 124, camion 6,7,8,9 145, eje excedente ligero 26, eje excedente carga 50|1D||||||
-71|chalco|19.292134356704867, -98.8817066361272|open|1|edomx|entronque|||150D-115||||||
-7|san marcos|19.296334046022135, -98.87071124106612|1|3|edomx|troncal|||150D-57D||||||
-926|ixtapaluca|19.28998073493131, -98.88030893714964|1|2|edomx|entronque|||115||||||
-188|san marcos bis|19.293391129274873, -98.87598767837207|1|5|edomx|entronque||Moto 13, auto 26, bus 2,3,4 45, camion 2,3 44, camion 4,5 72, camion 6,7,8,9 111, eje excedente ligero 13, eje excedente carga 23. year 2024|150D-5D||||||
+40|cadereyta|25.601082077713865, -100.00577052864378|open|476|nuevo leon|troncal|4||41||||puente caderayta||
+586|Agujita-allende|28.303418269595824, -100.91005536599042|open|477|coahuila|troncal|6|136|57D||||||100
+65|acuña|29.32526434299446, -100.92843441545274|open|478|coahuila|troncal|2||||||puente acuña||
+108|sabinas|26.512073364202653, -100.00724465940853|open|479|nuevo leon|troncal|8||85D||||||
+109|agualeguas|26.340284542482802, -100.07044714502695|open|480|nuevo leon|entronque|1|136|85D-6|128|||||
+109|agualeguas|26.339400952021983, -100.07189465232086|open|480|nuevo leon|entronque|1|136|6-85D|128|||||
+110|parás|26.508378, -100.008159|open|481|nuevo leon|entronque|1|190|85D-2|179|||||
+110|parás|26.507980, -100.009575|open|481|nuevo leon|entronque|1|190|2-85D|179|||||
+110|parás|26.508623, -100.009173|open|482|nuevo leon|entronque|1|145|85D-2||||||
+938|nuevo laredo pinfra|27.268880701339945, -99.61533870996095|open|483|tamaulipas|troncal|4|138||130|||||
+109|agua leguas|26.339400952021983, -100.07189465232086|open|484|nuevo leon|entronque|1||||||||
+109|agua leguas|26.340284542482802, -100.07044714502695|open|485|nuevo leon|entronque|1||||||||
+128|general bravo|25.813590450643296, -99.16948452268444|open|486|nuevo leon|troncal|6|345|40D||||||
+131|doctor cross|25.81186953715244, -99.17366891656357|open|492|nuevo leon|entronque|1|192|40D-escobedo||||||
+131|doctor cross|25.81388649127608, -99.17383357863838|open|492|nuevo leon|entronque|1|192|escobedo-40D||||||
+128|general bravo|25.813355125068806, -99.16955166633859|open|487|nuevo leon|entronque|1|154|escobedo-40D||||||
+128|general bravo|25.813721009266057, -99.16960677378295|open|487|nuevo leon|entronque|1|154|40D-escobedo||||||
+129|los herrera|25.75945175633943, -99.3740971405496|open|488|nuevo leon|entronque|1|200|40D-5||||||
+129|los herrera|25.759381701928543, -99.37420979332224|open|489|nuevo leon|entronque|1|145|5-40D||||||
+129|los herrera|25.757243907864847, -99.37383676950328|open|488|nuevo leon|entronque|1|200|5-40D||||||
+129|los herrera|25.757300552279695, -99.37391967430322|open|489|nuevo leon|entronque|1|145|40D-5||||||
+130|los ramones|25.663010981887815, -99.62862545881767|open|490|nuevo leon|entronque|1|253|40D-15||||||
+130|los ramones|25.662851133897288, -99.62864343204741|open|491|nuevo leon|entronque|1|94|15-40D||||||
+130|los ramones|25.656113650916502, -99.63109784396785|open|490|nuevo leon|entronque|1|253|15-40D||||||
+130|los ramones|25.655945558818935, -99.63101674627994|open|491|nuevo leon|entronque|1|94|40D-15||||||
+|||not_found|493|||||||||||
+|||not_found|494|||||||||||
+130|los ramones|25.656113650916502, -99.63109784396785|open|495|nuevo leon|entronque|1||||||||
+15|lucio blanco|25.98768301621346, -98.43162717322927|open|496|tamaulipas|troncal|4||2D||||||
+194|san fernando|25.944745028315666, -98.22755243491738|open|497|tamaulipas|troncal|2||2D||||||
+194|san fernando|25.944745028315666, -98.22755243491738|open|498|tamaulipas|troncal|2||||||||
+75|reynosa phar|26.041797924744227, -98.2088305959957|open|500|tamaulipas|troncal|7||puente||||||
+171|ignacio zaragoza “los tomates”|25.87421722363984, -97.47467004872608|open|501|tamaulipas|troncal|8||puente||||||
+170|nuevo progreso|26.03629264656662, -97.954364453689|open|502|tamaulipas|troncal|4|101|2D||||||
+170|nuevo progreso|26.03527174651505, -97.9544330102595|open|503|tamaulipas|entronque|2|51|47-2D-47||||||
+170|nuevo progreso|26.037096937671034, -97.95454245738237|open|504|tamaulipas|entronque|2|51|47-2D-47||||||
+74|Juárez-lincon|27.498297389701765, -99.50254431626057|open|505|tamaulipas|troncal|4||puente||||||
+31|miguel alemán|26.40285521960509, -99.02069311968577|open|506|tamaulipas|troncal|2||puente||||||
+48|san juan|26.31191164483669, -98.84195473768678|open|507|tamaulipas|troncal|2||puente||||||
+30|camargo|26.36244410998924, -98.80645113559994|open|508|tamaulipas|troncal|3||puente||||||
+37|reynosa|26.093210481258584, -98.27100126150383|open|509|tamaulipas|troncal|4||puente||||||
+47|las flores|26.06052267696973, -97.95043461194285|open|510|tamaulipas|troncal|4||puente||||||
+50|ojinaga|29.56056529180206, -104.39648666433295|open|511|chihuahua|troncal|4||puente||||||
+20|matamoros|25.891424629609347, -97.50393755311129|open|512|tamaulipas|troncal|3||puente||||||
+62|piedras negras|28.705244852430557, -100.51302386596953|open|513|coahuila|troncal|2||puente||||||
+1023|piedras negras 2|28.697075905761523, -100.51248297635908|open|514|coahuila|troncal|4||puente||||||
+419|libramiento de mexicalli|32.53350175529058, -115.42075475662338|open|515|baja california|troncal|4|115|2D||||||
+419|libramiento de mexicalli|32.53282772801545, -115.40982310215688|open|516|baja california|entronque|1|35|5-2D||||||
+419|libramiento de mexicalli|32.53361579257065, -115.40876421355513|open|516|baja california|entronque|1|35|2D-5||||||
+83|el hongo|32.52118038602374, -116.32013900623957|open|517|baja california|entronque|2|47|2D-2-2D||||||
+83|el hongo|32.52186057317686, -116.32001574618872|open|518|baja california|troncal|4|103|2D||||||
+83|el hongo|32.52248943941944, -116.3198006383681|open|519|baja california|entronque|1|47|2-2D||||||
+34|tijuana|32.51416293952504, -117.10948976541157|open|520|baja california|troncal|10||1D||||||
+35|rosarito|32.31112491303154, -117.0444151721061|open|521|baja california|troncal|10||1D||||||
+189|nodo popotla|32.283788556971906, -117.03057131436263|open|522|baja california|entronque|1||201-1D||||||
+189|nodo popotla|32.28383965784465, -117.02961694282466|open|522|baja california|entronque|3||1D-201||||||
+415|tecate|32.545696, -116.852193|open|750|baja california|troncal|9||TIJUANA-TECAT Y -LIB. DE TECATE||||||
+418|paso del aguila|32.527353, -116.692395|open|751|baja california|entronque|1|93|2D-ENT. PASO DEL AGUILA-TIJUANA||||||
+467|paso del aguila bis|32.52585510316473, -116.69026781800218|open|752|baja california|entronque|2|67|2D-ENT. SANDOVAL - ENT. PASO DEL AGUILA||||||
+417|dart|32.54103924867271, -116.75769348313429|open|754|baja california|entronque|1||2D-PLANTA DART-VALLE REDONDO TIJUANA||||||
+422|las esperanzas|32.550756, -116.621901|open|755|baja california|entronque|1||LAS ESPERANZAS 3-2D||||||
+150|esperanza|27.603792376513166, -109.93907790959305|open|418|sonora|troncal|6||15D||||||
+422|las esperanzas|32.55166253746689, -116.62114602836968|open|755|baja california|entronque|2||LAS ESPERANZAS 2D-3||||||
+36|ensenada|31.90316954366235, -116.73273532000844|open|523|baja california|troncal|10|Moto 25,auto 51, bus 2,3,4 104,camion 2,3 100,camion 4,5 124, camion 6,7,8,9 145, eje excedente ligero 26, eje excedente carga 50|1D||||||
+71|chalco|19.292134356704867, -98.8817066361272|open|1|edomx|entronque|7||150D-115||||||
+7|san marcos|19.296334046022135, -98.87071124106612|open|3|edomx|troncal|15||150D-57D||||||
+926|ixtapaluca|19.28998073493131, -98.88030893714964|open|2|edomx|entronque|8||115||||||
+188|san marcos bis|19.293391129274873, -98.87598767837207|open|5|edomx|entronque|4|Moto 13, auto 26, bus 2,3,4 45, camion 2,3 44, camion 4,5 72, camion 6,7,8,9 111, eje excedente ligero 13, eje excedente carga 23. year 2024|150D-5D||||||
 71|chalco|19.293292563929672, -98.88284509632994|1||edomx|troncal|||150D-115||||||
 71|chalco|19.29321867493075, -98.88354314227342|1||edomx|entronque|||150D||||||
 71|chalco|19.293101683947743, -98.88409983935685|1||edomx|entronque|||150D||||||
