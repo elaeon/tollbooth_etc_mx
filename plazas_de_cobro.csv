@@ -68,31 +68,33 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 490|periferico|25.696033569043514, -100.57733808631143|open|455|nuevo leon|entronque|4|98|40D-100||||||
 490|periferico|25.694580992338835, -100.56967095016509|open|456|nuevo leon|entronque|2|45|100-40D||||||
 490|periferico|25.694997552477812, -100.56942967626756|open|456|nuevo leon|entronque|2|45|40D-100||||||
-140|la carbonera|25.511105888290206, -100.86831027589685|open|459|coahuila|troncal|||57D||||||
-141|los chorros|25.186752731729825, -100.7319750568648|open|460|nuevo leon|troncal|||57D||||||
-142|huachichil|25.24550779007953, -100.80146602534519|open|461|coahuila|troncal|||57D||||||
-421|libramiento matehuala|23.66415230592038, -100.60728679211601|open|462|san luis potosi|troncal|||57D||||||
-499|lincon|25.790548, -100.463523|1||nuevo leon|troncal||221|100D||||||
-499|lincon|25.790239538739225, -100.46330404454031|1||nuevo leon|entronque||133|100D||||||
-499|lincon|25.790642878683972, -100.46366470635019|1||nuevo leon|entronque||133|100D||||||
-499|lincon|25.782482907580047, -100.47237090185433|1||nuevo leon|entronque||83|100D-lincon||||||
-499|lincon|25.78512947943162, -100.47058198933826|1||nuevo leon|entronque||83|Lincon-100D||||||
-499|lincon|25.784563, -100.475303|1||nuevo leon|entronque||66|Lincon-100D||||||
-499|lincon|25.833756518573473, -100.30543954307433|1||nuevo leon|entronque||45|53-100D||||||
-499|lincon|25.83438824921424, -100.3057857090581|1||nuevo leon|entronque||45|100D-53||||||
-452|apodaca|25.81779074629236, -100.39295099912373|1||nuevo leon|entronque||76|pedreras-100D||||||
-452|apodaca|25.818363, -100.393292|1||nuevo leon|entronque||76|100D-pedreras||||||
-452|apodaca|25.78768393104481, -100.16852243161188|1||nuevo leon|troncal||174|100D||||||
-452|apodaca|25.787814394813687, -100.16830122382288|1||nuevo leon|entronque||76|54-100D||||||
-452|apodaca|25.774741986749145, -100.15873839223364|1||nuevo leon|entronque||109|100D-54||||||
-452|apodaca|25.78767359482775, -100.16871932350976|1||nuevo leon|entronque||76|54-100D||||||
-452|apodaca|25.774631193528904, -100.15911947782088|1||nuevo leon|entronque||109|54-100D||||||
-505|juárez|25.622238, -100.071266|1||nuevo leon|troncal||172|100D|169|164||||
-505|juárez||1||nuevo leon|||20|||||||
-450|cadereyta|25.60745636702586, -100.00115562352744|open|473|nuevo leon|troncal||83|40D|79|||||
-451|guadalupe|25.691712503633664, -100.15775784274207|1||nuevo leon|troncal||84|40D||||||
-451|guadalupe|25.69193970565599, -100.15764518997108|1||nuevo leon|entronque||60|40D-39|57||50|||
-451|guadalupe|25.691470798881486, -100.15786513110776|1||nuevo leon|entronque||60|39-40D|57||50|||
+490|periferico|25.69327454356687, -100.56560891978498|open|457|nuevo leon|entronque|2||||||||
+490|periferico|25.69327454356687, -100.56560891978498|open|458|nuevo leon|entronque|2||||||||
+140|la carbonera|25.511105888290206, -100.86831027589685|open|459|coahuila|troncal|8||57D||||||
+141|los chorros|25.186752731729825, -100.7319750568648|open|460|nuevo leon|troncal|8||57D||||||
+142|huachichil|25.24550779007953, -100.80146602534519|open|461|coahuila|troncal|3||57D||||||
+421|libramiento matehuala|23.66415230592038, -100.60728679211601|open|462|san luis potosi|troncal|6||57D||||||
+499|lincon|25.790548, -100.463523|open|463|nuevo leon|troncal|6|221|100D||||||
+499|lincon|25.790239538739225, -100.46330404454031|open|464|nuevo leon|entronque|1|133|100D||||||
+499|lincon|25.790642878683972, -100.46366470635019|open|464|nuevo leon|entronque|1|133|100D||||||
+499|lincon|25.782482907580047, -100.47237090185433|open|465|nuevo leon|entronque|1|83|100D-lincon||||||
+499|lincon|25.78512947943162, -100.47058198933826|open|465|nuevo leon|entronque|1|83|Lincon-100D||||||
+499|lincon|25.782107744469187, -100.47420313851448|open|466|nuevo leon|entronque|1|66|Lincon-100D||||||
+499|lincon|25.833565230740994, -100.30578748559925|open|467|nuevo leon|entronque|2|45|53-100D||||||
+499|lincon|25.834266119443438, -100.30578488110913|open|467|nuevo leon|entronque|2|45|100D-53||||||
+452|apodaca|25.81771265851083, -100.39327850014682|open|470|nuevo leon|entronque|2|76|pedreras-100D||||||
+452|apodaca|25.818302487908106, -100.39338492871302|open|470|nuevo leon|entronque|2|76|100D-pedreras||||||
+452|apodaca|25.78768393104481, -100.16852243161188|open|468|nuevo leon|troncal|13|174|100D||||||
+452|apodaca|25.787814394813687, -100.16830122382288|open|470|nuevo leon|entronque|2|76|54-100D||||||
+452|apodaca|25.775241957977304, -100.15906320943658|open|469|nuevo leon|entronque|2|109|100D-54||||||
+452|apodaca|25.78767359482775, -100.16871932350976|open|470|nuevo leon|entronque|2|76|54-100D||||||
+452|apodaca|25.77516993717487, -100.15950051066255|open|469|nuevo leon|entronque|2|109|54-100D||||||
+505|juárez|25.622238, -100.071266|open|471|nuevo leon|troncal|8|172|100D|169|164||||
+505|juárez||not_found|472|nuevo leon|||20|||||||
+450|cadereyta|25.60745636702586, -100.00115562352744|open|473|nuevo leon|troncal|8|83|40D|79|||||
+451|guadalupe|25.691712503633664, -100.15775784274207|open|474|nuevo leon|troncal|9|84|40D||||||
+451|guadalupe|25.69193970565599, -100.15764518997108|open|475|nuevo leon|entronque|2|60|40D-39|57||50|||
+451|guadalupe|25.691470798881486, -100.15786513110776|open|475|nuevo leon|entronque|2|60|39-40D|57||50|||
 40|cadereyta|25.601082077713865, -100.00577052864378|open|476|nuevo leon|troncal|||41||||puente caderayta||
 586|Agujita-allende|28.303418269595824, -100.91005536599042|open|477|coahuila|troncal||136|57D||||||100
 65|acuña|29.32526434299446, -100.92843441545274|open|478|coahuila|troncal|||||||puente acuña||
