@@ -163,43 +163,48 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 7|san marcos|19.296334046022135, -98.87071124106612|open|3|edomx|troncal|15||150D-57D||||||
 926|ixtapaluca|19.28998073493131, -98.88030893714964|open|2|edomx|entronque|8||115||||||
 188|san marcos bis|19.293391129274873, -98.87598767837207|open|5|edomx|entronque|4|Moto 13, auto 26, bus 2,3,4 45, camion 2,3 44, camion 4,5 72, camion 6,7,8,9 111, eje excedente ligero 13, eje excedente carga 23. year 2024|150D-5D||||||
-71|chalco|19.293292563929672, -98.88284509632994|1||edomx|troncal|||150D-115||||||
-71|chalco|19.29321867493075, -98.88354314227342|1||edomx|entronque|||150D||||||
-71|chalco|19.293101683947743, -98.88409983935685|1||edomx|entronque|||150D||||||
-316|circuito exterior mexiquense-T4 chalco|19.30011531384209, -98.87526308409201|1|100|edomx|troncal|||57D||||||
-316|circuito exterior mexiquense-T0 jorobas|19.819935517430253, -99.23987695454564|1|95|edomx|troncal|||57D||||||
-316|circuito exterior mexiquense-T1 tultepec|19.694018113202613, -99.08049510414101|1|96|edomx|troncal|||57D||||||
-316|circuito exterior mexiquense-T2 conmex|19.57550558337962, -99.02055090706814|1|97|edomx|troncal|||57D||||||
-316|circuito exterior mexiquense-T3 nabor carillo|19.435829533797794, -98.99837849230546|1||edomx|troncal|||57D||||||
-316|circuito exterior mexiquense-T3 nabor carillo|19.435842542383828, -98.9980775290402|1||edomx|entronque|||57D||||||
-316|circuito exterior mexiquense-T3 nabor carillo|19.435821576260775, -98.9986457077775|1||edomx|entronque|||57D-bordo de xochiaca||||||
-316|circuito exterior mexiquense-A-1A huehuetoca|19.822136243927932, -99.23624388243783|1|101|edomx|entronque|||57D||||||
-316|circuito exterior mexiquense-A-1B huehuetoca|19.82323588025471, -99.23553122514845|1|101|edomx|entronque|||57D||||||
-316|circuito exterior mexiquense-A-2 los reyes|19.610865684904677, -99.03855181117322|1|102|edomx|troncal|||||||||
-316|circuito exterior mexiquense-A-5 Hank gonzalez|19.584821045498185, -99.0280728965625|1|102|edomx|entronque|||57D||||||
-316|circuito exterior mexiquense-A-6 periférico|19.487226638901856, -99.01638088730647|1|103|edomx|entronque|||periferico-57D||||||
-316|circuito exterior mexiquense-A-7 periférico|19.48571434815351, -99.01516948213126|1|103|edomx|entronque|||57D-periferico||||||
-316|circuito exterior mexiquense-A-8 pichardo|19.50675004109767, -99.01494561583014|1|104|edomx|troncal|||||||||
-316|circuito exterior mexiquense-A-9 ctm|19.488141617143278, -99.01916655955476|1|105|edomx|entronque|||||||||
-316|circuito exterior mexiquense-T1 jaltengo|19.694018113202613, -99.08049510414101|1|106|edomx|troncal|||||||||
-316|circuito exterior mexiquense-A-3 pachuca|19.603091798829805, -99.0386258765502|1|107|edomx|entronque|||5D||||||
-316|circuito exterior mexiquense-A-4 pachuca|19.603392599771386, -99.03724320021398|1|108|edomx|entronque|||5D||||||
-316|circuito exterior mexiquense-A-21 bordo xochiaca|19.42563391931527, -98.99855888788431|1|109|edomx|entronque|||5D||||||
-316|circuito exterior mexiquense-A-22 bordo xochiaca|19.425677149229696, -98.9987669281238|1|109|edomx|troncal|||5D||||||
-316|circuito exterior mexiquense-T-7 -Texcoco|19.45074359283137, -98.91110074110017|1|110|edomx|troncal|||5D||||||
-316|circuito exterior mexiquense-A-27 san buena aventura|19.307078162910116, -98.87179988486967|1|111|edomx|entronque|||57D||||||
-316|circuito exterior mexiquense-A-28 San buena aventura|19.30000445615856, -98.87506324293571|1|112|edomx|entronque|||5D||||||
-316|circuito exterior mexiquense-A-31 ent. Tultepec|19.702468885399043, -99.08493839202771|1|113|edomx|entronque|||57D||||||
-316|circuito exterior mexiquense-A-32 ent. Tultepec|19.704260124031222, -99.0872982554282|1|114|edomx|entronque|||5D||||||
-316|circuito exterior mexiquense-A-34 vialidad mexiquense|19.637483745523515, -99.1644306487261|1|114|edomx|entronque|||5D||||||
-316|circuito exterior mexiquense-A-36 vialidad mexiquense|19.63833645324367, -99.15919830842724|1|114|edomx|entronque|||5D||||||
-316|circuito exterior mexiquense-A-33 vialidad mexiquense|19.638353310850967, -99.15622648744971|1|115|edomx|entronque|||5D||||||
-316|circuito exterior mexiquense-A-35 vialidad mexiquense|19.638239160472185, -99.15893288433031|1|115|edomx|entronque|||5D||||||
-316|circuito exterior mexiquense-T-5 tultitlán|19.63777430447426, -99.16447908889505|1|116|edomx|troncal|||5D||||||
-316|circuito exterior mexiquense-T6 cuautitlan izcalli|19.63545513882053, -99.20516937360027|1|117|edomx|troncal|||5D||||||
-316|circuito exterior mexiquense-AIFA T5 de distribuidor santa ines|19.63777430447426, -99.16447908889505|1|118|edomx|entronque|||5D||||||
-316|circuito exterior mexiquense-AIFA A35 de distribuidor santa ines|19.637455343397235, -99.15575901527625|1|119|edomx|entronque|||5D||||||
-316|circuito exterior mexiquense-A-12 entronque santa inés|19.702077285061986, -99.0857239049988|1||edomx|entronque||27.00 55.00 125.00 125.00 211.00 311.00 31.00, 2025 https://www.circuitoexterior.mx/rutas-y-tarifas/|57D-aifa||||||
+71|chalco|19.293292563929672, -98.88284509632994|open|1|edomx|troncal|2||150D-115||||||
+71|chalco|19.29321867493075, -98.88354314227342|open|1|edomx|troncal|3||150D||||||
+71|chalco|19.293101683947743, -98.88409983935685|open|1|edomx|troncal|3||150D||||||
+316|circuito exterior mexiquense-T4 chalco|19.30011531384209, -98.87526308409201|open|100|edomx|troncal|6||57D||||||
+316|circuito exterior mexiquense-T0 jorobas|19.819935517430253, -99.23987695454564|open|95|edomx|troncal|7||57D||||||
+316|circuito exterior mexiquense-T1 tultepec|19.694018113202613, -99.08049510414101|open|96|edomx|troncal|22||57D||||||
+316|circuito exterior mexiquense-T1 tultepec|19.694018113202613, -99.08049510414101|open|1395|edomx|troncal|22||||||||
+316|circuito exterior mexiquense-T2 conmex|19.57550558337962, -99.02055090706814|open|97|edomx|troncal|14||57D||||||
+316|circuito exterior mexiquense-T2 conmex|19.57550558337962, -99.02055090706814|open|1393|edomx|troncal|14||||||||
+316|circuito exterior mexiquense-T3 nabor carillo|19.435829533797794, -98.99837849230546|open|98|edomx|troncal|4||57D||||||
+316|circuito exterior mexiquense-T3 nabor carillo|19.435842542383828, -98.9980775290402|open|99|edomx|entronque|4||57D||||||
+316|circuito exterior mexiquense-T3 nabor carillo|19.435821576260775, -98.9986457077775|open|99|edomx|entronque|4||57D-bordo de xochiaca||||||
+316|circuito exterior mexiquense-T3 nabor carillo|19.43584436312854, -98.9985464586299|open|98|edomx|troncal|4||||||||
+316|circuito exterior mexiquense-A-1A huehuetoca|19.822136243927932, -99.23624388243783|open|101|edomx|entronque|2||57D||||||
+316|circuito exterior mexiquense-A-1B huehuetoca|19.82323588025471, -99.23553122514845|open|101|edomx|entronque|2||57D||||||
+316|circuito exterior mexiquense-A-2 los reyes|19.610865684904677, -99.03855181117322|open|102|edomx|troncal|5||||||||
+316|circuito exterior mexiquense-A-5 Hank gonzalez|19.584821045498185, -99.0280728965625|open|102|edomx|entronque|2||57D||||||
+316|circuito exterior mexiquense-A-6 periférico|19.487226638901856, -99.01638088730647|open|103|edomx|entronque|2||periferico-57D||||||
+316|circuito exterior mexiquense-A-7 periférico|19.48571434815351, -99.01516948213126|open|103|edomx|entronque|2||57D-periferico||||||
+316|circuito exterior mexiquense-A-8 pichardo|19.506367484694774, -99.01496320168103|open|104|edomx|troncal|1||||||||
+316|circuito exterior mexiquense-A-9 ctm|19.488289296901982, -99.0187359797232|open|105|edomx|entronque|1||||||||
+316|circuito exterior mexiquense-T1 jaltenco|19.694018113202613, -99.08049510414101|open|106|edomx|troncal|22||||||||
+316|circuito exterior mexiquense-T1 jaltenco|19.694018113202613, -99.08049510414101|open|1394|edomx|troncal|22||||||||
+316|circuito exterior mexiquense-A-3 pachuca|19.603091798829805, -99.0386258765502|open|107|edomx|entronque|1||5D||||||
+316|circuito exterior mexiquense-A-4 pachuca|19.603392599771386, -99.03724320021398|open|108|edomx|entronque|2||5D||||||
+316|circuito exterior mexiquense-A-21 bordo xochiaca|19.42563391931527, -98.99855888788431|open|109|edomx|entronque|2||5D||||||
+316|circuito exterior mexiquense-A-22 bordo xochiaca|19.425677149229696, -98.9987669281238|open|109|edomx|troncal|2||5D||||||
+316|circuito exterior mexiquense-T-7 -Texcoco|19.45074359283137, -98.91110074110017|open|110|edomx|troncal|6||5D||||||
+316|circuito exterior mexiquense-A-27 san buena aventura|19.307078162910116, -98.87179988486967|open|111|edomx|entronque|2||57D||||||
+316|circuito exterior mexiquense-A-28 San marcos|19.30000445615856, -98.87506324293571|open|112|edomx|entronque|2||5D||||||
+316|circuito exterior mexiquense-A-31 ent. Tultepec|19.702325204814482, -99.08522685692728|open|113|edomx|entronque|4||57D||||||
+316|circuito exterior mexiquense-A-32 ent. Tultepec|19.704260124031222, -99.0872982554282|open|114|edomx|entronque|4||5D||||||
+316|A-32 bis|19.704282266728484, -99.08861738585021|open|1397|edomx|entronque|6||||||||
+316|circuito exterior mexiquense-A-34 vialidad mexiquense|19.637483745523515, -99.1644306487261|open|114|edomx|entronque|4||5D||||||
+316|circuito exterior mexiquense-A-36 vialidad mexiquense|19.63833645324367, -99.15919830842724|open|114|edomx|entronque|4||5D||||||
+316|circuito exterior mexiquense-A-33 vialidad mexiquense|19.638353310850967, -99.15622648744971|open|115|edomx|entronque|3||5D||||||
+316|circuito exterior mexiquense-A-35 vialidad mexiquense|19.638239160472185, -99.15893288433031|open|115|edomx|entronque|1||5D||||||
+316|circuito exterior mexiquense-T-5 tultitlán|19.63777430447426, -99.16447908889505|open|116|edomx|troncal|10||5D||||||
+316|circuito exterior mexiquense-T6 cuautitlan izcalli|19.63545513882053, -99.20516937360027|open|117|edomx|troncal|14||5D||||||
+316|circuito exterior mexiquense-AIFA T5 de distribuidor santa ines|19.63777430447426, -99.16447908889505|open|118|edomx|entronque|4||5D||||||
+316|circuito exterior mexiquense-AIFA A35 de distribuidor santa ines|19.637455343397235, -99.15575901527625|open|119|edomx|entronque|3||5D||||||
+316|circuito exterior mexiquense-A-12 entronque santa inés|19.702077285061986, -99.0857239049988|open|1396|edomx|entronque|8|27.00 55.00 125.00 125.00 211.00 311.00 31.00, 2025 https://www.circuitoexterior.mx/rutas-y-tarifas/|57D-aifa||||||
 8|san marti puebla|19.241420092520407, -98.3855948874618|open|4|puebla|troncal|||150D||||||
 69|jorobas|19.826189088641254, -99.24975024585362|1||edomx|entronque|||57-57D||||||
 69|jorobas|19.82567313930489, -99.25007932058412|1||edomx|entronque|||57D-57||||||
