@@ -21,7 +21,7 @@ strechs_tolls_2025_schema = {
     "motorbike-axle": pl.Float32,
     "car-rush-hour": pl.Float32,
     "car-evening-hour": pl.Float32,
-    "peaton": pl.Float32,
+    "pedestrian": pl.Float32,
     "valid_from": pl.Date
 }
 
@@ -32,7 +32,8 @@ strechs_tolls_2024_schema = {
 }
 strechs_tolls_2024_schema.update(strechs_tolls_2025_schema)
 strechs_tolls_2023_schema = strechs_tolls_2025_schema.copy()
-
+strechs_tolls_2022_schema = strechs_tolls_2025_schema.copy()
+strechs_tolls_2021_schema = strechs_tolls_2025_schema.copy()
 
 strechs_schema = {
     "strech_id": pl.Int16,
