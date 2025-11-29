@@ -205,17 +205,17 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 316|circuito exterior mexiquense-AIFA T5 de distribuidor santa ines|19.63777430447426, -99.16447908889505|open|118|edomx|entronque|4||5D||||||
 316|circuito exterior mexiquense-AIFA A35 de distribuidor santa ines|19.637455343397235, -99.15575901527625|open|119|edomx|entronque|3||5D||||||
 316|circuito exterior mexiquense-A-12 entronque santa inés|19.702077285061986, -99.0857239049988|open|1396|edomx|entronque|8|27.00 55.00 125.00 125.00 211.00 311.00 31.00, 2025 https://www.circuitoexterior.mx/rutas-y-tarifas/|57D-aifa||||||
-8|san marti puebla|19.241420092520407, -98.3855948874618|open|4|puebla|troncal|||150D||||||
-69|jorobas|19.826189088641254, -99.24975024585362|1||edomx|entronque|||57-57D||||||
-69|jorobas|19.82567313930489, -99.25007932058412|1||edomx|entronque|||57D-57||||||
-939|nabor carrillo|19.495932599390688, -98.94737958499377|1||edomx|troncal|4|104|pirámides-136D|||39|||
-939|nabor carrillo|19.49598316788296, -98.9472240168867|||edomx|troncal|2|44|||||||
-939|nabor carrillo|19.49602867951252, -98.9471301395807|||edomx|troncal|2|24|||||||
+8|san marti puebla|19.241420092520407, -98.3855948874618|open|4|puebla|troncal|27||150D||||||
+69|jorobas|19.826189088641254, -99.24975024585362|open|161|edomx|entronque|1||57-57D||||||
+69|jorobas|19.82567313930489, -99.25007932058412|open|161|edomx|entronque|1||57D-57||||||
+939|nabor carrillo|19.495932599390688, -98.94737958499377|open|129|edomx|troncal|4|104|pirámides-136D|||39|||
+939|nabor carrillo|19.49598316788296, -98.9472240168867|open|130|edomx|troncal|2|44|||||||
+939|nabor carrillo|19.49602867951252, -98.9471301395807|open|131|edomx|troncal|2|24|||||||
 575|Tizatyca (ojo de agua)|19.618844090389594, -99.02953259081578|open|123|edomx|troncal|||85D||||||
 576|entronque ojo de agua|19.665029989506003, -99.00174021673337|open|124|edomx|entronque|||85D-85||||||
 576|entronque ojo de agua|19.665375829654206, -99.00203390912596|open|124|edomx|entronque|||85D-85||||||
-914|texcoco|19.50279435886103, -98.91267169397241|1||edomx|troncal|||136D||||||
-914|texcoco t2|19.502074032237623, -98.91498952424638|1||edomx|troncal||Auto 60|136D||||||
+914|texcoco|19.50279435886103, -98.91267169397241|open|133|edomx|troncal|5||136D||||||
+914|texcoco t2|19.502074032237623, -98.91498952424638|open|133|edomx|troncal|3|Auto 60|136D||||||
 196|ozumba|19.046046108219354, -98.82833862020823|open|6|edomx|troncal|10||115D||||||
 917|san martín texmelucan|19.30158972628332, -98.40401709219253|open|7|tlaxcala|troncal|5||117D||||||
 558|el higueron|18.652765075251022, -99.00169876378389|1||morelos|entronque|1|109|94D-san rafael||||||
@@ -290,8 +290,8 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 574|revolución|19.602269319275813, -99.03747049202427|1|||||43|85D-mexiquense||||||
 904|ecatepec (pirámidesl)|19.611774234553486, -99.02571541373743|open|125|||||132D||||||
 905|tepexpan|19.61619139392161, -98.94827478124297|open|126|||||132-132D||||||
-928|Tezoyuca (589)|19.60065751148438, -98.92553806692317|1||||||Pirámides-texcoco||||||
-913|peñón|19.458599188412503, -99.03372456231982|1||||||136D-57D||||||
+928|Tezoyuca (589)|19.60065751148438, -98.92553806692317|open|128|edomx|troncal|6||Pirámides-texcoco||||||
+913|peñón|19.458599188412503, -99.03372456231982|open|132|edomx|troncal|9||136D-57D||||||
 914|texcoco|19.502827156048728, -98.91271008878584|1||||||142-136D||||||
 915|ent. Peñón|19.468842305639424, -99.00443193350293|open|134|||||57D-136D||||||
 577|tejocotal|20.147452027701544, -98.28579586935979|1|||||111|132D||||||
