@@ -211,62 +211,68 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 939|nabor carrillo|19.495932599390688, -98.94737958499377|open|129|edomx|troncal|4|104|pirámides-136D|||39|||
 939|nabor carrillo|19.49598316788296, -98.9472240168867|open|130|edomx|troncal|2|44|||||||
 939|nabor carrillo|19.49602867951252, -98.9471301395807|open|131|edomx|troncal|2|24|||||||
-575|Tizatyca (ojo de agua)|19.618844090389594, -99.02953259081578|open|123|edomx|troncal|||85D||||||
-576|entronque ojo de agua|19.665029989506003, -99.00174021673337|open|124|edomx|entronque|||85D-85||||||
-576|entronque ojo de agua|19.665375829654206, -99.00203390912596|open|124|edomx|entronque|||85D-85||||||
+575|Tizatyca (ojo de agua)|19.618844090389594, -99.02953259081578|open|123|edomx|troncal|21||85D||||||
+576|entronque ojo de agua|19.665029989506003, -99.00174021673337|open|124|edomx|entronque|3||85D-85||||||
+576|entronque ojo de agua|19.665375829654206, -99.00203390912596|open|124|edomx|entronque|3||85D-85||||||
 914|texcoco|19.50279435886103, -98.91267169397241|open|133|edomx|troncal|5||136D||||||
 914|texcoco t2|19.502074032237623, -98.91498952424638|open|133|edomx|troncal|3|Auto 60|136D||||||
 196|ozumba|19.046046108219354, -98.82833862020823|open|6|edomx|troncal|10||115D||||||
 917|san martín texmelucan|19.30158972628332, -98.40401709219253|open|7|tlaxcala|troncal|5||117D||||||
-558|el higueron|18.652765075251022, -99.00169876378389|1||morelos|entronque|1|109|94D-san rafael||||||
-558|el higueron|18.652397034134513, -99.0012437005927|1||morelos|entronque|1|109|san rafael-94D||||||
-558|el higueron|18.65278399304689, -99.00879375326478|1||morelos|troncal|1|223|94D||||||
-558|el higueron|18.65262330865848, -99.0088059643153|1||morelos|troncal|4|124|cuautla 94D||||||
-558|el higueron|18.652936805156926, -99.00879585189807|1||morelos|troncal|1|124|chinameca 94D||||||
+558|el higueron|18.652765075251022, -99.00169876378389|open|10|morelos|entronque|1|109|94D-san rafael||||||
+558|el higueron|18.652397034134513, -99.0012437005927|open|10|morelos|entronque|1|109|san rafael-94D||||||
+558|el higueron|18.65278399304689, -99.00879375326478|open|8|morelos|troncal|2|223|94D||||||
+558|el higueron|18.65262330865848, -99.0088059643153|open|9|morelos|troncal|2|124|cuautla 94D||||||
+558|el higueron|18.652936805156926, -99.00879585189807|open|9|morelos|troncal|2|124|chinameca 94D||||||
 1001|atlixco|18.916384904608535, -98.48469847669594|open|1336|puebla|troncal|4||438D||||||
 1001|atlixco sur|18.895077579315473, -98.48938276402062|open|1336|puebla|entronque|4||Atlixco-jantetelco||||||
-26|amozoc|19.049814106676887, -98.03229883255135|1||puebla|troncal|10|90|150D||||||
-26|amozoc|19.050119904548755, -98.03273942128622|1||puebla|entronque|2|46|129-150D||||||
-26|amozoc|19.049481004303374, -98.03199376721965|1||puebla|entronque|2|46|150D-129||||||
-990|Amazoc-perote (amozoc)|19.06367676920489, -98.06905247192356|1||puebla|troncal|6||140D||||||
-990|AMOZOC-PEROTE (CUAPIAXTLA)|19.310336909941974, -97.79749106268908|1||tlaxcala|troncal|4|122|140D||||||
-990|AMOZOC-PEROTE (CUAPIAXTLA)|19.310494979627016, -97.79765684970214|1||tlaxcala|entronque|2|53|140D-136||||||
-990|AMOZOC-PEROTE (CUAPIAXTLA)|19.30442649961914, -97.80562494517584|1||tlaxcala|entronque|2|53|136-140D||||||
-990|AMOZOC-PEROTE (CUAPIAXTLA)|19.304229050075733, -97.80536745312408|1||tlaxcala|entronque|2|53|140D-136||||||
-990|AMOZOC-PEROTE (CUAPIAXTLA)|19.310262427822185, -97.79738622422764|1||tlaxcala|entronque|2|69|136-140D||||||
-990|AMOZOC-PEROTE (CANTONA)|19.507561429295745, -97.49775753734808|1||puebla|troncal|5|197|140D||||||
-990|AMOZOC-PEROTE (CANTONA)|19.508966128731377, -97.49726290567534|1||puebla|entronque|1|63|tezontepec-140D||||||
-990|AMOZOC-PEROTE (CANTONA)|19.509049846096197, -97.49713604623201|1||puebla|entronque|1|134|140D-tezontepec||||||
-990|AMOZOC-PEROTE (CANTONA)|19.506527901068193, -97.49553112715623|1||puebla|entronque|1|63|140D-tepeyahualco||||||
-990|AMOZOC-PEROTE (CANTONA)|19.506604692290207, -97.49539607155636|1||puebla|entronque|1|134|tepeyahualco-140D||||||
-990|AMOZOC-PEROTE (PEROTE)|19.55180358512678, -97.2895397511599|1||veracruz|troncal|6|2023 auto (64)|140D||||||
+26|amozoc|19.049814106676887, -98.03229883255135|open|11|puebla|troncal|10|90|150D||||||
+26|amozoc|19.050119904548755, -98.03273942128622|open|12|puebla|entronque|2|46|129-150D||||||
+26|amozoc|19.049481004303374, -98.03199376721965|open|12|puebla|entronque|2|46|150D-129||||||
+26|amozoc|19.04820166629519, -98.03128002832766|open|13|puebla|entronque|1||||||||
+26|amozoc|19.049230129160705, -98.02909994741553|open|13|puebla|entronque|1||||||||
+990|Amazoc-perote (amozoc)|19.06367676920489, -98.06905247192356|open|54|puebla|troncal|6||140D||||||
+990|AMOZOC-PEROTE (CUAPIAXTLA)|19.310336909941974, -97.79749106268908|open|55|tlaxcala|troncal|4|122|140D||||||
+990|AMOZOC-PEROTE (CUAPIAXTLA)|19.310494979627016, -97.79765684970214|open|57|tlaxcala|entronque|2|53|140D-136||||||
+990|AMOZOC-PEROTE (CUAPIAXTLA)|19.30442649961914, -97.80562494517584|open|56|tlaxcala|entronque|2|53|136-140D||||||
+990|AMOZOC-PEROTE (CUAPIAXTLA)|19.304229050075733, -97.80536745312408|open|56|tlaxcala|entronque|2|53|140D-136||||||
+990|AMOZOC-PEROTE (CUAPIAXTLA)|19.310262427822185, -97.79738622422764|open|57|tlaxcala|entronque|2|69|136-140D||||||
+990|AMOZOC-PEROTE (CANTONA)|19.507561429295745, -97.49775753734808|open|58|puebla|troncal|5|197|140D||||||
+990|AMOZOC-PEROTE (CANTONA)|19.508966128731377, -97.49726290567534|open|59|puebla|entronque|1|63|tezontepec-140D||||||
+990|AMOZOC-PEROTE (CANTONA)|19.509049846096197, -97.49713604623201|open|60|puebla|entronque|1|134|140D-tezontepec||||||
+990|AMOZOC-PEROTE (CANTONA)|19.506527901068193, -97.49553112715623|open|59|puebla|entronque|1|63|140D-tepeyahualco||||||
+990|AMOZOC-PEROTE (CANTONA)|19.506604692290207, -97.49539607155636|open|60|puebla|entronque|1|134|tepeyahualco-140D||||||
+990|AMOZOC-PEROTE (PEROTE)|19.55180358512678, -97.2895397511599|open|61|veracruz|troncal|6|2023 auto (64)|140D||||||
 990|AMOZOC-PEROTE (AUDI)|19.274467663468872, -97.82642505582122|open|62|puebla|troncal|4||140D-san jose chiapa||||||
-990|AMOZOC-PEROTE (AUDI CUAPIAXTLA A1 Y A2)||open|63|||||||||||
-990|AMOZOC-PEROTE (AUDI CUAPIAXTLA)||open|64|||||||||||
-594|el seco|19.108709327216882, -97.67094209664745|1||||||Cuapixtla-cuacnopalan||||||
-594|el seco aux. 1|19.099144440107228, -97.66402773206636|1||||||Cuapixtla-cuacnopalan-40||||||
-594|el seco aux. 2|19.09904305753429, -97.66425303761164|1||||||40-Cuapixtla-cuacnopalan||||||
-460|las vigas|19.63050334663006, -97.12810988726302|1||||||140D||||||
-461|miradores|19.47442649208741, -96.77540785070767|open|66|||||140D||||||
-457|antigua|19.320358332294518, -96.31080675212831|open|67|||||180||||||
-458|san julián|19.239275776082334, -96.25793916522964|open|68|||||180||||||
-459|plan del rio|19.39702975258441, -96.62161792844606|open|69|||||140D||||||
-33|nautla|20.2102173338087, -96.77875021218912|open|70|||||180||||||
-179|las chopas|17.944804133791894, -94.17238783129227|1||||||145D||||||
-179|las chopas|17.94271202289427, -94.1722361431873|1|||||71|raudales||||||
-179|las chopas|17.94271202289427, -94.1722361431873|1|||||33|coatzacoalcos||||||
-181|malpasito|17.349087839669902, -93.58646289945288|1||||||145D||||||
-181|malpasito|17.349151939150083, -93.58552070834183|1|||||55|145D villahermosa||||||
-181|malpasito|17.348297051606647, -93.5869275563107|1|||||46|145D malpasito||||||
-182|OCOZOCOAUTLA (OCUILAPA)|16.86321123895634, -93.40697896560285|open|77|||||145D||||||
-929|chiapa de corzo viapass|16.73069880833294, -93.0095605957671|open|78|||||190D||||||
-930|arriaga viapass|16.2572922499705, -93.87556474022145|open|79|||||190D||||||
-931|coita viapass|16.73848720114777, -93.40040439428998|open|80|||||190D||||||
-932|jiquipilas|16.620601242361506, -93.60207418382952|1|||||140|190D||||||
-932|jiquipilas|16.620658362481585, -93.60052411025286|1|||||110|190D-cam quintana roo||||||
-932|jiquipilas|16.620658362481585, -93.60052411025286|1|||||30|cam quintana roo-190D||||||
-932|jiquipilas|16.62228828568551, -93.60244789690498|1|||||30|190D-cam quintana roo||||||
-932|jiquipilas|16.62228828568551, -93.60244789690498|1|||||110|cam quintana roo-190D||||||
+990|AMOZOC-PEROTE (AUDI CUAPIAXTLA A1 Y A2)||open|63|tlaxcala||||||||||
+990|AMOZOC-PEROTE (AUDI CUAPIAXTLA)||open|64|tlaxcala||||||||||
+594|el seco|19.108709327216882, -97.67094209664745|open|14|puebla|troncal|5||Cuapixtla-cuacnopalan||||||
+594|el seco|19.10885475389847, -97.67079713686749|open|16|puebla|entronque|1||||||||
+594|el seco|19.108684297859185, -97.67110907175191|open|16|puebla|entronque|1||||||||
+594|el seco aux. 1|19.099144440107228, -97.66402773206636|open|15|puebla|entronque|2||Cuapixtla-cuacnopalan-40||||||
+594|el seco aux. 2|19.09904305753429, -97.66425303761164|open|15|puebla|entronque|2||40-Cuapixtla-cuacnopalan||||||
+460|las vigas|19.63050334663006, -97.12810988726302|open|65|veracruz|troncal|8||140D||||||
+461|miradores|19.47442649208741, -96.77540785070767|open|66|veracruz|troncal|8||140D||||||
+457|antigua|19.320358332294518, -96.31080675212831|open|67|veracruz|troncal|7||180||||||
+458|san julián|19.239275776082334, -96.25793916522964|open|68|veracruz|troncal|5||180||||||
+459|plan del rio|19.39702975258441, -96.62161792844606|open|69|veracruz|troncal|6||140D||||||
+33|nautla|20.2102173338087, -96.77875021218912|open|70|veracruz|troncal|2||180||||||
+179|las chopas|17.944804133791894, -94.17238783129227|open|71|veracruz|troncal|6||145D||||||
+179|las chopas|17.94271202289427, -94.1722361431873|open|72|veracruz|entronque|1|71|raudales||||||
+179|las chopas|17.94271202289427, -94.1722361431873|open|73|veracruz|entronque|1|33|coatzacoalcos||||||
+181|malpasito|17.349087839669902, -93.58646289945288|open|74|tabasco|troncal|6||145D||||||
+181|malpasito|17.349151939150083, -93.58552070834183|open|75|tabasco|entronque|1||||||||
+181|malpasito|17.349151939150083, -93.58552070834183|open|76|tabasco|entronque|1|55|145D villahermosa||||||
+181|malpasito|17.348297051606647, -93.5869275563107|open|76|tabasco|entronque|1|46|145D malpasito||||||
+181|malpasito|17.348297051606647, -93.5869275563107|open|75|tabasco|entronque|1||||||||
+182|OCOZOCOAUTLA (OCUILAPA)|16.86321123895634, -93.40697896560285|open|77|chiapas|troncal|5||145D||||||
+929|chiapa de corzo viapass|16.73069880833294, -93.0095605957671|open|78|chiapas|troncal|6||190D||||||
+930|arriaga viapass|16.2572922499705, -93.87556474022145|open|79|chiapas|troncal|4||190D||||||
+931|ocotzocoautla|16.73848720114777, -93.40040439428998|open|82|chiapas|troncal|4||190D||||||
+932|jiquipilas|16.620601242361506, -93.60207418382952|open|1398|chiapas|troncal|4|140|190D||||||
+932|jiquipilas|16.620658362481585, -93.60052411025286|open|81|chiapas|entronque|1|110|190D-cam quintana roo||||||
+932|jiquipilas|16.620658362481585, -93.60052411025286|open|80|chiapas|entronque|1|30|cam quintana roo-190D||||||
+932|jiquipilas|16.62228828568551, -93.60244789690498|open|81|chiapas|entronque|1|30|190D-cam quintana roo||||||
+932|jiquipilas|16.62228828568551, -93.60244789690498|open|80|chiapas|entronque|1|110|cam quintana roo-190D||||||
 176|sánchez magallanes|18.030589330351706, -93.81297768258969|1|||||101|180D||||||
 176|sánchez magallanes|18.02995167744411, -93.81311701585584|1|||||47|180D-180||||||
 176|sánchez magallanes|18.031614594727525, -93.8136802797191|1|||||49|180-180D||||||
