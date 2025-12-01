@@ -383,17 +383,19 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 583|Ent. Chichimeco|22.000712228342167, -102.36006126095177|open|198|aguascalientes|entronque|2|42|||||||
 583|Ent. La escondida|22.000975257831087, -102.35961333194552|open|199|aguascalientes|entronque|2|35|||||||
 87|zacatecas|22.71077952370501, -102.4488686413797|open|200|zacatecas|troncal|4||45D||||||
-114|jalostotitlan|21.117606005742108, -102.45806476923244|1|||||202|80D||||||
-114|jalostotitlan|21.117625940528182, -102.45817194718218|1|||||118|jalostitlan-80D||||||
-114|jalostotitlan|21.117441142045102, -102.45796734964047|1|||||118|80D-jalostitlan||||||
-114|jalostotitlan|21.120225227194027, -102.45558675084618|1|||||85|80D-jalostitlan||||||
-114|jalostotitlan|21.11904546238283, -102.4557563878855|1|||||85|jalostitlan-80D||||||
-114|jalostotitlan|||||||70|||||||
-114|jalostotitlan|||||||34|||||||
-113|tepatitlan|20.82458772174976, -102.79500119203935|1|||||246|80D||||||
+114|jalostotitlan|21.117606005742108, -102.45806476923244|open|201|jalisco|troncal|2|202|80D||||||
+114|jalostotitlan|21.117625940528182, -102.45817194718218|open|201|jalisco|troncal|2|118|jalostitlan-80D||||||
+114|jalostotitlan|21.117441142045102, -102.45796734964047|open|202|jalisco|entronque|1|118|80D-jalostitlan||||||
+114|jalostotitlan|21.117666286019613, -102.45817383040306|open|202|jalisco|entronque|1||||||||
+114|jalostotitlan|21.120225227194027, -102.45558675084618|open|203|jalisco|entronque|1|85|80D-jalostitlan||||||
+114|jalostotitlan|21.11904546238283, -102.4557563878855|open|203|jalisco|entronque|1|85|jalostitlan-80D||||||
+114|jalostotitlan|21.031087073359966, -102.55457545206899|open|204|jalisco|entronque|1|70|||||||
+114|jalostotitlan|21.030065113524497, -102.55525744089931|open|204|jalisco|entronque|1||||||||
+114|jalostotitlan|21.225671027932812, -102.3136301850932|open|205|jalisco|entronque|2|34|||||||
+113|tepatitlan|20.82458772174976, -102.79500119203935|open|206|jalisco|troncal|8|246|80D||||||
 113|tepatitlan|20.820927144547603, -102.79384973598117|1|||||201|Colosio-80D||||||
-113|tepatitlan|20.820772768883852, -102.79406376644803|1|||||201|80D-colosio||||||
-113|tepatitlan|||||||196|||||||
+113|tepatitlan|20.820772768883852, -102.79406376644803|open|207|jalisco|entronque|2|201|80D-colosio||||||
+113|tepatitlan|20.820835383469195, -102.79396621585532|open|215|jalisco|troncal|2|196|||||||
 113|tepatitlan|||||||172|||||||
 113|tepatitlan|||||||146|||||||
 113|tepatitlan|||||||72|||||||
