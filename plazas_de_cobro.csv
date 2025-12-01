@@ -393,67 +393,72 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 114|jalostotitlan|21.030065113524497, -102.55525744089931|open|204|jalisco|entronque|1||||||||
 114|jalostotitlan|21.225671027932812, -102.3136301850932|open|205|jalisco|entronque|2|34|||||||
 113|tepatitlan|20.82458772174976, -102.79500119203935|open|206|jalisco|troncal|8|246|80D||||||
-113|tepatitlan|20.820927144547603, -102.79384973598117|1|||||201|Colosio-80D||||||
+113|tepatitlan|20.820927144547603, -102.79384973598117|open|207|jalisco|entronque|1|201|Colosio-80D||||||
 113|tepatitlan|20.820772768883852, -102.79406376644803|open|207|jalisco|entronque|2|201|80D-colosio||||||
 113|tepatitlan|20.820835383469195, -102.79396621585532|open|215|jalisco|troncal|2|196|||||||
-113|tepatitlan|||||||172|||||||
-113|tepatitlan|||||||146|||||||
-113|tepatitlan|||||||72|||||||
-113|tepatitlan|||||||127|||||||
-113|tepatitlan|||||||98|||||||
-113|tepatitlan|||||||53|||||||
-113|tepatitlan|20.820850490911763, -102.79393016580364|1|||||44|Colosio-80D||||||
-199|lagos de moreno|21.49019916795546, -101.76328341241077|open|216|||||80D||||||
-454|Ventura-el peyote|22.52091754877761, -100.6564056074358|open|217|||||57D||||||
-426|libramiento arco norte san luis potosi|22.29983797563336, -100.97126657665335|open|218|||||libramiento norte san luis potosi||||||
-504|libramiento poniente san luis potosi|22.16361309699705, -101.0792319588635|1|||||81|libramiento poniente san luis potosi||||||
-504|libramiento poniente san luis potosi||1|||||56|||||||
-504|libramiento poniente san luis potosi||1|||||28|||||||
-425|libramiento oriente san luis potosi|22.129746570238748, -100.82509189514816|1|||||105|57D||||||
-425|libramiento oriente san luis potosi|22.126038672449212, -100.82507989656916|1|||||33|70-57D||||||
-127|chichimequillas|20.70558491390206, -100.34373413115131|open|224|||||57D||||||
-486|cerritos (san luis-rio verde)|22.428865895747066, -100.32041862385992|1||||||75D||||||
-486|cerritos (rioverde-cemosa-rioverde)||1||||||75D||||||
-486|cerritos (charco blanco-rioverde-charco blanco)|22.441384551244493, -100.33936852467664|1|||||144|75D||||||
-486|cerritos (cerritos-rioverde)|22.427612024118517, -100.31850050729386|1||||||75D||||||
-486|cerritos (san luis-cerritos-san luis)|22.440333503824185, -100.3345710388101|1||||||75D||||||
-486|cerritos (san luis-charco blanco-san luis)|22.441825675240864, -100.3399436115878|1|||||59|75D||||||
-486|cerritos (charco blanco-cemosa)||1||||||75D||||||
-486|cerritos (charco blanco-cerritos-charco blanco)|22.443339620963453, -100.33880485161151|1||||||75D||||||
-498|cemosa (rioverde-cemosa-rioverde)||1||||||75D||||||
-493|la calera|21.904200038149103, -98.95552718590129|1|||||122|70D||||||
-493|la calera|21.905379436943097, -98.95284489335644|1|||||71|70D-85||||||
-493|la calera|21.905503864727557, -98.95287707986425|1|||||51|85-70D||||||
-493|la calera|21.902303432986486, -98.95295350980425|1|||||71|85-70D||||||
-493|la calera|21.902196295042685, -98.95302419807835|1|||||51|70D-85||||||
-909|santa fe|19.359158954537214, -99.27360380223307|open|241|||||15D||||||
-908|marquesa|19.33277053011677, -99.31417230288255|1|||||111|15D||||||
-908|marquesa|19.33176757989978, -99.315122002156|1|||||55|57D-15D||||||
-934|marquesa t2|19.290581367921927, -99.43444141405219|open|247||||72|15D||||||
-410|la venta|19.335807155041156, -99.3110191569385|1|||||55|15D-arriaga||||||
-835|la finca|18.906345950224217, -99.65462495610822|1|||||73|55D||||||
-835|la finca|18.89982802295817, -99.65321250708395|1|||||36|55-55D||||||
-835|la finca|18.89982802295817, -99.65321250708395|1|||||36|55D-55||||||
-836|villa guerrero|18.989328269782845, -99.65656768903688|open|250|||||55D||||||
-837|tenango|19.12245612481182, -99.60212868246006|open|251|||||55D||||||
-470|chapultepec|19.196568898036464, -99.5251963918216|open|252|||||Lerma-tenango||||||
-471|rayón|19.151241223240984, -99.5437285216713|1|||||47|Lerma-tenango||||||
-471|rayón|19.15139653006734, -99.54371973077879|1|||||49|Lerma-tenango (malinalco)||||||
-471|rayón|19.15139653006734, -99.54371973077879|1|||||49|Lerma-tenango (lerma)||||||
-471|rayón|19.151453282154144, -99.54833025312512|1|||||40|6-lerma-tenango||||||
-471|rayón|19.149986747686476, -99.54999927946027|1|||||40|Lerma-tenango-6||||||
-416|xonacatlan|19.375790401297618, -99.5494633032343|1|||||107|6D||||||
-416|xonacatlan|19.38125410425941, -99.55553467754922|1|||||67|toluca-naucalpan-6D||||||
-416|xonacatlan|19.38125410425941, -99.55553467754922|1|||||67|6D-toluca-naucalpan||||||
-416|xonacatlan|19.37596487076062, -99.54927807470443|1|||||40|6D-toluca-naucalpan||||||
-416|xonacatlan|19.375622298900062, -99.54961788801694|1|||||40|toluca-naucalpan-6D||||||
-532|la hortaliza|19.38141941343298, -99.80469301511961|1|||||177|7D||||||
-532|la hortaliza|19.3818064512847, -99.80876509673591|1|||||131|15-7D||||||
-532|la hortaliza|19.381264677056866, -99.80470538214621|1|||||47|15-7D||||||
-532|la hortaliza|19.38188115653965, -99.80688394241304|1|||||47|7D-15||||||
-531|valle de bravo||open|262|||||||||||
-530|amanalco|19.233676136929883, -100.0722562094995|1|||||133|valle de bravo-toluca||||||
-530|amanalco||||||||||||||
+113|tepatitlan|||208||||172|||||||
+113|tepatitlan|||209||||146|||||||
+113|tepatitlan|||210||||72|||||||
+113|tepatitlan|||211||||127|||||||
+113|tepatitlan|||212||||98|||||||
+113|tepatitlan|||213||||53|||||||
+113|tepatitlan|||214||||44|Colosio-80D||||||
+199|lagos de moreno|21.49019916795546, -101.76328341241077|open|216|jalisco|troncal|6||80D||||||
+454|Ventura-el peyote|22.52091754877761, -100.6564056074358|open|217|san luis potosi|troncal|12||57D||||||
+426|libramiento arco norte san luis potosi|22.29983797563336, -100.97126657665335|open|218|san luis potosi|troncal|4||libramiento norte san luis potosi||||||
+504|libramiento poniente san luis potosi|22.16361309699705, -101.0792319588635|open|219|san luis potosi|troncal|4|81|libramiento poniente san luis potosi||||||
+504|libramiento poniente san luis potosi|22.156426688549963, -101.07208859886632|open|220|san luis potosi|entronque|3|56|||||||
+504|libramiento poniente san luis potosi||not_found|221||||28|||||||
+425|libramiento oriente san luis potosi|22.129746570238748, -100.82509189514816|open|222|san luis potosi|troncal|10|105|57D||||||
+425|libramiento oriente san luis potosi|22.126038672449212, -100.82507989656916|open|223|san luis potosi|entronque|2|33|70-57D||||||
+127|chichimequillas|20.70558491390206, -100.34373413115131|open|224|queretaro|troncal|6||57D||||||
+486|cerritos (san luis-rio verde)|22.428865895747066, -100.32041862385992|open|225|san luis potosi|troncal|5||75D||||||
+486|cerritos (rioverde-cemosa-rioverde)||not_found|234|san luis potosi||||75D||||||
+486|cerritos (charco blanco-rioverde-charco blanco)|22.441384551244493, -100.33936852467664|open|227|san luis potosi|entronque|1|144|75D||||||
+486|cerritos (cerritos-rioverde)|22.427612024118517, -100.31850050729386|open|228|san luis potosi|entronque|1||75D||||||
+486|cerritos (san luis-cerritos-san luis)|22.440333503824185, -100.3345710388101|open|229|san luis potosi|entronque|1||75D||||||
+486|cerritos (san luis-charco blanco-san luis)|22.441825675240864, -100.3399436115878|open|230|san luis potosi|entronque|1|59|75D||||||
+486|cerritos (slp-cemosa)||not_found|235|san luis potosi||||75D||||||
+486|cerritos (charco blanco-slp-charco blanco)|22.443339620963453, -100.33880485161151|open|230|san luis potosi|entronque|1||75D||||||
+498|cemosa (rioverde-cemosa-rioverde)||not_found|234|san luis potosi||||75D||||||
+1049||||1399|san luis potosi||||||||||
+1050||||1400|san luis potosi||||||||||
+493|la calera|21.904200038149103, -98.95552718590129|open|238|san luis potosi|troncal|4|122|70D||||||
+493|la calera|21.905379436943097, -98.95284489335644|open|239|san luis potosi|entronque|1|71|70D-85||||||
+493|la calera|21.905503864727557, -98.95287707986425|open|240|san luis potosi|entronque|1|51|85-70D||||||
+493|la calera|21.902303432986486, -98.95295350980425|open|239|san luis potosi|entronque|1|71|85-70D||||||
+493|la calera|21.902196295042685, -98.95302419807835|open|240|san luis potosi|entronque|1|51|70D-85||||||
+909|santa fe|19.359158954537214, -99.27360380223307|open|241|cdmx|troncal|2||15D||||||
+908|marquesa|19.33277053011677, -99.31417230288255|open|242|cdmx|troncal|12|111|15D||||||
+908|marquesa|19.33176757989978, -99.315122002156|open|243|cdmx|troncal|2|55|57D-15D||||||
+934|marquesa t2|19.290581367921927, -99.43444141405219|open|247|edomx|troncal|10|72|15D||||||
+410|la venta|19.335807155041156, -99.3110191569385|open|244|cdmx|entronque|1|55|15D-arriaga||||||
+||||245|||||||||||
+||||246|||||||||||
+835|la finca|18.906345950224217, -99.65462495610822|open|248|edomx|troncal|6|73|55D||||||
+835|la finca|18.89982802295817, -99.65321250708395|open|249|edomx|entronque|1|36|55-55D||||||
+835|la finca|18.89982802295817, -99.65321250708395|open|249|edomx|entronque|2|36|55D-55||||||
+836|villa guerrero|18.989328269782845, -99.65656768903688|open|250|edomx|troncal|6||55D||||||
+837|tenango|19.12245612481182, -99.60212868246006|open|251|edomx|troncal|4||55D||||||
+470|chapultepec|19.196568898036464, -99.5251963918216|open|252|edomx|troncal|6||Lerma-tenango||||||
+471|rayón|19.151241223240984, -99.5437285216713|open|254|edomx|troncal|4|47|Lerma-tenango||||||
+471|rayón|19.15139653006734, -99.54371973077879|open|1401|edomx|entronque|1|49|Lerma-tenango (malinalco)||||||
+471|rayón|19.151077244543146, -99.54373311137896|open|1401|edomx|entronque|1|49|Lerma-tenango (lerma)||||||
+471|rayón|19.151453282154144, -99.54833025312512|open|255|edomx|entronque|1|40|6-lerma-tenango||||||
+471|rayón|19.149986747686476, -99.54999927946027|open|255|edomx|entronque|1|40|Lerma-tenango-6||||||
+416|xonacatlan|19.375790401297618, -99.5494633032343|open|256|edomx|troncal|8|107|6D||||||
+416|xonacatlan|19.38125410425941, -99.55553467754922|open|257|edomx|entronque|1|67|toluca-naucalpan-6D||||||
+416|xonacatlan|19.380694145014793, -99.55539660610208|open|257|edomx|entronque|1|67|6D-toluca-naucalpan||||||
+416|xonacatlan|19.37596487076062, -99.54927807470443|open|258|edomx|entronque|1|40|6D-toluca-naucalpan||||||
+416|xonacatlan|19.375622298900062, -99.54961788801694|open|258|edomx|entronque|1|40|toluca-naucalpan-6D||||||
+532|la hortaliza|19.38141941343298, -99.80469301511961|open|259|edomx|troncal||177|7D||||||
+532|la hortaliza|19.3818064512847, -99.80876509673591|open|260|edomx|entronque|1|131|15-7D||||||
+532|la hortaliza|19.381264677056866, -99.80470538214621|open|261|edomx|entronque|1|47|15-7D||||||
+532|la hortaliza|19.38188115653965, -99.80688394241304|open|261|edomx|entronque|1|47|7D-15||||||
+532|la hortaliza|19.38188115653965, -99.80688394241304|open|260|edomx|entronque|1|47|7D-15||||||
+531|valle de bravo|19.348218460536422, -99.98944698387572|open|262|edomx|troncal|7||||||||
+530|amanalco|19.233676136929883, -100.0722562094995|open|263|edomx|entronque|1|133|valle de bravo-toluca||||||
+530|amanalco|19.233676136929883, -100.0722562094995|open|264|edomx|entronque|1||||||||
 530|amanalco||||||||||||||
 489|monumento|19.401350551047607, -100.11226498730267|open|266|||||7D||||||
 940|zitacuaro|19.452462358545343, -100.28186781918753|open|267|||||||||||
