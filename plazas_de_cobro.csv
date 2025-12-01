@@ -314,73 +314,75 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 579|Puente tuxpan|20.75294757213223, -97.48237398090423|open|141|veracruz|troncal|10||130D||||||
 580|Puente tuxpan aux. 1 (tihuatlan)|20.688195588486952, -97.49490448458995|open|142|veracruz|entronque|2||130D-132D||||||
 580|Puente tuxpan axu. 2 (tihuatlan)|20.68876105853986, -97.49425308675715|open|142|veracruz|entronque|3||132D-130D||||||
-556|naranjos|21.32437866679742, -97.6251432274458|1|||||171|180D-naranjos||||||
-556|naranjos|21.32710891478247, -97.62732630460962|1|||||359|180D||||||
-556|naranjos|21.327219839603366, -97.627142719318|1|||||188|naranjos-180D||||||
-556|naranjos|21.327001749005113, -97.62752086691968|1|||||188|180D-naranjos||||||
-556|naranjos|21.324306515229246, -97.62621732295528|1|||||171|naranjos-180D||||||
-464|los gil|20.886139893589686, -97.46680176876609|open|146|||||180D||||||
-177|totomoxtle|20.461974987354953, -97.24605444541805|open|147||||57|180-180D||||||
-555|totomoxtle II|20.461011072323934, -97.24781863003669|1|||||57|180D-180||||||
-555|totomoxtle II|20.459087395236324, -97.24651992765443|1|||||191|180-180D||||||
-555|totomoxtle II|20.459503803376315, -97.24635871125814|1|||||248|180D||||||
-555|totomoxtle II|20.460316524462794, -97.24548638162649|1|||||191|180D-180||||||
-569|vega de alatorre|20.04417092326033, -96.68422137024868|1|||||122|180-180D||||||
-569|vega de alatorre|20.04407428119602, -96.68433398834017|1|||||306|180D||||||
-569|vega de alatorre|20.03998201348272, -96.68076608232805|1|||||184|180-180D||||||
-569|vega de alatorre|20.04395398216332, -96.68447282213222|1|||||122|180D-180||||||
-569|vega de alatorre|20.040344219799305, -96.68030517920202|1|||||184|180D-180||||||
-43|tecolutla|20.437759799198123, -97.0865232075881|open|154|||||180-puente||||||
-112|Libramiento poniente tampico|22.275294871573323, -97.89345319605991|1|||||37|70D||||||
-112|Libramiento poniente tampico|22.27642286116995, -97.89327737834991|1|||||17|||||||
-112|Libramiento poniente tampico|22.276503353087982, -97.89333174329877|1|||||18|||||||
-49|puente nacional tampico|22.21834449747909, -97.82472994010956|open|158|||||180||||||
-14|puente nacional pánuco|22.1488043994695, -98.14490483733022|open|159|||||127||||||
-4|tepotzotlan|19.715339738927977, -99.20753039475355|open|160|||||57D||||||
-5|palmillas|20.296119371827448, -99.92907113882305|open|162|||||57D||||||
-207|palmillas bis|20.290557094539224, -99.92058085361074|open|163|||||47D-57D||||||
-207|palmillas bis|20.290993657143467, -99.91859918217719|open|163|||||57D-47D||||||
-70|polotitlan|20.22649405588257, -99.81069911854836|open|164|||||polotitlan-57D||||||
-6|querétaro|20.572130171222657, -100.47284943605749|open|165|||||45D||||||
-61|libramiento sur poniente querétaro|20.572020757496592, -100.48072833693045|1|||||96|lib.poniente-45D||||||
-61|libramiento sur poniente querétaro|20.572328964633407, -100.48087888416393|1|||||14|45D-lib. Poniente||||||
-61|libramiento sur poniente querétaro|20.570339452320177, -100.48049414471346|1|||||14|lib.poniente-45D||||||
-61|libramiento sur poniente querétaro|20.5698830800817, -100.48137156772206|1|||||96|45D-lib. Poniente||||||
-590|crespo|20.506685631721385, -100.87088731280276|open|168|||||45D||||||
-591|laja|20.509691619406876, -100.76522819495591|open|169|||||45D||||||
-592|san miguel|20.580993488317887, -100.79532000011167|open|170|||||45D||||||
-183|villagran|20.57945698935768, -100.99235156985912|open|171|||||villagran-45D||||||
-185|cerro gordo|20.590133113132463, -101.13623196099414|1|||||58|45D-celaya||||||
-185|cerro gordo|20.59191470722084, -101.1372905330159|1|||||58|43D-45D||||||
-185|cerro gordo|20.59216782205415, -101.14139312299795|1|||||51|45D-43D||||||
-185|cerro gordo|20.591853315565057, -101.13734514847903|1|||||14|43D-45D||||||
-185|cerro gordo|20.59227578797495, -101.14149236473037|1|||||14|43D-45D||||||
-185|cerro gordo|20.592272382676825, -101.14148963865495|1|||||51|43D-45D||||||
-41|salamanca|20.598480019780304, -101.18096373306501|1|||||102|45D||||||
-41|salamanca|20.599168834231897, -101.18070972620217|1|||||70|45D-manuel clutier||||||
-41|salamanca|20.597596386742083, -101.18101272807726|1|||||36|45D-manuel clutier||||||
-41|salamanca|20.599168834231897, -101.18070972620217|1|||||70|manuel clutier-45D||||||
-41|salamanca|20.597596386742083, -101.18101272807726|1|||||36|manuel clutier-45D||||||
-564|arandas|20.737489290873498, -101.38000868117318|open|178||||62|20D||||||
-564|arandas|20.735267853783842, -101.3831940318438|open|178||||43|arandas-20D||||||
-564|arandas|20.73352001610326, -101.38124091013248|open|178||||18|arandas-20D||||||
-564|arandas|20.73352001610326, -101.38124091013248|open|178||||18|20D-arandas||||||
-563|yostiro|20.601076943446127, -101.43854055492513|open|179|||||20D||||||
-550|mendoza|20.673036563093145, -101.21357279709022|open|182|||||43D||||||
-551|puerto interior|20.98387104285751, -101.54226803012496|open|183|||||43D||||||
-350|silao|20.961454867265935, -101.3847850937014|open|184|||||guanajuato eje metropolitano||||||
-350|silao|20.961454867265935, -101.3847850937014|open|185|||||||||||
-351|cervera|20.971943042997328, -101.2995001292804|open|187|||||lucas aleman-110D-lucas aleman||||||
-314|aguas buenas|20.9614766917172, -101.38477623810958|open|186|||||guanajuato eje metropolitano||||||
-120|león|21.102792570631095, -101.78459803456431|1|||||178|45D||||||
-120|león|21.098289931806878, -101.7786979590263|1|||||68|las joyas-45D||||||
-120|león|21.09742978712952, -101.7769293532643|1|||||68|45D-las joyas||||||
-123|encarnación de díaz|21.489682693175443, -102.24315141209509|1|||||169|lagos de moreno-45D-aguascalientes||||||
-123|encarnación de díaz|21.489682693175443, -102.24315141209509|1|||||71|encarnación de díaz-45D-aguascalientes||||||
-583|chichimeco|22.005821389499083, -102.35777833294763|1|||||77|libramiento aguascalientes||||||
-583|Ent. Chichimeco|22.000712228342167, -102.36006126095177|1|||||42|||||||
-583|Ent. La escondida|22.000975257831087, -102.35961333194552|1|||||35|||||||
-87|zacatecas|22.71077952370501, -102.4488686413797|open|200|||||45D||||||
+556|naranjos|21.32437866679742, -97.6251432274458|open|143|veracruz|entronque|1|171|180D-naranjos||||||
+556|naranjos|21.32710891478247, -97.62732630460962|open|144|veracruz|troncal|5|359|180D||||||
+556|naranjos|21.327219839603366, -97.627142719318|open|145|veracruz|entronque|2|188|naranjos-180D||||||
+556|naranjos|21.327001749005113, -97.62752086691968|open|145|veracruz|entronque|2|188|180D-naranjos||||||
+556|naranjos|21.324306515229246, -97.62621732295528|open|143|veracruz|entronque|1|171|naranjos-180D||||||
+464|los gil|20.886139893589686, -97.46680176876609|open|146|veracruz|troncal|6||180D||||||
+177|totomoxtle|20.461974987354953, -97.24605444541805|open|147|veracruz|entronque|1|57|180-180D||||||
+555|totomoxtle II|20.461011072323934, -97.24781863003669|open|148|veracruz|entronque|2|57|180D-180||||||
+555|totomoxtle II|20.459087395236324, -97.24651992765443|open|149|veracruz|entronque|2|191|180-180D||||||
+555|totomoxtle II|20.459503803376315, -97.24635871125814|open|150|veracruz|troncal|5|248|180D||||||
+555|totomoxtle II|20.460316524462794, -97.24548638162649|open|149|veracruz|entronque|2|191|180D-180||||||
+569|vega de alatorre|20.04417092326033, -96.68422137024868|open|151|veracruz|entronque|1|122|180-180D||||||
+569|vega de alatorre|20.04407428119602, -96.68433398834017|open|152|veracruz|troncal|5|306|180D||||||
+569|vega de alatorre|20.03998201348272, -96.68076608232805|open|153|veracruz|entronque|2|184|180-180D||||||
+569|vega de alatorre|20.04395398216332, -96.68447282213222|open|151|veracruz|entronque|1|122|180D-180||||||
+569|vega de alatorre|20.040344219799305, -96.68030517920202|open|153|veracruz|entronque|1|184|180D-180||||||
+43|tecolutla|20.437759799198123, -97.0865232075881|open|154|veracruz|troncal|2||180-puente||||||
+112|Libramiento poniente tampico|22.275294871573323, -97.89345319605991|open|155|tamaulipas|troncal|4|37|70D||||||
+112|Libramiento poniente tampico|22.27642286116995, -97.89327737834991|open|156|tamaulipas|entronque|1|17|||||||
+112|Libramiento poniente tampico|22.276503353087982, -97.89333174329877|open|158|tamaulipas|entronque|1|18|||||||
+49|puente nacional tampico|22.21834449747909, -97.82472994010956|open|158|veracruz|troncal|4||180||||||
+14|puente nacional pánuco|22.1488043994695, -98.14490483733022|open|159|veracruz|troncal|4||127||||||
+4|tepotzotlan|19.715339738927977, -99.20753039475355|open|160|edomx|troncal|20||57D||||||
+5|palmillas|20.296119371827448, -99.92907113882305|open|162|queretaro|troncal|20||57D||||||
+207|palmillas bis|20.290557094539224, -99.92058085361074|open|163|queretaro|entronque|7||47D-57D||||||
+207|palmillas bis|20.290993657143467, -99.91859918217719|open|163|queretaro|entronque|7||57D-47D||||||
+70|polotitlan|20.22649405588257, -99.81069911854836|open|164|edomx|entronque|2||polotitlan-57D||||||
+6|querétaro|20.572130171222657, -100.47284943605749|open|165|queretaro|troncal|11||45D||||||
+61|libramiento sur poniente querétaro|20.572020757496592, -100.48072833693045|open|166|queretaro|entronque|2|96|lib.poniente-45D||||||
+61|libramiento sur poniente querétaro|20.572328964633407, -100.48087888416393|open|167|queretaro|entronque|2|14|45D-lib. Poniente||||||
+61|libramiento sur poniente querétaro|20.570339452320177, -100.48049414471346|open|167|queretaro|entronque|2|14|lib.poniente-45D||||||
+61|libramiento sur poniente querétaro|20.5698830800817, -100.48137156772206|open|166|queretaro|entronque|2|96|45D-lib. Poniente||||||
+590|crespo|20.506685631721385, -100.87088731280276|open|168|guanajuato|troncal|8||45D||||||
+591|laja|20.509691619406876, -100.76522819495591|open|169|guanajuato|troncal|8||45D||||||
+592|san miguel|20.580993488317887, -100.79532000011167|open|170|guanajuato|troncal|4||45D||||||
+183|villagran|20.57945698935768, -100.99235156985912|open|171|guanajuato|entronque|1||villagran-45D||||||
+183|villagran|20.582250329091583, -100.9921653546071|open|171|guanajuato|entronque|1||||||||
+185|cerro gordo|20.590133113132463, -101.13623196099414|open|172|guanajuato|troncal|8|58|45D-celaya||||||
+185|cerro gordo|20.59191470722084, -101.1372905330159|open|172|guanajuato|entronque|2|58|43D-45D||||||
+185|cerro gordo|20.59216782205415, -101.14139312299795|open|173|guanajuato|entronque|1|51|45D-43D||||||
+185|cerro gordo|20.591853315565057, -101.13734514847903|open|174|guanajuato|entronque|1|14|43D-45D||||||
+185|cerro gordo|20.59227578797495, -101.14149236473037|open|173|guanajuato|entronque|1|14|43D-45D||||||
+185|cerro gordo|20.592272382676825, -101.14148963865495|open|174|guanajuato|entronque|1|51|43D-45D||||||
+41|salamanca|20.598480019780304, -101.18096373306501|open|175|guanajuato|troncal|6|102|45D||||||
+41|salamanca|20.599168834231897, -101.18070972620217|open|177|guanajuato|entronque|1|70|45D-manuel clutier||||||
+41|salamanca|20.597596386742083, -101.18101272807726|open|177|guanajuato|entronque|1|36|45D-manuel clutier||||||
+41|salamanca|20.599168834231897, -101.18070972620217|open|176|guanajuato|entronque|1|70|manuel clutier-45D||||||
+41|salamanca|20.597596386742083, -101.18101272807726|open|176|guanajuato|entronque|1|36|manuel clutier-45D||||||
+564|arandas|20.737489290873498, -101.38000868117318|open|178|guanajuato|troncal|6|62|20D||||||
+564|arandas|20.735267853783842, -101.3831940318438|open|178|guanajuato|entronque|1|43|arandas-20D||||||
+564|arandas|20.735267853783842, -101.3831940318438|open|178|guanajuato|entronque|1|43|arandas-20D||||||
+564|arandas|20.73352001610326, -101.38124091013248|open|178|guanajuato|entronque|1|18|arandas-20D||||||
+564|arandas|20.73352001610326, -101.38124091013248|open|178|guanajuato|entronque|1|18|20D-arandas||||||
+563|yostiro|20.601076943446127, -101.43854055492513|open|179|guanajuato|troncal|4||20D||||||
+550|mendoza|20.673036563093145, -101.21357279709022|open|182|guanajuato|troncal|10||43D||||||
+551|puerto interior|20.98387104285751, -101.54226803012496|open|183|guanajuato|troncal|10||43D||||||
+350|silao|20.961454867265935, -101.3847850937014|open|184|guanajuato|troncal|4||guanajuato eje metropolitano||||||
+350|silao|20.961454867265935, -101.3847850937014|open|185|guanajuato|troncal|4||||||||
+351|cervera|20.971943042997328, -101.2995001292804|open|187|guanajuato|entronque|4||lucas aleman-110D-lucas aleman||||||
+314|aguas buenas|20.9614766917172, -101.38477623810958|open|186|guanajuato|troncal|8||guanajuato eje metropolitano||||||
+120|león|21.102792570631095, -101.78459803456431|open|188|guanajuato|troncal|6|178|45D||||||
+120|león|21.098289931806878, -101.7786979590263|open|189|guanajuato|entronque|1|68|las joyas-45D||||||
+120|león|21.09742978712952, -101.7769293532643|open|190|guanajuato|entronque|1|68|45D-las joyas||||||
+123|encarnación de díaz|21.489682693175443, -102.24315141209509|open|195|jalisco|troncal|3|169|lagos de moreno-45D-aguascalientes||||||
+123|encarnación de díaz|21.489682693175443, -102.24315141209509|open|196|jalisco|troncal|3|71|encarnación de díaz-45D-aguascalientes||||||
+583|chichimeco|22.005821389499083, -102.35777833294763|open|197|aguascalientes|troncal|6|77|libramiento aguascalientes||||||
+583|Ent. Chichimeco|22.000712228342167, -102.36006126095177|open|198|aguascalientes|entronque|2|42|||||||
+583|Ent. La escondida|22.000975257831087, -102.35961333194552|open|199|aguascalientes|entronque|2|35|||||||
+87|zacatecas|22.71077952370501, -102.4488686413797|open|200|zacatecas|troncal|4||45D||||||
 114|jalostotitlan|21.117606005742108, -102.45806476923244|1|||||202|80D||||||
 114|jalostotitlan|21.117625940528182, -102.45817194718218|1|||||118|jalostitlan-80D||||||
 114|jalostotitlan|21.117441142045102, -102.45796734964047|1|||||118|80D-jalostitlan||||||
