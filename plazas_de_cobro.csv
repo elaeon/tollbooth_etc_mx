@@ -563,81 +563,124 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 102|paso morelos|18.231497855655913, -99.21549921330978|open|346|guerrero|troncal|2|120|95D-1 MORELOS-CHILPANCINGO||||||
 102|paso morelos|18.231497855655913, -99.21549921330978|open|347|guerrero|troncal|2|76|1-95D||||||
 103|palo blanco|17.42396603794243, -99.4668808284532|open|348|guerrero|troncal|9||95D||||||
-104|la venta|16.92830587416863, -99.80187944058898|open|349|||||95D||||||
-223|la venta bis|16.938358316580988, -99.81995535427467|open|350|||||200D||||||
-223|la venta bis|16.942207675008497, -99.82249843452567|open|350|||||200D||||||
-56|zacapalco|18.5379427134007, -99.44741509547512|open|351|||||95D||||||
-99|taxco|18.58865074498465, -99.55997457790419|open|352|||||95D||||||
-3|iguala|18.336205090551918, -99.50832571676023|open|353|||||91D||||||
-423|las cruces (maxitunel)|16.885991421590315, -99.83927944269888|open|354|||||95D||||||
-429|cayaco (macrotunel)|16.817726468954287, -99.81749010113987|open|355|||||Autopista macrotúnel||||||
-420|libramiento tecpan|17.196983036834542, -100.62673256934033|open|356|||||200D||||||
-159|zapotlanejo|20.615679214047034, -103.08930548760945|1|||||74|90-80D-90||||||
-159|zapotlanejo||1|||||172|||||||
-159|zapotlanejo||1|||||127|||||||
-159|zapotlanejo||1|||||191|||||||
-159|zapotlanejo||1|||||124|||||||
-159|zapotlanejo||1|||||72|||||||
-159|zapotlanejo||1|||||73|||||||
-159|zapotlanejo||1|||||68|||||||
-159|zapotlanejo (el vado)|20.60474405077011, -103.15867664246217|1|||||37|90D||||||
-159|zapotlanejo (el vado)|20.60477043446359, -103.15964438905226|1|||||37|90D-union||||||
-159|zapotlanejo (el cortijo)|20.619696155309637, -103.20616055682282|1|||||26|90D-al vado||||||
-159|zapotlanejo (el cortijo)|20.620155091535022, -103.20505508901797|1|||||26|90D (guadalajara)||||||
-159|Zapotlanejo (periférico)|20.619340547812097, -103.21627392270057|1|||||24|periferco ote-90D||||||
-159|Zapotlanejo (periférico)|20.619128181442314, -103.21552433484176|1|||||24|90D-periferico ote||||||
-159|zapotlanejo (arroyo de enmedio)|20.615813352143217, -103.24281556995683|1|||||17|90D zapotlanejo guadalajara (entrada)||||||
-159|zapotlanejo (arroyo de enmedio)|20.615478327544395, -103.24277370516198|1|||||17|90D-tonalá (salida)||||||
-447|libramiento sur guadalajara (macrolibramiento)|20.587536559203606, -103.10161805782742|1|||||74|15D-macrolibramiento||||||
-447|libramiento sur guadalajara (macrolibramiento)|20.588657766545925, -103.1017441931241|1|||||74|macrolibramiento-15D||||||
-447|libramiento sur guadalajara (la laja)|20.58802769070722, -103.09844669831183|1|||||10|15D-macrolibramiento||||||
-447|libramiento sur guadalajara (la laja)|20.585980427706755, -103.10065602868633|1|||||10|macrolibramiento-15D||||||
-447|libramiento guadalajara|20.572774701753723, -103.10136553143488|1|||||94|15D-macrolibramiento-15D||||||
-325|chapala|20.3902079228279, -103.30216670470058|open|371|||||macrolibramiento||||||
-405|santa cecilia|20.442508658542227, -103.5457950992952|1|||||295|macrolibramiento||||||
-405|santa cecilia||not_found|||||218|||||||
-405|santa cecilia||not_found|||||13|||||||
-57|acatlan II|20.37345667603661, -103.57631833223074|open|375|||||54D||||||
-58|sayula|19.933263452542814, -103.52992416171546|open|376|||||54D||||||
-59|sayula remota|19.879130875216404, -103.51932985418757|open|377|||||401-54D-401||||||
-60|san marcos II|19.40918518118616, -103.52790845500914|open|378|||||54D||||||
-901|cuyutlan|18.927824674673065, -104.0814923971006|open|379|||||200D||||||
-409|yago|21.84466834652707, -105.08490605969492|open|396||||75|15D-yago||||||
-409|yago|21.84378680616447, -105.08535830137257|open|396||||75|yago-15D||||||
-409|yago|21.845224422430572, -105.08652478506053|open|396|||||yago-15D||||||
-409|yago|21.846888493745354, -105.08519028311795|open|396|||||15D-yago||||||
-401|estación ruiz|21.95182991382481, -105.11604882560371|1|||||205|15D||||||
-401|estación ruiz|21.9530887161182, -105.12088735876337|1|||||95|15D-carr. Tijuana||||||
-402|acaponeta|22.453868558300147, -105.42474122248902|1|||||420|15D||||||
-402|acaponeta|22.45409818879467, -105.41878797767092|1|||||210|68-15D-68||||||
-400|El rosario|22.984690332700566, -105.87807412490908|1|||||240|15D||||||
-400|El rosario|22.985110789150852, -105.87525673957157|1|||||120|rosario-15D-rosario||||||
-604|vainillo|23.216168571820468, -106.26034479817824|1|||||71|15D||||||
-604|vainillo|23.216693492810215, -106.26487451698048|1|||||60|15-15D-15||||||
-604|vainillo|23.216693492810215, -106.26487451698048|1|||||27|15D-15||||||
-124|mármol|23.47117593583882, -106.56953131594183|open|406|||||15D||||||
-601|costa rica|24.570263179009334, -107.43020062145355|open|407|||||15D||||||
-408|quila||not_found|||||218|||||||
-408|quila|24.3966229440113, -107.27190764118328|1|||||154|la cruz-quila||||||
-408|quila|24.397647820170135, -107.26999773733633|1|||||64|Quila-costa rica||||||
-603|san pedro-libramiento culhuacan|24.69342264306318, -107.52545219771793|open|411|||||15D||||||
-10|puente nacional culiacan|24.94886733155921, -107.5456562983661|open|412|||||15||||||
-11|puente nacional sinaloa|25.51285551119112, -108.34763370725857|open|413|||||15||||||
-557|esperanza hornos|27.60454026623095, -109.89877533004463|1|||||215|libramiento ciudad obregón||||||
-557|esperanza hornos|27.604245909616175, -109.90163876813612|1|||||115|libramiento ciudad obregón-117||||||
-557|esperanza hornos|27.606910229393343, -109.90310133337965|1|||||115|117-libramiento ciudad obregon||||||
-150|esperanza|27.603744667460937, -109.93908526422884|1|||||109|15||||||
-148|estación don|26.849791001665388, -109.37326206852237|open|416||||109|15||||||
-149|fundición|27.32039761314023, -109.71978637933714|open|417|||||15||||||
-151|guaymas|28.036517969585383, -110.92414646858674|open|419|||||15D||||||
-152|hermosillo|29.2207043648971, -110.93020256801417|open|420|||||15||||||
-153|magdalena|30.629278285658106, -110.94871876882378|open|421|||||15D||||||
-559|sahuaripa|29.030222826340893, -110.85554085804226|1|||||74|10D-20-10D||||||
-559|sahuaripa|29.02970183857509, -110.85426082999997|1|||||151|10D|A2|||||
-559|sahuaripa|29.030270982054017, -110.85305613473392|1|||||77|20-10D-20||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open||||||arco norte (40D)||||||
-442|acambay|19.923420387940723, -99.84427680708129|1||||||||||||
-441|jilotepec|19.976578425529574, -99.53150130772515|1||||||||||||
+104|la venta|16.92830587416863, -99.80187944058898|open|349|guerrero|troncal|7||95D||||||
+223|la venta bis|16.938358316580988, -99.81995535427467|open|350|guerrero|troncal|3||200D||||||
+223|la venta bis|16.942207675008497, -99.82249843452567|open|350|guerrero|troncal|3||200D||||||
+56|zacapalco|18.5379427134007, -99.44741509547512|open|351|guerrero|troncal|4||95D||||||
+99|taxco|18.58865074498465, -99.55997457790419|open|352|guerrero|troncal|3||95D||||||
+3|iguala|18.336205090551918, -99.50832571676023|open|353|guerrero|troncal|4||91D||||||
+423|las cruces (maxitunel)|16.885991421590315, -99.83927944269888|open|354|guerrero|troncal|11||95D||||||
+429|cayaco (macrotunel)|16.817726468954287, -99.81749010113987|open|355|guerrero|troncal|8||Autopista macrotúnel||||||
+420|libramiento tecpan|17.196983036834542, -100.62673256934033|open|356|guerrero|troncal|4||200D||||||
+159|zapotlanejo|20.615679214047034, -103.08930548760945|open|363|jalisco|troncal|6|74|90-80D-90||||||
+159|zapotlanejo|||364||||172|||||||
+159|zapotlanejo|||357||||127|||||||
+159|zapotlanejo|||358||||191|||||||
+159|zapotlanejo|||359||||124|||||||
+159|zapotlanejo|||360||||72|||||||
+159|zapotlanejo|||361||||73|||||||
+159|zapotlanejo|||362||||68|||||||
+159|zapotlanejo (el vado)|20.60474405077011, -103.15867664246217|open|365|jalisco|entronque|1|37|90D||||||
+159|zapotlanejo (el vado)|20.60477043446359, -103.15964438905226|open|365|jalisco|entronque|1|37|90D-union||||||
+159|zapotlanejo (el cortijo)|20.619696155309637, -103.20616055682282|open|366|jalisco|entronque|1|26|90D-al vado||||||
+159|zapotlanejo (el cortijo)|20.620155091535022, -103.20505508901797|open|366|jalisco|entronque|1|26|90D (guadalajara)||||||
+159|Zapotlanejo (periférico)|20.619340547812097, -103.21627392270057|open|367|jalisco|entronque|1|24|periferco ote-90D||||||
+159|Zapotlanejo (periférico)|20.619128181442314, -103.21552433484176|open|367|jalisco|entronque|1|24|90D-periferico ote||||||
+159|zapotlanejo (arroyo de enmedio)|20.615813352143217, -103.24281556995683|open|368|jalisco|entronque|1|17|90D zapotlanejo guadalajara (entrada)||||||
+159|zapotlanejo (arroyo de enmedio)|20.615478327544395, -103.24277370516198|open|368|jalisco|entronque|1|17|90D-tonalá (salida)||||||
+447|libramiento sur guadalajara (macrolibramiento)|20.587536559203606, -103.10161805782742|open|363|jalisco|entronque|1|74|15D-macrolibramiento||||||
+447|libramiento sur guadalajara (macrolibramiento)|20.588657766545925, -103.1017441931241|open|363|jalisco|entronque|1|74|macrolibramiento-15D||||||
+447|libramiento sur guadalajara (la laja)|20.58802769070722, -103.09844669831183|open|370|jalisco|entronque|2|10|15D-macrolibramiento||||||
+447|libramiento sur guadalajara (la laja)|20.585980427706755, -103.10065602868633|open|370|jalisco|entronque|2|10|macrolibramiento-15D||||||
+447|libramiento guadalajara|20.572774701753723, -103.10136553143488|open|369|jalisco|troncal|10|94|15D-macrolibramiento-15D||||||
+325|chapala|20.3902079228279, -103.30216670470058|open|371|jalisco|troncal|10||macrolibramiento||||||
+405|santa cecilia|20.442508658542227, -103.5457950992952|open|372|jalisco|troncal|10|295|macrolibramiento||||||
+405|santa cecilia||not_found|373||||218|||||||
+405|santa cecilia||not_found|374||||13|||||||
+57|acatlan II|20.37345667603661, -103.57631833223074|open|375|jalisco|troncal|10||54D||||||
+58|sayula|19.933263452542814, -103.52992416171546|open|376|jalisco|troncal|11||54D||||||
+59|sayula remota|19.879130875216404, -103.51932985418757|open|377|jalisco|troncal|5||401-54D-401||||||
+60|san marcos II|19.40918518118616, -103.52790845500914|open|378|jalisco|troncal|8||54D||||||
+901|cuyutlan|18.927824674673065, -104.0814923971006|open|379|colima|troncal|8||200D||||||
+409|yago|21.84466834652707, -105.08490605969492|open|396|nayarit|entronque|1|75|15D-yago||||||
+409|yago|21.84378680616447, -105.08535830137257|open|396|nayarit|entronque|1|75|yago-15D||||||
+409|yago|21.845224422430572, -105.08652478506053|open|396|nayarit|entronque|1||yago-15D||||||
+409|yago|21.846888493745354, -105.08519028311795|open|396|nayarit|entronque|1||15D-yago||||||
+401|estación ruiz|21.95182991382481, -105.11604882560371|open|397|nayarit|troncal|4|205|15D||||||
+401|estación ruiz|21.9530887161182, -105.12088735876337|open|398|nayarit|entronque|2|95|15D-carr. Tijuana||||||
+402|acaponeta|22.453868558300147, -105.42474122248902|open|399|nayarit|troncal|5|420|15D||||||
+402|acaponeta|22.45409818879467, -105.41878797767092|open|400|nayarit|entronque|2|210|68-15D-68||||||
+400|El rosario|22.984690332700566, -105.87807412490908|open|401|sinaloa|troncal|4|240|15D||||||
+400|El rosario|22.985110789150852, -105.87525673957157|open|402|sinaloa|entronque|2|120|rosario-15D-rosario||||||
+604|vainillo|23.216168571820468, -106.26034479817824|open|403|sinaloa|troncal|6|71|15D||||||
+604|vainillo|23.216693492810215, -106.26487451698048|open|404|sinaloa|entronque|3|60|15-15D-15||||||
+604|vainillo|23.216693492810215, -106.26487451698048|open|405|sinaloa|entronque|1|27|15D-15||||||
+124|mármol|23.47117593583882, -106.56953131594183|open|406|sinaloa|troncal|6||15D||||||
+601|costa rica|24.570263179009334, -107.43020062145355|open|407|sinaloa|troncal|6||15D||||||
+408|quila||not_found|408||||218|||||||
+408|quila|24.396618911926, -107.2718288542847|open|409|sinaloa|entronque|1|154|la cruz-quila||||||
+408|quila|24.39663790917245, -107.27197139670541|open|410|sinaloa|entronque|1||||||||
+408|quila|24.397553576834305, -107.2700235664532|open|409|sinaloa|entronque|1|64|Quila-costa rica||||||
+408|quila|24.397677731608248, -107.26997325462578|open|410|sinaloa|entronque|1||||||||
+603|san pedro-libramiento culhuacan|24.69342264306318, -107.52545219771793|open|411|sinaloa|troncal|6||15D||||||
+10|puente nacional culiacan|24.94886733155921, -107.5456562983661|open|412|sinaloa|troncal|4||15||||||
+11|puente nacional sinaloa|25.51285551119112, -108.34763370725857|open|413|sinaloa|troncal|6||15||||||
+557|esperanza hornos|27.60454026623095, -109.89877533004463|open|414|sonora|troncal|6|215|libramiento ciudad obregón||||||
+557|esperanza hornos|27.604245909616175, -109.90163876813612|open|415|sonora|entronque|1|115|libramiento ciudad obregón-117||||||
+557|esperanza hornos|27.606910229393343, -109.90310133337965|open|415|sonora|entronque|1|115|117-libramiento ciudad obregon||||||
+150|esperanza|27.603744667460937, -109.93908526422884|open|418|sonora|troncal|6|109|15||||||
+148|estación don|26.849791001665388, -109.37326206852237|open|416|sonora|troncal|5|109|15||||||
+149|fundición|27.32039761314023, -109.71978637933714|open|417|sonora|troncal|5||15||||||
+151|guaymas|28.036517969585383, -110.92414646858674|open|419|sonora|troncal|5||15D||||||
+152|hermosillo|29.2207043648971, -110.93020256801417|open|420|sonora|troncal|8||15||||||
+153|magdalena|30.629278285658106, -110.94871876882378|open|421|sonora|troncal|5||15D||||||
+559|sahuaripa|29.030222826340893, -110.85554085804226|open|424|sonora|entronque|1|74|10D-20-10D||||||
+559|sahuaripa|29.030222826340893, -110.85554085804226|open|422|sonora|entronque|1|74|10D-20-10D||||||
+559|sahuaripa|29.02970183857509, -110.85426082999997|open|423|sonora|troncal|6|151|10D|A2|||||
+559|sahuaripa|29.030270982054017, -110.85305613473392|open|424|sonora|entronque|1|77|20-10D-20||||||
+559|sahuaripa|29.030270982054017, -110.85305613473392|open|422|sonora|entronque|1|77|20-10D-20||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|524|edomx|troncal|10||arco norte (40D)||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|525|edomx|troncal|10||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|526|edomx|troncal|10||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|527|edomx|troncal|10||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|528|edomx|troncal|10||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|529|edomx|troncal|10||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|530|edomx|troncal|10||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|531|edomx|troncal|10||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|532|edomx|troncal|10||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|533|edomx|troncal|10||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|534|edomx|troncal|10||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|535|edomx|troncal|10||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|536|edomx|troncal|10||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|537|edomx|troncal|10||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|538|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|539|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|540|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|541|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|542|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|543|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|544|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|545|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|546|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|547|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|548|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|549|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|550|edomx|entronque|6||||||||
+442|acambay|19.923420387940723, -99.84427680708129|open|551|edomx|entronque|6||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|552|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|553|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|554|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|555|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|556|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|557|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|558|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|559|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|560|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|561|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|562|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|563|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|564|edomx|entronque|5||||||||
+441|jilotepec|19.976578425529574, -99.53150130772515|open|565|edomx|entronque|5||||||||
 440|Queretaro-arco norte|19.997873125950655, -99.49206331200297|1||||||||||||
 440|Queretaro-arco norte|19.997798680886277, -99.49186221077878|1||||||||||||
 440|Queretaro-arco norte|19.996284694989978, -99.49039081182553|1||||||||||||
