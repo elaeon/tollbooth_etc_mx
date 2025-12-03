@@ -1219,18 +1219,44 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 567|ayotuxco|19.400006461151243, -99.38095928490701|open|765|edomx|entronque|1||||||||
 567|ayotuxco|19.400006461151243, -99.38095928490701|open|757|edomx|entronque|1||||||||
 567|ayotuxco|19.400006461151243, -99.38095928490701|open|759|edomx|entronque|1||134D-ayotuzco-134D||||||
-|||||||||134D-ayotuzco-134D||||||
-565|cerrillo|19.326359656928048, -99.51592085001816|1||||||134D||||||
-86|san josé del cabo|23.049953752038192, -109.71956680893206|1||||||1D||||||
-330|aeropuerto de los cabos|23.150499203637988, -109.74050665703166|1||||||1D||||||
-332|san lucas|22.92430800546661, -109.91732401751469|1||||||1D||||||
-332|el mangle|22.953998414854038, -109.97393402303173|1||||||1D||||||
-473|rayón|21.86354184128592, -99.62340313376347|open|782|||||70D||||||
-474|tamasopo|21.905671185567915, -99.38510009258695|1||||||70D||||||
-474|tamasopo|21.90415513549839, -99.38470607375386|1||||||70D||||||
-475|tambaca|21.940184287564303, -99.27374145445926|1||||||70D||||||
-475|tambaca|21.939207229162495, -99.27004752043456|1||||||70D||||||
-476|la pitahaya|21.967590303257015, -99.17456704099263|open|783|||||70D||||||
+565|cerrillo|19.326300055487266, -99.51586999613077|open|756|edomx|troncal|5||134D-ayotuzco-134D||||||
+565|cerrillo|19.326300055487266, -99.51586999613077|open|757|edomx|troncal|5||134D||||||
+565|cerrillo|19.326300055487266, -99.51586999613077|open|758|edomx|troncal|5||||||||
+565|cerrillo|19.326439307341055, -99.51602288622689|open|761|edomx|troncal|5||||||||
+565|cerrillo|19.326439307341055, -99.51602288622689|open|764|edomx|troncal|5||||||||
+565|cerrillo|19.326439307341055, -99.51602288622689|open|767|edomx|troncal|5||||||||
+86|san josé del cabo|23.049953752038192, -109.71956680893206|open|770|baja california sur|troncal|5||1D||||||
+86|san josé del cabo|23.049953752038192, -109.71956680893206|open|771|baja california sur|troncal|5||||||||
+86|san josé del cabo|23.049953752038192, -109.71956680893206|open|773|baja california sur|troncal|5||||||||
+86|san josé del cabo|23.049953752038192, -109.71956680893206|open|781|baja california sur|troncal|5||||||||
+330|aeropuerto de los cabos|23.150499203637988, -109.74050665703166|open|768|baja california sur|troncal|7||||||||
+330|aeropuerto de los cabos|23.150499203637988, -109.74050665703166|open|769|baja california sur|troncal|7||||||||
+330|aeropuerto de los cabos|23.150499203637988, -109.74050665703166|open|774|baja california sur|troncal|7||||||||
+330|aeropuerto de los cabos|23.150499203637988, -109.74050665703166|open|775|baja california sur|troncal|7||||||||
+330|aeropuerto de los cabos|23.150499203637988, -109.74050665703166|open|778|baja california sur|troncal|7||||||||
+332|san lucas|22.92430800546661, -109.91732401751469|open|772|baja california sur|troncal|4||||||||
+332|san lucas|22.92430800546661, -109.91732401751469|open|780|baja california sur|troncal|4||||||||
+332|san lucas|22.92430800546661, -109.91732401751469|open|777|baja california sur|troncal|4||||||||
+332|san lucas|22.92430800546661, -109.91732401751469|open|772|baja california sur|troncal|4||1D||||||
+332|san lucas|22.92430800546661, -109.91732401751469|open|770|baja california sur|troncal|4||||||||
+332|san lucas|22.92430800546661, -109.91732401751469|open|769|baja california sur|troncal|4||1D||||||
+332|el mangle|22.953998414854038, -109.97393402303173|open|771|baja california sur|troncal|4||1D||||||
+332|el mangle|22.953998414854038, -109.97393402303173|open|772|baja california sur|troncal|4||||||||
+332|el mangle|22.953998414854038, -109.97393402303173|open|775|baja california sur|troncal|4||||||||
+332|el mangle|22.953998414854038, -109.97393402303173|open|776|baja california sur|troncal|4||||||||
+332|el mangle|22.953998414854038, -109.97393402303173|open|779|baja california sur|troncal|4||||||||
+473|rayón|21.86354184128592, -99.62340313376347|open|782|san luis potosi|troncal|4||70D||||||
+474|tamasopo|21.905653111109025, -99.38508731714963|open|787|san luis potosi|entronque|1||70D||||||
+474|tamasopo|21.905733391429475, -99.3851074834443|open|786|san luis potosi|entronque|1||||||||
+474|tamasopo|21.904150612821095, -99.38468661862133|open|788|san luis potosi|entronque|1||||||||
+474|tamasopo|21.904190470935053, -99.38474844163487|open|786|san luis potosi|entronque|1||70D||||||
+475|tambaca|21.940189640225807, -99.27371746730381|open|784|san luis potosi|entronque|1||70D||||||
+475|tambaca|21.940170858927655, -99.27377544950494|open|784|san luis potosi|entronque|1||||||||
+475|tambaca|21.939207229162495, -99.27004752043456|open|784|san luis potosi|entronque|1||70D||||||
+475|tambaca|21.939207229162495, -99.27004752043456|open|788|san luis potosi|entronque|1||||||||
+476|la pitahaya|21.967590303257015, -99.17456704099263|open|783|san luis potosi|troncal|4||||||||
+||||785|||||||||||
+|||||||||70D||||||
 825|libramiento elevado de puebla – periferico|19.131561292410307, -98.26814299699545|1||||||150D||||||
 825|libramiento elevado de puebla – santa ana ent.|19.084936370368098, -98.19256498665584|1||||||150D||||||
 825|libramiento elevado de puebla – santa ana salida|19.083618557422234, -98.18411495454212|1||||||150D||||||
