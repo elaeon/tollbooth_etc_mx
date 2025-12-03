@@ -639,35 +639,35 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 559|sahuaripa|29.02970183857509, -110.85426082999997|open|423|sonora|troncal|6|151|10D|A2|||||
 559|sahuaripa|29.030270982054017, -110.85305613473392|open|424|sonora|entronque|1|77|20-10D-20||||||
 559|sahuaripa|29.030270982054017, -110.85305613473392|open|422|sonora|entronque|1|77|20-10D-20||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|524|edomx|troncal|5||arco norte (40D)||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|525|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|526|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|527|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|528|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|529|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|530|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|531|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|532|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|533|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|534|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|535|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|536|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|537|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|551|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|561|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|567|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|576|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|589|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|602|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|616|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|737|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|630|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|644|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|659|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|674|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|689|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|704|edomx|troncal|5||||||||
-443|atlacomulco|19.911796932591137, -99.85253982523166|open|719|edomx|troncal|5||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|524|edomx|troncal|4||arco norte (40D)||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|525|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|526|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|527|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|528|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|529|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|530|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|531|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|532|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|533|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|534|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|535|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|536|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|537|edomx|troncal|4||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|551|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|561|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|567|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|576|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|589|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|602|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|616|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|737|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|630|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|644|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|659|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|674|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|689|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|704|edomx|troncal|6||||||||
+443|atlacomulco|19.911796932591137, -99.85253982523166|open|719|edomx|troncal|6||||||||
 442|acambay|19.923420387940723, -99.84427680708129|open|538|edomx|entronque|2||||||||
 442|acambay|19.923420387940723, -99.84427680708129|open|539|edomx|entronque|2||||||||
 442|acambay|19.923420387940723, -99.84427680708129|open|540|edomx|entronque|2||||||||
@@ -760,21 +760,189 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 440|Queretaro-arco norte|19.998659745025932, -99.48778711267755|open|565|edomx|entronque|2||||||||
 440|Queretaro-arco norte|19.998659745025932, -99.48778711267755|open|549|edomx|entronque|2||||||||
 440|Queretaro-arco norte|19.998659745025932, -99.48778711267755|open|535|edomx|entronque|2||||||||
+440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|open|581|edomx|entronque|2||||||||
+440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|open|580|edomx|entronque|2||||||||
+440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|open|579|edomx|entronque|2||||||||
+440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|open|577|edomx|entronque|2||||||||
+440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|open|575|edomx|entronque|2||||||||
+440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|open|574|edomx|entronque|2||||||||
+440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|open|573|edomx|entronque|2||||||||
+440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|open|572|edomx|entronque|2||||||||
+440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|open|571|edomx|entronque|2||||||||
+440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|open|570|edomx|entronque|2||||||||
+440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|open|569|edomx|entronque|2||||||||
+440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|open|597|edomx|entronque|4||||||||
+440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|open|609|edomx|entronque|4||||||||
+440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|open|623|edomx|entronque|4||||||||
+440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|open|744|edomx|entronque|4||||||||
+440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|open|637|edomx|entronque|4||||||||
+440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|open|649|edomx|entronque|4||||||||
+440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|open|663|edomx|entronque|4||||||||
+440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|open|678|edomx|entronque|4||||||||
+440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|open|693|edomx|entronque|4||||||||
+440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|open|708|edomx|entronque|4||||||||
+440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|open|723|edomx|entronque|4||||||||
+438|tula I|20.10007105433363, -99.28348673487717|open|628|hidalgo|entronque|2||||||||
+438|tula I|20.10007105433363, -99.28348673487717|open|747|hidalgo|entronque|2||||||||
+438|tula I|20.10007105433363, -99.28348673487717|open|641|hidalgo|entronque|2||||||||
+438|tula I|20.10007105433363, -99.28348673487717|open|653|hidalgo|entronque|2||||||||
+438|tula I|20.10007105433363, -99.28348673487717|open|666|hidalgo|entronque|2||||||||
+438|tula I|20.10007105433363, -99.28348673487717|open|680|hidalgo|entronque|2||||||||
+438|tula I|20.10007105433363, -99.28348673487717|open|695|hidalgo|entronque|2||||||||
+438|tula I|20.10007105433363, -99.28348673487717|open|710|hidalgo|entronque|2||||||||
+438|tula I|20.10007105433363, -99.28348673487717|open|725|hidalgo|entronque|2||||||||
+438|tula I|20.10015468332161, -99.28350486060847|open|612|hidalgo|entronque|1||||||||
+438|tula I|20.10015468332161, -99.28350486060847|open|606|hidalgo|entronque|1||||||||
+438|tula I|20.10015468332161, -99.28350486060847|open|607|hidalgo|entronque|1||||||||
+438|tula I|20.10015468332161, -99.28350486060847|open|608|hidalgo|entronque|1||||||||
+438|tula I|20.10015468332161, -99.28350486060847|open|604|hidalgo|entronque|1||||||||
+438|tula I|20.10015468332161, -99.28350486060847|open|602|hidalgo|entronque|1||||||||
+438|tula I|20.09813858310726, -99.28607748173283|open|598|hidalgo|entronque|1||||||||
+438|tula I|20.09813858310726, -99.28607748173283|open|580|hidalgo|entronque|1||||||||
+438|tula I|20.09813858310726, -99.28607748173283|open|562|hidalgo|entronque|1||||||||
+438|tula I|20.09813858310726, -99.28607748173283|open|547|hidalgo|entronque|1||||||||
+438|tula I|20.09813858310726, -99.28607748173283|open|533|hidalgo|entronque|1||||||||
+438|tula I|20.09971627998141, -99.28054465615254|open|628|hidalgo|entronque|1||||||||
+438|tula I|20.09971627998141, -99.28054465615254|open|747|hidalgo|entronque|1||||||||
+438|tula I|20.09971627998141, -99.28054465615254|open|641|hidalgo|entronque|1||||||||
+438|tula I|20.09971627998141, -99.28054465615254|open|653|hidalgo|entronque|1||||||||
+438|tula I|20.09971627998141, -99.28054465615254|open|666|hidalgo|entronque|1||||||||
+438|tula I|20.09971627998141, -99.28054465615254|open|680|hidalgo|entronque|1||||||||
+438|tula I|20.09971627998141, -99.28054465615254|open|695|hidalgo|entronque|1||||||||
+438|tula I|20.09971627998141, -99.28054465615254|open|710|hidalgo|entronque|1||||||||
+438|tula I|20.09971627998141, -99.28054465615254|open|725|hidalgo|entronque|1||||||||
+438|tula I|20.098237587246164, -99.28604456081915|open|613|hidalgo|entronque|1||||||||
+438|tula I|20.098237587246164, -99.28604456081915|open|611|hidalgo|entronque|1||||||||
+438|tula I|20.098237587246164, -99.28604456081915|open|610|hidalgo|entronque|1||||||||
+438|tula I|20.098237587246164, -99.28604456081915|open|606|hidalgo|entronque|1||||||||
+438|tula I|20.098237587246164, -99.28604456081915|open|605|hidalgo|entronque|1||||||||
+438|tula I|20.098237587246164, -99.28604456081915|open|603|hidalgo|entronque|1||||||||
+438|tula I|20.098237587246164, -99.28604456081915|open|601|hidalgo|entronque|1||||||||
+438|tula I|20.098237587246164, -99.28604456081915|open|600|hidalgo|entronque|1||||||||
+438|tula I|20.098237587246164, -99.28604456081915|open|599|hidalgo|entronque|1||||||||
+438|tula I|20.09969291646326, -99.28068154539648|open|612|hidalgo|entronque|1||||||||
+438|tula I|20.09969291646326, -99.28068154539648|open|609|hidalgo|entronque|1||||||||
+438|tula I|20.09969291646326, -99.28068154539648|open|607|hidalgo|entronque|1||||||||
+438|tula I|20.09969291646326, -99.28068154539648|open|608|hidalgo|entronque|1||||||||
+438|tula I|20.09969291646326, -99.28068154539648|open|604|hidalgo|entronque|1||||||||
+438|tula I|20.09969291646326, -99.28068154539648|open|602|hidalgo|entronque|1||||||||
+438|tula I|20.098181542183756, -99.28318697631123|open|598|hidalgo|entronque|2||||||||
+438|tula I|20.098181542183756, -99.28318697631123|open|580|hidalgo|entronque|2||||||||
+438|tula I|20.098181542183756, -99.28318697631123|open|562|hidalgo|entronque|2||||||||
+438|tula I|20.098181542183756, -99.28318697631123|open|547|hidalgo|entronque|2||||||||
+438|tula I|20.098181542183756, -99.28318697631123|open|533|hidalgo|entronque|2||||||||
+438|tula I|20.09810005336022, -99.28316189174686|open|613|hidalgo|entronque|1||||||||
+438|tula I|20.09810005336022, -99.28316189174686|open|611|hidalgo|entronque|1||||||||
+438|tula I|20.09810005336022, -99.28316189174686|open|610|hidalgo|entronque|1||||||||
+438|tula I|20.09810005336022, -99.28316189174686|open|606|hidalgo|entronque|1||||||||
+438|tula I|20.09810005336022, -99.28316189174686|open|605|hidalgo|entronque|1||||||||
+438|tula I|20.09810005336022, -99.28316189174686|open|603|hidalgo|entronque|1||||||||
+438|tula I|20.09810005336022, -99.28316189174686|open|601|hidalgo|entronque|1||||||||
+438|tula I|20.09810005336022, -99.28316189174686|open|600|hidalgo|entronque|1||||||||
+438|tula I|20.09810005336022, -99.28316189174686|open|599|hidalgo|entronque|1||||||||
+439|tula II|20.070348441560224, -99.36824926996206|open|581|hidalgo|entronque|2||||||||
+439|tula II|20.070348441560224, -99.36824926996206|open|564|hidalgo|entronque|2||||||||
+439|tula II|20.070348441560224, -99.36824926996206|open|548|hidalgo|entronque|2||||||||
+439|tula II|20.070348441560224, -99.36824926996206|open|534|hidalgo|entronque|2||||||||
+439|tula II|20.071904806746954, -99.36769688732437|open|598|hidalgo|entronque|1||||||||
+439|tula II|20.071904806746954, -99.36769688732437|open|596|hidalgo|entronque|1||||||||
+439|tula II|20.071904806746954, -99.36769688732437|open|593|hidalgo|entronque|1||||||||
+439|tula II|20.071904806746954, -99.36769688732437|open|592|hidalgo|entronque|1||||||||
+439|tula II|20.071904806746954, -99.36769688732437|open|591|hidalgo|entronque|1||||||||
+439|tula II|20.071904806746954, -99.36769688732437|open|588|hidalgo|entronque|1||||||||
+439|tula II|20.071904806746954, -99.36769688732437|open|587|hidalgo|entronque|1||||||||
+439|tula II|20.071904806746954, -99.36769688732437|open|586|hidalgo|entronque|1||||||||
+439|tula II|20.071904806746954, -99.36769688732437|open|585|hidalgo|entronque|1||||||||
+439|tula II|20.071904806746954, -99.36769688732437|open|584|hidalgo|entronque|1||||||||
+439|tula II|20.07268919800209, -99.36882570550684|open|612|hidalgo|entronque|2||||||||
+439|tula II|20.07268919800209, -99.36882570550684|open|625|hidalgo|entronque|2||||||||
+439|tula II|20.07268919800209, -99.36882570550684|open|746|hidalgo|entronque|2||||||||
+439|tula II|20.07268919800209, -99.36882570550684|open|639|hidalgo|entronque|2||||||||
+439|tula II|20.07268919800209, -99.36882570550684|open|651|hidalgo|entronque|2||||||||
+439|tula II|20.07268919800209, -99.36882570550684|open|665|hidalgo|entronque|2||||||||
+439|tula II|20.07268919800209, -99.36882570550684|open|679|hidalgo|entronque|2||||||||
+439|tula II|20.07268919800209, -99.36882570550684|open|694|hidalgo|entronque|2||||||||
+439|tula II|20.07268919800209, -99.36882570550684|open|709|hidalgo|entronque|2||||||||
+439|tula II|20.07268919800209, -99.36882570550684|open|724|hidalgo|entronque|2||||||||
+439|tula II|20.07264501210519, -99.36979589328737|open|597|hidalgo|entronque|1||||||||
+439|tula II|20.07264501210519, -99.36979589328737|open|595|hidalgo|entronque|1||||||||
+439|tula II|20.07264501210519, -99.36979589328737|open|594|hidalgo|entronque|1||||||||
+439|tula II|20.07264501210519, -99.36979589328737|open|590|hidalgo|entronque|1||||||||
+439|tula II|20.07264501210519, -99.36979589328737|open|589|hidalgo|entronque|1||||||||
+437|atitalaquia|20.065042150758917, -99.21866529462685|open|613|hidalgo|entronque|2||||||||
+437|atitalaquia|20.065042150758917, -99.21866529462685|open|596|hidalgo|entronque|2||||||||
+437|atitalaquia|20.065042150758917, -99.21866529462685|open|579|hidalgo|entronque|2||||||||
+437|atitalaquia|20.065042150758917, -99.21866529462685|open|560|hidalgo|entronque|2||||||||
+437|atitalaquia|20.065042150758917, -99.21866529462685|open|546|hidalgo|entronque|2||||||||
+437|atitalaquia|20.065042150758917, -99.21866529462685|open|532|hidalgo|entronque|2||||||||
+437|atitalaquia|20.064982427107072, -99.21865465441005|open|627|hidalgo|entronque|1||||||||
+437|atitalaquia|20.064982427107072, -99.21865465441005|open|626|hidalgo|entronque|1||||||||
+437|atitalaquia|20.064982427107072, -99.21865465441005|open|624|hidalgo|entronque|1||||||||
+437|atitalaquia|20.064982427107072, -99.21865465441005|open|620|hidalgo|entronque|1||||||||
+437|atitalaquia|20.064982427107072, -99.21865465441005|open|619|hidalgo|entronque|1||||||||
+437|atitalaquia|20.064982427107072, -99.21865465441005|open|617|hidalgo|entronque|1||||||||
+437|atitalaquia|20.064982427107072, -99.21865465441005|open|615|hidalgo|entronque|1||||||||
+437|atitalaquia|20.064982427107072, -99.21865465441005|open|614|hidalgo|entronque|1||||||||
+437|atitalaquia|20.067313545260703, -99.21849589540707|open|749|hidalgo|entronque|2||||||||
+437|atitalaquia|20.067313545260703, -99.21849589540707|open|642|hidalgo|entronque|2||||||||
+437|atitalaquia|20.067313545260703, -99.21849589540707|open|655|hidalgo|entronque|2||||||||
+437|atitalaquia|20.067313545260703, -99.21849589540707|open|667|hidalgo|entronque|2||||||||
+437|atitalaquia|20.067313545260703, -99.21849589540707|open|682|hidalgo|entronque|2||||||||
+437|atitalaquia|20.067313545260703, -99.21849589540707|open|696|hidalgo|entronque|2||||||||
+437|atitalaquia|20.067313545260703, -99.21849589540707|open|711|hidalgo|entronque|2||||||||
+437|atitalaquia|20.067313545260703, -99.21849589540707|open|726|hidalgo|entronque|2||||||||
+437|atitalaquia|20.06726374786774, -99.21853495976927|open|628|hidalgo|entronque|2||||||||
+437|atitalaquia|20.06726374786774, -99.21853495976927|open|625|hidalgo|entronque|1||||||||
+437|atitalaquia|20.06726374786774, -99.21853495976927|open|623|hidalgo|entronque|1||||||||
+437|atitalaquia|20.06726374786774, -99.21853495976927|open|622|hidalgo|entronque|1||||||||
+437|atitalaquia|20.06726374786774, -99.21853495976927|open|621|hidalgo|entronque|1||||||||
+437|atitalaquia|20.06726374786774, -99.21853495976927|open|618|hidalgo|entronque|1||||||||
+437|atitalaquia|20.06726374786774, -99.21853495976927|open|616|hidalgo|entronque|1||||||||
+436|ajoloapan|19.956441521975105, -99.05548785748188|open|643|edomx|entronque|1||||||||
+436|ajoloapan|19.956441521975105, -99.05548785748188|open|642|edomx|entronque|1||||||||
+436|ajoloapan|19.956441521975105, -99.05548785748188|open|641|edomx|entronque|1||||||||
+436|ajoloapan|19.956441521975105, -99.05548785748188|open|639|edomx|entronque|1||||||||
+436|ajoloapan|19.956441521975105, -99.05548785748188|open|637|edomx|entronque|1||||||||
+436|ajoloapan|19.956441521975105, -99.05548785748188|open|636|edomx|entronque|1||||||||
+436|ajoloapan|19.956441521975105, -99.05548785748188|open|635|edomx|entronque|1||||||||
+436|ajoloapan|19.956441521975105, -99.05548785748188|open|632|edomx|entronque|1||||||||
+436|ajoloapan|19.956441521975105, -99.05548785748188|open|630|edomx|entronque|1||||||||
+436|ajoloapan|19.955877232274915, -99.05544188568793|open|748|edomx|entronque|2||||||||
+436|ajoloapan|19.955877232274915, -99.05544188568793|open|626|edomx|entronque|2||||||||
+436|ajoloapan|19.955877232274915, -99.05544188568793|open|610|edomx|entronque|2||||||||
+436|ajoloapan|19.955877232274915, -99.05544188568793|open|592|edomx|entronque|2||||||||
+436|ajoloapan|19.955877232274915, -99.05544188568793|open|575|edomx|entronque|2||||||||
+436|ajoloapan|19.955877232274915, -99.05544188568793|open|558|edomx|entronque|2||||||||
+436|ajoloapan|19.955877232274915, -99.05544188568793|open|544|edomx|entronque|2||||||||
+436|ajoloapan|19.955877232274915, -99.05544188568793|open|530|edomx|entronque|2||||||||
+436|ajoloapan|19.956107705143303, -99.05336177908266|open|657|edomx|entronque|2||||||||
+436|ajoloapan|19.956107705143303, -99.05336177908266|open|670|edomx|entronque|2||||||||
+436|ajoloapan|19.956107705143303, -99.05336177908266|open|684|edomx|entronque|2||||||||
+436|ajoloapan|19.956107705143303, -99.05336177908266|open|698|edomx|entronque|2||||||||
+436|ajoloapan|19.956107705143303, -99.05336177908266|open|713|edomx|entronque|2||||||||
+436|ajoloapan|19.956107705143303, -99.05336177908266|open|727|edomx|entronque|2||||||||
+436|ajoloapan|19.955471686502346, -99.05277825226608|open|640|edomx|entronque|1||||||||
+436|ajoloapan|19.955471686502346, -99.05277825226608|open|638|edomx|entronque|1||||||||
+436|ajoloapan|19.955471686502346, -99.05277825226608|open|634|edomx|entronque|1||||||||
+436|ajoloapan|19.955471686502346, -99.05277825226608|open|633|edomx|entronque|1||||||||
+436|ajoloapan|19.955471686502346, -99.05277825226608|open|631|edomx|entronque|1||||||||
+436|ajoloapan|19.955471686502346, -99.05277825226608|open|629|edomx|entronque|1||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|529|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|543|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|557|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|574|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|591|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|606|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|624|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|745|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|640|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|672|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|685|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|700|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|714|hidalgo|entronque|5||||||||
+435|pachuca|19.92751685142797, -98.89151566338009|open|729|hidalgo|entronque|5||||||||
 |||||||||||||||
-|||||||||||||||
-440|Queretaro-arco norte|19.99870152990015, -99.48758454460598|1||||||||||||
-440|Queretaro-arco norte|20.000454631729102, -99.48997852647396|1||||||||||||
-439|tula II|20.10007105433363, -99.28348673487717|1||||||||||||
-439|tula II|20.09816905576414, -99.28317564889447|1||||||||||||
-438|tula I|20.09813858310726, -99.28607748173283|1||||||||||||
-438|tula I|20.099718800488123, -99.28059830215831|1||||||||||||
-437|atitalaquia|20.065042150758917, -99.21866529462685|1||||||||||||
-437|atitalaquia|20.067272236262596, -99.21852556535966|1||||||||||||
-436|ajoloapan|19.956441521975105, -99.05548785748188|1||||||||||||
-436|ajoloapan|19.955877232274915, -99.05544188568793|1||||||||||||
-436|ajoloapan|19.956107705143303, -99.05336177908266|1||||||||||||
-436|ajoloapan|19.955471686502346, -99.05277825226608|1||||||||||||
-435|pachuca|19.92751685142797, -98.89151566338009|1||||||||||||
+435|pachuca|19.92736812391822, -98.8914761722353|open||hidalgo|entronque|4||||||||
 434|tulancingo|19.83365049678555, -98.701529139612|1||||||||||||
 434|tulancingo|19.83246878481612, -98.7001384849097|1||||||||||||
 434|tulancingo|19.834854002542162, -98.70015239145316|1||||||||||||
