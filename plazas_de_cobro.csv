@@ -1117,12 +1117,81 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 431|sanctorum|19.516555779290446, -98.46936385230599|open|705|tlaxcala|entronque|3||||||||
 431|sanctorum|19.516555779290446, -98.46936385230599|open|704|tlaxcala|entronque|3||||||||
 431|sanctorum|19.515907751756735, -98.46957273445376|open|716|tlaxcala|entronque|1||||||||
-|||||||||||||||
-430|san martín texmelucan|19.297149073542343, -98.4110640873011|1||||||||||||
-430|san martín texmelucan|19.296346581160403, -98.40976053372385|1||||||||||||
-462|apaxco|19.997838843691188, -99.14140963834238|1||||||||||||
-466|liverpool|19.97860092447916, -99.52342931107276|1||||||||||||
-466|liverpool|19.97861786515785, -99.5229686607925|1||||||||||||
+430|san martín texmelucan|19.297149073542343, -98.4110640873011|open|734|puebla|entronque|2||||||||
+430|san martín texmelucan|19.296346581160403, -98.40976053372385|open|734|puebla|entronque|2||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|719|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|720|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|721|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|722|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|723|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|724|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|725|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|726|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|728|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|727|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|729|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|730|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|731|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|732|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301785321006076, -98.40944016632504|open|733|puebla|troncal|4||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|524|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|538|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|552|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|569|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|584|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|599|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|614|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|735|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|629|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|645|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|664|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|681|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|699|puebla|troncal|5||||||||
+430|san martín texmelucan|19.301830886991453, -98.4096601074648|open|716|puebla|troncal|5||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|737|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|738|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|742|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|743|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|744|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|746|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|747|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|749|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|748|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|745|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|741|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|740|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|739|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|736|edomx|entronque|2||||||||
+462|apaxco|19.99780530248645, -99.1413529125953|open|735|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|531|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|545|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|559|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|577|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|593|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|611|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|627|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|643|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|656|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|668|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|683|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|697|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|712|edomx|entronque|2||||||||
+462|apaxco|19.997892530497246, -99.14138645203974|open|728|edomx|entronque|2||||||||
+466|liverpool|19.97860092447916, -99.52342931107276|open|567|edomx|entronque|2||||||||
+466|liverpool|19.97860092447916, -99.52342931107276|open|568|edomx|entronque|2||||||||
+466|liverpool|19.97860092447916, -99.52342931107276|open|566|edomx|entronque|2||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|open|583|edomx|entronque|2||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|open|595|edomx|entronque|2||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|open|608|edomx|entronque|2||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|open|622|edomx|entronque|2||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|open|636|edomx|entronque|2||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|open|648|edomx|entronque|2||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|open|662|edomx|entronque|2||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|open|677|edomx|entronque|2||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|open|692|edomx|entronque|2||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|open|707|edomx|entronque|2||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|open|722|edomx|entronque|2||||||||
+466|liverpool|19.97861786515785, -99.5229686607925|open|743|edomx|entronque|2||||||||
 568|chamapa autovan|19.4345103287221, -99.30373263946012|1||||||134D||||||
 566|san nicolas|19.353905509127546, -99.48032757375664|1||||||134D-san nicolas-134D||||||
 566|san nicolas|19.355660700140408, -99.48127465003711|1||||||134D-san nicolas-134D||||||
