@@ -1192,11 +1192,34 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 466|liverpool|19.97861786515785, -99.5229686607925|open|707|edomx|entronque|2||||||||
 466|liverpool|19.97861786515785, -99.5229686607925|open|722|edomx|entronque|2||||||||
 466|liverpool|19.97861786515785, -99.5229686607925|open|743|edomx|entronque|2||||||||
-568|chamapa autovan|19.4345103287221, -99.30373263946012|1||||||134D||||||
-566|san nicolas|19.353905509127546, -99.48032757375664|1||||||134D-san nicolas-134D||||||
-566|san nicolas|19.355660700140408, -99.48127465003711|1||||||134D-san nicolas-134D||||||
-567|ayotuxco|19.401448528578268, -99.38100885600021|1||||||134D-ayotuzco-134D||||||
-567|ayotuxco|19.39997992697767, -99.38094182226153|1||||||134D-ayotuzco-134D||||||
+568|chamapa|19.4345103287221, -99.30373263946012|open|765|edomx|troncal|8||134D||||||
+568|chamapa|19.4345103287221, -99.30373263946012|open|760|edomx|troncal|8||||||||
+568|chamapa|19.4345103287221, -99.30373263946012|open|758|edomx|troncal|8||||||||
+566|san nicolas|19.35388479410693, -99.4802911560869|open|759|edomx|entronque|1||134D-san nicolas-134D||||||
+566|san nicolas|19.35388479410693, -99.4802911560869|open|760|edomx|entronque|1||||||||
+566|san nicolas|19.35388479410693, -99.4802911560869|open|761|edomx|entronque|1||||||||
+566|san nicolas|19.353922053984526, -99.4803391863654|open|756|edomx|entronque|1||||||||
+566|san nicolas|19.353922053984526, -99.4803391863654|open|763|edomx|entronque|1||||||||
+566|san nicolas|19.353922053984526, -99.4803391863654|open|766|edomx|entronque|1||||||||
+566|san nicolas|19.355629401928947, -99.48125897470803|open|756|edomx|entronque|1||134D-san nicolas-134D||||||
+566|san nicolas|19.355629401928947, -99.48125897470803|open|763|edomx|entronque|1||||||||
+566|san nicolas|19.355629401928947, -99.48125897470803|open|766|edomx|entronque|1||||||||
+566|san nicolas|19.35569569108267, -99.4812603786564|open|760|edomx|entronque|1||||||||
+566|san nicolas|19.35569569108267, -99.4812603786564|open|759|edomx|entronque|1||||||||
+566|san nicolas|19.35569569108267, -99.4812603786564|open|761|edomx|entronque|1||||||||
+567|ayotuxco|19.401471008730233, -99.38099693349594|open|762|edomx|entronque|1||||||||
+567|ayotuxco|19.401471008730233, -99.38099693349594|open|763|edomx|entronque|1||||||||
+567|ayotuxco|19.401471008730233, -99.38099693349594|open|764|edomx|entronque|1||||||||
+567|ayotuxco|19.401420968915126, -99.38103038217876|open|757|edomx|entronque|1||||||||
+567|ayotuxco|19.401420968915126, -99.38103038217876|open|759|edomx|entronque|1||||||||
+567|ayotuxco|19.401420968915126, -99.38103038217876|open|765|edomx|entronque|1||||||||
+567|ayotuxco|19.399948776837185, -99.38092976467163|open|762|edomx|entronque|1||||||||
+567|ayotuxco|19.399948776837185, -99.38092976467163|open|763|edomx|entronque|1||||||||
+567|ayotuxco|19.399948776837185, -99.38092976467163|open|764|edomx|entronque|1||||||||
+567|ayotuxco|19.400006461151243, -99.38095928490701|open|765|edomx|entronque|1||||||||
+567|ayotuxco|19.400006461151243, -99.38095928490701|open|757|edomx|entronque|1||||||||
+567|ayotuxco|19.400006461151243, -99.38095928490701|open|759|edomx|entronque|1||134D-ayotuzco-134D||||||
+|||||||||134D-ayotuzco-134D||||||
 565|cerrillo|19.326359656928048, -99.51592085001816|1||||||134D||||||
 86|san josé del cabo|23.049953752038192, -109.71956680893206|1||||||1D||||||
 330|aeropuerto de los cabos|23.150499203637988, -109.74050665703166|1||||||1D||||||
