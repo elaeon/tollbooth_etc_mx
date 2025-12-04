@@ -1340,14 +1340,49 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 495|san felipe|21.805173321301236, -101.01439602588654|open|858|san luis potosi|troncal|4||||||||
 497|logistik|21.983878964416437, -100.87325018818068|open|849|san luis potosi|entronque|3||80D||||||
 497|logistik|21.98495752599049, -100.87138486274917|open|857|san luis potosi|entronque|2||80D||||||
-496|wtc II|21.948300556221245, -100.91517331527453|1||||||80D||||||
-496|wtc II|21.9479735019532, -100.91609715500654|1||||||80D||||||
-478|chichen itza (valladolid)|20.72902797152188, -88.58319335800233|1||||||180D||||||
-479|tintal (playa del carmen)|20.895690500210154, -87.4408462433964|1||||||||||||
-479|tintal|20.895349710536873, -87.43861464561442|1||||||||||||
-479|tintal|20.8999612132943, -87.4349656917724|1||||||||||||
-478|chichen itza (valladolid)|20.72773409046699, -88.57820940949189|1||||||79-180D||||||
-478|chichen itza (valladolid)|20.72915286971151, -88.58473729370417|1||||||180D-79||||||
+496|wtc II|21.948300556221245, -100.91517331527453|open|860|san luis potosi|entronque|2||80D||||||
+496|wtc II|21.9479735019532, -100.91609715500654|open|869|san luis potosi|entronque|3||80D||||||
+||||848|||||||||||
+||||850|||||||||||
+||||851|||||||||||
+||||852|||||||||||
+||||853|||||||||||
+||||855|||||||||||
+||||856|||||||||||
+||||861|||||||||||
+||||862|||||||||||
+||||864|||||||||||
+||||865|||||||||||
+||||866|||||||||||
+||||867|||||||||||
+||||868|||||||||||
+||||870|||||||||||
+478|chichen itza (valladolid)|20.729018562833442, -88.58242855700846|open||yucatan|entronque|1|ticket|||||||
+478|chichen itza (valladolid)|20.729079380731243, -88.58317585154343|open|871|yucatan|troncal|3||180D||||||
+478|chichen itza (valladolid)|20.729079380731243, -88.58317585154343|open|873|yucatan|troncal|3||||||||
+478|chichen itza (valladolid)|20.729079380731243, -88.58317585154343|open|875|yucatan|troncal|3||||||||
+478|chichen itza (valladolid)|20.728943917628534, -88.58321340246921|open|872|yucatan|troncal|3||||||||
+478|chichen itza (valladolid)|20.728943917628534, -88.58321340246921|open|874|yucatan|troncal|3||||||||
+478|chichen itza (valladolid)|20.728943917628534, -88.58321340246921|open|876|yucatan|troncal|3||||||||
+478|chichen itza (valladolid)|20.728943917628534, -88.58321340246921|open|877|yucatan|troncal|3||||||||
+479|tintal (playa del carmen)|20.895704667495323, -87.44080233731084|open|887|yucatan|entronque|2||||||||
+479|tintal (playa del carmen)|20.895704667495323, -87.44080233731084|open|889|yucatan|entronque|2||||||||
+479|tintal (playa del carmen)|20.895704667495323, -87.44080233731084|open|885|yucatan|entronque|2||||||||
+479|tintal (playa del carmen)|20.895691675564528, -87.44089620650325|open||yucatan|entronque|2|ticket|||||||
+479|tintal|20.89532947879573, -87.4385228354479|open|884|yucatan|entronque|2||||||||
+479|tintal|20.89532947879573, -87.4385228354479|open|881|yucatan|entronque|2||||||||
+479|tintal|20.895326884789338, -87.43862521899635|open||yucatan|entronque|2|ticket|||||||
+479|tintal|20.89532124077632, -87.43872328765629|open||yucatan|entronque|2|ticket|||||||
+479|tintal|20.899919079934662, -87.4349082611379|open|879|yucatan|troncal|3||||||||
+479|tintal|20.899919079934662, -87.4349082611379|open|886|yucatan|troncal|3||||||||
+479|tintal|20.899919079934662, -87.4349082611379|open|883|yucatan|troncal|3||||||||
+479|tintal|20.90001789552072, -87.43504119470195|open|878|yucatan|troncal|3||||||||
+478|chichen itza (valladolid)|20.72773409046699, -88.57820940949189|open|875|yucatan|entronque|1||79-180D||||||
+478|chichen itza (valladolid)|20.72915286971151, -88.58473729370417|open|876|yucatan|entronque|1||180D-79||||||
+479|tintal|20.69893050700851, -87.1443139607406|open|882|yucatan|troncal|2||||||||
+479|tintal|20.69893050700851, -87.1443139607406|open|888|yucatan|troncal|2||||||||
+479|tintal|20.69893050700851, -87.1443139607406|open|880|yucatan|troncal|2||||||||
+479|tintal|20.69899161517075, -87.14427409792567|open||yucatan|troncal|2|ticket|||||||
 139|cuautitlán (lecheria)|19.604848078991658, -99.20585820047758|1||||||||||||
 311|san miguel||||||||||||||
 138|lago de guadalupe|19.61000967541866, -99.23645661461325|1||||||57D||||||
