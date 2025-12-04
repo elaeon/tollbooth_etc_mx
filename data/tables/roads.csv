@@ -145,7 +145,7 @@ road_id,road_name,operation_date,project_mx_id,fonadin,length_km,notes
 36,querétaro-irapuato,12-02-1962,,,,
 62,rancho viejo-taxco,14-07-1996,,,,
 98,reynosa-matamoros,30-04-1999,,,,
-113,río verde-cd. valles,10-01-2013,78,,,
+113,río verde-cd. valles,10-01-2013,78,,68.6,
 109,rumorosa-tecate,17-12-1998,,,,
 38,salamanca-león,11-12-2014,,,,
 10,salina cruz-la ventosa,15-05-2003,,,,

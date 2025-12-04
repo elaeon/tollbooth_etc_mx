@@ -1255,24 +1255,58 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 475|tambaca|21.939207229162495, -99.27004752043456|open|784|san luis potosi|entronque|1||70D||||||
 475|tambaca|21.939207229162495, -99.27004752043456|open|788|san luis potosi|entronque|1||||||||
 476|la pitahaya|21.967590303257015, -99.17456704099263|open|783|san luis potosi|troncal|4||||||||
-||||785|||||||||||
-|||||||||70D||||||
-825|libramiento elevado de puebla – periferico|19.131561292410307, -98.26814299699545|1||||||150D||||||
-825|libramiento elevado de puebla – santa ana ent.|19.084936370368098, -98.19256498665584|1||||||150D||||||
-825|libramiento elevado de puebla – santa ana salida|19.083618557422234, -98.18411495454212|1||||||150D||||||
-825|libramiento elevado de puebla – carmen serdán salida|19.084629985185927, -98.1931103738009|1||||||150D||||||
-825|libramiento elevado de puebla – carmen serdán ent.|19.083128554960773, -98.18367026839688|1||||||150D||||||
-825|libramiento elevado de puebla – cuahutemoc|19.07692460094709, -98.15006643534323|1||||||150D||||||
-825|libramiento elevado de puebla – hermanos serdan ent.|19.092183179101504, -98.22268618108363|1||||||150D||||||
-825|libramiento elevado de puebla – hermanos serdan salida|19.092164974429263, -98.22203003571316|1||||||150D||||||
-317|atlacomulco|20.29007956672475, -99.94969396035474|1||||||47D||||||
-318|apaseo el grande|20.511214076859392, -100.59941443957071|1||||||47D||||||
-319|apaseo el alto|20.49765001215133, -100.58810953785188|1||||||47D-45-47D||||||
-320|coroneo|20.415572997030893, -100.42902018763844|1||||||47D-413-47D||||||
-321|huimilpan|20.348365519334916, -100.27748357132727|1||||||47D-412-47D||||||
-322|amealco I|20.277779734675175, -100.05914463423336|1||||||47D-300-47D||||||
-323|apaseo|20.533607563200647, -100.62788333530811|0||||||45D-47D||||||
-323|apaseo|20.531468678512535, -100.6207433993163|0||||||47D-45D||||||
+||||785|san luis potosi||||||||||
+825|libramiento elevado de puebla – periferico|19.131561292410307, -98.26814299699545|open|789|puebla|troncal|4||150D||||||
+825|libramiento elevado de puebla – santa ana ent.|19.084936370368098, -98.19256498665584|open|797|puebla|entronque|1||150D||||||
+825|libramiento elevado de puebla – santa ana salida|19.083618557422234, -98.18411495454212|open||||||150D||||||
+825|libramiento elevado de puebla – carmen serdán salida|19.084629985185927, -98.1931103738009|open||||||150D||||||
+825|libramiento elevado de puebla – carmen serdán ent.|19.083128554960773, -98.18367026839688|open|796|puebla|entronque|1||150D||||||
+825|libramiento elevado de puebla – cuahutemoc|19.07692460094709, -98.15006643534323|open|792|puebla|troncal|3||150D||||||
+825|libramiento elevado de puebla – hermanos serdan ent.|19.092183179101504, -98.22268618108363|open|795|puebla|entronque|1||150D||||||
+825|libramiento elevado de puebla – hermanos serdan salida|19.092164974429263, -98.22203003571316|open||||||150D||||||
+825|villa frontera|19.083131867046557, -98.18366960649303|open|793|puebla|entronque|1||||||||
+||||790|||||||||||
+||||791|||||||||||
+||||792|||||||||||
+||||794|||||||||||
+||||798|||||||||||
+317|atlacomulco|20.29007956672475, -99.94969396035474|open|799|queretaro|troncal|4||47D||||||
+317|atlacomulco|20.29007956672475, -99.94969396035474|open|801|queretaro|troncal|4||||||||
+317|atlacomulco|20.29007956672475, -99.94969396035474|open|803|queretaro|troncal|4||||||||
+317|atlacomulco|20.29007956672475, -99.94969396035474|open|804|queretaro|troncal|4||||||||
+317|atlacomulco|20.29007956672475, -99.94969396035474|open|800|queretaro|troncal|4||||||||
+317|atlacomulco|20.29007956672475, -99.94969396035474|open|802|queretaro|troncal|4||||||||
+318|apaseo el grande|20.511214076859392, -100.59941443957071|open|809|queretaro|troncal|5||47D||||||
+318|apaseo el grande|20.511214076859392, -100.59941443957071|open|807|queretaro|troncal|5||||||||
+318|apaseo el grande|20.511214076859392, -100.59941443957071|open|806|queretaro|troncal|5||||||||
+318|apaseo el grande|20.511214076859392, -100.59941443957071|open|805|queretaro|troncal|5||||||||
+318|apaseo el grande|20.511214076859392, -100.59941443957071|open|808|queretaro|troncal|5||||||||
+319|apaseo el alto|20.49765001215133, -100.58810953785188|open|810|queretaro|entronque|4||47D-45-47D||||||
+319|apaseo el alto|20.49765001215133, -100.58810953785188|open|813|queretaro|entronque|4||||||||
+319|apaseo el alto|20.49765001215133, -100.58810953785188|open|812|queretaro|entronque|4||||||||
+319|apaseo el alto|20.49765001215133, -100.58810953785188|open|811|queretaro|entronque|4||||||||
+319|apaseo el alto|20.49765001215133, -100.58810953785188|open|814|queretaro|entronque|4||||||||
+319|apaseo el alto|20.49765001215133, -100.58810953785188|open|815|queretaro|entronque|4||||||||
+320|coroneo|20.415572997030893, -100.42902018763844|open|817|queretaro|entronque|5||47D-413-47D||||||
+320|coroneo|20.415572997030893, -100.42902018763844|open|820|queretaro|entronque|5||||||||
+320|coroneo|20.415572997030893, -100.42902018763844|open|821|queretaro|entronque|5||||||||
+320|coroneo|20.415572997030893, -100.42902018763844|open|818|queretaro|entronque|5||||||||
+320|coroneo|20.415572997030893, -100.42902018763844|open|816|queretaro|entronque|5||||||||
+320|coroneo|20.415572997030893, -100.42902018763844|open|819|queretaro|entronque|5||||||||
+321|huimilpan|20.348365519334916, -100.27748357132727|open|822|queretaro|entronque|4||47D-412-47D||||||
+321|huimilpan|20.348365519334916, -100.27748357132727|open|826|queretaro|entronque|4||||||||
+321|huimilpan|20.348365519334916, -100.27748357132727|open|827|queretaro|entronque|4||||||||
+321|huimilpan|20.348365519334916, -100.27748357132727|open|823|queretaro|entronque|4||||||||
+321|huimilpan|20.348365519334916, -100.27748357132727|open|825|queretaro|entronque|4||||||||
+321|huimilpan|20.348365519334916, -100.27748357132727|open|824|queretaro|entronque|4||||||||
+322|amealco I|20.277779734675175, -100.05914463423336|open|828|queretaro|entronque|4||||||||
+322|amealco I|20.277779734675175, -100.05914463423336|open|830|queretaro|entronque|4||47D-300-47D||||||
+322|amealco I|20.277779734675175, -100.05914463423336|open|832|queretaro|entronque|4||||||||
+322|amealco I|20.277779734675175, -100.05914463423336|open|833|queretaro|entronque|4||||||||
+322|amealco I|20.277779734675175, -100.05914463423336|open|831|queretaro|entronque|4||||||||
+322|amealco I|20.277779734675175, -100.05914463423336|open|829|queretaro|entronque|4||||||||
+323|apaseo|20.533607563200647, -100.62788333530811|open||guanajuato|entronque|2|ticket|45D-47D||||||
+323|apaseo|20.531468678512535, -100.6207433993163|closed||||||47D-45D||||||
 572|Mexico-pachuca|19.515917027396377, -99.10308752750072|1||||||Naucalpan-ecatepec||||||
 399|ent. Gran canal|19.507180373748675, -99.08436461232509|1||||||Naucalpan-ecatepec||||||
 588|Ent. Indios verdes|19.513536586192522, -99.09886289626725|1||||||Naucalpan-ecatepec||||||
