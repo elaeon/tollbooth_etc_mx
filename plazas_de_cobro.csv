@@ -1307,23 +1307,39 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 322|amealco I|20.277779734675175, -100.05914463423336|open|829|queretaro|entronque|4||||||||
 323|apaseo|20.533607563200647, -100.62788333530811|open||guanajuato|entronque|2|ticket|45D-47D||||||
 323|apaseo|20.531468678512535, -100.6207433993163|closed||||||47D-45D||||||
-572|Mexico-pachuca|19.515917027396377, -99.10308752750072|1||||||Naucalpan-ecatepec||||||
-399|ent. Gran canal|19.507180373748675, -99.08436461232509|1||||||Naucalpan-ecatepec||||||
-588|Ent. Indios verdes|19.513536586192522, -99.09886289626725|1||||||Naucalpan-ecatepec||||||
-1045|cien metros r1 (ticket)|19.515508731954846, -99.1529543236422|1||||||Naucalpan-ecatepec||||||
-1045|cien metros r3|19.514145130325566, -99.15676116039323|1||||||Naucalpan-ecatepec||||||
-1045|cien metros r2|19.513765331801263, -99.15879639273003|1||||||Naucalpan-ecatepec||||||
-1046|vallejo r5|19.512542983780495, -99.161413017901|1||||||Naucalpan-ecatepec||||||
-1046|vallejo r4|19.512135301468586, -99.16267747575256|1||||||Naucalpan-ecatepec||||||
-1046|vallejo r6|19.51272925664258, -99.16350633015152|1||||||Naucalpan-ecatepec||||||
-1046|vallejo r7|19.51368578973936, -99.16497289223881|1||||||Naucalpan-ecatepec||||||
-1047|ceylan sur|19.513853992216145, -99.17480678394787|1||||||Naucalpan-ecatepec||||||
-1047|ceylan norte|19.513587019649623, -99.17589375728237|1||||||Naucalpan-ecatepec||||||
-1031|puente de vigas|19.516143583518694, -99.2079068928162|1||||||Naucalpan-ecatepec||||||
-487|calderon (villa de arriaga)|21.813348719104496, -101.0127706937438|1||||||80D||||||
-495|san felipe|21.805173321301236, -101.01439602588654|1||||||san felipe-80D-san felipe||||||
-497|logistik|21.983878964416437, -100.87325018818068|1||||||80D||||||
-497|logistik|21.98495752599049, -100.87138486274917|1||||||80D||||||
+572|Mexico-pachuca|19.515917027396377, -99.10308752750072|open|842|edomx|troncal|4||Naucalpan-ecatepec||||||
+572|Mexico-pachuca|19.515917027396377, -99.10308752750072|open|841|edomx|troncal|4||||||||
+572|Mexico-pachuca|19.515917027396377, -99.10308752750072|open|843|edomx|troncal|4||||||||
+572|Mexico-pachuca|19.515917027396377, -99.10308752750072|open|844|edomx|troncal|4||||||||
+572|Mexico-pachuca|19.515917027396377, -99.10308752750072|open|846|edomx|troncal|4||||||||
+399|ent. Gran canal|19.507223374030335, -99.08433837554337|open|845|edomx|entronque|2||Naucalpan-ecatepec||||||
+399|ent. Gran canal|19.507143955203972, -99.08437260417807|open|847|edomx|entronque|2||||||||
+588|Ent. Indios verdes|19.513536586192522, -99.09886289626725|open|847|edomx|entronque|1||Naucalpan-ecatepec||||||
+1045|cien metros r1|19.515508731954846, -99.1529543236422|open||cdmx|entronque|1|ticket|Naucalpan-ecatepec||||||
+1045|cien metros r3|19.514145130325566, -99.15676116039323|open|835|cdmx|entronque|2||Naucalpan-ecatepec||||||
+1045|cien metros r3|19.514145130325566, -99.15676116039323|open|838|cdmx|entronque|2||||||||
+1045|cien metros r3|19.514145130325566, -99.15676116039323|open|839|cdmx|entronque|2||||||||
+1045|cien metros r2|19.513765331801263, -99.15879639273003|open||cdmx|entronque|1|ticket|Naucalpan-ecatepec||||||
+1046|vallejo r5|19.512542983780495, -99.161413017901|open||edomx|entronque|1|ticket|Naucalpan-ecatepec||||||
+1046|vallejo r4|19.512135301468586, -99.16267747575256|open|836|edomx|entronque|3||Naucalpan-ecatepec||||||
+1046|vallejo r4|19.512135301468586, -99.16267747575256|open|1402|edomx|entronque|3||||||||
+1046|vallejo r6|19.51272925664258, -99.16350633015152|open|840|edomx|entronque|2||Naucalpan-ecatepec||||||
+1046|vallejo r6|19.51272925664258, -99.16350633015152|open|839|edomx|entronque|2||||||||
+1046|vallejo r7|19.51368578973936, -99.16497289223881|open||edomx|entronque|1|ticket|Naucalpan-ecatepec||||||
+1046|vallejo r7|19.51363959058241, -99.16552953526254|open||edomx|entronque|1|ticket|||||||
+1047|ceylan sur|19.513853992216145, -99.17480678394787|open||edomx|entronque|2|ticket|Naucalpan-ecatepec||||||
+1047|ceylan norte|19.513587019649623, -99.17589375728237|open|837|edomx|entronque|2||Naucalpan-ecatepec||||||
+1047|ceylan norte|19.513587019649623, -99.17589375728237|open|838|edomx|entronque|2||||||||
+1047|ceylan norte|19.513587019649623, -99.17589375728237|open|1402|edomx|entronque|2||||||||
+1031|puente de vigas|19.516143583518694, -99.2079068928162|open|834|edomx|troncal|6||||||||
+1031|puente de vigas|19.516143583518694, -99.2079068928162|open|835|edomx|troncal|6||Naucalpan-ecatepec||||||
+1031|puente de vigas|19.516143583518694, -99.2079068928162|open|836|edomx|troncal|6||||||||
+487|calderon (villa de arriaga)|21.813348719104496, -101.0127706937438|open|859|san luis potosi|troncal|5||80D||||||
+487|calderon (villa de arriaga)|21.813348719104496, -101.0127706937438|open|863|san luis potosi|troncal|5||||||||
+495|san felipe|21.805173321301236, -101.01439602588654|open|854|san luis potosi|troncal|4||san felipe-80D-san felipe||||||
+495|san felipe|21.805173321301236, -101.01439602588654|open|858|san luis potosi|troncal|4||||||||
+497|logistik|21.983878964416437, -100.87325018818068|open|849|san luis potosi|entronque|3||80D||||||
+497|logistik|21.98495752599049, -100.87138486274917|open|857|san luis potosi|entronque|2||80D||||||
 496|wtc II|21.948300556221245, -100.91517331527453|1||||||80D||||||
 496|wtc II|21.9479735019532, -100.91609715500654|1||||||80D||||||
 478|chichen itza (valladolid)|20.72902797152188, -88.58319335800233|1||||||180D||||||
