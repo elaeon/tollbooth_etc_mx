@@ -1258,12 +1258,12 @@ tollbooth_id,tollbooth_name,coords,status,strech_id,state,place,lines,type,highw
 ,,,,785,san luis potosi,,,toll,,,
 825,libramiento elevado de puebla - periferico,"19.131561292410307, -98.26814299699545",open,789,puebla,troncal,4,toll,150D,lep,bypass
 825,libramiento elevado de puebla - santa ana ent.,"19.084936370368098, -98.19256498665584",open,797,puebla,entronque,1,toll,150D,lep,bypass
-825,libramiento elevado de puebla - santa ana salida,"19.083618557422234, -98.18411495454212",open,,,,,toll,150D,lep,bypass
-825,libramiento elevado de puebla - carmen serdan salida,"19.084629985185927, -98.1931103738009",open,,,,,toll,150D,lep,bypass
+825,libramiento elevado de puebla - santa ana salida,"19.084629985185927, -98.1931103738009",open,,puebla,entronque,,etc,150D,lep,bypass
+825,libramiento elevado de puebla - carmen serdan salida,"19.083618557422234, -98.18411495454212",open,,puebla,entronque,,etc,150D,lep,bypass
 825,libramiento elevado de puebla - carmen serdan ent.,"19.083128554960773, -98.18367026839688",open,796,puebla,entronque,1,toll,150D,lep,bypass
 825,libramiento elevado de puebla - cuahutemoc,"19.07692460094709, -98.15006643534323",open,792,puebla,troncal,3,toll,150D,lep,bypass
 825,libramiento elevado de puebla - hermanos serdan ent.,"19.092183179101504, -98.22268618108363",open,795,puebla,entronque,1,toll,150D,lep,bypass
-825,libramiento elevado de puebla - hermanos serdan salida,"19.092164974429263, -98.22203003571316",open,,,,,toll,150D,lep,bypass
+825,libramiento elevado de puebla - hermanos serdan salida,"19.092164974429263, -98.22203003571316",open,,puebla,entronque,,etc,150D,lep,bypass
 825,villa frontera,"19.083131867046557, -98.18366960649303",open,793,puebla,entronque,1,toll,,lep,bypass
 ,,,,790,,,,toll,,,
 ,,,,791,,,,toll,,,
