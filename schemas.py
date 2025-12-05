@@ -1,7 +1,7 @@
 import polars as pl
 
 strechs_tolls_2025_schema = {
-    "strech_id": pl.Int16,
+    "strech_id": pl.UInt16,
     "motorbike": pl.Float32,
     "car": pl.Float32,
     "car-axle": pl.Float32,
@@ -36,39 +36,49 @@ strechs_tolls_2022_schema = strechs_tolls_2025_schema.copy()
 strechs_tolls_2021_schema = strechs_tolls_2025_schema.copy()
 
 strechs_schema = {
-    "strech_id": pl.Int16,
-    "tollbooth_id": pl.Int16,
+    "strech_id": pl.UInt16,
+    "tollbooth_id": pl.UInt16,
     "strech_name": pl.String,
     "strech_length_km": pl.Float32,
-    "sct_idVia": pl.Int16,
-    "road_id": pl.Int16,
+    "sct_idVia": pl.UInt16,
+    "road_id": pl.UInt16,
     "strech_type": pl.String,
     "managed_by": pl.String
 }
 
-tollbooth_schema = {
-    "tollbooth_id": pl.Int16,
+
+tollbooths_schema = {
+    "tollbooth_id": pl.UInt16,
     "tollbooth_name": pl.String,
+    "coords": pl.String,
+    "status": pl.String,
+    "strech_id": pl.UInt16,
+    "state": pl.String,
+    "place": pl.String,
+    "lines": pl.UInt8,
+    "type": pl.String,
+    "highway": pl.String,
     "operator_2025": pl.String,
     "gate_to": pl.String,
 }
 
+
 tollbooth_strech_schema = {
-    "tollbooth_id": pl.Int16,
+    "tollbooth_id": pl.UInt16,
     "name": pl.String,
     "coords": pl.String,
     "status": pl.String,
-    "strech_id": pl.Int16,
+    "strech_id": pl.UInt16,
     "type": pl.String,
     "descr": pl.String,
     "highway": pl.String
 }
 
 roads_schema = {
-    "road_id": pl.Int16,
+    "road_id": pl.UInt16,
     "road_name": pl.String,
     "road_date": pl.Date,
-    "project_mx_id": pl.Int16,
+    "project_mx_id": pl.UInt16,
     "fonandin": pl.String,
     "length": pl.Float32,
     "notes": pl.String
