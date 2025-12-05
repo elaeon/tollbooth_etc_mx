@@ -1560,26 +1560,40 @@ tollbooth_id|name|coords|status|strech_id|state|type|lineas|descr|highway||||||
 469|florida|20.97450191457007, -105.30478918116872|open|1042|nayarit|troncal|2||||||||
 469|florida|20.97450191457007, -105.30478918116872|open|1056|nayarit|troncal|2||||||||
 469|florida|20.97450191457007, -105.30478918116872|open|1041|nayarit|troncal|2||||||||
-510|valtierrilla|20.542623551986697, -101.1376621451533|open|1062|guanajuato|troncal|3||43D||||||
-510|valtierrilla|20.542661226747935, -101.13783648873725|open|1074|guanajuato|troncal|3||||||||
+510|valtierrilla|20.542623551986697, -101.1376621451533|open|1074|guanajuato|troncal|3||43D||||||
+510|valtierrilla|20.542661226747935, -101.13783648873725|open||guanajuato|troncal|3|ticket|||||||
 511|valtierrilla|20.553036693675594, -101.1362639728372|open|1078|guanajuato|entronque|1||43D||||||
-511|valtierrilla|20.5531213978598, -101.13645006682059|1||||||43D||||||
-511|valtierrilla|20.547569480959563, -101.13808410191231|1||||||43D||||||
-511|valtierrilla|20.546711885282516, -101.13622407054841|1||||||43D||||||
-512|valle de santiago|20.373192668487974, -101.14924187957652|1||||||43D||||||
-512|valle de santiago|20.37263817616715, -101.1473961866257|1||||||43D||||||
-513|uriangato|20.182930184370445, -101.15720304964658|1||||||43D||||||
-514|Cinta-compandaro|20.07623430404068, -101.13573432315223|1||||||43D||||||
-515|la cinta|20.073496192457647, -101.13669805335728|1||||||43D||||||
-516|cuitzeo|19.968338494332276, -101.16203496713464|1||||||43D||||||
-516|cuitzeo|19.968891088671075, -101.15971284532013|1||||||43D||||||
-517|la cinta|20.077505375275674, -101.13779386528905|1||||||43D||||||
-1002|vía atlixcayotl|19.003927491774967, -98.27266874132327|open|1337|||||438D (puebla atlixco)||||||
-1005|santa ana|30.593605030395324, -111.51849090106008|open|1342|||||2 santa ana-altar||||||
-1003|San luis rio colorado|32.491709027557654, -114.80886049172051|open|1338|||||2||||||
-1020|san luis rio colorado II|32.45707572588469, -114.70138923845028|open|1356|||||||||||
-1021|estacion doctor|32.375141903051095, -114.7606972591478|open|1357||||$110 (autos)|3||||||
-1019|nogales|31.25838242526108, -110.97471362406507|open|1355|||||15D||||||
+511|valtierrilla|20.5531213978598, -101.13645006682059|open|1078|guanajuato|entronque|1||43D||||||
+511|valtierrilla|20.547569480959563, -101.13808410191231|open|1078|guanajuato|entronque|1||43D||||||
+511|valtierrilla|20.546711885282516, -101.13622407054841|open|1078|guanajuato|entronque|1||43D||||||
+512|valle de santiago|20.373192668487974, -101.14924187957652|open|1070|guanajuato|entronque|1||43D||||||
+512|valle de santiago|20.373174644383543, -101.14929508513839|open||guanajuato|entronque|1|ticket|||||||
+512|valle de santiago|20.37263817616715, -101.1473961866257|open||guanajuato|entronque|1|ticket|43D||||||
+512|valle de santiago|20.37259958198768, -101.14735189189688|open|1073|guanajuato|entronque|1||||||||
+513|uriangato|20.182989155431855, -101.15721241194348|open||guanajuato|entronque|2|ticket|||||||
+513|uriangato|20.182879939023824, -101.15719125530893|open|1067|guanajuato|entronque|2||43D||||||
+513|uriangato|20.182879939023824, -101.15719125530893|open|1066|guanajuato|entronque|2||||||||
+513|uriangato|20.182879939023824, -101.15719125530893|open|1068|guanajuato|entronque|2||||||||
+513|uriangato|20.182879939023824, -101.15719125530893|open|1069|guanajuato|entronque|2||||||||
+514|Cinta-copandaro|20.07623430404068, -101.13573432315223|open||guanajuato|entronque|1|ticket|43D||||||
+515|la cinta|20.073494264635123, -101.13658810157885|open||guanajuato|troncal|3|ticket|43D||||||
+515|la cinta|20.073494264566335, -101.13678027450858|open|1059|guanajuato|troncal|4||||||||
+515|la cinta|20.073494264566335, -101.13678027450858|open|1063|guanajuato|troncal|4||||||||
+515|la cinta|20.073494264566335, -101.13678027450858|open|1064|guanajuato|troncal|4||||||||
+515|la cinta|20.073494264566335, -101.13678027450858|open|1065|guanajuato|troncal|4||||||||
+516|cuitzeo|19.968374263210784, -101.1619709589608|open||michoacan|entronque|1|ticket|||||||
+516|cuitzeo|19.96831586894961, -101.16206991848368|open|1058|michoacan|entronque|1||43D||||||
+516|cuitzeo|19.96886044342895, -101.15967126341076|open||michoacan|entronque|1|ticket|||||||
+516|cuitzeo|19.968928509069038, -101.1597450241578|open|1058|michoacan|entronque|1||43D||||||
+517|la cinta|20.077505375275674, -101.13779386528905|open|1059|guanajuato|entronque|1||43D||||||
+517|la cinta|20.077505375275674, -101.13779386528905|open|1064|guanajuato|entronque|1||||||||
+517|la cinta|20.077505375275674, -101.13779386528905|open|1065|guanajuato|entronque|1||||||||
+1002|vía atlixcayotl|19.003927491774967, -98.27266874132327|open|1337|puebla|troncal|8||438D (puebla atlixco)||||||
+1005|santa ana|30.593605030395324, -111.51849090106008|open|1342|sonora|troncal|6||2 santa ana-altar||||||
+1003|San luis rio colorado|32.491709027557654, -114.80886049172051|open|1338|sonora|troncal|5||2||||||
+1020|san luis rio colorado II|32.45707572588469, -114.70138923845028|open|1356|sonora|entronque|3||||||||
+1021|estacion doctor|32.375141903051095, -114.7606972591478|open|1357|sonora|troncal|4|$110 (autos)|3||||||
+1019|nogales|31.25838242526108, -110.97471362406507|open|1355|sonora|troncal|8||15D||||||
 1006|villa ahumada|30.437087967149225, -106.5218766044891|open|1343|||||45D||||||
 1015|galeana|30.00432144140382, -107.24252575729135|open|1351|||||56D||||||
 1012|ojo laguna|29.481682352092374, -106.4067331606081|open|1348|||||7D||||||
