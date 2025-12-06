@@ -126,21 +126,21 @@ tollbooth_id,tollbooth_name,coords,status,strech_id,state,place,lines,type,highw
 15,lucio blanco,"25.98768301621346, -98.43162717322927",open,496,tamaulipas,troncal,4,toll,2D,opan,
 194,san fernando,"25.944745028315666, -98.22755243491738",open,497,tamaulipas,troncal,2,toll,2D,opan,
 194,san fernando,"25.944745028315666, -98.22755243491738",open,498,tamaulipas,troncal,2,toll,,opan,
-75,reynosa phar,"26.041797924744227, -98.2088305959957",open,500,tamaulipas,troncal,7,toll,puente,opan,International-bridge
-171,ignacio zaragoza (los tomates),"25.87421722363984, -97.47467004872608",open,501,tamaulipas,troncal,8,toll,puente,opan,International-bridge
+75,reynosa phar,"26.041797924744227, -98.2088305959957",open,500,tamaulipas,troncal,7,toll,,opan,International-bridge
+171,ignacio zaragoza (los tomates),"25.87421722363984, -97.47467004872608",open,501,tamaulipas,troncal,8,toll,,opan,International-bridge
 170,nuevo progreso,"26.03629264656662, -97.954364453689",open,502,tamaulipas,troncal,4,toll,2D,opan,
 170,nuevo progreso,"26.03527174651505, -97.9544330102595",open,503,tamaulipas,entronque,2,toll,47-2D-47,opan,
 170,nuevo progreso,"26.037096937671034, -97.95454245738237",open,504,tamaulipas,entronque,2,toll,47-2D-47,opan,
-74,Juarez-lincon,"27.498297389701765, -99.50254431626057",open,505,tamaulipas,troncal,4,toll,puente,capufe,International-bridge
-31,miguel aleman,"26.40285521960509, -99.02069311968577",open,506,tamaulipas,troncal,2,toll,puente,capufe,International-bridge
-48,san juan,"26.31191164483669, -98.84195473768678",open,507,tamaulipas,troncal,2,toll,puente,capufe,bridge
-30,camargo,"26.36244410998924, -98.80645113559994",open,508,tamaulipas,troncal,3,toll,puente,capufe,International-bridge
-37,reynosa,"26.093210481258584, -98.27100126150383",open,509,tamaulipas,troncal,4,toll,puente,capufe,International-bridge
-47,las flores,"26.06052267696973, -97.95043461194285",open,510,tamaulipas,troncal,4,toll,puente,capufe,International-bridge
-50,ojinaga,"29.56056529180206, -104.39648666433295",open,511,chihuahua,troncal,4,toll,puente,capufe,International-bridge
-20,matamoros,"25.891424629609347, -97.50393755311129",open,512,tamaulipas,troncal,3,toll,puente,copa,International-bridge
-62,piedras negras,"28.705244852430557, -100.51302386596953",open,513,coahuila,troncal,2,toll,puente,Hoatsa,International-bridge
-1023,piedras negras 2,"28.697075905761523, -100.51248297635908",open,514,coahuila,troncal,4,toll,puente,Hoatsa,International-bridge
+74,Juarez-lincon,"27.498297389701765, -99.50254431626057",open,505,tamaulipas,troncal,4,toll,,capufe,International-bridge
+31,miguel aleman,"26.40285521960509, -99.02069311968577",open,506,tamaulipas,troncal,2,toll,,capufe,International-bridge
+48,san juan,"26.31191164483669, -98.84195473768678",open,507,tamaulipas,troncal,2,toll,,capufe,bridge
+30,camargo,"26.36244410998924, -98.80645113559994",open,508,tamaulipas,troncal,3,toll,,capufe,International-bridge
+37,reynosa,"26.093210481258584, -98.27100126150383",open,509,tamaulipas,troncal,4,toll,,capufe,International-bridge
+47,las flores,"26.06052267696973, -97.95043461194285",open,510,tamaulipas,troncal,4,toll,,capufe,International-bridge
+50,ojinaga,"29.56056529180206, -104.39648666433295",open,511,chihuahua,troncal,4,toll,,capufe,International-bridge
+20,matamoros,"25.891424629609347, -97.50393755311129",open,512,tamaulipas,troncal,3,toll,,copa,International-bridge
+62,piedras negras,"28.705244852430557, -100.51302386596953",open,513,coahuila,troncal,2,toll,,Hoatsa,International-bridge
+1023,piedras negras 2,"28.697075905761523, -100.51248297635908",open,514,coahuila,troncal,4,toll,,Hoatsa,International-bridge
 419,libramiento de mexicalli,"32.53350175529058, -115.42075475662338",open,515,baja california,troncal,4,toll,2D,omega,
 419,libramiento de mexicalli,"32.53282772801545, -115.40982310215688",open,516,baja california,entronque,1,toll,5-2D,omega,
 419,libramiento de mexicalli,"32.53361579257065, -115.40876421355513",open,516,baja california,entronque,1,toll,2D-5,omega,
@@ -151,10 +151,10 @@ tollbooth_id,tollbooth_name,coords,status,strech_id,state,place,lines,type,highw
 35,rosarito,"32.31112491303154, -117.0444151721061",open,521,baja california,troncal,10,toll,1D,capufe,
 189,nodo popotla,"32.283788556971906, -117.03057131436263",open,522,baja california,entronque,1,toll,201-1D,capufe,
 189,nodo popotla,"32.28383965784465, -117.02961694282466",open,522,baja california,entronque,3,toll,1D-201,capufe,
-415,tecate,"32.545696, -116.852193",open,750,baja california,troncal,9,toll,TIJUANA-TECAT Y -LIB. DE TECATE,Tijuana-tecate,
-418,paso del aguila,"32.527353, -116.692395",open,751,baja california,entronque,1,toll,2D-ENT. PASO DEL AGUILA-TIJUANA,Tijuana-tecate,
-467,paso del aguila bis,"32.52585510316473, -116.69026781800218",open,752,baja california,entronque,2,toll,2D-ENT. SANDOVAL - ENT. PASO DEL AGUILA,Tijuana-tecate,
-417,dart,"32.54103924867271, -116.75769348313429",open,754,baja california,entronque,1,toll,2D-PLANTA DART-VALLE REDONDO TIJUANA,Tijuana-tecate,
+415,tecate,"32.545696, -116.852193",open,750,baja california,troncal,9,toll,,Tijuana-tecate,
+418,paso del aguila,"32.527353, -116.692395",open,751,baja california,entronque,1,toll,2D-PASO DEL AGUILA,Tijuana-tecate,
+467,paso del aguila bis,"32.52585510316473, -116.69026781800218",open,752,baja california,entronque,2,toll,2D-SANDOVAL – PASO DEL AGUILA,Tijuana-tecate,
+417,dart,"32.54103924867271, -116.75769348313429",open,754,baja california,entronque,1,toll,2D-PLANTA DART-VALLE REDONDO,Tijuana-tecate,
 422,las esperanzas,"32.550756, -116.621901",open,755,baja california,entronque,1,toll,LAS ESPERANZAS 3-2D,Tijuana-tecate,
 150,esperanza,"27.603792376513166, -109.93907790959305",open,418,sonora,troncal,6,toll,15D,capufe,
 422,las esperanzas,"32.55166253746689, -116.62114602836968",open,755,baja california,entronque,2,toll,LAS ESPERANZAS 2D-3,Tijuana-tecate,
