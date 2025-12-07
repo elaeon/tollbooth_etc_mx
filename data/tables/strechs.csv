@@ -199,9 +199,9 @@ strech_id,tollbooth_id,strech_name,strech_length_km,sct_idVia,road_id,strech_typ
 194,120,Leon-ent aut salamanca,6.15,36,39,,federal
 195,123,ent. Lagos de moreno-aguascalientes,43.8,36,39,,federal
 196,123,encarnacion de diaz-aguascalentes,15.11,36,39,,federal
-197,583,LIBRAMIENTO AGUASCALIENTES,,,175,,state
-198,583,LIBRAMIENTO AGUASCALIENTES,,,175,,state
-199,583,LIBRAMIENTO AGUASCALIENTES,,,175,,state
+197,583,Ent. Montoro-Ent. La Escondida,,,175,,state
+198,583,Ent. Montoro-Ent. El Chichimeco,,,175,,state
+199,583,Ent. El Chichimeco-Ent. La Escondida,,,175,,state
 200,87,CD. CUAUHTEMOC-OSIRIS,42.31,9,40,,
 201,114,ent. Arandas-el desperdicio,65.21,125,41,,
 202,114,ent. Arandas-jalostotitlan,37.516,125,41,,
@@ -1386,7 +1386,7 @@ VIAL",,,121,,
 1381,,ent. Acolman-ent. Tequisistlan,4.5,243,161,,
 1382,,ent. Tequisistlan-ent. Nabor carrillo,0,243,161,,
 1383,1038,puente el prieto,3,,162,,
-1384,1039,el centinela-la rumorosa,47.297,22,163,,
+1384,1039,centinela-rumorosa,47.297,22,163,,
 1385,1040,libramiento de chilpancingo,20.6,231,164,,
 1386,1041,libramiento fresnillo,20.05,37,165,,
 1387,1042,libramiento calera-enrique estrada,12.2,48,166,,
