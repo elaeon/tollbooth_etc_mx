@@ -222,8 +222,8 @@ tollbooth_id,tollbooth_name,coords,status,strech_id,state,place,lines,type,highw
 558,el higueron,"18.652765075251022, -99.00169876378389",open,10,morelos,entronque,1,toll,94D-san rafael,pinfra,
 558,el higueron,"18.652397034134513, -99.0012437005927",open,10,morelos,entronque,1,toll,san rafael-94D,pinfra,
 558,el higueron,"18.65278399304689, -99.00879375326478",open,8,morelos,troncal,2,toll,94D,pinfra,
-558,el higueron,"18.65262330865848, -99.0088059643153",open,9,morelos,troncal,2,toll,cuautla 94D,pinfra,
-558,el higueron,"18.652936805156926, -99.00879585189807",open,9,morelos,troncal,2,toll,chinameca 94D,pinfra,
+558,el higueron,"18.65262330865848, -99.0088059643153",open,9,morelos,entronque,2,toll,cuautla 94D,pinfra,
+558,el higueron,"18.652936805156926, -99.00879585189807",open,9,morelos,entronque,2,toll,chinameca 94D,pinfra,
 1001,atlixco,"18.916384904608535, -98.48469847669594",open,1336,puebla,troncal,4,toll,438D,pinfra,
 1001,atlixco sur,"18.895077579315473, -98.48938276402062",open,1336,puebla,entronque,4,toll,Atlixco-jantetelco,pinfra,
 26,amozoc,"19.049814106676887, -98.03229883255135",open,11,puebla,troncal,10,toll,150D,capufe,
@@ -1667,11 +1667,11 @@ tollbooth_id,tollbooth_name,coords,status,strech_id,state,place,lines,type,highw
 99,Refineria lazaro cardenas,"18.015116142260688, -94.45376574246976",open,1371,veracruz,entronque,2,toll,180D,capufe,
 60,rodolfo robles,"14.677036334963717, -92.14969824249802",open,1374,chiapas,troncal,2,toll,,capufe,International-bridge
 85,suchiate II,"14.70218664930069, -92.15139195777353",open,1376,chiapas,troncal,4,toll,2,capufe,International-bridge
-1022,puente colombia,"27.697374137211828, -99.74778841810621",open,1358,nuevo leon,troncal,7,toll,puente,Gob-nuevo leon,International-bridge
+1022,puente colombia,"27.697374137211828, -99.74778841810621",open,1358,nuevo leon,troncal,7,toll,,Gob-nuevo leon,International-bridge
 1023,puente anzalduas,"26.109704755804398, -98.34489682024125",open,1359,tamaulipas,troncal,4,toll,,Hoatsa,International-bridge
 1024,puente coatzacoalcos,"18.11516410085257, -94.41087278488928",closed,,veracruz,troncal,7,toll,,capufe,bridge
 1025,puente ignacio chavez,"17.973337922894455, -102.19576323640165",closed,,michoacan,troncal,,toll,,capufe,bridge
-1026,guadalupe,"31.411906057524156, -106.19554819985964",open,1362,chihuahua,troncal,5,toll,libramiento de ciudad juarez,coconal,
+1026,guadalupe,"31.411906057524156, -106.19554819985964",open,1362,chihuahua,troncal,5,toll,,coconal,
 1027,puente guadalupe tornillo,"31.431026810212938, -106.15169349709106",open,1363,chihuahua,troncal,4,toll,,Gob-chihuahua,International-bridge
 1028,puente lerdo-stanton,"31.74655790628881, -106.48216578803022",open,1364,chihuahua,troncal,2,toll,,capufe,International-bridge
 1029,puente jose lopez portillo,"20.930077128775718, -97.68070867063416",open,1365,veracruz,troncal,4,toll,,Gob-veracruz,bridge
