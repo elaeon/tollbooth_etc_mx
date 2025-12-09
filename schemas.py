@@ -48,7 +48,9 @@ strechs_schema = {
 
 
 tollbooths_schema = {
-    "tollbooth_id": pl.UInt16,
+    "tollbooth_id": pl.String,
+    "direction": pl.String,
+    "legacy_id": pl.UInt16,
     "tollbooth_name": pl.String,
     "coords": pl.String,
     "status": pl.String,
