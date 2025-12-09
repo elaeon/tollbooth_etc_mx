@@ -4,7 +4,7 @@
 ,,156,"plan de barracas","20.9475192710524, -104.0629590236778","open",382,"jalisco","troncal",4,"toll","15D","Guadalajara-tepic",
 ,,581,"Amado Nervo","21.08905122568959, -104.71712291858833","open",390,"nayarit","troncal",3,"toll","70D","ocacsa",
 ,,581,"Amado Nervo","21.088907596279125, -104.71728724855063","open",391,"nayarit","troncal",3,"toll","70D","ocacsa",
-,,581,"Amado Nervo",,"not_found",392,"nayarit","troncal",,,"200D","ocacsa",
+,,581,"Amado Nervo",,"not_found",392,,"troncal",,,"200D","ocacsa",
 ,,446,"la cantera","21.4984932062581, -104.81339318530127","open",386,"nayarit","troncal",6,"toll","libramiento norte","Guadalajara-tepic",
 ,,407,"san blas","21.507309681661752, -105.20102818503696","open",387,"nayarit","troncal",3,"toll","76D","rco",
 ,,407,"san blas","21.507309681661752, -105.20102818503696","open",388,"nayarit","troncal",3,"toll",,"rco",
@@ -417,16 +417,16 @@
 ,,425,"libramiento oriente san luis potosi","22.126038672449212, -100.82507989656916","open",223,"san luis potosi","entronque",2,"toll","70-57D","libramientoslp","bypass"
 ,,127,"chichimequillas","20.70558491390206, -100.34373413115131","open",224,"queretaro","troncal",6,"toll","57D","capufe","bypass"
 ,,486,"cerritos (san luis-rio verde)","22.428865895747066, -100.32041862385992","open",225,"san luis potosi","troncal",5,"toll","75D","coinsan",
-,,486,"cerritos (rioverde-cemosa-rioverde)",,"not_found",234,"san luis potosi",,,"toll","75D","coinsan",
+,,486,"cerritos (rioverde-cemosa-rioverde)",,"not_found",234,,,,"toll","75D","coinsan",
 ,,486,"cerritos (charco blanco-rioverde-charco blanco)","22.441384551244493, -100.33936852467664","open",227,"san luis potosi","entronque",1,"toll","75D","coinsan",
 ,,486,"cerritos (cerritos-rioverde)","22.427612024118517, -100.31850050729386","open",228,"san luis potosi","entronque",1,"toll","75D","coinsan",
 ,,486,"cerritos (san luis-cerritos-san luis)","22.440333503824185, -100.3345710388101","open",229,"san luis potosi","entronque",1,"toll","75D","coinsan",
 ,,486,"cerritos (san luis-charco blanco-san luis)","22.441825675240864, -100.3399436115878","open",230,"san luis potosi","entronque",1,"toll","75D","coinsan",
-,,486,"cerritos (slp-cemosa)",,"not_found",235,"san luis potosi",,,"toll","75D","coinsan",
+,,486,"cerritos (slp-cemosa)",,"not_found",235,,,,"toll","75D","coinsan",
 ,,486,"cerritos (charco blanco-slp-charco blanco)","22.443339620963453, -100.33880485161151","open",230,"san luis potosi","entronque",1,"toll","75D","coinsan",
-,,498,"cemosa (rioverde-cemosa-rioverde)",,"not_found",234,"san luis potosi",,,"toll","75D","coinsan",
-,,1049,,,,1399,"san luis potosi",,,"toll",,,
-,,1050,,,,1400,"san luis potosi",,,"toll",,,
+,,498,"cemosa (rioverde-cemosa-rioverde)",,"not_found",234,,,,"toll","75D","coinsan",
+,,1049,,,,1399,,,,"toll",,,
+,,1050,,,,1400,,,,"toll",,,
 ,,493,"la calera","21.904200038149103, -98.95552718590129","open",238,"san luis potosi","troncal",4,"toll","70D","opasa","bypass"
 ,,493,"la calera","21.905379436943097, -98.95284489335644","open",239,"san luis potosi","entronque",1,"toll","70D-85","opasa","bypass"
 ,,493,"la calera","21.905503864727557, -98.95287707986425","open",240,"san luis potosi","entronque",1,"toll","85-70D","opasa","bypass"
@@ -1710,3 +1710,9 @@
 ,,1051,"pinotepa","16.830919821065564, -99.75814737133041","open",,"guerrero","entronque",2,"ticket","200D","gmd",
 ,,1051,"metlapil","16.855731436933674, -99.75393727867163","open",1404,"guerrero","troncal",2,"toll","200D","gmd",
 ,,1051,"metlapil","16.855944862673628, -99.75393537985721","open",1404,"guerrero","troncal",2,"toll","200D","gmd",
+,,1052,"payuca","19.5216189430628, -97.63804259758692","open",1405,"puebla","troncal",4,"toll","129D","opervite",
+,,1052,"zaragoza","19.75989816082776, -97.5453336184523","closed",1406,"puebla","troncal",4,"toll","129D","opervite",
+,,1052,"atempan","19.799242812202557, -97.45678071635825","open",1407,"puebla","entronque",1,"toll","129D","opervite",
+,,1052,"atempan","19.799196364943846, -97.45682655573304","open",1408,"puebla","entronque",1,"toll","129D","opervite",
+,,1052,"atempan","19.798289449730436, -97.45580422983288","open",1409,"puebla","troncal",4,"toll","129D","opervite",
+,,1052,"atempan","19.79795925172604, -97.45552893667505","open",1407,"puebla","entronque",1,"toll","129D","opervite",

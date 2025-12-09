@@ -6,31 +6,31 @@
 5,188,"Mexico-circuito exterior mexiquense",15.955,57,1,,"federal"
 6,196,"LIBRAMIENTO AMECAMECA-NEPANTLA",26.81,237,2,,"federal"
 7,917,"SAN MARTÍN TEXMELUCAN-TLAXCALA",19.419,112,3,,
-8,558,"JANTETELCO - EL HIGUERON",61.8,,198,,
-9,558,"Cuautla-chinameca",,,198,,
-10,558,"Jantetelco-cuautla",,,198,,
-11,26,"PUEBLA-ACATZINGO",42.27,192,4,,
-12,26,"PUEBLA-Amozoc",13.758,192,4,,
-13,26,"Puebla-ent. Amozoc III",6.879,192,4,,
+8,558,"JANTETELCO - EL HIGUERON",61.8,,198,,"federal"
+9,558,"Cuautla-chinameca",,,198,,"federal"
+10,558,"Jantetelco-cuautla",,,198,,"federal"
+11,26,"PUEBLA-ACATZINGO",42.27,192,4,,"federal"
+12,26,"PUEBLA-Amozoc",13.758,192,4,,"federal"
+13,26,"Puebla-ent. Amozoc III",6.879,192,4,,"federal"
 14,594,"CUAPIAXTLA-CUACNOPALAN",63.66,,171,,
 15,594,"el seco-cuacnopalan",37.461,,171,,
 16,594,"Cuapiaxtla-el seco",22.701,,171,,
-17,27,"ACATZINGO-CD. MENDOZA",92.95,193,5,,
-18,27,"ACATZINGO-esperanza",47.375,193,5,,
-19,27,"Esperanza-cd mendoza",45.575,193,5,,
+17,27,"ACATZINGO-CD. MENDOZA",92.95,193,5,,"federal"
+18,27,"ACATZINGO-esperanza",47.375,193,5,,"federal"
+19,27,"Esperanza-cd mendoza",45.575,193,5,,"federal"
 20,116,"CORDOBA-la tinaja",45,16,6,,
 21,116,"Cuitlahuac-la tinaja",30.86,16,6,,
 22,116,"Cordoba-cuitlahuac",14.14,16,6,,
 23,117,"la tinaja-veracruz",53,16,6,,
 24,117,"la tinaja-paso del toro",44.9,16,6,,
 25,117,"paso del toro-veracruz",8.1,16,6,,
-26,76,"Cuacnopalan-tehuacán",41.048,115,7,,
-27,77,"Tehuacán-miahuatlán",30.367,115,7,,
-28,78,"Miahuatlán-nochixtlán",107.085,115,7,,
-29,78,"Miahuatlán-coixtlahuaca",69.885,115,7,,
-30,79,"Nochixtlán-oaxaca",64.5,115,7,,
-31,79,"Nochixtlán-huitzo",38.51,115,7,,
-32,79,"Huitzo-oaxaca",25.99,115,7,,
+26,76,"Cuacnopalan-tehuacán",41.048,115,7,,"federal"
+27,77,"Tehuacán-miahuatlán",30.367,115,7,,"federal"
+28,78,"Miahuatlán-nochixtlán",107.085,115,7,,"federal"
+29,78,"Miahuatlán-coixtlahuaca",69.885,115,7,,"federal"
+30,79,"Nochixtlán-oaxaca",64.5,115,7,,"federal"
+31,79,"Nochixtlán-huitzo",38.51,115,7,,"federal"
+32,79,"Huitzo-oaxaca",25.99,115,7,,"federal"
 33,225,"BARRANCA LARGA-VENTANILLA",,,197,,
 34,226,"BARRANCA LARGA-VENTANILLA",,,197,,
 35,118,"la tinaja-isla",118.15,33,8,,
@@ -40,29 +40,29 @@
 39,119,"Isla-acayucan",69.85,33,8,,
 40,119,"Acayucan-cosoleacaque",40,33,8,,
 41,428,"TÚNEL COATZACOALCOS",1.6,,,,
-42,212,"MITLA-TEHUANTEPEC II",71,252,9,,
-43,212,"Mitla-lachixitla",39.5,252,9,,
-44,216,"LACHIXILA-ENT. TEHUANTEPEC II",40,252,9,,
-45,89,"salina cruz-tehuantepec",22.7,180,10,,
-46,90,"Tehuantepec-la ventosa",52.6,180,10,,
-47,90,"Tehuantepec-ixtepec",30.9,180,10,,
-48,90,"Ixtepec-la ventosa",27.9,180,10,,
+42,212,"MITLA-TEHUANTEPEC II",71,252,9,,"federal"
+43,212,"Mitla-lachixitla",39.5,252,9,,"federal"
+44,216,"LACHIXILA-ENT. TEHUANTEPEC II",40,252,9,,"federal"
+45,89,"salina cruz-tehuantepec",22.7,180,10,,"federal"
+46,90,"Tehuantepec-la ventosa",52.6,180,10,,"federal"
+47,90,"Tehuantepec-ixtepec",30.9,180,10,,"federal"
+48,90,"Ixtepec-la ventosa",27.9,180,10,,"federal"
 49,22,"PUENTE NACIONAL ALVARADO",0.53,65,135,,
 50,63,"PUENTE NACIONAL TLACOTALPAN",0.597,104,157,,
 51,29,"PUENTE NACIONAL CARACOL",0.164,68,137,,
 52,28,"PUENTE NACIONAL PAPALOAPAN",0.288,90,149,,
 53,67,"PUENTA NACIONAL DOVALI",1.268,74,139,,
-54,990,"Amozoc-ent. Ixtenco",25.7,196,11,,
-55,990,"ent. Ixtenco-ent oriental",35.8,196,11,,
-56,990,"ent. Ixtenco-cuapiaxtla",14,196,11,,
-57,990,"ent. Cuapiaxtla-ent orientel",21.8,196,11,,
-58,990,"ent. Oriental-perote II",55.5,196,11,,
-59,990,"ent. Oriental-ent. Cantona",18.8,196,11,,
-60,990,"ent. Cantona-ent perote II",36.7,196,11,,
-61,990,"libramiento de perote",18,196,11,,
-62,990,"ent. Ixtenco- ent. Audi",10.3,196,11,,
-63,990,"AMOZOC-PEROTE (AUDI CUAPIAXTLA A1 Y A2)",,196,11,,
-64,990,"AMOZOC-PEROTE (AUDI CUAPIAXTLA)",,196,11,,
+54,990,"Amozoc-ent. Ixtenco",25.7,196,11,,"federal"
+55,990,"ent. Ixtenco-ent oriental",35.8,196,11,,"federal"
+56,990,"ent. Ixtenco-cuapiaxtla",14,196,11,,"federal"
+57,990,"ent. Cuapiaxtla-ent orientel",21.8,196,11,,"federal"
+58,990,"ent. Oriental-perote II",55.5,196,11,,"federal"
+59,990,"ent. Oriental-ent. Cantona",18.8,196,11,,"federal"
+60,990,"ent. Cantona-ent perote II",36.7,196,11,,"federal"
+61,990,"libramiento de perote",18,196,11,,"federal"
+62,990,"ent. Ixtenco- ent. Audi",10.3,196,11,,"federal"
+63,990,"AMOZOC-PEROTE (AUDI CUAPIAXTLA A1 Y A2)",,196,11,,"federal"
+64,990,"AMOZOC-PEROTE (AUDI CUAPIAXTLA)",,196,11,,"federal"
 65,460,"PEROTE-BANDERILLA",30,215,12,,
 66,461,"LIBRAMIENTO XALAPA",29.6,215,12,,
 67,457,"CARDEL-VERACRUZ",28.5,7,13,,
@@ -141,8 +141,8 @@
 136,577,"LIBRAMIENTO TULANCINGO",22.7,195,27,,"federal"
 137,577,"Tulancingo-venta grande",41.2,195,27,,"federal"
 138,578,"Tejocotal-nuevo necaxa",17.5,207,173,,"federal"
-139,585,"avila camacho-venustiano carranza",24.048,227,28,,
-140,584,"venustiano carranza-tihuatlán",24.048,227,28,,
+139,585,"avila camacho-venustiano carranza",24.048,227,28,,"federal"
+140,584,"venustiano carranza-tihuatlán",24.048,227,28,,"federal"
 141,579,"TIHUATLAN-TUXPAN",37.5,117,29,,
 142,580,"tihuatlan I-tihuatlan II",4.4,117,29,,
 143,556,"buenos aires-naranjos",,,190,,
@@ -167,9 +167,9 @@
 162,5,"tepeji del rio-palmillas",57.571,58,35,,"federal"
 163,207,"tepeji del rio-palmillas",57.571,58,35,,"federal"
 164,70,"tepeji del rio-polotitlan",42.621,58,35,,"federal"
-165,6,"Queretaro-celaya",44.5,109,36,,
-166,61,"Celaya-cerro gordo",32.75,109,36,,
-167,61,"Queretaro-ent. Libramiento surponiente de queretaro",7.11,109,36,,
+165,6,"Queretaro-celaya",44.5,109,36,,"federal"
+166,61,"Celaya-cerro gordo",32.75,109,36,,"federal"
+167,61,"Queretaro-ent. Libramiento surponiente de queretaro",7.11,109,36,,"federal"
 168,590,"LIBRAMIENTO DE CELAYA",,,188,,"state"
 169,591,"LIBRAMIENTO DE CELAYA",,,188,,"state"
 170,592,"LIBRAMIENTO DE CELAYA",,,188,,"state"
@@ -203,21 +203,21 @@
 198,583,"Ent. Montoro-Ent. El Chichimeco",,,175,,"state"
 199,583,"Ent. El Chichimeco-Ent. La Escondida",,,175,,"state"
 200,87,"CD. CUAUHTEMOC-OSIRIS",42.31,9,40,,
-201,114,"ent. Arandas-el desperdicio",65.21,125,41,,
-202,114,"ent. Arandas-jalostotitlan",37.516,125,41,,
-203,114,"Jalostotitlan-el desperdicio",27.7,125,41,,
-204,114,"ent. Arandas-san miguel el alto",22.1,125,41,,
-205,114,"ent. San juande los lagos-el desperdicio",8.18,125,41,,
-206,113,"ZAPOTLANEJO-LAGOS DE MORENO",,,41,,
-207,113,"ZAPOTLANEJO-LAGOS DE MORENO",,,41,,
-208,113,"ZAPOTLANEJO-LAGOS DE MORENO",,,41,,
-209,113,"Zapotlanejo-ent. Arandas",53.284,125,41,,
-210,113,"ZAPOTLANEJO-LAGOS DE MORENO",,,41,,
-211,113,"ent. Acatic-zapotlanejo",25.02,125,41,,
-212,113,"Zapotlanejo-tepatitlan",41.512,125,41,,
-213,113,"ZAPOTLANEJO-LAGOS DE MORENO",,,41,,
-214,113,"ZAPOTLANEJO-LAGOS DE MORENO",,,41,,
-215,113,"Tapatitlan-ent. Arandas",11.772,125,41,,
+201,114,"ent. Arandas-el desperdicio",65.21,125,41,,"federal"
+202,114,"ent. Arandas-jalostotitlan",37.516,125,41,,"federal"
+203,114,"Jalostotitlan-el desperdicio",27.7,125,41,,"federal"
+204,114,"ent. Arandas-san miguel el alto",22.1,125,41,,"federal"
+205,114,"ent. San juan de los lagos-el desperdicio",8.18,125,41,,"federal"
+206,113,"ZAPOTLANEJO-LAGOS DE MORENO",,,41,,"federal"
+207,113,"ZAPOTLANEJO-LAGOS DE MORENO",,,41,,"federal"
+208,113,"ZAPOTLANEJO-LAGOS DE MORENO",,,41,,"federal"
+209,113,"Zapotlanejo-ent. Arandas",53.284,125,41,,"federal"
+210,113,"ZAPOTLANEJO-LAGOS DE MORENO",,,41,,"federal"
+211,113,"ent. Acatic-zapotlanejo",25.02,125,41,,"federal"
+212,113,"Zapotlanejo-tepatitlan",41.512,125,41,,"federal"
+213,113,"ZAPOTLANEJO-LAGOS DE MORENO",,,41,,"federal"
+214,113,"ZAPOTLANEJO-LAGOS DE MORENO",,,41,,"federal"
+215,113,"Tapatitlan-ent. Arandas",11.772,125,41,,"federal"
 216,199,"lagos de moreno-villa de arriaga",66.048,224,42,,"federal"
 217,454,"VENTURA-EL PEYOTE",,,187,,
 218,426,"LIBRAMIENTO ARCO NORTE SAN LUIS POTOS",31.5,238,43,,
@@ -226,20 +226,20 @@
 221,504,"Horizontes-zacatecas",4.6,,44,,
 222,425,"LIBRAMIENTO ORIENTE SAN LUIS POTOSI",33.76,43,45,,
 223,425,"Rioverde-la pila",,,45,,
-224,127,"LIBRAMIENTO NORESTE QUERETARO",37,40,46,,
-225,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
-226,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
-227,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
-228,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
-229,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
-230,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
-231,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
-232,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
-233,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
-234,498,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
-235,498,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
-236,498,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
-237,498,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,
+224,127,"LIBRAMIENTO NORESTE QUERETARO",37,40,46,,"federal"
+225,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
+226,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
+227,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
+228,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
+229,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
+230,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
+231,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
+232,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
+233,486,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
+234,498,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
+235,498,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
+236,498,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
+237,498,"SAN LUIS POTOSÍ-RIOVERDE",,,185,,"state"
 238,493,"libramiento cd. Valles-tamuin",49.5,244,47,,
 239,493,"ent. La calera-ent. San juan",28.9,244,47,,
 240,493,"ent. La pitahaya-ent. La calera",20.6,244,47,,
@@ -269,55 +269,55 @@
 264,530,"TOLUCA-ZITACUARO RAMAL A VALLE DE BRA",,,180,,"state"
 265,530,"TOLUCA-ZITACUARO RAMAL A VALLE DE BRA",,,180,,"state"
 266,489,"TOLUCA-ZITACUARO RAMAL A VALLE DE BRA",,,180,,"state"
-267,940,"ZITACUARO-LENGUA DE VACA",11.84,,184,,
-268,444,"TOLUCA-ATLACOMULCO",,,174,,
-269,445,"TOLUCA-ATLACOMULCO",,,174,,
-270,448,"Atlacomulco-venta de bravo",32.175,4,50,,
-271,449,"venta de bravo-maravatio",32.175,4,50,,
-272,144,"Maravatio-morelia",75.427,49,51,,
-273,144,"Zinapecuaro-morelia",38.211,49,51,,
-274,144,"Maravatio-zinapecuaro",37.216,49,51,,
-275,144,"Maravatio-jerahuaro",21.113,49,51,,
-276,144,"Morelia-copandaro",7.411,49,51,,
-277,145,"Morelia-churintzio",105.894,49,51,,
-278,145,"Morelia-panindicuaro",66.663,49,51,,
-279,145,"Morelia-huaniqueo",39.573,49,51,,
-280,145,"Panindicuaro-churintzio",39.231,49,51,,
-281,146,"Churintzio-la barca",55.823,49,51,,
-282,146,"MARAVATIO-ZAPOTLANEJO",,49,51,,
-283,146,"la sauceda-zapotlanejo",12.9,49,51,,
-284,146,"Churintzio-ecuandureo",13.682,49,51,,
-285,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,
-286,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,
-287,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,
-288,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,
-289,147,"la barca-zapotlanejo",72.556,49,51,,
-290,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,
-291,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,
-292,147,"Ocotlan-zapotlanejo",48.095,49,51,,
-293,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,
-294,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,
-295,147,"zapotlanejo del rey-zapotlanejo",28.7,49,51,,
-296,147,"la barca-ocotlan",23.811,49,51,,
-297,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,
-298,328,"ECUANDUREO-LA BARCA",42.141,49,51,,
+267,940,"ZITACUARO-LENGUA DE VACA",11.84,,184,,"state"
+268,444,"TOLUCA-ATLACOMULCO",,,174,,"federal"
+269,445,"TOLUCA-ATLACOMULCO",,,174,,"federal"
+270,448,"Atlacomulco-venta de bravo",32.175,4,50,,"federal"
+271,449,"venta de bravo-maravatio",32.175,4,50,,"federal"
+272,144,"Maravatio-morelia",75.427,49,51,,"federal"
+273,144,"Zinapecuaro-morelia",38.211,49,51,,"federal"
+274,144,"Maravatio-zinapecuaro",37.216,49,51,,"federal"
+275,144,"Maravatio-jerahuaro",21.113,49,51,,"federal"
+276,144,"Morelia-copandaro",7.411,49,51,,"federal"
+277,145,"Morelia-churintzio",105.894,49,51,,"federal"
+278,145,"Morelia-panindicuaro",66.663,49,51,,"federal"
+279,145,"Morelia-huaniqueo",39.573,49,51,,"federal"
+280,145,"Panindicuaro-churintzio",39.231,49,51,,"federal"
+281,146,"Churintzio-la barca",55.823,49,51,,"federal"
+282,146,"MARAVATIO-ZAPOTLANEJO",,49,51,,"federal"
+283,146,"la sauceda-zapotlanejo",12.9,49,51,,"federal"
+284,146,"Churintzio-ecuandureo",13.682,49,51,,"federal"
+285,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,"federal"
+286,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,"federal"
+287,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,"federal"
+288,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,"federal"
+289,147,"la barca-zapotlanejo",72.556,49,51,,"federal"
+290,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,"federal"
+291,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,"federal"
+292,147,"Ocotlan-zapotlanejo",48.095,49,51,,"federal"
+293,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,"federal"
+294,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,"federal"
+295,147,"zapotlanejo del rey-zapotlanejo",28.7,49,51,,"federal"
+296,147,"la barca-ocotlan",23.811,49,51,,"federal"
+297,147,"MARAVATIO-ZAPOTLANEJO",,49,51,,"federal"
+298,328,"ECUANDUREO-LA BARCA",42.141,49,51,,"federal"
 299,42,"PUENTE NACIONAL LA PIEDAD",0.092,79,52,,
-300,463,"laguna larga-patti II",21.388,225,53,,"federal"
-301,463,"Calera-patti II",16.08,225,53,,"federal"
-302,463,"laguna larga-calera",5.3,225,53,,"federal"
+300,463,"laguna larga-patti II",21.388,225,208,,"federal"
+301,463,"Calera-patti II",16.08,225,208,,"federal"
+302,463,"laguna larga-calera",5.3,225,208,,"federal"
 303,941,"MORELIA-AEROPUERTO",,,,,
 304,942,"MORELIA-AEROPUERTO",,,,,
-305,933,"Morelia-copandaro (capula-patzcuaro)",34,247,54,,
-306,927,"Quiroga-patzcuaro (patzcuaro-copandro)",29.57,247,54,,
-307,911,"PATZCUARO-URUAPAN",56.5,61,55,,
-308,910,"Zirahuen-uruapan",35.8,61,55,,
-309,912,"Zurumucapio-uruapan",16.5,61,55,,
-310,925,"ent. Zirimicuaro-ent. Cajones",29,122,56,,
-311,925,"Taretan-ent. Cajones",21,122,56,,
-312,925,"ent. Zirimicuaro-taretan",8,122,56,,
-313,924,"ent. Cajones-ent. Cuatro caminos",31,122,56,,
-314,924,"ent. Santa casilda-ent. Cuatro caminos",20,122,56,,
-315,924,"ent. Cajones-ent. Santa casilda",11,122,56,,
+305,933,"Morelia-copandaro (capula-patzcuaro)",34,247,54,,"federal"
+306,927,"Quiroga-patzcuaro (patzcuaro-copandro)",29.57,247,54,,"federal"
+307,911,"PATZCUARO-URUAPAN",56.5,61,55,,"federal"
+308,910,"Zirahuen-uruapan",35.8,61,55,,"federal"
+309,912,"Zurumucapio-uruapan",16.5,61,55,,"federal"
+310,925,"ent. Zirimicuaro-ent. Cajones",29,122,56,,"federal"
+311,925,"Taretan-ent. Cajones",21,122,56,,"federal"
+312,925,"ent. Zirimicuaro-taretan",8,122,56,,"federal"
+313,924,"ent. Cajones-ent. Cuatro caminos",31,122,56,,"federal"
+314,924,"ent. Santa casilda-ent. Cuatro caminos",20,122,56,,"federal"
+315,924,"ent. Cajones-ent. Santa casilda",11,122,56,,"federal"
 316,920,"ent. Nueva italia-ent. Las cañas",57.5,60,57,,"federal"
 317,919,"ent. Las cañas-lazaro cardenas",99.25,60,57,,"federal"
 318,919,"ent. Las cañas-ent. Feliciano",70.5,60,57,,"federal"
@@ -359,52 +359,52 @@
 354,423,"TÚNEL ACAPULCO",2.953,,,,
 355,429,"MACROTÚNEL ACAPULCO",3.3,,,,
 356,420,"LIBRAMIENTO TECPAN",4.369,205,64,,"federal"
-357,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,
-358,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,
-359,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,
-360,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,
-361,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,
-362,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,
-363,159,"Guadalajara-zapotlanejo",26,29,65,,
-364,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,
-365,159,"el vado-guadalajara",14.8,29,65,,
-366,159,"Cortijo-guadalajara",9.5,29,65,,
-367,159,"Periferico-guadalajara",8.55,29,65,,
-368,159,"arroyo de enmedio-guadalajara",5.66,29,65,,
-369,447,"Ent. Zapotlanejo-Guadalajara a Chapala (LA LAJA)",25,246,66,,
-370,447,"Aut México-Guadalajara a Zapotlanejo (Remota La Laja)",,,69,,
-371,325,"Chapala - Santa Cecilia",,,69,,
-372,405,"Santa Cecilia (TRAMO SANTA CECILIA-MAGDALENA) ",,,69,,
-373,405,"LIBRAMIENTO SUR DE GUADALAJARA",,,66,,
-374,405,"LIBRAMIENTO SUR DE GUADALAJARA",,,66,,
+357,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,"federal"
+358,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,"federal"
+359,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,"federal"
+360,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,"federal"
+361,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,"federal"
+362,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,"federal"
+363,159,"Guadalajara-zapotlanejo",26,29,65,,"federal"
+364,159,"ZAPOTLANEJO-GUADALAJARA",,,65,,"federal"
+365,159,"el vado-guadalajara",14.8,29,65,,"federal"
+366,159,"Cortijo-guadalajara",9.5,29,65,,"federal"
+367,159,"Periferico-guadalajara",8.55,29,65,,"federal"
+368,159,"arroyo de enmedio-guadalajara",5.66,29,65,,"federal"
+369,447,"Ent. Zapotlanejo-Guadalajara a Chapala (LA LAJA)",25,246,66,,"federal"
+370,447,"Aut México-Guadalajara a Zapotlanejo (Remota La Laja)",,,69,,"federal"
+371,325,"Chapala - Santa Cecilia",,,69,,"federal"
+372,405,"Santa Cecilia (TRAMO SANTA CECILIA-MAGDALENA) ",,,69,,"federal"
+373,405,"LIBRAMIENTO SUR DE GUADALAJARA",,,66,,"federal"
+374,405,"LIBRAMIENTO SUR DE GUADALAJARA",,,66,,"federal"
 375,57,"Acatlan-atoyac",49.18,27,67,,"federal"
 376,58,"Atoyac-cd. Guzman",37.12,27,67,,"federal"
 377,59,"Sayula-cd. Guzman",21.1,27,67,,"federal"
 378,60,"cd. guzman-el trapiche",61.7,27,67,,"federal"
 379,901,"ARMERÍA-MANZANILLO",47,1,68,,"federal"
-380,155,"ent. Ameca-magdalena",46,28,69,,
-381,155,"Tequila-magdalena",12.26,28,69,,
-382,156,"ixtlan del rio-santa maria del oro",47.692,28,69,,
-383,157,"Jala-tepic",,,69,,
-384,157,"santa maria del oro-tepic",77.6,28,69,,
-385,157,"Jala-santa maría del oro",21.69,28,69,,
-386,446,"LIBRAMIENTO TEPIC",30,250,70,,
-387,407,"TEPIC-SAN BLAS",30.929,253,71,,
-388,407,"Tepic-mecatan",20.2,253,71,,
-389,53,"CHAPALILLA-COMPOSTELA",35.5,14,72,,
-390,581,"Jala-las varas",,,203,,
-391,581,"JALA-COMPOSTELA",,,203,,
-392,581,"JALA-COMPOSTELA",,,203,,
-393,582,"Compostela-las varas",,,203,,
+380,155,"ent. Ameca-magdalena",46,28,69,,"federal"
+381,155,"Tequila-magdalena",12.26,28,69,,"federal"
+382,156,"ixtlan del rio-santa maria del oro",47.692,28,69,,"federal"
+383,157,"Jala-tepic",,,69,,"federal"
+384,157,"santa maria del oro-tepic",77.6,28,69,,"federal"
+385,157,"Jala-santa maría del oro",21.69,28,69,,"federal"
+386,446,"LIBRAMIENTO TEPIC",30,250,70,,"federal"
+387,407,"TEPIC-SAN BLAS",30.929,253,71,,"federal"
+388,407,"Tepic-mecatan",20.2,253,71,,"federal"
+389,53,"CHAPALILLA-COMPOSTELA",35.5,14,72,,"federal"
+390,581,"Jala-las varas",,,203,,"federal"
+391,581,"JALA-COMPOSTELA",,,203,,"federal"
+392,581,"JALA-COMPOSTELA",,,203,,"federal"
+393,582,"Compostela-las varas",,,203,,"federal"
 394,404,"TEPIC-MAZATLÁN",,,,,
-395,403,"Tepic-ent. San blas",25,204,73,,
-396,409,"ent. San blas-estacion yago",13.48,204,73,,
-397,401,"Ent. san blas-rosamorada",45.18,204,73,,
-398,401,"estacion yago-ruiz",13.138,204,73,,
-399,402,"Rosamorada-escuinapa",100.56,204,73,,
-400,402,"Rosamorada-acaponeta",46.3,204,73,,
-401,400,"Escuinapa-villa union",64.95,204,73,,
-402,400,"Escuinapa-rosario",26.38,204,73,,
+395,403,"Tepic-ent. San blas",25,204,73,,"federal"
+396,409,"ent. San blas-estacion yago",13.48,204,73,,"federal"
+397,401,"Ent. san blas-rosamorada",45.18,204,73,,"federal"
+398,401,"estacion yago-ruiz",13.138,204,73,,"federal"
+399,402,"Rosamorada-escuinapa",100.56,204,73,,"federal"
+400,402,"Rosamorada-acaponeta",46.3,204,73,,"federal"
+401,400,"Escuinapa-villa union",64.95,204,73,,"federal"
+402,400,"Escuinapa-rosario",26.38,204,73,,"federal"
 403,604,"LIBRAMIENTO MAZATLÁN",32,177,74,,
 404,604,"Mazatlan-aeropuerto",,,,,
 405,604,"Vainillo-aeropuerto",,,,,
@@ -465,39 +465,39 @@
 460,141,"puerto mexico-ent. La carbonera",32,31,89,,"federal"
 461,142,"puerto mexico-huachichil",32,31,89,,"federal"
 462,421,"LIBRAMIENTO MATEHUALA",14.2,176,90,,
-463,499,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,
-464,499,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,
-465,499,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,
-466,499,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,
-467,499,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,
-468,452,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,
-469,452,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,
-470,452,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,
-471,505,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,
-472,505,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,
-473,450,"MONTERREY-CADEREYTA",,,201,,
-474,451,"MONTERREY-CADEREYTA",,,201,,
-475,451,"MONTERREY-CADEREYTA",,,201,,
+463,499,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,"state"
+464,499,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,"state"
+465,499,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,"state"
+466,499,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,"state"
+467,499,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,"state"
+468,452,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,"state"
+469,452,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,"state"
+470,452,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,"state"
+471,505,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,"state"
+472,505,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,"state"
+473,450,"MONTERREY-CADEREYTA",,,201,,"state"
+474,451,"MONTERREY-CADEREYTA",,,201,,"state"
+475,451,"MONTERREY-CADEREYTA",,,201,,"state"
 476,40,"PUENTE CADEREYTA",0.179,66,91,,
 477,586,"AGUJITA-ALLENDE",,,,,
 478,65,"PUENTE ACUÑA",0.129,64,92,,
-479,108,"Monterrey-la gloria",123.1,59,93,,
-480,109,"Monterrey-agua leguas",56.9,59,93,,
-481,110,"Monterrey-sabinas",77.3,59,93,,
-482,110,"Sabinas-la gloria",45.8,59,93,,
-483,938,"MONTERREY-NUEVO LAREDO (LA GLORIA-SAN",,,,,
-484,,"agua leguas-paras",19.4,59,93,,
-485,,"agua leguas-sabinas",20.4,59,93,,
-486,128,"Cadereyta-la sierrita",132.015,5,94,,
-487,128,"general bravo-la sierrita",47,5,94,,
-488,129,"los herrera-la sierrita",68.2,5,94,,
-489,129,"Cadereyta-los herreras",63.815,5,94,,
-490,130,"los ramones-la sierrita",96.74,5,94,,
-491,130,"Cadereyta-los ramones",35.275,5,94,,
-492,131,"Cadereyta-general bravo",85.015,5,94,,
-493,,"los herrera-general bravo",21.2,5,94,,
-494,,"los ramones-los herrera",28.54,5,94,,
-495,,"los ramones-general bravo",49.74,5,94,,
+479,108,"Monterrey-la gloria",123.1,59,93,,"federal"
+480,109,"Monterrey-agua leguas",56.9,59,93,,"federal"
+481,110,"Monterrey-sabinas",77.3,59,93,,"federal"
+482,110,"Sabinas-la gloria",45.8,59,93,,"federal"
+483,938,"MONTERREY-NUEVO LAREDO (LA GLORIA-SAN",,,93,,"federal"
+484,,"agua leguas-paras",19.4,59,93,,"federal"
+485,,"agua leguas-sabinas",20.4,59,93,,"federal"
+486,128,"Cadereyta-la sierrita",132.015,5,94,,"federal"
+487,128,"general bravo-la sierrita",47,5,94,,"federal"
+488,129,"los herrera-la sierrita",68.2,5,94,,"federal"
+489,129,"Cadereyta-los herreras",63.815,5,94,,"federal"
+490,130,"los ramones-la sierrita",96.74,5,94,,"federal"
+491,130,"Cadereyta-los ramones",35.275,5,94,,"federal"
+492,131,"Cadereyta-general bravo",85.015,5,94,,"federal"
+493,,"los herrera-general bravo",21.2,5,94,,"federal"
+494,,"los ramones-los herrera",28.54,5,94,,"federal"
+495,,"los ramones-general bravo",49.74,5,94,,"federal"
 496,15,"ent. Caderayta-reynosa-ent. San fernando",24.3,230,95,,
 497,194,"ent. San fernando- ent. p.i reynosa-pharr",12.7,230,95,,
 498,194,"ent. San fernando- ent. Anzalduas",13.6,230,95,,
@@ -849,49 +849,49 @@
 845,399,"MÉXICO PACHUCA-ENT. GRAN CANAL",,,182,,
 846,572,"Ent. Gran canal-Mexico-pachuca",,,182,,
 847,399,"ENT. INDIOS VERDES- ENT. GRAN CANAL",,,182,,
-848,,"LOGISTIK - SAN FELIPE",,,200,,
-849,,"LOGISTIK - SAN LUIS POTOSÍ",,,200,,
-850,,"LOGISTIK - VILLA DE ARRIAGA",,,200,,
-851,,"LOGISTIK - WTC",,,200,,
-852,,"RAMAL CALDERON-SAN FELIPE",,,200,,
-853,,"SAN FELIPE - LOGISTIK",,,200,,
-854,,"SAN FELIPE - SAN LUIS POTOSÍ",,,200,,
-855,,"SAN FELIPE - VILLA DE ARRIAGA",,,200,,
-856,,"SAN FELIPE - WTC",,,200,,
-857,,"SAN LUIS POTOSÍ - LOGISTIK",,,200,,
-858,,"SAN LUIS POTOSÍ - SAN FELIPE",,,200,,
-859,,"SAN LUIS POTOSÍ - VILLA DE ARRIAGA",,,200,,
-860,,"SAN LUIS POTOSÍ - WTC",,,200,,
-861,,"VILLA DE ARRIAGA - LOGISTIK",,,200,,
-862,,"VILLA DE ARRIAGA - SAN FELIPE",,,200,,
-863,,"VILLA DE ARRIAGA - SAN LUIS POTOSÍ",,,200,,
-864,,"VILLA DE ARRIAGA - WTC",,,200,,
-865,,"VILLA DE REYES - LOGISTIK",,,200,,
-866,,"VILLA DE REYES - SAN LUIS POTOSÍ",,,200,,
-867,,"WTC - LOGISTIK",,,200,,
-868,,"WTC - SAN FELIPE",,,200,,
-869,,"WTC - SAN LUIS POTOSÍ",,,200,,
-870,,"WTC - VILLA DE ARRIAGA",,,200,,
-871,478,"KANTUNIL - VALLADOLID",90,52,114,,
-872,478,"VALLADOLID - KANTUNIL",90,52,114,,
-873,478,"KANTUNIL - PISTÉ",50,52,114,,
-874,478,"PISTÉ - KANTUNIL",50,52,114,,
-875,478,"PISTÉ - VALLADOLID",40,52,114,,
-876,478,"VALLADOLID - PISTÉ",40,52,114,,
-877,478,"COMP. PISTE-KANTUNIL",,,114,,
-878,479,"CANCÚN - VALLADOLID",151.34,52,114,,
-879,478,"VALLADOLID - CANCÚN",151.34,52,114,,
-880,478,"VALLADOLID - PLAYA DEL CARMEN",126,240,160,,
-881,479,"PLAYA DEL CARMEN - VALLADOLID",126,240,160,,
-882,479,"CANCÚN - PLAYA DEL CARMEN",44,52,114,,
-883,479,"PLAYA DEL CARMEN - CANCÚN",44,52,114,,
-884,478,"CEDRAL - VALLADOLID",92,240,160,,
-885,478,"VALLADOLID - CEDRAL",92,240,160,,
-886,479,"CEDRAL - CANCÚN",78,240,160,,
-887,479,"CANCÚN - CEDRAL",78,240,160,,
-888,479,"CEDRAL - PLAYA DEL CARMEN",54,240,160,,
-889,479,"PLAYA DEL CARMEN - CEDRAL",54,240,160,,
-890,479,"CEDRAL - TINTAL",10,52,114,,
+848,,"LOGISTIK - SAN FELIPE",,,200,,"state"
+849,,"LOGISTIK - SAN LUIS POTOSÍ",,,200,,"state"
+850,,"LOGISTIK - VILLA DE ARRIAGA",,,200,,"state"
+851,,"LOGISTIK - WTC",,,200,,"state"
+852,,"RAMAL CALDERON-SAN FELIPE",,,200,,"state"
+853,,"SAN FELIPE - LOGISTIK",,,200,,"state"
+854,,"SAN FELIPE - SAN LUIS POTOSÍ",,,200,,"state"
+855,,"SAN FELIPE - VILLA DE ARRIAGA",,,200,,"state"
+856,,"SAN FELIPE - WTC",,,200,,"state"
+857,,"SAN LUIS POTOSÍ - LOGISTIK",,,200,,"state"
+858,,"SAN LUIS POTOSÍ - SAN FELIPE",,,200,,"state"
+859,,"SAN LUIS POTOSÍ - VILLA DE ARRIAGA",,,200,,"state"
+860,,"SAN LUIS POTOSÍ - WTC",,,200,,"state"
+861,,"VILLA DE ARRIAGA - LOGISTIK",,,200,,"state"
+862,,"VILLA DE ARRIAGA - SAN FELIPE",,,200,,"state"
+863,,"VILLA DE ARRIAGA - SAN LUIS POTOSÍ",,,200,,"state"
+864,,"VILLA DE ARRIAGA - WTC",,,200,,"state"
+865,,"VILLA DE REYES - LOGISTIK",,,200,,"state"
+866,,"VILLA DE REYES - SAN LUIS POTOSÍ",,,200,,"state"
+867,,"WTC - LOGISTIK",,,200,,"state"
+868,,"WTC - SAN FELIPE",,,200,,"state"
+869,,"WTC - SAN LUIS POTOSÍ",,,200,,"state"
+870,,"WTC - VILLA DE ARRIAGA",,,200,,"state"
+871,478,"KANTUNIL - VALLADOLID",90,52,114,,"federal"
+872,478,"VALLADOLID - KANTUNIL",90,52,114,,"federal"
+873,478,"KANTUNIL - PISTÉ",50,52,114,,"federal"
+874,478,"PISTÉ - KANTUNIL",50,52,114,,"federal"
+875,478,"PISTÉ - VALLADOLID",40,52,114,,"federal"
+876,478,"VALLADOLID - PISTÉ",40,52,114,,"federal"
+877,478,"COMP. PISTE-KANTUNIL",,,114,,"federal"
+878,479,"CANCÚN - VALLADOLID",151.34,52,114,,"federal"
+879,478,"VALLADOLID - CANCÚN",151.34,52,114,,"federal"
+880,478,"VALLADOLID - PLAYA DEL CARMEN",126,240,160,,"federal"
+881,479,"PLAYA DEL CARMEN - VALLADOLID",126,240,160,,"federal"
+882,479,"CANCÚN - PLAYA DEL CARMEN",44,52,114,,"federal"
+883,479,"PLAYA DEL CARMEN - CANCÚN",44,52,114,,"federal"
+884,478,"CEDRAL - VALLADOLID",92,240,160,,"federal"
+885,478,"VALLADOLID - CEDRAL",92,240,160,,"federal"
+886,479,"CEDRAL - CANCÚN",78,240,160,,"federal"
+887,479,"CANCÚN - CEDRAL",78,240,160,,"federal"
+888,479,"CEDRAL - PLAYA DEL CARMEN",54,240,160,,"federal"
+889,479,"PLAYA DEL CARMEN - CEDRAL",54,240,160,,"federal"
+890,479,"CEDRAL - TINTAL",10,52,114,,"federal"
 891,,"LA VENTA - ATIZAPAN",,,115,,"federal_state"
 892,,"INTERLOMAS - ATIZAPAN",,,115,,"federal_state"
 893,,"BOSQUE REAL - ATIZAPAN",,,115,,"federal_state"
@@ -1037,28 +1037,28 @@
 1033,,"BOSQUE REAL - LA VENTA",,,115,,"federal_state"
 1034,,"HUIXQUILUCAN - LA VENTA",,,115,,"federal_state"
 1035,,"INTERLOMAS - LA VENTA",,,115,,"federal_state"
-1036,,"ENT. CAPOMO - ENT. PEÑITA - AEROPUERTO + RAMAL",,,116,,
-1037,,"RAMAL 692 + ENT. PEÑITA - ENT. AEROPUERTO",,,116,,
-1038,,"ENT. CAPOMO - ENT. PEÑITA - BUCERIAS",,,116,,
-1039,,"RAMAL 692  + ENT. PEÑITA - BUCERIAS",,,116,,
-1040,,"ENT. CAPOMO - ENT. PEÑITA -FLORIDA",,,116,,
-1041,,"ENT. CAPOMO - ENT. PEÑITA -FLORIDA",,,116,,
-1042,,"RAMAL 692 + ENT. PEÑITA - FLORIDA",,,116,,
-1043,,"ENT. CAPOMO - ENT. PEÑITA+RAMAL 692",,,116,,
-1044,,"ENT. PEÑITA+RAMAL 692 - ENT. CAPOMO",,,116,,
-1045,,"RAMAL + ENT AEROPUERTO - ENT. PEÑITA - CAPOMO",,,116,,
-1046,,"RAMAL + ENT AEROPUERTO - ENT. PEÑITA+RAMAL 692",,,116,,
-1047,,"RAMAL + ENT AEROPUERTO - FLORIDA",,,116,,
-1048,,"RAMAL + ENT AEROPUERTO - BUCERIAS",,,116,,
-1049,,"FLORIDA - ENT. AEROPUERTO + RAMAL",,,116,,
-1050,,"FLORIDA - BUCERIAS",,,116,,
-1051,,"FLORIDA -  ENT. PEÑITA - CAPOMO",,,116,,
-1052,,"FLORIDA - ENT. PEÑITA + RAMAL 692",,,116,,
-1053,,"FLORIDA - ENT. PEÑITA + RAMAL 692",,,116,,
-1054,,"BUCERIAS - ENT. PEÑITA + CAPOMO",,,116,,
-1055,,"BUCERIAS - ENT. PEÑITA + RAMAL 692",,,116,,
-1056,,"BUCERIAS - FLORIDA",,,116,,
-1057,,"BUCERIAS - ENT. AEROPUERTO + RAMAL",,,116,,
+1036,,"ENT. CAPOMO - ENT. PEÑITA - AEROPUERTO + RAMAL",,,116,,"federal"
+1037,,"RAMAL 692 + ENT. PEÑITA - ENT. AEROPUERTO",,,116,,"federal"
+1038,,"ENT. CAPOMO - ENT. PEÑITA - BUCERIAS",,,116,,"federal"
+1039,,"RAMAL 692  + ENT. PEÑITA - BUCERIAS",,,116,,"federal"
+1040,,"ENT. CAPOMO - ENT. PEÑITA -FLORIDA",,,116,,"federal"
+1041,,"ENT. CAPOMO - ENT. PEÑITA -FLORIDA",,,116,,"federal"
+1042,,"RAMAL 692 + ENT. PEÑITA - FLORIDA",,,116,,"federal"
+1043,,"ENT. CAPOMO - ENT. PEÑITA+RAMAL 692",,,116,,"federal"
+1044,,"ENT. PEÑITA+RAMAL 692 - ENT. CAPOMO",,,116,,"federal"
+1045,,"RAMAL + ENT AEROPUERTO - ENT. PEÑITA - CAPOMO",,,116,,"federal"
+1046,,"RAMAL + ENT AEROPUERTO - ENT. PEÑITA+RAMAL 692",,,116,,"federal"
+1047,,"RAMAL + ENT AEROPUERTO - FLORIDA",,,116,,"federal"
+1048,,"RAMAL + ENT AEROPUERTO - BUCERIAS",,,116,,"federal"
+1049,,"FLORIDA - ENT. AEROPUERTO + RAMAL",,,116,,"federal"
+1050,,"FLORIDA - BUCERIAS",,,116,,"federal"
+1051,,"FLORIDA -  ENT. PEÑITA - CAPOMO",,,116,,"federal"
+1052,,"FLORIDA - ENT. PEÑITA + RAMAL 692",,,116,,"federal"
+1053,,"FLORIDA - ENT. PEÑITA + RAMAL 692",,,116,,"federal"
+1054,,"BUCERIAS - ENT. PEÑITA + CAPOMO",,,116,,"federal"
+1055,,"BUCERIAS - ENT. PEÑITA + RAMAL 692",,,116,,"federal"
+1056,,"BUCERIAS - FLORIDA",,,116,,"federal"
+1057,,"BUCERIAS - ENT. AEROPUERTO + RAMAL",,,116,,"federal"
 1058,514,"COPANDARO- CUITZEO",7,203,117,,"federal"
 1059,514,"COPANDARO-LA CINTA",20,203,117,,"federal"
 1060,513,"URIANGATO- COPANDARO",32,203,117,,"federal"
@@ -1338,12 +1338,12 @@ VIAL",,,121,,
 1333,,"CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (A)",,,127,,
 1334,,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (TNS)",,,127,,
 1335,,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (A)",,,127,,
-1336,1001,"Atlixco-jantetelco",,,193,,
-1337,1002,"Puebla-atlixco",,,194,,
+1336,1001,"Atlixco-jantetelco",,,193,,"state"
+1337,1002,"Puebla-atlixco",,,194,,"state"
 1338,1003,"Mexicalli-rio colorado",0.304,,,,
 1339,937,"san martin-huejotzingo",18.4,,170,,
-1340,1004,"Apizaco-huahuchinango",,,,,
-1341,1004,"Apizaco-chignahuapan",,,,,
+1340,1004,"Apizaco-huahuchinango",,,207,,"state"
+1341,1004,"Apizaco-chignahuapan",,,207,,"state"
 1342,1005,"santa ana-altar",73,200,128,,
 1343,1006,"Sueco-villa ahumada",86.7,23,129,,"federal"
 1344,1008,"Delicias-conchos",30,19,130,,"federal"
@@ -1356,7 +1356,7 @@ VIAL",,,121,,
 1351,1015,"flores magón-galeana",,,,,"state"
 1352,1016,"libramiento de samalayuca-san jeronimo",,,,,"state"
 1353,1017,"Chihuahua-ojinaga",,,,,"state"
-1354,1018,"Puebla-tlaxcala",,,192,,
+1354,1018,"Puebla-tlaxcala",,,192,,"state"
 1355,1019,"libramiento de nogales",12.5,39,132,,
 1356,1020,"san luis rio colorado II",0.4,210,133,,
 1357,1021,"san luis rio colorado-doctor",49,,191,,
@@ -1391,9 +1391,9 @@ VIAL",,,121,,
 1386,1041,"libramiento fresnillo",20.05,37,165,,
 1387,1042,"libramiento calera-enrique estrada",12.2,48,166,,
 1388,1043,"libramiento noreste de zacatecas",26,,167,,
-1389,1044,"libramiento felipe carrillo puerto",14.14,245,168,,
-1390,1044,"ent. Chetumal-ent. Merida",5.905,245,168,,
-1391,1044,"ent. Chetumal-ent. Felipe carrillo puerto",5.905,245,168,,
+1389,1044,"libramiento felipe carrillo puerto",14.14,245,168,,"federal"
+1390,1044,"ent. Chetumal-ent. Merida",5.905,245,168,,"federal"
+1391,1044,"ent. Chetumal-ent. Felipe carrillo puerto",5.905,245,168,,"federal"
 1392,1048,"autopista benito juárez",,,204,,
 1397,316,"A-32 bis",,,178,,"state"
 1398,932,"tuxtla gutierrez-san pedro",,,17,,
@@ -1403,3 +1403,8 @@ VIAL",,,121,,
 1402,1046,"calz. Vallejo-ceylan",,,182,,
 1403,1051,"autopista metlapil (vpd)-pinotepa",,,205,,"state"
 1404,1051,"autopista metlapil (vpd)-la venta",21.5,,205,,"state"
+1405,1052,"virreyes-teziutlan",,,209,,"state"
+1406,1052,"Virreyes-zaragoza",,,209,,"state"
+1407,1052,"Atempan-teziutlan",,,209,,"state"
+1408,1052,"Atempan-virreyes",,,209,,"state"
+1409,1052,"virreyes-teziutlan",,,209,,"state"
