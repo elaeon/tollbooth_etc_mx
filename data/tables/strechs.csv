@@ -12,9 +12,9 @@
 11,26,"PUEBLA-ACATZINGO",42.27,192,4,,"federal"
 12,26,"PUEBLA-Amozoc",13.758,192,4,,"federal"
 13,26,"Puebla-ent. Amozoc III",6.879,192,4,,"federal"
-14,594,"CUAPIAXTLA-CUACNOPALAN",63.66,,171,,
-15,594,"el seco-cuacnopalan",37.461,,171,,
-16,594,"Cuapiaxtla-el seco",22.701,,171,,
+14,594,"CUAPIAXTLA-CUACNOPALAN",63.66,,171,,"federal_state"
+15,594,"el seco-cuacnopalan",37.461,,171,,"federal"
+16,594,"Cuapiaxtla-el seco",22.701,,171,,"state"
 17,27,"ACATZINGO-CD. MENDOZA",92.95,193,5,,"federal"
 18,27,"ACATZINGO-esperanza",47.375,193,5,,"federal"
 19,27,"Esperanza-cd mendoza",45.575,193,5,,"federal"
@@ -416,17 +416,17 @@
 411,603,"LIBRAMIENTO CULIACAN",22,233,76,,"federal"
 412,10,"PUENTE NACIONAL CULIACAN",0.433,72,77,,
 413,11,"PUENTE NACIONAL SINALOA",0.32,99,78,,
-414,557,"LIBRAMIENTO CIUDAD OBREGON",,,,,
-415,557,"LIBRAMIENTO CIUDAD OBREGON",,,,,
-416,148,"estacion don-navojoa",85.2,25,79,,
-417,149,"Navojoa-cd. Obregon",63.8,25,79,,
-418,150,"cd. obregon-guaymas",107.7,25,79,,
-419,151,"libramiento guaymas",21.5,25,79,,
-420,152,"Hermosillo-magdalena de kino",169.9,25,79,,
-421,153,"libramiento de magdalena de kino",11.9,25,79,,
-422,559,"LIBRAMIENTO HERMOSILLO",,,,,
-423,559,"LIBRAMIENTO HERMOSILLO",,,,,
-424,559,"LIBRAMIENTO HERMOSILLO",,,,,
+414,557,"LIBRAMIENTO CIUDAD OBREGON",,,212,,"federal"
+415,557,"LIBRAMIENTO CIUDAD OBREGON",,,212,,"federal"
+416,148,"estacion don-navojoa",85.2,25,79,,"federal"
+417,149,"Navojoa-cd. Obregon",63.8,25,79,,"federal"
+418,150,"cd. obregon-guaymas",107.7,25,79,,"federal"
+419,151,"libramiento guaymas",21.5,25,79,,"federal"
+420,152,"Hermosillo-magdalena de kino",169.9,25,79,,"federal"
+421,153,"libramiento de magdalena de kino",11.9,25,79,,"federal"
+422,559,"LIBRAMIENTO HERMOSILLO",,,211,,"federal"
+423,559,"LIBRAMIENTO HERMOSILLO",,,211,,"federal"
+424,559,"LIBRAMIENTO HERMOSILLO",,,211,,"federal"
 425,200,"santa lucia-villa union",58.3,218,80,,"federal"
 426,200,"santa lucia-concordia",33.3,218,80,,"federal"
 427,200,"Concordia-villa union",25,218,80,,"federal"
@@ -757,18 +757,18 @@
 753,415,"LIBRAMIENTO DE TECATE",12.25,119,111,,"federal"
 754,417,"PLANTA DART-VALLE REDONDO TIJUANA",0,119,111,,"federal"
 755,422,"ent. Esperanza-ent sandoval",4.8,119,111,,"federal"
-756,565,"CERRILLO - SAN NICOLAS",,,183,,
-757,565,"CERRILLO - AYOTUXCO",,,183,,
-758,565,"CERRILLO - CHAMAPA AUTOVAN",,,183,,
-759,566,"SAN NICOLAS - AYOTUXCO",,,183,,
-760,566,"SAN NICOLAS - CHAMAPA AUTOVAN",,,183,,
-761,566,"SAN NICOLAS - CERRILLO",,,183,,
-762,567,"AYOTUXCO - CHAMAPA AUTOVAN",,,183,,
-763,567,"AYOTUXCO - SAN NICOLAS",,,183,,
-764,567,"AYOTUXCO - CERRILLO",,,183,,
-765,568,"CHAMAPA AUTOVAN - AYOTUXCO",,,183,,
-766,568,"CHAMAPA AUTOVAN - SAN NICOLAS",,,183,,
-767,568,"CHAMAPA AUTOVAN - CERRILLO",,,183,,
+756,565,"CERRILLO - SAN NICOLAS",,,183,,"state"
+757,565,"CERRILLO - AYOTUXCO",,,183,,"state"
+758,565,"CERRILLO - CHAMAPA AUTOVAN",,,183,,"state"
+759,566,"SAN NICOLAS - AYOTUXCO",,,183,,"state"
+760,566,"SAN NICOLAS - CHAMAPA AUTOVAN",,,183,,"state"
+761,566,"SAN NICOLAS - CERRILLO",,,183,,"state"
+762,567,"AYOTUXCO - CHAMAPA AUTOVAN",,,183,,"state"
+763,567,"AYOTUXCO - SAN NICOLAS",,,183,,"state"
+764,567,"AYOTUXCO - CERRILLO",,,183,,"state"
+765,568,"CHAMAPA AUTOVAN - AYOTUXCO",,,183,,"state"
+766,568,"CHAMAPA AUTOVAN - SAN NICOLAS",,,183,,"state"
+767,568,"CHAMAPA AUTOVAN - CERRILLO",,,183,,"state"
 768,330,"AEROPUERTO LOS CABOS-SN. JOSE DEL CABO",20.2,111,112,,"federal"
 769,330,"AEROPUERTO LOS CABOS-CABO SAN LUCAS",42.344,111,112,,"federal"
 770,86,"SAN JOSE DEL CABO-CABO SAN LUCAS",32.824,111,112,,"federal"
@@ -1340,11 +1340,11 @@ VIAL",,,121,,
 1335,,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (A)",,,127,,
 1336,1001,"Atlixco-jantetelco",,,193,,"state"
 1337,1002,"Puebla-atlixco",,,194,,"state"
-1338,1003,"Mexicalli-rio colorado",0.304,,,,
-1339,937,"san martin-huejotzingo",18.4,,170,,
+1338,1003,"Mexicalli-rio colorado",0.304,,108,,"federal"
+1339,937,"san martin-huejotzingo",18.45,,170,,"state"
 1340,1004,"Apizaco-huahuchinango",,,207,,"state"
 1341,1004,"Apizaco-chignahuapan",,,207,,"state"
-1342,1005,"santa ana-altar",73,200,128,,
+1342,1005,"santa ana-altar",73,200,128,,"federal"
 1343,1006,"Sueco-villa ahumada",86.7,23,129,,"federal"
 1344,1008,"Delicias-conchos",30,19,130,,"federal"
 1345,1009,"Conchos-camargo",35,19,130,,"federal"
@@ -1357,9 +1357,9 @@ VIAL",,,121,,
 1352,1016,"libramiento de samalayuca-san jeronimo",,,,,"state"
 1353,1017,"Chihuahua-ojinaga",,,,,"state"
 1354,1018,"Puebla-tlaxcala",,,192,,"state"
-1355,1019,"libramiento de nogales",12.5,39,132,,
-1356,1020,"san luis rio colorado II",0.4,210,133,,
-1357,1021,"san luis rio colorado-doctor",49,,191,,
+1355,1019,"libramiento de nogales",12.5,39,132,,"federal"
+1356,1020,"san luis rio colorado II",0.4,210,133,,"federal"
+1357,1021,"san luis rio colorado-doctor",49,,191,,"state"
 1358,1022,"puente colombia",0.16,100,134,,
 1359,1023,"puente de anzalduas",2.558,213,136,,
 1360,1024,"puente coatzacoalcos",0.985,69,138,,
@@ -1386,8 +1386,8 @@ VIAL",,,121,,
 1381,,"ent. Acolman-ent. Tequisistlan",4.5,243,161,,
 1382,,"ent. Tequisistlan-ent. Nabor carrillo",0,243,161,,
 1383,1038,"puente el prieto",3,,162,,
-1384,1039,"centinela-rumorosa",47.297,22,163,,
-1385,1040,"libramiento de chilpancingo",20.6,231,164,,
+1384,1039,"centinela-rumorosa",47.297,22,163,,"federal"
+1385,1040,"libramiento de chilpancingo",20.6,231,164,,"state"
 1386,1041,"libramiento fresnillo",20.05,37,165,,"federal"
 1387,1042,"libramiento calera-enrique estrada",12.2,48,166,,"federal"
 1388,1043,"libramiento noreste de zacatecas",26,,167,,"state"
@@ -1396,10 +1396,10 @@ VIAL",,,121,,
 1391,1044,"ent. Chetumal-ent. Felipe carrillo puerto",5.905,245,168,,"federal"
 1392,1048,"autopista benito juárez",,,204,,"state"
 1397,316,"A-32 bis",,,178,,"state"
-1398,932,"tuxtla gutierrez-san pedro",,,17,,
-1399,1049,"Slp-villa juarez",,,185,,
-1400,1050,"villa juarez-rio verde",,,185,,
-1401,471,"malinalco",,,181,,
+1398,932,"tuxtla gutierrez-san pedro",,,17,,"federal"
+1399,1049,"Slp-villa juarez",,,185,,"state"
+1400,1050,"villa juarez-rio verde",,,185,,"state"
+1401,471,"malinalco",,,181,,"state"
 1402,1046,"calz. Vallejo-ceylan",,,182,,
 1403,1051,"autopista metlapil (vpd)-pinotepa",,,205,,"state"
 1404,1051,"autopista metlapil (vpd)-la venta",21.5,,205,,"state"
