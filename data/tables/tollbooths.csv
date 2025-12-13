@@ -1635,8 +1635,8 @@
 ,,1018,"zacatelco II","19.211451145684354, -98.26312955440767","open",1354,"tlaxcala","entronque",3,"toll","119D-zacatelco-119D","pinfra",
 ,,428,"allende","18.147122277980056, -94.39695175315569","open",41,"veracruz","troncal",8,"toll",,"Tunel-coatzacoalcos","tunnel"
 ,,212,"mitla","16.90835636383644, -96.36115487153991","open",42,"oaxaca","troncal",4,"toll","190D","mitlatehuantepec",
-,,212,"ENT. MITLA-LACHIXILA","16.924598206881765, -96.32698577635352","open",43,"oaxaca","entronque",1,"toll",,"mitlatehuantepec",
-,,216,"LACHIXILA-ENT. TEHUANTEPEC II","16.92398858629051, -96.32558146550427","open",44,"oaxaca","entronque",1,"toll",,,
+,,212,"mitla","16.924598206881765, -96.32698577635352","open",43,"oaxaca","entronque",1,"toll",,"mitlatehuantepec",
+,,212,"mitla","16.92398858629051, -96.32558146550427","open",43,"oaxaca","entronque",1,"toll",,"mitlatehuantepec",
 ,,89,"tehuantepec","16.162143391868852, -95.28924619755911","open",45,"oaxaca","troncal",4,"toll","185D (salina cruz- la ventosa)","capufe",
 ,,90,"ixtepec","16.561143256646915, -95.13561459736289","open",46,"oaxaca","troncal",4,"toll","185D","capufe",
 ,,90,"ixtepec","16.56145262854458, -95.13425849001234","open",47,"oaxaca","entronque",1,"toll","185D","capufe",
@@ -1746,3 +1746,4 @@
 ,,1057,"ixtapan de la sal","18.85285706020902, -99.67010212413095","closed",,"edomx","troncal",4,"toll","55D","atisa",
 ,,1057,"ixtapan de la sal","18.852891659798747, -99.66747685636032","closed",,"edomx","entronque",2,"toll","55D","atisa",
 ,,1057,"ixtapan de la sal","18.85403625445201, -99.66676272981763","closed",,"edomx","entronque",2,"toll","55D","atisa",
+,,216,"tehuantepec","16.4958685241445, -95.40731665724752","open",44,"oaxaca","troncal",4,"toll","190D","mitlatehuantepec",
