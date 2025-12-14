@@ -430,16 +430,18 @@
 ,,425,"libramiento oriente san luis potosi","22.126038672449212, -100.82507989656916","open",223,"san luis potosi","entronque",2,"toll","70-57D","libramientoslp","bypass"
 ,,127,"chichimequillas","20.70558491390206, -100.34373413115131","open",224,"queretaro","troncal",6,"toll","57D","capufe","bypass"
 ,,486,"cerritos (san luis-rio verde)","22.428865895747066, -100.32041862385992","open",225,"san luis potosi","troncal",5,"toll","75D","coinsan",
-,,486,"cerritos (rioverde-cemosa-rioverde)",,"not_found",234,,,,"toll","75D","coinsan",
+,,486,"cerritos (rioverde-cemosa)","22.47611093341495, -100.3863338924712","open",234,"san luis potosi","entronque",1,"toll","75D","coinsan",
+,,486,"cerritos (cemosa-san luis potosi)","22.47611093341495, -100.3863338924712","open",235,"san luis potosi","entronque",1,"toll",,"coinsan",
 ,,486,"cerritos (charco blanco-rioverde-charco blanco)","22.441384551244493, -100.33936852467664","open",227,"san luis potosi","entronque",1,"toll","75D","coinsan",
 ,,486,"cerritos (cerritos-rioverde)","22.427612024118517, -100.31850050729386","open",228,"san luis potosi","entronque",1,"toll","75D","coinsan",
 ,,486,"cerritos (san luis-cerritos-san luis)","22.440333503824185, -100.3345710388101","open",229,"san luis potosi","entronque",1,"toll","75D","coinsan",
 ,,486,"cerritos (san luis-charco blanco-san luis)","22.441825675240864, -100.3399436115878","open",230,"san luis potosi","entronque",1,"toll","75D","coinsan",
-,,486,"cerritos (slp-cemosa)",,"not_found",235,,,,"toll","75D","coinsan",
+,,486,"cerritos (san luis potosi-cemosa)","22.476050500749754, -100.38626925992132","open",235,"san luis potosi","entronque",1,"toll","75D","coinsan",
 ,,486,"cerritos (charco blanco-slp-charco blanco)","22.443339620963453, -100.33880485161151","open",230,"san luis potosi","entronque",1,"toll","75D","coinsan",
 ,,498,"cemosa (rioverde-cemosa-rioverde)",,"not_found",234,,,,"toll","75D","coinsan",
-,,1049,,,,1399,,,,"toll",,,
-,,1050,,,,1400,,,,"toll",,,
+,,1050,"villa juarez","22.31923064757268, -100.28469817345582","open",1400,"san luis potosi","entronque",1,"toll",,"coinsan",
+,,1050,"villa juarez","22.319294579108124, -100.28471283728987","open",1399,"san luis potosi","entronque",1,"toll",,"coinsan",
+,,1050,"villa juarez","22.319294579108124, -100.28471283728987","open",1400,"san luis potosi","entronque",1,"toll",,"coinsan",
 ,,493,"la calera","21.904200038149103, -98.95552718590129","open",238,"san luis potosi","troncal",4,"toll","70D","opasa","bypass"
 ,,493,"la calera","21.905379436943097, -98.95284489335644","open",239,"san luis potosi","entronque",1,"toll","70D-85","opasa","bypass"
 ,,493,"la calera","21.905503864727557, -98.95287707986425","open",240,"san luis potosi","entronque",1,"toll","85-70D","opasa","bypass"
@@ -1724,7 +1726,10 @@
 ,,1039,"la rumorosa (centinela)","32.55584703668523, -116.03649197659311","open",1384,"baja california","troncal",5,"toll","2D","Gob-baja california",
 ,,1040,"Chilpancingo-tixtla","17.608032305771125, -99.50959853228049","open",1385,"guerrero","troncal",4,"toll","93D","cicaeg",
 ,,1041,"mofin chavez","23.177937723421824, -102.82869108608446","open",1386,"zacatecas","troncal",6,"toll","45D","profrezac",
+,,1042,"calera","22.964827932573186, -102.71378099494584","open",1417,"zacatecas","entronque",1,"toll",,"profrezac",
 ,,1042,"calera","22.941852910186196, -102.6898648491811","open",1387,"zacatecas","troncal",6,"toll","45D","profrezac",
+,,1042,"calera","22.953128051732257, -102.69253765821584","open",1416,"zacatecas","entronque",1,"toll",,"profrezac",
+,,1042,"calera","22.95367191032257, -102.69189061780706","open",1416,"zacatecas","entronque",1,"toll",,"profrezac",
 ,,1043,"vetagrande","22.847053541371594, -102.56331543839086","open",1388,"zacatecas","troncal",6,"toll","45D","profrezac",
 ,,1043,"vetagrande aux.1","22.846729179454588, -102.56702270691699","open",1388,"zacatecas","entronque",1,"toll","45D","profrezac",
 ,,1043,"vetagrande aux.2","22.846376155278673, -102.5669998366264","open",1388,"zacatecas","entronque",1,"toll","45D","profrezac",
@@ -1763,3 +1768,4 @@
 ,,,"libramiento los herrera","25.898739219461575, -99.39365330028677","closed",,"nuevo leon","troncal",2,"toll",5,,
 ,,113,"acatic","20.739024550749395, -102.90969186101016","open",1415,"jalisco","entronque",1,"ticket",,"rco",
 ,,113,"acatic","20.737094568076945, -102.91097050669647","open",1415,"jalisco","entronque",1,"ticket",,"rco",
+,,156,"plan de barracas","21.005376041990587, -104.14414148853703","open",382,"jalisco","troncal",6,"toll",,"Guadalajara-tepic",
