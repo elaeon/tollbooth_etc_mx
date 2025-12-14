@@ -19,8 +19,10 @@ def extract_index(page_text):
     lines_dict = defaultdict(dict)
     index_pat = re.compile(r"^(?P<index>\d{3}(?:-(\d+)){0,1})")
     tollbooth_pat = re.compile(r"caseta:(?P<tollbooth_name>(.*))")
-    strech_pat = re.compile(r"^movimiento:(?P<direction>\w+[.]*(\s\w+)*(?:\s*-{0,1}\s*\w+[.]*(\s\w+[.]*)*))\s[mex|slp|chh|ver|nl]")
-    road_pat = re.compile(r"[mex|ver|slp|chh|nl][-]{0,1}(?P<road>\w*)\s*km:(?P<km>\d+\.\d+)")
+    strech_pat = re.compile(
+        r"^movimiento:(?P<direction>\w+[.]*\s*(\s*\w+)*(?:\s*-{0,1}\s*\w+[.]*\s*(\s*\w+[.]*)*))\s[mex|slp|chh|ver|nl]"
+    )
+    road_pat = re.compile(r"[mex|ver|slp|chh|nl][-]{0,1}(?P<road>\w*[-]*\w*)\s*km:(?P<km>\d+\.\d+)")
     for i, line in enumerate(page_text.split("\n"), 1):
         line = line.lower().replace("(", "").replace(")", "")
         match_index = re.search(index_pat, line)
@@ -63,8 +65,7 @@ def fill_list(small_list, total_size):
 
 
 def main(year, from_page, to_page):
-    year = 2025
-    file_path = f"./datos_viales/{year}/33_DV{year}_PlazasCobro{year}.pdf"
+    file_path = f"./datos_viales/{year}/33_PC_DV{year}.pdf"
     with pdfplumber.open(file_path) as pdf:
         all_df = []
         for page_num, page in enumerate(pdf.pages, 1):
@@ -97,7 +98,7 @@ def main(year, from_page, to_page):
                 all_df.append(df)
                 if page_num == to_page:
                     break
-        pl.concat(all_df).write_csv("tollbooths_sts.csv")
+        pl.concat(all_df).write_csv(f"tollbooths_sts_{year}.csv")
 
 
 if __name__ == "__main__":
