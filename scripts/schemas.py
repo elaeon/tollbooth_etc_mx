@@ -60,7 +60,7 @@ tollbooths_schema = {
     "lines": pl.UInt8,
     "type": pl.String,
     "highway": pl.String,
-    "operator_2025": pl.String,
+    "operator": pl.String,
     "gate_to": pl.String,
 }
 
@@ -84,4 +84,39 @@ roads_schema = {
     "fonandin": pl.String,
     "length": pl.Float32,
     "notes": pl.String
+}
+
+tollbooth_sts_schema = {
+    "index": pl.String,
+    "tollbooth_name": pl.String,
+    "way": pl.String,
+    "highway": pl.String,
+    "km": pl.Float32,
+    "tdpa": pl.UInt32,
+    "motorbike": pl.Float32,
+    "car": pl.Float32,
+    "car-axle": pl.Float32,
+    "bus": pl.Float32,
+    "truck-2axle": pl.Float32,
+    "truck-3axle": pl.Float32,
+    "truck-4axle": pl.Float32,
+    "truck-5axle": pl.Float32,
+    "truck-6axle": pl.Float32,
+    "truck-7axle": pl.Float32,
+    "truck-8axle": pl.Float32,
+    "truck-9axle": pl.Float32,
+    "not_classified_vehicle": pl.Float32,
+    "vta": pl.UInt64,
+    "jan": pl.Float32,
+    "feb": pl.Float32,
+    "mar": pl.Float32,
+    "apr": pl.Float32,
+    "may": pl.Float32,
+    "jun": pl.Float32,
+    "jul": pl.Float32,
+    "ago": pl.Float32,
+    "sep": pl.Float32,
+    "oct": pl.Float32,
+    "nov": pl.Float32,
+    "dec": pl.Float32,
 }
