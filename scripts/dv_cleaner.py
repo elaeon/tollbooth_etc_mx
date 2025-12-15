@@ -40,8 +40,8 @@ def extract_index(page_text):
     lines_dict = defaultdict(dict)
     index_pat = re.compile(r"^(?P<index>\d{3}(?:-(\d+)){0,1})\s(carretera)")
     tollbooth_pat = re.compile(r"caseta:(?P<tollbooth_name>(.*))")
-    strech_pat = re.compile(r"^movimiento:(?P<way>(.*?))\s\b(mex|slp|chih|ver|nl)\b")
-    road_pat = re.compile(r"(?P<highway>\b(mex|ver|slp|chih|nl)\b[-]{0,1}\w*[-]*\w*)\s*km:(?P<km>\d+\.\d+)")
+    strech_pat = re.compile(r"^movimiento:(?P<way>(.*?))\s\b(mex|slp|chih|ver|nl|km)\b")
+    road_pat = re.compile(r"(?P<highway>\b(mex|ver|slp|chih|nl)\b[-]{0,1}\w*[-]*\w*){0,1}\s*km:(?P<km>\d+\.\d+)")
     for line in page_text.split("\n"):
         line = line.lower().replace("(", "").replace(")", "")
         match_index = re.search(index_pat, line)
@@ -56,10 +56,13 @@ def extract_index(page_text):
             scope_index = index_dict["index"]
             if match_tb is not None:
                 lines_dict[scope_index].update(
-                    {"tollbooth_name": match_tb.groupdict()["tollbooth_name"].replace("coordenadas", "").strip()}
+                    {
+                        "tollbooth_name": 
+                        re.sub(r"\s*-\s*", "-", match_tb.groupdict()["tollbooth_name"].replace("coordenadas", "").strip())
+                    }
                 )
         if match_strech is not None and scope_index is not None:
-            lines_dict[scope_index].update(match_strech.groupdict())
+            lines_dict[scope_index]["way"] = re.sub(r"\s*-\s*", "-", match_strech["way"].strip())
             _log.debug(line)
         if match_road is not None and scope_index is not None:
             lines_dict[scope_index].update(match_road.groupdict())
@@ -89,6 +92,7 @@ def fill_list(small_list, total_size):
 
 
 def main(year, from_page, to_page):
+    prev_year = year - 1
     file_path = f"./datos_viales/{year}/33_PC_DV{year}.pdf"
     with pdfplumber.open(file_path) as pdf:
         all_df = []
@@ -122,7 +126,7 @@ def main(year, from_page, to_page):
                 all_df.append(df)
                 if page_num == to_page:
                     break
-        df_full = pl.concat(all_df).write_csv(f"tollbooths_sts_{year}.csv")
+        df_full = pl.concat(all_df).write_csv(f"./data/tables/{prev_year}/tollbooths_sts.csv")
 
 
 if __name__ == "__main__":
