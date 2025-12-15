@@ -126,7 +126,7 @@ def main(year, from_page, to_page):
                 all_df.append(df)
                 if page_num == to_page:
                     break
-        df_full = pl.concat(all_df).write_csv(f"./data/tables/{prev_year}/tollbooths_sts.csv")
+        pl.concat(all_df).write_csv(f"./data/tables/{prev_year}/tollbooths_sts.csv")
 
 
 if __name__ == "__main__":
