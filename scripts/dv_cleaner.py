@@ -42,12 +42,17 @@ def extract_index(page_text):
     tollbooth_pat = re.compile(r"caseta:(?P<tollbooth_name>(.*))")
     strech_pat = re.compile(r"^movimiento:(?P<way>(.*?))\s\b(mex|slp|chih|ver|nl|km)\b")
     road_pat = re.compile(r"(?P<highway>\b(mex|ver|slp|chih|nl)\b[-]{0,1}\w*[-]*\w*){0,1}\s*km:(?P<km>\d+\.\d+)")
+    lat_pat = re.compile(r"(lat:\s*)(?P<lat>[-]{0,1}\d+\.\d+)")
+    long_pat = re.compile(r"(long:\s*)(?P<long>[-]{0,1}\d+\.\d+)")
+    coords = []
     for line in page_text.split("\n"):
         line = line.lower().replace("(", "").replace(")", "")
         match_index = re.search(index_pat, line)
         match_tb = re.search(tollbooth_pat, line)
         match_strech = re.search(strech_pat, line)
         match_road = re.search(road_pat, line)
+        match_lat = re.search(lat_pat, line)
+        match_long = re.search(long_pat, line)
         if match_index is not None:
             index_dict = match_index.groupdict()
             if scope_index is not None and scope_index != index_dict["index"]:
@@ -67,6 +72,14 @@ def extract_index(page_text):
         if match_road is not None and scope_index is not None:
             lines_dict[scope_index].update(match_road.groupdict())
 
+        if match_lat is not None:
+            coords.append(match_lat.groupdict()["lat"])
+        if match_long is not None:
+            coords.append(match_long.groupdict()["long"])
+        if len(coords) == 2:
+            lines_dict[scope_index]["coords"] = ",".join(coords)
+            coords = []
+        
         _log.debug(f"{scope_index}, {lines_dict.get(scope_index)}")
     return lines_dict
 
@@ -101,7 +114,7 @@ def main(year, from_page, to_page):
                 extracted_tables = page.extract_tables()
                 page_text = page.extract_text(keep_blank_chars=True)
                 df_index = lines_dict_to_df(page_text)
-                assert df_index.columns == ['index', 'tollbooth_name', 'way', 'highway', 'km']
+                assert df_index.columns == ["index", "tollbooth_name", "way", "highway", "km", "coords"]
                 dfs = []
                 for table_num, table in enumerate(extracted_tables, 1):
                     tdpa = table[1][0]
