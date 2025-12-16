@@ -37,7 +37,6 @@ strechs_tolls_2021_schema = strechs_tolls_2025_schema.copy()
 
 strechs_schema = {
     "strech_id": pl.UInt16,
-    "tollbooth_id": pl.UInt16,
     "strech_name": pl.String,
     "strech_length_km": pl.Float32,
     "sct_idVia": pl.UInt16,
@@ -92,6 +91,7 @@ tollbooth_sts_schema = {
     "way": pl.String,
     "highway": pl.String,
     "km": pl.Float32,
+    "coords": pl.String,
     "tdpa": pl.UInt32,
     "motorbike": pl.Float32,
     "car": pl.Float32,
