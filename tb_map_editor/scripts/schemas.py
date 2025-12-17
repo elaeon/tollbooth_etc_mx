@@ -1,4 +1,6 @@
 import polars as pl
+from ..map.model import Tollbooth
+
 
 strechs_tolls_2025_schema = {
     "strech_id": pl.UInt16,
@@ -46,22 +48,7 @@ strechs_schema = {
 }
 
 
-tollbooths_schema = {
-    "tollbooth_id": pl.String,
-    "direction": pl.String,
-    "legacy_id": pl.UInt16,
-    "tollbooth_name": pl.String,
-    "coords": pl.String,
-    "status": pl.String,
-    "strech_id": pl.UInt16,
-    "state": pl.String,
-    "place": pl.String,
-    "lines": pl.UInt8,
-    "type": pl.String,
-    "highway": pl.String,
-    "operator": pl.String,
-    "gate_to": pl.String,
-}
+tollbooth_schema = Tollbooth.dict_schema()
 
 
 tollbooth_strech_schema = {

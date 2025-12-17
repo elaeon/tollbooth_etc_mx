@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Editor</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<link href="{{ url_for('static', path='/Leaflet.PinSearch.css') }}" rel="stylesheet">
+<script src="{{ url_for('static', path='/Leaflet.PinSearch.js') }}" crossorigin=""></script>
+
+<style>
+#map { height: 100vh; flex: 1;}
+body { height: 100%; display: flex;}
+</style>
+</head>
+
+<body>
+<div id="map"></div>
+<script>
+const map = L.map('map').setView([21.229471957714843, -104.88745147168034], 13);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    minZoom: 6,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+const ZoomViewer = L.Control.extend({
+		onAdd() {
+			const container = L.DomUtil.create('div');
+			const gauge = L.DomUtil.create('div');
+			container.style.width = '200px';
+			container.style.background = 'rgba(255,255,255,0.5)';
+			container.style.textAlign = 'left';
+			map.on('zoomstart zoom zoomend', (ev) => {
+				gauge.innerHTML = `Zoom level: ${map.getZoom()}`;
+			});
+			container.appendChild(gauge);
+			return container;
+		}
+	});
+
+
+const zoomViewerControl = (new ZoomViewer()).addTo(map);
+
+L.marker([22.000712228342167, -102.36006126095177], { title: 'chichimeco' }).addTo(map);
+L.marker([32.54299960727464, -116.75825916633757], { title: 'dart' }).addTo(map);
+L.marker([23.150499203637988, -109.74050665703166], { title: 'aeropuerto los cabos' }).addTo(map);
+
+// PinSearch component
+var searchBar = L.control.pinSearch({
+            position: 'topright',
+            placeholder: 'Search...',
+            buttonText: 'Search',
+            onSearch: function(query) {
+                console.log('Search query:', query);
+                // Handle the search query here
+            },
+            searchBarWidth: '200px',
+            searchBarHeight: '30px',
+            maxSearchResults: 3
+}).addTo(map);
+
+</script>
+
+</body>
+</html>
