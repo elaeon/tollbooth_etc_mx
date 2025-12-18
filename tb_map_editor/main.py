@@ -1,18 +1,13 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from .model import Tollbooth
 from contextlib import asynccontextmanager
-from .utils.connector import SessionDep, engine
+from .utils.connector import SessionDep, create_db_and_tables
 
-from sqlmodel import SQLModel
-
-
-def create_db_and_tables():
-    print(SQLModel.metadata.tables, "M")
-    SQLModel.metadata.create_all(engine)
+from typing import Annotated
 
 
 @asynccontextmanager
@@ -35,9 +30,19 @@ def map_root(request: Request):
 
 
 @app.post("/tollbooth/")
-def create_tollbooth(tollbooth: Tollbooth, session: SessionDep) -> Tollbooth:
+#def create_tollbooth(tollbooth: Tollbooth, session: SessionDep) -> Tollbooth:
+def create_tollbooth(tollbooth_name: Annotated[str, Form()], coords: Annotated[str, Form()], session: SessionDep):
+    tollbooth = Tollbooth(
+        tollbooth_name=tollbooth_name, coords=coords, status="open", state="", place="", lines=0, type="toll" 
+        )
     session.add(tollbooth)
     session.commit()
     session.refresh(tollbooth)
     return tollbooth
 
+
+@app.get("/tollbooth/")
+def show_tb(request: Request):
+    return templates.TemplateResponse(
+        request=request, name="tb.html"
+    )
