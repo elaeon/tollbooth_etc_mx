@@ -1,7 +1,7 @@
 from sqlmodel import Field, SQLModel
 from pydantic_core import CoreSchema, core_schema
 from pydantic import GetCoreSchemaHandler
-from typing import Any
+from typing import Any, get_args
 import polars as pl
 
 
@@ -26,7 +26,18 @@ class String(str):
 
     @staticmethod
     def polar_type():
-        return pl.UInt16
+        return pl.String
+
+
+def _get_polar_type(field_type):
+    if hasattr(field_type.annotation, "polar_type"):
+        polar_type = field_type.annotation.polar_type()
+    else:
+        for arg in get_args(field_type.annotation):
+            if hasattr(arg, "polar_type"):
+                polar_type = arg.polar_type()
+                break
+    return polar_type
 
 
 class Tollbooth(SQLModel, table=True):
@@ -46,7 +57,8 @@ class Tollbooth(SQLModel, table=True):
     @classmethod
     def dict_schema(cls):
         dict_schema = {
-            field_name: field_type.annotation.polar_type()
+            field_name: _get_polar_type(field_type)
             for field_name, field_type in cls.model_fields.items()
         }
         return dict_schema
+
