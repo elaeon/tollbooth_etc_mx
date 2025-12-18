@@ -1,5 +1,5 @@
 import polars as pl
-from ..map.model import Tollbooth
+from model import Tollbooth
 
 
 strechs_tolls_2025_schema = {

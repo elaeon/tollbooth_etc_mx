@@ -30,18 +30,18 @@ class String(str):
 
 
 class Tollbooth(SQLModel, table=True):
-    tollbooth_id: UInt16 = Field(primary_key=True)
+    tollbooth_id: UInt16 | None = Field(default=None, primary_key=True)
     legacy_id: UInt16 | None = Field(default=None)
     tollbooth_name: String | None = Field(default=None, index=True)
     coords: String | None
     status: String
     state: String
     place: String
-    lines: String
+    lines: UInt16
     type: String
-    highway: String
-    managed_by: String
-    gate_to: String
+    highway: String | None = Field(default=None)
+    managed_by: String | None = Field(default=None)
+    gate_to: String | None = Field(default=None)
 
     @classmethod
     def dict_schema(cls):
