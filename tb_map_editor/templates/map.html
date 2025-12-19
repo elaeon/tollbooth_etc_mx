@@ -21,12 +21,29 @@ body { height: 100%; display: flex;}
 <body>
 <div id="map"></div>
 <script>
-const map = L.map('map').setView([21.229471957714843, -104.88745147168034], 13);
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    minZoom: 6,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	minZoom: 6,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+
+const osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	minZoom: 6,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+});
+
+const map = L.map('map', {
+	center: [21.229471957714843, -104.88745147168034],
+	zoom: 10,
+	layers: [osm]
+});
+
+const baseLayers = {
+	'OpenStreetMap': osm,
+	'OpenStreetMap.HOT': osmHOT
+};
+
+const layerControl = L.control.layers(baseLayers).addTo(map);
 
 const ZoomViewer = L.Control.extend({
 		onAdd() {
@@ -46,10 +63,6 @@ const ZoomViewer = L.Control.extend({
 
 const zoomViewerControl = (new ZoomViewer()).addTo(map);
 
-L.marker([22.000712228342167, -102.36006126095177], { title: 'chichimeco' }).addTo(map);
-L.marker([32.54299960727464, -116.75825916633757], { title: 'dart' }).addTo(map);
-L.marker([23.150499203637988, -109.74050665703166], { title: 'aeropuerto los cabos' }).addTo(map);
-
 // PinSearch component
 var searchBar = L.control.pinSearch({
             position: 'topright',
@@ -63,6 +76,165 @@ var searchBar = L.control.pinSearch({
             searchBarHeight: '30px',
             maxSearchResults: 3
 }).addTo(map);
+
+// --- AJAX Query Control for fetching markers ---
+// Container styles
+const uploadControlStyle = document.createElement('style');
+uploadControlStyle.innerHTML = `
+	.leaflet-control-query { background: rgba(255,255,255,0.9); padding: 8px; width: 280px; font-size: 13px; }
+	.leaflet-control-query input[type="text"], .leaflet-control-query textarea { width: 100%; box-sizing: border-box; margin-bottom:6px; font-family: monospace; }
+	.leaflet-control-query textarea { height: 80px; resize: vertical; }
+	.leaflet-control-query button { margin-right:6px; padding: 4px 8px; }
+	.leaflet-control-query .status { font-size: 12px; color: #333; margin-top:6px; white-space:pre-wrap; }
+`;
+document.head.appendChild(uploadControlStyle);
+
+const QueryControl = L.Control.extend({
+	onAdd(map) {
+		const container = L.DomUtil.create('div', 'leaflet-control-query');
+		container.innerHTML = `
+			<div><strong>Query & Fetch Markers</strong></div>
+			<textarea id="query-input" placeholder="Enter query (JSON or text)"></textarea>
+			<input id="query-endpoint" type="text" placeholder="API Endpoint URL" value="/api/markers" />
+			<div>
+				<button id="btn-send-query">Send</button>
+				<button id="btn-clear-markers">Clear</button>
+			</div>
+			<div class="status" id="query-status"></div>
+		`;
+
+		L.DomEvent.disableClickPropagation(container);
+
+		const queryInputEl = container.querySelector('#query-input');
+		const endpointEl = container.querySelector('#query-endpoint');
+		const statusEl = container.querySelector('#query-status');
+		const btnSend = container.querySelector('#btn-send-query');
+		const btnClear = container.querySelector('#btn-clear-markers');
+
+		btnSend.addEventListener('click', async () => {
+			const query = queryInputEl.value && queryInputEl.value.trim();
+			const endpoint = endpointEl.value && endpointEl.value.trim();
+			if (!query) { statusEl.textContent = 'Enter a query'; return; }
+			if (!endpoint) { statusEl.textContent = 'Enter an endpoint'; return; }
+			
+			statusEl.textContent = 'Sending request...';
+			try {
+				const resp = await fetch(endpoint, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ query: query })
+				});
+				if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
+				const data = await resp.json();
+				processMarkerResponse(data, query);
+			} catch (err) {
+				statusEl.textContent = `Error: ${err.message}`;
+			}
+		});
+
+		btnClear.addEventListener('click', () => {
+			clearUploadedMarkers();
+			statusEl.textContent = 'Markers cleared';
+		});
+
+		return container;
+	}
+});
+
+// markers layer for fetched data
+const uploadedLayer = L.layerGroup().addTo(map);
+
+function clearUploadedMarkers() {
+	uploadedLayer.clearLayers();
+}
+
+function processMarkerResponse(data, sourceLabel) {
+	clearUploadedMarkers();
+	const coords = extractCoordinates(data);
+	if (!coords.length) throw new Error('No coordinates found in response');
+	addMarkersFromCoords(coords, sourceLabel);
+}
+
+function extractCoordinates(data) {
+	const coords = [];
+	if (!data) return coords;
+
+	// Handle array of objects with lat/lon
+	if (Array.isArray(data)) {
+		for (const item of data) {
+			const c = parseCoordItem(item);
+			if (c) coords.push(c);
+		}
+	}
+	// Handle object with data/features/markers array
+	else if (typeof data === 'object') {
+		for (const key of ['data', 'features', 'markers', 'points', 'coordinates', 'results']) {
+			if (Array.isArray(data[key])) {
+				for (const item of data[key]) {
+					const c = parseCoordItem(item);
+					if (c) coords.push(c);
+				}
+				break;
+			}
+		}
+		// If no array found, try to parse the object itself
+		if (!coords.length) {
+			const c = parseCoordItem(data);
+			if (c) coords.push(c);
+		}
+	}
+
+	return coords;
+}
+
+function parseCoordItem(item) {
+	if (!item || typeof item !== 'object') return null;
+
+	let lat, lon, props = {};
+
+	// Look for lat/lon fields (case insensitive)
+	for (const key in item) {
+		const lk = key.toLowerCase();
+		if (['lat', 'latitude'].includes(lk)) {
+			lat = parseFloat(item[key]);
+		} else if (['lon', 'longitude'].includes(lk)) {
+			lon = parseFloat(item[key]);
+		} else {
+			props[key] = item[key];
+		}
+	}
+
+	if (Number.isFinite(lat) && Number.isFinite(lon) && isValidLat(lat) && isValidLon(lon)) {
+		return { lat, lon, props };
+	}
+	return null;
+}
+
+function addMarkersFromCoords(coords, sourceLabel) {
+	const markers = [];
+	for (const c of coords) {
+		if (!isValidLat(c.lat) || !isValidLon(c.lon)) continue;
+		const m = L.marker([c.lat, c.lon], { title: c.props.tollbooth_name || '' });
+		//m.bindPopup(props);
+		m.addTo(uploadedLayer);
+		markers.push(m);
+	}
+	if (markers.length) {
+		const group = L.featureGroup(markers);
+		map.fitBounds(group.getBounds(), { maxZoom: 16 });
+	}
+	const statusEl = document.getElementById('query-status');
+	if (statusEl) statusEl.textContent = `Loaded ${markers.length} markers from ${sourceLabel || 'query'}`;
+}
+
+function isValidLat(v) { return Number.isFinite(v) && v >= -90 && v <= 90; }
+function isValidLon(v) { return Number.isFinite(v) && v >= -180 && v <= 180; }
+
+// add control to map
+(new QueryControl({ position: 'topright' })).addTo(map);
+
+// expose clear function to console for convenience
+window.clearUploadedMarkers = clearUploadedMarkers;
 
 </script>
 
