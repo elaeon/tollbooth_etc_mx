@@ -1,4 +1,4 @@
-index,tollbooth_name,way,highway,km,coords,tdpa,motorbike,car,car-axle,bus,truck-2axle,truck-3axle,truck-4axle,truck-5axle,truck-6axle,truck-7axle,truck-8axle,truck-9axle,not_classified_vehicle,vta,jan,feb,mar,apr,may,jun,jul,ago,sep,oct,nov,dec
+index,tollbooth_name,way,highway,km,coords,tdpa,motorbike,car,car_axle,bus,truck_2_axle,truck_3_axle,truck_4_axle,truck_5_axle,truck_6_axle,truck_7_axle,truck_8_axle,truck_9_axle,not_classified_vehicle,vta,jan,feb,mar,apr,may,jun,jul,ago,sep,oct,nov,dec
 001,puente sinaloa,guamúchil-guasave,mex-015,132.3,"25.512854,-108.347613",13355,0.5,60.5,1.0,4.4,3.8,3.1,0.8,16.5,1.7,0.3,0.0,4.6,2.8,4887815,9.2,8.1,9.1,8.6,8.6,8.1,8.8,8.5,6.5,6.8,8.1,9.6
 002,puente pánuco,alazán-canoas,mex-127,172.1,"22.148796,-98.144935",5439,5.5,79.7,0.7,5.1,3.0,1.6,0.1,1.5,1.4,0.0,0.0,0.8,0.6,1990724,8.7,8.1,9.0,8.5,8.7,7.9,8.4,8.2,7.5,7.7,8.1,9.2
 003,puente coatzacoalcos,coatzacoalcos-nuevo teapa,mex-180,2.0,"18.115163,-94.410828",11526,9.4,68.6,0.2,8.5,3.3,2.8,0.0,2.1,1.7,0.0,0.0,3.4,0.0,4218638,8.2,7.9,8.4,8.5,8.5,8.5,8.8,8.7,8.3,8.6,7.8,7.8
