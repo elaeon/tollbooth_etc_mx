@@ -75,3 +75,8 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
             "lon": lon
         })
     return data
+
+
+@app.post("/api/tollbooth_update/")
+def update_tollbooth(body: Annotated[Any, Body()]):
+    print(body)

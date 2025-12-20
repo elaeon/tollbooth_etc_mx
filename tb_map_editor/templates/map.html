@@ -243,11 +243,17 @@ function addMarkersFromCoords(coords, sourceLabel) {
 	const markers = [];
 	for (const c of coords) {
 		if (!isValidLat(c.lat) || !isValidLon(c.lon)) continue;
-		const m = L.marker([c.lat, c.lon], { title: c.props.tollbooth_name || '' });
-		//m.bindPopup(props);
+		const m = L.marker([c.lat, c.lon], { title: c.props && c.props.tollbooth_name || '' });
+		// attach original data to marker for use in the popup form
+		m.__data = { props: c.props || {}, lat: c.lat, lon: c.lon, source: sourceLabel };
+		// bind popup with a form populated from props
+		m.bindPopup(createPopupFormHTML(m.__data));
+		m.on('popupopen', (e) => {
+			attachPopupFormHandlers(e.popup, m);
+		});
 		m.addTo(uploadedLayer);
-		m_class_color = uploadedLayer.options.markerColor;
-		m._icon.classList.add(m_class_color);
+		const m_class_color = uploadedLayer.options.markerColor || 'huechange_0';
+		if (m._icon && m._icon.classList) m._icon.classList.add(m_class_color);
 		markers.push(m);
 	}
 	if (markers.length) {
@@ -256,6 +262,70 @@ function addMarkersFromCoords(coords, sourceLabel) {
 	}
 	const statusEl = document.getElementById('query-status');
 	if (statusEl) statusEl.textContent = `Loaded ${markers.length} markers from ${sourceLabel || 'query'}`;
+}
+
+// popup form helpers
+let _markerFormId = 0;
+function escapeHtml(str) {
+	return String(str)
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#039;');
+}
+
+function createPopupFormHTML(data) {
+	const id = `marker-form-${++_markerFormId}`;
+	const props = data.props || {};
+	let html = `<div style="min-width:220px"><form id="${id}" class="marker-form">`;
+	html += `<div><strong>Marker data</strong></div>`;
+	html += `<input type="hidden" name="_lat" value="${escapeHtml(data.lat)}">`;
+	html += `<input type="hidden" name="_lon" value="${escapeHtml(data.lon)}">`;
+	for (const key of Object.keys(props)) {
+		const val = props[key] == null ? '' : (typeof props[key] === 'object' ? JSON.stringify(props[key]) : String(props[key]));
+		html += `<div style="margin:4px 0"><label style="font-size:12px">${escapeHtml(key)}:<br><input name="${escapeHtml(key)}" value="${escapeHtml(val)}" style="width:100%"/></label></div>`;
+	}
+	if (!Object.keys(props).length) {
+		html += `<div style="font-size:12px;color:#666">(no properties)</div>`;
+	}
+	html += `<div style="margin-top:6px"><button type="submit">Save</button> <button type="button" class="btn-close">Close</button></div>`;
+	html += `<div class="form-status" style="margin-top:6px;font-size:12px;color:#333"></div>`;
+	html += `</form></div>`;
+	return html;
+}
+
+function attachPopupFormHandlers(popup, marker) {
+	const el = popup.getElement();
+	if (!el) return;
+	const form = el.querySelector('form.marker-form');
+	if (!form) return;
+	const status = el.querySelector('.form-status');
+	// prevent attaching multiple times
+	if (form._attached) return; form._attached = true;
+	form.addEventListener('submit', async (ev) => {
+		ev.preventDefault();
+		const fd = new FormData(form);
+		const obj = {};
+		for (const [k,v] of fd.entries()) obj[k] = v;
+		// combine with marker metadata
+		const payload = { _lat: marker.__data.lat, _lon: marker.__data.lon, props: obj, source: marker.__data.source };
+		// default action: log to console and show status
+		console.log('Marker form submit', payload);
+		if (status) status.textContent = 'Saved (client-side)';
+		// optionally POST to server: uncomment and change endpoint
+		try {
+		   const resp = await fetch('/api/tollbooth_update/', { 
+			method: 'POST', 
+			headers: {'Content-Type':'application/json'}, 
+			body: JSON.stringify(payload)
+			});
+		   if (!resp.ok) throw new Error(resp.statusText);
+		   if (status) status.textContent = 'Saved to server';
+		} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
+	});
+	const btnClose = el.querySelector('.btn-close');
+	if (btnClose) btnClose.addEventListener('click', () => { map.closePopup(); });
 }
 
 function isValidLat(v) { return Number.isFinite(v) && v >= -90 && v <= 90; }
