@@ -1,5 +1,5 @@
 import polars as pl
-from .model import Tollbooth
+from .model import Tollbooth, TollboothSts, TollboothStsData
 
 
 strechs_tolls_2025_schema = {
@@ -72,38 +72,5 @@ roads_schema = {
     "notes": pl.String
 }
 
-tollbooth_sts_schema = {
-    "index": pl.String,
-    "tollbooth_name": pl.String,
-    "way": pl.String,
-    "highway": pl.String,
-    "km": pl.Float32,
-    "coords": pl.String,
-    "tdpa": pl.UInt32,
-    "motorbike": pl.Float32,
-    "car": pl.Float32,
-    "car-axle": pl.Float32,
-    "bus": pl.Float32,
-    "truck-2axle": pl.Float32,
-    "truck-3axle": pl.Float32,
-    "truck-4axle": pl.Float32,
-    "truck-5axle": pl.Float32,
-    "truck-6axle": pl.Float32,
-    "truck-7axle": pl.Float32,
-    "truck-8axle": pl.Float32,
-    "truck-9axle": pl.Float32,
-    "not_classified_vehicle": pl.Float32,
-    "vta": pl.UInt64,
-    "jan": pl.Float32,
-    "feb": pl.Float32,
-    "mar": pl.Float32,
-    "apr": pl.Float32,
-    "may": pl.Float32,
-    "jun": pl.Float32,
-    "jul": pl.Float32,
-    "ago": pl.Float32,
-    "sep": pl.Float32,
-    "oct": pl.Float32,
-    "nov": pl.Float32,
-    "dec": pl.Float32,
-}
+tollbooth_sts_schema = TollboothSts.dict_schema()
+tollbooth_sts_data_schema = TollboothStsData.dict_schema()

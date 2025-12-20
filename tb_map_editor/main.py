@@ -44,7 +44,7 @@ def map_root(request: Request):
 
 
 @app.post("/api/tollbooths/")
-def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit: int=10):
+def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit: int=100):
     param, value = body["query"].split(":")
     stm = select(Tollbooth).where(getattr(Tollbooth, param) == value)
     tollbooths = session.exec(stm.offset(offset).limit(limit))

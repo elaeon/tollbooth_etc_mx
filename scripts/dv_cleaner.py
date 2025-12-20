@@ -1,3 +1,6 @@
+import os, sys
+sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
+
 import logging
 import pdfplumber
 import polars as pl
@@ -5,7 +8,7 @@ import sys
 import re
 from collections import defaultdict
 import argparse
-from schemas import tollbooth_sts_schema
+from tb_map_editor.schemas import tollbooth_sts_schema
 
 
 _log = logging.getLogger(__name__)
@@ -18,16 +21,16 @@ _log.addHandler(handler)
 _sts_cols_map = {
     "m": "motorbike",
     "a": "car",
-    "ar": "car-axle",
+    "ar": "car_axle",
     "b": "bus",
-    "c2": "truck-2axle",
-    "c3": "truck-3axle",
-    "c4": "truck-4axle",
-    "c5": "truck-5axle",
-    "c6": "truck-6axle",
-    "c7": "truck-7axle",
-    "c8": "truck-8axle",
-    "c9": "truck-9axle",
+    "c2": "truck_2_axle",
+    "c3": "truck_3_axle",
+    "c4": "truck_4_axle",
+    "c5": "truck_5_axle",
+    "c6": "truck_6_axle",
+    "c7": "truck_7_axle",
+    "c8": "truck_8_axle",
+    "c9": "truck_9_axle",
     "vnc": "not_classified_vehicle",
     "ene": "jan",
     "abr": "apr",
