@@ -15,6 +15,8 @@
 <style>
 #map { height: 100vh; flex: 1;}
 body { height: 100%; display: flex;}
+img.huechange_0 { filter: hue-rotate(0deg); }
+img.huechange_30 { filter: hue-rotate(30deg); }
 </style>
 </head>
 
@@ -96,6 +98,11 @@ const QueryControl = L.Control.extend({
 			<div><strong>Query & Fetch Markers</strong></div>
 			<textarea id="query-input" placeholder="Enter query (JSON or text)"></textarea>
 			<input id="query-endpoint" type="text" placeholder="API Endpoint URL" value="/api/tollbooths" />
+			<label><input id="btn-checkbox-hold" type="checkbox" placeholder="hold markers">Hold markers</label>
+			<label>
+				<input id="btn-checkbox-change" type="checkbox" placeholder="change marker">
+				Change marker
+			</label>
 			<div>
 				<button id="btn-send-query">Send</button>
 				<button id="btn-clear-markers">Clear</button>
@@ -110,6 +117,17 @@ const QueryControl = L.Control.extend({
 		const statusEl = container.querySelector('#query-status');
 		const btnSend = container.querySelector('#btn-send-query');
 		const btnClear = container.querySelector('#btn-clear-markers');
+		const btnCheckboxHold = container.querySelector('#btn-checkbox-hold');
+		const btnCheckboxChange = container.querySelector('#btn-checkbox-change');
+
+		btnCheckboxHold.addEventListener('click', async() => {
+			uploadedLayer.options.keepLayer = btnCheckboxHold.checked;
+			//console.log('Checkbox is ' + uploadedLayer.options.keepLayer);
+		});
+
+		btnCheckboxChange.addEventListener('click', async() => {
+			uploadedLayer.options.markerColor = "huechange_30";
+		});
 
 		btnSend.addEventListener('click', async () => {
 			const query = queryInputEl.value && queryInputEl.value.trim();
@@ -133,6 +151,9 @@ const QueryControl = L.Control.extend({
 		});
 
 		btnClear.addEventListener('click', () => {
+			btnCheckboxHold.checked = false;
+			uploadedLayer.options.keepLayer = btnCheckboxHold.checked;
+			queryInputEl.value = null;
 			clearUploadedMarkers();
 			statusEl.textContent = 'Markers cleared';
 		});
@@ -143,9 +164,12 @@ const QueryControl = L.Control.extend({
 
 // markers layer for fetched data
 const uploadedLayer = L.layerGroup().addTo(map);
+uploadedLayer.options.keepLayer = false;
 
 function clearUploadedMarkers() {
-	uploadedLayer.clearLayers();
+	if (uploadedLayer.options.keepLayer == false) {
+		uploadedLayer.clearLayers();
+	}
 }
 
 function processMarkerResponse(data, sourceLabel) {
@@ -217,6 +241,7 @@ function addMarkersFromCoords(coords, sourceLabel) {
 		const m = L.marker([c.lat, c.lon], { title: c.props.tollbooth_name || '' });
 		//m.bindPopup(props);
 		m.addTo(uploadedLayer);
+		m._icon.classList.add("huechange_0");
 		markers.push(m);
 	}
 	if (markers.length) {

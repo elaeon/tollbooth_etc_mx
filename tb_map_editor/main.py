@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 
 from sqlmodel import select
 
-from .model import Tollbooth
+from .model import Tollbooth, TollboothSts
 from contextlib import asynccontextmanager
 from .utils.connector import SessionDep, create_db_and_tables
 
@@ -56,5 +56,22 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
             "tollbooth_name": tb.tollbooth_name,
             "lat": lat,
             "lon": lon,
+        })
+    return data
+
+
+@app.post("/api/tollbooths_sts")
+def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=1000):
+    stm = select(TollboothSts)
+    tollbooths_sts = session.exec(stm.offset(offset).limit(limit))
+    data = []
+    for tb_sts in tollbooths_sts:
+        lat, lon = map(lambda x: x.strip(), tb_sts.coords.split(","))
+        data.append({
+            "tollboothsts_id": tb_sts.tollboothsts_id,
+            "tollbooth_name": tb_sts.tollbooth_name,
+            "way": tb_sts.way,
+            "lat": lat,
+            "lon": lon
         })
     return data
