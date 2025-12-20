@@ -16,7 +16,7 @@
 #map { height: 100vh; flex: 1;}
 body { height: 100%; display: flex;}
 img.huechange_0 { filter: hue-rotate(0deg); }
-img.huechange_30 { filter: hue-rotate(30deg); }
+img.huechange_30 { filter: hue-rotate(60deg); }
 </style>
 </head>
 
@@ -97,7 +97,10 @@ const QueryControl = L.Control.extend({
 		container.innerHTML = `
 			<div><strong>Query & Fetch Markers</strong></div>
 			<textarea id="query-input" placeholder="Enter query (JSON or text)"></textarea>
-			<input id="query-endpoint" type="text" placeholder="API Endpoint URL" value="/api/tollbooths" />
+			<select id="query-endpoints">
+				<option value="/api/tollbooths">tollbooths</option>
+				<option value="/api/tollbooths_sts">tollbooths_sts</option>
+			</select>
 			<label><input id="btn-checkbox-hold" type="checkbox" placeholder="hold markers">Hold markers</label>
 			<label>
 				<input id="btn-checkbox-change" type="checkbox" placeholder="change marker">
@@ -113,7 +116,7 @@ const QueryControl = L.Control.extend({
 		L.DomEvent.disableClickPropagation(container);
 
 		const queryInputEl = container.querySelector('#query-input');
-		const endpointEl = container.querySelector('#query-endpoint');
+		const endpointEl = container.querySelector('#query-endpoints');
 		const statusEl = container.querySelector('#query-status');
 		const btnSend = container.querySelector('#btn-send-query');
 		const btnClear = container.querySelector('#btn-clear-markers');
@@ -152,8 +155,10 @@ const QueryControl = L.Control.extend({
 
 		btnClear.addEventListener('click', () => {
 			btnCheckboxHold.checked = false;
+			btnCheckboxChange.checked = false;
 			uploadedLayer.options.keepLayer = btnCheckboxHold.checked;
 			queryInputEl.value = null;
+			uploadedLayer.options.markerColor = "huechange_0";
 			clearUploadedMarkers();
 			statusEl.textContent = 'Markers cleared';
 		});
@@ -241,7 +246,8 @@ function addMarkersFromCoords(coords, sourceLabel) {
 		const m = L.marker([c.lat, c.lon], { title: c.props.tollbooth_name || '' });
 		//m.bindPopup(props);
 		m.addTo(uploadedLayer);
-		m._icon.classList.add("huechange_0");
+		m_class_color = uploadedLayer.options.markerColor;
+		m._icon.classList.add(m_class_color);
 		markers.push(m);
 	}
 	if (markers.length) {
