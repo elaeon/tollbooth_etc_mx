@@ -18,6 +18,10 @@ class DataPath:
         return os.path.abspath(f"./data/tables/{self.year}/tollbooths_sts_data.csv")
 
     @property
+    def tollbooth_sts_full(self):
+        return os.path.abspath(f"./data/tables/{self.year}/tollbooths_sts.csv")
+    
+    @property
     def strech_toll(self):
         pass
 
