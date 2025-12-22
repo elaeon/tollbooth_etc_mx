@@ -8,7 +8,8 @@ import sys
 import re
 from collections import defaultdict
 import argparse
-from tb_map_editor.schemas import tollbooth_sts_schema
+from tb_map_editor.schemas import tollbooth_sts_full_schema
+from tb_map_editor.data_files import DataPath
 
 
 _log = logging.getLogger(__name__)
@@ -110,6 +111,8 @@ def fill_list(small_list, total_size):
 def main(year, from_page, to_page):
     prev_year = year - 1
     file_path = f"./datos_viales/{year}/33_PC_DV{year}.pdf"
+    data_path = DataPath(prev_year)
+
     with pdfplumber.open(file_path) as pdf:
         all_df = []
         for page_num, page in enumerate(pdf.pages, 1):
@@ -137,12 +140,12 @@ def main(year, from_page, to_page):
                     except pl.exceptions.ShapeError:
                         _log.info(f"Dataframe shape error in page: {page_num}, table: {table_num}")
                 df_sts = pl.concat(dfs)
-                df = pl.concat([df_index, df_sts], how="horizontal").rename(_sts_cols_map).cast(tollbooth_sts_schema, strict=False)
+                df = pl.concat([df_index, df_sts], how="horizontal").rename(_sts_cols_map).cast(tollbooth_sts_full_schema, strict=False)
                 _log.info(f"page: {page_num}, df shape: {df.shape}")
                 all_df.append(df)
                 if page_num == to_page:
                     break
-        pl.concat(all_df).write_csv(f"./data/tables/{prev_year}/tollbooths_sts.csv")
+        pl.concat(all_df).write_csv(data_path.tollbooths_sts_full)
 
 
 if __name__ == "__main__":

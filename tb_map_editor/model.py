@@ -149,7 +149,7 @@ class TollboothStsData(SQLModel, table=True):
 
     @classmethod
     def dict_schema(cls):
-        exclude = {"id", "info_year"}
+        exclude = {"info_year"}
         dict_schema = {
             field_name: _get_polar_type(field_type)
             for field_name, field_type in cls.model_fields.items()

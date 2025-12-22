@@ -19,12 +19,14 @@ strechs_tolls_2025_schema = {
     "truck-8axle": pl.Float32,
     "truck-9axle": pl.Float32,
     "load-axle": pl.Float32,
+    "truck-10axle": pl.Float32,
     "toll_ref": pl.String,
     "motorbike-axle": pl.Float32,
     "car-rush-hour": pl.Float32,
     "car-evening-hour": pl.Float32,
     "pedestrian": pl.Float32,
-    "valid_from": pl.Date
+    "valid_from": pl.Date,
+    "bicycle": pl.Float32
 }
 
 strechs_tolls_2024_schema = {
@@ -40,6 +42,11 @@ strechs_tolls_2021_schema = strechs_tolls_2025_schema.copy()
 strechs_schema = {
     "strech_id": pl.UInt16,
     "strech_name": pl.String,
+}
+
+strechs_data_schema = {
+    "strech_id": pl.UInt16,
+    #"strech_name": pl.String,
     "strech_length_km": pl.Float32,
     "sct_idVia": pl.UInt16,
     "road_id": pl.UInt16,
@@ -74,3 +81,9 @@ roads_schema = {
 
 tollbooth_sts_schema = TollboothSts.dict_schema()
 tollbooth_sts_data_schema = TollboothStsData.dict_schema()
+tollbooth_sts_full_schema = {
+    "index": pl.String
+}
+tollbooth_sts_full_schema.update(tollbooth_sts_schema.copy())
+tollbooth_sts_full_schema.update(tollbooth_sts_data_schema.copy())
+del tollbooth_sts_full_schema["tollboothsts_id"]

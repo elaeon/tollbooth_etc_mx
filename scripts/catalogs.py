@@ -5,21 +5,18 @@ import polars as pl
 import argparse
 
 from tb_map_editor.data_files import DataPath
-from tb_map_editor.schemas import tollbooth_sts_schema, tollbooth_sts_data_schema
+from tb_map_editor.schemas import tollbooth_sts_full_schema
 
 
 def sts_catalog(year):
     data_path = DataPath(year)
-    schema = tollbooth_sts_schema.copy()
-    schema.update(tollbooth_sts_data_schema)
-    del schema["tollboothsts_id"]
-    ldf = pl.scan_csv(data_path.tollbooth_sts_full, schema=schema)
+    ldf = pl.scan_csv(data_path.tollbooths_sts_full, schema=tollbooth_sts_full_schema)
     index_ldf = ldf.with_row_index("tollboothsts_id", offset=1)
     index_ldf.select(
         "tollboothsts_id", "tollbooth_name", "way", "highway", "km", "coords"
-        ).collect().write_csv(data_path.tollbooth_sts_catalog)
+        ).collect().write_csv(data_path.tollbooths_sts_catalog)
     index_ldf.select(pl.exclude("tollbooth_name", "way", "highway", "km", "coords", "index")
-        ).collect().write_csv(data_path.tollbooth_sts_data)
+        ).collect().write_csv(data_path.tollbooths_sts_data)
 
 
 if __name__ == "__main__":
