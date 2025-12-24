@@ -1,6 +1,8 @@
 import os
 from dataclasses import dataclass
 
+from . import schemas
+
 _data_folder = "./data/tables/"
 
 
@@ -13,10 +15,17 @@ def _build_path(filename, year:int | None = None) -> str:
 
 
 @dataclass
-class DataPath:
-    tollbooths_catalog: str = _build_path("tollbooths_catalog.csv")
-    strechs_catalog: str = _build_path("strechs_catalog.csv")
-    roads: str = _build_path("roads.csv")
+class PathSchema:
+    def __init__(self, path: str, schema: dict):
+        self.path: str = path
+        self.schema: dict = schema
+
+
+@dataclass
+class DataPathSchema:
+    tollbooths_catalog: PathSchema = PathSchema(_build_path("tollbooths_catalog.csv"), schemas.tollbooth_schema)
+    strechs_catalog: PathSchema = PathSchema(_build_path("strechs_catalog.csv"), schemas.strechs_schema)
+    roads: PathSchema = PathSchema(_build_path("roads.csv"), schemas.roads_schema)
 
     def __init__(self, year: int):
         self.year:int = year
@@ -25,21 +34,23 @@ class DataPath:
         return _build_path(filename, self.year)
     
     @property
-    def tollbooths_sts_catalog(self) -> str:
-        return self._build_path("tollbooths_sts_catalog.csv")
+    def tollbooths_sts_catalog(self) -> PathSchema:
+        return PathSchema(self._build_path("tollbooths_sts_catalog.csv"), schemas.tollbooth_sts_schema)
     
     @property
-    def tollbooths_sts_data(self) -> str:
-        return self._build_path("tollbooths_sts_data.csv")
+    def tollbooths_sts_data(self) -> PathSchema:
+        return PathSchema(self._build_path("tollbooths_sts_data.csv"), schemas.tollbooth_sts_data_schema)
 
     @property
-    def tollbooths_sts_full(self) -> str:
-        return self._build_path("tollbooths_sts.csv")
+    def tollbooths_sts_full(self) -> PathSchema:
+        return PathSchema(self._build_path("tollbooths_sts.csv"), schemas.tollbooth_sts_full_schema)
     
     @property
-    def strechs_toll(self) -> str:
-        return self._build_path("strechs_toll.csv")
+    def strechs_toll(self) -> PathSchema:
+        return PathSchema(
+            self._build_path("strechs_toll.csv"), getattr(schemas, f"strechs_tolls_{self.year}_schema")
+        )
 
     @property
-    def strechs_data(self) -> str:
-        return self._build_path("strechs_data.csv")
+    def strechs_data(self) -> PathSchema:
+        return PathSchema(self._build_path("strechs_data.csv"), schemas.strechs_data_schema)

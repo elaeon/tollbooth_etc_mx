@@ -2,7 +2,7 @@ import polars as pl
 from .model import Tollbooth, TollboothSts, TollboothStsData
 
 
-strechs_tolls_2025_schema = {
+strechs_toll_2025_schema = {
     "strech_id": pl.UInt16,
     "motorbike": pl.Float32,
     "car": pl.Float32,
@@ -29,15 +29,15 @@ strechs_tolls_2025_schema = {
     "bicycle": pl.Float32
 }
 
-strechs_tolls_2024_schema = {
+strechs_toll_2024_schema = {
     "car-rush-hour-2": pl.Float32,
     "car-evening-hour-2": pl.Float32,
     "car-morning-night-hour-2": pl.Float32
 }
-strechs_tolls_2024_schema.update(strechs_tolls_2025_schema)
-strechs_tolls_2023_schema = strechs_tolls_2025_schema.copy()
-strechs_tolls_2022_schema = strechs_tolls_2025_schema.copy()
-strechs_tolls_2021_schema = strechs_tolls_2025_schema.copy()
+strechs_toll_2024_schema.update(strechs_toll_2025_schema)
+strechs_toll_2023_schema = strechs_toll_2025_schema.copy()
+strechs_toll_2022_schema = strechs_toll_2025_schema.copy()
+strechs_toll_2021_schema = strechs_toll_2025_schema.copy()
 
 strechs_schema = {
     "strech_id": pl.UInt16,
