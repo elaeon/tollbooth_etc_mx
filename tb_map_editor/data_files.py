@@ -21,7 +21,6 @@ class PathSchema:
         self.schema: dict = schema
 
 
-@dataclass
 class DataPathSchema:
     tollbooths_catalog: PathSchema = PathSchema(_build_path("tollbooths_catalog.csv"), schemas.tollbooth_schema)
     strechs_catalog: PathSchema = PathSchema(_build_path("strechs_catalog.csv"), schemas.strechs_schema)

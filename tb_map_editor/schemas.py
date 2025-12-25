@@ -1,5 +1,5 @@
 import polars as pl
-from .model import Tollbooth, TollboothSts, TollboothStsData
+from .model import Tollbooth, TollboothSts, TollboothStsData, Strech
 
 
 strechs_toll_2025_schema = {
@@ -39,10 +39,7 @@ strechs_toll_2023_schema = strechs_toll_2025_schema.copy()
 strechs_toll_2022_schema = strechs_toll_2025_schema.copy()
 strechs_toll_2021_schema = strechs_toll_2025_schema.copy()
 
-strechs_schema = {
-    "strech_id": pl.UInt16,
-    "strech_name": pl.String,
-}
+strechs_schema = Strech.dict_schema()
 
 strechs_data_schema = {
     "strech_id": pl.UInt16,

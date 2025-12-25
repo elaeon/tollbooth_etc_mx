@@ -13,7 +13,7 @@ class UInt16(int):
         return core_schema.no_info_after_validator_function(cls, handler(int))
 
     @staticmethod
-    def polar_type():
+    def polars_dtype():
         return pl.UInt16
 
 
@@ -25,7 +25,7 @@ class UInt32(int):
         return core_schema.no_info_after_validator_function(cls, handler(int))
 
     @staticmethod
-    def polar_type():
+    def polars_dtype():
         return pl.UInt32
     
 
@@ -37,7 +37,7 @@ class UInt64(int):
         return core_schema.no_info_after_validator_function(cls, handler(int))
 
     @staticmethod
-    def polar_type():
+    def polars_dtype():
         return pl.UInt64
 
 
@@ -49,7 +49,7 @@ class Float32(float):
         return core_schema.no_info_after_validator_function(cls, handler(float))
 
     @staticmethod
-    def polar_type():
+    def polars_dtype():
         return pl.Float32
     
 
@@ -61,22 +61,34 @@ class String(str):
         return core_schema.no_info_after_validator_function(cls, handler(str))
 
     @staticmethod
-    def polar_type():
+    def polars_dtype():
         return pl.String
 
 
-def _get_polar_type(field_type):
-    if hasattr(field_type.annotation, "polar_type"):
-        polar_type = field_type.annotation.polar_type()
-    else:
-        for arg in get_args(field_type.annotation):
-            if hasattr(arg, "polar_type"):
-                polar_type = arg.polar_type()
-                break
-    return polar_type
+class Schema:
+    _polar_dtype_attr = "polars_dtype"
+
+    @staticmethod
+    def _get_polars_dtype(field_type):
+        if hasattr(field_type.annotation, Schema._polar_dtype_attr):
+            polar_type = getattr(field_type.annotation, Schema._polar_dtype_attr)()
+        else:
+            for arg in get_args(field_type.annotation):
+                if hasattr(arg, Schema._polar_dtype_attr):
+                    polar_type = getattr(arg, Schema._polar_dtype_attr)()
+                    break
+        return polar_type
+
+    @classmethod
+    def dict_schema(cls) -> dict:
+        dict_schema = {
+            field_name: cls._get_polars_dtype(field_type)
+            for field_name, field_type in cls.model_fields.items()
+        }
+        return dict_schema
 
 
-class Tollbooth(SQLModel, table=True):
+class Tollbooth(SQLModel, Schema, table=True):
     tollbooth_id: UInt16 | None = Field(default=None, primary_key=True)
     legacy_id: UInt16 | None = Field(default=None)
     tollbooth_name: String | None = Field(default=None, index=True)
@@ -90,16 +102,8 @@ class Tollbooth(SQLModel, table=True):
     managed_by: String | None = Field(default=None)
     gate_to: String | None = Field(default=None)
 
-    @classmethod
-    def dict_schema(cls):
-        dict_schema = {
-            field_name: _get_polar_type(field_type)
-            for field_name, field_type in cls.model_fields.items()
-        }
-        return dict_schema
 
-
-class TollboothSts(SQLModel, table=True):
+class TollboothSts(SQLModel, Schema, table=True):
     tollboothsts_id: UInt32 | None = Field(default=None, primary_key=True)
     tollbooth_name: String
     way: String
@@ -107,16 +111,8 @@ class TollboothSts(SQLModel, table=True):
     km: Float32 | None = Field(default=None)
     coords: String
 
-    @classmethod
-    def dict_schema(cls):
-        dict_schema = {
-            field_name: _get_polar_type(field_type)
-            for field_name, field_type in cls.model_fields.items()
-        }
-        return dict_schema
 
-
-class TollboothStsData(SQLModel, table=True):
+class TollboothStsData(SQLModel, Schema, table=True):
     tollboothsts_id: UInt32 = Field(foreign_key="tollboothsts.tollboothsts_id", primary_key=True)
     tdpa: UInt32
     motorbike: Float32 | None = Field(default=None)
@@ -151,8 +147,14 @@ class TollboothStsData(SQLModel, table=True):
     def dict_schema(cls):
         exclude = {"info_year"}
         dict_schema = {
-            field_name: _get_polar_type(field_type)
+            field_name: cls._get_polars_dtype(field_type)
             for field_name, field_type in cls.model_fields.items()
             if field_name not in exclude
         }
         return dict_schema
+
+
+class Strech(SQLModel, Schema, table=True):
+    strech_id: UInt16 | None = Field(default=None, primary_key=True)
+    strech_name: String
+
