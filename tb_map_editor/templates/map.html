@@ -100,6 +100,7 @@ const QueryControl = L.Control.extend({
 			<select id="query-endpoints">
 				<option value="/api/tollbooths">tollbooths</option>
 				<option value="/api/tollbooths_sts">tollbooths_sts</option>
+				<option value="/api/tmp_tb">pending_tb</option>
 			</select>
 			<label><input id="btn-checkbox-hold" type="checkbox" placeholder="hold markers">Hold markers</label>
 			<label>
@@ -219,7 +220,7 @@ function extractCoordinates(data) {
 function parseCoordItem(item) {
 	if (!item || typeof item !== 'object') return null;
 
-	let lat, lon, props = {};
+	let lat, lon, source, props = {};
 
 	// Look for lat/lon fields (case insensitive)
 	for (const key in item) {
@@ -229,12 +230,17 @@ function parseCoordItem(item) {
 		} else if (['lon', 'longitude'].includes(lk)) {
 			lon = parseFloat(item[key]);
 		} else {
-			props[key] = item[key];
+			if (['source'].includes(lk)) {
+				source = item[key];
+			}
+			else {
+				props[key] = item[key];
+			}
 		}
 	}
 
 	if (Number.isFinite(lat) && Number.isFinite(lon) && isValidLat(lat) && isValidLon(lon)) {
-		return { lat, lon, props };
+		return { lat, lon, source, props };
 	}
 	return null;
 }
@@ -245,7 +251,7 @@ function addMarkersFromCoords(coords, sourceLabel) {
 		if (!isValidLat(c.lat) || !isValidLon(c.lon)) continue;
 		const m = L.marker([c.lat, c.lon], { title: c.props && c.props.tollbooth_name || '' });
 		// attach original data to marker for use in the popup form
-		m.__data = { props: c.props || {}, lat: c.lat, lon: c.lon, source: sourceLabel };
+		m.__data = { props: c.props || {}, lat: c.lat, lon: c.lon, source: c.source, query: sourceLabel };
 		// bind popup with a form populated from props
 		m.bindPopup(createPopupFormHTML(m.__data));
 		m.on('popupopen', (e) => {
@@ -309,7 +315,7 @@ function attachPopupFormHandlers(popup, marker) {
 		const obj = {};
 		for (const [k,v] of fd.entries()) obj[k] = v;
 		// combine with marker metadata
-		const payload = { _lat: marker.__data.lat, _lon: marker.__data.lon, props: obj, source: marker.__data.source };
+		const payload = { _lat: marker.__data.lat, _lon: marker.__data.lon, props: obj, source: marker.__data.source, query: marker.__data.query };
 		// default action: log to console and show status
 		console.log('Marker form submit', payload);
 		if (status) status.textContent = 'Saved (client-side)';

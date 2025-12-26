@@ -158,3 +158,20 @@ class Strech(SQLModel, Schema, table=True):
     strech_id: UInt16 | None = Field(default=None, primary_key=True)
     strech_name: String
 
+
+class TmpTb(SQLModel, Schema, table=True):
+    id: UInt32 | None = Field(default=None, primary_key=True)
+    name: String
+    lat: Float32
+    lon: Float32
+    valid: bool | None = Field(default=True)
+
+    @classmethod
+    def dict_schema(cls):
+        exclude = {"valid"}
+        dict_schema = {
+            field_name: cls._get_polars_dtype(field_type)
+            for field_name, field_type in cls.model_fields.items()
+            if field_name not in exclude
+        }
+        return dict_schema
