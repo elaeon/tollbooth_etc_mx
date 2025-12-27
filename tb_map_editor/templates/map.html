@@ -286,8 +286,8 @@ function createPopupFormHTML(data) {
 	const props = data.props || {};
 	let html = `<div style="min-width:220px"><form id="${id}" class="marker-form">`;
 	html += `<div><strong>Marker data</strong></div>`;
-	html += `<input type="hidden" name="_lat" value="${escapeHtml(data.lat)}">`;
-	html += `<input type="hidden" name="_lon" value="${escapeHtml(data.lon)}">`;
+	html += `<input type="hidden" name="lat" value="${escapeHtml(data.lat)}">`;
+	html += `<input type="hidden" name="lon" value="${escapeHtml(data.lon)}">`;
 	for (const key of Object.keys(props)) {
 		const val = props[key] == null ? '' : (typeof props[key] === 'object' ? JSON.stringify(props[key]) : String(props[key]));
 		html += `<div style="margin:4px 0"><label style="font-size:12px">${escapeHtml(key)}:<br><input name="${escapeHtml(key)}" value="${escapeHtml(val)}" style="width:100%"/></label></div>`;

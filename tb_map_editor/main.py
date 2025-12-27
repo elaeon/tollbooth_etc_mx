@@ -78,8 +78,15 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
 
 
 @app.post("/api/tollbooth_update/")
-def update_tollbooth(body: Annotated[Any, Body()]):
-    print(body)
+def update_tollbooth(body: Annotated[Any, Body()], session: SessionDep):
+    source = body.get("source")
+    if source == TmpTb.__name__:
+        stm = select(TmpTb).where(TmpTb.id == body.get("props").get("id"))
+        results = session.exec(stm)
+        tmptb = results.one()
+        tmptb.valid = False if body.get("props").get("valid") == "false" else True
+        session.commit()
+        session.refresh(tmptb)
 
 
 @app.post("/api/tmp_tb")
@@ -94,6 +101,6 @@ def fetch_tmp_tb(body: Annotated[Any, Body()], session: SessionDep, offset: int=
             "lat": tb.lat,
             "lon": tb.lon,
             "valid": tb.valid,
-            "source": "tmp_tb"
+            "source": TmpTb.__name__
         })
     return data
