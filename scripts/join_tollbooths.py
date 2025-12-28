@@ -67,16 +67,8 @@ def tb_imt_tb_id(year: int):
     )
 
     data_path = DataPathSchema(year)
-    df_tb = pl.read_csv(
-        data_path.tollbooths.path, 
-        schema=data_path.tollbooths.schema
-    )
-    df_tb_catalog = df_tb.with_columns(
-        pl.col("coords").str.split_exact(",", 1)
-    ).unnest("coords").rename({"field_0": "lat", "field_1": "lon"})
-    df_tb_catalog = df_tb_catalog.with_columns(
-        pl.col("lat").str.strip_chars().cast(pl.Float32),
-        pl.col("lon").str.strip_chars().cast(pl.Float32)
+    df_tb_catalog = pl.read_parquet(
+        data_path.tollbooths.parquet
     )
     df_tb_catalog = df_tb_catalog.with_columns(
         plh3.latlng_to_cell("lat", "lon", hex_resolution_max).alias(hex_resolution_max_name),
@@ -108,7 +100,7 @@ def tb_imt_tb_id(year: int):
         "tollbooth_id", "tollbooth_imt_id", "grid_distance"
     ).extend(
         df_tb_not_found.select("tollbooth_id", "tollbooth_imt_id", "grid_distance")
-    ).write_csv(data_path.tb_imt_tb_id.path)
+    ).write_csv(data_path.tb_imt_tb_id.csv)
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@ from sqlmodel import Field, SQLModel, UniqueConstraint
 from pydantic_core import CoreSchema, core_schema
 from pydantic import GetCoreSchemaHandler
 from typing import Any, get_args
+
 import polars as pl
 
 
@@ -65,6 +66,18 @@ class String(str):
         return pl.String
 
 
+class Date(str):
+    @classmethod
+    def __get_pydantic_core_schema__(
+        cls, source_type: Any, handler: GetCoreSchemaHandler
+    ) -> CoreSchema:
+        return core_schema.no_info_after_validator_function(cls, handler(str))
+
+    @staticmethod
+    def polars_dtype():
+        return pl.Date
+
+
 class Schema:
     _polar_dtype_attr = "polars_dtype"
 
@@ -92,28 +105,26 @@ class Tollbooth(SQLModel, Schema, table=True):
     tollbooth_id: UInt16 | None = Field(default=None, primary_key=True)
     legacy_id: UInt16 | None = Field(default=None)
     tollbooth_name: String | None = Field(default=None, index=True)
-    coords: String | None
+    lat: Float32 | None
+    lon: Float32 | None
     status: String
     state: String
     place: String
     lines: UInt16
     type: String
-    highway: String | None = Field(default=None)
-    managed_by: String | None = Field(default=None)
+    manage: String | None = Field(default=None)
     gate_to: String | None = Field(default=None)
 
 
 class TollboothSts(SQLModel, Schema, table=True):
     tollboothsts_id: UInt32 | None = Field(default=None, primary_key=True)
+    index: String
     tollbooth_name: String
     way: String
     highway: String | None = Field(default=None)
     km: Float32 | None = Field(default=None)
-    coords: String
-
-
-class TollboothStsData(SQLModel, Schema, table=True):
-    tollboothsts_id: UInt32 = Field(foreign_key="tollboothsts.tollboothsts_id", primary_key=True)
+    lat: Float32
+    lon: Float32
     tdpa: UInt32
     motorbike: Float32 | None = Field(default=None)
     car: Float32 | None = Field(default=None)
@@ -154,9 +165,31 @@ class TollboothStsData(SQLModel, Schema, table=True):
         return dict_schema
 
 
+class Road(SQLModel, Schema, table=True):
+    road_id: UInt16 | None = Field(default=None, primary_key=True)
+    road_name: String
+    operation_date: Date
+    project_mx_id: String
+    fonadin_id: String
+    road_length_km: Float32
+    bond_code: String
+    bond_issuance_date: Date
+    bond_terms_years: UInt16
+    notes: String
+
+
 class Strech(SQLModel, Schema, table=True):
     strech_id: UInt16 | None = Field(default=None, primary_key=True)
     strech_name: String
+    strech_length_km: Float32 | None
+    sct_idVia: UInt16
+    road_id: UInt16 = Field(foreign_key="road.road_id", primary_key=True)
+    managed_by: String
+    way: String
+    lat_a: Float32 | None
+    lon_a: Float32 | None
+    lat_b: Float32 | None
+    lon_b: Float32 | None
 
 
 class TmpTb(SQLModel, Schema, table=True):
@@ -179,4 +212,77 @@ class TmpTb(SQLModel, Schema, table=True):
 
 class TbImtTb(SQLModel, Schema, table=True):
     tollbooth_id: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
-    tollbooth_imt_id: UInt32
+    tollbooth_imt_id: UInt32 | None
+    grid_distance: UInt16 | None
+
+
+class TbstsStrech(SQLModel, Schema, table=True):
+    tollboothsts_id: UInt32 = Field(foreign_key="tollboothsts.tollboothsts_id", primary_key=True)
+    strech_id: UInt32 = Field(foreign_key="strech.strech_id", primary_key=True)
+
+
+class TbStrech(SQLModel, Schema, table=True):
+    tollbooth_id_a: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
+    tollbooth_id_b: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
+    strech_id: UInt32 = Field(foreign_key="strech.strech_id", primary_key=True)
+
+
+class StrechToll(SQLModel, Schema, table=True):
+    strech_id: UInt16 | None = Field(default=None, primary_key=True)
+    motorbike: Float32 | None = Field(default=None)
+    car: Float32 | None = Field(default=None)
+    car_axle: Float32 | None = Field(default=None)
+    bus_2_axle: Float32 | None = Field(default=None)
+    bus_3_axle: Float32 | None = Field(default=None)
+    bus_4_axle: Float32 | None = Field(default=None)
+    truck_2_axle: Float32 | None = Field(default=None)
+    truck_3_axle: Float32 | None = Field(default=None)
+    truck_4_axle: Float32 | None = Field(default=None)
+    truck_5_axle: Float32 | None = Field(default=None)
+    truck_6_axle: Float32 | None = Field(default=None)
+    truck_7_axle: Float32 | None = Field(default=None)
+    truck_8_axle: Float32 | None = Field(default=None)
+    truck_9_axle: Float32 | None = Field(default=None)
+    load_axle: Float32 | None = Field(default=None)
+    truck_10_axle: Float32 | None = Field(default=None)
+    toll_ref: String
+    motorbike_axle: Float32 | None = Field(default=None)
+    car_rush_hour: Float32 | None = Field(default=None)
+    car_evening_hour: Float32 | None = Field(default=None)
+    pedestrian: Float32 | None = Field(default=None)
+    bicycle: Float32 | None = Field(default=None)
+    car_rush_hour_2: Float32 | None = Field(default=None)
+    car_evening_hour_2: Float32 | None = Field(default=None)
+    car_morning_night: Float32 | None = Field(default=None)
+
+
+class TbImt(SQLModel, Schema, table=True):
+    tollbooth_imt_id: UInt16 = Field(primary_key=True)
+    tollbooth_name: String
+    area: String | None = Field(default=None)
+    subarea: String | None = Field(default=None)
+    function: String | None = Field(default=None)
+    calirepr: String | None = Field(default=None)
+    lat: Float32 | None = Field(default=None)
+    lon: Float32 | None = Field(default=None)
+
+
+class TollImt(SQLModel, Schema, table=True):
+    tollbooth_imt_id_a: UInt16 = Field(foreign_key="tbimt.tollbooth_imt_id", primary_key=True)
+    tollbooth_imt_id_b: UInt16 = Field(foreign_key="tbimt.tollbooth_imt_id", primary_key=True)
+    motorbike: Float32 | None = Field(default=None)
+    car: Float32 | None = Field(default=None)
+    car_axle: Float32 | None = Field(default=None)
+    bus_2_axle: Float32 | None = Field(default=None)
+    bus_3_axle: Float32 | None = Field(default=None)
+    bus_4_axle: Float32 | None = Field(default=None)
+    truck_2_axle: Float32 | None = Field(default=None)
+    truck_3_axle: Float32 | None = Field(default=None)
+    truck_4_axle: Float32 | None = Field(default=None)
+    truck_5_axle: Float32 | None = Field(default=None)
+    truck_6_axle: Float32 | None = Field(default=None)
+    truck_7_axle: Float32 | None = Field(default=None)
+    truck_8_axle: Float32 | None = Field(default=None)
+    truck_9_axle: Float32 | None = Field(default=None)
+    load_axle: Float32 | None = Field(default=None)
+    update_date: Date
