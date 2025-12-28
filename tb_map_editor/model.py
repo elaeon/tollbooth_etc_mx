@@ -175,3 +175,8 @@ class TmpTb(SQLModel, Schema, table=True):
             if field_name not in exclude
         }
         return dict_schema
+
+
+class TbImtTb(SQLModel, Schema, table=True):
+    tollbooth_id: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
+    tollbooth_imt_id: UInt32

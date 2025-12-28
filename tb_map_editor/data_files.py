@@ -2,6 +2,7 @@ import os
 from dataclasses import dataclass
 
 from . import schemas
+from . import model
 
 _data_folder = "./data/tables/"
 
@@ -22,9 +23,6 @@ class PathSchema:
 
 
 class DataPathSchema:
-    tollbooths_catalog: PathSchema = PathSchema(_build_path("tollbooths_catalog.csv"), schemas.tollbooth_schema)
-    strechs_catalog: PathSchema = PathSchema(_build_path("strechs_catalog.csv"), schemas.strechs_schema)
-    roads: PathSchema = PathSchema(_build_path("roads.csv"), schemas.roads_schema)
 
     def __init__(self, year: int):
         self.year:int = year
@@ -33,16 +31,20 @@ class DataPathSchema:
         return _build_path(filename, self.year)
     
     @property
-    def tollbooths_sts_catalog(self) -> PathSchema:
-        return PathSchema(self._build_path("tollbooths_sts_catalog.csv"), schemas.tollbooth_sts_schema)
+    def tollbooths(self) -> PathSchema:
+        return PathSchema(self._build_path("tollbooths.csv"), schemas.tollbooth_schema)
     
     @property
-    def tollbooths_sts_data(self) -> PathSchema:
-        return PathSchema(self._build_path("tollbooths_sts_data.csv"), schemas.tollbooth_sts_data_schema)
+    def strechs(self) -> PathSchema:
+        return PathSchema(self._build_path("strechs.csv"), schemas.strechs_schema)
+    
+    @property
+    def roads(self) -> PathSchema:
+        return PathSchema(self._build_path("roads.csv"), schemas.roads_schema)
 
     @property
-    def tollbooths_sts_full(self) -> PathSchema:
-        return PathSchema(self._build_path("tollbooths_sts.csv"), schemas.tollbooth_sts_full_schema)
+    def tollbooths_sts(self) -> PathSchema:
+        return PathSchema(self._build_path("tollbooths_sts.csv"), schemas.tollbooth_sts_schema)
     
     @property
     def strechs_toll(self) -> PathSchema:
@@ -53,3 +55,7 @@ class DataPathSchema:
     @property
     def strechs_data(self) -> PathSchema:
         return PathSchema(self._build_path("strechs_data.csv"), schemas.strechs_data_schema)
+    
+    @property
+    def tb_imt_tb_id(self) -> PathSchema:
+        return PathSchema(_build_path("tb_imt_tb_id.csv"), model.TbImtTb.dict_schema)
