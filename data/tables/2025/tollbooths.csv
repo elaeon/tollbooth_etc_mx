@@ -1,4 +1,4 @@
-"tollbooth_id","legacy_id","tollbooth_name","coords","status","state","place","lines","type","manage_by","gate_to","function"
+"tollbooth_id","legacy_id","tollbooth_name","coords","status","state","place","lines","type","manage","gate_to","function"
 1,583,"chichimeco","22.000712228342167, -102.36006126095177","open","aguascalientes","entronque",2,"toll","ops",,
 2,583,"chichimeco","22.000975257831087, -102.35961333194552","open","aguascalientes","entronque",2,"toll","ops",,
 3,583,"chichimeco","22.005821389499083, -102.35777833294763","open","aguascalientes","troncal",6,"toll","ops",,
