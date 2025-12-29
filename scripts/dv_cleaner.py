@@ -8,8 +8,7 @@ import sys
 import re
 from collections import defaultdict
 import argparse
-from tb_map_editor.schemas import tollbooth_sts_full_schema
-from tb_map_editor.data_files import DataPath
+from tb_map_editor.data_files import DataPathSchema
 
 
 _log = logging.getLogger(__name__)
@@ -48,7 +47,6 @@ def extract_index(page_text):
     road_pat = re.compile(r"(?P<highway>\b(mex|ver|slp|chih|nl)\b[-]{0,1}\w*[-]*\w*){0,1}\s*km:(?P<km>\d+\.\d+)")
     lat_pat = re.compile(r"(lat:\s*)(?P<lat>[-]{0,1}\d+\.\d+)")
     long_pat = re.compile(r"(long:\s*)(?P<long>[-]{0,1}\d+\.\d+)")
-    coords = []
     for line in page_text.split("\n"):
         line = line.lower().replace("(", "").replace(")", "")
         match_index = re.search(index_pat, line)
@@ -77,12 +75,9 @@ def extract_index(page_text):
             lines_dict[scope_index].update(match_road.groupdict())
 
         if match_lat is not None:
-            coords.append(match_lat.groupdict()["lat"])
+            lines_dict[scope_index]["lat"] = match_lat.groupdict()["lat"]
         if match_long is not None:
-            coords.append(match_long.groupdict()["long"])
-        if len(coords) == 2:
-            lines_dict[scope_index]["coords"] = ",".join(coords)
-            coords = []
+            lines_dict[scope_index]["lon"] = match_long.groupdict()["long"]
         
         _log.debug(f"{scope_index}, {lines_dict.get(scope_index)}")
     return lines_dict
@@ -111,7 +106,7 @@ def fill_list(small_list, total_size):
 def main(year, from_page, to_page):
     prev_year = year - 1
     file_path = f"./datos_viales/{year}/33_PC_DV{year}.pdf"
-    data_path = DataPath(prev_year)
+    data_path = DataPathSchema(prev_year)
 
     with pdfplumber.open(file_path) as pdf:
         all_df = []
@@ -120,7 +115,7 @@ def main(year, from_page, to_page):
                 extracted_tables = page.extract_tables()
                 page_text = page.extract_text(keep_blank_chars=True)
                 df_index = lines_dict_to_df(page_text)
-                assert df_index.columns == ["index", "tollbooth_name", "way", "highway", "km", "coords"]
+                assert df_index.columns == ["index", "tollbooth_name", "way", "highway", "km", "lat", "lon"]
                 dfs = []
                 for table_num, table in enumerate(extracted_tables, 1):
                     tdpa = table[1][0]
@@ -140,12 +135,13 @@ def main(year, from_page, to_page):
                     except pl.exceptions.ShapeError:
                         _log.info(f"Dataframe shape error in page: {page_num}, table: {table_num}")
                 df_sts = pl.concat(dfs)
-                df = pl.concat([df_index, df_sts], how="horizontal").rename(_sts_cols_map).cast(tollbooth_sts_full_schema, strict=False)
+                df_sts = df_sts.with_columns(pl.col(pl.String).replace("", None))
+                df = pl.concat([df_index, df_sts], how="horizontal").rename(_sts_cols_map)
                 _log.info(f"page: {page_num}, df shape: {df.shape}")
                 all_df.append(df)
                 if page_num == to_page:
                     break
-        pl.concat(all_df).write_csv(data_path.tollbooths_sts_full)
+        pl.concat(all_df).with_row_index("tollboothsts_id", offset=1).cast(data_path.tollbooths_sts.schema, strict=True).write_parquet(data_path.tollbooths_sts.parquet)
 
 
 if __name__ == "__main__":
