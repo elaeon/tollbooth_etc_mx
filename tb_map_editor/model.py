@@ -184,7 +184,7 @@ class Strech(SQLModel, Schema, table=True):
     strech_length_km: Float32 | None
     sct_idVia: UInt16
     road_id: UInt16 = Field(foreign_key="road.road_id", primary_key=True)
-    managed_by: String
+    manage: String
     way: String
     lat_a: Float32 | None
     lon_a: Float32 | None
