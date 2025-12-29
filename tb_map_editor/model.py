@@ -54,6 +54,18 @@ class Float32(float):
         return pl.Float32
     
 
+class Float64(float):
+    @classmethod
+    def __get_pydantic_core_schema__(
+        cls, source_type: Any, handler: GetCoreSchemaHandler
+    ) -> CoreSchema:
+        return core_schema.no_info_after_validator_function(cls, handler(float))
+
+    @staticmethod
+    def polars_dtype():
+        return pl.Float64
+
+
 class String(str):
     @classmethod
     def __get_pydantic_core_schema__(
@@ -105,8 +117,8 @@ class Tollbooth(SQLModel, Schema, table=True):
     tollbooth_id: UInt16 | None = Field(default=None, primary_key=True)
     legacy_id: UInt16 | None = Field(default=None)
     tollbooth_name: String | None = Field(default=None, index=True)
-    lat: Float32 | None
-    lon: Float32 | None
+    lat: Float64 | None
+    lon: Float64 | None
     status: String
     state: String
     place: String
@@ -123,8 +135,8 @@ class TollboothSts(SQLModel, Schema, table=True):
     way: String
     highway: String | None = Field(default=None)
     km: Float32 | None = Field(default=None)
-    lat: Float32
-    lon: Float32
+    lat: Float64
+    lon: Float64
     tdpa: UInt32
     motorbike: Float32 | None = Field(default=None)
     car: Float32 | None = Field(default=None)
@@ -186,17 +198,17 @@ class Strech(SQLModel, Schema, table=True):
     road_id: UInt16 = Field(foreign_key="road.road_id", primary_key=True)
     manage: String
     way: String
-    lat_a: Float32 | None
-    lon_a: Float32 | None
-    lat_b: Float32 | None
-    lon_b: Float32 | None
+    lat_a: Float64 | None
+    lon_a: Float64 | None
+    lat_b: Float64 | None
+    lon_b: Float64 | None
 
 
 class TmpTb(SQLModel, Schema, table=True):
     id: UInt32 | None = Field(default=None, primary_key=True)
     name: String
-    lat: Float32
-    lon: Float32
+    lat: Float64
+    lon: Float64
     valid: bool | None = Field(default=True)
 
     @classmethod
@@ -263,8 +275,8 @@ class TbImt(SQLModel, Schema, table=True):
     subarea: String | None = Field(default=None)
     function: String | None = Field(default=None)
     calirepr: String | None = Field(default=None)
-    lat: Float32 | None = Field(default=None)
-    lon: Float32 | None = Field(default=None)
+    lat: Float64 | None = Field(default=None)
+    lon: Float64 | None = Field(default=None)
 
 
 class TollImt(SQLModel, Schema, table=True):

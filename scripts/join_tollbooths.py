@@ -58,8 +58,8 @@ def tb_imt_tb_id(year: int):
     df_plazas = pl.read_csv("./tmp_data/plazas.csv", infer_schema=False)
 
     df_plazas = df_plazas.with_columns(
-        pl.col("xcoord").cast(pl.Float32).alias("lon"),
-        pl.col("ycoord").cast(pl.Float32).alias("lat")
+        pl.col("xcoord").cast(pl.Float64).alias("lon"),
+        pl.col("ycoord").cast(pl.Float64).alias("lat")
     ).rename({"NOMBRE": "name", "ID_PLAZA": "tollbooth_imt_id"}).filter(pl.col("CALIREPR") != "Virtual")
     df_plazas = df_plazas.with_columns(
         plh3.latlng_to_cell("lat", "lon", hex_resolution_max).alias(hex_resolution_max_name),
