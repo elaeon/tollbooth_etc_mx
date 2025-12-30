@@ -129,9 +129,7 @@ class Tollbooth(SQLModel, Schema, table=True):
 
 
 class TollboothSts(SQLModel, Schema, table=True):
-    tollboothsts_id: UInt32 | None = Field(default=None, primary_key=True)
-    index: String
-    tollbooth_name: String
+    index: String = Field(primary_key=True)
     way: String
     highway: String | None = Field(default=None)
     km: Float32 | None = Field(default=None)
@@ -164,7 +162,7 @@ class TollboothSts(SQLModel, Schema, table=True):
     oct: Float32 | None = Field(default=None)
     nov: Float32 | None = Field(default=None)
     dec: Float32 | None = Field(default=None)
-    info_year: UInt16
+    info_year: UInt16 = Field(primary_key=True)
 
     @classmethod
     def dict_schema(cls):
@@ -226,11 +224,6 @@ class TbImtTb(SQLModel, Schema, table=True):
     tollbooth_id: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
     tollbooth_imt_id: UInt32 | None
     grid_distance: UInt16 | None
-
-
-class TbstsStrech(SQLModel, Schema, table=True):
-    tollboothsts_id: UInt32 = Field(foreign_key="tollboothsts.tollboothsts_id", primary_key=True)
-    strech_id: UInt32 = Field(foreign_key="strech.strech_id", primary_key=True)
 
 
 class TbStrech(SQLModel, Schema, table=True):
@@ -302,7 +295,13 @@ class TollImt(SQLModel, Schema, table=True):
 
 class TbstsId(SQLModel, Schema, table=True):
     tollboothsts_id: UInt32 | None = Field(default=None, primary_key=True)
+    historic_id: UInt32
     h3_cell: UInt64
     tollbooth_name: String
     way: String
     ref_year: UInt16
+
+
+class TbstsStrech(SQLModel, Schema, table=True):
+    tollboothsts_id: UInt32 = Field(foreign_key="tbstsid.tollboothsts_id", primary_key=True)
+    strech_id: UInt32 = Field(foreign_key="strech.strech_id", primary_key=True)

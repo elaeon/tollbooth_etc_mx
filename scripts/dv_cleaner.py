@@ -141,7 +141,7 @@ def main(year, from_page, to_page):
                 all_df.append(df)
                 if page_num == to_page:
                     break
-        pl.concat(all_df).with_row_index("tollboothsts_id", offset=1).cast(data_path.tollbooths_sts.schema, strict=True).write_parquet(data_path.tollbooths_sts.parquet)
+        pl.concat(all_df).cast(data_path.tollbooths_sts.schema, strict=True).write_parquet(data_path.tollbooths_sts.parquet)
 
 
 if __name__ == "__main__":
