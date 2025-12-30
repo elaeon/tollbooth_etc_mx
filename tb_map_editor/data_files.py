@@ -68,3 +68,6 @@ class DataPathSchema:
     def tbsts_strech_id(self) -> PathSchema:
         return PathSchema("tbsts_strech_id", model.TbstsStrech.dict_schema())
     
+    @property
+    def tbsts_id(self) -> PathSchema:
+        return PathSchema("tbsts_id", model.TbstsId.dict_schema(), self.attr)

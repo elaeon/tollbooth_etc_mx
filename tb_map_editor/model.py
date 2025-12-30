@@ -298,3 +298,11 @@ class TollImt(SQLModel, Schema, table=True):
     truck_9_axle: Float32 | None = Field(default=None)
     load_axle: Float32 | None = Field(default=None)
     update_date: Date
+
+
+class TbstsId(SQLModel, Schema, table=True):
+    tollboothsts_id: UInt32 | None = Field(default=None, primary_key=True)
+    h3_cell: UInt64
+    tollbooth_name: String
+    way: String
+    ref_year: UInt16
