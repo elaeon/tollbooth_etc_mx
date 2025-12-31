@@ -266,6 +266,7 @@ class TbImt(SQLModel, Schema, table=True):
     tollbooth_name: String
     area: String | None = Field(default=None)
     subarea: String | None = Field(default=None)
+    type: String | None = Field(default=None)
     function: String | None = Field(default=None)
     calirepr: String | None = Field(default=None)
     lat: Float64 | None = Field(default=None)
@@ -290,7 +291,17 @@ class TollImt(SQLModel, Schema, table=True):
     truck_8_axle: Float32 | None = Field(default=None)
     truck_9_axle: Float32 | None = Field(default=None)
     load_axle: Float32 | None = Field(default=None)
-    update_date: Date
+    info_year: UInt16 = Field(primary_key=True)
+
+    @classmethod
+    def dict_schema(cls):
+        exclude = {"info_year"}
+        dict_schema = {
+            field_name: cls._get_polars_dtype(field_type)
+            for field_name, field_type in cls.model_fields.items()
+            if field_name not in exclude
+        }
+        return dict_schema
 
 
 class TbstsId(SQLModel, Schema, table=True):
