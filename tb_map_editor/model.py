@@ -293,16 +293,6 @@ class TollImt(SQLModel, Schema, table=True):
     load_axle: Float32 | None = Field(default=None)
     info_year: UInt16 = Field(primary_key=True)
 
-    @classmethod
-    def dict_schema(cls):
-        exclude = {"info_year"}
-        dict_schema = {
-            field_name: cls._get_polars_dtype(field_type)
-            for field_name, field_type in cls.model_fields.items()
-            if field_name not in exclude
-        }
-        return dict_schema
-
 
 class TbstsId(SQLModel, Schema, table=True):
     tollboothsts_id: UInt32 | None = Field(default=None, primary_key=True)
