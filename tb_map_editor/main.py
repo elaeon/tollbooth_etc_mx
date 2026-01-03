@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 
 from sqlmodel import select
 
-from .model import Tollbooth, TollboothSts, TmpTb
+from .model import Tollbooth, TollboothSts, TbImt
 from contextlib import asynccontextmanager
 from .utils.connector import SessionDep, create_db_and_tables
 
@@ -89,18 +89,19 @@ def update_tollbooth(body: Annotated[Any, Body()], session: SessionDep):
         session.refresh(tmptb)
 
 
-@app.post("/api/tmp_tb")
-def fetch_tmp_tb(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=1000):
-    stm = select(TmpTb).where(TmpTb.valid == True)
+@app.post("/api/tollbooths_imt")
+def fetch_tb_imt(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=1000):
+    param, value = map(str.strip, body["query"].split(":"))
+    stm = select(TbImt).where(TbImt.calirepr != "Virtual").where(getattr(TbImt, param) == value)
     tbs = session.exec(stm.offset(offset).limit(limit))
     data = []
     for tb in tbs:
         data.append({
-            "id": tb.id,
-            "tollbooth_name": tb.name,
+            "id": tb.tollbooth_imt_id,
+            "tollbooth_name": tb.tollbooth_name,
             "lat": tb.lat,
             "lon": tb.lon,
-            "valid": tb.valid,
-            "source": TmpTb.__name__
+            "source": TbImt.name()
         })
     return data
+

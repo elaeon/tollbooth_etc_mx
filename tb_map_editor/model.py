@@ -113,6 +113,12 @@ class Schema:
         return dict_schema
 
 
+class TbModel(SQLModel, Schema, table=False):
+    @classmethod
+    def name(cls):
+        return cls.__name__.lower()
+
+
 class Tollbooth(SQLModel, Schema, table=True):
     tollbooth_id: UInt16 | None = Field(default=None, primary_key=True)
     legacy_id: UInt16 | None = Field(default=None)
@@ -202,24 +208,6 @@ class Strech(SQLModel, Schema, table=True):
     lon_b: Float64 | None
 
 
-class TmpTb(SQLModel, Schema, table=True):
-    id: UInt32 | None = Field(default=None, primary_key=True)
-    name: String
-    lat: Float64
-    lon: Float64
-    valid: bool | None = Field(default=True)
-
-    @classmethod
-    def dict_schema(cls):
-        exclude = {"valid"}
-        dict_schema = {
-            field_name: cls._get_polars_dtype(field_type)
-            for field_name, field_type in cls.model_fields.items()
-            if field_name not in exclude
-        }
-        return dict_schema
-
-
 class TbImtTb(SQLModel, Schema, table=True):
     tollbooth_id: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
     tollbooth_imt_id: UInt32 | None
@@ -261,7 +249,7 @@ class StrechToll(SQLModel, Schema, table=True):
     car_morning_night: Float32 | None = Field(default=None)
 
 
-class TbImt(SQLModel, Schema, table=True):
+class TbImt(TbModel, table=True):
     tollbooth_imt_id: UInt16 = Field(primary_key=True)
     tollbooth_name: String
     area: String | None = Field(default=None)
@@ -271,6 +259,7 @@ class TbImt(SQLModel, Schema, table=True):
     calirepr: String | None = Field(default=None)
     lat: Float64 | None = Field(default=None)
     lon: Float64 | None = Field(default=None)
+    state: String | None = Field(default=None)
 
 
 class TollImt(SQLModel, Schema, table=True):

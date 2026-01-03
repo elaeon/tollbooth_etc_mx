@@ -3,10 +3,9 @@ sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
 
 import logging
 import polars as pl
+import polars_h3 as plh3
 
-from tb_map_editor.model import Tollbooth, TollboothSts, TollboothStsData, TmpTb
-from tb_map_editor.data_files import DataPathSchema
-from tb_map_editor.schemas import tollbooth_schema, tollbooth_sts_schema, tollbooth_sts_data_schema
+from tb_map_editor.data_files import DataModel
 from tb_map_editor.utils.connector import sqlite_url
 
 import argparse
@@ -19,13 +18,11 @@ handler.setLevel(logging.DEBUG)
 _log.addHandler(handler)
 
 
-def insert_tb_from_csv(year: int):
-    data_path = DataPathSchema(year)
-    ldf = pl.scan_csv(data_path.tollbooths_catalog.path, schema=data_path.tollbooths_catalog.schema)
+def insert_data_from_parquet(ldf, model_name: str):
     for i_batch, df in enumerate(ldf.collect_batches(chunk_size=100), 1):
         _log.debug(f"saving row: {i_batch}")
         df.write_database(
-            table_name=Tollbooth.__name__.lower(),
+            table_name=model_name,
             connection=sqlite_url,
             if_table_exists="append",
             engine="adbc"
@@ -34,67 +31,57 @@ def insert_tb_from_csv(year: int):
     _log.info(f"saved data in {sqlite_url}")
 
 
-def insert_tb_sts_from_csv(year: int):
-    data_path = DataPathSchema(year)
-    ldf = pl.scan_csv(data_path.tollbooths_sts_catalog.path, schema=data_path.tollbooths_sts_catalog.schema)
-    print(tollbooth_sts_schema)
-    for i_batch, df in enumerate(ldf.collect_batches(chunk_size=100), 1):
-        _log.debug(f"saving row: {i_batch}")
-        df.write_database(
-            table_name=TollboothSts.__name__.lower(),
-            connection=sqlite_url,
-            if_table_exists="append",
-            engine="adbc"
-        )
-        
-    _log.info(f"saved data in {sqlite_url}")
+def insert_tb_from_data(data_model: DataModel):
+    parquet_file = data_model.tollbooths.parquet
+    model_name = data_model.model.name()
+    ldf_tb = pl.scan_parquet(parquet_file)
+    insert_data_from_parquet(ldf_tb, model_name)
 
 
-def insert_tb_sts_data_from_csv(year: int):
-    data_path = DataPathSchema(year)
-    ldf = pl.scan_csv(data_path.tollbooths_sts_data.path, schema=data_path.tollbooths_sts_data.schema)
-    for i_batch, df in enumerate(ldf.collect_batches(chunk_size=100), 1):
-        df = df.with_columns(pl.lit(year).alias("info_year"))
-        _log.debug(f"saving row: {i_batch}")
-        df.write_database(
-            table_name=TollboothStsData.__name__.lower(),
-            connection=sqlite_url,
-            if_table_exists="append",
-            engine="adbc"
-        )
-        
-    _log.info(f"saved data in {sqlite_url}")
+def insert_tb_sts_from_data(data_model: DataModel):
+    parquet_file = data_model.tollbooths_sts.parquet
+    model_name = data_model.model.name()
+    ldf_tb_sts = pl.scan_parquet(parquet_file)
+    insert_data_from_parquet(ldf_tb_sts, model_name)
 
 
-def insert_tmp_tb(filename: str):
-    ldf = pl.scan_csv(filename, schema=TmpTb.dict_schema())
-    for i_batch, df in enumerate(ldf.collect_batches(chunk_size=100), 1):
-        _log.debug(f"saving row: {i_batch}")
-        df.write_database(
-            table_name=TmpTb.__name__.lower(),
-            connection=sqlite_url,
-            if_table_exists="append",
-            engine="adbc"
-        )
-        
-    _log.info(f"saved data in {sqlite_url}")
+def insert_tb_imt_from_data(data_model: DataModel):
+    parquet_file = data_model.tb_imt.parquet
+    model_name = data_model.tb_imt.model.name()
+    ldf_tb_imt = pl.scan_parquet(parquet_file)
+    next_year = data_model.attr.get("year") + 1
+    actual_data_model = DataModel(next_year)
+    ldf_tollbooth = pl.scan_parquet(actual_data_model.tollbooths.parquet)
+
+    hex_resolution = 9
+    hex_resolution_name = "h3_cell"
+    ldf_tb_imt = ldf_tb_imt.with_columns(
+        plh3.latlng_to_cell("lat", "lon", hex_resolution).alias(hex_resolution_name)
+    )
+    ldf_tollbooth = ldf_tollbooth.with_columns(
+        plh3.latlng_to_cell("lat", "lon", hex_resolution).alias(hex_resolution_name)
+    )
+    ldf_tb_imt = ldf_tb_imt.join(ldf_tollbooth.select(hex_resolution_name, "state"), on=hex_resolution_name, how="left")
+    ldf_tb_imt = ldf_tb_imt.select(pl.exclude(hex_resolution_name)).unique()
+    with pl.Config(tbl_rows=-1):
+        ldf_tb_unq = ldf_tb_imt.group_by("tollbooth_imt_id").first()
+        insert_data_from_parquet(ldf_tb_unq, model_name)
+
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--new-tb", help="insert-tb", required=False, action='store_true')
+    parser.add_argument("--new-tb-imt", help="insert tb imt", required=False, action="store_true")
     parser.add_argument("--new-tb-sts", help="insert-tb-sts-catalog", required=False, action='store_true')
-    parser.add_argument("--new-tb-sts-data", help="insert-tb-sts-data", required=False, action='store_true')
-    parser.add_argument("--year", help="year for tb-sts", required=False, type=int)
-    parser.add_argument("--insert-tmp-tb", required=False, type=str)
+    parser.add_argument("--year", help="year for tb-sts", required=True, type=int)
     args = parser.parse_args()
+    data_model = DataModel(args.year)
     if args.new_tb:
-        insert_tb_from_csv(args.year)
+        insert_tb_from_data(data_model)
     elif args.new_tb_sts:
-        insert_tb_sts_from_csv(args.year)
-    elif args.new_tb_sts_data:
-        insert_tb_sts_data_from_csv(args.year)
-    elif args.insert_tmp_tb:
-        insert_tmp_tb(args.insert_tmp_tb)
+        insert_tb_sts_from_data(data_model)
+    elif args.new_tb_imt:
+        insert_tb_imt_from_data(data_model)
     else:
         parser.print_help()
