@@ -119,22 +119,22 @@ class TbModel(SQLModel, Schema, table=False):
         return cls.__name__.lower()
 
 
-class Tollbooth(SQLModel, Schema, table=True):
+class Tollbooth(TbModel, table=True):
     tollbooth_id: UInt16 | None = Field(default=None, primary_key=True)
     legacy_id: UInt16 | None = Field(default=None)
     tollbooth_name: String | None = Field(default=None, index=True)
     lat: Float64 | None
-    lon: Float64 | None
+    lng: Float64 | None
     status: String
     state: String
-    place: String
-    lines: UInt16
+    place: String | None = Field(default=None)
+    lines: UInt16 | None = Field(default=None)
     type: String
     manage: String | None = Field(default=None)
     gate_to: String | None = Field(default=None)
 
 
-class TollboothSts(SQLModel, Schema, table=True):
+class TollboothSts(TbModel, table=True):
     index: String = Field(primary_key=True)
     way: String
     highway: String | None = Field(default=None)
@@ -181,7 +181,7 @@ class TollboothSts(SQLModel, Schema, table=True):
         return dict_schema
 
 
-class Road(SQLModel, Schema, table=True):
+class Road(TbModel, table=True):
     road_id: UInt16 | None = Field(default=None, primary_key=True)
     road_name: String
     operation_date: Date
@@ -194,7 +194,7 @@ class Road(SQLModel, Schema, table=True):
     notes: String
 
 
-class Strech(SQLModel, Schema, table=True):
+class Strech(TbModel, table=True):
     strech_id: UInt16 | None = Field(default=None, primary_key=True)
     strech_name: String
     strech_length_km: Float32 | None
@@ -208,19 +208,19 @@ class Strech(SQLModel, Schema, table=True):
     lon_b: Float64 | None
 
 
-class TbImtTb(SQLModel, Schema, table=True):
+class TbImtTb(TbModel, table=True):
     tollbooth_id: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
     tollbooth_imt_id: UInt32 | None
     grid_distance: UInt16 | None
 
 
-class TbStrech(SQLModel, Schema, table=True):
+class TbStrech(TbModel, table=True):
     tollbooth_id_a: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
     tollbooth_id_b: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
     strech_id: UInt32 = Field(foreign_key="strech.strech_id", primary_key=True)
 
 
-class StrechToll(SQLModel, Schema, table=True):
+class StrechToll(TbModel, table=True):
     strech_id: UInt16 | None = Field(default=None, primary_key=True)
     motorbike: Float32 | None = Field(default=None)
     car: Float32 | None = Field(default=None)
@@ -262,7 +262,7 @@ class TbImt(TbModel, table=True):
     state: String | None = Field(default=None)
 
 
-class TollImt(SQLModel, Schema, table=True):
+class TollImt(TbModel, table=True):
     tollbooth_imt_id_a: UInt16 = Field(foreign_key="tbimt.tollbooth_imt_id", primary_key=True)
     tollbooth_imt_id_b: UInt16 = Field(foreign_key="tbimt.tollbooth_imt_id", primary_key=True)
     motorbike: Float32 | None = Field(default=None)
@@ -283,7 +283,7 @@ class TollImt(SQLModel, Schema, table=True):
     info_year: UInt16 = Field(primary_key=True)
 
 
-class TbstsId(SQLModel, Schema, table=True):
+class TbstsId(TbModel, table=True):
     tollboothsts_id: UInt32 | None = Field(default=None, primary_key=True)
     historic_id: UInt32
     h3_cell: UInt64
@@ -292,6 +292,6 @@ class TbstsId(SQLModel, Schema, table=True):
     ref_year: UInt16
 
 
-class TbstsStrech(SQLModel, Schema, table=True):
+class TbstsStrech(TbModel, table=True):
     tollboothsts_id: UInt32 = Field(foreign_key="tbstsid.tollboothsts_id", primary_key=True)
     strech_id: UInt32 = Field(foreign_key="strech.strech_id", primary_key=True)

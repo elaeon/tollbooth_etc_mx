@@ -33,14 +33,14 @@ def insert_data_from_parquet(ldf, model_name: str):
 
 def insert_tb_from_data(data_model: DataModel):
     parquet_file = data_model.tollbooths.parquet
-    model_name = data_model.model.name()
-    ldf_tb = pl.scan_parquet(parquet_file)
+    model_name = data_model.tollbooths.model.name()
+    ldf_tb = pl.scan_parquet(parquet_file).select(pl.exclude("function"))
     insert_data_from_parquet(ldf_tb, model_name)
 
 
 def insert_tb_sts_from_data(data_model: DataModel):
     parquet_file = data_model.tollbooths_sts.parquet
-    model_name = data_model.model.name()
+    model_name = data_model.tollbooths_sts.model.name()
     ldf_tb_sts = pl.scan_parquet(parquet_file)
     insert_data_from_parquet(ldf_tb_sts, model_name)
 

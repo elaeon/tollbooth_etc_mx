@@ -5,7 +5,7 @@ import polars as pl
 import polars_h3 as plh3
 import argparse
 
-from tb_map_editor.data_files import DataPathSchema
+from tb_map_editor.data_files import DataModel
 
 
 def sts_catalog():
@@ -16,9 +16,9 @@ def sts_catalog():
     def concat_data():
         df_dict = {}
         for year in range(from_year, to_year + 1):
-            data_path = DataPathSchema(year)
+            data_model = DataModel(year)
             df_dict[year] = pl.read_parquet(
-                data_path.tollbooths_sts.parquet, columns=["tollbooth_name", "way", "lat", "lon"]
+                data_model.tollbooths_sts.parquet, columns=["tollbooth_name", "way", "lat", "lon"]
             ).with_columns(
                 pl.lit(year).alias("year")
             )
@@ -56,16 +56,23 @@ def sts_catalog():
         df_tbsts_id.select(historic_id_name, "h3_cell", "tollbooth_name", "way", "ref_year"), 
         df_exceptions.sort("h3_cell")
     ])
-    df_tbsts_id.with_row_index("tollboothsts_id", 1).write_parquet(DataPathSchema(to_year).tbsts_id.parquet)
+    df_tbsts_id.with_row_index("tollboothsts_id", 1).write_parquet(DataModel(to_year).tbsts_id.parquet)
 
+
+def tb_catalog(year: int):
+    data_model = DataModel(year)
+    ldf_tb = pl.scan_csv(data_model.tollbooths.csv)
+    ldf_tb.sink_parquet(data_model.tollbooths.parquet)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", required=False, type=int)
-    parser.add_argument("--sts-merge-except", help="merge into tbsts catalog with the exptions file", required=False, action="store_true")
+    parser.add_argument("--tb-catalog", help="generate parquet file for tollbooths", required=False, action="store_true")
     parser.add_argument("--sts-catalog", help="generate tollbooth sts id catalog", required=False, action="store_true")
     args = parser.parse_args()
     if args.sts_catalog:
         sts_catalog()
+    elif args.tb_catalog:
+        tb_catalog(args.year)
     

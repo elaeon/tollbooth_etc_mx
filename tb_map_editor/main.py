@@ -45,17 +45,22 @@ def map_root(request: Request):
 
 @app.post("/api/tollbooths/")
 def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit: int=100):
-    param, value = body["query"].split(":")
+    param, value = map(str.strip, body["query"].split(":"))
     stm = select(Tollbooth).where(getattr(Tollbooth, param) == value)
     tollbooths = session.exec(stm.offset(offset).limit(limit))
     data = []
     for tb in tollbooths:
-        lat, lon = map(lambda x: x.strip(), tb.coords.split(','))
         data.append({
             "tollbooth_id": tb.tollbooth_id,
             "tollbooth_name": tb.tollbooth_name,
-            "lat": lat,
-            "lon": lon,
+            "lat": tb.lat,
+            "lng": tb.lng,
+            "state": tb.state,
+            "place": tb.place,
+            "lines": tb.lines,
+            "type": tb.type,
+            "gate_to": tb.gate_to,
+            "source": Tollbooth.name()
         })
     return data
 
@@ -66,13 +71,13 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
     tollbooths_sts = session.exec(stm.offset(offset).limit(limit))
     data = []
     for tb_sts in tollbooths_sts:
-        lat, lon = map(lambda x: x.strip(), tb_sts.coords.split(","))
         data.append({
             "tollboothsts_id": tb_sts.tollboothsts_id,
             "tollbooth_name": tb_sts.tollbooth_name,
             "way": tb_sts.way,
-            "lat": lat,
-            "lon": lon
+            "lat": tb_sts.lat,
+            "lng": tb_sts.lng,
+            "source": TollboothSts.name()
         })
     return data
 
@@ -80,13 +85,14 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
 @app.post("/api/tollbooth_update/")
 def update_tollbooth(body: Annotated[Any, Body()], session: SessionDep):
     source = body.get("source")
-    if source == TmpTb.__name__:
-        stm = select(TmpTb).where(TmpTb.id == body.get("props").get("id"))
-        results = session.exec(stm)
-        tmptb = results.one()
-        tmptb.valid = False if body.get("props").get("valid") == "false" else True
-        session.commit()
-        session.refresh(tmptb)
+    if source == Tollbooth.name():
+        print("UPDATE", source)
+        # stm = select(TmpTb).where(TmpTb.id == body.get("props").get("id"))
+        # results = session.exec(stm)
+        # tmptb = results.one()
+        # tmptb.valid = False if body.get("props").get("valid") == "false" else True
+        # session.commit()
+        # session.refresh(tmptb)
 
 
 @app.post("/api/tollbooths_imt")

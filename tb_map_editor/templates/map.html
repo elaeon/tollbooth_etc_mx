@@ -40,6 +40,27 @@ const map = L.map('map', {
 	layers: [osm]
 });
 
+const editLayer = L.layerGroup().addTo(map);
+var greenIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [20, 36],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [36, 36]
+});
+
+map.on('click', function(e) {
+    const marker = L.marker(e.latlng, {icon: greenIcon, draggable: true});
+	marker.on('drag', function(e) {
+  		let position = e.target.getLatLng();
+  		marker.bindPopup(position.lat + ", " + position.lng);
+	});
+	marker.bindPopup(e.latlng.lat + ", " + e.latlng.lng);
+	editLayer.clearLayers();
+	marker.addTo(editLayer);
+});
+
 const baseLayers = {
 	'OpenStreetMap': osm,
 	'OpenStreetMap.HOT': osmHOT
@@ -83,7 +104,7 @@ var searchBar = L.control.pinSearch({
 // Container styles
 const uploadControlStyle = document.createElement('style');
 uploadControlStyle.innerHTML = `
-	.leaflet-control-query { background: rgba(255,255,255,0.9); padding: 8px; width: 280px; font-size: 13px; }
+	.leaflet-control-query { background: rgba(255,255,255,0.9); padding: 8px; width: 280px; font-size: 13px; z-index: 0;}
 	.leaflet-control-query input[type="text"], .leaflet-control-query textarea { width: 100%; box-sizing: border-box; margin-bottom:6px; font-family: monospace; }
 	.leaflet-control-query textarea { height: 80px; resize: vertical; }
 	.leaflet-control-query button { margin-right:6px; padding: 4px 8px; }
@@ -110,6 +131,7 @@ const QueryControl = L.Control.extend({
 			<div>
 				<button id="btn-send-query">Send</button>
 				<button id="btn-clear-markers">Clear</button>
+				<button id="btn-add-marker">Add Marker</button>
 			</div>
 			<div class="status" id="query-status"></div>
 		`;
@@ -183,13 +205,14 @@ function processMarkerResponse(data, sourceLabel) {
 	const coords = extractCoordinates(data);
 	if (!coords.length) throw new Error('No coordinates found in response');
 	addMarkersFromCoords(coords, sourceLabel);
+	searchBar._populateMarkerLabels(map);
 }
 
 function extractCoordinates(data) {
 	const coords = [];
 	if (!data) return coords;
 
-	// Handle array of objects with lat/lon
+	// Handle array of objects with lat/lng
 	if (Array.isArray(data)) {
 		for (const item of data) {
 			const c = parseCoordItem(item);
@@ -220,15 +243,15 @@ function extractCoordinates(data) {
 function parseCoordItem(item) {
 	if (!item || typeof item !== 'object') return null;
 
-	let lat, lon, source, props = {};
+	let lat, lng, source, props = {};
 
-	// Look for lat/lon fields (case insensitive)
+	// Look for lat/lng fields (case insensitive)
 	for (const key in item) {
 		const lk = key.toLowerCase();
 		if (['lat', 'latitude'].includes(lk)) {
 			lat = parseFloat(item[key]);
-		} else if (['lon', 'longitude'].includes(lk)) {
-			lon = parseFloat(item[key]);
+		} else if (['lon', 'longitude', 'lng'].includes(lk)) {
+			lng = parseFloat(item[key]);
 		} else {
 			if (['source'].includes(lk)) {
 				source = item[key];
@@ -239,8 +262,8 @@ function parseCoordItem(item) {
 		}
 	}
 
-	if (Number.isFinite(lat) && Number.isFinite(lon) && isValidLat(lat) && isValidLon(lon)) {
-		return { lat, lon, source, props };
+	if (Number.isFinite(lat) && Number.isFinite(lng) && isValidLat(lat) && isValidLng(lng)) {
+		return { lat, lng, source, props };
 	}
 	return null;
 }
@@ -248,10 +271,10 @@ function parseCoordItem(item) {
 function addMarkersFromCoords(coords, sourceLabel) {
 	const markers = [];
 	for (const c of coords) {
-		if (!isValidLat(c.lat) || !isValidLon(c.lon)) continue;
-		const m = L.marker([c.lat, c.lon], { title: c.props && c.props.tollbooth_name || '' });
+		if (!isValidLat(c.lat) || !isValidLng(c.lng)) continue;
+		const m = L.marker([c.lat, c.lng], { title: c.props && c.props.tollbooth_name || '' });
 		// attach original data to marker for use in the popup form
-		m.__data = { props: c.props || {}, lat: c.lat, lon: c.lon, source: c.source, query: sourceLabel };
+		m.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, query: sourceLabel };
 		// bind popup with a form populated from props
 		m.bindPopup(createPopupFormHTML(m.__data));
 		m.on('popupopen', (e) => {
@@ -287,7 +310,7 @@ function createPopupFormHTML(data) {
 	let html = `<div style="min-width:220px"><form id="${id}" class="marker-form">`;
 	html += `<div><strong>Marker data</strong></div>`;
 	html += `<input type="hidden" name="lat" value="${escapeHtml(data.lat)}">`;
-	html += `<input type="hidden" name="lon" value="${escapeHtml(data.lon)}">`;
+	html += `<input type="hidden" name="lng" value="${escapeHtml(data.lng)}">`;
 	for (const key of Object.keys(props)) {
 		const val = props[key] == null ? '' : (typeof props[key] === 'object' ? JSON.stringify(props[key]) : String(props[key]));
 		html += `<div style="margin:4px 0"><label style="font-size:12px">${escapeHtml(key)}:<br><input name="${escapeHtml(key)}" value="${escapeHtml(val)}" style="width:100%"/></label></div>`;
@@ -315,7 +338,7 @@ function attachPopupFormHandlers(popup, marker) {
 		const obj = {};
 		for (const [k,v] of fd.entries()) obj[k] = v;
 		// combine with marker metadata
-		const payload = { _lat: marker.__data.lat, _lon: marker.__data.lon, props: obj, source: marker.__data.source, query: marker.__data.query };
+		const payload = { _lat: marker.__data.lat, _lng: marker.__data.lng, props: obj, source: marker.__data.source, query: marker.__data.query };
 		// default action: log to console and show status
 		console.log('Marker form submit', payload);
 		if (status) status.textContent = 'Saved (client-side)';
@@ -335,7 +358,7 @@ function attachPopupFormHandlers(popup, marker) {
 }
 
 function isValidLat(v) { return Number.isFinite(v) && v >= -90 && v <= 90; }
-function isValidLon(v) { return Number.isFinite(v) && v >= -180 && v <= 180; }
+function isValidLng(v) { return Number.isFinite(v) && v >= -180 && v <= 180; }
 
 // add control to map
 (new QueryControl({ position: 'topright' })).addTo(map);
