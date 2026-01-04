@@ -72,7 +72,7 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
     data = []
     for tb_sts in tollbooths_sts:
         data.append({
-            "tollboothsts_id": tb_sts.tollboothsts_id,
+            "tollbooth_id": tb_sts.tollboothsts_id,
             "tollbooth_name": tb_sts.tollbooth_name,
             "way": tb_sts.way,
             "lat": tb_sts.lat,
@@ -103,7 +103,7 @@ def fetch_tb_imt(body: Annotated[Any, Body()], session: SessionDep, offset: int=
     data = []
     for tb in tbs:
         data.append({
-            "id": tb.tollbooth_imt_id,
+            "tollbooth_id": tb.tollbooth_imt_id,
             "tollbooth_name": tb.tollbooth_name,
             "lat": tb.lat,
             "lon": tb.lon,

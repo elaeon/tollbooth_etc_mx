@@ -59,11 +59,28 @@ var greenIcon = new L.Icon({
 
 map.on('click', function(e) {
     const marker = L.marker(e.latlng, {icon: greenIcon, draggable: true});
+	const markerData = { lat: e.latlng.lat, lng: e.latlng.lng, props: {} };
+	marker.__data = markerData;
 	marker.on('drag', function(e) {
   		let position = e.target.getLatLng();
-  		marker.bindPopup(position.lat + ", " + position.lng);
+  		marker.bindPopup(createInfoPopup(e.latlng.lat, e.latlng.lng));
 	});
-	marker.bindPopup(e.latlng.lat + ", " + e.latlng.lng);
+	marker.bindPopup(createInfoPopup(e.latlng.lat, e.latlng.lng));
+	marker.on('popupopen', function(e) {
+		const popup = e.popup;
+		const link = popup.getElement().querySelector('.set-marker-link');
+		if (link) {
+			link.addEventListener('click', function(ev) {
+				ev.preventDefault();
+				const lat = parseFloat(link.dataset.lat);
+				const lng = parseFloat(link.dataset.lng);
+				marker.__data = { lat: lat, lng: lng, props: {} };
+				marker.bindPopup(createPopupFormHTML(marker.__data));
+				marker.openPopup();
+				attachPopupFormHandlers(marker.getPopup(), marker);
+			});
+		}
+	});
 	editLayer.clearLayers();
 	marker.addTo(editLayer);
 });
@@ -306,7 +323,7 @@ function addMarkersFromCoords(coords, sourceLabel) {
 	const markers = [];
 	for (const c of coords) {
 		if (!isValidLat(c.lat) || !isValidLng(c.lng)) continue;
-		const m = L.marker([c.lat, c.lng], { title: c.props && c.props.tollbooth_name || '' });
+		const m = L.marker([c.lat, c.lng], { title: c.props && (`${c.props.tollbooth_name} [${c.props.tollbooth_id}]`) || '' });
 		// attach original data to marker for use in the popup
 		m.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, query: sourceLabel };
 		// bind popup according to current editMode
@@ -364,13 +381,22 @@ function createPopupFormHTML(data) {
 
 // simple non-editable popup showing lat, lng and tollbooth_name (if present)
 function createSimplePopupHTML(data) {
+	console.log(data);
 	const props = data && data.props ? data.props : {};
 	const lat = data && data.lat != null ? data.lat : '';
 	const lng = data && data.lng != null ? data.lng : '';
-	const name = props.tollbooth_name || props.name || '';
+	const name = `${props.tollbooth_name} [${props.tollbooth_id}]`;
 	let html = '<div style="min-width:160px;font-size:12px">';
 	html += `<div class="title-container"><strong>${escapeHtml(String(name || ''))}</strong></div>`;
 	html += `<div>${escapeHtml(String(lat))}, ${escapeHtml(String(lng))}</div>`;
+	html += '</div>';
+	return html;
+}
+
+function createInfoPopup(lat, lng) {
+	let html = '<div style="min-width:160px;font-size:12px">';
+	html += `<div style="min-height: 25px;">${lat}, ${lng}</div>`;
+	html += `<div style="display: flex; justify-content: right;"><a href="#" class="set-marker-link" data-lat="${lat}" data-lng="${lng}">Set Marker</a></div>`
 	html += '</div>';
 	return html;
 }
