@@ -17,6 +17,13 @@
 body { height: 100%; display: flex;}
 img.huechange_0 { filter: hue-rotate(0deg); }
 img.huechange_30 { filter: hue-rotate(60deg); }
+div.title-container {
+	display: flex; 
+	min-width: 160px;
+	min-height: 30px;
+	justify-content: center;
+	font-size: 14px;
+}
 </style>
 </head>
 
@@ -128,10 +135,12 @@ const QueryControl = L.Control.extend({
 				<input id="btn-checkbox-change" type="checkbox" placeholder="change marker">
 				Change marker
 			</label>
+			<label>
+				<input id="btn-checkbox-edit" type="checkbox" placeholder="edit markers">Edit markers
+			</label>
 			<div>
 				<button id="btn-send-query">Send</button>
 				<button id="btn-clear-markers">Clear</button>
-				<button id="btn-add-marker">Add Marker</button>
 			</div>
 			<div class="status" id="query-status"></div>
 		`;
@@ -145,6 +154,7 @@ const QueryControl = L.Control.extend({
 		const btnClear = container.querySelector('#btn-clear-markers');
 		const btnCheckboxHold = container.querySelector('#btn-checkbox-hold');
 		const btnCheckboxChange = container.querySelector('#btn-checkbox-change');
+		const btnCheckboxEdit = container.querySelector('#btn-checkbox-edit');
 
 		btnCheckboxHold.addEventListener('click', async() => {
 			uploadedLayer.options.keepLayer = btnCheckboxHold.checked;
@@ -153,6 +163,28 @@ const QueryControl = L.Control.extend({
 
 		btnCheckboxChange.addEventListener('click', async() => {
 			uploadedLayer.options.markerColor = "huechange_30";
+		});
+		
+		btnCheckboxEdit.addEventListener('click', async() => {
+			// Toggle edit mode for uploaded markers
+			uploadedLayer.options.editMode = btnCheckboxEdit.checked;
+			// Rebind popups for existing markers according to the new mode
+			uploadedLayer.eachLayer(function(layer) {
+				try {
+					if (!layer || !layer.__data) return;
+					// remove previous popup and handlers
+					layer.unbindPopup();
+					if (uploadedLayer.options.editMode) {
+						layer.bindPopup(createPopupFormHTML(layer.__data));
+						layer.off && layer.off('popupopen');
+						layer.on('popupopen', (e) => { attachPopupFormHandlers(e.popup, layer); });
+					} else {
+						layer.bindPopup(createSimplePopupHTML(layer.__data));
+					}
+				} catch (err) {
+					console.warn('Error rebinding marker popup', err);
+				}
+			});
 		});
 
 		btnSend.addEventListener('click', async () => {
@@ -193,6 +225,8 @@ const QueryControl = L.Control.extend({
 // markers layer for fetched data
 const uploadedLayer = L.layerGroup().addTo(map);
 uploadedLayer.options.keepLayer = false;
+// when true, markers show editable form popups; when false show simple info popup
+uploadedLayer.options.editMode = false;
 
 function clearUploadedMarkers() {
 	if (uploadedLayer.options.keepLayer == false) {
@@ -273,13 +307,17 @@ function addMarkersFromCoords(coords, sourceLabel) {
 	for (const c of coords) {
 		if (!isValidLat(c.lat) || !isValidLng(c.lng)) continue;
 		const m = L.marker([c.lat, c.lng], { title: c.props && c.props.tollbooth_name || '' });
-		// attach original data to marker for use in the popup form
+		// attach original data to marker for use in the popup
 		m.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, query: sourceLabel };
-		// bind popup with a form populated from props
-		m.bindPopup(createPopupFormHTML(m.__data));
-		m.on('popupopen', (e) => {
-			attachPopupFormHandlers(e.popup, m);
-		});
+		// bind popup according to current editMode
+		if (uploadedLayer.options.editMode) {
+			m.bindPopup(createPopupFormHTML(m.__data));
+			m.on('popupopen', (e) => {
+				attachPopupFormHandlers(e.popup, m);
+			});
+		} else {
+			m.bindPopup(createSimplePopupHTML(m.__data));
+		}
 		m.addTo(uploadedLayer);
 		const m_class_color = uploadedLayer.options.markerColor || 'huechange_0';
 		if (m._icon && m._icon.classList) m._icon.classList.add(m_class_color);
@@ -321,6 +359,19 @@ function createPopupFormHTML(data) {
 	html += `<div style="margin-top:6px"><button type="submit">Save</button> <button type="button" class="btn-close">Close</button></div>`;
 	html += `<div class="form-status" style="margin-top:6px;font-size:12px;color:#333"></div>`;
 	html += `</form></div>`;
+	return html;
+}
+
+// simple non-editable popup showing lat, lng and tollbooth_name (if present)
+function createSimplePopupHTML(data) {
+	const props = data && data.props ? data.props : {};
+	const lat = data && data.lat != null ? data.lat : '';
+	const lng = data && data.lng != null ? data.lng : '';
+	const name = props.tollbooth_name || props.name || '';
+	let html = '<div style="min-width:160px;font-size:12px">';
+	html += `<div class="title-container"><strong>${escapeHtml(String(name || ''))}</strong></div>`;
+	html += `<div>${escapeHtml(String(lat))}, ${escapeHtml(String(lng))}</div>`;
+	html += '</div>';
 	return html;
 }
 
