@@ -58,19 +58,8 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
     stm = select(Tollbooth).where(getattr(Tollbooth, param) == value)
     tollbooths = session.exec(stm.offset(offset).limit(limit))
     data = []
-    fields = Tollbooth.online_insert_fields()
     for tb in tollbooths:
-        tb_data = fields.copy()
-        tb_data["tollbooth_id"] = tb.tollbooth_id
-        tb_data["tollbooth_name"] = tb.tollbooth_name
-        tb_data["lat"] = tb.lat
-        tb_data["lng"] = tb.lng
-        tb_data["status"] = tb.status
-        tb_data["state"] = tb.state
-        tb_data["place"] = tb.place
-        tb_data["lines"] = tb.lines
-        tb_data["type"] = tb.type
-        tb_data["gate_to"] = tb.gate_to
+        tb_data = tb.online_filled_fields(exclude_fields={"legacy_id"})
         data.append(tb_data)
     return data
 
@@ -121,5 +110,5 @@ def fetch_tb_imt(body: Annotated[Any, Body()], session: SessionDep, offset: int=
 def get_tb_data(body: Annotated[Any, Body()]):
     empty_tb_data = {}
     if body.get("source") == "tollbooth":
-        empty_tb_data = Tollbooth.online_insert_fields()
+        empty_tb_data = Tollbooth.online_empty_fields()
     return empty_tb_data

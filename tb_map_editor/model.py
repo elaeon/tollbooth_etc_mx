@@ -134,12 +134,19 @@ class Tollbooth(TbModel, table=True):
     gate_to: String | None = Field(default=None)
 
     @classmethod
-    def online_insert_fields(cls) -> dict:
+    def online_empty_fields(cls, exclude_fields: set | None = None) -> dict:
         fields = {}
-        exclude_f = {"tollbooth_id", "legacy_id", "lat", "lng"}
+        if exclude_fields is None:
+            exclude_fields = {"tollbooth_id", "legacy_id", "lat", "lng"}
         for field, _ in cls.model_fields.items():
-            if field not in exclude_f:
+            if field not in exclude_fields:
                 fields[field] = None
+        return fields
+
+    def online_filled_fields(self, exclude_fields: set | None = None) -> dict:
+        fields = {}
+        for field in Tollbooth.online_empty_fields(exclude_fields):
+            fields[field] = getattr(self, field)
         return fields
 
 

@@ -460,13 +460,20 @@ function attachPopupFormHandlers(popup, marker) {
 		if (status) status.textContent = 'Saved (client-side)';
 		// optionally POST to server: uncomment and change endpoint
 		try {
-		   const resp = await fetch('/api/tollbooth_upsert/', { 
-			method: 'POST', 
-			headers: {'Content-Type':'application/json'}, 
-			body: JSON.stringify(payload.props)
+			const resp = await fetch('/api/tollbooth_upsert/', { 
+				method: 'POST', 
+				headers: {'Content-Type':'application/json'}, 
+				body: JSON.stringify(payload.props)
 			});
-		   if (!resp.ok) throw new Error(resp.statusText);
-		   if (status) status.textContent = 'Saved to server';
+		   	if (!resp.ok) throw new Error(resp.statusText);
+		   	if (status) {
+				status.textContent = 'Saved to server';
+				if (editLayer.hasLayer(marker)) {
+					console.log("EDIT");
+					editLayer.removeLayer(marker);
+					uploadedLayer.addLayer(marker);
+				}
+		   	}
 		} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
 	});
 	const btnClose = el.querySelector('.btn-close');
