@@ -31,6 +31,8 @@ div.title-container {
 <div id="map"></div>
 <script>
 
+var _tpl_empty_tb_data = null;
+
 const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	minZoom: 6,
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -59,26 +61,37 @@ var greenIcon = new L.Icon({
 
 map.on('click', function(e) {
     const marker = L.marker(e.latlng, {icon: greenIcon, draggable: true});
-	const markerData = { lat: e.latlng.lat, lng: e.latlng.lng, props: {} };
+	const markerData = { lat: e.latlng.lat, lng: e.latlng.lng, props: {}, setdata: false};
 	marker.__data = markerData;
-	marker.on('drag', function(e) {
+	marker.on('dragend', function(e) {
   		let position = e.target.getLatLng();
-  		marker.bindPopup(createInfoPopup(e.latlng.lat, e.latlng.lng));
+  		marker.bindPopup(createInfoPopup(position.lat, position.lng));
+		marker.__data.lat = position.lat;
+		marker.__data.lng = position.lng;
 	});
 	marker.bindPopup(createInfoPopup(e.latlng.lat, e.latlng.lng));
 	marker.on('popupopen', function(e) {
-		const popup = e.popup;
-		const link = popup.getElement().querySelector('.set-marker-link');
+		const link = e.popup.getElement().querySelector('.set-marker-link');
 		if (link) {
-			link.addEventListener('click', function(ev) {
-				ev.preventDefault();
-				const lat = parseFloat(link.dataset.lat);
-				const lng = parseFloat(link.dataset.lng);
-				marker.__data = { lat: lat, lng: lng, props: {} };
-				marker.bindPopup(createPopupFormHTML(marker.__data));
+		 	link.addEventListener('click', function(ev) {
+		 		ev.preventDefault();
+		 		//const lat = parseFloat(link.dataset.lat);
+		 		//const lng = parseFloat(link.dataset.lng);
+		 		//marker.__data = { lat: lat, lng: lng, props: {} };
+				marker.unbindPopup();
+		 		marker.bindPopup(createPopupFormHTML(marker.__data));
 				marker.openPopup();
 				attachPopupFormHandlers(marker.getPopup(), marker);
+				marker.__data.setdata = true;
 			});
+		}
+		else {
+			if (marker.__data.setdata) {
+				marker.unbindPopup();
+				marker.bindPopup(createInfoPopup(marker.__data.lat, marker.__data.lng));
+				marker.__data.setdata = false;
+				marker.openPopup();
+			}
 		}
 	});
 	editLayer.clearLayers();
@@ -431,7 +444,9 @@ function attachPopupFormHandlers(popup, marker) {
 		} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
 	});
 	const btnClose = el.querySelector('.btn-close');
-	if (btnClose) btnClose.addEventListener('click', () => { map.closePopup(); });
+	if (btnClose) btnClose.addEventListener('click', () => { 
+		marker.closePopup();
+	});
 }
 
 function isValidLat(v) { return Number.isFinite(v) && v >= -90 && v <= 90; }
