@@ -10,6 +10,15 @@ from contextlib import asynccontextmanager
 from .utils.connector import SessionDep, create_db_and_tables
 
 from typing import Annotated, Any
+import logging
+import sys
+
+
+_log = logging.getLogger(__name__)
+_log.setLevel(logging.DEBUG)
+handler = logging.StreamHandler(sys.stdout)
+handler.setLevel(logging.DEBUG)
+_log.addHandler(handler)
 
 
 @asynccontextmanager
@@ -49,19 +58,20 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
     stm = select(Tollbooth).where(getattr(Tollbooth, param) == value)
     tollbooths = session.exec(stm.offset(offset).limit(limit))
     data = []
+    fields = Tollbooth.online_insert_fields()
     for tb in tollbooths:
-        data.append({
-            "tollbooth_id": tb.tollbooth_id,
-            "tollbooth_name": tb.tollbooth_name,
-            "lat": tb.lat,
-            "lng": tb.lng,
-            "state": tb.state,
-            "place": tb.place,
-            "lines": tb.lines,
-            "type": tb.type,
-            "gate_to": tb.gate_to,
-            "source": Tollbooth.name()
-        })
+        tb_data = fields.copy()
+        tb_data["tollbooth_id"] = tb.tollbooth_id
+        tb_data["tollbooth_name"] = tb.tollbooth_name
+        tb_data["lat"] = tb.lat
+        tb_data["lng"] = tb.lng
+        tb_data["status"] = tb.status
+        tb_data["state"] = tb.state
+        tb_data["place"] = tb.place
+        tb_data["lines"] = tb.lines
+        tb_data["type"] = tb.type
+        tb_data["gate_to"] = tb.gate_to
+        data.append(tb_data)
     return data
 
 
@@ -82,17 +92,12 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
     return data
 
 
-@app.post("/api/tollbooth_update/")
-def update_tollbooth(body: Annotated[Any, Body()], session: SessionDep):
-    source = body.get("source")
-    if source == Tollbooth.name():
-        print("UPDATE", source)
-        # stm = select(TmpTb).where(TmpTb.id == body.get("props").get("id"))
-        # results = session.exec(stm)
-        # tmptb = results.one()
-        # tmptb.valid = False if body.get("props").get("valid") == "false" else True
-        # session.commit()
-        # session.refresh(tmptb)
+@app.post("/api/tollbooth_upsert/")
+def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
+    _log.debug(tollbooth)
+    session.add(tollbooth)
+    session.commit()
+    session.refresh(tollbooth)
 
 
 @app.post("/api/tollbooths_imt")
@@ -111,3 +116,10 @@ def fetch_tb_imt(body: Annotated[Any, Body()], session: SessionDep, offset: int=
         })
     return data
 
+
+@app.post("/api/empty_data")
+def get_tb_data(body: Annotated[Any, Body()]):
+    empty_tb_data = {}
+    if body.get("source") == "tollbooth":
+        empty_tb_data = Tollbooth.online_insert_fields()
+    return empty_tb_data

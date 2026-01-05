@@ -133,6 +133,15 @@ class Tollbooth(TbModel, table=True):
     manage: String | None = Field(default=None)
     gate_to: String | None = Field(default=None)
 
+    @classmethod
+    def online_insert_fields(cls) -> dict:
+        fields = {}
+        exclude_f = {"tollbooth_id", "legacy_id", "lat", "lng"}
+        for field, _ in cls.model_fields.items():
+            if field not in exclude_f:
+                fields[field] = None
+        return fields
+
 
 class TollboothSts(TbModel, table=True):
     index: String = Field(primary_key=True)

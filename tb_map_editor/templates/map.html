@@ -59,25 +59,27 @@ var greenIcon = new L.Icon({
   shadowSize: [36, 36]
 });
 
-map.on('click', function(e) {
-    const marker = L.marker(e.latlng, {icon: greenIcon, draggable: true});
+
+function editTbMarker(e) {
+	const marker = L.marker(e.latlng, {icon: greenIcon, draggable: true});
 	const markerData = { lat: e.latlng.lat, lng: e.latlng.lng, props: {}, setdata: false};
 	marker.__data = markerData;
+	marker.__data.props = _tpl_empty_tb_data;
+	marker.bindPopup(createInfoPopup(marker.__data.lat, marker.__data.lng));
 	marker.on('dragend', function(e) {
   		let position = e.target.getLatLng();
+		marker.unbindPopup();
   		marker.bindPopup(createInfoPopup(position.lat, position.lng));
+		marker.openPopup();
 		marker.__data.lat = position.lat;
 		marker.__data.lng = position.lng;
+		marker.__data.setdata = false;
 	});
-	marker.bindPopup(createInfoPopup(e.latlng.lat, e.latlng.lng));
 	marker.on('popupopen', function(e) {
 		const link = e.popup.getElement().querySelector('.set-marker-link');
 		if (link) {
 		 	link.addEventListener('click', function(ev) {
 		 		ev.preventDefault();
-		 		//const lat = parseFloat(link.dataset.lat);
-		 		//const lng = parseFloat(link.dataset.lng);
-		 		//marker.__data = { lat: lat, lng: lng, props: {} };
 				marker.unbindPopup();
 		 		marker.bindPopup(createPopupFormHTML(marker.__data));
 				marker.openPopup();
@@ -96,6 +98,30 @@ map.on('click', function(e) {
 	});
 	editLayer.clearLayers();
 	marker.addTo(editLayer);
+}
+
+
+map.on('click', async (e) => {
+	if (_tpl_empty_tb_data == null) {
+		payload = { source: "tollbooth" };
+		try {
+			const resp = await fetch('/api/empty_data/', { 
+				method: 'POST', 
+				headers: {'Content-Type':'application/json'}, 
+				body: JSON.stringify(payload)
+			});
+		   	if (!resp.ok) throw new Error(resp.statusText);
+		   	//if (status) status.textContent = 'Saved to server';
+		   	if (status) console.log(payload)
+		   	const data = await resp.json();
+			_tpl_empty_tb_data = data;
+			editTbMarker(e);
+		} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
+	}
+	else {
+		editTbMarker(e)
+	}
+    
 });
 
 const baseLayers = {
@@ -409,7 +435,7 @@ function createSimplePopupHTML(data) {
 function createInfoPopup(lat, lng) {
 	let html = '<div style="min-width:160px;font-size:12px">';
 	html += `<div style="min-height: 25px;">${lat}, ${lng}</div>`;
-	html += `<div style="display: flex; justify-content: right;"><a href="#" class="set-marker-link" data-lat="${lat}" data-lng="${lng}">Set Marker</a></div>`
+	html += `<div style="display: flex; justify-content: right;"><a href="#" class="set-marker-link">Set Marker</a></div>`
 	html += '</div>';
 	return html;
 }
@@ -428,16 +454,16 @@ function attachPopupFormHandlers(popup, marker) {
 		const obj = {};
 		for (const [k,v] of fd.entries()) obj[k] = v;
 		// combine with marker metadata
-		const payload = { _lat: marker.__data.lat, _lng: marker.__data.lng, props: obj, source: marker.__data.source, query: marker.__data.query };
+		const payload = { props: obj, source: marker.__data.source, query: marker.__data.query };
 		// default action: log to console and show status
 		console.log('Marker form submit', payload);
 		if (status) status.textContent = 'Saved (client-side)';
 		// optionally POST to server: uncomment and change endpoint
 		try {
-		   const resp = await fetch('/api/tollbooth_update/', { 
+		   const resp = await fetch('/api/tollbooth_upsert/', { 
 			method: 'POST', 
 			headers: {'Content-Type':'application/json'}, 
-			body: JSON.stringify(payload)
+			body: JSON.stringify(payload.props)
 			});
 		   if (!resp.ok) throw new Error(resp.statusText);
 		   if (status) status.textContent = 'Saved to server';
