@@ -87,6 +87,7 @@ def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
     # session.add(tollbooth)
     # session.commit()
     # session.refresh(tollbooth)
+    tollbooth.tollbooth_id = 1111
     return {"tollbooth_id": tollbooth.tollbooth_id}
 
 

@@ -61,15 +61,6 @@ var greenIcon = new L.Icon({
 
 
 function editTbMarker(marker) {
-	//marker.dragging.enable();
-	marker.on('dragend', function(e) {
-  		let position = e.target.getLatLng();
-		marker.__data.lat = position.lat;
-		marker.__data.lng = position.lng;
-		marker.__data.setdata = false;
-		addInfoPopup(marker);
-		marker.openPopup();
-	});
 	// remove previous popup and handlers
 	marker.unbindPopup();
 	marker.bindPopup(createPopupFormHTML(marker.__data));
@@ -79,10 +70,24 @@ function editTbMarker(marker) {
 	});
 }
 
-function addInfoPopup(marker) {
+
+function dragTbMarker(marker) {
+	marker.dragging.enable();
+	marker.on('dragend', function(e) {
+  		let position = e.target.getLatLng();
+		//marker.__data.lat = position.lat;
+		//marker.__data.lng = position.lng;
+		//marker.__data.setdata = false;
+		addInfoPopup(marker, moveOpt=true);
+		marker.openPopup();
+	});
+}
+
+
+function addInfoPopup(marker, moveOpt) {
 	// remove previous popup and handlers
 	marker.unbindPopup();
-	marker.bindPopup(createInfoPopupHTML(marker.__data));
+	marker.bindPopup(createInfoPopupHTML(marker.__data, moveOpt));
 	marker.off && marker.off('popupopen');
 	marker.on('popupopen', (e) => {
 		const link = e.popup.getElement().querySelector('.set-marker-link');
@@ -121,12 +126,12 @@ map.on('click', async (e) => {
   		let position = e.target.getLatLng();
 		marker.__data.lat = position.lat;
 		marker.__data.lng = position.lng;
-		marker.__data.setdata = false;
+		//marker.__data.setdata = false;
 		//addInfoPopup(marker);
 		marker.openPopup();
 	});
 
-	addInfoPopup(marker);
+	addInfoPopup(marker, moveOpt=false);
 	addTbLayer.clearLayers();
 	marker.addTo(addTbLayer);
 });
@@ -236,9 +241,13 @@ const QueryControl = L.Control.extend({
 				try {
 					if (!layer || !layer.__data) return;
 					if (uploadedLayer.options.editMode) {
+						layer.closePopup();
 						editTbMarker(layer);
+						dragTbMarker(layer);
 					} else {
-						addInfoPopup(layer);
+						layer.closePopup();
+						addInfoPopup(layer, moveOpt=false);
+						layer.dragging.disable();
 					}
 				} catch (err) {
 					console.warn('Error rebinding marker popup', err);
@@ -371,7 +380,7 @@ function addTbMarker(c, sourceLabel) {
 	const marker = L.marker([c.lat, c.lng], { title: c.props && (`${c.props.tollbooth_name} [${c.tollbooth_id}]`) || '' });
 	// attach original data to marker for use in the popup
 	marker.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, query: sourceLabel, tollbooth_id: c.tollbooth_id };
-	addInfoPopup(marker)
+	addInfoPopup(marker, moveOpt=false);
 	marker.addTo(uploadedLayer);
 	const m_class_color = uploadedLayer.options.markerColor || 'huechange_0';
 	if (marker._icon && marker._icon.classList) marker._icon.classList.add(m_class_color);
@@ -426,23 +435,31 @@ function createPopupFormHTML(data) {
 	return html;
 }
 
+
 // simple non-editable popup showing lat, lng and tollbooth_name (if present)
-function createInfoPopupHTML(data) {
+function createInfoPopupHTML(data, moveOpt) {
 	const props = data && data.props ? data.props : null;
 	const lat = data && data.lat != null ? data.lat : null;
 	const lng = data && data.lng != null ? data.lng : null;
 	let html = '<div style="min-width:160px;font-size:12px">';
-	if (data.tollbooth_id !== null) {
+	if (data.tollbooth_id) {
 		const name = `${props.tollbooth_name} [${data.tollbooth_id}]`;
 		html += `<div class="title-container"><strong>${escapeHtml(String(name || ''))}</strong></div>`;
+		if (moveOpt) {
+			html += '<div style="display: inline-grid; align-content: center; justify-content: center;">';
+			html += '<div><a href="#" class="accept-marker-move">Save here?</a></div>';
+			html += '<div><a href="#" class="cancel-marker-mode">Cancel</a></div>';
+			html += '</div>';
+		}
 	}
 	else {
-		html += `<div class="title-container"><a href="#" class="set-marker-link">Add Marker</a></div>`
+		html += `<div class="title-container"><a href="#" class="set-marker-link">Add Marker</a></div>`;
 	}
 	html += `<div>${escapeHtml(String(lat))}, ${escapeHtml(String(lng))}</div>`;
 	html += '</div>';
 	return html;
 }
+
 
 
 function attachPopupFormHandlers(popup, marker) {
@@ -459,8 +476,6 @@ function attachPopupFormHandlers(popup, marker) {
 		const obj = {};
 		for (const [k,v] of fd.entries()) obj[k] = (v === "" ? null : v);
 		// combine with marker metadata
-		marker.__data.lat = obj.lat;
-		marker.__data.lng = obj.lng;
 		marker.__data.props = Object.fromEntries(
   			Object.entries(obj).filter(([key]) => !['lat', 'lng', 'tollbooth_id'].includes(key))
 		);
@@ -483,7 +498,7 @@ function attachPopupFormHandlers(popup, marker) {
 					new_marker = addTbMarker(marker.__data, '');
 					addTbLayer.removeLayer(marker);
 					uploadedLayer.addLayer(new_marker);
-					addInfoPopup(marker);
+					addInfoPopup(marker, moveOpt=false);
 				}
 		   	}
 		} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
@@ -492,7 +507,7 @@ function attachPopupFormHandlers(popup, marker) {
 	if (btnClose) btnClose.addEventListener('click', () => {
 		marker.closePopup();
 		if (!uploadedLayer.options.editMode) {
-			addInfoPopup(marker);
+			addInfoPopup(marker, moveOpt=false);
 		}
 	});
 }
