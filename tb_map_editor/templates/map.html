@@ -49,7 +49,7 @@ const map = L.map('map', {
 	layers: [osm]
 });
 
-const editLayer = L.layerGroup().addTo(map);
+const addTbLayer = L.layerGroup().addTo(map);
 var greenIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -61,56 +61,47 @@ var greenIcon = new L.Icon({
 
 
 function editTbMarker(marker) {
-	console.log("DRAGGABLE", marker.draggable);
 	//marker.dragging.enable();
-	marker.__data.props = _tpl_empty_tb_data;
-	marker.bindPopup(createInfoPopup(marker.__data.lat, marker.__data.lng));
 	marker.on('dragend', function(e) {
   		let position = e.target.getLatLng();
-		marker.unbindPopup();
-  		marker.bindPopup(createInfoPopup(position.lat, position.lng));
-		marker.openPopup();
 		marker.__data.lat = position.lat;
 		marker.__data.lng = position.lng;
 		marker.__data.setdata = false;
+		addInfoPopup(marker);
+		marker.openPopup();
 	});
-	marker.on('popupopen', function(e) {
+	// remove previous popup and handlers
+	marker.unbindPopup();
+	marker.bindPopup(createPopupFormHTML(marker.__data));
+	marker.off && marker.off('popupopen');
+	marker.on('popupopen', (e) => {
+		attachPopupFormHandlers(marker.getPopup(), marker);
+	});
+}
+
+function addInfoPopup(marker) {
+	// remove previous popup and handlers
+	marker.unbindPopup();
+	marker.bindPopup(createInfoPopupHTML(marker.__data));
+	marker.off && marker.off('popupopen');
+	marker.on('popupopen', (e) => {
 		const link = e.popup.getElement().querySelector('.set-marker-link');
 		if (link) {
 		 	link.addEventListener('click', function(ev) {
-		 		ev.preventDefault();
-				marker.unbindPopup();
-		 		marker.bindPopup(createPopupFormHTML(marker.__data));
+				ev.preventDefault();
+				//marker.unbindPopup();
+				editTbMarker(marker)
 				marker.openPopup();
-				attachPopupFormHandlers(marker.getPopup(), marker);
-				marker.__data.setdata = true;
 			});
 		}
-		else {
-			if (marker.__data.setdata) {
-				marker.unbindPopup();
-				if (editLayer.hasLayer(marker)) {
-					marker.bindPopup(createInfoPopup(marker.__data.lat, marker.__data.lng));
-				}
-				else {
-					marker.bindPopup(createSimplePopupHTML(marker.__data));
-				}
-				marker.__data.setdata = false;
-				marker.openPopup();
-				marker.dragging.disable();
-			}
-		}
 	});
-	editLayer.clearLayers();
-	marker.addTo(editLayer);
 }
 
 
 map.on('click', async (e) => {
 	const marker = L.marker(e.latlng, {icon: greenIcon, draggable: true});
-	const markerData = { lat: e.latlng.lat, lng: e.latlng.lng, props: {}, setdata: false};
-	marker.__data = markerData;
-	
+	marker.__data = { lat: e.latlng.lat, lng: e.latlng.lng, props: {}, setdata: false};
+
 	if (_tpl_empty_tb_data == null) {
 		payload = { source: "tollbooth" };
 		try {
@@ -120,14 +111,24 @@ map.on('click', async (e) => {
 				body: JSON.stringify(payload)
 			});
 		   	if (!resp.ok) throw new Error(resp.statusText);
-		   	//if (status) status.textContent = 'Saved to server';
 		   	if (status) console.log(payload)
-		   	const data = await resp.json();
-			_tpl_empty_tb_data = data;
-		} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
+		   	_tpl_empty_tb_data = await resp.json();
+		} catch(err) { if (status) status.textContent = 'Save error: ' + err.message }
 	}
-	
-	editTbMarker(marker)
+	marker.__data.props = _tpl_empty_tb_data;
+
+	marker.on('dragend', (e) => {
+  		let position = e.target.getLatLng();
+		marker.__data.lat = position.lat;
+		marker.__data.lng = position.lng;
+		marker.__data.setdata = false;
+		//addInfoPopup(marker);
+		marker.openPopup();
+	});
+
+	addInfoPopup(marker);
+	addTbLayer.clearLayers();
+	marker.addTo(addTbLayer);
 });
 
 const baseLayers = {
@@ -234,14 +235,10 @@ const QueryControl = L.Control.extend({
 			uploadedLayer.eachLayer(function(layer) {
 				try {
 					if (!layer || !layer.__data) return;
-					// remove previous popup and handlers
-					layer.unbindPopup();
 					if (uploadedLayer.options.editMode) {
-						layer.bindPopup(createPopupFormHTML(layer.__data));
-						layer.off && layer.off('popupopen');
-						layer.on('popupopen', (e) => { attachPopupFormHandlers(e.popup, layer); });
+						editTbMarker(layer);
 					} else {
-						layer.bindPopup(createSimplePopupHTML(layer.__data));
+						addInfoPopup(layer);
 					}
 				} catch (err) {
 					console.warn('Error rebinding marker popup', err);
@@ -339,7 +336,7 @@ function extractCoordinates(data) {
 function parseCoordItem(item) {
 	if (!item || typeof item !== 'object') return null;
 
-	let lat, lng, source, props = {};
+	let lat, lng, source, tollbooth_id, props = {};
 
 	// Look for lat/lng fields (case insensitive)
 	for (const key in item) {
@@ -353,32 +350,32 @@ function parseCoordItem(item) {
 				source = item[key];
 			}
 			else {
-				props[key] = item[key];
+				if(['tollbooth_id'].includes(lk)) {
+					tollbooth_id = item[key];
+				}
+				else {
+					props[key] = item[key];
+				}
 			}
 		}
 	}
 
 	if (Number.isFinite(lat) && Number.isFinite(lng) && isValidLat(lat) && isValidLng(lng)) {
-		return { lat, lng, source, props };
+		return { lat, lng, source, props, tollbooth_id };
 	}
 	return null;
 }
 
 
 function addTbMarker(c, sourceLabel) {
-	const m = L.marker([c.lat, c.lng], { title: c.props && (`${c.props.tollbooth_name} [${c.props.tollbooth_id}]`) || '' });
+	const marker = L.marker([c.lat, c.lng], { title: c.props && (`${c.props.tollbooth_name} [${c.tollbooth_id}]`) || '' });
 	// attach original data to marker for use in the popup
-	m.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, query: sourceLabel };
-	// bind popup according to current editMode
-	if (uploadedLayer.options.editMode) {
-		editTbMarker(m);
-	} else {
-		m.bindPopup(createSimplePopupHTML(m.__data));
-	}
-	m.addTo(uploadedLayer);
+	marker.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, query: sourceLabel, tollbooth_id: c.tollbooth_id };
+	addInfoPopup(marker)
+	marker.addTo(uploadedLayer);
 	const m_class_color = uploadedLayer.options.markerColor || 'huechange_0';
-	if (m._icon && m._icon.classList) m._icon.classList.add(m_class_color);
-	return m;
+	if (marker._icon && marker._icon.classList) marker._icon.classList.add(m_class_color);
+	return marker;
 }
 
 
@@ -415,6 +412,7 @@ function createPopupFormHTML(data) {
 	html += `<div><strong>Marker data</strong></div>`;
 	html += `<input type="hidden" name="lat" value="${escapeHtml(data.lat)}">`;
 	html += `<input type="hidden" name="lng" value="${escapeHtml(data.lng)}">`;
+	html += `<input type="hidden" name="tollbooth_id" value="${escapeHtml(data.tollbooth_id)}">`;
 	for (const key of Object.keys(props)) {
 		const val = props[key] == null ? '' : (typeof props[key] === 'object' ? JSON.stringify(props[key]) : String(props[key]));
 		html += `<div style="margin:4px 0"><label style="font-size:12px">${escapeHtml(key)}:<br><input name="${escapeHtml(key)}" value="${escapeHtml(val)}" style="width:100%"/></label></div>`;
@@ -429,25 +427,23 @@ function createPopupFormHTML(data) {
 }
 
 // simple non-editable popup showing lat, lng and tollbooth_name (if present)
-function createSimplePopupHTML(data) {
-	const props = data && data.props ? data.props : {};
-	const lat = data && data.lat != null ? data.lat : '';
-	const lng = data && data.lng != null ? data.lng : '';
-	const name = `${props.tollbooth_name} [${props.tollbooth_id}]`;
+function createInfoPopupHTML(data) {
+	const props = data && data.props ? data.props : null;
+	const lat = data && data.lat != null ? data.lat : null;
+	const lng = data && data.lng != null ? data.lng : null;
 	let html = '<div style="min-width:160px;font-size:12px">';
-	html += `<div class="title-container"><strong>${escapeHtml(String(name || ''))}</strong></div>`;
+	if (data.tollbooth_id !== null) {
+		const name = `${props.tollbooth_name} [${data.tollbooth_id}]`;
+		html += `<div class="title-container"><strong>${escapeHtml(String(name || ''))}</strong></div>`;
+	}
+	else {
+		html += `<div class="title-container"><a href="#" class="set-marker-link">Add Marker</a></div>`
+	}
 	html += `<div>${escapeHtml(String(lat))}, ${escapeHtml(String(lng))}</div>`;
 	html += '</div>';
 	return html;
 }
 
-function createInfoPopup(lat, lng) {
-	let html = '<div style="min-width:160px;font-size:12px">';
-	html += `<div style="min-height: 25px;">${lat}, ${lng}</div>`;
-	html += `<div style="display: flex; justify-content: right;"><a href="#" class="set-marker-link">Set Marker</a></div>`
-	html += '</div>';
-	return html;
-}
 
 function attachPopupFormHandlers(popup, marker) {
 	const el = popup.getElement();
@@ -463,9 +459,13 @@ function attachPopupFormHandlers(popup, marker) {
 		const obj = {};
 		for (const [k,v] of fd.entries()) obj[k] = (v === "" ? null : v);
 		// combine with marker metadata
+		marker.__data.lat = obj.lat;
+		marker.__data.lng = obj.lng;
+		marker.__data.props = Object.fromEntries(
+  			Object.entries(obj).filter(([key]) => !['lat', 'lng', 'tollbooth_id'].includes(key))
+		);
+		console.log(marker.__data);
 		const payload = { props: obj, source: marker.__data.source, query: marker.__data.query };
-		// default action: log to console and show status
-		console.log('Marker form submit', payload);
 		if (status) status.textContent = 'Saved (client-side)';
 		// optionally POST to server: uncomment and change endpoint
 		try {
@@ -478,18 +478,22 @@ function attachPopupFormHandlers(popup, marker) {
 		   	if (!resp.ok) throw new Error(resp.statusText);
 		   	if (status) {
 				status.textContent = 'Saved to server';
-				marker.__data.props.tollbooth_id = respData.tollbooth_id;
-				if (editLayer.hasLayer(marker)) {
+				marker.__data.tollbooth_id = respData.tollbooth_id;
+				if (addTbLayer.hasLayer(marker)) {
 					new_marker = addTbMarker(marker.__data, '');
-					editLayer.removeLayer(marker);
+					addTbLayer.removeLayer(marker);
 					uploadedLayer.addLayer(new_marker);
+					addInfoPopup(marker);
 				}
 		   	}
 		} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
 	});
 	const btnClose = el.querySelector('.btn-close');
-	if (btnClose) btnClose.addEventListener('click', () => { 
+	if (btnClose) btnClose.addEventListener('click', () => {
 		marker.closePopup();
+		if (!uploadedLayer.options.editMode) {
+			addInfoPopup(marker);
+		}
 	});
 }
 
