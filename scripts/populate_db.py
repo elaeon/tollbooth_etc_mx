@@ -4,6 +4,7 @@ sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
 import logging
 import polars as pl
 import polars_h3 as plh3
+import sqlite3
 
 from tb_map_editor.data_files import DataModel
 from tb_map_editor.utils.connector import sqlite_url
@@ -68,12 +69,22 @@ def insert_tb_imt_from_data(data_model: DataModel):
         insert_data_from_parquet(ldf_tb_unq, model_name)
 
 
+def insert_tb_from_db(data_model: DataModel):
+    query = """
+        SELECT * FROM tollbooth
+    """
+    conn = sqlite3.connect(sqlite_url.replace("sqlite:///", ""))
+    df = pl.read_database(query, connection=conn)
+    df.write_parquet(data_model.tollbooths.parquet)
+    _log.info(f"Saved data in {data_model.tollbooths.parquet}")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--new-tb", help="insert-tb", required=False, action='store_true')
     parser.add_argument("--new-tb-imt", help="insert tb imt", required=False, action="store_true")
     parser.add_argument("--new-tb-sts", help="insert-tb-sts-catalog", required=False, action='store_true')
+    parser.add_argument("--export-tb", action="store_true")
     parser.add_argument("--year", help="year for tb-sts", required=True, type=int)
     args = parser.parse_args()
     data_model = DataModel(args.year)
@@ -83,5 +94,7 @@ if __name__ == "__main__":
         insert_tb_sts_from_data(data_model)
     elif args.new_tb_imt:
         insert_tb_imt_from_data(data_model)
+    elif args.export_tb:
+        insert_tb_from_db(data_model)
     else:
         parser.print_help()

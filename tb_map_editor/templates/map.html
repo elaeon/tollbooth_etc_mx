@@ -60,10 +60,9 @@ var greenIcon = new L.Icon({
 });
 
 
-function editTbMarker(e) {
-	const marker = L.marker(e.latlng, {icon: greenIcon, draggable: true});
-	const markerData = { lat: e.latlng.lat, lng: e.latlng.lng, props: {}, setdata: false};
-	marker.__data = markerData;
+function editTbMarker(marker) {
+	console.log("DRAGGABLE", marker.draggable);
+	//marker.dragging.enable();
 	marker.__data.props = _tpl_empty_tb_data;
 	marker.bindPopup(createInfoPopup(marker.__data.lat, marker.__data.lng));
 	marker.on('dragend', function(e) {
@@ -90,9 +89,15 @@ function editTbMarker(e) {
 		else {
 			if (marker.__data.setdata) {
 				marker.unbindPopup();
-				marker.bindPopup(createInfoPopup(marker.__data.lat, marker.__data.lng));
+				if (editLayer.hasLayer(marker)) {
+					marker.bindPopup(createInfoPopup(marker.__data.lat, marker.__data.lng));
+				}
+				else {
+					marker.bindPopup(createSimplePopupHTML(marker.__data));
+				}
 				marker.__data.setdata = false;
 				marker.openPopup();
+				marker.dragging.disable();
 			}
 		}
 	});
@@ -102,6 +107,10 @@ function editTbMarker(e) {
 
 
 map.on('click', async (e) => {
+	const marker = L.marker(e.latlng, {icon: greenIcon, draggable: true});
+	const markerData = { lat: e.latlng.lat, lng: e.latlng.lng, props: {}, setdata: false};
+	marker.__data = markerData;
+	
 	if (_tpl_empty_tb_data == null) {
 		payload = { source: "tollbooth" };
 		try {
@@ -115,13 +124,10 @@ map.on('click', async (e) => {
 		   	if (status) console.log(payload)
 		   	const data = await resp.json();
 			_tpl_empty_tb_data = data;
-			editTbMarker(e);
 		} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
 	}
-	else {
-		editTbMarker(e)
-	}
-    
+	
+	editTbMarker(marker)
 });
 
 const baseLayers = {
@@ -358,26 +364,30 @@ function parseCoordItem(item) {
 	return null;
 }
 
+
+function addTbMarker(c, sourceLabel) {
+	const m = L.marker([c.lat, c.lng], { title: c.props && (`${c.props.tollbooth_name} [${c.props.tollbooth_id}]`) || '' });
+	// attach original data to marker for use in the popup
+	m.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, query: sourceLabel };
+	// bind popup according to current editMode
+	if (uploadedLayer.options.editMode) {
+		editTbMarker(m);
+	} else {
+		m.bindPopup(createSimplePopupHTML(m.__data));
+	}
+	m.addTo(uploadedLayer);
+	const m_class_color = uploadedLayer.options.markerColor || 'huechange_0';
+	if (m._icon && m._icon.classList) m._icon.classList.add(m_class_color);
+	return m;
+}
+
+
 function addMarkersFromCoords(coords, sourceLabel) {
 	const markers = [];
 	for (const c of coords) {
 		if (!isValidLat(c.lat) || !isValidLng(c.lng)) continue;
-		const m = L.marker([c.lat, c.lng], { title: c.props && (`${c.props.tollbooth_name} [${c.props.tollbooth_id}]`) || '' });
-		// attach original data to marker for use in the popup
-		m.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, query: sourceLabel };
-		// bind popup according to current editMode
-		if (uploadedLayer.options.editMode) {
-			m.bindPopup(createPopupFormHTML(m.__data));
-			m.on('popupopen', (e) => {
-				attachPopupFormHandlers(e.popup, m);
-			});
-		} else {
-			m.bindPopup(createSimplePopupHTML(m.__data));
-		}
-		m.addTo(uploadedLayer);
-		const m_class_color = uploadedLayer.options.markerColor || 'huechange_0';
-		if (m._icon && m._icon.classList) m._icon.classList.add(m_class_color);
-		markers.push(m);
+		const marker = addTbMarker(c, sourceLabel);
+		markers.push(marker);
 	}
 	if (markers.length) {
 		const group = L.featureGroup(markers);
@@ -420,7 +430,6 @@ function createPopupFormHTML(data) {
 
 // simple non-editable popup showing lat, lng and tollbooth_name (if present)
 function createSimplePopupHTML(data) {
-	console.log(data);
 	const props = data && data.props ? data.props : {};
 	const lat = data && data.lat != null ? data.lat : '';
 	const lng = data && data.lng != null ? data.lng : '';
@@ -452,7 +461,7 @@ function attachPopupFormHandlers(popup, marker) {
 		ev.preventDefault();
 		const fd = new FormData(form);
 		const obj = {};
-		for (const [k,v] of fd.entries()) obj[k] = v;
+		for (const [k,v] of fd.entries()) obj[k] = (v === "" ? null : v);
 		// combine with marker metadata
 		const payload = { props: obj, source: marker.__data.source, query: marker.__data.query };
 		// default action: log to console and show status
@@ -465,13 +474,15 @@ function attachPopupFormHandlers(popup, marker) {
 				headers: {'Content-Type':'application/json'}, 
 				body: JSON.stringify(payload.props)
 			});
+			const respData = await resp.json();
 		   	if (!resp.ok) throw new Error(resp.statusText);
 		   	if (status) {
 				status.textContent = 'Saved to server';
+				marker.__data.props.tollbooth_id = respData.tollbooth_id;
 				if (editLayer.hasLayer(marker)) {
-					console.log("EDIT");
+					new_marker = addTbMarker(marker.__data, '');
 					editLayer.removeLayer(marker);
-					uploadedLayer.addLayer(marker);
+					uploadedLayer.addLayer(new_marker);
 				}
 		   	}
 		} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
