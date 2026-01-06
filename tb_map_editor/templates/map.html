@@ -63,7 +63,7 @@ var greenIcon = new L.Icon({
 function editTbMarker(marker) {
 	// remove previous popup and handlers
 	marker.unbindPopup();
-	marker.bindPopup(createPopupFormHTML(marker.__data));
+	marker.bindPopup(createPopupFormHTML(marker));
 	marker.off && marker.off('popupopen');
 	marker.on('popupopen', (e) => {
 		attachPopupFormHandlers(marker.getPopup(), marker);
@@ -74,10 +74,6 @@ function editTbMarker(marker) {
 function dragTbMarker(marker) {
 	marker.dragging.enable();
 	marker.on('dragend', function(e) {
-  		let position = e.target.getLatLng();
-		//marker.__data.lat = position.lat;
-		//marker.__data.lng = position.lng;
-		//marker.__data.setdata = false;
 		addInfoPopup(marker, moveOpt=true);
 		marker.openPopup();
 	});
@@ -87,16 +83,51 @@ function dragTbMarker(marker) {
 function addInfoPopup(marker, moveOpt) {
 	// remove previous popup and handlers
 	marker.unbindPopup();
-	marker.bindPopup(createInfoPopupHTML(marker.__data, moveOpt));
+	marker.bindPopup(createInfoPopupHTML(marker, moveOpt));
 	marker.off && marker.off('popupopen');
 	marker.on('popupopen', (e) => {
-		const link = e.popup.getElement().querySelector('.set-marker-link');
-		if (link) {
-		 	link.addEventListener('click', function(ev) {
+		const setLink = e.popup.getElement().querySelector('.set-marker-link');
+		const acceptDragLink = e.popup.getElement().querySelector('.accept-move-marker');
+		const cancelDragLink = e.popup.getElement().querySelector('.cancel-move-marker');
+		if (setLink) {
+		 	setLink.addEventListener('click', function(ev) {
 				ev.preventDefault();
 				//marker.unbindPopup();
 				editTbMarker(marker)
 				marker.openPopup();
+			});
+		}
+		
+		if (acceptDragLink) {
+			acceptDragLink.addEventListener('click', async (ev) => {
+				const position = marker.getLatLng();
+				payload = marker.__data.props;
+				payload.tollbooth_id = marker.__data.tollbooth_id;
+				payload.lat = position.lat;
+				payload.lng = position.lng;
+				try {
+					const resp = await fetch('/api/tollbooth_upsert/', { 
+						method: 'POST', 
+						headers: {'Content-Type':'application/json'}, 
+						body: JSON.stringify(payload)
+					});
+					if (!resp.ok) throw new Error(resp.statusText);
+					marker.__data.lat = position.lat;
+					marker.__data.lng = position.lng;
+					//if (status) {
+					//status.textContent = 'Saved to server';
+					marker.closePopup();
+					//}
+				} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
+			});
+		} 
+
+		if (cancelDragLink) {
+			cancelDragLink.addEventListener('click', function(ev) {
+				ev.preventDefault();
+				marker.closePopup();
+				const oldPosition = new L.LatLng(marker.__data.lat, marker.__data.lng);
+				marker.setLatLng(oldPosition).update();
 			});
 		}
 	});
@@ -123,9 +154,9 @@ map.on('click', async (e) => {
 	marker.__data.props = _tpl_empty_tb_data;
 
 	marker.on('dragend', (e) => {
-  		let position = e.target.getLatLng();
-		marker.__data.lat = position.lat;
-		marker.__data.lng = position.lng;
+  		//let position = e.target.getLatLng();
+		//marker.__data.lat = position.lat;
+		//marker.__data.lng = position.lng;
 		//marker.__data.setdata = false;
 		//addInfoPopup(marker);
 		marker.openPopup();
@@ -414,13 +445,15 @@ function escapeHtml(str) {
 		.replace(/'/g, '&#039;');
 }
 
-function createPopupFormHTML(data) {
+function createPopupFormHTML(marker) {
+	const data = marker.__data;
+	const position = marker.getLatLng();
 	const id = `marker-form-${++_markerFormId}`;
 	const props = data.props || {};
 	let html = `<div style="min-width:220px"><form id="${id}" class="marker-form">`;
 	html += `<div><strong>Marker data</strong></div>`;
-	html += `<input type="hidden" name="lat" value="${escapeHtml(data.lat)}">`;
-	html += `<input type="hidden" name="lng" value="${escapeHtml(data.lng)}">`;
+	html += `<input type="hidden" name="lat" value="${escapeHtml(position.lat)}">`;
+	html += `<input type="hidden" name="lng" value="${escapeHtml(position.lng)}">`;
 	html += `<input type="hidden" name="tollbooth_id" value="${escapeHtml(data.tollbooth_id)}">`;
 	for (const key of Object.keys(props)) {
 		const val = props[key] == null ? '' : (typeof props[key] === 'object' ? JSON.stringify(props[key]) : String(props[key]));
@@ -437,25 +470,25 @@ function createPopupFormHTML(data) {
 
 
 // simple non-editable popup showing lat, lng and tollbooth_name (if present)
-function createInfoPopupHTML(data, moveOpt) {
+function createInfoPopupHTML(marker, moveOpt) {
+	const data = marker.__data;
 	const props = data && data.props ? data.props : null;
-	const lat = data && data.lat != null ? data.lat : null;
-	const lng = data && data.lng != null ? data.lng : null;
+	const position = marker.getLatLng();
 	let html = '<div style="min-width:160px;font-size:12px">';
 	if (data.tollbooth_id) {
-		const name = `${props.tollbooth_name} [${data.tollbooth_id}]`;
+		const name = `${escapeHtml(props.tollbooth_name)} [${escapeHtml(data.tollbooth_id)}]`;
 		html += `<div class="title-container"><strong>${escapeHtml(String(name || ''))}</strong></div>`;
 		if (moveOpt) {
 			html += '<div style="display: inline-grid; align-content: center; justify-content: center;">';
-			html += '<div><a href="#" class="accept-marker-move">Save here?</a></div>';
-			html += '<div><a href="#" class="cancel-marker-mode">Cancel</a></div>';
+			html += '<div><a href="#" class="accept-move-marker">Save here?</a></div>';
+			html += '<div><a href="#" class="cancel-move-marker">Cancel</a></div>';
 			html += '</div>';
 		}
 	}
 	else {
 		html += `<div class="title-container"><a href="#" class="set-marker-link">Add Marker</a></div>`;
 	}
-	html += `<div>${escapeHtml(String(lat))}, ${escapeHtml(String(lng))}</div>`;
+	html += `<div>${position.lat}, ${position.lng}</div>`;
 	html += '</div>';
 	return html;
 }
@@ -474,15 +507,18 @@ function attachPopupFormHandlers(popup, marker) {
 		ev.preventDefault();
 		const fd = new FormData(form);
 		const obj = {};
+		//get data from html form
 		for (const [k,v] of fd.entries()) obj[k] = (v === "" ? null : v);
-		// combine with marker metadata
+		//update props and exclude hidden values
 		marker.__data.props = Object.fromEntries(
   			Object.entries(obj).filter(([key]) => !['lat', 'lng', 'tollbooth_id'].includes(key))
 		);
-		console.log(marker.__data);
+		//update position
+		marker.__data.lat = obj.lat;
+		marker.__data.lng = obj.lng;
 		const payload = { props: obj, source: marker.__data.source, query: marker.__data.query };
+		console.log(payload);
 		if (status) status.textContent = 'Saved (client-side)';
-		// optionally POST to server: uncomment and change endpoint
 		try {
 			const resp = await fetch('/api/tollbooth_upsert/', { 
 				method: 'POST', 
