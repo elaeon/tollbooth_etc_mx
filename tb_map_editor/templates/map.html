@@ -159,7 +159,7 @@ function addInfoPopup(marker, moveOpt) {
 				payload.lat = position.lat;
 				payload.lng = position.lng;
 				try {
-					const resp = await fetch('/api/tollbooth_upsert/', { 
+					const resp = await fetch('{{ url_for("upsert_tollbooth") }}', { 
 						method: 'POST', 
 						headers: {'Content-Type':'application/json'}, 
 						body: JSON.stringify(payload)
@@ -204,7 +204,7 @@ map.on('click', async (e) => {
 				_tpl_empty_tb_data = await resp.json();
 			} catch(err) { if (status) status.textContent = 'Save error: ' + err.message }
 		}
-		marker.__data = { lat: null, lng: null, props: {} };
+		marker.__data = { lat: null, lng: null, tollbooth_id: null, props: {} };
 			marker.on('dragend', (e) => {
 			addInfoPopup(marker);
 			marker.openPopup();
@@ -401,7 +401,6 @@ const QueryControl = L.Control.extend({
 		});
 
 		btnClear.addEventListener('click', () => {
-			btnCheckboxHold.checked = false;
 			queryInputEl.value = null;
 			clearMarkers();
 			statusEl.textContent = 'Markers cleared';
@@ -604,11 +603,12 @@ function attachPopupFormHandlers(popup, marker) {
 		//update position
 		marker.__data.lat = obj.lat;
 		marker.__data.lng = obj.lng;
+		obj.tollbooth_id = obj.tollbooth_id === "" ? null : obj.tollbooth_id;
 		const payload = { props: obj, source: marker.__data.source, query: marker.__data.query };
 		console.log(payload);
 		if (status) status.textContent = 'Saved (client-side)';
 		try {
-			const resp = await fetch('/api/tollbooth_upsert/', { 
+			const resp = await fetch('{{ url_for("upsert_tollbooth") }}', { 
 				method: 'POST', 
 				headers: {'Content-Type':'application/json'}, 
 				body: JSON.stringify(payload.props)

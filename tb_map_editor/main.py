@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Form, Body
+from fastapi import FastAPI, Request, Form, Body, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -89,10 +89,20 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
 @app.post("/api/tollbooth_upsert/")
 def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
     _log.debug(tollbooth)
-    session.add(tollbooth)
-    session.commit()
-    session.refresh(tollbooth)
-    # tollbooth.tollbooth_id = 1111
+    if tollbooth.tollbooth_id is not None:
+        db_tb = session.get(Tollbooth, tollbooth.tollbooth_id)
+        if not db_tb:
+            raise HTTPException(status_code=404, detail="Tollbooth not found")
+        tb_data = tollbooth.model_dump(exclude_unset=True) 
+        db_tb.sqlmodel_update(tb_data)
+        session.add(db_tb)
+        session.commit()
+        session.refresh(db_tb)
+    else:
+        session.add(tollbooth)
+        session.commit()
+        session.refresh(tollbooth)
+    
     return {"tollbooth_id": tollbooth.tollbooth_id}
 
 
