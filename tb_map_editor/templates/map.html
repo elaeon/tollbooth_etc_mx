@@ -145,7 +145,6 @@ function addInfoPopup(marker, moveOpt) {
 		if (setLink) {
 		 	setLink.addEventListener('click', function(ev) {
 				ev.preventDefault();
-				//marker.unbindPopup();
 				editTbMarker(marker)
 				marker.openPopup();
 			});
@@ -194,7 +193,7 @@ map.on('click', async (e) => {
 		if (_tpl_empty_tb_data == null) {
 			payload = { source: "tollbooth" };
 			try {
-				const resp = await fetch('/api/empty_data/', { 
+				const resp = await fetch('{{ url_for("get_tb_data") }}', { 
 					method: 'POST', 
 					headers: {'Content-Type':'application/json'}, 
 					body: JSON.stringify(payload)
@@ -205,7 +204,7 @@ map.on('click', async (e) => {
 			} catch(err) { if (status) status.textContent = 'Save error: ' + err.message }
 		}
 		marker.__data = { lat: null, lng: null, tollbooth_id: null, props: {} };
-			marker.on('dragend', (e) => {
+		marker.on('dragend', (e) => {
 			addInfoPopup(marker);
 			marker.openPopup();
 		});
@@ -216,7 +215,7 @@ map.on('click', async (e) => {
 		marker = _layers.tmptb.layer.getLayers()[0];
 	}
 	marker.setLatLng(new L.LatLng(e.latlng.lat, e.latlng.lng)).update();
-	marker.__data.props = _tpl_empty_tb_data;
+	marker.__data.props = structuredClone(_tpl_empty_tb_data);
 
 	if (!_layers[_activeLayer].layer.hasLayer(marker)) {
 		marker.addTo(_layers[_activeLayer].layer);
@@ -296,6 +295,7 @@ const QueryControl = L.Control.extend({
 				<button id="btn-clear-markers">Clear</button>
 			</div>
 			<div class="status" id="query-status"></div>
+			<div id="marker-props-panel" style="margin-top:8px; max-height:200px; overflow:auto; font-size:12px; background:#f9f9f9; padding:6px; border-radius:4px; display:none"></div>
 		`;
 
 		L.DomEvent.disableClickPropagation(container);
@@ -412,8 +412,10 @@ const QueryControl = L.Control.extend({
 
 
 function clearMarkers() {
-	_layers[_activeLayer].layer.clearLayers();
-	_layers.tmptb.layer.clearLayers();
+	try { _layers[_activeLayer].layer.clearLayers(); } catch (e) {}
+	try { _layers.tmptb.layer.clearLayers(); } catch (e) {}
+	const panel = document.getElementById('marker-props-panel');
+	if (panel) { panel.style.display = 'none'; panel.innerHTML = ''; }
 }
 
 
@@ -422,6 +424,23 @@ function processMarkerResponse(data, sourceLabel) {
 	if (!coords.length) throw new Error('No coordinates found in response');
 	addMarkersFromCoords(coords, sourceLabel);
 	searchBar._populateMarkerLabels(map);
+}
+
+function showMarkerProps(data) {
+	const panel = document.getElementById('marker-props-panel');
+	if (!panel) return;
+	if (!data) { panel.style.display = 'none'; panel.innerHTML = ''; return; }
+	const props = data.props || {};
+	let html = `<div style="font-weight:600;margin-bottom:6px">Marker properties</div>`;
+	html += '<table style="width:100%;font-size:12px;border-collapse:collapse">';
+	for (const key of Object.keys(props)) {
+		const val = props[key] == null ? '' : (typeof props[key] === 'object' ? JSON.stringify(props[key]) : String(props[key]));
+		html += `<tr><td style="padding:2px 6px;border-bottom:1px solid #eee;width:40%"><strong>${escapeHtml(key)}</strong></td><td style="padding:2px 6px;border-bottom:1px solid #eee">${escapeHtml(val)}</td></tr>`;
+	}
+	if (!Object.keys(props).length) html += `<tr><td colspan="2" style="padding:4px;color:#666">(no properties)</td></tr>`;
+	html += '</table>';
+	panel.innerHTML = html;
+	panel.style.display = 'block';
 }
 
 function extractCoordinates(data) {
@@ -502,6 +521,10 @@ function addTbMarker(c, sourceLabel) {
 	marker.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, query: sourceLabel, tollbooth_id: c.tollbooth_id };
 	addInfoPopup(marker, moveOpt=false);
 	marker.addTo(_layers[_activeLayer].layer);
+	// show properties in QueryControl panel when marker is clicked
+	marker.on('click', () => {
+		try { showMarkerProps(marker.__data); } catch (err) { console.warn('showMarkerProps error', err); }
+	});
 	return marker;
 }
 
@@ -541,7 +564,7 @@ function createPopupFormHTML(marker) {
 	html += `<div><strong>Marker data</strong></div>`;
 	html += `<input type="hidden" name="lat" value="${escapeHtml(position.lat)}">`;
 	html += `<input type="hidden" name="lng" value="${escapeHtml(position.lng)}">`;
-	html += `<input type="hidden" name="tollbooth_id" value="${escapeHtml(data.tollbooth_id)}">`;
+	html += `<input type="hidden" name="tollbooth_id" value="${escapeHtml(data.tollbooth_id ?? '')}">`;
 	for (const key of Object.keys(props)) {
 		const val = props[key] == null ? '' : (typeof props[key] === 'object' ? JSON.stringify(props[key]) : String(props[key]));
 		html += `<div style="margin:4px 0"><label style="font-size:12px">${escapeHtml(key)}:<br><input name="${escapeHtml(key)}" value="${escapeHtml(val)}" style="width:100%"/></label></div>`;
@@ -621,8 +644,8 @@ function attachPopupFormHandlers(popup, marker) {
 				if (_layers.tmptb.layer.hasLayer(marker)) {
 					new_marker = addTbMarker(marker.__data, '');
 					_layers.tmptb.layer.removeLayer(marker);
-					_layers.tb.layer.addLayer(new_marker);
-					addInfoPopup(marker, moveOpt=false);
+					marker.closePopup();
+					addInfoPopup(new_marker, moveOpt=false);
 				}
 		   	}
 		} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
