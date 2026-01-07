@@ -49,7 +49,7 @@ const map = L.map('map', {
 	layers: [osm]
 });
 
-const addTbLayer = L.layerGroup().addTo(map);
+
 var greenIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -57,6 +57,21 @@ var greenIcon = new L.Icon({
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [36, 36]
+});
+
+
+const _layers = {
+	{% for name, endpoint in query_endpoints.items() %}
+	{{ name }}: { layer: L.layerGroup().addTo(map), endpoint: "{{ url_for(endpoint) }}" },
+	{% endfor %}
+	tmptb: { layer: L.layerGroup().addTo(map), endpoint: null}
+};
+
+let _activeLayer = null;
+
+window.addEventListener("load", function() {
+	_layers.tb.layer.options.editMode = false;
+	console.log("initEditMode");
 });
 
 
@@ -136,7 +151,7 @@ function addInfoPopup(marker, moveOpt) {
 
 map.on('click', async (e) => {
 	const marker = L.marker(e.latlng, {icon: greenIcon, draggable: true});
-	marker.__data = { lat: e.latlng.lat, lng: e.latlng.lng, props: {}, setdata: false};
+	marker.__data = { lat: e.latlng.lat, lng: e.latlng.lng, props: {} };
 
 	if (_tpl_empty_tb_data == null) {
 		payload = { source: "tollbooth" };
@@ -154,17 +169,13 @@ map.on('click', async (e) => {
 	marker.__data.props = _tpl_empty_tb_data;
 
 	marker.on('dragend', (e) => {
-  		//let position = e.target.getLatLng();
-		//marker.__data.lat = position.lat;
-		//marker.__data.lng = position.lng;
-		//marker.__data.setdata = false;
-		//addInfoPopup(marker);
+		addInfoPopup(marker);
 		marker.openPopup();
 	});
 
 	addInfoPopup(marker, moveOpt=false);
-	addTbLayer.clearLayers();
-	marker.addTo(addTbLayer);
+	_layers.tmptb.layer.clearLayers();
+	marker.addTo(_layers.tmptb.layer);
 });
 
 const baseLayers = {
@@ -215,6 +226,9 @@ uploadControlStyle.innerHTML = `
 	.leaflet-control-query textarea { height: 80px; resize: vertical; }
 	.leaflet-control-query button { margin-right:6px; padding: 4px 8px; }
 	.leaflet-control-query .status { font-size: 12px; color: #333; margin-top:6px; white-space:pre-wrap; }
+	.leaflet-control-query .active-badge { display:inline-block; padding:2px 8px; margin-left:8px; background:#bbb; color:#fff; border-radius:12px; font-size:12px; }
+	.leaflet-control-query .active-badge.none { background:#9e9e9e; }
+	.leaflet-control-query .active-badge.active { background:#4caf50; }
 `;
 document.head.appendChild(uploadControlStyle);
 
@@ -222,18 +236,13 @@ const QueryControl = L.Control.extend({
 	onAdd(map) {
 		const container = L.DomUtil.create('div', 'leaflet-control-query');
 		container.innerHTML = `
-			<div><strong>Query & Fetch Markers</strong></div>
+			<div style="display:flex;align-items:center;"><strong>Query & Fetch Markers</strong><span id="active-layer-badge" class="active-badge none">none</span></div>
 			<textarea id="query-input" placeholder="Enter query (JSON or text)"></textarea>
 			<select id="query-endpoints">
-				<option value="/api/tollbooths">tollbooths</option>
-				<option value="/api/tollbooths_sts">tollbooths_sts</option>
-				<option value="/api/tollbooths_imt">tollbooths_imt</option>
+				{% for name, endpoint in query_endpoints.items() %}
+				<option value="{{ url_for(endpoint) }}">{{ name }}</option>
+				{% endfor %}
 			</select>
-			<label><input id="btn-checkbox-hold" type="checkbox" placeholder="hold markers">Hold markers</label>
-			<label>
-				<input id="btn-checkbox-change" type="checkbox" placeholder="change marker">
-				Change marker
-			</label>
 			<label>
 				<input id="btn-checkbox-edit" type="checkbox" placeholder="edit markers">Edit markers
 			</label>
@@ -248,30 +257,69 @@ const QueryControl = L.Control.extend({
 
 		const queryInputEl = container.querySelector('#query-input');
 		const endpointEl = container.querySelector('#query-endpoints');
+		const badgeEl = container.querySelector('#active-layer-badge');
 		const statusEl = container.querySelector('#query-status');
 		const btnSend = container.querySelector('#btn-send-query');
 		const btnClear = container.querySelector('#btn-clear-markers');
-		const btnCheckboxHold = container.querySelector('#btn-checkbox-hold');
-		const btnCheckboxChange = container.querySelector('#btn-checkbox-change');
 		const btnCheckboxEdit = container.querySelector('#btn-checkbox-edit');
 
-		btnCheckboxHold.addEventListener('click', async() => {
-			uploadedLayer.options.keepLayer = btnCheckboxHold.checked;
-			//console.log('Checkbox is ' + uploadedLayer.options.keepLayer);
+		// when the endpoint select changes, set `_activeLayer` to the corresponding _layers key (by matching endpoint URL)
+		endpointEl.addEventListener('change', () => {
+			const val = endpointEl.value;
+			let selectedName = null;
+			for (const name in _layers) {
+				if (_layers[name] && _layers[name].endpoint === val) { selectedName = name; break; }
+			}
+			_activeLayer = selectedName;
+			if (badgeEl) {
+				badgeEl.textContent = selectedName || 'none';
+				badgeEl.classList.remove('active','none');
+				badgeEl.classList.add(selectedName ? 'active' : 'none');
+			}
+			// toggle visibility: show only the active layer, hide others
+			for (const name in _layers) {
+				try {
+					const lyr = _layers[name] && _layers[name].layer;
+					if (!lyr) continue;
+					if (name === selectedName) {
+						if (!map.hasLayer(lyr)) map.addLayer(lyr);
+					} else {
+						if (map.hasLayer(lyr)) map.removeLayer(lyr);
+					}
+				} catch (err) { console.warn('Layer toggle error', err); }
+			}
+			if (statusEl) statusEl.textContent = `Active layer: ${selectedName || 'none'}`;
 		});
 
-		btnCheckboxChange.addEventListener('click', async() => {
-			uploadedLayer.options.markerColor = "huechange_30";
-		});
+		// set initial active layer based on the current select value
+		try {
+			endpointEl.dispatchEvent(new Event('change'));
+		} catch (err) {
+			// fallback: compute directly
+			const _val = endpointEl.value;
+			for (const name in _layers) {
+				if (_layers[name] && _layers[name].endpoint === _val) { _activeLayer = name; break; }
+			}
+			if (statusEl) statusEl.textContent = `Active layer: ${_activeLayer || 'none'}`;
+			if (badgeEl) {
+				badgeEl.textContent = _activeLayer || 'none';
+				badgeEl.classList.remove('active','none');
+				badgeEl.classList.add(_activeLayer ? 'active' : 'none');
+			}
+		}
+
+		// btnCheckboxChange.addEventListener('click', async() => {
+		// 	uploadedLayer.options.markerColor = "huechange_30";
+		// });
 		
 		btnCheckboxEdit.addEventListener('click', async() => {
 			// Toggle edit mode for uploaded markers
-			uploadedLayer.options.editMode = btnCheckboxEdit.checked;
+			_layers.tb.layer.options.editMode = btnCheckboxEdit.checked;
 			// Rebind popups for existing markers according to the new mode
-			uploadedLayer.eachLayer(function(layer) {
+			_layers.tb.layer.eachLayer(function(layer) {
 				try {
 					if (!layer || !layer.__data) return;
-					if (uploadedLayer.options.editMode) {
+					if (_layers.tb.layer.options.editMode) {
 						layer.closePopup();
 						editTbMarker(layer);
 						dragTbMarker(layer);
@@ -309,11 +357,9 @@ const QueryControl = L.Control.extend({
 
 		btnClear.addEventListener('click', () => {
 			btnCheckboxHold.checked = false;
-			btnCheckboxChange.checked = false;
-			uploadedLayer.options.keepLayer = btnCheckboxHold.checked;
 			queryInputEl.value = null;
-			uploadedLayer.options.markerColor = "huechange_0";
-			clearUploadedMarkers();
+			//uploadedLayer.options.markerColor = "huechange_0";
+			clearMarkers();
 			statusEl.textContent = 'Markers cleared';
 		});
 
@@ -321,20 +367,13 @@ const QueryControl = L.Control.extend({
 	}
 });
 
-// markers layer for fetched data
-const uploadedLayer = L.layerGroup().addTo(map);
-uploadedLayer.options.keepLayer = false;
-// when true, markers show editable form popups; when false show simple info popup
-uploadedLayer.options.editMode = false;
 
-function clearUploadedMarkers() {
-	if (uploadedLayer.options.keepLayer == false) {
-		uploadedLayer.clearLayers();
-	}
+function clearMarkers() {
+	_layers[_activeLayer].layer.clearLayers();
 }
 
+
 function processMarkerResponse(data, sourceLabel) {
-	clearUploadedMarkers();
 	const coords = extractCoordinates(data);
 	if (!coords.length) throw new Error('No coordinates found in response');
 	addMarkersFromCoords(coords, sourceLabel);
@@ -412,9 +451,9 @@ function addTbMarker(c, sourceLabel) {
 	// attach original data to marker for use in the popup
 	marker.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, query: sourceLabel, tollbooth_id: c.tollbooth_id };
 	addInfoPopup(marker, moveOpt=false);
-	marker.addTo(uploadedLayer);
-	const m_class_color = uploadedLayer.options.markerColor || 'huechange_0';
-	if (marker._icon && marker._icon.classList) marker._icon.classList.add(m_class_color);
+	marker.addTo(_layers[_activeLayer].layer);
+	//const m_class_color = uploadedLayer.options.markerColor || 'huechange_0';
+	//if (marker._icon && marker._icon.classList) marker._icon.classList.add(m_class_color);
 	return marker;
 }
 
@@ -530,10 +569,10 @@ function attachPopupFormHandlers(popup, marker) {
 		   	if (status) {
 				status.textContent = 'Saved to server';
 				marker.__data.tollbooth_id = respData.tollbooth_id;
-				if (addTbLayer.hasLayer(marker)) {
+				if (_layers.tmptb.layer.hasLayer(marker)) {
 					new_marker = addTbMarker(marker.__data, '');
-					addTbLayer.removeLayer(marker);
-					uploadedLayer.addLayer(new_marker);
+					_layers.tmptb.layer.removeLayer(marker);
+					_layers.tb.layer.addLayer(new_marker);
 					addInfoPopup(marker, moveOpt=false);
 				}
 		   	}
@@ -542,7 +581,7 @@ function attachPopupFormHandlers(popup, marker) {
 	const btnClose = el.querySelector('.btn-close');
 	if (btnClose) btnClose.addEventListener('click', () => {
 		marker.closePopup();
-		if (!uploadedLayer.options.editMode) {
+		if (!_layers.tb.layer.options.editMode) {
 			addInfoPopup(marker, moveOpt=false);
 		}
 	});
@@ -555,7 +594,7 @@ function isValidLng(v) { return Number.isFinite(v) && v >= -180 && v <= 180; }
 (new QueryControl({ position: 'topright' })).addTo(map);
 
 // expose clear function to console for convenience
-window.clearUploadedMarkers = clearUploadedMarkers;
+window.clearMarkers = clearMarkers;
 
 </script>
 

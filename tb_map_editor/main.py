@@ -35,8 +35,13 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 def map_root(request: Request):
+    query_endpoints = {
+        "tb": "fetch_tollbooths",
+        "tbsts": "fetch_tollbooths_sts",
+        "tbimt": "fetch_tollbooths_imt"
+    }
     return templates.TemplateResponse(
-        request=request, name="map.html"
+        request=request, name="map.html", context={"query_endpoints": query_endpoints}
     )
 
 
@@ -92,7 +97,7 @@ def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
 
 
 @app.post("/api/tollbooths_imt")
-def fetch_tb_imt(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=1000):
+def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=1000):
     param, value = map(str.strip, body["query"].split(":"))
     stm = select(TbImt).where(TbImt.calirepr != "Virtual").where(getattr(TbImt, param) == value)
     tbs = session.exec(stm.offset(offset).limit(limit))
