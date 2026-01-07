@@ -153,7 +153,7 @@ function addInfoPopup(marker, moveOpt) {
 		if (acceptDragLink) {
 			acceptDragLink.addEventListener('click', async (ev) => {
 				const position = marker.getLatLng();
-				payload = marker.__data.props;
+				payload = structuredClone(marker.__data.props);
 				payload.tollbooth_id = marker.__data.tollbooth_id;
 				payload.lat = position.lat;
 				payload.lng = position.lng;
@@ -426,7 +426,8 @@ function processMarkerResponse(data, sourceLabel) {
 	searchBar._populateMarkerLabels(map);
 }
 
-function showMarkerProps(data) {
+function showMarkerProps(marker) {
+	const data = marker.__data;
 	const panel = document.getElementById('marker-props-panel');
 	if (!panel) return;
 	if (!data) { panel.style.display = 'none'; panel.innerHTML = ''; return; }
@@ -523,7 +524,7 @@ function addTbMarker(c, sourceLabel) {
 	marker.addTo(_layers[_activeLayer].layer);
 	// show properties in QueryControl panel when marker is clicked
 	marker.on('click', () => {
-		try { showMarkerProps(marker.__data); } catch (err) { console.warn('showMarkerProps error', err); }
+		try { showMarkerProps(marker); } catch (err) { console.warn('showMarkerProps error', err); }
 	});
 	return marker;
 }
@@ -641,6 +642,7 @@ function attachPopupFormHandlers(popup, marker) {
 		   	if (status) {
 				status.textContent = 'Saved to server';
 				marker.__data.tollbooth_id = respData.tollbooth_id;
+				try { showMarkerProps(marker); } catch (err) { console.warn('showMarkerProps error', err); }
 				if (_layers.tmptb.layer.hasLayer(marker)) {
 					new_marker = addTbMarker(marker.__data, '');
 					_layers.tmptb.layer.removeLayer(marker);
