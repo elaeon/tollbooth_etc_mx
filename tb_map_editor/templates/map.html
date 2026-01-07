@@ -48,6 +48,7 @@ const map = L.map('map', {
 });
 
 
+//https://github.com/pointhi/leaflet-color-markers
 const greenIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -187,32 +188,39 @@ function addInfoPopup(marker, moveOpt) {
 
 
 map.on('click', async (e) => {
-	const marker = L.marker(e.latlng, {icon: greenIcon, draggable: true});
-	marker.__data = { lat: e.latlng.lat, lng: e.latlng.lng, props: {} };
-
-	if (_tpl_empty_tb_data == null) {
-		payload = { source: "tollbooth" };
-		try {
-			const resp = await fetch('/api/empty_data/', { 
-				method: 'POST', 
-				headers: {'Content-Type':'application/json'}, 
-				body: JSON.stringify(payload)
-			});
-		   	if (!resp.ok) throw new Error(resp.statusText);
-		   	if (status) console.log(payload)
-		   	_tpl_empty_tb_data = await resp.json();
-		} catch(err) { if (status) status.textContent = 'Save error: ' + err.message }
+	let marker = null;
+	if (_layers.tmptb.layer.getLayers().length == 0) {
+		marker = L.marker(e.latlng, {icon: greenIcon, draggable: true});
+		if (_tpl_empty_tb_data == null) {
+			payload = { source: "tollbooth" };
+			try {
+				const resp = await fetch('/api/empty_data/', { 
+					method: 'POST', 
+					headers: {'Content-Type':'application/json'}, 
+					body: JSON.stringify(payload)
+				});
+				if (!resp.ok) throw new Error(resp.statusText);
+				if (status) console.log(payload)
+				_tpl_empty_tb_data = await resp.json();
+			} catch(err) { if (status) status.textContent = 'Save error: ' + err.message }
+		}
+		marker.__data = { lat: null, lng: null, props: {} };
+			marker.on('dragend', (e) => {
+			addInfoPopup(marker);
+			marker.openPopup();
+		});
+		addInfoPopup(marker, moveOpt=false);
+		marker.addTo(_layers.tmptb.layer);
 	}
+	else {
+		marker = _layers.tmptb.layer.getLayers()[0];
+	}
+	marker.setLatLng(new L.LatLng(e.latlng.lat, e.latlng.lng)).update();
 	marker.__data.props = _tpl_empty_tb_data;
 
-	marker.on('dragend', (e) => {
-		addInfoPopup(marker);
-		marker.openPopup();
-	});
-
-	addInfoPopup(marker, moveOpt=false);
-	_layers.tmptb.layer.clearLayers();
-	marker.addTo(_layers.tmptb.layer);
+	if (!_layers[_activeLayer].layer.hasLayer(marker)) {
+		marker.addTo(_layers[_activeLayer].layer);
+	}
 });
 
 const baseLayers = {
@@ -325,7 +333,7 @@ const QueryControl = L.Control.extend({
 					}
 				} catch (err) { console.warn('Layer toggle error', err); }
 			}
-			if (statusEl) statusEl.textContent = `Active layer: ${selectedName || 'none'}`;
+			if (statusEl) statusEl.textContent = `Active layer: ${selectedName || 'none'} ${_layers[_activeLayer].layer.getLayers().length} items`;
 		});
 
 		// set initial active layer based on the current select value
@@ -337,7 +345,7 @@ const QueryControl = L.Control.extend({
 			for (const name in _layers) {
 				if (_layers[name] && _layers[name].endpoint === _val) { _activeLayer = name; break; }
 			}
-			if (statusEl) statusEl.textContent = `Active layer: ${_activeLayer || 'none'}`;
+			if (statusEl) statusEl.textContent = `Active layer: ${_activeLayer || 'none'} ${_layers[_activeLayer].layer.getLayers().length} items`;
 			if (badgeEl) {
 				badgeEl.textContent = _activeLayer || 'none';
 				badgeEl.classList.remove('active','none');
@@ -406,6 +414,7 @@ const QueryControl = L.Control.extend({
 
 function clearMarkers() {
 	_layers[_activeLayer].layer.clearLayers();
+	_layers.tmptb.layer.clearLayers();
 }
 
 

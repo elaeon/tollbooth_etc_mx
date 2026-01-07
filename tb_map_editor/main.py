@@ -89,10 +89,10 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
 @app.post("/api/tollbooth_upsert/")
 def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
     _log.debug(tollbooth)
-    # session.add(tollbooth)
-    # session.commit()
-    # session.refresh(tollbooth)
-    tollbooth.tollbooth_id = 1111
+    session.add(tollbooth)
+    session.commit()
+    session.refresh(tollbooth)
+    # tollbooth.tollbooth_id = 1111
     return {"tollbooth_id": tollbooth.tollbooth_id}
 
 
