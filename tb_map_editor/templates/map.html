@@ -33,12 +33,15 @@ var _tpl_empty_tb_data = null;
 
 const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	minZoom: 6,
+	maxZoom: 18,
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 });
 
-const osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-	minZoom: 6,
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+// Esri World Imagery (satellite) - free for non-commercial use per Esri terms
+const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	minZoom: 0,
+	maxZoom: 18,
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
 });
 
 const map = L.map('map', {
@@ -225,10 +228,46 @@ map.on('click', async (e) => {
 
 const baseLayers = {
 	'OpenStreetMap': osm,
-	'OpenStreetMap.HOT': osmHOT
+	'EsriSatellite': esriSat
 };
 
-const layerControl = L.control.layers(baseLayers).addTo(map);
+const layerControl = L.control.layers(baseLayers, {}, { position: 'topleft' }).addTo(map);
+
+// Small control that shows the currently active base layer name
+const BaseLayerHint = L.Control.extend({
+	onAdd() {
+		const container = L.DomUtil.create('div');
+		container.style.background = 'rgba(255,255,255,0.9)';
+		container.style.padding = '4px 8px';
+		container.style.borderRadius = '4px';
+		container.style.fontSize = '12px';
+		container.style.boxShadow = '0 1px 3px rgba(0,0,0,0.2)';
+		container.style.pointerEvents = 'none';
+		container.textContent = 'Base: none';
+		this._container = container;
+		return container;
+	},
+	update(name) {
+		if (!this._container) return;
+		this._container.textContent = `Base: ${name}`;
+	}
+});
+
+const baseHintControl = new BaseLayerHint({ position: 'topleft' }).addTo(map);
+
+// update on layer change
+map.on('baselayerchange', (e) => {
+	try { baseHintControl.update(e.name || 'unknown'); } catch (err) { console.warn('baseHint update', err); }
+});
+
+// set initial value based on which base layer is currently on the map
+try {
+	let activeName = 'none';
+	for (const name in baseLayers) {
+		try { if (map.hasLayer(baseLayers[name])) { activeName = name; break; } } catch (e) {}
+	}
+	baseHintControl.update(activeName);
+} catch (err) { console.warn('init baseHint', err); }
 
 const ZoomViewer = L.Control.extend({
 		onAdd() {
@@ -271,9 +310,6 @@ uploadControlStyle.innerHTML = `
 	.leaflet-control-query textarea { height: 80px; resize: vertical; }
 	.leaflet-control-query button { margin-right:6px; padding: 4px 8px; }
 	.leaflet-control-query .status { font-size: 12px; color: #333; margin-top:6px; white-space:pre-wrap; }
-	.leaflet-control-query .active-badge { display:inline-block; padding:2px 8px; margin-left:8px; background:#bbb; color:#fff; border-radius:12px; font-size:12px; }
-	.leaflet-control-query .active-badge.none { background:#9e9e9e; }
-	.leaflet-control-query .active-badge.active { background:#4caf50; }
 `;
 document.head.appendChild(uploadControlStyle);
 
@@ -281,7 +317,7 @@ const QueryControl = L.Control.extend({
 	onAdd(map) {
 		const container = L.DomUtil.create('div', 'leaflet-control-query');
 		container.innerHTML = `
-			<div style="display:flex;align-items:center;"><strong>Query & Fetch Markers</strong><span id="active-layer-badge" class="active-badge none">none</span></div>
+			<div style="display:flex;align-items:center;"><strong>Query & Fetch Markers</strong></div>
 			<textarea id="query-input" placeholder="Enter query (JSON or text)"></textarea>
 			<select id="query-endpoints">
 				{% for name, endpoint in query_endpoints.items() %}
@@ -294,6 +330,7 @@ const QueryControl = L.Control.extend({
 			<div>
 				<button id="btn-send-query">Send</button>
 				<button id="btn-clear-markers">Clear</button>
+				<button id="btn-clear-group-layers">Clear All</button>
 			</div>
 			<div class="status" id="query-status"></div>
 			<div id="marker-props-panel" style="margin-top:8px; max-height:200px; overflow:auto; font-size:12px; background:#f9f9f9; padding:6px; border-radius:4px; display:none"></div>
@@ -303,10 +340,10 @@ const QueryControl = L.Control.extend({
 
 		const queryInputEl = container.querySelector('#query-input');
 		const endpointEl = container.querySelector('#query-endpoints');
-		const badgeEl = container.querySelector('#active-layer-badge');
 		const statusEl = container.querySelector('#query-status');
 		const btnSend = container.querySelector('#btn-send-query');
 		const btnClear = container.querySelector('#btn-clear-markers');
+		const btnClearAll = container.querySelector('#btn-clear-group-layers');
 		const btnCheckboxEdit = container.querySelector('#btn-checkbox-edit');
 
 		// when the endpoint select changes, set `_activeLayer` to the corresponding _layers key (by matching endpoint URL)
@@ -317,11 +354,6 @@ const QueryControl = L.Control.extend({
 				if (_layers[name] && _layers[name].endpoint === val) { selectedName = name; break; }
 			}
 			_activeLayer = selectedName;
-			if (badgeEl) {
-				badgeEl.textContent = selectedName || 'none';
-				badgeEl.classList.remove('active','none');
-				badgeEl.classList.add(selectedName ? 'active' : 'none');
-			}
 			// toggle visibility: show only the active layer, hide others
 			for (const name in _layers) {
 				try {
@@ -347,11 +379,6 @@ const QueryControl = L.Control.extend({
 				if (_layers[name] && _layers[name].endpoint === _val) { _activeLayer = name; break; }
 			}
 			if (statusEl) statusEl.textContent = `Active layer: ${_activeLayer || 'none'} ${_layers[_activeLayer].layer.getLayers().length} items`;
-			if (badgeEl) {
-				badgeEl.textContent = _activeLayer || 'none';
-				badgeEl.classList.remove('active','none');
-				badgeEl.classList.add(_activeLayer ? 'active' : 'none');
-			}
 		}
 
 		// btnCheckboxChange.addEventListener('click', async() => {
@@ -402,9 +429,14 @@ const QueryControl = L.Control.extend({
 		});
 
 		btnClear.addEventListener('click', () => {
-			queryInputEl.value = null;
 			clearMarkers();
 			statusEl.textContent = 'Markers cleared';
+		});
+
+		btnClearAll.addEventListener('clock', () => {
+			queryInputEl.value = null;
+			clearAllLayers();
+			statusEl.textContent = 'Layers cleared';
 		});
 
 		return container;
@@ -414,9 +446,14 @@ const QueryControl = L.Control.extend({
 
 function clearMarkers() {
 	try { _layers[_activeLayer].layer.clearLayers(); } catch (e) {}
-	try { _layers.tmptb.layer.clearLayers(); } catch (e) {}
 	const panel = document.getElementById('marker-props-panel');
 	if (panel) { panel.style.display = 'none'; panel.innerHTML = ''; }
+}
+
+function clearAllLayers() {
+	for (const layer in _layers) {
+		_layers[layer].layer.clearLayers();
+	}
 }
 
 
