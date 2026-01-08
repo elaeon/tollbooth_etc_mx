@@ -96,6 +96,7 @@ const _layers = {
 };
 
 let _activeLayer = null;
+let _tmpMarkerData = null;
 
 function layerIcons() {
 	const icons = [blueIcon, goldIcon, redIcon];
@@ -432,7 +433,10 @@ function showMarkerProps(marker) {
 	if (!panel) return;
 	if (!data) { panel.style.display = 'none'; panel.innerHTML = ''; return; }
 	const props = data.props || {};
-	let html = `<div style="font-weight:600;margin-bottom:6px">Marker properties</div>`;
+	let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
+	html += `<span>Marker properties</span>`;
+	html += `<button class="btn-copy-marker" style="padding:2px 8px;font-size:12px;cursor:pointer">Copy</button>`;
+	html += `</div>`;
 	html += '<table style="width:100%;font-size:12px;border-collapse:collapse">';
 	for (const key of Object.keys(props)) {
 		const val = props[key] == null ? '' : (typeof props[key] === 'object' ? JSON.stringify(props[key]) : String(props[key]));
@@ -442,6 +446,9 @@ function showMarkerProps(marker) {
 	html += '</table>';
 	panel.innerHTML = html;
 	panel.style.display = 'block';
+	// attach copy button handler
+	const copyBtn = panel.querySelector('.btn-copy-marker');
+	if (copyBtn) copyBtn.addEventListener('click', () => { copyMarkerPropsToTemp(marker); });
 }
 
 function extractCoordinates(data) {
@@ -562,7 +569,7 @@ function createPopupFormHTML(marker) {
 	const id = `marker-form-${++_markerFormId}`;
 	const props = data.props || {};
 	let html = `<div style="min-width:220px"><form id="${id}" class="marker-form">`;
-	html += `<div><strong>Marker data</strong></div>`;
+	html += `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><strong>Marker data</strong><button type="button" class="btn-paste-marker" style="padding:2px 8px;font-size:12px;cursor:pointer" ${!_tmpMarkerData ? 'disabled' : ''}>Paste</button></div>`;
 	html += `<input type="hidden" name="lat" value="${escapeHtml(position.lat)}">`;
 	html += `<input type="hidden" name="lng" value="${escapeHtml(position.lng)}">`;
 	html += `<input type="hidden" name="tollbooth_id" value="${escapeHtml(data.tollbooth_id ?? '')}">`;
@@ -604,6 +611,26 @@ function createInfoPopupHTML(marker, moveOpt) {
 	return html;
 }
 
+function copyMarkerPropsToTemp(marker) {
+	if (!marker || !marker.__data) return;
+	_tmpMarkerData = structuredClone(marker.__data);
+	alert(`Copied marker data (ID: ${marker.__data.tollbooth_id || 'new'})`);
+	// update paste button state in any open form
+	const forms = document.querySelectorAll('.btn-paste-marker');
+	forms.forEach(btn => { btn.disabled = false; });
+}
+
+function pasteMarkerPropsFromTemp(formId) {
+	const form = document.getElementById(formId);
+	if (!form || !_tmpMarkerData) return;
+	const formData = new FormData(form);
+	const tmpProps = _tmpMarkerData.props || {};
+	for (const key of Object.keys(tmpProps)) {
+		const input = form.querySelector(`input[name="${key}"]`);
+		if (input) input.value = tmpProps[key] == null ? '' : String(tmpProps[key]);
+	}
+	//alert('Pasted marker properties');
+}
 
 
 function attachPopupFormHandlers(popup, marker) {
@@ -614,6 +641,11 @@ function attachPopupFormHandlers(popup, marker) {
 	const status = el.querySelector('.form-status');
 	// prevent attaching multiple times
 	if (form._attached) return; form._attached = true;
+	
+	// attach paste button handler
+	const pasteBtn = el.querySelector('.btn-paste-marker');
+	if (pasteBtn) pasteBtn.addEventListener('click', () => { pasteMarkerPropsFromTemp(form.id); });
+	
 	form.addEventListener('submit', async (ev) => {
 		ev.preventDefault();
 		const fd = new FormData(form);
@@ -643,11 +675,14 @@ function attachPopupFormHandlers(popup, marker) {
 				status.textContent = 'Saved to server';
 				marker.__data.tollbooth_id = respData.tollbooth_id;
 				try { showMarkerProps(marker); } catch (err) { console.warn('showMarkerProps error', err); }
+				new_marker = addTbMarker(marker.__data, '');
+				marker.closePopup();
+				addInfoPopup(new_marker, moveOpt=false);
 				if (_layers.tmptb.layer.hasLayer(marker)) {
-					new_marker = addTbMarker(marker.__data, '');
 					_layers.tmptb.layer.removeLayer(marker);
-					marker.closePopup();
-					addInfoPopup(new_marker, moveOpt=false);
+				}
+				if (_layers[_activeLayer].layer.hasLayer(marker)) {
+					_layers[_activeLayer].layer.removeLayer();
 				}
 		   	}
 		} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
