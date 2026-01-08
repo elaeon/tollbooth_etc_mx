@@ -433,7 +433,7 @@ const QueryControl = L.Control.extend({
 			statusEl.textContent = 'Markers cleared';
 		});
 
-		btnClearAll.addEventListener('clock', () => {
+		btnClearAll.addEventListener('click', () => {
 			queryInputEl.value = null;
 			clearAllLayers();
 			statusEl.textContent = 'Layers cleared';
