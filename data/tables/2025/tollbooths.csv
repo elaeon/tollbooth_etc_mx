@@ -29,11 +29,11 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 28,332,el mangle,22.95389830420211,-109.97385263442995,open,baja california sur,troncal,2,toll,capufe,
 29,86,san jose del cabo,23.0499537520382,-109.719566808932,open,baja california sur,troncal,3,toll,capufe,
 30,332,san lucas,22.92432134172462,-109.91724729537965,open,baja california sur,troncal,2,toll,capufe,
-31,132,la seyba,19.6369482647335,-90.6723493621941,open,campeche,entronque,1,toll,capufe,
-32,132,la seyba,19.6375980405243,-90.672962861246,open,campeche,entronque,1,toll,capufe,
-33,132,la seyba,19.6361856057788,-90.6716233612033,open,campeche,troncal,6,toll,capufe,
-34,1030,puente la unidad,18.7855271553491,-91.4948687798235,open,campeche,troncal,2,toll,gob-campeche,bridge
-35,164,zacatal,18.6128546972409,-91.8608288100684,open,campeche,troncal,4,toll,capufe,bridge
+31,132,la seyba,19.636898598557742,-90.67235469818117,open,campeche,entronque,1,toll,capufe,
+32,132,la seyba,19.63752509866224,-90.67289650440217,open,campeche,entronque,1,toll,capufe,
+33,132,la seyba,19.636312515601983,-90.67163050174713,open,campeche,troncal,3,toll,capufe,
+34,1030,puente la unidad,18.7855271553491,-91.4948687798235,open,campeche,troncal,1,toll,gob-campeche,bridge
+35,164,zacatal,18.6128546972409,-91.8608288100684,open,campeche,troncal,2,toll,capufe,bridge
 36,1057,ceda,19.3673844285109,-99.0952241941893,open,cdmx,troncal,3,toll,ficeda,
 37,1057,ceda,19.3684588021814,-99.0853570718427,open,cdmx,troncal,3,toll,ficeda,
 38,1057,ceda,19.3782445141604,-99.0867622948792,open,cdmx,troncal,10,toll,ficeda,
@@ -52,13 +52,13 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 51,909,santa fe,19.3634139042647,-99.2673382308222,open,cdmx,entronque,3,toll,pinfra,
 52,909,santa fe,19.3591589545372,-99.2736038022331,open,cdmx,troncal,2,toll,pinfra,
 53,1,tlalpan,19.2425215745866,-99.1487255384838,open,cdmx,troncal,19,toll,capufe,
-54,930,arriaga viapass,16.2572922499705,-93.8755647402215,open,chiapas,troncal,4,toll,cas,
-55,929,chiapa de corzo viapass,16.7306988083329,-93.0095605957671,open,chiapas,troncal,6,toll,cas,
+54,930,arriaga viapass,16.2572922499705,-93.8755647402215,open,chiapas,troncal,2,toll,cas,
+55,929,chiapa de corzo viapass,16.7306988083329,-93.0095605957671,open,chiapas,troncal,3,toll,cas,
 56,932,jiquipilas,16.6222882856855,-93.602447896905,open,chiapas,entronque,1,toll,cas,
-57,932,jiquipilas,16.6206012423615,-93.6020741838295,open,chiapas,troncal,4,toll,cas,
-58,932,jiquipilas,16.6206583624816,-93.6005241102529,open,chiapas,entronque,1,toll,cas,
-59,931,ocotzocoautla,16.7384872011478,-93.40040439429,open,chiapas,troncal,4,toll,cas,
-60,182,ocozocoautla (ocuilapa),16.8632112389563,-93.4069789656029,open,chiapas,troncal,5,toll,capufe,
+57,932,jiquipilas,16.6206012423615,-93.6020741838295,open,chiapas,troncal,2,toll,cas,
+58,932,jiquipilas,16.620627709075325,-93.60049545764923,open,chiapas,entronque,1,toll,cas,
+59,931,ocotzocoautla,16.7384872011478,-93.40040439429,open,chiapas,troncal,2,toll,cas,
+60,182,ocozocoautla (ocuilapa),16.863177575031692,-93.40688824653627,open,chiapas,troncal,2,toll,capufe,
 61,60,rodolfo robles,14.6770363349637,-92.149698242498,open,chiapas,troncal,2,toll,capufe,International-bridge
 62,85,suchiate ii,14.7021866493007,-92.1513919577735,open,chiapas,troncal,4,toll,capufe,International-bridge
 63,1009,camargo,27.730902423727294,-105.19765377044678,open,chihuahua,troncal,2,toll,gob-chihuahua,
@@ -507,11 +507,11 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 506,144,zinapecuaro-copandaro,19.8822618793442,-101.202062273759,open,michoacan,entronque,1,toll,rco,
 507,144,zinapecuaro-cuto,19.8804420153682,-101.203354925288,open,michoacan,entronque,2,toll,rco,
 508,911,zirahuen,19.5055788373315,-101.659337858396,open,michoacan,troncal,3,toll,autopistas-michoacan,
-509,106,aeropuerto,18.8027340695617,-99.2198614405789,open,morelos,entronque,2,toll,capufe,
+509,106,aeropuerto,18.80272945153068,-99.21982526779175,open,morelos,entronque,2,toll,capufe,
 510,106,aeropuerto,18.8023502070447,-99.2212930395253,open,morelos,entronque,2,toll,capufe,
-511,101,alpuyeca (puente de ixtla),18.7224974495408,-99.2599268571526,open,morelos,entronque,3,toll,capufe,
-512,101,alpuyeca balnearios,18.7238718405969,-99.2602435755156,open,morelos,entronque,2,toll,capufe,
-513,558,el higueron,18.6527839930469,-99.0087937532648,open,morelos,troncal,2,toll,pinfra,
+511,101,alpuyeca (puente de ixtla),18.7224974495408,-99.2599268571526,open,morelos,entronque,2,toll,capufe,
+512,101,alpuyeca balnearios,18.723822077214802,-99.26026225090027,open,morelos,entronque,2,toll,capufe,
+513,558,el higueron,18.652710396202117,-99.00879979133607,open,morelos,troncal,2,toll,pinfra,
 514,558,el higueron,18.6526233086585,-99.0088059643153,open,morelos,entronque,2,toll,pinfra,
 515,558,el higueron,18.6529368051569,-99.0087958518981,open,morelos,entronque,2,toll,pinfra,
 516,558,el higueron,18.652765075251,-99.0016987637839,open,morelos,entronque,1,toll,pinfra,
@@ -520,17 +520,17 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 519,107,emiliano zapata,18.8381101432094,-99.217373213978,open,morelos,troncal,2,toll,capufe,
 520,107,emiliano zapata,18.8383843048332,-99.2175448753529,open,morelos,entronque,3,toll,capufe,
 521,107,emiliano zapata,18.8381659909839,-99.2166168310445,open,morelos,entronque,4,toll,capufe,
-522,184,ing. francisco velazco duran,18.6985256252715,-99.2780406209234,open,morelos,troncal,8,toll,capufe,
+522,184,ing. francisco velazco duran,18.69850396919014,-99.27815794944765,open,morelos,troncal,4,toll,capufe,
 523,25,oacalco,18.9305062231864,-99.025971341591,open,morelos,entronque,2,toll,capufe,
 524,25,oacalco,18.9313748878619,-99.0249683753439,open,morelos,entronque,2,toll,capufe,
 525,465,oaxtepec,18.9032498875937,-98.9853500731736,open,morelos,entronque,2,toll,capufe,
 526,465,oaxtepec,18.9054734221685,-98.9875001412582,open,morelos,troncal,4,toll,capufe,
-527,465,oaxtepec,18.903688269885,-98.9852815537712,open,morelos,entronque,2,toll,capufe,
+527,465,oaxtepec,18.903713447740557,-98.9852660894394,open,morelos,entronque,2,toll,capufe,
 528,465,oaxtepec,18.9313748878619,-99.0249683753439,open,morelos,entronque,2,toll,capufe,
 529,24,tepoztlan,18.9870391283263,-99.112506135935,open,morelos,troncal,9,toll,capufe,
 530,224,tepoztlan bis,18.9847394621035,-99.1105872756711,open,morelos,entronque,3,toll,capufe,
 531,195,tres marias,19.0563699107673,-99.2410805536357,open,morelos,entronque,1,toll,capufe,
-532,105,xochitepec,18.7749909381008,-99.2253253770009,open,morelos,entronque,1,toll,capufe,
+532,105,xochitepec,18.775005602870166,-99.22533988952638,open,morelos,entronque,1,toll,capufe,
 533,402,acaponeta,22.4538685583001,-105.424741222489,open,nayarit,troncal,5,toll,mazatlan-culiacan,
 534,402,acaponeta,22.4540981887947,-105.418787977671,open,nayarit,entronque,2,toll,mazatlan-culiacan,
 535,581,amado nervo,21.0890512256896,-104.717122918588,open,nayarit,troncal,3,toll,ocacsa,
@@ -792,19 +792,19 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 791,1003,san luis rio colorado,32.4917090275577,-114.808860491721,open,sonora,troncal,3,toll,capufe,bridge
 792,1020,san luis rio colorado ii,32.4570757258847,-114.70138923845,open,sonora,entronque,3,toll,puente-colorado,International-bridge
 793,1005,santa ana,30.5936050303953,-111.51849090106,open,sonora,troncal,3,toll,ccp,
-794,38,grijalva,17.9476275643347,-92.7852296018254,open,tabasco,troncal,6,toll,capufe,bridge
-795,181,malpasito,17.3482970516066,-93.5869275563107,open,tabasco,entronque,1,toll,capufe,
+794,38,grijalva,17.947625640994044,-92.78520584106447,open,tabasco,troncal,3,toll,capufe,bridge
+795,181,malpasito,17.348277891419706,-93.58697175979616,open,tabasco,entronque,1,toll,capufe,
 796,181,malpasito,17.3491519391501,-93.5855207083418,open,tabasco,entronque,1,toll,capufe,
-797,181,malpasito,17.3490878396699,-93.5864628994529,open,tabasco,troncal,6,toll,capufe,
+797,181,malpasito,17.349092031632917,-93.58639776706697,open,tabasco,troncal,3,toll,capufe,
 798,227,nacajuca,18.0766615776509,-92.9367244029511,open,tabasco,entronque,1,toll,oav,
 799,227,nacajuca,18.0765235301859,-92.9367406867909,open,tabasco,entronque,1,toll,oav,
-800,227,nacajuca,18.0760915396505,-92.9306098616642,open,tabasco,troncal,9,toll,oav,
+800,227,nacajuca,18.076127820662112,-92.93067276477815,open,tabasco,troncal,5,toll,oav,
 801,227,nacajuca,18.0766102241478,-92.9367460512087,open,tabasco,entronque,1,toll,oav,
 802,227,nacajuca,18.0767023747827,-92.9366546655205,open,tabasco,entronque,1,toll,oav,
 803,176,sanchez magallanes,18.0299516774441,-93.8131170158558,open,tabasco,entronque,1,toll,capufe,
 804,176,sanchez magallanes,18.0316145947275,-93.8136802797191,open,tabasco,entronque,1,toll,capufe,
-805,176,sanchez magallanes,18.0305893303517,-93.8129776825897,open,tabasco,troncal,6,toll,capufe,
-806,39,usumacinta,17.8598541170046,-91.7836836866297,open,tabasco,troncal,3,toll,capufe,bridge
+805,176,sanchez magallanes,18.030632984715076,-93.8129371404648,open,tabasco,troncal,3,toll,capufe,
+806,39,usumacinta,17.8598541170046,-91.7836836866297,open,tabasco,troncal,2,toll,capufe,bridge
 807,30,camargo,26.3624441099892,-98.8064511355999,open,tamaulipas,troncal,3,toll,capufe,International-bridge
 808,171,ignacio zaragoza (los tomates),25.8742172236398,-97.4746700487261,open,tamaulipas,troncal,8,toll,opan,International-bridge
 809,74,juarez-lincon,27.4982973897018,-99.5025443162606,open,tamaulipas,troncal,4,toll,capufe,International-bridge
@@ -851,65 +851,65 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 850,1018,zacatelco ii,19.2114511456844,-98.2631295544077,open,tlaxcala,entronque,3,toll,pinfra,
 851,119,acayucan (sayula),17.9097424926721,-94.9373061583801,open,veracruz,entronque,2,toll,capufe,
 852,119,acayucan (sayula),17.910803786741,-94.9368171505412,open,veracruz,entronque,2,toll,capufe,
-853,119,acayucan (sayula),17.9100885650035,-94.9372944469177,open,veracruz,troncal,,toll,capufe,
+853,119,acayucan (sayula),17.910071003099496,-94.93729233741762,open,veracruz,troncal,3,toll,capufe,
 854,119,acayucan (sayula),17.9095668896522,-94.9378505668816,open,veracruz,entronque,1,toll,capufe,
-855,428,allende,18.1471222779801,-94.3969517531557,open,veracruz,troncal,8,toll,tunel-coatzacoalcos,tunnel
-856,22,alvarado,18.7698984768342,-95.7445876024632,open,veracruz,troncal,3,toll,capufe,bridge
-857,990,amozoc-perote (perote),19.5518035851268,-97.2895397511599,open,veracruz,troncal,6,toll,gana,
-858,457,antigua,19.3203583322945,-96.3108067521283,open,veracruz,troncal,7,toll,cardel-veracruz,
-859,118,cosamaloapan,18.3351380248287,-95.8222128893161,open,veracruz,troncal,5,toll,capufe,
-860,118,cosamaloapan,18.3349629940867,-95.8223286701622,open,veracruz,entronque,1,toll,capufe,
-861,118,cosamaloapan,18.3352232033453,-95.8221748128233,open,veracruz,entronque,1,toll,capufe,
+855,428,allende,18.147166954868435,-94.39692914485933,open,veracruz,troncal,4,toll,tunel-coatzacoalcos,tunnel
+856,22,alvarado,18.7698984768342,-95.7445876024632,open,veracruz,troncal,2,toll,capufe,bridge
+857,990,amozoc-perote (perote),19.5518035851268,-97.2895397511599,open,veracruz,troncal,3,toll,gana,
+858,457,antigua,19.320392459810467,-96.31071746349336,open,veracruz,troncal,4,toll,cardel-veracruz,
+859,118,cosamaloapan,18.335130879313038,-95.8222496509552,open,veracruz,troncal,3,toll,capufe,
+860,118,cosamaloapan,18.33488645923249,-95.82237839698793,open,veracruz,entronque,1,toll,capufe,
+861,118,cosamaloapan,18.33521744467537,-95.8221960067749,open,veracruz,entronque,1,toll,capufe,
 862,116,cuitlahuac,18.8386652548811,-96.7394780938629,open,veracruz,entronque,1,toll,capufe,
-863,116,cuitlahuac,18.8394949894077,-96.7469072170516,open,veracruz,troncal,7,toll,capufe,
+863,116,cuitlahuac,18.8394949894077,-96.7469072170516,open,veracruz,troncal,4,toll,capufe,
 864,116,cuitlahuac,18.8375262293615,-96.7374381806358,open,veracruz,entronque,1,toll,capufe,
-865,67,dovali,18.0133329648992,-94.3967973115831,open,veracruz,troncal,8,toll,capufe,bridge
+865,67,dovali,18.013421444729268,-94.39678966999055,open,veracruz,troncal,4,toll,capufe,bridge
 866,67,dovali bis,18.014043,-94.443283,open,veracruz,entronque,2,toll,capufe,bridge
 867,45,fortin,18.9070306337737,-97.0112507260871,closed,veracruz,troncal,,toll,capufe,
 868,179,las chopas,17.9448041337919,-94.1723878312923,open,veracruz,troncal,6,toll,capufe,
 869,179,las chopas,17.9427120228943,-94.1722361431873,open,veracruz,entronque,1,toll,capufe,
-870,460,las vigas,19.6305033466301,-97.128109887263,open,veracruz,troncal,8,toll,copexa,
-871,464,los gil,20.8861398935897,-97.4668017687661,open,veracruz,troncal,6,toll,autopista-tuxpan-tampico,
-872,584,miahuapan,20.6109468726598,-97.6145598484767,open,veracruz,troncal,6,toll,auneti,
-873,461,miradores,19.4744264920874,-96.7754078507077,open,veracruz,troncal,8,toll,copexa,
+870,460,las vigas,19.630562726290357,-97.12800264358522,open,veracruz,troncal,4,toll,copexa,
+871,464,los gil,20.886149321431933,-97.46674418449403,open,veracruz,troncal,3,toll,autopista-tuxpan-tampico,
+872,584,miahuapan,20.6109468726598,-97.6145598484767,open,veracruz,troncal,3,toll,auneti,
+873,461,miradores,19.474426522784597,-96.77535116672517,open,veracruz,troncal,4,toll,copexa,
 874,556,naranjos,21.3243065152292,-97.6262173229553,open,veracruz,entronque,1,toll,autopista-tuxpan-tampico,
 875,556,naranjos,21.3270017490051,-97.6275208669197,open,veracruz,entronque,2,toll,autopista-tuxpan-tampico,
-876,556,naranjos,21.3271089147825,-97.6273263046096,open,veracruz,troncal,5,toll,autopista-tuxpan-tampico,
+876,556,naranjos,21.32715696736073,-97.62729585170746,open,veracruz,troncal,2,toll,autopista-tuxpan-tampico,
 877,556,naranjos,21.3243786667974,-97.6251432274458,open,veracruz,entronque,1,toll,autopista-tuxpan-tampico,
 878,556,naranjos,21.3272198396034,-97.627142719318,open,veracruz,entronque,2,toll,autopista-tuxpan-tampico,
-879,33,nautla,20.2102173338087,-96.7787502121891,open,veracruz,troncal,2,toll,capufe,bridge
+879,33,nautla,20.210238401612255,-96.77873611450195,open,veracruz,troncal,1,toll,capufe,bridge
 880,117,paso del toro,19.0847004177133,-96.1968254939115,open,veracruz,entronque,1,toll,capufe,
-881,117,paso del toro,19.0817022681395,-96.1983862815144,open,veracruz,troncal,4,toll,capufe,
+881,117,paso del toro,19.08165244585545,-96.19838118553162,open,veracruz,troncal,2,toll,capufe,
 882,117,paso del toro,19.0841245138445,-96.1961551564976,open,veracruz,entronque,1,toll,capufe,
-883,117,paso del toro,19.0817907226476,-96.1985149371106,open,veracruz,entronque,2,toll,capufe,
-884,117,paso del toro,19.08164969824,-96.1983260196096,open,veracruz,entronque,1,toll,capufe,
-885,459,plan del rio,19.3970297525844,-96.6216179284461,open,veracruz,troncal,6,toll,cpm,
-886,1024,puente coatzacoalcos,18.1151641008526,-94.4108727848893,closed,veracruz,troncal,7,toll,capufe,bridge
-887,1038,puente el prieto,22.2033426232517,-97.9374342001454,open,veracruz,troncal,4,toll,pinfra,bridge
-888,1029,puente jose lopez portillo,20.9300771287757,-97.6807086706342,open,veracruz,troncal,4,toll,gob-veracruz,bridge
-889,14,puente nacional panuco,22.1488043994695,-98.1449048373302,open,veracruz,troncal,4,toll,capufe,bridge
-890,49,puente nacional tampico,22.2183444974791,-97.8247299401096,open,veracruz,troncal,4,toll,capufe,bridge
-891,579,puente tuxpan,20.7529475721322,-97.4823739809042,open,veracruz,troncal,10,toll,golfo-centro,
+883,117,paso del toro,19.08175890874054,-96.1985582113266,open,veracruz,entronque,2,toll,capufe,
+884,117,paso del toro,19.081616958211892,-96.19830071926118,open,veracruz,entronque,1,toll,capufe,
+885,459,plan del rio,19.397093762270025,-96.6215854883194,open,veracruz,troncal,3,toll,cpm,
+886,1024,puente coatzacoalcos,18.1151641008526,-94.4108727848893,closed,veracruz,troncal,4,toll,capufe,bridge
+887,1038,puente el prieto,22.2033426232517,-97.9374342001454,open,veracruz,troncal,2,toll,pinfra,bridge
+888,1029,puente jose lopez portillo,20.930052379335176,-97.68065571784975,open,veracruz,troncal,2,toll,gob-veracruz,bridge
+889,14,puente nacional panuco,22.1488043994695,-98.1449048373302,open,veracruz,troncal,2,toll,capufe,bridge
+890,49,puente nacional tampico,22.218347252210602,-97.82466888427734,open,veracruz,troncal,2,toll,capufe,bridge
+891,579,puente tuxpan,20.752928520331757,-97.48224198818208,open,veracruz,troncal,5,toll,golfo-centro,
 892,580,puente tuxpan aux. 1 (tihuatlan),20.688195588487,-97.49490448459,open,veracruz,entronque,2,toll,golfo-centro,
 893,580,puente tuxpan axu. 2 (tihuatlan),20.6887610585399,-97.4942530867572,open,veracruz,entronque,3,toll,golfo-centro,
 894,99,refineria lazaro cardenas,18.0151161422607,-94.4537657424698,open,veracruz,entronque,2,toll,capufe,
-895,458,san julian,19.2392757760823,-96.2579391652296,open,veracruz,troncal,5,toll,cardel-veracruz,
-896,43,tecolutla,20.4377597991981,-97.0865232075881,open,veracruz,troncal,2,toll,capufe,bridge
-897,63,tlacotalpan,18.7046036640904,-95.6413025243654,open,veracruz,troncal,2,toll,capufe,bridge
+895,458,san julian,19.239223483335326,-96.25788331031801,open,veracruz,troncal,3,toll,cardel-veracruz,
+896,43,tecolutla,20.43777543795867,-97.08649814128877,open,veracruz,troncal,1,toll,capufe,bridge
+897,63,tlacotalpan,18.70461155371193,-95.64129173755646,open,veracruz,troncal,1,toll,capufe,bridge
 898,177,totomoxtle,20.461974987355,-97.2460544454181,open,veracruz,entronque,1,toll,cardel-pozarica,
-899,555,totomoxtle ii,20.4603165244628,-97.2454863816265,open,veracruz,entronque,2,toll,cardel-pozarica,
+899,555,totomoxtle ii,20.460193056594218,-97.2454458475113,open,veracruz,entronque,2,toll,cardel-pozarica,
 900,555,totomoxtle ii,20.4610110723239,-97.2478186300367,open,veracruz,entronque,2,toll,cardel-pozarica,
-901,555,totomoxtle ii,20.4595038033763,-97.2463587112581,open,veracruz,troncal,5,toll,cardel-pozarica,
-902,555,totomoxtle ii,20.4590873952363,-97.2465199276544,open,veracruz,entronque,2,toll,cardel-pozarica,
+901,555,totomoxtle ii,20.4595038033763,-97.2463587112581,open,veracruz,troncal,2,toll,cardel-pozarica,
+902,555,totomoxtle ii,20.458946602249192,-97.24646508693696,open,veracruz,entronque,2,toll,cardel-pozarica,
 903,569,vega de alatorre,20.0439539821633,-96.6844728221322,open,veracruz,entronque,1,toll,cardel-pozarica,
 904,569,vega de alatorre,20.0441709232603,-96.6842213702487,open,veracruz,entronque,1,toll,cardel-pozarica,
 905,569,vega de alatorre,20.0399820134827,-96.6807660823281,open,veracruz,entronque,2,toll,cardel-pozarica,
-906,569,vega de alatorre,20.044074281196,-96.6843339883402,open,veracruz,troncal,5,toll,cardel-pozarica,
+906,569,vega de alatorre,20.044088908617166,-96.68431162834169,open,veracruz,troncal,3,toll,cardel-pozarica,
 907,569,vega de alatorre,20.0403442197993,-96.680305179202,open,veracruz,entronque,1,toll,cardel-pozarica,
-908,478,chichen itza (valladolid),20.7290793807312,-88.5831758515434,open,yucatan,troncal,3,toll,mayab,
+908,478,chichen itza (valladolid),20.7290793807312,-88.5831758515434,open,yucatan,entronque,1,toll,mayab,
 909,478,chichen itza (valladolid),20.7291528697115,-88.5847372937042,open,yucatan,entronque,1,toll,mayab,
 910,478,chichen itza (valladolid),20.7290185628334,-88.5824285570085,open,yucatan,entronque,1,ticket,mayab,
-911,478,chichen itza (valladolid),20.7289439176285,-88.5832134024692,open,yucatan,troncal,3,toll,mayab,
+911,478,chichen itza (valladolid),20.728978526465145,-88.58322501182556,open,yucatan,troncal,3,toll,mayab,
 912,478,chichen itza (valladolid),20.727734090467,-88.5782094094919,open,yucatan,entronque,1,toll,mayab,
 913,479,tintal,20.6989305070085,-87.1443139607406,open,quintana roo,troncal,2,toll,mayab,
 914,479,tintal,20.8953294787957,-87.4385228354479,open,quintana roo,entronque,2,toll,mayab,
@@ -934,7 +934,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 933,,Guanajuato,20.9824302713286,-101.290116417182,open,guanajuato,troncal,5,toll,,
 934,421,libramiento matehuala,23.6637767620676,-100.608342811911,closed,san luis potosi,entronque,2,toll,omega,
 935,421,libramiento matehuala,23.6641489489375,-100.606240971637,closed,san luis potosi,entronque,2,toll,omega,
-936,,Emiliano Zapata,18.8375108767685,-99.2152884212655,closed,morelos,troncal,4,toll,capufe,
+936,,Emiliano Zapata,18.837445111190828,-99.21539962291719,closed,morelos,troncal,4,toll,capufe,
 937,,Nopala,19.4862117767334,-99.3114776611328,open,edomx,entronque,2,ticket,,
 938,,La Venta,19.3336696624756,-99.3137130737305,open,edomx,entronque,2,toll,,
 939,,Laguna Seca,19.3541145324707,-99.9829788208008,open,edomx,entronque,1,toll,acomex,
@@ -1326,3 +1326,75 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1325,,calpulalpan,19.619411186266944,-98.54961633682252,open,tlaxcala,entronque,2,toll,arconorte,
 1326,,san martin texmelucan,19.30152413613483,-98.40396702289583,open,tlaxcala,troncal,3,toll,pinfra,
 1327,,amozoc-perote (cuapiaxtla),19.3101915838867,-97.79731571674348,open,tlaxcala,entronque,1,toll,gana,
+1328,,arriaga viapass,16.257238125146507,-93.87545943260194,open,chiapas,troncal,2,toll,cas,
+1329,,jiquipilas,16.622262314593076,-93.60237300395967,open,chiapas,entronque,1,toll,cas,
+1330,,jiquipilas,16.620566025575677,-93.60044717788698,open,chiapas,entronque,1,toll,cas,
+1331,,jiquipilas,16.620555744990472,-93.60199213027956,open,chiapas,troncal,2,toll,cas,
+1332,,ocotzocoautla,16.738422352368406,-93.40037047863008,open,chiapas,troncal,2,toll,cas,
+1333,,ocozocoautla (ocuilapa),16.863085167523572,-93.40694189071657,open,chiapas,troncal,3,toll,capufe,
+1334,,chiapa de corzo viapass,16.730613761813974,-93.00965309143068,open,chiapas,troncal,3,toll,cas,
+1335,,malpasito,17.349045948321134,-93.58650505542755,open,tabasco,troncal,3,toll,capufe,
+1336,,malpasito,17.349061309426336,-93.58555018901826,open,tabasco,entronque,1,toll,capufe,
+1337,,malpasito,17.348267650639297,-93.58690202236176,open,tabasco,entronque,1,toll,capufe,
+1338,,sanchez magallanes,18.029908644389504,-93.8130122423172,open,tabasco,entronque,1,toll,capufe,
+1339,,sanchez magallanes,18.03154095640607,-93.81374180316925,open,tabasco,entronque,1,toll,capufe,
+1340,,sanchez magallanes,18.030439147455265,-93.81299614906312,open,tabasco,troncal,3,toll,capufe,
+1341,,nacajuca,18.0759646315408,-92.93059766292573,open,tabasco,troncal,4,toll,oav,
+1342,,grijalva,17.947569503828227,-92.7853399515152,open,tabasco,troncal,3,toll,capufe,bridge
+1343,,usumacinta,17.859810474884327,-91.78358316421509,open,tabasco,troncal,1,toll,capufe,bridge
+1344,,zacatal,18.612776406435028,-91.86087369918825,open,campeche,troncal,2,toll,capufe,bridge
+1345,,puente la unidad,18.78552891260343,-91.49478435516359,open,campeche,troncal,1,toll,gob-campeche,bridge
+1346,,la seyba,19.63619630924458,-90.67151248455049,open,campeche,troncal,2,toll,capufe,
+1347,,la seyba,19.636150837168778,-90.67145347595215,open,campeche,entronque,1,toll,capufe,
+1348,,chichen itza (valladolid),20.729033715139693,-88.58319818973543,open,yucatan,troncal,3,toll,mayab,
+1349,,chichen itza (valladolid),20.728938389234635,-88.5832464694977,open,yucatan,troncal,3,toll,mayab,
+1350,,tintal,20.89983626679897,-87.43484258651735,open,quintana roo,troncal,3,toll,mayab,
+1351,,tepoztlan,18.987116866185083,-99.11236524581909,open,morelos,entronque,2,toll,capufe,
+1352,,tepoztlan,18.9869646896315,-99.11266028881074,open,morelos,troncal,4,toll,capufe,
+1353,,oaxtepec,18.93132470409612,-99.02508616447449,open,morelos,entronque,2,toll,capufe,
+1354,,oacalco,18.930441782853897,-99.02604639530183,open,morelos,entronque,2,toll,capufe,
+1355,,oaxtepec,18.90366777197177,-98.98534119129182,open,morelos,troncal,2,toll,capufe,
+1356,,aeropuerto,18.802257183848166,-99.22128438949586,open,morelos,entronque,2,toll,capufe,
+1357,,aeropuerto,18.802663435697756,-99.21991109848024,open,morelos,entronque,1,toll,capufe,
+1358,,xochitepec,18.774985286964842,-99.22522723674774,open,morelos,entronque,1,toll,capufe,
+1359,,alpuyeca (puente de ixtla),18.72236904329031,-99.25994575023653,open,morelos,entronque,1,toll,capufe,
+1360,,ing. francisco velazco duran,18.698412506183075,-99.27795946598054,open,morelos,troncal,4,toll,capufe,
+1361,,el higueron,18.652791718577813,-99.00879442691804,open,morelos,troncal,2,toll,pinfra,
+1362,,nuevo necaxa,20.134723144858164,-98.1231987476349,open,hidalgo,entronque,1,toll,golfo-centro,
+1363,,calpulalpan,19.61912821913546,-98.54940712451936,open,hidalgo,entronque,1,toll,arconorte,
+1364,,calpulalpan,19.620078178248693,-98.54705214500429,open,hidalgo,entronque,1,toll,arconorte,
+1365,,calpulalpan,19.620073125289526,-98.5469287633896,open,hidalgo,entronque,2,toll,arconorte,
+1366,,puente nacional tampico,22.21835221831807,-97.82479226589203,open,veracruz,troncal,2,toll,capufe,bridge
+1367,,puente el prieto,22.20324947297645,-97.93739676475526,open,veracruz,troncal,2,toll,pinfra,bridge
+1368,,puente nacional panuco,22.148730001957453,-98.14501583576204,open,veracruz,troncal,2,toll,capufe,bridge
+1369,,naranjos,21.327097002663887,-97.6274085044861,open,veracruz,troncal,3,toll,autopista-tuxpan-tampico,
+1370,,puente jose lopez portillo,20.93006741071106,-97.68076300621034,open,veracruz,troncal,2,toll,gob-veracruz,bridge
+1371,,los gil,20.886109226020224,-97.46693193912508,open,veracruz,troncal,3,toll,autopista-tuxpan-tampico,
+1372,,puente tuxpan,20.752943569408103,-97.48252630233766,open,veracruz,troncal,5,toll,golfo-centro,
+1373,,miahuapan,20.61084883143764,-97.61448025703432,open,veracruz,troncal,3,toll,auneti,
+1374,,totomoxtle ii,20.459444179995252,-97.24646508693696,open,veracruz,troncal,2,toll,cardel-pozarica,
+1375,,tecolutla,20.43770506360379,-97.08656251430513,open,veracruz,troncal,1,toll,capufe,bridge
+1376,,nautla,20.21015785538639,-96.77878975868225,open,veracruz,troncal,1,toll,capufe,bridge
+1377,,vega de alatorre,20.04403851370188,-96.68439209461212,open,veracruz,troncal,2,toll,cardel-pozarica,
+1378,,las vigas,19.630365673623867,-97.12800264358522,open,veracruz,troncal,4,toll,copexa,
+1379,,amozoc-perote (perote),19.551752722159073,-97.28938579559328,open,veracruz,troncal,3,toll,gana,
+1380,,miradores,19.47423939437138,-96.77549600601198,open,veracruz,troncal,4,toll,copexa,
+1381,,plan del rio,19.3970026834864,-96.62166059017183,open,veracruz,troncal,3,toll,cpm,
+1382,,antigua,19.320301338178506,-96.3109052181244,open,veracruz,troncal,3,toll,cardel-veracruz,
+1383,,san julian,19.239223483335326,-96.25780284404756,open,veracruz,troncal,1,toll,cardel-veracruz,
+1384,,san julian,19.239223483335326,-96.25800132751466,open,veracruz,troncal,3,toll,cardel-veracruz,
+1385,,san julian,19.239218418514533,-96.25809252262117,open,veracruz,troncal,1,toll,cardel-veracruz,
+1386,,paso del toro,19.08172342111978,-96.19847238063814,open,veracruz,troncal,2,toll,capufe,
+1387,,cuitlahuac,18.83956224498244,-96.7468822002411,open,veracruz,entronque,1,toll,capufe,
+1388,,cuitlahuac,18.839394702993033,-96.74694120883943,open,veracruz,troncal,3,toll,capufe,
+1389,,cuitlahuac,18.83930839341811,-96.74696803092957,open,veracruz,entronque,1,toll,capufe,
+1390,,alvarado,18.769814809450917,-95.74457287788393,open,veracruz,troncal,1,toll,capufe,bridge
+1391,,tlacotalpan,18.704560742769857,-95.64139366149904,open,veracruz,troncal,1,toll,capufe,bridge
+1392,,cosamaloapan,18.33501376140089,-95.8223193883896,open,veracruz,troncal,2,toll,capufe,
+1393,,cosamaloapan,18.335502600856504,-95.82349956035615,open,veracruz,entronque,1,etc,capufe,
+1394,,cosamaloapan,18.334652222997736,-95.82121431827547,open,veracruz,entronque,1,etc,capufe,
+1395,,acayucan (sayula),17.909948496010266,-94.93728697299959,open,veracruz,troncal,2,toll,capufe,
+1396,,acayucan (sayula),17.910183301190237,-94.93728697299959,open,veracruz,entronque,1,toll,capufe,
+1397,,dovali,18.01328880629631,-94.39671456813814,open,veracruz,troncal,4,toll,capufe,bridge
+1398,,puente coatzacoalcos,18.115049189242935,-94.41094100475313,closed,veracruz,troncal,3,toll,capufe,bridge
+1399,,allende,18.14696305114849,-94.39693450927736,open,veracruz,troncal,4,toll,tunel-coatzacoalcos,tunnel
