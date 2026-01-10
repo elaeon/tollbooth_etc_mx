@@ -51,7 +51,7 @@ const map = L.map('map', {
 
 //https://github.com/pointhi/leaflet-color-markers
 const greenIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
   iconSize: [20, 36],
   iconAnchor: [12, 41],
@@ -61,7 +61,7 @@ const greenIcon = new L.Icon({
 
 
 const blueIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
   iconSize: [20, 36],
   iconAnchor: [12, 41],
@@ -71,7 +71,7 @@ const blueIcon = new L.Icon({
 
 
 const redIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
   iconSize: [20, 36],
   iconAnchor: [12, 41],
@@ -80,13 +80,23 @@ const redIcon = new L.Icon({
 });
 
 const goldIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
   iconSize: [20, 36],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [36, 36]
 });
+
+const greyIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-grey.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [20, 36],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [36, 36]
+});
+
 
 function _buildLayersGrp() {
 	const _layers = {
@@ -552,7 +562,7 @@ function addTbMarker(c, sourceLabel) {
 		[c.lat, c.lng], 
 		{ 
 			title: c.props && (`${c.props.tollbooth_name} [${c.tollbooth_id}]`) || '',
-			icon: _layers[_activeLayer].options.markerIcon
+			icon:  (c.props && (c.props.status != 'closed')) ? _layers[_activeLayer].options.markerIcon : greyIcon
 		}
 	);
 	// attach original data to marker for use in the popup
