@@ -150,7 +150,7 @@ class Tollbooth(TbModel, table=True):
         return fields
 
 
-class TollboothSts(TbModel, table=True):
+class TbSts(TbModel, table=True):
     index: String = Field(primary_key=True)
     way: String
     highway: String | None = Field(default=None)

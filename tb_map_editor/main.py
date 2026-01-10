@@ -3,9 +3,9 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from sqlmodel import select
+from sqlmodel import select, or_
 
-from .model import Tollbooth, TollboothSts, TbImt
+from .model import Tollbooth, TbSts, TbImt
 from contextlib import asynccontextmanager
 from .utils.connector import SessionDep, create_db_and_tables
 
@@ -58,9 +58,16 @@ def map_root(request: Request):
 
 
 @app.post("/api/tollbooths/")
-def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit: int=100):
-    param, value = map(str.strip, body["query"].split(":"))
-    stm = select(Tollbooth).where(getattr(Tollbooth, param) == value)
+def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit: int=1000):
+    param, values = map(str.strip, body["query"].split(":"))
+    values = values.split(",")
+    if len(values) > 1:
+        params = []
+        for value in values:
+            params.append(getattr(Tollbooth, param) == value)
+        stm = select(Tollbooth).where(or_(*params))
+    else:
+        stm = select(Tollbooth).where(getattr(Tollbooth, param) == values[0])
     tollbooths = session.exec(stm.offset(offset).limit(limit))
     data = []
     for tb in tollbooths:
@@ -71,7 +78,7 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
 
 @app.post("/api/tollbooths_sts")
 def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=1000):
-    stm = select(TollboothSts)
+    stm = select(TbSts)
     tollbooths_sts = session.exec(stm.offset(offset).limit(limit))
     data = []
     for tb_sts in tollbooths_sts:
@@ -81,7 +88,7 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
             "way": tb_sts.way,
             "lat": tb_sts.lat,
             "lng": tb_sts.lng,
-            "source": TollboothSts.name()
+            "source": TbSts.name()
         })
     return data
 
@@ -108,8 +115,16 @@ def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
 
 @app.post("/api/tollbooths_imt")
 def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=1000):
-    param, value = map(str.strip, body["query"].split(":"))
-    stm = select(TbImt).where(TbImt.calirepr != "Virtual").where(getattr(TbImt, param) == value)
+    param, values = map(str.strip, body["query"].split(":"))
+    values = values.split(",")
+    stm = select(TbImt).where(TbImt.calirepr != "Virtual")
+    if len(values) > 1:
+        params = []
+        for value in values:
+            params.append(getattr(TbImt, param) == value)
+        stm = stm.where(or_(*params))
+    else:
+        stm = stm.where(getattr(TbImt, param) == values[0])
     tbs = session.exec(stm.offset(offset).limit(limit))
     data = []
     for tb in tbs:
