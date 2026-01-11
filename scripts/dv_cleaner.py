@@ -8,7 +8,7 @@ import sys
 import re
 from collections import defaultdict
 import argparse
-from tb_map_editor.data_files import DataPathSchema
+from tb_map_editor.data_files import DataModel
 
 
 _log = logging.getLogger(__name__)
@@ -46,7 +46,7 @@ def extract_index(page_text):
     strech_pat = re.compile(r"^movimiento:(?P<way>(.*?))\s\b(mex|slp|chih|ver|nl|km)\b")
     road_pat = re.compile(r"(?P<highway>\b(mex|ver|slp|chih|nl)\b[-]{0,1}\w*[-]*\w*){0,1}\s*km:(?P<km>\d+\.\d+)")
     lat_pat = re.compile(r"(lat:\s*)(?P<lat>[-]{0,1}\d+\.\d+)")
-    long_pat = re.compile(r"(long:\s*)(?P<long>[-]{0,1}\d+\.\d+)")
+    long_pat = re.compile(r"(long:\s*)(?P<lng>[-]{0,1}\d+\.\d+)")
     for line in page_text.split("\n"):
         line = line.lower().replace("(", "").replace(")", "")
         match_index = re.search(index_pat, line)
@@ -77,7 +77,7 @@ def extract_index(page_text):
         if match_lat is not None:
             lines_dict[scope_index]["lat"] = match_lat.groupdict()["lat"]
         if match_long is not None:
-            lines_dict[scope_index]["lon"] = match_long.groupdict()["long"]
+            lines_dict[scope_index]["lng"] = match_long.groupdict()["lng"]
         
         _log.debug(f"{scope_index}, {lines_dict.get(scope_index)}")
     return lines_dict
@@ -106,7 +106,7 @@ def fill_list(small_list, total_size):
 def main(year, from_page, to_page):
     prev_year = year - 1
     file_path = f"./datos_viales/{year}/33_PC_DV{year}.pdf"
-    data_path = DataPathSchema(prev_year)
+    data_path = DataModel(prev_year)
 
     with pdfplumber.open(file_path) as pdf:
         all_df = []
@@ -115,7 +115,7 @@ def main(year, from_page, to_page):
                 extracted_tables = page.extract_tables()
                 page_text = page.extract_text(keep_blank_chars=True)
                 df_index = lines_dict_to_df(page_text)
-                assert df_index.columns == ["index", "tollbooth_name", "way", "highway", "km", "lat", "lon"]
+                assert df_index.columns == ["index", "tollbooth_name", "way", "highway", "km", "lat", "lng"]
                 dfs = []
                 for table_num, table in enumerate(extracted_tables, 1):
                     tdpa = table[1][0]
@@ -141,7 +141,7 @@ def main(year, from_page, to_page):
                 all_df.append(df)
                 if page_num == to_page:
                     break
-        pl.concat(all_df).cast(data_path.tollbooths_sts.schema, strict=True).write_parquet(data_path.tollbooths_sts.parquet)
+        pl.concat(all_df).cast(data_path.tb_sts.model.dict_schema(), strict=True).write_parquet(data_path.tb_sts.parquet)
 
 
 if __name__ == "__main__":

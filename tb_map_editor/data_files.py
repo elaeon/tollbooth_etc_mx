@@ -52,8 +52,8 @@ class DataModel:
         return PathModel("roads", model.Road, self.attr)
 
     @property
-    def tollbooths_sts(self) -> PathModel:
-        return PathModel("tollbooths_sts", model.TollboothSts, self.attr)
+    def tb_sts(self) -> PathModel:
+        return PathModel("tb_sts", model.TbSts, self.attr)
     
     @property
     def strechs_toll(self) -> PathModel:

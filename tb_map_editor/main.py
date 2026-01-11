@@ -83,11 +83,12 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
     data = []
     for tb_sts in tollbooths_sts:
         data.append({
-            "tollbooth_id": tb_sts.tollboothsts_id,
+            "tollbooth_id": tb_sts.index,
             "tollbooth_name": tb_sts.tollbooth_name,
             "way": tb_sts.way,
             "lat": tb_sts.lat,
             "lng": tb_sts.lng,
+            "info_year": tb_sts.info_year,
             "source": TbSts.name()
         })
     return data
@@ -139,7 +140,7 @@ def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offs
 
 
 @app.post("/api/empty_data")
-def get_tb_data(body: Annotated[Any, Body()]):
+def get_tb_tpl(body: Annotated[Any, Body()]):
     empty_tb_data = {}
     if body.get("source") == "tollbooth":
         empty_tb_data = Tollbooth.online_empty_fields()

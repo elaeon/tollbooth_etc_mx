@@ -209,7 +209,7 @@ map.on('click', async (e) => {
 		if (_tpl_empty_tb_data == null) {
 			payload = { source: "tollbooth" };
 			try {
-				const resp = await fetch('{{ url_for("get_tb_data") }}', { 
+				const resp = await fetch('{{ url_for("get_tb_tpl") }}', { 
 					method: 'POST', 
 					headers: {'Content-Type':'application/json'}, 
 					body: JSON.stringify(payload)

@@ -40,9 +40,12 @@ def insert_tb_from_data(data_model: DataModel):
 
 
 def insert_tb_sts_from_data(data_model: DataModel):
-    parquet_file = data_model.tollbooths_sts.parquet
-    model_name = data_model.tollbooths_sts.model.name()
+    parquet_file = data_model.tb_sts.parquet
+    model_name = data_model.tb_sts.model.name()
     ldf_tb_sts = pl.scan_parquet(parquet_file)
+    ldf_tb_sts = ldf_tb_sts.with_columns(
+        pl.lit(data_model.attr.get("year")).alias("info_year")
+    )
     insert_data_from_parquet(ldf_tb_sts, model_name)
 
 
@@ -64,9 +67,9 @@ def insert_tb_imt_from_data(data_model: DataModel):
     )
     ldf_tb_imt = ldf_tb_imt.join(ldf_tollbooth.select(hex_resolution_name, "state"), on=hex_resolution_name, how="left")
     ldf_tb_imt = ldf_tb_imt.select(pl.exclude(hex_resolution_name)).unique()
-    with pl.Config(tbl_rows=-1):
-        ldf_tb_unq = ldf_tb_imt.group_by("tollbooth_imt_id").first()
-        insert_data_from_parquet(ldf_tb_unq, model_name)
+    
+    ldf_tb_unq = ldf_tb_imt.group_by("tollbooth_imt_id").first()
+    insert_data_from_parquet(ldf_tb_unq, model_name)
 
 
 def insert_tb_from_db(data_model: DataModel):

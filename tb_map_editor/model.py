@@ -152,11 +152,12 @@ class Tollbooth(TbModel, table=True):
 
 class TbSts(TbModel, table=True):
     index: String = Field(primary_key=True)
+    tollbooth_name: String
     way: String
     highway: String | None = Field(default=None)
     km: Float32 | None = Field(default=None)
     lat: Float64
-    lon: Float64
+    lng: Float64
     tdpa: UInt32
     motorbike: Float32 | None = Field(default=None)
     car: Float32 | None = Field(default=None)
