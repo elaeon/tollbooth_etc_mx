@@ -685,7 +685,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 690,1052,zaragoza,19.7598981608278,-97.5453336184523,closed,puebla,troncal,4,toll,opervite,
 691,322,amealco i,20.2777797346752,-100.059144634233,open,queretaro,entronque,2,toll,macrolibramiento-queretaro,bypass
 692,319,apaseo el alto,20.4976500121513,-100.588109537852,open,queretaro,entronque,4,toll,macrolibramiento-queretaro,bypass
-693,318,apaseo el grande,20.5112140768594,-100.599414439571,open,queretaro,troncal,5,toll,macrolibramiento-queretaro,bypass
+693,318,apaseo el grande,20.5112140768594,-100.599414439571,open,guanajuato,troncal,5,toll,macrolibramiento-queretaro,bypass
 694,317,atlacomulco,20.2900795667248,-99.9496939603547,open,queretaro,troncal,4,toll,macrolibramiento-queretaro,bypass
 695,127,chichimequillas,20.7055849139021,-100.343734131151,open,queretaro,troncal,3,toll,capufe,bypass
 696,320,coroneo,20.4155729970309,-100.429020187638,open,queretaro,entronque,2,toll,macrolibramiento-queretaro,bypass
@@ -1487,3 +1487,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1554,,tlalpan,19.242464936594153,-99.14875745773317,open,cdmx,troncal,9,toll,capufe,
 1555,,Los Poetas,19.34622339276032,-99.25311684608461,open,cdmx,entronque,1,etc,,
 1556,,circuito exterior mexiquense-t-7 -texcoco,19.45058361178562,-98.91110837459564,open,edomx,troncal,3,toll,cem,
+1557,,Entronque Ex-Garita,27.270513519624014,-99.6139168739319,open,nuevo leon,troncal,5,toll,,
+1558,,Entronque Ex-Garita,27.26894000912673,-99.61524724960329,open,nuevo leon,troncal,5,toll,,
+1559,,Matamoros,25.896904044920948,-97.49798655509949,open,tamaulipas,troncal,2,toll,capufe,International-bridge
+1560,,Balnearios,21.811564161037214,-101.01425528526306,open,san luis potosi,entronque,1,etc,,
