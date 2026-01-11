@@ -2,14 +2,21 @@ import os, sys
 sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
 
 import polars as pl
+import polars_h3 as plh3
 import argparse
 from datetime import date
 
-from tb_map_editor.model import TbImt, TollImt
+from tb_map_editor.model import TbImt, TbTollImt
+from tb_map_editor.data_files import DataModel
 
 
 def plazas(year: int):
-    df_tb_imt = pl.read_csv(f"./tmp_data/plazas_{year}.csv", infer_schema=False)
+    data_model = DataModel(year)
+    ldf_tb_imt = pl.scan_csv(f"./tmp_data/plazas_{year}.csv", infer_schema=False)
+    next_year = data_model.attr.get("year") + 1
+    actual_data_model = DataModel(next_year)
+    ldf_tollbooth = pl.scan_parquet(actual_data_model.tollbooths.parquet)
+    
     field_map = {
         "ID_PLAZA": "tollbooth_imt_id",
         "NOMBRE": "tollbooth_name",
@@ -19,14 +26,32 @@ def plazas(year: int):
         "FUNCIONAL": "function",
         "CALIREPR": "calirepr",
         "ycoord": "lat",
-        "xcoord": "lon"
+        "xcoord": "lng",
+        "state": "state"
     }
-    df_tb_imt = df_tb_imt.rename(field_map).cast(TbImt.dict_schema())
-    df_tb_imt.select(list(field_map.values())).write_parquet("./tmp_data/plazas.parquet")
+    ldf_tb_imt = ldf_tb_imt.rename(field_map)
+    schema = TbImt.dict_schema()
+    del schema["state"]
+    ldf_tb_imt = ldf_tb_imt.cast(schema)
+    
+    hex_resolution = 8
+    hex_resolution_name = "h3_cell"
+    ldf_tb_imt = ldf_tb_imt.with_columns(
+        plh3.latlng_to_cell("lat", "lng", hex_resolution).alias(hex_resolution_name)
+    )
+    ldf_tollbooth = ldf_tollbooth.with_columns(
+        plh3.latlng_to_cell("lat", "lng", hex_resolution).alias(hex_resolution_name)
+    )
+    ldf_tb_imt = ldf_tb_imt.join(ldf_tollbooth.select(hex_resolution_name, "state"), on=hex_resolution_name, how="left")
+    ldf_tb_imt = ldf_tb_imt.select(pl.exclude(hex_resolution_name)).unique()
+    
+    ldf_tb_unq = ldf_tb_imt.group_by("tollbooth_imt_id").first()
+    ldf_tb_unq.select(list(field_map.values())).sink_parquet(data_model.tb_imt.parquet)
 
 
 def tarifas(year: int):
-    df_toll_imt = pl.read_csv("./tmp_data/tarifas_imt.csv", infer_schema=False)
+    data_model = DataModel(year)
+    df_toll_imt = pl.read_csv(f"./tmp_data/tarifas_imt_{year}.csv", infer_schema=False)
     df_toll_imt = df_toll_imt.cast({"FECHA_ACT,C,10": pl.Date}).filter(pl.col("FECHA_ACT,C,10") >= date(year, 1, 1))
     
     field_map = {
@@ -52,8 +77,8 @@ def tarifas(year: int):
     df_toll_imt = df_toll_imt.with_columns(
         pl.lit(year).alias("info_year")
     )
-    df_toll_imt = df_toll_imt.rename(field_map).cast(TollImt.dict_schema())
-    df_toll_imt.select(list(field_map.values()) + ["info_year"]).write_parquet(f"./tmp_data/tarifas_imt_{year}.parquet")
+    df_toll_imt = df_toll_imt.rename(field_map).cast(TbTollImt.dict_schema())
+    df_toll_imt.select(list(field_map.values()) + ["info_year"]).write_parquet(data_model.tb_toll_imt.parquet)
 
 
 if __name__ == "__main__":

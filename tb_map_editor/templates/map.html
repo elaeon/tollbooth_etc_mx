@@ -219,16 +219,17 @@ map.on('click', async (e) => {
 				_tpl_empty_tb_data = await resp.json();
 			} catch(err) { if (status) status.textContent = 'Save error: ' + err.message }
 		}
-		_clickMarker.__data = { lat: null, lng: null, tollbooth_id: null, props: {} };
+		_clickMarker.__data = { lat: null, lng: null, props: {} };
 		_clickMarker.on('dragend', (e) => {
 			addInfoPopup(_clickMarker);
 			_clickMarker.openPopup();
 		});
-		addInfoPopup(_clickMarker, moveOpt=false);
 	}
-
-	_clickMarker.setLatLng(new L.LatLng(e.latlng.lat, e.latlng.lng)).update();
+	else {
+		_clickMarker.setLatLng(new L.LatLng(e.latlng.lat, e.latlng.lng)).update();
+	}
 	_clickMarker.__data.props = structuredClone(_tpl_empty_tb_data);
+	_clickMarker.__data.tollbooth_id = null;
 
 	if ((_layers[_activeLayer] != _layers.tb)) {
 		const statusEl = document.getElementById('query-status');
@@ -239,6 +240,8 @@ map.on('click', async (e) => {
 			_clickMarker.addTo(_layers[_activeLayer]);
 		}
 	}
+	addInfoPopup(_clickMarker);
+	_clickMarker.openPopup();
 });
 
 const baseLayers = {
@@ -413,8 +416,8 @@ const QueryControl = L.Control.extend({
 		btnSend.addEventListener('click', async () => {
 			const query = queryInputEl.value && queryInputEl.value.trim();
 			const endpoint = endpointEl.value && endpointEl.value.trim();
-			if (!query) { statusEl.textContent = 'Enter a query'; return; }
-			if (!endpoint) { statusEl.textContent = 'Enter an endpoint'; return; }
+			//if (!query) { statusEl.textContent = 'Enter a query'; return; }
+			//if (!endpoint) { statusEl.textContent = 'Enter an endpoint'; return; }
 			
 			statusEl.textContent = 'Sending request...';
 			try {

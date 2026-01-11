@@ -211,18 +211,14 @@ class Road(TbModel, table=True):
     notes: String
 
 
-class Strech(TbModel, table=True):
-    strech_id: UInt16 | None = Field(default=None, primary_key=True)
-    strech_name: String
-    strech_length_km: Float32 | None
+class Stretch(TbModel, table=True):
+    stretch_id: UInt16 | None = Field(default=None, primary_key=True)
+    stretch_name: String
+    stretch_length_km: Float32 | None
     sct_idVia: UInt16
     road_id: UInt16 = Field(foreign_key="road.road_id", primary_key=True)
     manage: String
     way: String
-    lat_a: Float64 | None
-    lon_a: Float64 | None
-    lat_b: Float64 | None
-    lon_b: Float64 | None
 
 
 class TbImtTb(TbModel, table=True):
@@ -231,14 +227,14 @@ class TbImtTb(TbModel, table=True):
     grid_distance: UInt16 | None
 
 
-class TbStrech(TbModel, table=True):
+class TbStretch(TbModel, table=True):
     tollbooth_id_a: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
     tollbooth_id_b: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
-    strech_id: UInt32 = Field(foreign_key="strech.strech_id", primary_key=True)
+    stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)
 
 
-class StrechToll(TbModel, table=True):
-    strech_id: UInt16 | None = Field(default=None, primary_key=True)
+class StretchToll(TbModel, table=True):
+    stretch_id: UInt16 | None = Field(default=None, primary_key=True)
     motorbike: Float32 | None = Field(default=None)
     car: Float32 | None = Field(default=None)
     car_axle: Float32 | None = Field(default=None)
@@ -275,11 +271,11 @@ class TbImt(TbModel, table=True):
     function: String | None = Field(default=None)
     calirepr: String | None = Field(default=None)
     lat: Float64 | None = Field(default=None)
-    lon: Float64 | None = Field(default=None)
+    lng: Float64 | None = Field(default=None)
     state: String | None = Field(default=None)
 
 
-class TollImt(TbModel, table=True):
+class TbTollImt(TbModel, table=True):
     tollbooth_imt_id_a: UInt16 = Field(foreign_key="tbimt.tollbooth_imt_id", primary_key=True)
     tollbooth_imt_id_b: UInt16 = Field(foreign_key="tbimt.tollbooth_imt_id", primary_key=True)
     motorbike: Float32 | None = Field(default=None)
@@ -309,6 +305,6 @@ class TbstsId(TbModel, table=True):
     ref_year: UInt16
 
 
-class TbstsStrech(TbModel, table=True):
+class TbstsStretch(TbModel, table=True):
     tollboothsts_id: UInt32 = Field(foreign_key="tbstsid.tollboothsts_id", primary_key=True)
-    strech_id: UInt32 = Field(foreign_key="strech.strech_id", primary_key=True)
+    stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)

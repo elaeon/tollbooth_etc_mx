@@ -53,23 +53,7 @@ def insert_tb_imt_from_data(data_model: DataModel):
     parquet_file = data_model.tb_imt.parquet
     model_name = data_model.tb_imt.model.name()
     ldf_tb_imt = pl.scan_parquet(parquet_file)
-    next_year = data_model.attr.get("year") + 1
-    actual_data_model = DataModel(next_year)
-    ldf_tollbooth = pl.scan_parquet(actual_data_model.tollbooths.parquet)
-
-    hex_resolution = 9
-    hex_resolution_name = "h3_cell"
-    ldf_tb_imt = ldf_tb_imt.with_columns(
-        plh3.latlng_to_cell("lat", "lon", hex_resolution).alias(hex_resolution_name)
-    )
-    ldf_tollbooth = ldf_tollbooth.with_columns(
-        plh3.latlng_to_cell("lat", "lon", hex_resolution).alias(hex_resolution_name)
-    )
-    ldf_tb_imt = ldf_tb_imt.join(ldf_tollbooth.select(hex_resolution_name, "state"), on=hex_resolution_name, how="left")
-    ldf_tb_imt = ldf_tb_imt.select(pl.exclude(hex_resolution_name)).unique()
-    
-    ldf_tb_unq = ldf_tb_imt.group_by("tollbooth_imt_id").first()
-    insert_data_from_parquet(ldf_tb_unq, model_name)
+    insert_data_from_parquet(ldf_tb_imt, model_name)
 
 
 def insert_tb_from_db(data_model: DataModel):

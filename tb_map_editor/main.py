@@ -116,16 +116,19 @@ def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
 
 @app.post("/api/tollbooths_imt")
 def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=1000):
-    param, values = map(str.strip, body["query"].split(":"))
-    values = values.split(",")
-    stm = select(TbImt).where(TbImt.calirepr != "Virtual")
-    if len(values) > 1:
-        params = []
-        for value in values:
-            params.append(getattr(TbImt, param) == value)
-        stm = stm.where(or_(*params))
+    if body["query"]:
+        param, values = map(str.strip, body["query"].split(":"))
+        values = values.split(",")
+        stm = select(TbImt).where(TbImt.calirepr != "Virtual")
+        if len(values) > 1:
+            params = []
+            for value in values:
+                params.append(getattr(TbImt, param) == value)
+            stm = stm.where(or_(*params))
+        else:
+            stm = stm.where(getattr(TbImt, param) == values[0])
     else:
-        stm = stm.where(getattr(TbImt, param) == values[0])
+        stm = select(TbImt).where(TbImt.calirepr != "Virtual").where(TbImt.state == None)
     tbs = session.exec(stm.offset(offset).limit(limit))
     data = []
     for tb in tbs:
@@ -133,7 +136,7 @@ def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offs
             "tollbooth_id": tb.tollbooth_imt_id,
             "tollbooth_name": tb.tollbooth_name,
             "lat": tb.lat,
-            "lon": tb.lon,
+            "lng": tb.lng,
             "source": TbImt.name()
         })
     return data
