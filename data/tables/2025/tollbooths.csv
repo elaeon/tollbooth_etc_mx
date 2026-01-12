@@ -78,7 +78,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 77,229,sacramento,28.790533449552,-106.13924860954286,open,chihuahua,troncal,1,toll,c&g,
 78,1011,sacramento,28.860408968912445,-106.21646404266359,open,chihuahua,troncal,1,toll,gob-chihuahua,
 79,1008,saucillo,28.04640306373741,-105.3293287754059,open,chihuahua,troncal,3,toll,gob-chihuahua,
-80,1014,savalza,27.082269429186,-104.841537423902,open,chihuahua,troncal,2,toll,gob-chihuahua,
+80,1014,savalza,27.082192586331704,-104.84162807464601,open,chihuahua,troncal,2,toll,gob-chihuahua,
 81,1006,villa ahumada,30.437074552310595,-106.52182817459108,open,chihuahua,troncal,4,toll,gob-chihuahua,
 82,65,acuña,29.3252643429945,-100.928434415453,open,coahuila,troncal,2,toll,capufe,International-bridge
 83,586,agujita-allende,28.30340300626589,-100.90998172760011,open,coahuila,troncal,3,toll,supercarreteras,
@@ -554,16 +554,14 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 575,40,cadereyta,25.6010820777139,-100.005770528644,open,nuevo leon,troncal,4,toll,capufe,bridge
 576,131,doctor cross,25.8138864912761,-99.1738335786384,open,nuevo leon,entronque,1,toll,opan,
 577,131,doctor cross,25.8118695371524,-99.1736689165636,open,nuevo leon,entronque,1,toll,opan,
-578,128,general bravo,25.81360188072133,-99.1695660352707,open,nuevo leon,troncal,3,toll,opan,
-579,128,general bravo,25.8133990570101,-99.16954457759859,open,nuevo leon,entronque,3,toll,opan,
-580,128,general bravo,25.8137210092661,-99.169606773783,open,nuevo leon,entronque,1,toll,opan,
+578,128,general bravo,25.81360188072133,-99.1695660352707,open,nuevo leon,troncal,4,toll,opan,
+579,128,general bravo,25.8133990570101,-99.16954457759859,open,nuevo leon,entronque,4,toll,opan,
 581,451,guadalupe,25.691738965044596,-100.15771865844728,open,nuevo leon,troncal,9,toll,reanal,
 582,451,guadalupe,25.691506928537706,-100.15780985355379,open,nuevo leon,entronque,2,toll,reanal,
 584,505,juarez,,,not_found,nuevo leon,,,toll,reanal,
 585,505,juarez,25.622238346906308,-100.07119059562685,open,nuevo leon,troncal,4,toll,reanal,
 586,,libramiento los herrera,25.8987392194616,-99.3936533002868,closed,nuevo leon,troncal,2,toll,,
-587,499,lincon,25.7902395387392,-100.46330404454,open,nuevo leon,entronque,1,toll,reanal,
-588,499,lincon,25.790642878684,-100.46366470635,open,nuevo leon,entronque,1,toll,reanal,
+587,499,lincon,25.790400459971924,-100.46337246894838,open,nuevo leon,entronque,1,toll,reanal,
 589,499,lincon,25.78248290758,-100.472370901854,open,nuevo leon,entronque,1,toll,reanal,
 590,499,lincon,25.7821077444692,-100.474203138514,open,nuevo leon,entronque,1,toll,reanal,
 591,499,lincon,25.8342661194434,-100.305784881109,open,nuevo leon,entronque,1,toll,reanal,
@@ -629,9 +627,8 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 653,1001,atlixco,18.916395603694916,-98.48475515842439,open,puebla,troncal,2,toll,pinfra,
 654,1001,atlixco sur,18.8950775793155,-98.4893827640206,open,puebla,entronque,2,toll,pinfra,
 655,585,el piñal,20.458876237589326,-97.85392642021179,open,puebla,troncal,3,toll,auneti,
-656,594,el seco,19.1088547538985,-97.6707971368675,open,puebla,entronque,1,toll,ccp,
 657,594,el seco,19.10879319568853,-97.67089784145355,open,puebla,troncal,3,toll,ccp,
-658,594,el seco,19.1086842978592,-97.6711090717519,open,puebla,entronque,1,toll,ccp,
+658,594,el seco,19.1087171631981,-97.67106413841248,open,puebla,troncal,3,toll,ccp,
 659,594,el seco aux. 1,19.0991444401072,-97.6640277320664,open,puebla,entronque,2,toll,ccp,
 660,594,el seco aux. 2,19.0990430575343,-97.6642530376116,open,puebla,entronque,2,toll,ccp,
 661,27,esperanza,18.8703548704123,-97.3861458858771,open,puebla,entronque,1,toll,capufe,
@@ -664,7 +661,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 688,1002,via atlixcayotl,19.003927491775,-98.2726687413233,open,puebla,troncal,8,toll,ccp,
 690,1052,zaragoza,19.7598981608278,-97.5453336184523,closed,puebla,troncal,4,toll,opervite,
 691,322,amealco i,20.2777797346752,-100.059144634233,open,queretaro,entronque,2,toll,macrolibramiento-queretaro,bypass
-692,319,apaseo el alto,20.4976500121513,-100.588109537852,open,queretaro,entronque,4,toll,macrolibramiento-queretaro,bypass
+692,319,apaseo el alto,20.49746138556734,-100.58815419673921,open,queretaro,troncal,4,toll,macrolibramiento-queretaro,bypass
 693,318,apaseo el grande,20.5112140768594,-100.599414439571,open,guanajuato,troncal,5,toll,macrolibramiento-queretaro,bypass
 694,317,atlacomulco,20.2900795667248,-99.9496939603547,open,queretaro,troncal,4,toll,macrolibramiento-queretaro,bypass
 695,127,chichimequillas,20.7055849139021,-100.343734131151,open,queretaro,troncal,3,toll,capufe,bypass
@@ -849,10 +846,10 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 878,556,naranjos,21.3272198396034,-97.627142719318,open,veracruz,entronque,2,toll,autopista-tuxpan-tampico,
 879,33,nautla,20.210238401612255,-96.77873611450195,open,veracruz,troncal,1,toll,capufe,bridge
 880,117,paso del toro,19.0847004177133,-96.1968254939115,open,veracruz,entronque,1,toll,capufe,
-881,117,paso del toro,19.08165244585545,-96.19838118553162,open,veracruz,troncal,2,toll,capufe,
+881,117,paso del toro,19.08171835145905,-96.19849920272829,open,veracruz,troncal,2,toll,capufe,
 882,117,paso del toro,19.0841245138445,-96.1961551564976,open,veracruz,entronque,1,toll,capufe,
 883,117,paso del toro,19.08175890874054,-96.1985582113266,open,veracruz,entronque,2,toll,capufe,
-884,117,paso del toro,19.081616958211892,-96.19830071926118,open,veracruz,entronque,1,toll,capufe,
+884,117,paso del toro,19.081642306529496,-96.19838118553162,open,veracruz,troncal,2,toll,capufe,
 885,459,plan del rio,19.397093762270025,-96.6215854883194,open,veracruz,troncal,3,toll,cpm,
 886,1024,puente coatzacoalcos,18.1151641008526,-94.4108727848893,closed,veracruz,troncal,4,toll,capufe,bridge
 887,1038,puente el prieto,22.2033426232517,-97.9374342001454,open,veracruz,troncal,2,toll,pinfra,bridge
@@ -993,13 +990,13 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1029,,Cuicuilco,19.3033544774975,-99.1761302275776,open,cdmx,entronque,2,etc,,
 1030,,Boulevard de la Luz,19.3251953125,-99.2142105102539,open,cdmx,entronque,2,etc,,
 1031,,San Jerónimo,19.3299388885498,-99.2109985351563,open,cdmx,entronque,2,etc,,
-1032,,San Joaquín,19.4569473266602,-99.2206268310547,open,cdmx,entronque,2,etc,,
+1032,,San Joaquín,19.4569473266602,-99.2206268310547,open,edomx,entronque,2,etc,,
 1033,,Periférico - Toreo,19.4538593292236,-99.2197723388672,open,cdmx,entronque,2,etc,,
 1034,,Campo Marte Oriente,19.4253482818604,-99.200569152832,open,cdmx,entronque,1,etc,,
 1035,,Conscripto Oriente,19.4420358655549,-99.2230631784173,open,cdmx,entronque,1,etc,,
 1036,,Centenario,19.3459796905518,-99.2496337890625,open,cdmx,entronque,1,etc,,
-1037,,CDI Poniente,19.4485511779785,-99.2203521728516,open,cdmx,entronque,1,etc,,
-1038,,CDI Poniente,19.4479087077094,-99.2204083326496,open,cdmx,entronque,1,etc,,
+1037,,CDI Poniente,19.4485511779785,-99.2203521728516,open,edomx,entronque,1,etc,,
+1038,,CDI Poniente,19.4479087077094,-99.2204083326496,open,edomx,entronque,1,etc,,
 1039,,CDI Oriente,19.4492149353027,-99.2200393676758,open,cdmx,entronque,1,etc,,
 1040,,Ejército Nacional Poniente,19.4398803710938,-99.2148590087891,open,cdmx,entronque,1,etc,,
 1041,,CDI Poniente,19.449182510376,-99.2204818725586,open,edomx,entronque,1,etc,,
@@ -1021,7 +1018,6 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1062,,Palmas Poniente,19.4314079284668,-99.2086410522461,open,cdmx,entronque,2,etc,,
 1063,,San Antonio Oriente,19.3822326660156,-99.1917343139648,open,cdmx,troncal,4,etc,,
 1064,,San Antonio Oriente,19.383020401001,-99.1915969848633,open,cdmx,troncal,3,etc,,
-1065,,CDI Poniente,19.4478988647461,-99.2204055786133,open,edomx,entronque,1,etc,,
 1067,,Centenario,19.3455638885498,-99.2526702880859,open,cdmx,entronque,1,etc,,
 1068,,Los Poetas,19.34628413087876,-99.25320267677309,open,cdmx,entronque,1,etc,,
 1069,,Torres A,19.3328495025635,-99.2398376464844,open,cdmx,entronque,1,etc,,
@@ -1093,8 +1089,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1150,,saucillo,28.046332046832255,-105.32946825027467,open,chihuahua,troncal,3,toll,gob-chihuahua,
 1152,,camargo,27.730907172003104,-105.19776642322542,open,chihuahua,troncal,2,toll,gob-chihuahua,
 1155,,jimenez,27.244948368500626,-104.93334352970123,open,chihuahua,troncal,3,toll,gob-chihuahua,
-1157,,savalza,27.082417069052955,-104.84147787094118,open,chihuahua,troncal,1,toll,gob-chihuahua,
-1158,,savalza,27.082140047757537,-104.84163880348207,open,chihuahua,troncal,2,toll,gob-chihuahua,
+1157,,savalza,27.082326320772992,-104.84153151512147,open,chihuahua,troncal,2,toll,gob-chihuahua,
 1159,,savalza,27.082025418055633,-104.84174609184265,open,chihuahua,troncal,1,toll,gob-chihuahua,
 1161,,ojinaga,29.055091164114767,-105.10497808456422,open,chihuahua,troncal,2,toll,gob-chihuahua,
 1163,,agujita-allende,28.303431344847315,-100.91009974479677,open,coahuila,troncal,3,toll,supercarreteras,
@@ -1109,7 +1104,6 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1178,,lincon,25.834177023891638,-100.30578196048738,open,nuevo leon,entronque,1,toll,reanal,
 1183,,juarez,25.62221416237061,-100.07136762142183,open,nuevo leon,troncal,4,toll,reanal,
 1184,,cadereyta,25.60729137055674,-100.00122785568239,open,nuevo leon,troncal,4,toll,reanal,
-1185,,general bravo,25.813263841009697,-99.16951239109041,open,nuevo leon,troncal,1,toll,opan,
 1186,,nuevo laredo pinfra,27.270513519624014,-99.61392223834993,open,tamaulipas,troncal,5,toll,opan,
 1187,,san fernando,25.944558156195537,-98.22740793228151,open,tamaulipas,troncal,1,toll,opan,
 1188,,las flores,26.060811646034733,-97.94935941696168,open,tamaulipas,troncal,2,toll,capufe,International-bridge
@@ -1120,8 +1114,6 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1194,,mofin chavez,23.17790337802107,-102.82875359058382,open,zacatecas,troncal,2,toll,profrezac,
 1196,,calera,22.941830182121137,-102.68997609615327,open,zacatecas,troncal,3,toll,profrezac,
 1197,,vetagrande,22.846961929699273,-102.56334364414217,open,zacatecas,troncal,2,toll,profrezac,
-1198,,vetagrande,22.846848227914663,-102.5633490085602,open,zacatecas,entronque,1,toll,profrezac,
-1199,,vetagrande,22.84713989751911,-102.56340801715852,open,zacatecas,entronque,1,toll,profrezac,
 1200,,zacatecas,22.710768206949172,-102.44872748851778,open,zacatecas,troncal,2,toll,capufe,
 1201,,puente san miguel,25.976255771633546,-109.03341650962831,open,sinaloa,troncal,2,toll,orler,bridge
 1202,,puente nacional sinaloa,25.51281135822212,-108.34769368171693,open,sinaloa,troncal,3,toll,capufe,bridge
@@ -1192,9 +1184,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1275,,sayula,19.933266768996415,-103.52978110313417,open,jalisco,troncal,6,toll,autopistas-sayula,
 1276,,sayula remota,19.878999418109075,-103.51928293704987,open,jalisco,troncal,3,toll,autopistas-sayula,
 1277,,san marcos ii,19.409120773710264,-103.52780163288118,open,jalisco,troncal,4,toll,autopistas-sayula,
-1278,,zamora,20.17366109548832,-102.24394083023073,open,michoacan,entronque,1,toll,rco,
 1279,,zamora,20.17363088356615,-102.24380135536195,open,michoacan,entronque,1,toll,rco,
-1280,,zamora,20.17360570695986,-102.24372625350954,open,michoacan,entronque,1,toll,rco,
 1282,,ecuandureo,20.175166648863065,-102.1903556585312,open,michoacan,entronque,1,toll,rco,
 1283,,la piedad,20.352694495807203,-102.0252013206482,open,michoacan,troncal,2,toll,capufe,bridge
 1284,,panindicuaro,19.971407697745324,-101.75691604614259,open,michoacan,entronque,1,toll,rco,
@@ -1253,11 +1243,9 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1344,,zacatal,18.612776406435028,-91.86087369918825,open,campeche,troncal,2,toll,capufe,bridge
 1345,,puente la unidad,18.78552891260343,-91.49478435516359,open,campeche,troncal,1,toll,gob-campeche,bridge
 1346,,la seyba,19.63619630924458,-90.67151248455049,open,campeche,troncal,2,toll,capufe,
-1350,,tintal,20.89983626679897,-87.43484258651735,open,quintana roo,troncal,3,toll,mayab,
 1352,,tepoztlan,18.9869646896315,-99.11266028881074,open,morelos,troncal,4,toll,capufe,
 1353,,oaxtepec,18.93132470409612,-99.02508616447449,open,morelos,entronque,2,toll,capufe,
 1354,,oacalco,18.930441782853897,-99.02604639530183,open,morelos,entronque,2,toll,capufe,
-1355,,oaxtepec,18.90366777197177,-98.98534119129182,open,morelos,troncal,2,toll,capufe,
 1356,,aeropuerto,18.802257183848166,-99.22128438949586,open,morelos,entronque,2,toll,capufe,
 1357,,aeropuerto,18.802663435697756,-99.21991109848024,open,morelos,entronque,1,toll,capufe,
 1358,,xochitepec,18.774985286964842,-99.22522723674774,open,morelos,entronque,1,toll,capufe,
@@ -1282,10 +1270,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1380,,miradores,19.47423939437138,-96.77549600601198,open,veracruz,troncal,4,toll,copexa,
 1381,,plan del rio,19.3970026834864,-96.62166059017183,open,veracruz,troncal,3,toll,cpm,
 1382,,antigua,19.320301338178506,-96.3109052181244,open,veracruz,troncal,3,toll,cardel-veracruz,
-1383,,san julian,19.239223483335326,-96.25780284404756,open,veracruz,troncal,1,toll,cardel-veracruz,
 1384,,san julian,19.239223483335326,-96.25800132751466,open,veracruz,troncal,3,toll,cardel-veracruz,
-1385,,san julian,19.239218418514533,-96.25809252262117,open,veracruz,troncal,1,toll,cardel-veracruz,
-1386,,paso del toro,19.08172342111978,-96.19847238063814,open,veracruz,troncal,2,toll,capufe,
 1388,,cuitlahuac,18.839394702993033,-96.74694120883943,open,veracruz,troncal,3,toll,capufe,
 1390,,alvarado,18.769814809450917,-95.74457287788393,open,veracruz,troncal,1,toll,capufe,bridge
 1391,,tlacotalpan,18.704560742769857,-95.64139366149904,open,veracruz,troncal,1,toll,capufe,bridge
@@ -1306,7 +1291,6 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1407,,payuca,19.521687221911026,-97.6379656791687,open,puebla,troncal,2,toll,opervite,
 1408,,amozoc-perote (cantona),19.50742854657503,-97.49772906303407,open,puebla,troncal,2,toll,gana,
 1409,,amozoc-perote (audi cuapiaxtla),19.274460721492126,-97.82628357410432,open,puebla,entronque,1,toll,gana,
-1410,,el seco,19.10875264503132,-97.67101049423219,open,puebla,troncal,2,toll,ccp,
 1411,,esperanza,18.870270374440466,-97.38619208335878,open,puebla,entronque,1,toll,capufe,
 1412,,esperanza,18.871336351692758,-97.3857092857361,open,puebla,entronque,1,toll,capufe,
 1413,,esperanza,18.870656157466865,-97.38598823547363,open,puebla,troncal,3,toll,capufe,
@@ -1327,13 +1311,10 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1428,,atlixco sur,18.894984074327574,-98.48946511745454,open,puebla,entronque,2,toll,pinfra,
 1429,,chichimequillas,20.705511483306932,-100.3438049554825,open,queretaro,troncal,3,toll,capufe,bypass
 1430,,queretaro,20.57204618485477,-100.47285139560701,open,queretaro,troncal,5,toll,capufe,
-1431,,apaseo el alto,20.497767897110048,-100.5880790948868,open,queretaro,entronque,1,toll,macrolibramiento-queretaro,bypass
-1432,,apaseo el alto,20.497476459919838,-100.58814346790315,open,queretaro,entronque,2,toll,macrolibramiento-queretaro,bypass
+1431,,apaseo el alto,20.49766237681207,-100.58811128139497,open,queretaro,troncal,4,toll,macrolibramiento-queretaro,bypass
 1433,,coroneo,20.415580786336413,-100.42897045612337,open,queretaro,entronque,1,toll,macrolibramiento-queretaro,bypass
 1436,,huimilpan,20.34828857823777,-100.27757048606873,open,queretaro,entronque,2,toll,macrolibramiento-queretaro,bypass
-1437,,amealco i,20.277827142669054,-100.0592064857483,open,queretaro,entronque,1,toll,macrolibramiento-queretaro,bypass
 1438,,amealco i,20.277741599526678,-100.05906701087952,open,queretaro,entronque,2,toll,macrolibramiento-queretaro,bypass
-1439,,amealco i,20.277701343913943,-100.05900263786317,open,queretaro,entronque,1,toll,macrolibramiento-queretaro,bypass
 1440,,palmillas,20.295910909583128,-99.92922127246858,open,queretaro,troncal,5,toll,capufe,
 1442,,Polotitlán,20.22527967837001,-99.81069445610048,open,edomx,entronque,2,toll,capufe,
 1443,,jilotepec,19.97650993600581,-99.53153550624849,open,edomx,entronque,1,toll,arconorte,
@@ -1385,8 +1366,6 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1543,,circuito exterior mexiquense-a-2 los reyes,19.610138700479624,-99.03806805610658,open,edomx,troncal,1,etc,cem,
 1544,,ecatepec (piramides),19.611624355431232,-99.02568697929384,open,edomx,troncal,6,toll,ecatepec-piramides,
 1545,,tizatyca (ojo de agua),19.61866334348087,-99.02923822402954,open,edomx,troncal,11,toll,golfo-centro,
-1546,,CDI Oriente,19.44923304926204,-99.22003448009492,open,edomx,entronque,1,etc,,
-1547,,San Joaquín ,19.456870914027423,-99.22060310840608,open,edomx,entronque,2,etc,,
 1548,,circuito exterior mexiquense-t-5 tultitlan,19.637580675166365,-99.16444301605226,open,edomx,troncal,5,toll,cem,
 1554,,tlalpan,19.242464936594153,-99.14875745773317,open,cdmx,troncal,9,toll,capufe,
 1555,,Los Poetas,19.34622339276032,-99.25311684608461,open,cdmx,entronque,1,etc,,
