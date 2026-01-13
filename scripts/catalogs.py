@@ -61,8 +61,14 @@ def sts_catalog():
 
 def tb_catalog(year: int):
     data_model = DataModel(year)
-    ldf_tb = pl.scan_csv(data_model.tollbooths.csv)
+    ldf_tb = pl.scan_csv(data_model.tollbooths.csv, schema=data_model.tollbooths.model.dict_schema())
     ldf_tb.sink_parquet(data_model.tollbooths.parquet)
+
+
+def stretch_toll(year: int):
+    data_model = DataModel(year)
+    ldf_stretch_toll = pl.scan_csv(data_model.stretchs_toll.csv, schema=data_model.stretchs_toll.model.dict_schema())
+    ldf_stretch_toll.sink_parquet(data_model.stretchs_toll.parquet)
 
 
 if __name__ == "__main__":
@@ -70,9 +76,12 @@ if __name__ == "__main__":
     parser.add_argument("--year", required=False, type=int)
     parser.add_argument("--tb-catalog", help="generate parquet file for tollbooths", required=False, action="store_true")
     parser.add_argument("--sts-catalog", help="generate tollbooth sts id catalog", required=False, action="store_true")
+    parser.add_argument("--stretch-toll", help="convert csv file to parquet", required=False, action="store_true")
     args = parser.parse_args()
     if args.sts_catalog:
         sts_catalog()
     elif args.tb_catalog:
         tb_catalog(args.year)
+    elif args.stretch_toll:
+        stretch_toll(args.year)
     

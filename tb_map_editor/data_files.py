@@ -44,8 +44,8 @@ class DataModel:
         return PathModel("tollbooths", model.Tollbooth, self.attr)
     
     @property
-    def strechs(self) -> PathModel:
-        return PathModel("strechs", model.Strech, self.attr)
+    def stretchs(self) -> PathModel:
+        return PathModel("strechs", model.Stretch, self.attr)
     
     @property
     def roads(self) -> PathModel:
@@ -56,20 +56,20 @@ class DataModel:
         return PathModel("tb_sts", model.TbSts, self.attr)
     
     @property
-    def strechs_toll(self) -> PathModel:
-        return PathModel("strechs_toll", model.StrechToll, self.attr)
+    def stretchs_toll(self) -> PathModel:
+        return PathModel("stretchs_toll", model.StretchToll, self.attr)
         
     @property
     def tb_imt_tb_id(self) -> PathModel:
         return PathModel("tb_imt_tb_id", model.TbImtTb)
 
     @property
-    def tb_strech_id(self) -> PathModel:
-        return PathModel("tb_strech_id", model.TbStrech)
+    def tb_stretch_id(self) -> PathModel:
+        return PathModel("tb_strech_id", model.TbStretch)
     
     @property
-    def tbsts_strech_id(self) -> PathModel:
-        return PathModel("tbsts_strech_id", model.TbstsStrech)
+    def tbsts_stretch_id(self) -> PathModel:
+        return PathModel("tbsts_strech_id", model.TbstsStretch)
     
     @property
     def tbsts_id(self) -> PathModel:

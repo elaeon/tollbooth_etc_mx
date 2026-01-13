@@ -107,8 +107,51 @@ def tb_imt_tb_id(year: int):
         on=["tollbooth_imt_id", "grid_distance"], 
         how="right")
     df_all_data = df_imt_tb_catalog_no_dup_tb_join.extend(df_no_match)
-    df_all_data.write_csv(data_model.tb_imt_tb_id.csv)
+    df_all_data.write_parquet(data_model.tb_imt_tb_id.parquet)
     print("LEFT", df_all_data.join(df_tb_imt, on="tollbooth_imt_id", how="left").filter(pl.col("lat").is_null()).shape)
+
+
+def tb_stretch_id_imt(year: int):
+    data_model = DataModel(year)
+    ldf_toll_imt = pl.scan_parquet(data_model.tb_toll_imt.parquet)
+    ldf_stretch_toll = pl.scan_parquet(data_model.stretchs_toll.parquet)
+    ldf_toll = ldf_toll_imt.join(
+        ldf_stretch_toll, on=[
+            "motorbike", "car", "bus_2_axle", "bus_3_axle", "bus_4_axle",
+            "truck_2_axle", "truck_3_axle", "truck_4_axle", "truck_5_axle",
+            "truck_6_axle", "truck_7_axle", "truck_8_axle", "truck_9_axle"
+        ]
+    ).select("stretch_id", "tollbooth_imt_id_a", "tollbooth_imt_id_b")
+    ldf_tb_imt_tb_id = pl.scan_parquet(data_model.tb_imt_tb_id.parquet).select("tollbooth_id", "tollbooth_imt_id")
+    ldf_stretch = ldf_toll.join(
+        ldf_tb_imt_tb_id, left_on="tollbooth_imt_id_a", right_on="tollbooth_imt_id"
+    ).rename({"tollbooth_id": "tollbooth_id_b"})
+    ldf_stretch = ldf_stretch.join(
+        ldf_tb_imt_tb_id, left_on="tollbooth_imt_id_b", right_on="tollbooth_imt_id"
+    ).rename({"tollbooth_id": "tollbooth_id_a"})
+    ldf_stretch = ldf_stretch.select(
+        "stretch_id", "tollbooth_id_a", "tollbooth_id_b"
+    ).unique()
+    ldf_stretch_not_found = ldf_stretch_toll.select("stretch_id").join(
+        ldf_stretch, on="stretch_id", how="anti"
+    ).with_columns(
+        pl.lit(None).alias("tollbooth_id_a"),
+        pl.lit(None).alias("tollbooth_id_b")
+    )
+    pl.concat([ldf_stretch, ldf_stretch_not_found], how="vertical").sink_parquet(data_model.tb_stretch_id.parquet)
+
+
+def tb_stretch_id_imt_eval(year: int):
+    data_model = DataModel(year)
+    ldf_stretch = pl.scan_parquet(data_model.tb_stretch_id.parquet)
+    #ldf_stretch_base = pl.scan_csv("./data/tables/strech_tb_id_base.csv")
+    ldf_stretch_base = pl.scan_csv("./data/tables/tb_strech_id_old.csv")
+    ldf_eval = ldf_stretch.join(ldf_stretch_base, left_on="stretch_id", right_on="strech_id")
+    ldf_eval = ldf_eval.select("tollbooth_id_a", "tollbooth_id").unique()
+    ldf_result = ldf_eval.with_columns(
+        (pl.col("tollbooth_id_a") == pl.col("tollbooth_id")).alias("match")
+    ).group_by("match").len()
+    print(ldf_result.collect())
 
 
 if __name__ == "__main__":
@@ -116,9 +159,15 @@ if __name__ == "__main__":
     parser.add_argument("--year", help="data year", required=True, type=int)
     parser.add_argument("--tb-tbsts", help="join tollbooths their statistics", required=False, action='store_true')
     parser.add_argument("--tb-imt-tb-id", required=False, action="store_true")
+    parser.add_argument("--tb-stretch-id-imt", required=False, action="store_true")
+    parser.add_argument("--eval-stretch", required=False, action="store_true")
     args = parser.parse_args()
     if args.tb_tbsts:
         join_tb_tbsts(args.year)
     elif args.tb_imt_tb_id:
         tb_imt_tb_id(args.year)
+    elif args.tb_stretch_id_imt:
+        tb_stretch_id_imt(args.year)
+    elif args.eval_stretch:
+        tb_stretch_id_imt_eval(args.year)
     
