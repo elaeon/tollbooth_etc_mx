@@ -158,6 +158,7 @@ def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offs
         data.append({
             "tollbooth_id": tb.tollbooth_imt_id,
             "tollbooth_name": tb.tollbooth_name,
+            "state": tb.state,
             "lat": tb.lat,
             "lng": tb.lng,
             "source": TbImt.name()

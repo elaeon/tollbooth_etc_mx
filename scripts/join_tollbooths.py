@@ -98,11 +98,17 @@ def tb_imt_tb_id(year: int):
     df_no_match = df_tb_match.select("tollbooth_imt_id", "tollbooth_id").join(
         df_tb_imt.select("tollbooth_imt_id"), on=["tollbooth_imt_id"], how="right"
     ).filter(pl.col("tollbooth_id").is_null())
-    df_no_match = df_no_match.with_columns(
-        pl.lit(None).alias("grid_distance")
-    )
+    
+    df_no_match = df_imt_tb_catalog.join(
+        df_no_match.select("tollbooth_imt_id").join(
+            df_imt_tb_catalog, 
+            on="tollbooth_imt_id"
+        ).group_by("tollbooth_imt_id").agg(pl.col("grid_distance").min()), 
+        on=["tollbooth_imt_id", "grid_distance"], 
+        how="right")
     df_all_data = df_imt_tb_catalog_no_dup_tb_join.extend(df_no_match)
     df_all_data.write_csv(data_model.tb_imt_tb_id.csv)
+    print("LEFT", df_all_data.join(df_tb_imt, on="tollbooth_imt_id", how="left").filter(pl.col("lat").is_null()).shape)
 
 
 if __name__ == "__main__":
