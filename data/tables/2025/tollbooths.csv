@@ -213,7 +213,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 220,835,la finca,18.8998280229582,-99.653212507084,open,edomx,entronque,2,toll,omc,
 221,532,la hortaliza,19.381419413433,-99.8046930151196,open,edomx,troncal,2,toll,acomex,
 222,532,la hortaliza,19.3818811565397,-99.806883942413,open,edomx,entronque,1,toll,acomex,
-223,532,la hortaliza,19.3812646770569,-99.8047053821462,open,edomx,entronque,1,toll,acomex,
+223,532,la hortaliza,19.3812646770569,-99.8047053821462,open,edomx,troncal,3,toll,acomex,
 224,532,la hortaliza,19.3818064512847,-99.8087650967359,open,edomx,entronque,1,toll,acomex,
 225,138,lago de guadalupe,19.609587934985,-99.2362018021454,open,edomx,entronque,1,ticket,capufe,
 226,138,lago de guadalupe,19.6097288072063,-99.2360979521691,open,edomx,entronque,2,ticket,capufe,
@@ -297,7 +297,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 307,323,apaseo,20.5314686785125,-100.620743399316,closed,guanajuato,entronque,2,ticket,macrolibramiento-queretaro,bypass
 308,323,apaseo,20.5336075632006,-100.627883335308,open,guanajuato,entronque,2,ticket,macrolibramiento-queretaro,bypass
 309,564,arandas,20.7352678537838,-101.383194031844,open,guanajuato,entronque,1,toll,libramiento-irapuato,bypass
-310,564,arandas,20.7374892908735,-101.380008681173,open,guanajuato,troncal,6,toll,libramiento-irapuato,bypass
+310,564,arandas,20.737517480278512,-101.38005495071413,open,guanajuato,troncal,3,toll,libramiento-irapuato,bypass
 311,564,arandas,20.7335200161033,-101.381240910132,open,guanajuato,entronque,1,toll,libramiento-irapuato,bypass
 312,120,central de abastos,21.0692351227581,-101.678323547286,open,guanajuato,entronque,2,toll,rco,
 313,120,central de abastos,21.0689777271156,-101.679083817071,open,guanajuato,entronque,2,toll,rco,
@@ -429,10 +429,9 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 445,405,santa cecilia,20.4425086585422,-103.545795099295,open,jalisco,troncal,5,toll,guadalajara-tepic,
 446,58,sayula,19.93322642469074,-103.53001713752748,open,jalisco,troncal,5,toll,autopistas-sayula,
 447,59,sayula remota,19.8791308752164,-103.519329854188,open,jalisco,troncal,3,toll,autopistas-sayula,
-448,113,tepatitlan,20.8207727688839,-102.794063766448,open,jalisco,entronque,2,toll,rco,
 449,113,tepatitlan,20.8208353834692,-102.793966215855,open,jalisco,troncal,2,toll,rco,
 450,113,tepatitlan,20.8245877217498,-102.795001192039,open,jalisco,troncal,8,toll,rco,
-451,113,tepatitlan,20.8209271445476,-102.793849735981,open,jalisco,entronque,1,toll,rco,
+451,113,tepatitlan,20.8209271445476,-102.793849735981,open,jalisco,troncal,2,toll,rco,
 452,,tequila,20.85428011728316,-103.86093735694887,open,jalisco,entronque,2,toll,guadalajara-tepic,
 453,120,union de san antonio,21.2513231348003,-101.95086971997,open,jalisco,entronque,1,toll,rco,
 454,120,union de san antonio,21.2551379987838,-101.949494090351,open,jalisco,entronque,1,toll,rco,
@@ -902,7 +901,6 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 934,421,libramiento matehuala,23.6637767620676,-100.608342811911,closed,san luis potosi,entronque,2,toll,omega,
 935,421,libramiento matehuala,23.6641489489375,-100.606240971637,closed,san luis potosi,entronque,2,toll,omega,
 936,,Emiliano Zapata,18.837445111190828,-99.21539962291719,closed,morelos,troncal,4,toll,capufe,
-937,,Nopala,19.4862117767334,-99.3114776611328,open,edomx,entronque,2,ticket,,
 938,,La Venta,19.33361468235331,-99.31365430355073,open,cdmx,troncal,5,toll,pinfra,
 939,,Laguna Seca,19.3541145324707,-99.9829788208008,open,edomx,entronque,1,toll,acomex,
 940,,Laguna Seca,19.354726509352794,-99.98312830924989,open,edomx,entronque,1,toll,acomex,
@@ -1376,3 +1374,4 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1562,,salamanca,20.598376014940524,-101.18100821971895,open,guanajuato,troncal,3,toll,capufe,
 1563,,salamanca,20.59755249194034,-101.18103504180908,open,guanajuato,entronque,1,toll,capufe,
 1564,,salamanca,20.599079018859914,-101.18071854114534,open,guanajuato,entronque,1,toll,capufe,
+1565,,arandas,20.73745727782512,-101.37996375560762,open,guanajuato,troncal,3,toll,libramiento-irapuato,bypass
