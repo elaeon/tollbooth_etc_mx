@@ -8,10 +8,13 @@ from sqlmodel import select, or_
 from .model import Tollbooth, TbSts, TbImt
 from contextlib import asynccontextmanager
 from .utils.connector import SessionDep, create_db_and_tables
+from .data_files import DataModel
 
 from typing import Annotated, Any
 import logging
 import sys
+import polars as pl
+import polars_h3 as plh3
 
 
 _log = logging.getLogger(__name__)
@@ -61,18 +64,38 @@ def map_root(request: Request):
 def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit: int=1000):
     param, values = map(str.strip, body["query"].split(":"))
     values = values.split(",")
-    if len(values) > 1:
-        params = []
-        for value in values:
-            params.append(getattr(Tollbooth, param) == value)
-        stm = select(Tollbooth).where(or_(*params))
+    if param == "h3_cell":
+        hex_resolution = int(values[1])
+        stm = select(Tollbooth)
+        data = []
+        tollbooths = session.exec(stm)
+        for row in tollbooths:
+            data.append(row)
+        df_tb = pl.DataFrame(data)
+        df_tb = df_tb.with_columns(
+            plh3.latlng_to_cell("lat", "lng", hex_resolution).alias("h3_cell")
+        ).filter(h3_cell=int(values[0]))
+        data = []
+        for row in df_tb.select(pl.exclude("h3_cell", "legacy_id")).iter_rows(named=True):
+            data.append(row)
     else:
-        stm = select(Tollbooth).where(getattr(Tollbooth, param) == values[0])
-    tollbooths = session.exec(stm.offset(offset).limit(limit))
-    data = []
-    for tb in tollbooths:
-        tb_data = tb.online_filled_fields(exclude_fields={"legacy_id"})
-        data.append(tb_data)
+        if len(values) > 1:
+            params = []
+            for value in values:
+                params.append(getattr(Tollbooth, param) == value)
+            stm = select(Tollbooth).where(or_(*params))
+            tollbooths = session.exec(stm.offset(offset).limit(limit))
+        else:
+            if values[0] == "all":
+                stm = select(Tollbooth)
+                tollbooths = session.exec(stm)
+            else:
+                stm = select(Tollbooth).where(getattr(Tollbooth, param) == values[0])
+                tollbooths = session.exec(stm.offset(offset).limit(limit))
+        data = []
+        for tb in tollbooths:
+            tb_data = tb.online_filled_fields(exclude_fields={"legacy_id"})
+            data.append(tb_data)
     return data
 
 

@@ -44,7 +44,7 @@ def join_tb_tbsts(year:int):
 
 def tb_imt_tb_id(year: int):
     hex_resolution_max = 7
-    hex_resolution_min = 13
+    hex_resolution_min = 12
     hex_resolution_max_name = "hex_rest_max"
     hex_resolution_min_name = "hex_rest_min"
     data_model_prev_year = DataModel(year - 1)
@@ -66,28 +66,26 @@ def tb_imt_tb_id(year: int):
     )
     df_imt_tb_catalog = df_tb_imt.join(df_tb_catalog, on=hex_resolution_max_name)
     df_imt_tb_catalog = df_imt_tb_catalog.with_columns(
-        plh3.grid_distance("hex_rest_min", "hex_rest_min_right").alias("grid_distance")
+        #plh3.grid_distance("hex_rest_min", "hex_rest_min_right").alias("grid_distance"),
+        plh3.great_circle_distance("lat", "lng", "lat_right", "lng_right").alias("grid_distance")
     )
     df_imt_tb_catalog_no_dup_tb = df_imt_tb_catalog.group_by("tollbooth_id").agg(pl.col("grid_distance").min())
     df_imt_tb_catalog_no_dup_tb = df_imt_tb_catalog_no_dup_tb.join(
         df_imt_tb_catalog, on=["tollbooth_id", "grid_distance"]
-    ).select("tollbooth_id", "tollbooth_imt_id", "grid_distance") 
+    ).select("tollbooth_id", "tollbooth_imt_id", "grid_distance")
+    #print(df_imt_tb_catalog_no_dup_tb.filter(pl.col("tollbooth_id").is_in([773,1209])))
     df_imt_tb_catalog_no_dup_imt_tb = df_imt_tb_catalog_no_dup_tb.group_by("tollbooth_imt_id").agg(pl.col("grid_distance").min())
     df_imt_tb_catalog_no_dup_tb_join = df_imt_tb_catalog_no_dup_imt_tb.join(
        df_imt_tb_catalog_no_dup_tb, on=["tollbooth_imt_id", "grid_distance"]
     ).select("tollbooth_id", "tollbooth_imt_id", "grid_distance")
-    df_tb_not_found = df_tb_imt.join(
-        df_tb_catalog, on=hex_resolution_max_name, how="left"
-    ).filter(pl.col("tollbooth_name_right").is_null() & pl.col("lat_right").is_null()).select("tollbooth_imt_id")
-    df_tb_not_found = df_tb_not_found.with_columns(
-        pl.lit(None).alias("tollbooth_id"),
-        pl.lit(None).alias("grid_distance")
-    )
-    df_imt_tb_catalog_no_dup_tb_join.select(
-        "tollbooth_id", "tollbooth_imt_id", "grid_distance"
-    ).extend(
-        df_tb_not_found.select("tollbooth_id", "tollbooth_imt_id", "grid_distance")
-    ).write_csv(data_model.tb_imt_tb_id.csv)
+    #print(df_imt_tb_catalog_no_dup_tb_join.filter(pl.col("tollbooth_imt_id").is_in([832, 831])))
+    df_tb_not_found = df_imt_tb_catalog.join(
+        df_imt_tb_catalog_no_dup_tb_join, on="tollbooth_id", how="left"
+    ).filter(pl.col("tollbooth_imt_id_right").is_null()).select("tollbooth_id", "tollbooth_imt_id", "grid_distance")
+    df_tb_not_found = df_tb_not_found.join(
+        df_imt_tb_catalog_no_dup_tb_join, on="tollbooth_imt_id", how="left"
+    ).filter(pl.col("tollbooth_id_right").is_null()).select("tollbooth_id", "tollbooth_imt_id", "grid_distance")
+    df_imt_tb_catalog_no_dup_tb_join.extend(df_tb_not_found).write_csv(data_model.tb_imt_tb_id.csv)
 
 
 if __name__ == "__main__":
