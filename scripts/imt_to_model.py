@@ -52,7 +52,10 @@ def plazas(year: int):
 def tarifas(year: int):
     data_model = DataModel(year)
     df_toll_imt = pl.read_csv(f"./tmp_data/tarifas_imt_{year}.csv", infer_schema=False)
-    df_toll_imt = df_toll_imt.cast({"FECHA_ACT,C,10": pl.Date}).filter(pl.col("FECHA_ACT,C,10") >= date(year, 1, 1))
+    df_toll_imt = df_toll_imt.cast({"FECHA_ACT,C,10": pl.Date}).filter(
+        (pl.col("FECHA_ACT,C,10") >= date(year, 1, 1)) &
+        (pl.col("FECHA_ACT,C,10") <= date(year, 12, 31))
+    )
     
     field_map = {
         "ID_PLAZA,N,11,0": "tollbooth_imt_id_a",

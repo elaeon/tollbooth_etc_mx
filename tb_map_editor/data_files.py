@@ -65,7 +65,7 @@ class DataModel:
 
     @property
     def tb_stretch_id(self) -> PathModel:
-        return PathModel("tb_strech_id", model.TbStretch)
+        return PathModel("tb_strech_id", model.TbStretch, self.attr)
     
     @property
     def tbsts_stretch_id(self) -> PathModel:
