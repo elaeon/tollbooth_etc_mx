@@ -80,5 +80,9 @@ class DataModel:
         return PathModel("tb_imt", model.TbImt, self.attr, tmp_data=True)
     
     @property
+    def tb_imt_delta(self) -> PathModel:
+        return PathModel("tb_imt_delta", model.TbImt, self.attr, tmp_data=True)
+
+    @property
     def tb_toll_imt(self) -> PathModel:
         return PathModel("tb_toll_imt", model.TbTollImt, self.attr, tmp_data=True)

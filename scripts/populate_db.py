@@ -34,7 +34,7 @@ def insert_data_from_parquet(ldf, model_name: str):
 
 def insert_tb_from_data(data_model: DataModel):
     parquet_file = data_model.tollbooths.parquet
-    model_name = data_model.tollbooths.model.name()
+    model_name = data_model.tollbooths.model.name()    
     ldf_tb = pl.scan_parquet(parquet_file).select(pl.exclude("function"))
     insert_data_from_parquet(ldf_tb, model_name)
 
@@ -49,8 +49,11 @@ def insert_tb_sts_from_data(data_model: DataModel):
     insert_data_from_parquet(ldf_tb_sts, model_name)
 
 
-def insert_tb_imt_from_data(data_model: DataModel):
-    parquet_file = data_model.tb_imt.parquet
+def insert_tb_imt_from_data(data_model: DataModel, source: str):
+    if source == "delta":
+        parquet_file = data_model.tb_imt_delta.parquet
+    else:
+        parquet_file = data_model.tb_imt.parquet
     model_name = data_model.tb_imt.model.name()
     ldf_tb_imt = pl.scan_parquet(parquet_file)
     insert_data_from_parquet(ldf_tb_imt, model_name)
@@ -69,10 +72,10 @@ def insert_tb_from_db(data_model: DataModel):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--new-tb", help="insert-tb", required=False, action='store_true')
-    parser.add_argument("--new-tb-imt", help="insert tb imt", required=False, action="store_true")
+    parser.add_argument("--new-tb-imt", help="insert tb imt", required=False, type=str)
     parser.add_argument("--new-tb-sts", help="insert-tb-sts-catalog", required=False, action='store_true')
     parser.add_argument("--export-tb", action="store_true")
-    parser.add_argument("--year", help="year for tb-sts", required=True, type=int)
+    parser.add_argument("--year", help="model year", required=True, type=int)
     args = parser.parse_args()
     data_model = DataModel(args.year)
     if args.new_tb:
@@ -80,7 +83,7 @@ if __name__ == "__main__":
     elif args.new_tb_sts:
         insert_tb_sts_from_data(data_model)
     elif args.new_tb_imt:
-        insert_tb_imt_from_data(data_model)
+        insert_tb_imt_from_data(data_model, args.new_tb_imt)
     elif args.export_tb:
         insert_tb_from_db(data_model)
     else:

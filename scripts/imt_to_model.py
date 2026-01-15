@@ -10,11 +10,10 @@ from tb_map_editor.model import TbImt, TbTollImt
 from tb_map_editor.data_files import DataModel
 
 
-def plazas(year: int):
-    data_model = DataModel(year)
-    ldf_tb_imt = pl.scan_csv(f"./tmp_data/plazas_{year}.csv", infer_schema=False)
-    next_year = data_model.attr.get("year") + 1
-    actual_data_model = DataModel(next_year)
+def plazas(imt_year: int, model_year: int):
+    data_model = DataModel(imt_year)
+    ldf_tb_imt = pl.scan_csv(f"./tmp_data/plazas_{imt_year}.csv", infer_schema=False)
+    actual_data_model = DataModel(model_year)
     ldf_tollbooth = pl.scan_parquet(actual_data_model.tollbooths.parquet)
     
     field_map = {
@@ -49,32 +48,44 @@ def plazas(year: int):
     ldf_tb_unq.select(list(field_map.values())).sink_parquet(data_model.tb_imt.parquet)
 
 
+def tb_imt_delta(base_year:int, next_year: int):
+    base_data_model = DataModel(base_year)
+    next_data_model = DataModel(next_year)
+    ldf_tb_imt = pl.scan_parquet(base_data_model.tb_imt.parquet)
+    ldf_tb_imt_up = pl.scan_parquet(next_data_model.tb_imt.parquet)
+    ldf_tb_imt_d = ldf_tb_imt_up.join(ldf_tb_imt, on="tollbooth_imt_id", how="anti")
+    ldf_tb_imt_d.sink_parquet(next_data_model.tb_imt_delta.parquet)
+
+
 def tarifas(year: int):
     data_model = DataModel(year)
     df_toll_imt = pl.read_csv(f"./tmp_data/tarifas_imt_{year}.csv", infer_schema=False)
-    df_toll_imt = df_toll_imt.cast({"FECHA_ACT,C,10": pl.Date}).filter(
-        (pl.col("FECHA_ACT,C,10") >= date(year, 1, 1)) &
-        (pl.col("FECHA_ACT,C,10") <= date(year, 12, 31))
+    df_toll_imt = df_toll_imt.with_columns(
+        pl.col("FECHA_ACT").str.to_date("%Y-%m-%d %H:%M:%S")
+    )
+    df_toll_imt = df_toll_imt.filter(
+        (pl.col("FECHA_ACT") >= date(year, 1, 1)) &
+        (pl.col("FECHA_ACT") < date(year + 1, 1, 1))
     )
     
     field_map = {
-        "ID_PLAZA,N,11,0": "tollbooth_imt_id_a",
-        "ID_PLAZA_E,N,11,0": "tollbooth_imt_id_b",
-        "T_MOTO,N,32,10" : "motorbike",
-        "T_AUTO,N,32,10" : "car",
-        "T_EJE_LIG,N,32,10" : "car_axle",
-        "T_AUTOBUS2,N,32,10" : "bus_2_axle",
-        "T_AUTOBUS3,N,32,10" : "bus_3_axle",
-        "T_AUTOBUS4,N,32,10" : "bus_4_axle",
-        "T_CAMION2,N,32,10" : "truck_2_axle",
-        "T_CAMION3,N,32,10" : "truck_3_axle",
-        "T_CAMION4,N,32,10" : "truck_4_axle",
-        "T_CAMION5,N,32,10" : "truck_5_axle",
-        "T_CAMION6,N,32,10" : "truck_6_axle",
-        "T_CAMION7,N,32,10" : "truck_7_axle",
-        "T_CAMION8,N,32,10" : "truck_8_axle",
-        "T_CAMION9,N,32,10": "truck_9_axle",
-        "T_EJE_PES,N,32,10": "load_axle"
+        "ID_PLAZA": "tollbooth_imt_id_a",
+        "ID_PLAZA_E": "tollbooth_imt_id_b",
+        "T_MOTO" : "motorbike",
+        "T_AUTO" : "car",
+        "T_EJE_LIG" : "car_axle",
+        "T_AUTOBUS2" : "bus_2_axle",
+        "T_AUTOBUS3" : "bus_3_axle",
+        "T_AUTOBUS4" : "bus_4_axle",
+        "T_CAMION2" : "truck_2_axle",
+        "T_CAMION3" : "truck_3_axle",
+        "T_CAMION4" : "truck_4_axle",
+        "T_CAMION5" : "truck_5_axle",
+        "T_CAMION6" : "truck_6_axle",
+        "T_CAMION7" : "truck_7_axle",
+        "T_CAMION8" : "truck_8_axle",
+        "T_CAMION9": "truck_9_axle",
+        "T_EJE_PES": "load_axle"
     }
 
     df_toll_imt = df_toll_imt.with_columns(
@@ -86,12 +97,15 @@ def tarifas(year: int):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--year", required=True, type=int)
+    parser.add_argument("--imt-year", required=True, type=int)
+    parser.add_argument("--model-year", required=False, type=int)
     parser.add_argument("--plazas", required=False, action="store_true")
     parser.add_argument("--tarifas", required=False, action="store_true")
+    parser.add_argument("--tb-imt-delta", required=False, action="store_true")
     args = parser.parse_args()
     if args.plazas:
-        plazas(args.year)
+        plazas(args.imt_year, args.model_year)
     elif args.tarifas:
-        tarifas(args.year)
-    
+        tarifas(args.imt_year)
+    elif args.tb_imt_delta:
+        tb_imt_delta(args.imt_year, args.model_year)
