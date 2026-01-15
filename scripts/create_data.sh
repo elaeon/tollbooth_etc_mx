@@ -12,3 +12,4 @@ uv run scripts/join_tollbooths.py --year 2020 --tb-stretch-id-imt-delta 2021 --p
 uv run scripts/join_tollbooths.py --year 2021 --tb-stretch-id-imt-delta 2022 --pivot-year 2024
 uv run scripts/join_tollbooths.py --year 2022 --tb-stretch-id-imt-delta 2023 --pivot-year 2024
 uv run scripts/join_tollbooths.py --year 2023 --tb-stretch-id-imt-delta 2024 --pivot-year 2024
+uv run scripts/join_tollbooths.py --year 2024 --tb-stretch-id-imt-delta 2025 --pivot-year 2025

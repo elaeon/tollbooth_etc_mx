@@ -42,12 +42,12 @@ def join_tb_tbsts(year:int):
     df_tb_tbsts.write_csv("./data/tables/tb_tbsts.csv")
 
 
-def tb_imt_tb_id(year: int):
+def tb_imt_tb_id(base_year: int, move_year: int):
     hex_resolution_max = 7
     hex_resolution_min = 12
     hex_resolution_max_name = "hex_rest_max"
     hex_resolution_min_name = "hex_rest_min"
-    data_model_prev_year = DataModel(year - 1)
+    data_model_prev_year = DataModel(base_year)
     df_tb_imt = pl.read_parquet(
         data_model_prev_year.tb_imt.parquet, 
         columns=["tollbooth_imt_id", "lat", "lng", "calirepr"]
@@ -58,7 +58,7 @@ def tb_imt_tb_id(year: int):
         plh3.latlng_to_cell("lat", "lng", hex_resolution_min).alias(hex_resolution_min_name)
     )
 
-    data_model = DataModel(year)
+    data_model = DataModel(move_year)
     df_tb_catalog = pl.read_parquet(
         data_model.tollbooths.parquet,
         columns=["tollbooth_id", "lat", "lng"]
@@ -154,18 +154,21 @@ def tb_stretch_id_imt_delta(base_year: int, move_year: int, pivot_year: int):
     ldf_tb_stretch = pl.scan_parquet(data_model_base.tb_stretch_id.parquet)
     ldf_toll_imt = pl.scan_parquet(data_model_move_year.tb_toll_imt.parquet)
     ldf_stretch_toll = pl.scan_parquet(data_model_pivot_year.stretchs_toll.parquet)
-    ldf_tb_imt_tb_id = pl.scan_parquet(data_model_base.tb_imt_tb_id.parquet).select("tollbooth_id", "tollbooth_imt_id")
+    ldf_tb_imt_tb_id = pl.scan_parquet(data_model_move_year.tb_imt_tb_id.parquet).select("tollbooth_id", "tollbooth_imt_id")
     ldf_stretch = _tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll, ldf_tb_imt_tb_id)
-    ldf_tb_stretch.update(
-        ldf_stretch, on="stretch_id", how="left"
-    ).select("stretch_id", "tollbooth_id_a", "tollbooth_id_b").sink_parquet(data_model_move_year.tb_stretch_id.parquet)
+    ldf_tb_stretch = ldf_tb_stretch.join(ldf_stretch, on="stretch_id", how="left")
+    ldf_tb_stretch = ldf_tb_stretch.update(
+         ldf_stretch, on="stretch_id", how="left"
+    ).select("stretch_id", "tollbooth_id_a", "tollbooth_id_b").unique()
+    ldf_new_stretch = ldf_stretch.join(ldf_tb_stretch, on="stretch_id", how="anti")
+    pl.concat([ldf_tb_stretch, ldf_new_stretch], how="vertical").sink_parquet(data_model_move_year.tb_stretch_id.parquet)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", help="data year", required=True, type=int)
     parser.add_argument("--tb-tbsts", help="join tollbooths their statistics", required=False, action='store_true')
-    parser.add_argument("--tb-imt-tb-id", required=False, action="store_true")
+    parser.add_argument("--tb-imt-tb-id", required=False, type=int)
     parser.add_argument("--tb-stretch-id-imt", required=False, type=int)
     parser.add_argument("--tb-stretch-id-imt-delta", required=False, type=int)
     parser.add_argument("--pivot-year", required=False, type=int)
@@ -173,7 +176,7 @@ if __name__ == "__main__":
     if args.tb_tbsts:
         join_tb_tbsts(args.year)
     elif args.tb_imt_tb_id:
-        tb_imt_tb_id(args.year)
+        tb_imt_tb_id(args.year, args.tb_imt_tb_id)
     elif args.tb_stretch_id_imt:
         tb_stretch_id_imt(args.year, args.tb_stretch_id_imt)
     elif args.tb_stretch_id_imt_delta:
