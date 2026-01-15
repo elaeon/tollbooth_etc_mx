@@ -236,7 +236,7 @@ class TbStretch(TbModel, table=True):
 class StretchToll(TbModel, table=True):
     stretch_id: UInt16 | None = Field(default=None, primary_key=True)
     motorbike: Float32 | None = Field(default=None)
-    car: Float32 | None = Field(default=None)
+    car: Float64 | None = Field(default=None)
     car_axle: Float32 | None = Field(default=None)
     bus_2_axle: Float32 | None = Field(default=None)
     bus_3_axle: Float32 | None = Field(default=None)

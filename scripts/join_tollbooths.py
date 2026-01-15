@@ -112,6 +112,14 @@ def tb_imt_tb_id(base_year: int, move_year: int):
 
 
 def _tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll, ldf_tb_imt_tb_id):
+    ldf_stretch_toll = ldf_stretch_toll.with_columns(
+        pl.all().fill_null(strategy="zero"),
+    ).with_columns(
+        pl.col("car").cast(pl.String)
+    )
+    ldf_toll_imt = ldf_toll_imt.with_columns(
+        pl.col("car").cast(pl.String)
+    )
     ldf_toll = ldf_toll_imt.join(
         ldf_stretch_toll, on=[
             "motorbike", "car", "bus_2_axle", "bus_3_axle", "bus_4_axle",
