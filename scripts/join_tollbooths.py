@@ -172,6 +172,71 @@ def tb_stretch_id_imt_delta(base_year: int, move_year: int, pivot_year: int):
     pl.concat([ldf_tb_stretch, ldf_new_stretch], how="vertical").sink_parquet(data_model_move_year.tb_stretch_id.parquet)
 
 
+def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
+    data_model = DataModel(move_year)
+    df_tb_imt = pl.read_parquet(data_model.tb_toll_imt.parquet)
+    df_tb_imt = df_tb_imt.select(
+        pl.exclude("tollbooth_imt_id_a", "tollbooth_imt_id_b", "info_year", "car_axle", "load_axle")
+    )
+    data_model_base = DataModel(base_year)
+    df_tb_toll = pl.scan_parquet(data_model_base.stretchs_toll.parquet).select(
+        pl.exclude("car_axle", "load_axle", "bicycle", "car_rush_hour", "pedestrian", "car_rush_hour_2",
+                "car_evening_hour_2", "car_morning_night", "motorbike_axle", "toll_ref", "truck_10_axle",
+                "car_evening_hour")
+    )
+    df_tb_toll = df_tb_toll.filter(pl.col("stretch_id") == stretch_id).select(pl.exclude("stretch_id")).collect()
+    df_tb_imt = pl.concat([df_tb_toll.cast(pl.Float32), df_tb_imt], how="vertical")
+    df = pl.DataFrame({
+       "col1": list(range(df_tb_imt.shape[0])),
+       "col2": df_tb_imt.rows()
+    })
+    df = df.with_row_index().lazy()
+
+    cosine_similarity = lambda x, y: (
+        (x * y).list.sum() / (
+            (x * x).list.sum().sqrt() * (y * y).list.sum().sqrt()
+        )
+    )
+
+    euclidean_distance = lambda x, y: (
+        ((y - x)*(y - x)).list.sum().sqrt()
+    )
+
+    out_cosine = (
+    df.join_where(df, pl.col.index == 0)
+        .select(
+            col = "col1",
+            other = "col1_right",
+            cosine = cosine_similarity(
+                x = pl.col.col2,
+                y = pl.col.col2_right
+            )
+        )
+    )
+    out_euclidean = (
+    df.join_where(df, pl.col.index == 0)
+        .select(
+            col = "col1",
+            other = "col1_right",
+            eucli = euclidean_distance(
+                x = pl.col.col2,
+                y = pl.col.col2_right
+            )
+        )
+    )
+    best_i = []
+    best_rows = out_cosine.filter(pl.col("cosine").is_not_nan()).top_k(3, by="cosine", reverse=False).collect()
+    for best_opt in best_rows.rows(named=True):
+        best_i.append(best_opt["other"])
+    print(pl.concat([df_tb_imt[best_i], best_rows.select("cosine")], how="horizontal"))
+
+    best_i = []
+    best_rows = out_euclidean.filter(pl.col("eucli").is_not_nan()).top_k(3, by="eucli", reverse=True).collect()
+    for best_opt in best_rows.rows(named=True):
+        best_i.append(best_opt["other"])
+    print(pl.concat([df_tb_imt[best_i], best_rows.select("eucli")], how="horizontal"))
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", help="data year", required=True, type=int)
@@ -180,6 +245,8 @@ if __name__ == "__main__":
     parser.add_argument("--tb-stretch-id-imt", required=False, type=int)
     parser.add_argument("--tb-stretch-id-imt-delta", required=False, type=int)
     parser.add_argument("--pivot-year", required=False, type=int)
+    parser.add_argument("--similarity-toll", required=False, type=int)
+    parser.add_argument("--id", required=False, type=int)
     args = parser.parse_args()
     if args.tb_tbsts:
         join_tb_tbsts(args.year)
@@ -189,4 +256,6 @@ if __name__ == "__main__":
         tb_stretch_id_imt(args.year, args.tb_stretch_id_imt)
     elif args.tb_stretch_id_imt_delta:
         tb_stretch_id_imt_delta(args.year, args.tb_stretch_id_imt_delta, args.pivot_year)
+    elif args.similarity_toll:
+        find_similarity_toll(args.year, args.similarity_toll, args.id)
     
