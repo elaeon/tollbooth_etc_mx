@@ -186,6 +186,9 @@ def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
     )
     df_tb_toll = df_tb_toll.filter(pl.col("stretch_id") == stretch_id).select(pl.exclude("stretch_id")).collect()
     df_tb_imt = pl.concat([df_tb_toll.cast(pl.Float32), df_tb_imt], how="vertical")
+    df_tb_imt = df_tb_imt.with_columns(
+        pl.all().fill_null(strategy="zero")
+    )
     df = pl.DataFrame({
        "col1": list(range(df_tb_imt.shape[0])),
        "col2": df_tb_imt.rows()
