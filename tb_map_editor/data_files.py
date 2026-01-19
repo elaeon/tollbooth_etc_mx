@@ -68,6 +68,14 @@ class DataModel:
         return PathModel("tb_strech_id", model.TbStretch, self.attr)
     
     @property
+    def tb_stretch_id_patch(self) -> PathModel:
+        return PathModel("tb_stretch_id_patch", model.TbStretch, self.attr)
+    
+    @property
+    def tb_stretch_id_patched(self) -> PathModel:
+        return PathModel("tb_stretch_id_patched", model.TbStretch, self.attr)
+    
+    @property
     def tbsts_stretch_id(self) -> PathModel:
         return PathModel("tbsts_strech_id", model.TbstsStretch)
     

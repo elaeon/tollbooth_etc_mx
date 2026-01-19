@@ -172,6 +172,16 @@ def tb_stretch_id_imt_delta(base_year: int, move_year: int, pivot_year: int):
     pl.concat([ldf_tb_stretch, ldf_new_stretch], how="vertical").sink_parquet(data_model_move_year.tb_stretch_id.parquet)
 
 
+def tb_stretch_id_imt_patch(year: int):
+    data_model = DataModel(year)
+    ldf_tb_stretch_id = pl.scan_parquet(data_model.tb_stretch_id.parquet)
+    ldf_tb_stretch_id_m = pl.scan_csv(data_model.tb_stretch_id_patch.csv)
+    ldf_tb_stretch_id = ldf_tb_stretch_id.update(
+        ldf_tb_stretch_id_m, on="stretch_id", how="left"
+    ).unique()
+    ldf_tb_stretch_id.sink_parquet(data_model.tb_stretch_id_patched.parquet)
+
+
 def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
     data_model = DataModel(move_year)
     df_tb_imt = pl.read_parquet(data_model.tb_toll_imt.parquet)
@@ -250,6 +260,7 @@ if __name__ == "__main__":
     parser.add_argument("--pivot-year", required=False, type=int)
     parser.add_argument("--similarity-toll", required=False, type=int)
     parser.add_argument("--id", required=False, type=int)
+    parser.add_argument("--tb-stretch-id-patch", required=False, action="store_true")
     args = parser.parse_args()
     if args.tb_tbsts:
         join_tb_tbsts(args.year)
@@ -261,4 +272,6 @@ if __name__ == "__main__":
         tb_stretch_id_imt_delta(args.year, args.tb_stretch_id_imt_delta, args.pivot_year)
     elif args.similarity_toll:
         find_similarity_toll(args.year, args.similarity_toll, args.id)
+    elif args.tb_stretch_id_patch:
+        tb_stretch_id_imt_patch(args.year)
     
