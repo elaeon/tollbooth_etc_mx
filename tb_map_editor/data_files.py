@@ -45,7 +45,7 @@ class DataModel:
     
     @property
     def stretchs(self) -> PathModel:
-        return PathModel("strechs", model.Stretch, self.attr)
+        return PathModel("stretchs", model.Stretch, self.attr)
     
     @property
     def roads(self) -> PathModel:
