@@ -572,20 +572,14 @@ async function showMarkerTolls(marker, panel) {
 			html += '<table style="width:100%;font-size:11px;border-collapse:collapse">';
 			const firstItem = tollsData[0];
 			const keys = Object.keys(firstItem);
-			// Header row
-			html += '<tr style="background:#f0f0f0">';
-			for (const key of keys) {
-				html += `<th style="padding:3px 4px;border:1px solid #ddd;text-align:left;font-weight:bold">${escapeHtml(key)}</th>`;
-			}
-			html += '</tr>';
 			// Data rows
 			for (const item of tollsData) {
-				html += '<tr>';
 				for (const key of keys) {
+					html += '<tr>';
 					const val = item[key] == null ? '' : (typeof item[key] === 'object' ? JSON.stringify(item[key]) : String(item[key]));
-					html += `<td style="padding:3px 4px;border:1px solid #ddd">${escapeHtml(val)}</td>`;
+					html += `<td style="padding:2px 6px;border-bottom:1px solid #eee;width:40%"><strong>${escapeHtml(key)}</strong></td><td style="padding:2px 6px;border-bottom:1px solid #eee">${escapeHtml(val)}</td>`;
+					html += '</tr>';
 				}
-				html += '</tr>';
 			}
 			html += '</table>';
 		} else {

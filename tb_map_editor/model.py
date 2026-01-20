@@ -212,7 +212,7 @@ class Road(TbModel, table=True):
 
 
 class Stretch(TbModel, table=True):
-    stretch_id: UInt16 | None = Field(default=None, primary_key=True)
+    stretch_id: UInt32 | None = Field(default=None, primary_key=True)
     stretch_name: String
     stretch_length_km: Float32 | None
     sct_id_via: UInt16 | None
@@ -235,32 +235,32 @@ class TbStretch(TbModel, table=True):
     
 
 class StretchToll(TbModel, table=True):
-    stretch_id: UInt16 | None = Field(default=None, primary_key=True)
-    motorbike: Float32 | None = Field(default=None)
-    car: Float64 | None = Field(default=None)
-    car_axle: Float32 | None = Field(default=None)
-    bus_2_axle: Float32 | None = Field(default=None)
-    bus_3_axle: Float32 | None = Field(default=None)
-    bus_4_axle: Float32 | None = Field(default=None)
-    truck_2_axle: Float32 | None = Field(default=None)
-    truck_3_axle: Float32 | None = Field(default=None)
-    truck_4_axle: Float32 | None = Field(default=None)
-    truck_5_axle: Float32 | None = Field(default=None)
-    truck_6_axle: Float32 | None = Field(default=None)
-    truck_7_axle: Float32 | None = Field(default=None)
-    truck_8_axle: Float32 | None = Field(default=None)
-    truck_9_axle: Float32 | None = Field(default=None)
-    load_axle: Float32 | None = Field(default=None)
-    truck_10_axle: Float32 | None = Field(default=None)
+    stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)
+    motorbike: Float32 | None
+    car: Float64 | None
+    car_axle: Float32 | None
+    bus_2_axle: Float32 | None
+    bus_3_axle: Float32 | None
+    bus_4_axle: Float32 | None
+    truck_2_axle: Float32 | None
+    truck_3_axle: Float32 | None
+    truck_4_axle: Float32 | None
+    truck_5_axle: Float32 | None
+    truck_6_axle: Float32 | None
+    truck_7_axle: Float32 | None
+    truck_8_axle: Float32 | None
+    truck_9_axle: Float32 | None
+    load_axle: Float32 | None
+    truck_10_axle: Float32 | None
     toll_ref: String
-    motorbike_axle: Float32 | None = Field(default=None)
-    car_rush_hour: Float32 | None = Field(default=None)
-    car_evening_hour: Float32 | None = Field(default=None)
-    pedestrian: Float32 | None = Field(default=None)
-    bicycle: Float32 | None = Field(default=None)
-    car_rush_hour_2: Float32 | None = Field(default=None)
-    car_evening_hour_2: Float32 | None = Field(default=None)
-    car_morning_night: Float32 | None = Field(default=None)
+    motorbike_axle: Float32 | None
+    car_rush_hour: Float32 | None
+    car_evening_hour: Float32 | None
+    pedestrian: Float32 | None
+    bicycle: Float32 | None
+    car_rush_hour_2: Float32 | None
+    car_evening_hour_2: Float32 | None
+    car_morning_night: Float32 | None
 
 
 class TbImt(TbModel, table=True):

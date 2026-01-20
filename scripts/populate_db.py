@@ -87,6 +87,12 @@ def insert_road_from_data(data_mode: DataModel):
     insert_data_from_parquet(ldf_road, model_name)
 
 
+def insert_stretch_toll_from_data(data_model: DataModel):
+    ldf_stretch_toll = pl.scan_parquet(data_model.stretchs_toll.parquet)
+    model_name = data_model.stretchs_toll.model.name()
+    insert_data_from_parquet(ldf_stretch_toll, model_name)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--new-tb", help="insert-tb", required=False, action='store_true')
@@ -95,6 +101,7 @@ if __name__ == "__main__":
     parser.add_argument("--new-tb-stretch", required=False, action="store_true")
     parser.add_argument("--new-stretch", required=False, action="store_true")
     parser.add_argument("--new-road", required=False, action="store_true")
+    parser.add_argument("--new-stretch-toll", required=False, action="store_true")
     parser.add_argument("--export-tb", action="store_true")
     parser.add_argument("--year", help="model year", required=True, type=int)
     args = parser.parse_args()
@@ -113,5 +120,7 @@ if __name__ == "__main__":
         insert_stretch_from_data(data_model)
     elif args.new_road:
         insert_road_from_data(data_model)
+    elif args.new_stretch_toll:
+        insert_stretch_toll_from_data(data_model)
     else:
         parser.print_help()
