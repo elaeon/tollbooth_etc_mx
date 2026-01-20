@@ -1,4 +1,4 @@
-"road_id","road_name","operation_date","project_mx_id","fonadin","length_km","bond code","issuance date","terms (years)","notes"
+"road_id","road_name","operation_date","project_mx_id","fonadin_ref","road_length_km","bond_code","bond_issuance_date","bond_terms_years","notes"
 5,"acatzingo-cd. mendoza","29-03-1969",,,,,,,
 11,"amozoc-perote y libramiento perote","02-07-2004",,,,"GANACB 11U ","abr-11 ",20,
 68,"armería-manzanillo","11-08-1991",,,,,,,
