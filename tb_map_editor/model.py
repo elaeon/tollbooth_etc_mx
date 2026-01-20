@@ -117,6 +117,18 @@ class TbModel(SQLModel, Schema, table=False):
     @classmethod
     def name(cls):
         return cls.__name__.lower()
+    
+    def get_not_null_fields(self) -> dict:
+        fields_value = {}
+        for field_name in self.dict_schema():
+            value = getattr(self, field_name, None)
+            if value is not None:
+                fields_value[field_name] = value
+        return fields_value
+
+    @classmethod
+    def get_columns(cls, columns: list[str]) -> list:
+        return [getattr(cls, column) for column in columns]
 
 
 class Tollbooth(TbModel, table=True):

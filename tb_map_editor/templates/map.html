@@ -565,7 +565,7 @@ async function showMarkerTolls(marker, panel) {
 		
 		// Render tolls data
 		let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
-		html += `<span>Tolls Data</span>`;
+		html += `<span>Tolls Data: ${tollsData.length}</span>`;
 		html += `</div>`;
 		
 		if (Array.isArray(tollsData) && tollsData.length > 0) {
@@ -574,6 +574,7 @@ async function showMarkerTolls(marker, panel) {
 			const keys = Object.keys(firstItem);
 			// Data rows
 			for (const item of tollsData) {
+				html += '<tr><td><div style="color:#666;margin-top:4px;width:10px;height:10px;"></div></td></tr>';
 				for (const key of keys) {
 					html += '<tr>';
 					const val = item[key] == null ? '' : (typeof item[key] === 'object' ? JSON.stringify(item[key]) : String(item[key]));

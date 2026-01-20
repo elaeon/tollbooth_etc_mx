@@ -189,9 +189,11 @@ def query_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
     tb_stretch = session.exec(stm.offset(offset).limit(limit))
     data = []
     for tb_st, stretch, stretch_toll in tb_stretch:
-        data.append({
+        tolls = stretch_toll.get_not_null_fields()
+        fields = {
             "stretch_id": stretch.stretch_id,
-            "stretch_name": stretch.stretch_name,
-            "motorbike": getattr(stretch_toll, "motorbike", None)
-        })
+            "stretch_name": stretch.stretch_name
+        }
+        fields.update(tolls)
+        data.append(fields)
     return data
