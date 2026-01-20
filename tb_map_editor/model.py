@@ -201,37 +201,38 @@ class TbSts(TbModel, table=True):
 class Road(TbModel, table=True):
     road_id: UInt16 | None = Field(default=None, primary_key=True)
     road_name: String
-    operation_date: Date
-    project_mx_id: String
-    fonadin_id: String
-    road_length_km: Float32
-    bond_code: String
-    bond_issuance_date: Date
-    bond_terms_years: UInt16
-    notes: String
+    operation_date: Date | None
+    project_mx_id: String | None
+    fonadin_ref: String | None
+    road_length_km: Float32 | None
+    bond_code: String | None
+    bond_issuance_date: Date | None
+    bond_terms_years: UInt16 | None
+    notes: String | None
 
 
 class Stretch(TbModel, table=True):
     stretch_id: UInt16 | None = Field(default=None, primary_key=True)
     stretch_name: String
     stretch_length_km: Float32 | None
-    sct_idVia: UInt16
-    road_id: UInt16 = Field(foreign_key="road.road_id", primary_key=True)
-    manage: String
-    way: String
+    sct_id_via: UInt16 | None
+    road_id: UInt16 | None = Field(default=None, foreign_key="road.road_id")
+    manage: String | None
+    way: String | None
 
 
 class TbImtTb(TbModel, table=True):
     tollbooth_id: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
-    tollbooth_imt_id: UInt32 | None
-    grid_distance: UInt16 | None
+    tollbooth_imt_id: UInt32 = Field(foreign_key="tbimt.tollbooth_imt_id", primary_key=True)
+    grid_distance: Float32 | None
 
 
 class TbStretch(TbModel, table=True):
-    tollbooth_id_a: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
-    tollbooth_id_b: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
-    stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)
-
+    id: UInt32 | None = Field(default=None, primary_key=True)
+    stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id")
+    tollbooth_id_a: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id")
+    tollbooth_id_b: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id")
+    
 
 class StretchToll(TbModel, table=True):
     stretch_id: UInt16 | None = Field(default=None, primary_key=True)

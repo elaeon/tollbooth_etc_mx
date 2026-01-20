@@ -308,7 +308,7 @@ const ZoomViewer = L.Control.extend({
 
 // PinSearch component
 var searchBar = L.control.pinSearch({
-            position: 'topright',
+            position: 'topleft',
             placeholder: 'Search...',
             buttonText: 'Search',
             onSearch: function(query) {
@@ -375,8 +375,8 @@ const QueryControl = L.Control.extend({
 		const controlContent = container.querySelector('#control-content');
 
 		// Start with control collapsed
-		container.classList.add('collapsed');
-		controlContent.style.display = 'none';
+		//container.classList.add('collapsed');
+		//controlContent.style.display = 'none';
 
 		// Update zoom level display
 		map.on('zoomstart zoom zoomend', (ev) => {
@@ -514,11 +514,105 @@ function showMarkerProps(marker) {
 	}
 	if (!Object.keys(props).length) html += `<tr><td colspan="2" style="padding:4px;color:#666">(no properties)</td></tr>`;
 	html += '</table>';
+	html += `<div style="margin-top:6px;display:flex;gap:8px"><a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">tolls</a></div>`;
 	panel.innerHTML = html;
 	panel.style.display = 'block';
+	// Store the marker reference for later use
+	panel._currentMarker = marker;
+	panel._showingProperties = true;
 	// attach copy button handler
 	const copyBtn = panel.querySelector('.btn-copy-marker');
 	if (copyBtn) copyBtn.addEventListener('click', () => { copyMarkerPropsToTemp(marker); });
+	// attach tolls toggle handler
+	const tollsLink = panel.querySelector('.toggle-tolls-link');
+	if (tollsLink) tollsLink.addEventListener('click', (e) => { 
+		e.preventDefault(); 
+		toggleTollsView(marker, panel);
+	});
+}
+
+function toggleTollsView(marker, panel) {
+	if (panel._showingProperties) {
+		// Switch to tolls view
+		showMarkerTolls(marker, panel);
+		panel._showingProperties = false;
+	} else {
+		// Switch back to properties view
+		showMarkerProps(marker);
+	}
+}
+
+async function showMarkerTolls(marker, panel) {
+	const data = marker.__data;
+	if (!data || !data.tollbooth_id) {
+		panel.innerHTML = '<div style="color:#666;font-size:12px">No tollbooth ID available</div>';
+		return;
+	}
+	
+	try {
+		panel.innerHTML = '<div style="color:#999;font-size:12px">Loading tolls data...</div>';
+		
+		// Fetch toll data for this tollbooth
+		const payload = { tollbooth_id: data.tollbooth_id };
+		const resp = await fetch('{{ url_for("query_tollbooths") }}', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(payload)
+		});
+		
+		if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
+		const tollsData = await resp.json();
+		
+		// Render tolls data
+		let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
+		html += `<span>Tolls Data</span>`;
+		html += `</div>`;
+		
+		if (Array.isArray(tollsData) && tollsData.length > 0) {
+			html += '<table style="width:100%;font-size:11px;border-collapse:collapse">';
+			const firstItem = tollsData[0];
+			const keys = Object.keys(firstItem);
+			// Header row
+			html += '<tr style="background:#f0f0f0">';
+			for (const key of keys) {
+				html += `<th style="padding:3px 4px;border:1px solid #ddd;text-align:left;font-weight:bold">${escapeHtml(key)}</th>`;
+			}
+			html += '</tr>';
+			// Data rows
+			for (const item of tollsData) {
+				html += '<tr>';
+				for (const key of keys) {
+					const val = item[key] == null ? '' : (typeof item[key] === 'object' ? JSON.stringify(item[key]) : String(item[key]));
+					html += `<td style="padding:3px 4px;border:1px solid #ddd">${escapeHtml(val)}</td>`;
+				}
+				html += '</tr>';
+			}
+			html += '</table>';
+		} else {
+			html += '<div style="color:#666;font-size:12px;margin-top:4px">No tolls data found</div>';
+		}
+		
+		html += `<div style="margin-top:6px;display:flex;gap:8px"><a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">properties</a></div>`;
+		panel.innerHTML = html;
+		panel._showingProperties = false;
+		
+		// attach toggle handler to go back to properties
+		const tollsLink = panel.querySelector('.toggle-tolls-link');
+		if (tollsLink) tollsLink.addEventListener('click', (e) => { 
+			e.preventDefault(); 
+			showMarkerProps(panel._currentMarker);
+		});
+	} catch (err) {
+		panel.innerHTML = `<div style="color:#d9534f;font-size:12px">Error loading tolls: ${escapeHtml(err.message)}</div>`;
+		const backLink = document.createElement('div');
+		backLink.style.marginTop = '6px';
+		backLink.innerHTML = `<a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">back</a>`;
+		panel.appendChild(backLink);
+		backLink.querySelector('.toggle-tolls-link').addEventListener('click', (e) => {
+			e.preventDefault();
+			showMarkerProps(panel._currentMarker);
+		});
+	}
 }
 
 function extractCoordinates(data) {

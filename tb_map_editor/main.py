@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 
 from sqlmodel import select, or_
 
-from .model import Tollbooth, TbSts, TbImt
+from .model import Tollbooth, TbSts, TbImt, TbStretch, Stretch
 from contextlib import asynccontextmanager
 from .utils.connector import SessionDep, create_db_and_tables
 from .data_files import DataModel
@@ -79,6 +79,8 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
         for row in df_tb.select(pl.exclude("h3_cell", "legacy_id")).iter_rows(named=True):
             data.append(row)
     else:
+        if param in ["id", "name"]:
+            param = f"tollbooth_{param}"
         if len(values) > 1:
             params = []
             for value in values:
@@ -143,6 +145,8 @@ def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offs
         param, values = map(str.strip, body["query"].split(":"))
         values = values.split(",")
         stm = select(TbImt).where(TbImt.calirepr != "Virtual")
+        if param in ["id"]:
+            param = f"tollbooth_imt_{param}"
         if len(values) > 1:
             params = []
             for value in values:
@@ -172,3 +176,20 @@ def get_tb_tpl(body: Annotated[Any, Body()]):
     if body.get("source") == "tollbooth":
         empty_tb_data = Tollbooth.online_empty_fields()
     return empty_tb_data
+
+
+@app.post("/api/query_tollbooths")
+def query_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=10):
+    print(body)
+    params = [
+        TbStretch.tollbooth_id_a == body.get("tollbooth_id"),
+        TbStretch.tollbooth_id_b == body.get("tollbooth_id")
+    ]
+    stm = select(TbStretch).where(or_(*params)).where(TbStretch.stretch_id == Stretch.stretch_id)
+    tb_stretch = session.exec(stm.offset(offset).limit(limit))
+    data = []
+    for tb_st in tb_stretch:
+        data.append({
+            "stretch_id": tb_st.stretch_id
+        })
+    return data

@@ -69,11 +69,32 @@ def insert_tb_from_db(data_model: DataModel):
     _log.info(f"Saved data in {data_model.tollbooths.parquet}")
 
 
+def insert_tb_stretch_from_data(data_model: DataModel):
+    ldf_tb_stretch = pl.scan_parquet(data_model.tb_stretch_id.parquet)
+    model_name = data_model.tb_stretch_id.model.name()
+    insert_data_from_parquet(ldf_tb_stretch, model_name)
+
+
+def insert_stretch_from_data(data_model: DataModel):
+    ldf_stretch = pl.scan_parquet(data_model.stretchs.parquet)
+    model_name = data_model.stretchs.model.name()
+    insert_data_from_parquet(ldf_stretch, model_name)
+
+
+def insert_road_from_data(data_mode: DataModel):
+    ldf_road = pl.scan_parquet(data_model.roads.parquet)
+    model_name = data_model.roads.model.name()
+    insert_data_from_parquet(ldf_road, model_name)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--new-tb", help="insert-tb", required=False, action='store_true')
     parser.add_argument("--new-tb-imt", help="insert tb imt", required=False, type=str)
     parser.add_argument("--new-tb-sts", help="insert-tb-sts-catalog", required=False, action='store_true')
+    parser.add_argument("--new-tb-stretch", required=False, action="store_true")
+    parser.add_argument("--new-stretch", required=False, action="store_true")
+    parser.add_argument("--new-road", required=False, action="store_true")
     parser.add_argument("--export-tb", action="store_true")
     parser.add_argument("--year", help="model year", required=True, type=int)
     args = parser.parse_args()
@@ -86,5 +107,11 @@ if __name__ == "__main__":
         insert_tb_imt_from_data(data_model, args.new_tb_imt)
     elif args.export_tb:
         insert_tb_from_db(data_model)
+    elif args.new_tb_stretch:
+        insert_tb_stretch_from_data(data_model)
+    elif args.new_stretch:
+        insert_stretch_from_data(data_model)
+    elif args.new_road:
+        insert_road_from_data(data_model)
     else:
         parser.print_help()
