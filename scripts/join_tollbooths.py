@@ -151,7 +151,7 @@ def tb_stretch_id_imt(base_year: int, move_year: int):
     data_model_base = DataModel(base_year)
     data_model_move_year = DataModel(move_year)
     ldf_toll_imt = pl.scan_parquet(data_model_move_year.tb_toll_imt.parquet)
-    ldf_stretch_toll = pl.scan_parquet(data_model_base.stretchs_toll.parquet)
+    ldf_stretch_toll = pl.scan_parquet(data_model_move_year.stretchs_toll.parquet)
     ldf_tb_imt_tb_id = pl.scan_parquet(data_model_base.tb_imt_tb_id.parquet).select("tollbooth_id", "tollbooth_imt_id")
     ldf_stretch = _tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll, ldf_tb_imt_tb_id)
     ldf_stretch_not_found = ldf_stretch_toll.select("stretch_id").join(
@@ -168,9 +168,9 @@ def tb_stretch_id_imt_delta(base_year: int, move_year: int, pivot_year: int):
     data_model_move_year = DataModel(move_year)
     data_model_pivot_year = DataModel(pivot_year)
     ldf_tb_stretch = pl.scan_parquet(data_model_base.tb_stretch_id.parquet)
-    ldf_toll_imt = pl.scan_parquet(data_model_pivot_year.tb_toll_imt.parquet)
-    ldf_stretch_toll = pl.scan_parquet(data_model_pivot_year.stretchs_toll.parquet)
-    ldf_tb_imt_tb_id = pl.scan_parquet(data_model_move_year.tb_imt_tb_id.parquet).select("tollbooth_id", "tollbooth_imt_id")
+    ldf_toll_imt = pl.scan_parquet(data_model_move_year.tb_toll_imt.parquet)
+    ldf_stretch_toll = pl.scan_parquet(data_model_move_year.stretchs_toll.parquet)
+    ldf_tb_imt_tb_id = pl.scan_parquet(data_model_pivot_year.tb_imt_tb_id.parquet).select("tollbooth_id", "tollbooth_imt_id")
     ldf_stretch = _tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll, ldf_tb_imt_tb_id)
     ldf_tb_stretch = ldf_tb_stretch.join(ldf_stretch, on="stretch_id", how="left")
     ldf_tb_stretch = ldf_tb_stretch.update(

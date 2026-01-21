@@ -59,29 +59,26 @@ def sts_catalog():
     df_tbsts_id.with_row_index("tollboothsts_id", 1).write_parquet(DataModel(to_year).tbsts_id.parquet)
 
 
-def tb_catalog(year: int):
+def catalog(year: int, catalog_name: str):
     data_model = DataModel(year)
-    ldf_tb = pl.scan_csv(data_model.tollbooths.csv, schema=data_model.tollbooths.model.dict_schema())
-    ldf_tb.sink_parquet(data_model.tollbooths.parquet)
-
-
-def stretch_toll(year: int):
-    data_model = DataModel(year)
-    ldf_stretch_toll = pl.scan_csv(data_model.stretchs_toll.csv, schema=data_model.stretchs_toll.model.dict_schema())
-    ldf_stretch_toll.sink_parquet(data_model.stretchs_toll.parquet)
+    catalogs = {
+        "tb": data_model.tollbooths,
+        "stretch": data_model.stretchs,
+        "stretch_toll": data_model.stretchs_toll,
+        "road": data_model.roads
+    }
+    model = catalogs.get(catalog_name)
+    ldf = pl.scan_csv(model.csv, schema=model.model.dict_schema())
+    ldf.sink_parquet(model.parquet)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", required=False, type=int)
-    parser.add_argument("--tb-catalog", help="generate parquet file for tollbooths", required=False, action="store_true")
+    parser.add_argument("--catalog", help="generate parquet file", required=False, type=str)
     parser.add_argument("--sts-catalog", help="generate tollbooth sts id catalog", required=False, action="store_true")
-    parser.add_argument("--stretch-toll", help="convert csv file to parquet", required=False, action="store_true")
     args = parser.parse_args()
     if args.sts_catalog:
         sts_catalog()
-    elif args.tb_catalog:
-        tb_catalog(args.year)
-    elif args.stretch_toll:
-        stretch_toll(args.year)
-    
+    elif args.catalog:
+        catalog(args.year, args.catalog)
