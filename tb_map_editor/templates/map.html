@@ -657,11 +657,22 @@ async function showMarkerTolls(marker, panel) {
 	}
 }
 
-function showTollboothMarkers(tollboothIds) {
+async function showTollboothMarkers(tollboothIds) {
 	if (!Array.isArray(tollboothIds) || tollboothIds.length === 0) {
 		return;
 	}
-	
+	try {
+		const resp = await fetch("{{ url_for(fetch_tollbooths) }}", {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ query: `id:${tollboothIds.join(', ')}`})
+		});
+		if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
+		const data = await resp.json();
+		processMarkerResponse(data, "");
+	} catch (err) {
+		statusEl.textContent = `Error: ${err.message}`;
+	}
 	// For each tollbooth ID, we would need to fetch its location data
 	// This is a placeholder that clears layers and would be expanded based on your data structure
 	const statusEl = document.getElementById('query-status');
