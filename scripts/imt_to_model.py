@@ -53,8 +53,17 @@ def tb_imt_delta(base_year:int, next_year: int):
     next_data_model = DataModel(next_year)
     ldf_tb_imt = pl.scan_parquet(base_data_model.tb_imt.parquet)
     ldf_tb_imt_up = pl.scan_parquet(next_data_model.tb_imt.parquet)
-    ldf_tb_imt_d = ldf_tb_imt_up.join(ldf_tb_imt, on="tollbooth_imt_id", how="anti")
-    ldf_tb_imt_d.sink_parquet(next_data_model.tb_imt_delta.parquet)
+    ldf_tb_imt_new = ldf_tb_imt_up.join(ldf_tb_imt, on="tollbooth_imt_id", how="anti")
+    ldf_tb_imt_new = ldf_tb_imt_new.with_columns(
+        pl.lit("new").alias("status")
+    )
+    ldf_tb_imt_closed = ldf_tb_imt.join(ldf_tb_imt_up, on="tollbooth_imt_id", how="anti")
+    ldf_tb_imt_closed = ldf_tb_imt_closed.with_columns(
+        pl.lit("closed").alias("status")
+    )
+    pl.concat(
+        [ldf_tb_imt_new, ldf_tb_imt_closed], how="vertical"
+    ).sink_parquet(next_data_model.tb_imt_delta.parquet)
 
 
 def tarifas(year: int):
@@ -97,15 +106,14 @@ def tarifas(year: int):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--imt-year", required=True, type=int)
-    parser.add_argument("--model-year", required=False, type=int)
-    parser.add_argument("--plazas", required=False, action="store_true")
+    parser.add_argument("--year", required=True, type=int)
+    parser.add_argument("--plazas", required=False, type=int)
     parser.add_argument("--tarifas", required=False, action="store_true")
-    parser.add_argument("--tb-imt-delta", required=False, action="store_true")
+    parser.add_argument("--tb-imt-delta", required=False, type=int)
     args = parser.parse_args()
     if args.plazas:
-        plazas(args.imt_year, args.model_year)
+        plazas(args.year, args.plazas)
     elif args.tarifas:
-        tarifas(args.imt_year)
+        tarifas(args.year)
     elif args.tb_imt_delta:
-        tb_imt_delta(args.imt_year, args.model_year)
+        tb_imt_delta(args.year, args.tb_imt_delta)
