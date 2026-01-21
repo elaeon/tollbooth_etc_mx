@@ -192,7 +192,9 @@ def query_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
         tolls = stretch_toll.get_not_null_fields()
         fields = {
             "stretch_id": stretch.stretch_id,
-            "stretch_name": stretch.stretch_name
+            "stretch_name": stretch.stretch_name,
+            "tollbooth_id_a": tb_st.tollbooth_id_a,
+            "tollbooth_id_b": tb_st.tollbooth_id_b
         }
         fields.update(tolls)
         data.append(fields)

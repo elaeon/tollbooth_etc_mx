@@ -563,26 +563,42 @@ async function showMarkerTolls(marker, panel) {
 		if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
 		const tollsData = await resp.json();
 		
-		// Render tolls data
+		// Render tolls data with tabs
 		let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
 		html += `<span>Tolls Data: ${tollsData.length}</span>`;
 		html += `</div>`;
 		
 		if (Array.isArray(tollsData) && tollsData.length > 0) {
-			html += '<table style="width:100%;font-size:11px;border-collapse:collapse">';
-			const firstItem = tollsData[0];
-			const keys = Object.keys(firstItem);
-			// Data rows
-			for (const item of tollsData) {
-				html += '<tr><td><div style="color:#666;margin-top:4px;width:10px;height:10px;"></div></td></tr>';
+			// Create tabs for each toll item
+			html += '<div style="display:flex;gap:1px;border-bottom:1px solid #ccc;margin-bottom:6px;flex-wrap:wrap">';
+			for (let i = 0; i < tollsData.length; i++) {
+				const isFirst = i === 0;
+				html += `<button class="toll-tab" data-tab="${i}" style="padding:2px 8px;font-size:10px;cursor:pointer;border:1px solid #ccc;background:${isFirst ? '#f0f0f0' : '#fff'};border-bottom:none;${isFirst ? 'font-weight:bold' : ''}" data-toll-id-a="${tollsData[i].tollbooth_id_a || ''}" data-toll-id-b="${tollsData[i].tollbooth_id_b || ''}">
+					Tab ${i + 1}
+				</button>`;
+			}
+			html += '</div>';
+			
+			// Create content container for each tab
+			html += '<div class="toll-content">';
+			for (let i = 0; i < tollsData.length; i++) {
+				const item = tollsData[i];
+				//const keys = Object.keys(item);
+				const { tollbooth_id_a, tollbooth_id_b, ...newItem } = item;
+				const keys = Object.keys(newItem);
+				const isFirst = i === 0;
+				html += `<div class="toll-tab-content" data-tab="${i}" style="display:${isFirst ? 'block' : 'none'}">`;
+				html += '<table style="width:100%;font-size:11px;border-collapse:collapse">';
 				for (const key of keys) {
 					html += '<tr>';
 					const val = item[key] == null ? '' : (typeof item[key] === 'object' ? JSON.stringify(item[key]) : String(item[key]));
 					html += `<td style="padding:2px 6px;border-bottom:1px solid #eee;width:40%"><strong>${escapeHtml(key)}</strong></td><td style="padding:2px 6px;border-bottom:1px solid #eee">${escapeHtml(val)}</td>`;
 					html += '</tr>';
 				}
+				html += '</table>';
+				html += '</div>';
 			}
-			html += '</table>';
+			html += '</div>';
 		} else {
 			html += '<div style="color:#666;font-size:12px;margin-top:4px">No tolls data found</div>';
 		}
@@ -590,6 +606,37 @@ async function showMarkerTolls(marker, panel) {
 		html += `<div style="margin-top:6px;display:flex;gap:8px"><a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">properties</a></div>`;
 		panel.innerHTML = html;
 		panel._showingProperties = false;
+		panel._tollsData = tollsData;
+		
+		// Attach tab handlers
+		const tabs = panel.querySelectorAll('.toll-tab');
+		tabs.forEach(tab => {
+			tab.addEventListener('click', (e) => {
+				e.preventDefault();
+				const tabIndex = tab.dataset.tab;
+				const tollIdA = tab.dataset.tollIdA;
+				const tollIdB = tab.dataset.tollIdB;
+				
+				// Update tab styles
+				tabs.forEach(t => {
+					t.style.background = '#fff';
+					t.style.fontWeight = 'normal';
+				});
+				tab.style.background = '#f0f0f0';
+				tab.style.fontWeight = 'bold';
+				
+				// Show content for this tab
+				panel.querySelectorAll('.toll-tab-content').forEach(content => {
+					content.style.display = 'none';
+				});
+				panel.querySelector(`div[data-tab="${tabIndex}"]`).style.display = 'block';
+				
+				// Show markers for tollbooth_id_a and tollbooth_id_b
+				if (tollIdA || tollIdB) {
+					showTollboothMarkers([tollIdA, tollIdB].filter(id => id));
+				}
+			});
+		});
 		
 		// attach toggle handler to go back to properties
 		const tollsLink = panel.querySelector('.toggle-tolls-link');
@@ -608,6 +655,17 @@ async function showMarkerTolls(marker, panel) {
 			showMarkerProps(panel._currentMarker);
 		});
 	}
+}
+
+function showTollboothMarkers(tollboothIds) {
+	if (!Array.isArray(tollboothIds) || tollboothIds.length === 0) {
+		return;
+	}
+	
+	// For each tollbooth ID, we would need to fetch its location data
+	// This is a placeholder that clears layers and would be expanded based on your data structure
+	const statusEl = document.getElementById('query-status');
+	if (statusEl) statusEl.textContent = `Displaying markers for tollbooths: ${tollboothIds.join(', ')}`;
 }
 
 function extractCoordinates(data) {
