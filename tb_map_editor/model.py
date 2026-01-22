@@ -167,47 +167,37 @@ class TbSts(TbModel, table=True):
     tollbooth_name: String
     way: String
     highway: String | None = Field(default=None)
-    km: Float32 | None = Field(default=None)
+    km: Float64 | None = Field(default=None)
     lat: Float64
     lng: Float64
     tdpa: UInt32
-    motorbike: Float32 | None = Field(default=None)
-    car: Float32 | None = Field(default=None)
-    car_axle: Float32 | None = Field(default=None)
-    bus: Float32 | None = Field(default=None)
-    truck_2_axle: Float32 | None = Field(default=None)
-    truck_3_axle: Float32 | None = Field(default=None)
-    truck_4_axle: Float32 | None = Field(default=None)
-    truck_5_axle: Float32 | None = Field(default=None)
-    truck_6_axle: Float32 | None = Field(default=None)
-    truck_7_axle: Float32 | None = Field(default=None)
-    truck_8_axle: Float32 | None = Field(default=None)
-    truck_9_axle: Float32 | None = Field(default=None)
-    not_classified_vehicle: Float32
+    motorbike: Float64 | None
+    car: Float64 | None
+    car_axle: Float64 | None
+    bus: Float64 | None
+    truck_2_axle: Float64 | None
+    truck_3_axle: Float64 | None
+    truck_4_axle: Float64 | None
+    truck_5_axle: Float64 | None
+    truck_6_axle: Float64 | None
+    truck_7_axle: Float64 | None
+    truck_8_axle: Float64 | None
+    truck_9_axle: Float64 | None
+    not_classified_vehicle: Float64
     vta: UInt64
-    jan: Float32 | None = Field(default=None)
-    feb: Float32 | None = Field(default=None)
-    mar: Float32 | None = Field(default=None)
-    apr: Float32 | None = Field(default=None)
-    may: Float32 | None = Field(default=None)
-    jun: Float32 | None = Field(default=None)
-    jul: Float32 | None = Field(default=None)
-    ago: Float32 | None = Field(default=None)
-    sep: Float32 | None = Field(default=None)
-    oct: Float32 | None = Field(default=None)
-    nov: Float32 | None = Field(default=None)
-    dec: Float32 | None = Field(default=None)
+    jan: Float64 | None
+    feb: Float64 | None
+    mar: Float64 | None
+    apr: Float64 | None
+    may: Float64 | None
+    jun: Float64 | None
+    jul: Float64 | None
+    ago: Float64 | None
+    sep: Float64 | None
+    oct: Float64 | None
+    nov: Float64 | None
+    dec: Float64 | None
     info_year: UInt16 = Field(primary_key=True)
-
-    @classmethod
-    def dict_schema(cls):
-        exclude = {"info_year"}
-        dict_schema = {
-            field_name: cls._get_polars_dtype(field_type)
-            for field_name, field_type in cls.model_fields.items()
-            if field_name not in exclude
-        }
-        return dict_schema
 
 
 class Road(TbModel, table=True):
@@ -216,67 +206,67 @@ class Road(TbModel, table=True):
     operation_date: Date | None
     project_mx_id: String | None
     fonadin_ref: String | None
-    road_length_km: Float32 | None
+    road_length_km: Float64 | None
     bond_code: String | None
-    bond_issuance_date: Date | None
-    bond_terms_years: UInt16 | None
+    bond_issuance_date: String | None
+    bond_terms_years: String | None
     notes: String | None
 
 
 class Stretch(TbModel, table=True):
     stretch_id: UInt32 | None = Field(default=None, primary_key=True)
     stretch_name: String
-    stretch_length_km: Float32 | None
+    stretch_length_km: Float64 | None
     sct_id_via: UInt16 | None
     road_id: UInt16 | None = Field(default=None, foreign_key="road.road_id")
     manage: String | None
     way: String | None
 
 
-class TbImtTb(TbModel, table=True):
+class MapTbImt(TbModel, table=True):
     tollbooth_id: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
-    tollbooth_imt_id: UInt32 = Field(foreign_key="tbimt.tollbooth_imt_id", primary_key=True)
-    grid_distance: Float32 | None
+    tollbooth_imt_id: UInt32 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
+    distance: Float64 | None
 
 
-class TbStretch(TbModel, table=True):
-    id: UInt32 | None = Field(default=None, primary_key=True)
-    stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id")
-    tollbooth_id_a: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id")
-    tollbooth_id_b: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id")
-    
+class TbStretchId(TbModel, table=True):
+    stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)
+    tollbooth_id_a: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id", primary_key=True)
+    tollbooth_id_b: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id", primary_key=True)
+    info_year: UInt16 = Field(primary_key=True)
+
 
 class StretchToll(TbModel, table=True):
     stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)
-    motorbike: Float32 | None
+    motorbike: Float64 | None
     car: Float64 | None
-    car_axle: Float32 | None
-    bus_2_axle: Float32 | None
-    bus_3_axle: Float32 | None
-    bus_4_axle: Float32 | None
-    truck_2_axle: Float32 | None
-    truck_3_axle: Float32 | None
-    truck_4_axle: Float32 | None
-    truck_5_axle: Float32 | None
-    truck_6_axle: Float32 | None
-    truck_7_axle: Float32 | None
-    truck_8_axle: Float32 | None
-    truck_9_axle: Float32 | None
-    load_axle: Float32 | None
-    truck_10_axle: Float32 | None
+    car_axle: Float64 | None
+    bus_2_axle: Float64 | None
+    bus_3_axle: Float64 | None
+    bus_4_axle: Float64 | None
+    truck_2_axle: Float64 | None
+    truck_3_axle: Float64 | None
+    truck_4_axle: Float64 | None
+    truck_5_axle: Float64 | None
+    truck_6_axle: Float64 | None
+    truck_7_axle: Float64 | None
+    truck_8_axle: Float64 | None
+    truck_9_axle: Float64 | None
+    load_axle: Float64 | None
+    truck_10_axle: Float64 | None
     toll_ref: String
-    motorbike_axle: Float32 | None
-    car_rush_hour: Float32 | None
-    car_evening_hour: Float32 | None
-    pedestrian: Float32 | None
-    bicycle: Float32 | None
-    car_rush_hour_2: Float32 | None
-    car_evening_hour_2: Float32 | None
-    car_morning_night: Float32 | None
+    motorbike_axle: Float64 | None
+    car_rush_hour: Float64 | None
+    car_evening_hour: Float64 | None
+    pedestrian: Float64 | None
+    bicycle: Float64 | None
+    car_rush_hour_2: Float64 | None
+    car_evening_hour_2: Float64 | None
+    car_morning_night: Float64 | None
 
 
 class TbImt(TbModel, table=True):
-    tollbooth_imt_id: UInt16 = Field(primary_key=True)
+    tollbooth_id: UInt16 = Field(primary_key=True)
     tollbooth_name: String
     area: String | None = Field(default=None)
     subarea: String | None = Field(default=None)
@@ -285,31 +275,33 @@ class TbImt(TbModel, table=True):
     calirepr: String | None = Field(default=None)
     lat: Float64 | None = Field(default=None)
     lng: Float64 | None = Field(default=None)
-    state: String | None = Field(default=None)
-
-
-class TbTollImt(TbModel, table=True):
-    tollbooth_imt_id_a: UInt16 = Field(foreign_key="tbimt.tollbooth_imt_id", primary_key=True)
-    tollbooth_imt_id_b: UInt16 = Field(foreign_key="tbimt.tollbooth_imt_id", primary_key=True)
-    motorbike: Float32 | None = Field(default=None)
-    car: Float32 | None = Field(default=None)
-    car_axle: Float32 | None = Field(default=None)
-    bus_2_axle: Float32 | None = Field(default=None)
-    bus_3_axle: Float32 | None = Field(default=None)
-    bus_4_axle: Float32 | None = Field(default=None)
-    truck_2_axle: Float32 | None = Field(default=None)
-    truck_3_axle: Float32 | None = Field(default=None)
-    truck_4_axle: Float32 | None = Field(default=None)
-    truck_5_axle: Float32 | None = Field(default=None)
-    truck_6_axle: Float32 | None = Field(default=None)
-    truck_7_axle: Float32 | None = Field(default=None)
-    truck_8_axle: Float32 | None = Field(default=None)
-    truck_9_axle: Float32 | None = Field(default=None)
-    load_axle: Float32 | None = Field(default=None)
     info_year: UInt16 = Field(primary_key=True)
 
 
-class TbstsId(TbModel, table=True):
+class TbTollImt(TbModel, table=True):
+    tollbooth_id_a: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
+    tollbooth_id_b: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
+    nombre_sal: String | None
+    nombre_ent: String | None
+    motorbike: Float64 | None = Field(default=None)
+    car: Float64 | None = Field(default=None)
+    car_axle: Float64 | None = Field(default=None)
+    bus_2_axle: Float64 | None = Field(default=None)
+    bus_3_axle: Float64 | None = Field(default=None)
+    bus_4_axle: Float64 | None = Field(default=None)
+    truck_2_axle: Float64 | None = Field(default=None)
+    truck_3_axle: Float64 | None = Field(default=None)
+    truck_4_axle: Float64 | None = Field(default=None)
+    truck_5_axle: Float64 | None = Field(default=None)
+    truck_6_axle: Float64 | None = Field(default=None)
+    truck_7_axle: Float64 | None = Field(default=None)
+    truck_8_axle: Float64 | None = Field(default=None)
+    truck_9_axle: Float64 | None = Field(default=None)
+    load_axle: Float64 | None = Field(default=None)
+    info_year: UInt16 = Field(primary_key=True)
+
+
+class TbStsId(TbModel, table=True):
     tollboothsts_id: UInt32 | None = Field(default=None, primary_key=True)
     historic_id: UInt32
     h3_cell: UInt64
@@ -318,6 +310,6 @@ class TbstsId(TbModel, table=True):
     ref_year: UInt16
 
 
-class TbstsStretch(TbModel, table=True):
+class TbStsStretch(TbModel, table=True):
     tollboothsts_id: UInt32 = Field(foreign_key="tbstsid.tollboothsts_id", primary_key=True)
     stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)

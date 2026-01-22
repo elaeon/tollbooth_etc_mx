@@ -3,7 +3,6 @@ sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
 
 import logging
 import polars as pl
-import polars_h3 as plh3
 import sqlite3
 
 from tb_map_editor.data_files import DataModel
@@ -90,6 +89,33 @@ def insert_stretch_toll_from_data(data_model: DataModel):
     insert_data_from_parquet(ldf_stretch_toll, model_name)
 
 
+def clean_db():
+    table_parameter = "{table_parameter}"
+    drop_table_query = f"DROP TABLE {table_parameter};"
+    get_tables_query = "SELECT name FROM sqlite_schema WHERE type='table';"
+
+    def get_tables(conn):
+        cur = conn.cursor()
+        cur.execute(get_tables_query)
+        tables = cur.fetchall()
+        cur.close()
+        return tables
+
+    def delete_tables(conn, tables):
+        cur = conn.cursor()
+        for table, in tables:
+            _log.info(f"Delete table {table}")
+            sql = drop_table_query.replace(table_parameter, table)
+            cur.execute(sql)
+        cur.close()
+
+    conn = sqlite3.connect(sqlite_url.replace("sqlite:///", ""))
+    tables = get_tables(conn)
+    delete_tables(conn, tables)
+
+    _log.info(f"Cleaned data in {sqlite_url}")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--new-tb", help="insert-tb", required=False, action='store_true')
@@ -100,7 +126,8 @@ if __name__ == "__main__":
     parser.add_argument("--new-road", required=False, action="store_true")
     parser.add_argument("--new-stretch-toll", required=False, action="store_true")
     parser.add_argument("--export-tb", action="store_true")
-    parser.add_argument("--year", help="model year", required=True, type=int)
+    parser.add_argument("--year", help="model year", required=False, type=int)
+    parser.add_argument("--clean-db", required=False, action="store_true")
     args = parser.parse_args()
     data_model = DataModel(args.year)
     if args.new_tb:
@@ -119,5 +146,7 @@ if __name__ == "__main__":
         insert_road_from_data(data_model)
     elif args.new_stretch_toll:
         insert_stretch_toll_from_data(data_model)
+    elif args.clean_db:
+        clean_db()
     else:
         parser.print_help()
