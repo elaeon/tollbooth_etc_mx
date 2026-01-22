@@ -1054,7 +1054,6 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1104,,Tepoztlán A,18.9841532019227,-99.109198411567,open,morelos,entronque,2,ticket,capufe,
 1105,,bosque real 2-e,19.4214882554875,-99.2995043690689,open,edomx,entronque,3,toll,chamapa-laventa,
 1106,,el hongo,32.52170833251638,-116.32005035877229,open,baja california,troncal,2,toll,capufe,""
-1107,,el hongo,32.52193901602732,-116.3199806213379,open,baja california,entronque,1,toll,capufe,""
 1108,,libramiento de mexicalli,32.53344530075836,-115.42074859142305,open,baja california,troncal,2,toll,omega,
 1109,,tijuana,32.545696245459936,-116.85226500034334,open,baja california,troncal,4,toll,tijuana-tecate,
 1110,,playas de tijuana,32.514167821941896,-117.1095907688141,open,baja california,troncal,5,toll,capufe,
