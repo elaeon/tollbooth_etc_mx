@@ -139,11 +139,12 @@ class Tollbooth(TbModel, table=True):
     lng: Float64 | None
     status: String
     state: String
-    place: String | None = Field(default=None)
-    lines: UInt16 | None = Field(default=None)
+    place: String | None
+    lines: UInt16 | None
     type: String
-    manage: String | None = Field(default=None)
-    gate_to: String | None = Field(default=None)
+    manage: String | None
+    gate_to: String | None
+    info_year: UInt16 = Field(primary_key=True)
 
     @classmethod
     def online_empty_fields(cls, exclude_fields: set | None = None) -> dict:
@@ -211,22 +212,25 @@ class Road(TbModel, table=True):
     bond_issuance_date: String | None
     bond_terms_years: String | None
     notes: String | None
+    info_year: UInt16 = Field(primary_key=True)
 
 
 class Stretch(TbModel, table=True):
     stretch_id: UInt32 | None = Field(default=None, primary_key=True)
-    stretch_name: String
+    stretch_name: String = Field(index=True)
     stretch_length_km: Float64 | None
     sct_id_via: UInt16 | None
     road_id: UInt16 | None = Field(default=None, foreign_key="road.road_id")
     manage: String | None
     way: String | None
+    info_year: UInt16 = Field(primary_key=True)
 
 
 class MapTbImt(TbModel, table=True):
     tollbooth_id: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
     tollbooth_imt_id: UInt32 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
-    distance: Float64 | None
+    distance: Float64
+    info_year: UInt16 = Field(primary_key=True)
 
 
 class TbStretchId(TbModel, table=True):
@@ -263,6 +267,7 @@ class StretchToll(TbModel, table=True):
     car_rush_hour_2: Float64 | None
     car_evening_hour_2: Float64 | None
     car_morning_night: Float64 | None
+    info_year: UInt16 = Field(primary_key=True)
 
 
 class TbImt(TbModel, table=True):
@@ -302,14 +307,15 @@ class TbTollImt(TbModel, table=True):
 
 
 class TbStsId(TbModel, table=True):
-    tollboothsts_id: UInt32 | None = Field(default=None, primary_key=True)
+    tollbooth_id: UInt32 | None = Field(default=None, primary_key=True)
     historic_id: UInt32
     h3_cell: UInt64
     tollbooth_name: String
     way: String
-    ref_year: UInt16
+    info_year: UInt16
 
 
-class TbStsStretch(TbModel, table=True):
-    tollboothsts_id: UInt32 = Field(foreign_key="tbstsid.tollboothsts_id", primary_key=True)
+class TbStsStretchId(TbModel, table=True):
+    tollboothsts_id: UInt32 = Field(foreign_key="tbstsid.tollbooth_id", primary_key=True)
     stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)
+    info_year: UInt16 = Field(default=None, primary_key=True)

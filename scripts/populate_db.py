@@ -34,7 +34,7 @@ def insert_data_from_parquet(ldf, model_name: str):
 def insert_tb_from_data(data_model: DataModel):
     parquet_file = data_model.tollbooths.parquet
     model_name = data_model.tollbooths.model.name()    
-    ldf_tb = pl.scan_parquet(parquet_file).select(pl.exclude("function"))
+    ldf_tb = pl.scan_parquet(parquet_file)
     insert_data_from_parquet(ldf_tb, model_name)
 
 
@@ -56,8 +56,8 @@ def insert_tb_imt_from_data(data_model: DataModel):
 
 
 def insert_tb_from_db(data_model: DataModel):
-    query = """
-        SELECT * FROM tollbooth
+    query = f"""
+        SELECT * FROM tollbooth WHERE info_year={data_model.attr.get("year")}
     """
     conn = sqlite3.connect(sqlite_url.replace("sqlite:///", ""))
     df = pl.read_database(query, connection=conn)
@@ -77,7 +77,7 @@ def insert_stretch_from_data(data_model: DataModel):
     insert_data_from_parquet(ldf_stretch, model_name)
 
 
-def insert_road_from_data(data_mode: DataModel):
+def insert_road_from_data(data_model: DataModel):
     ldf_road = pl.scan_parquet(data_model.roads.parquet)
     model_name = data_model.roads.model.name()
     insert_data_from_parquet(ldf_road, model_name)

@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 
 from sqlmodel import select, or_
 
-from .model import Tollbooth, TbSts, TbImt, TbStretch, Stretch, StretchToll
+from .model import Tollbooth, TbSts, TbImt, TbStretchId, Stretch, StretchToll
 from contextlib import asynccontextmanager
 from .utils.connector import SessionDep, create_db_and_tables
 from .data_files import DataModel
@@ -182,10 +182,10 @@ def get_tb_tpl(body: Annotated[Any, Body()]):
 def query_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=10):
     print(body)
     params = [
-        TbStretch.tollbooth_id_a == body.get("tollbooth_id"),
-        TbStretch.tollbooth_id_b == body.get("tollbooth_id")
+        TbStretchId.tollbooth_id_a == body.get("tollbooth_id"),
+        TbStretchId.tollbooth_id_b == body.get("tollbooth_id")
     ]
-    stm = select(TbStretch, Stretch, StretchToll).join(TbStretch).join(StretchToll, isouter=True).where(or_(*params))
+    stm = select(TbStretchId, Stretch, StretchToll).join(TbStretchId).join(StretchToll, isouter=True).where(or_(*params))
     tb_stretch = session.exec(stm.offset(offset).limit(limit))
     data = []
     for tb_st, stretch, stretch_toll in tb_stretch:
