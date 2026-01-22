@@ -63,7 +63,6 @@ def tarifas(year: int):
         pl.col("FECHA_ACT").str.to_date(date_format)
     )
     df_toll_imt = df_toll_imt.filter(
-        (pl.col("FECHA_ACT") >= date(year, 1, 1)) &
         (pl.col("FECHA_ACT") < date(year + 1, 1, 1))
     )
     fields = data_model.tb_toll_imt.model.dict_schema()

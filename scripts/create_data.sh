@@ -33,12 +33,21 @@ uv run scripts/populate_db.py --year 2025 --new-stretch-toll
 uv run scripts/populate_db.py --year 2024 --new-stretch-toll
 uv run scripts/populate_db.py --year 2023 --new-stretch-toll
 
+uv run scripts/populate_db.py --year 2018 --new-tb-sts
+uv run scripts/populate_db.py --year 2019 --new-tb-sts
+uv run scripts/populate_db.py --year 2020 --new-tb-sts
+uv run scripts/populate_db.py --year 2021 --new-tb-sts
+uv run scripts/populate_db.py --year 2022 --new-tb-sts
+uv run scripts/populate_db.py --year 2023 --new-tb-sts
+uv run scripts/populate_db.py --year 2024 --new-tb-sts
 
-uv run scripts/join_tollbooths.py --year 2024 --tb-imt-tb-id 2024
-uv run scripts/join_tollbooths.py --year 2025 --tb-imt-tb-id 2025
+uv run scripts/join_tollbooths.py --year 2024 --map-tb-imt 2024
+uv run scripts/join_tollbooths.py --year 2025 --map-tb-imt 2025
 
-uv run scripts/join_tollbooths.py --year 2024 --tb-stretch-id-imt 2020
-uv run scripts/join_tollbooths.py --year 2020 --tb-stretch-id-imt-delta 2021 --pivot-year 2024
+uv run scripts/populate_db.py --year 2024 --new-map-tb-imt
+uv run scripts/populate_db.py --year 2025 --new-map-tb-imt
+
+uv run scripts/join_tollbooths.py --year 2024 --tb-stretch-id-imt 2021
 uv run scripts/join_tollbooths.py --year 2021 --tb-stretch-id-imt-delta 2022 --pivot-year 2024
 uv run scripts/join_tollbooths.py --year 2022 --tb-stretch-id-imt-delta 2023 --pivot-year 2024
 uv run scripts/join_tollbooths.py --year 2023 --tb-stretch-id-imt-delta 2024 --pivot-year 2024

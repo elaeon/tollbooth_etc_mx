@@ -137,6 +137,9 @@ def main(year, from_page, to_page):
                 df_sts = pl.concat(dfs)
                 df_sts = df_sts.with_columns(pl.col(pl.String).replace("", None))
                 df = pl.concat([df_index, df_sts], how="horizontal").rename(_sts_cols_map)
+                df = df.with_columns(
+                    pl.lit(prev_year).alias("info_year")
+                )
                 _log.info(f"page: {page_num}, df shape: {df.shape}")
                 all_df.append(df)
                 if page_num == to_page:

@@ -60,28 +60,28 @@ class DataModel:
         return PathModel("stretchs_toll", model.StretchToll, self.attr)
         
     @property
-    def tb_imt_tb_id(self) -> PathModel:
-        return PathModel("tb_imt_tb_id", model.TbImtTb, self.attr)
+    def map_tb_imt(self) -> PathModel:
+        return PathModel("map_tb_imt", model.MapTbImt, self.attr)
 
     @property
     def tb_stretch_id(self) -> PathModel:
-        return PathModel("tb_stretch_id", model.TbStretch, self.attr)
+        return PathModel("tb_stretch_id", model.TbStretchId, self.attr)
     
     @property
     def tb_stretch_id_patch(self) -> PathModel:
-        return PathModel("tb_stretch_id_patch", model.TbStretch, self.attr)
+        return PathModel("tb_stretch_id_patch", model.TbStretchId, self.attr)
     
     @property
     def tb_stretch_id_patched(self) -> PathModel:
-        return PathModel("tb_stretch_id_patched", model.TbStretch, self.attr)
+        return PathModel("tb_stretch_id_patched", model.TbStretchId, self.attr)
     
     @property
     def tbsts_stretch_id(self) -> PathModel:
-        return PathModel("tbsts_stretch_id", model.TbstsStretch)
+        return PathModel("tbsts_stretch_id", model.TbStsStretchId)
     
     @property
     def tbsts_id(self) -> PathModel:
-        return PathModel("tbsts_id", model.TbstsId, self.attr)
+        return PathModel("tbsts_id", model.TbStsId, self.attr)
     
     @property
     def tb_imt(self) -> PathModel:

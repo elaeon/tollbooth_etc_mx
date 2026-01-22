@@ -42,9 +42,6 @@ def insert_tb_sts_from_data(data_model: DataModel):
     parquet_file = data_model.tb_sts.parquet
     model_name = data_model.tb_sts.model.name()
     ldf_tb_sts = pl.scan_parquet(parquet_file)
-    #ldf_tb_sts = ldf_tb_sts.with_columns(
-    #    pl.lit(data_model.attr.get("year")).alias("info_year")
-    #)
     insert_data_from_parquet(ldf_tb_sts, model_name)
 
 
@@ -89,6 +86,12 @@ def insert_stretch_toll_from_data(data_model: DataModel):
     insert_data_from_parquet(ldf_stretch_toll, model_name)
 
 
+def insert_new_map_tb_imt_from_data(data_model: DataModel):
+    ldf_map_tb_imt = pl.scan_parquet(data_model.map_tb_imt.parquet)
+    model_name = data_model.map_tb_imt.model.name()
+    insert_data_from_parquet(ldf_map_tb_imt, model_name)
+    
+
 def clean_db():
     table_parameter = "{table_parameter}"
     drop_table_query = f"DROP TABLE {table_parameter};"
@@ -125,6 +128,7 @@ if __name__ == "__main__":
     parser.add_argument("--new-stretch", required=False, action="store_true")
     parser.add_argument("--new-road", required=False, action="store_true")
     parser.add_argument("--new-stretch-toll", required=False, action="store_true")
+    parser.add_argument("--new-map-tb-imt", required=False, action="store_true")
     parser.add_argument("--export-tb", action="store_true")
     parser.add_argument("--year", help="model year", required=False, type=int)
     parser.add_argument("--clean-db", required=False, action="store_true")
@@ -146,6 +150,8 @@ if __name__ == "__main__":
         insert_road_from_data(data_model)
     elif args.new_stretch_toll:
         insert_stretch_toll_from_data(data_model)
+    elif args.new_map_tb_imt:
+        insert_new_map_tb_imt_from_data(data_model)
     elif args.clean_db:
         clean_db()
     else:

@@ -273,13 +273,13 @@ class StretchToll(TbModel, table=True):
 class TbImt(TbModel, table=True):
     tollbooth_id: UInt16 = Field(primary_key=True)
     tollbooth_name: String
-    area: String | None = Field(default=None)
-    subarea: String | None = Field(default=None)
-    type: String | None = Field(default=None)
-    function: String | None = Field(default=None)
-    calirepr: String | None = Field(default=None)
-    lat: Float64 | None = Field(default=None)
-    lng: Float64 | None = Field(default=None)
+    area: String | None
+    subarea: String | None
+    type: String | None
+    function: String | None
+    calirepr: String | None
+    lat: Float64 | None
+    lng: Float64 | None
     info_year: UInt16 = Field(primary_key=True)
 
 
@@ -288,21 +288,21 @@ class TbTollImt(TbModel, table=True):
     tollbooth_id_b: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
     nombre_sal: String | None
     nombre_ent: String | None
-    motorbike: Float64 | None = Field(default=None)
-    car: Float64 | None = Field(default=None)
-    car_axle: Float64 | None = Field(default=None)
-    bus_2_axle: Float64 | None = Field(default=None)
-    bus_3_axle: Float64 | None = Field(default=None)
-    bus_4_axle: Float64 | None = Field(default=None)
-    truck_2_axle: Float64 | None = Field(default=None)
-    truck_3_axle: Float64 | None = Field(default=None)
-    truck_4_axle: Float64 | None = Field(default=None)
-    truck_5_axle: Float64 | None = Field(default=None)
-    truck_6_axle: Float64 | None = Field(default=None)
-    truck_7_axle: Float64 | None = Field(default=None)
-    truck_8_axle: Float64 | None = Field(default=None)
-    truck_9_axle: Float64 | None = Field(default=None)
-    load_axle: Float64 | None = Field(default=None)
+    motorbike: Float64 | None
+    car: Float64 | None
+    car_axle: Float64 | None
+    bus_2_axle: Float64 | None
+    bus_3_axle: Float64 | None
+    bus_4_axle: Float64 | None
+    truck_2_axle: Float64 | None
+    truck_3_axle: Float64 | None
+    truck_4_axle: Float64 | None
+    truck_5_axle: Float64 | None
+    truck_6_axle: Float64 | None
+    truck_7_axle: Float64 | None
+    truck_8_axle: Float64 | None
+    truck_9_axle: Float64 | None
+    load_axle: Float64 | None
     info_year: UInt16 = Field(primary_key=True)
 
 
