@@ -194,16 +194,17 @@ def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
     data_model = DataModel(move_year)
     df_tb_imt = pl.read_parquet(data_model.tb_toll_imt.parquet)
     df_tb_imt = df_tb_imt.select(
-        pl.exclude("tollbooth_imt_id_a", "tollbooth_imt_id_b", "info_year", "car_axle", "load_axle")
+        pl.exclude("tollbooth_id_a", "tollbooth_id_b", "info_year", "car_axle", 
+                   "load_axle", "nombre_sal", "nombre_ent")
     )
     data_model_base = DataModel(base_year)
     df_tb_toll = pl.scan_parquet(data_model_base.stretchs_toll.parquet).select(
         pl.exclude("car_axle", "load_axle", "bicycle", "car_rush_hour", "pedestrian", "car_rush_hour_2",
                 "car_evening_hour_2", "car_morning_night", "motorbike_axle", "toll_ref", "truck_10_axle",
-                "car_evening_hour")
+                "car_evening_hour", "info_year")
     )
     df_tb_toll = df_tb_toll.filter(pl.col("stretch_id") == stretch_id).select(pl.exclude("stretch_id")).collect()
-    df_tb_imt = pl.concat([df_tb_toll.cast(pl.Float32), df_tb_imt], how="vertical")
+    df_tb_imt = pl.concat([df_tb_toll, df_tb_imt], how="vertical")
     df_tb_imt = df_tb_imt.with_columns(
         pl.all().fill_null(strategy="zero")
     )

@@ -42,9 +42,9 @@ def insert_tb_sts_from_data(data_model: DataModel):
     parquet_file = data_model.tb_sts.parquet
     model_name = data_model.tb_sts.model.name()
     ldf_tb_sts = pl.scan_parquet(parquet_file)
-    ldf_tb_sts = ldf_tb_sts.with_columns(
-        pl.lit(data_model.attr.get("year")).alias("info_year")
-    )
+    #ldf_tb_sts = ldf_tb_sts.with_columns(
+    #    pl.lit(data_model.attr.get("year")).alias("info_year")
+    #)
     insert_data_from_parquet(ldf_tb_sts, model_name)
 
 

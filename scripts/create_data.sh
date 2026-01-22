@@ -26,6 +26,13 @@ uv run scripts/imt_to_model.py --year 2024 --tarifas
 uv run scripts/imt_to_model.py --year 2025 --tarifas
 
 uv run scripts/populate_db.py --year 2025 --new-tb
+uv run scripts/populate_db.py --year 2025 --new-tb-imt
+uv run scripts/populate_db.py --year 2025 --new-road
+uv run scripts/populate_db.py --year 2025 --new-stretch
+uv run scripts/populate_db.py --year 2025 --new-stretch-toll
+uv run scripts/populate_db.py --year 2024 --new-stretch-toll
+uv run scripts/populate_db.py --year 2023 --new-stretch-toll
+
 
 uv run scripts/join_tollbooths.py --year 2024 --tb-imt-tb-id 2024
 uv run scripts/join_tollbooths.py --year 2025 --tb-imt-tb-id 2025
