@@ -4,6 +4,19 @@ from pydantic import GetCoreSchemaHandler
 from typing import Any, get_args
 
 import polars as pl
+import polars_ds as plds
+
+
+def _str_normalize(func):
+    def wrapper(*args, **kwargs):
+        fields = func(*args, **kwargs)
+        pl_exp = []
+        for field in fields:
+            pl_exp.append(
+                plds.to_snake_case(pl.col(field).str.normalize("NFKD").str.replace_all(r"\p{M}", "")).str.replace_all(r"[(\.,\\/:;)]+", "_").str.replace_all(r"_+", "_")
+            )
+        return pl_exp
+    return wrapper
 
 
 class UInt16(int):
@@ -129,6 +142,12 @@ class TbModel(SQLModel, Schema, table=False):
     @classmethod
     def get_columns(cls, columns: list[str]) -> list:
         return [getattr(cls, column) for column in columns]
+    
+    @staticmethod
+    @_str_normalize
+    def str_normalize() -> list[str]:
+        fields = []
+        return fields
 
 
 class Tollbooth(TbModel, table=True):
@@ -160,6 +179,12 @@ class Tollbooth(TbModel, table=True):
         fields = {}
         for field in Tollbooth.online_empty_fields(exclude_fields):
             fields[field] = getattr(self, field)
+        return fields
+
+    @staticmethod
+    @_str_normalize
+    def str_normalize() -> list[str]:
+        fields = ["tollbooth_name"]
         return fields
 
 
@@ -214,6 +239,12 @@ class Road(TbModel, table=True):
     notes: String | None
     info_year: UInt16 = Field(primary_key=True)
 
+    @staticmethod
+    @_str_normalize
+    def str_normalize() -> list[str]:
+        fields = ["road_name"]
+        return fields
+
 
 class Stretch(TbModel, table=True):
     stretch_id: UInt32 | None = Field(default=None, primary_key=True)
@@ -224,6 +255,12 @@ class Stretch(TbModel, table=True):
     manage: String | None
     way: String | None
     info_year: UInt16 = Field(primary_key=True)
+
+    @staticmethod
+    @_str_normalize
+    def str_normalize() -> list[str]:
+        fields = ["stretch_name"]
+        return fields
 
 
 class MapTbImt(TbModel, table=True):
@@ -282,6 +319,12 @@ class TbImt(TbModel, table=True):
     lng: Float64 | None
     info_year: UInt16 = Field(primary_key=True)
 
+    @staticmethod
+    @_str_normalize
+    def str_normalize() -> list[str]:
+        fields = ["tollbooth_name", "area", "subarea"]
+        return fields
+    
 
 class TbTollImt(TbModel, table=True):
     tollbooth_id_a: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)

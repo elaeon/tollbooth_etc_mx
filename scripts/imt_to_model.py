@@ -24,6 +24,7 @@ def plazas(year: int):
         field_map[old_name] = new_name
     ldf_tb_imt = ldf_tb_imt.rename(field_map)
 
+    ldf_tb_imt = ldf_tb_imt.with_columns(data_model.tb_imt.model.str_normalize())
     ldf_tb_imt = ldf_tb_imt.with_columns(
         pl.lit(year).alias("info_year")
     )
@@ -77,6 +78,7 @@ def tarifas(year: int):
     for old_name, new_name in zip(old_fields, fields.keys()):
         field_map[old_name] = new_name
     
+    df_toll_imt = df_toll_imt.with_columns(data_model.tb_toll_imt.model.str_normalize())
     df_toll_imt = df_toll_imt.with_columns(
         pl.lit(year).alias("info_year")
     )

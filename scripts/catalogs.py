@@ -69,6 +69,7 @@ def catalog(year: int, catalog_name: str):
     }
     model = catalogs.get(catalog_name)
     ldf = pl.scan_csv(model.csv, schema=model.model.dict_schema())
+    ldf = ldf.with_columns(model.model.str_normalize())
     ldf = ldf.with_columns(
         pl.lit(year).alias("info_year")
     )

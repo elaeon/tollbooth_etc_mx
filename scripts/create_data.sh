@@ -9,7 +9,10 @@ uv run scripts/dv_cleaner.py --year 2019 --from-page 51
 uv run scripts/catalogs.py --year 2024 --catalog tb
 uv run scripts/catalogs.py --year 2025 --catalog tb
 uv run scripts/catalogs.py --year 2025 --catalog road
+
+uv run scripts/catalogs.py --year 2024 --catalog stretch
 uv run scripts/catalogs.py --year 2025 --catalog stretch
+
 uv run scripts/catalogs.py --year 2021 --catalog stretch_toll
 uv run scripts/catalogs.py --year 2022 --catalog stretch_toll
 uv run scripts/catalogs.py --year 2023 --catalog stretch_toll
