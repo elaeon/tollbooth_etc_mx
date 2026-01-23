@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
 <link href="{{ url_for('static', path='/Leaflet.PinSearch.css') }}" rel="stylesheet">
 <script src="{{ url_for('static', path='/Leaflet.PinSearch.js') }}" crossorigin=""></script>
 
@@ -100,9 +104,21 @@ const greyIcon = new L.Icon({
 
 function _buildLayersGrp() {
 	const _layers = {
-		tb: L.layerGroup().addTo(map),
-		tbsts: L.layerGroup().addTo(map),
-		tbimt: L.layerGroup().addTo(map)
+		tb: L.markerClusterGroup({
+			maxClusterRadius: 80,
+			disableClusteringAtZoom: 15
+		}),
+		tbsts: L.markerClusterGroup({
+			maxClusterRadius: 80,
+			disableClusteringAtZoom: 15
+		}),
+		tbimt: L.markerClusterGroup({
+			maxClusterRadius: 80,
+			disableClusteringAtZoom: 15
+		})
+	}
+	for (const layer in _layers) {
+		_layers[layer].addTo(map);
 	}
 	return _layers;
 }
@@ -662,7 +678,7 @@ async function showTollboothMarkers(tollboothIds) {
 		return;
 	}
 	try {
-		const resp = await fetch("{{ url_for(fetch_tollbooths) }}", {
+		const resp = await fetch("{{ url_for('fetch_tollbooths') }}", {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ query: `id:${tollboothIds.join(', ')}`})
