@@ -18,29 +18,29 @@ build() {
     uv run scripts/dv_cleaner.py --year 2020 --from-page 51
     uv run scripts/dv_cleaner.py --year 2019 --from-page 51
 
-    echo "Step 2: Running catalogs..."
-    uv run scripts/catalogs.py --year 2024 --pub-to-stg tb
-    uv run scripts/catalogs.py --year 2025 --pub-to-stg tb
-    uv run scripts/catalogs.py --year 2025 --pub-to-stg road
+    echo "Step 2: Running stage for tb..."
+    uv run scripts/stage.py --year 2024 --pub-to-stg tb
+    uv run scripts/stage.py --year 2025 --pub-to-stg tb
+    uv run scripts/stage.py --year 2025 --pub-to-stg road
 
-    uv run scripts/catalogs.py --year 2024 --pub-to-stg stretch
-    uv run scripts/catalogs.py --year 2025 --pub-to-stg stretch
+    uv run scripts/stage.py --year 2024 --pub-to-stg stretch
+    uv run scripts/stage.py --year 2025 --pub-to-stg stretch
 
-    uv run scripts/catalogs.py --year 2021 --pub-to-stg stretch_toll
-    uv run scripts/catalogs.py --year 2022 --pub-to-stg stretch_toll
-    uv run scripts/catalogs.py --year 2023 --pub-to-stg stretch_toll
-    uv run scripts/catalogs.py --year 2024 --pub-to-stg stretch_toll
-    uv run scripts/catalogs.py --year 2025 --pub-to-stg stretch_toll
+    uv run scripts/stage.py --year 2021 --pub-to-stg stretch_toll
+    uv run scripts/stage.py --year 2022 --pub-to-stg stretch_toll
+    uv run scripts/stage.py --year 2023 --pub-to-stg stretch_toll
+    uv run scripts/stage.py --year 2024 --pub-to-stg stretch_toll
+    uv run scripts/stage.py --year 2025 --pub-to-stg stretch_toll
 
-    echo "Step 3: Running imt_to_model..."
-    uv run scripts/catalogs.py --year 2024 --raw_to_stg tb_imt
-    uv run scripts/catalogs.py --year 2025 --raw_to_stg tb_imt
-    uv run scripts/catalogs.py --year 2020 --raw_to_stg tb_toll_imt
-    uv run scripts/catalogs.py --year 2021 --raw_to_stg tb_toll_imt
-    uv run scripts/catalogs.py --year 2022 --raw_to_stg tb_toll_imt
-    uv run scripts/catalogs.py --year 2023 --raw_to_stg tb_toll_imt
-    uv run scripts/catalogs.py --year 2024 --raw_to_stg tb_toll_imt
-    uv run scripts/catalogs.py --year 2025 --raw_to_stg tb_toll_imt
+    echo "Step 3: Running stage for imt..."
+    uv run scripts/stage.py --year 2024 --raw_to_stg tb_imt
+    uv run scripts/stage.py --year 2025 --raw_to_stg tb_imt
+    uv run scripts/stage.py --year 2020 --raw_to_stg tb_toll_imt
+    uv run scripts/stage.py --year 2021 --raw_to_stg tb_toll_imt
+    uv run scripts/stage.py --year 2022 --raw_to_stg tb_toll_imt
+    uv run scripts/stage.py --year 2023 --raw_to_stg tb_toll_imt
+    uv run scripts/stage.py --year 2024 --raw_to_stg tb_toll_imt
+    uv run scripts/stage.py --year 2025 --raw_to_stg tb_toll_imt
 
     echo "Step 4: Running populate_db for tollbooths and stretches..."
     uv run scripts/populate_db.py --year 2025 --new-tb
@@ -82,7 +82,7 @@ build() {
 clean() {
     echo "Clean functionality is not available yet."
     uv run scripts/populate_db.py --clean-db
-    uv run scripts/stages.py --year 2021 --clean
+    uv run scripts/stage.py --year 2021 --clean
     exit 1
 }
 
