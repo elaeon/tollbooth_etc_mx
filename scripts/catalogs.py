@@ -5,7 +5,9 @@ import polars as pl
 import polars_h3 as plh3
 import argparse
 
-from tb_map_editor.data_files import DataModel
+from datetime import date
+from tb_map_editor.data_files import DataModel, DataStage
+from tb_map_editor.pipeline import DataPipeline
 
 
 def sts_catalog():
@@ -59,30 +61,76 @@ def sts_catalog():
     df_tbsts_id.with_row_index("tollboothsts_id", 1).write_parquet(DataModel(to_year).tbsts_id.parquet)
 
 
-def catalog(year: int, catalog_name: str):
-    data_model = DataModel(year)
-    catalogs = {
-        "tb": data_model.tollbooths,
-        "stretch": data_model.stretchs,
-        "stretch_toll": data_model.stretchs_toll,
-        "road": data_model.roads
-    }
-    model = catalogs.get(catalog_name)
-    ldf = pl.scan_csv(model.csv, schema=model.model.dict_schema())
-    ldf = ldf.with_columns(model.model.str_normalize())
-    ldf = ldf.with_columns(
-        pl.lit(year).alias("info_year")
+def _catalogs(options, models):
+    catalogs = {}
+    for option, model in zip(options, models):
+        catalogs[option] = model
+    return catalogs
+
+
+def pub_to_stg(year: int, option_selected: str):
+    pipeline = DataPipeline()
+    
+    models = ["tollbooths", "stretchs", "stretchs_toll", "roads"]
+    options = ["tb", "stretch", "stretch_toll", "road"]
+    catalogs = _catalogs(options, models)
+
+    pipeline.simple_pub_stg(catalogs[option_selected], year)
+
+
+def raw_to_stg(year: int, option_selected: str):
+    pipeline = DataPipeline()
+    
+    models = ["tb_imt", "tb_toll_imt"]
+    options = ["tb_imt", "tb_toll_imt"]
+    date_columns = None
+    filter_exp = None
+
+    if option_selected == "tb_imt":
+        file_path = f"./tmp_data/plazas_{year}.csv"
+        old_fields = [
+            "ID_PLAZA", "NOMBRE", "SECCION", "SUBSECCION", "MODALIDAD",
+            "FUNCIONAL", "CALIREPR", "ycoord", "xcoord"
+        ]
+    
+    elif option_selected == "tb_toll_imt":
+        file_path = f"./tmp_data/tarifas_imt_{year}.csv"
+        old_fields = [
+            "ID_PLAZA", "ID_PLAZA_E", "NOMBRE_SAL", "NOMBRE_ENT",
+            "T_MOTO", "T_AUTO", "T_EJE_LIG", "T_AUTOBUS2",
+            "T_AUTOBUS3", "T_AUTOBUS4", "T_CAMION2", "T_CAMION3",
+            "T_CAMION4", "T_CAMION5", "T_CAMION6", "T_CAMION7",
+            "T_CAMION8", "T_CAMION9", "T_EJE_PES"
+        ]
+        if year == 2025:
+           date_format = "%Y-%m-%d %H:%M:%S"
+        elif year in [2020, 2021, 2022, 2023, 2024]:
+            date_format = "%Y-%m-%d"
+
+        date_columns = {"FECHA_ACT": date_format}
+        filter_exp = (pl.col("FECHA_ACT") < date(year + 1, 1, 1))
+    
+    catalogs = _catalogs(options, models)
+    pipeline.simple_raw_stg(
+        catalogs[option_selected], 
+        year, file_path, 
+        old_fields, 
+        date_columns=date_columns,
+        filter_exp=filter_exp
     )
-    ldf.sink_parquet(model.parquet)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", required=False, type=int)
-    parser.add_argument("--catalog", help="generate parquet file", required=False, type=str)
+    parser.add_argument("--pub-to-stg", help="generate parquet file", required=False, type=str)
     parser.add_argument("--sts-catalog", help="generate tollbooth sts id catalog", required=False, action="store_true")
+    parser.add_argument("--raw-to-stg", required=False, type=str)
+
     args = parser.parse_args()
     if args.sts_catalog:
         sts_catalog()
-    elif args.catalog:
-        catalog(args.year, args.catalog)
+    elif args.pub_to_stg:
+        pub_to_stg(args.year, args.pub_to_stg)
+    elif args.raw_to_stg:
+        raw_to_stg(args.year, args.raw_to_stg)
