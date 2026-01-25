@@ -6,84 +6,95 @@ import polars_h3 as plh3
 import polars_ds as plds
 import argparse
 
-from tb_map_editor.data_files import DataModel
+from tb_map_editor.data_files import DataModel, DataStage
 
 
-def join_tb_tbsts(year:int):
-    hex_resolution = 10
-    prev_year = year - 1
-    data_path_prev_year = DataModel(prev_year)
-    df_tbsts = pl.read_parquet(
-        data_path_prev_year.tollbooths_sts.parquet
+def map_tb_sts(base_year: int, move_year: int):
+    data_path_prev_year = DataModel(base_year, DataStage.stg)
+    df_tb_sts = pl.read_parquet(
+        data_path_prev_year.tb_sts.parquet,
+        columns=["tollbooth_name", "way", "lat", "lng"]
     )
-    df_tbsts = df_tbsts.with_columns(
-        pl.col("lat").cast(pl.Float32),
-        pl.col("lon").cast(pl.Float32)
+    df_tb_sts_id = pl.read_parquet(
+        data_path_prev_year.tb_sts_id.parquet,
+        columns=["tollbooth_id", "tollbooth_name", "way"]
     )
-    df_tbsts = df_tbsts.with_columns(
-        h3_cell=plh3.latlng_to_cell("lat", "lon", hex_resolution)
+    df_tb_sts_full = df_tb_sts.join(
+        df_tb_sts_id, on=["tollbooth_name", "way"]
     )
 
-    data_path = DataModel(year)
-    df_tb = pl.read_parquet(
-        data_path.tollbooths.parquet
-    )
-    df_tb = df_tb.with_columns(
-        pl.col("lat").str.strip_chars().cast(pl.Float32),
-        pl.col("lon").str.strip_chars().cast(pl.Float32)
-    )
-    df_tb = df_tb.with_columns(
-        h3_cell=plh3.latlng_to_cell("lat", "lon", hex_resolution)
-    )
+    print(df_tb_sts_full)
+    # df_tbsts = df_tbsts.with_columns(
+    #     pl.col("lat").cast(pl.Float32),
+    #     pl.col("lon").cast(pl.Float32)
+    # )
+
+    # df_tb_imt = pl.read_parquet(
+    #     data_model_prev_year.tb_imt.parquet, 
+    #     columns=["tollbooth_id", "lat", "lng"]
+    # ).rename({"tollbooth_id": "tollbooth_imt_id"})
+
+    # data_model = DataModel(move_year, DataStage.stg)
+    # df_tb_catalog = pl.read_parquet(
+    #     data_model.tollbooths.parquet,
+    #     columns=["tollbooth_id", "lat", "lng"]
+    # )
+
+    # _find_closer_elem(df_tbsts, df_tb_catalog)
+    # df_tbsts = df_tbsts.with_columns(
+    #     h3_cell=plh3.latlng_to_cell("lat", "lon", hex_resolution)
+    # )
+
+    # data_path = DataModel(year)
+    # df_tb = pl.read_parquet(
+    #     data_path.tollbooths.parquet
+    # )
+    # df_tb = df_tb.with_columns(
+    #     pl.col("lat").str.strip_chars().cast(pl.Float32),
+    #     pl.col("lon").str.strip_chars().cast(pl.Float32)
+    # )
+    # df_tb = df_tb.with_columns(
+    #     h3_cell=plh3.latlng_to_cell("lat", "lon", hex_resolution)
+    # )
     
-    df_tb_tbsts = df_tb.join(df_tbsts, on="h3_cell", how="left").select(
-        "tollbooth_id", "tollboothsts_id"
-    )
+    # df_tb_tbsts = df_tb.join(df_tbsts, on="h3_cell", how="left").select(
+    #     "tollbooth_id", "tollboothsts_id"
+    # )
 
-    df_tb_tbsts.write_csv("./data/tables/tb_tbsts.csv")
+    # df_tb_tbsts.write_csv("./data/tables/tb_tbsts.csv")
 
 
-def map_tb_imt(base_year: int, move_year: int):
+def _find_closer_elem(df_ref, df_catalog):
     hex_resolution_max = 5
     hex_resolution_max_name = "hex_rest_max"
-    data_model_prev_year = DataModel(base_year)
-    df_tb_imt = pl.read_parquet(
-        data_model_prev_year.tb_imt.parquet, 
-        columns=["tollbooth_id", "lat", "lng", "calirepr"]
-    ).rename({"tollbooth_id": "tollbooth_imt_id"})
-    df_tb_imt = df_tb_imt.with_columns(
+
+    df_ref = df_ref.with_columns(
+        plh3.latlng_to_cell("lat", "lng", hex_resolution_max).alias(hex_resolution_max_name)
+    )
+    
+    df_catalog = df_catalog.with_columns(
         plh3.latlng_to_cell("lat", "lng", hex_resolution_max).alias(hex_resolution_max_name)
     )
 
-    data_model = DataModel(move_year)
-    df_tb_catalog = pl.read_parquet(
-        data_model.tollbooths.parquet,
-        columns=["tollbooth_id", "lat", "lng"]
-    )
-    
-    df_tb_catalog = df_tb_catalog.with_columns(
-        plh3.latlng_to_cell("lat", "lng", hex_resolution_max).alias(hex_resolution_max_name)
+    df_ref_tb_catalog = df_ref.join(
+        df_catalog, on=hex_resolution_max_name
     )
 
-    df_imt_tb_catalog = df_tb_imt.join(
-        df_tb_catalog, on=hex_resolution_max_name
-    )
-    
-    df_imt_tb_catalog = df_imt_tb_catalog.with_columns(
+    df_ref_tb_catalog = df_ref_tb_catalog.with_columns(
         plh3.great_circle_distance("lat", "lng", "lat_right", "lng_right").alias("distance")
     ).select("tollbooth_id", "tollbooth_imt_id", "distance")
 
-    df_imt_tb_catalog_no_dup_tb = df_imt_tb_catalog.group_by("tollbooth_id").agg(pl.col("distance").min())
-    df_imt_tb_catalog_no_dup_tb = df_imt_tb_catalog_no_dup_tb.join(
-        df_imt_tb_catalog, on=["tollbooth_id", "distance"]
+    df_ref_tb_catalog_no_dup_tb = df_ref_tb_catalog.group_by("tollbooth_id").agg(pl.col("distance").min())
+    df_ref_tb_catalog_no_dup_tb = df_ref_tb_catalog_no_dup_tb.join(
+        df_ref_tb_catalog, on=["tollbooth_id", "distance"]
     )
 
-    df_imt_tb_catalog_no_dup_imt_tb = df_imt_tb_catalog_no_dup_tb.group_by("tollbooth_imt_id").agg(pl.col("distance").min())
+    df_imt_tb_catalog_no_dup_imt_tb = df_ref_tb_catalog_no_dup_tb.group_by("tollbooth_imt_id").agg(pl.col("distance").min())
     df_imt_tb_catalog_no_dup_tb_join = df_imt_tb_catalog_no_dup_imt_tb.join(
-       df_imt_tb_catalog_no_dup_tb, on=["tollbooth_imt_id", "distance"]
+       df_ref_tb_catalog_no_dup_tb, on=["tollbooth_imt_id", "distance"]
     ).select("tollbooth_id", "tollbooth_imt_id", "distance")
 
-    df_tb_not_found = df_imt_tb_catalog.join(
+    df_tb_not_found = df_ref_tb_catalog.join(
         df_imt_tb_catalog_no_dup_tb_join, on="tollbooth_id", how="left"
     ).filter(pl.col("tollbooth_imt_id_right").is_null()).select("tollbooth_id", "tollbooth_imt_id", "distance")
     
@@ -98,20 +109,38 @@ def map_tb_imt(base_year: int, move_year: int):
     
     df_tb_match = df_imt_tb_catalog_no_dup_tb_join.extend(df_tb_not_found)
     df_no_match = df_tb_match.select("tollbooth_imt_id", "tollbooth_id").join(
-        df_tb_imt.select("tollbooth_imt_id"), on=["tollbooth_imt_id"], how="right"
+        df_ref.select("tollbooth_imt_id"), on=["tollbooth_imt_id"], how="right"
     ).filter(pl.col("tollbooth_id").is_null())
     
-    df_no_match = df_imt_tb_catalog.join(
+    df_no_match = df_ref_tb_catalog.join(
         df_no_match.select("tollbooth_imt_id").join(
-            df_imt_tb_catalog, 
+            df_ref_tb_catalog, 
             on="tollbooth_imt_id"
         ).group_by("tollbooth_imt_id").agg(pl.col("distance").min()), 
         on=["tollbooth_imt_id", "distance"], 
         how="right")
     df_all_data = df_imt_tb_catalog_no_dup_tb_join.extend(df_no_match).filter(pl.col("distance") <= 0.3)
+    return df_all_data
+
+
+def map_tb_imt(base_year: int, move_year: int):
+    data_model_prev_year = DataModel(base_year, DataStage.stg)
+    df_tb_imt = pl.read_parquet(
+        data_model_prev_year.tb_imt.parquet, 
+        columns=["tollbooth_id", "lat", "lng"]
+    ).rename({"tollbooth_id": "tollbooth_imt_id"})
+
+    data_model = DataModel(move_year, DataStage.stg)
+    df_tb_catalog = pl.read_parquet(
+        data_model.tollbooths.parquet,
+        columns=["tollbooth_id", "lat", "lng"]
+    )
+    
+    df_all_data = _find_closer_elem(df_ref=df_tb_imt, df_catalog=df_tb_catalog)
     df_all_data = df_all_data.with_columns(
         pl.lit(move_year).alias("info_year")
     )
+
     print(df_all_data.shape)
     df_all_data.write_parquet(data_model.map_tb_imt.parquet)
     print("LEFT", df_all_data.join(df_tb_imt, on="tollbooth_imt_id", how="left").filter(pl.col("lat").is_null()).shape)
@@ -150,8 +179,8 @@ def _tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll, ldf_map_tb_imt):
 
 
 def tb_stretch_id_imt(base_year: int, move_year: int):
-    data_model_base = DataModel(base_year)
-    data_model_move_year = DataModel(move_year)
+    data_model_base = DataModel(base_year, DataStage.stg)
+    data_model_move_year = DataModel(move_year, DataStage.stg)
     
     ldf_toll_imt = pl.scan_parquet(data_model_move_year.tb_toll_imt.parquet)
     ldf_stretch_toll = pl.scan_parquet(data_model_move_year.stretchs_toll.parquet)
@@ -179,9 +208,9 @@ def tb_stretch_id_imt(base_year: int, move_year: int):
 
 
 def tb_stretch_id_imt_delta(base_year: int, move_year: int, pivot_year: int):
-    data_model_base = DataModel(base_year)
-    data_model_move_year = DataModel(move_year)
-    data_model_pivot_year = DataModel(pivot_year)
+    data_model_base = DataModel(base_year, DataStage.stg)
+    data_model_move_year = DataModel(move_year, DataStage.stg)
+    data_model_pivot_year = DataModel(pivot_year, DataStage.stg)
     ldf_tb_stretch = pl.scan_parquet(data_model_base.tb_stretch_id.parquet)
     ldf_toll_imt = pl.scan_parquet(data_model_move_year.tb_toll_imt.parquet)
     ldf_stretch_toll = pl.scan_parquet(data_model_move_year.stretchs_toll.parquet)
@@ -196,13 +225,15 @@ def tb_stretch_id_imt_delta(base_year: int, move_year: int, pivot_year: int):
 
 
 def tb_stretch_id_imt_patch(year: int):
-    data_model = DataModel(year)
-    ldf_tb_stretch_id = pl.scan_parquet(data_model.tb_stretch_id.parquet)
-    ldf_tb_stretch_id_m = pl.scan_csv(data_model.tb_stretch_id_patch.csv)
+    data_model_pub = DataModel(year, DataStage.pub)
+    data_model_stg = DataModel(year, DataStage.stg)
+    data_model_prod = DataModel(year, DataStage.prd)
+    ldf_tb_stretch_id = pl.scan_parquet(data_model_stg.tb_stretch_id.parquet)
+    ldf_tb_stretch_id_m = pl.scan_csv(data_model_pub.tb_stretch_id_patch.csv)
     ldf_tb_stretch_id = ldf_tb_stretch_id.update(
         ldf_tb_stretch_id_m, on="stretch_id", how="left"
     ).unique()
-    ldf_tb_stretch_id.sink_parquet(data_model.tb_stretch_id_patched.parquet)
+    ldf_tb_stretch_id.sink_parquet(data_model_prod.tb_stretch_id.parquet)
 
 
 def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
@@ -301,7 +332,7 @@ def map_stretch_toll_imt(base_year: int, other_year: int):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", help="data year", required=True, type=int)
-    parser.add_argument("--tb-tbsts", help="join tollbooths their statistics", required=False, action='store_true')
+    parser.add_argument("--map-tb-sts", help="join tollbooths their statistics", required=False, type=int)
     parser.add_argument("--map-tb-imt", required=False, type=int)
     parser.add_argument("--tb-stretch-id-imt", required=False, type=int)
     parser.add_argument("--tb-stretch-id-imt-delta", required=False, type=int)
@@ -312,8 +343,8 @@ if __name__ == "__main__":
     parser.add_argument("--map-stretch-toll-imt", required=False)
     args = parser.parse_args()
 
-    if args.tb_tbsts:
-        join_tb_tbsts(args.year)
+    if args.map_tb_sts:
+        map_tb_sts(args.year, args.map_tb_sts)
     elif args.map_tb_imt:
         map_tb_imt(args.year, args.map_tb_imt)
     elif args.tb_stretch_id_imt:

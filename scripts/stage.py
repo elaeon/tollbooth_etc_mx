@@ -13,16 +13,14 @@ from tb_map_editor.pipeline import DataPipeline
 def sts_catalog():
     from_year = 2018
     to_year = 2024
-    historic_id_name = "historic_id"
 
     def concat_data():
         df_dict = {}
         for year in range(from_year, to_year + 1):
-            data_model = DataModel(year)
+            data_model = DataModel(year, DataStage.stg)
             df_dict[year] = pl.read_parquet(
-                data_model.tollbooths_sts.parquet, columns=["tollbooth_name", "way", "lat", "lon"]
-            ).with_columns(
-                pl.lit(year).alias("year")
+                data_model.tb_sts.parquet, 
+                columns=["index", "tollbooth_name", "way", "lat", "lng", "info_year"]
             )
         df_tbsts = pl.concat(df_dict.values())
         return df_tbsts
@@ -30,38 +28,16 @@ def sts_catalog():
     df_tbsts = concat_data()
     hex_resolution = 10
     df_tbsts = df_tbsts.with_columns(
-        h3_cell=plh3.latlng_to_cell("lat", "lon", hex_resolution)
+        h3_cell=plh3.latlng_to_cell("lat", "lng", hex_resolution)
     )
-    df_h = df_tbsts.select(
-        "h3_cell", "tollbooth_name"
-    ).group_by("h3_cell", "tollbooth_name").len(name="tb_len").select("h3_cell").group_by("h3_cell").len().filter(pl.col("len") > 1)
-    df_exceptions = df_h.join(df_tbsts, on="h3_cell").select("h3_cell", "tollbooth_name", "way", "year").unique().with_columns(pl.lit("bad").alias("status"))
-
-    df_tbsts_id = df_tbsts.select(
-        "h3_cell", "tollbooth_name", "way"
-    ).unique(maintain_order=True).with_columns(pl.lit("ok").alias("status"))
-
-    df_tbsts_id = df_tbsts_id.join(df_exceptions, on=["h3_cell", "tollbooth_name", "way"], how="left").filter(pl.col("status_right").is_null())
-    df_tbsts_id = df_tbsts_id.with_row_index(historic_id_name, 1).with_columns(pl.lit(from_year).alias("ref_year"))
-    
-    df_exceptions = df_exceptions.group_by("h3_cell", "tollbooth_name", "way").agg(pl.min("year"))
-
-    df_last_row = df_tbsts_id.tail(1)
-    start_index = df_last_row.row(0, named=True)[historic_id_name]
-
-    df_exceptions = df_exceptions.sort("h3_cell", "year")
-    df_except_index = df_exceptions.select("h3_cell", "way").unique(maintain_order=True).with_row_index(historic_id_name, start_index + 1)
-    df_exceptions = df_exceptions.join(df_except_index, on=["h3_cell", "way"])
-    df_exceptions = df_exceptions.rename({"year": "ref_year"}).select(historic_id_name, "h3_cell", "tollbooth_name", "way", "ref_year")
-    
-    df_tbsts_id = pl.concat([
-        df_tbsts_id.select(historic_id_name, "h3_cell", "tollbooth_name", "way", "ref_year"), 
-        df_exceptions.sort("h3_cell")
-    ])
-    df_tbsts_id.with_row_index("tollboothsts_id", 1).write_parquet(DataModel(to_year).tbsts_id.parquet)
+    df_tbsts = df_tbsts.group_by("h3_cell", "tollbooth_name", "way").agg(pl.min("info_year"))
+    df_tbsts = df_tbsts.sort("info_year", "tollbooth_name", "way")
+    df_tbsts.with_row_index(
+        "tollbooth_id", 1
+    ).select("tollbooth_id", "tollbooth_name", "way", "info_year").write_parquet(DataModel(to_year, DataStage.stg).tb_sts_id.parquet)
 
 
-def _catalogs(options, models):
+def _opts_map(options, models):
     catalogs = {}
     for option, model in zip(options, models):
         catalogs[option] = model
@@ -73,7 +49,7 @@ def pub_to_stg(year: int, option_selected: str):
     
     models = ["tollbooths", "stretchs", "stretchs_toll", "roads"]
     options = ["tb", "stretch", "stretch_toll", "road"]
-    catalogs = _catalogs(options, models)
+    catalogs = _opts_map(options, models)
 
     pipeline.simple_pub_stg(catalogs[option_selected], year)
 
@@ -110,10 +86,11 @@ def raw_to_stg(year: int, option_selected: str):
         date_columns = {"FECHA_ACT": date_format}
         filter_exp = (pl.col("FECHA_ACT") < date(year + 1, 1, 1))
     
-    catalogs = _catalogs(options, models)
+    catalogs = _opts_map(options, models)
     pipeline.simple_raw_stg(
         catalogs[option_selected], 
-        year, file_path, 
+        year, 
+        file_path, 
         old_fields, 
         date_columns=date_columns,
         filter_exp=filter_exp

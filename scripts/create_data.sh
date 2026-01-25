@@ -33,14 +33,14 @@ build() {
     uv run scripts/stage.py --year 2025 --pub-to-stg stretch_toll
 
     echo "Step 3: Running stage for imt..."
-    uv run scripts/stage.py --year 2024 --raw_to_stg tb_imt
-    uv run scripts/stage.py --year 2025 --raw_to_stg tb_imt
-    uv run scripts/stage.py --year 2020 --raw_to_stg tb_toll_imt
-    uv run scripts/stage.py --year 2021 --raw_to_stg tb_toll_imt
-    uv run scripts/stage.py --year 2022 --raw_to_stg tb_toll_imt
-    uv run scripts/stage.py --year 2023 --raw_to_stg tb_toll_imt
-    uv run scripts/stage.py --year 2024 --raw_to_stg tb_toll_imt
-    uv run scripts/stage.py --year 2025 --raw_to_stg tb_toll_imt
+    uv run scripts/stage.py --year 2024 --raw-to-stg tb_imt
+    uv run scripts/stage.py --year 2025 --raw-to-stg tb_imt
+    uv run scripts/stage.py --year 2020 --raw-to-stg tb_toll_imt
+    uv run scripts/stage.py --year 2021 --raw-to-stg tb_toll_imt
+    uv run scripts/stage.py --year 2022 --raw-to-stg tb_toll_imt
+    uv run scripts/stage.py --year 2023 --raw-to-stg tb_toll_imt
+    uv run scripts/stage.py --year 2024 --raw-to-stg tb_toll_imt
+    uv run scripts/stage.py --year 2025 --raw-to-stg tb_toll_imt
 
     echo "Step 4: Running populate_db for tollbooths and stretches..."
     uv run scripts/populate_db.py --year 2025 --new-tb

@@ -5,7 +5,7 @@ import logging
 import polars as pl
 import sqlite3
 
-from tb_map_editor.data_files import DataModel
+from tb_map_editor.data_files import DataModel, DataStage
 from tb_map_editor.utils.connector import sqlite_url
 
 import argparse
@@ -133,7 +133,7 @@ if __name__ == "__main__":
     parser.add_argument("--year", help="model year", required=False, type=int)
     parser.add_argument("--clean-db", required=False, action="store_true")
     args = parser.parse_args()
-    data_model = DataModel(args.year)
+    data_model = DataModel(args.year, DataStage.stg)
     if args.new_tb:
         insert_tb_from_data(data_model)
     elif args.new_tb_sts:

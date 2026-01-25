@@ -351,11 +351,8 @@ class TbTollImt(TbModel, table=True):
 
 class TbStsId(TbModel, table=True):
     tollbooth_id: UInt32 | None = Field(default=None, primary_key=True)
-    historic_id: UInt32
-    h3_cell: UInt64
     tollbooth_name: String
     way: String
-    info_year: UInt16
 
 
 class TbStsStretchId(TbModel, table=True):
