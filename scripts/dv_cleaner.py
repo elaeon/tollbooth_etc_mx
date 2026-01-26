@@ -43,10 +43,11 @@ def extract_index(page_text):
     lines_dict = defaultdict(dict)
     index_pat = re.compile(r"^(?P<index>\d{3}(?:-(\d+)){0,1})\s(carretera)")
     tollbooth_pat = re.compile(r"caseta:(?P<tollbooth_name>(.*))")
-    strech_pat = re.compile(r"^movimiento:(?P<way>(.*?))\s\b(mex|slp|chih|ver|nl|km)\b")
+    strech_pat = re.compile(r"^movimiento:(?P<stretch_name>(.*?))\s\b(mex|slp|chih|ver|nl|km)\b")
     road_pat = re.compile(r"(?P<highway>\b(mex|ver|slp|chih|nl)\b[-]{0,1}\w*[-]*\w*){0,1}\s*km:(?P<km>\d+\.\d+)")
     lat_pat = re.compile(r"(lat:\s*)(?P<lat>[-]{0,1}\d+\.\d+)")
     long_pat = re.compile(r"(long:\s*)(?P<lng>[-]{0,1}\d+\.\d+)")
+    way_pat = re.compile(r"(sentido:\s*)(?P<way>\d{1})")
     for line in page_text.split("\n"):
         line = line.lower().replace("(", "").replace(")", "")
         match_index = re.search(index_pat, line)
@@ -55,11 +56,12 @@ def extract_index(page_text):
         match_road = re.search(road_pat, line)
         match_lat = re.search(lat_pat, line)
         match_long = re.search(long_pat, line)
+        match_way = re.search(way_pat, line)
         if match_index is not None:
             index_dict = match_index.groupdict()
             if scope_index is not None and scope_index != index_dict["index"]:
-                if "way" not in lines_dict[scope_index]:
-                    raise Exception("no way found")
+                if "stretch_name" not in lines_dict[scope_index]:
+                    raise Exception("no stretch found")
             scope_index = index_dict["index"]
             if match_tb is not None:
                 lines_dict[scope_index].update(
@@ -69,7 +71,7 @@ def extract_index(page_text):
                     }
                 )
         if match_strech is not None and scope_index is not None:
-            lines_dict[scope_index]["way"] = re.sub(r"\s*-\s*", "-", match_strech["way"].strip())
+            lines_dict[scope_index]["stretch_name"] = re.sub(r"\s*-\s*", "-", match_strech["stretch_name"].strip())
             _log.debug(line)
         if match_road is not None and scope_index is not None:
             lines_dict[scope_index].update(match_road.groupdict())
@@ -79,6 +81,9 @@ def extract_index(page_text):
         if match_long is not None:
             lines_dict[scope_index]["lng"] = match_long.groupdict()["lng"]
         
+        if match_way is not None:
+            lines_dict[scope_index].update(match_way.groupdict())
+
         _log.debug(f"{scope_index}, {lines_dict.get(scope_index)}")
     return lines_dict
 
@@ -115,7 +120,8 @@ def main(year, from_page, to_page):
                 extracted_tables = page.extract_tables()
                 page_text = page.extract_text(keep_blank_chars=True)
                 df_index = lines_dict_to_df(page_text)
-                assert df_index.columns == ["index", "tollbooth_name", "way", "highway", "km", "lat", "lng"]
+                assert df_index.columns == ["index", "tollbooth_name", "stretch_name", "highway", "km", "lat", "way", "lng"]
+                df_index = df_index.select(["index", "tollbooth_name", "stretch_name", "highway", "km", "lat", "lng", "way"])
                 dfs = []
                 for table_num, table in enumerate(extracted_tables, 1):
                     tdpa = table[1][0]

@@ -22,9 +22,10 @@ def sts_ids(year: int, start_year: int):
     else:
         raise Exception("year should not be less than 2018")
     
+    key = ["h3_cell", "tollbooth_name", "stretch_name"]
     def _split_dup_and_add_id(ldf_tb_sts_from: pl.LazyFrame, start_index: int) -> pl.LazyFrame:
         ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
-            pl.col("index").rank("ordinal").over("h3_cell", "tollbooth_name", "way", order_by=["index"]).alias("rank")
+            pl.col("index").rank("ordinal").over(key, order_by=["index"]).alias("rank")
         )
 
         ldf_tb_sts_from_key_dup = ldf_tb_sts_from.filter(pl.col("rank") > 1)
@@ -63,42 +64,51 @@ def sts_ids(year: int, start_year: int):
         )
         ldf_tb_sts_from_to_new = ldf_tb_sts_to.join(
             ldf_tb_sts_from,
-            on=["h3_cell", "tollbooth_name", "way"],
+            on=key,
             how="anti"
         )
-        
-        # locate duplicates over the key in two df
-        ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
-            pl.col("index").rank("ordinal").over("h3_cell", "tollbooth_name", "way", order_by=["index"]).alias("rank")
-        )
-        ldf_tb_sts_to = ldf_tb_sts_to.with_columns(
-            pl.col("index").rank("ordinal").over("h3_cell", "tollbooth_name", "way", order_by=["index"]).alias("rank")
-        ).filter(pl.col("rank") > 1)
-        ldf_tb_sts_to_dup = ldf_tb_sts_to.join(
-            ldf_tb_sts_from, on=["h3_cell", "tollbooth_name", "way", "rank"],
-            how="anti"
-        ).select(pl.exclude("rank"))
-        ldf_tb_sts_from_to_new = pl.concat([ldf_tb_sts_from_to_new, ldf_tb_sts_to_dup])
-        ldf_tb_sts_from = ldf_tb_sts_from.select(pl.exclude("rank"))
-
         ldf_tb_sts_from_to_del = ldf_tb_sts_from.join(
             ldf_tb_sts_to,
-            on=["h3_cell", "tollbooth_name", "way"],
+            on=key,
             how="anti"
         )
         ldf_tb_sts_from_to_del = ldf_tb_sts_from_to_del.with_columns(
             pl.lit("closed").alias("status")
-        )
-        ldf_tb_sts_from = ldf_tb_sts_from.update(
-            ldf_tb_sts_from_to_del,
-            on=["tollbooth_id"],
-            how="left"
         ).select(pl.exclude("h3_cell"))
 
-        last_id = ldf_tb_sts_from.last().select("tollbooth_id").collect().row(0)[0]
+        ldf_tb_sts_to = ldf_tb_sts_to.join(
+            ldf_tb_sts_from,
+            on=key,
+        ).select(["tollbooth_id"] + ldf_tb_sts_to.collect_schema().names())
+
+        # locate duplicates over the key in two df
+        ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
+            pl.col("index").rank("ordinal").over(key, order_by=["index"]).alias("rank")
+        )
+        ldf_tb_sts_to = ldf_tb_sts_to.with_columns(
+            pl.col("index").rank("ordinal").over(key, order_by=["index"]).alias("rank")
+        )
+        ldf_tb_sts_to_dup = ldf_tb_sts_to.filter(pl.col("rank") > 1)
+        ldf_tb_sts_to_dup = ldf_tb_sts_to_dup.join(
+            ldf_tb_sts_from, on=key + ["rank"],
+            how="anti"
+        )
+        ldf_tb_sts_to = ldf_tb_sts_to.join(
+            ldf_tb_sts_to_dup, on=key + ["rank"],
+            how="anti"
+        )
+
+        ldf_tb_sts_to_dup = ldf_tb_sts_to_dup.select(pl.exclude("rank", "tollbooth_id"))
+        ldf_tb_sts_from_to_new = pl.concat([ldf_tb_sts_from_to_new, ldf_tb_sts_to_dup])
+        ldf_tb_sts_from = ldf_tb_sts_from.select(pl.exclude("rank"))
+        ldf_tb_sts_to = ldf_tb_sts_to.select(pl.exclude("rank", "h3_cell"))
+        ##
+
+        ldf_tb_sts_to = pl.concat([ldf_tb_sts_to, ldf_tb_sts_from_to_del])
+        last_id = ldf_tb_sts_from.sort("tollbooth_id").last().select("tollbooth_id").collect().row(0)[0]
         ldf_tb_sts_from_to_new = _split_dup_and_add_id(ldf_tb_sts_from_to_new, start_index=last_id + 1)
-        ldf_all = pl.concat([ldf_tb_sts_from, ldf_tb_sts_from_to_new])
-    
+        ldf_all = pl.concat([ldf_tb_sts_to, ldf_tb_sts_from_to_new])
+
     ldf_all.sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
     #print(df_tbsts.filter((pl.col("tollbooth_name")=="huimilpan") & (pl.col("info_year") == 2024)))
 

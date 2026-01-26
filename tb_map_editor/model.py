@@ -194,11 +194,12 @@ class TbSts(TbModel, table=True):
     tollbooth_id: UInt32 | None = Field(default=None, primary_key=True)
     index: String
     tollbooth_name: String
-    way: String
+    stretch_name: String
     highway: String | None = Field(default=None)
     km: Float64 | None = Field(default=None)
     lat: Float64
     lng: Float64
+    way: UInt16 | None
     tdpa: UInt32
     motorbike: Float64 | None
     car: Float64 | None
@@ -232,7 +233,7 @@ class TbSts(TbModel, table=True):
     @staticmethod
     @_str_normalize
     def str_normalize() -> list[str]:
-        fields = ["tollbooth_name", "way"]
+        fields = ["tollbooth_name", "stretch_name"]
         return fields
 
 
