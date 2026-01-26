@@ -66,6 +66,21 @@ def sts_ids(year: int, start_year: int):
             on=["h3_cell", "tollbooth_name", "way"],
             how="anti"
         )
+        
+        # locate duplicates over the key in two df
+        ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
+            pl.col("index").rank("ordinal").over("h3_cell", "tollbooth_name", "way", order_by=["index"]).alias("rank")
+        )
+        ldf_tb_sts_to = ldf_tb_sts_to.with_columns(
+            pl.col("index").rank("ordinal").over("h3_cell", "tollbooth_name", "way", order_by=["index"]).alias("rank")
+        ).filter(pl.col("rank") > 1)
+        ldf_tb_sts_to_dup = ldf_tb_sts_to.join(
+            ldf_tb_sts_from, on=["h3_cell", "tollbooth_name", "way", "rank"],
+            how="anti"
+        ).select(pl.exclude("rank"))
+        ldf_tb_sts_from_to_new = pl.concat([ldf_tb_sts_from_to_new, ldf_tb_sts_to_dup])
+        ldf_tb_sts_from = ldf_tb_sts_from.select(pl.exclude("rank"))
+
         ldf_tb_sts_from_to_del = ldf_tb_sts_from.join(
             ldf_tb_sts_to,
             on=["h3_cell", "tollbooth_name", "way"],
