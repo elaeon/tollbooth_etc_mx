@@ -23,11 +23,10 @@ def map_tb_sts(base_year: int, move_year: int):
         df_tb_sts_id, on=["tollbooth_name", "way"]
     )
 
-    print(df_tb_sts_full)
-    # df_tbsts = df_tbsts.with_columns(
-    #     pl.col("lat").cast(pl.Float32),
-    #     pl.col("lon").cast(pl.Float32)
-    # )
+    print(df_tb_sts_full.join(
+        df_tb_sts_full.group_by("tollbooth_id").len().filter(pl.col("len")>1),
+        on="tollbooth_id"
+    ))
 
     # df_tb_imt = pl.read_parquet(
     #     data_model_prev_year.tb_imt.parquet, 

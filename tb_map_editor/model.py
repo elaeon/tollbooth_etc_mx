@@ -163,7 +163,7 @@ class Tollbooth(TbModel, table=True):
     type: String
     manage: String | None
     gate_to: String | None
-    info_year: UInt16 = Field(primary_key=True)
+    info_year: UInt16 = Field(index=True)
 
     @classmethod
     def online_empty_fields(cls, exclude_fields: set | None = None) -> dict:
@@ -189,7 +189,8 @@ class Tollbooth(TbModel, table=True):
 
 
 class TbSts(TbModel, table=True):
-    index: String = Field(primary_key=True)
+    tollbooth_id: UInt32 | None = Field(default=None, primary_key=True)
+    index: String
     tollbooth_name: String
     way: String
     highway: String | None = Field(default=None)
@@ -223,7 +224,7 @@ class TbSts(TbModel, table=True):
     oct: Float64 | None
     nov: Float64 | None
     dec: Float64 | None
-    info_year: UInt16 = Field(primary_key=True)
+    info_year: UInt16 = Field(index=True)
 
 
 class Road(TbModel, table=True):
@@ -237,7 +238,7 @@ class Road(TbModel, table=True):
     bond_issuance_date: String | None
     bond_terms_years: String | None
     notes: String | None
-    info_year: UInt16 = Field(primary_key=True)
+    info_year: UInt16 = Field(index=True)
 
     @staticmethod
     @_str_normalize
@@ -254,7 +255,7 @@ class Stretch(TbModel, table=True):
     road_id: UInt16 | None = Field(default=None, foreign_key="road.road_id")
     manage: String | None
     way: String | None
-    info_year: UInt16 = Field(primary_key=True)
+    info_year: UInt16 = Field(index=True)
 
     @staticmethod
     @_str_normalize
@@ -304,7 +305,7 @@ class StretchToll(TbModel, table=True):
     car_rush_hour_2: Float64 | None
     car_evening_hour_2: Float64 | None
     car_morning_night: Float64 | None
-    info_year: UInt16 = Field(primary_key=True)
+    info_year: UInt16 = Field(index=True)
 
 
 class TbImt(TbModel, table=True):
@@ -317,7 +318,7 @@ class TbImt(TbModel, table=True):
     calirepr: String | None
     lat: Float64 | None
     lng: Float64 | None
-    info_year: UInt16 = Field(primary_key=True)
+    info_year: UInt16 = Field(index=True)
 
     @staticmethod
     @_str_normalize
@@ -349,10 +350,10 @@ class TbTollImt(TbModel, table=True):
     info_year: UInt16 = Field(primary_key=True)
 
 
-class TbStsId(TbModel, table=True):
-    tollbooth_id: UInt32 | None = Field(default=None, primary_key=True)
-    tollbooth_name: String
-    way: String
+# class TbStsId(TbModel, table=True):
+#     tollbooth_id: UInt32 | None = Field(default=None, primary_key=True)
+#     tollbooth_name: String
+#     way: String
 
 
 class TbStsStretchId(TbModel, table=True):

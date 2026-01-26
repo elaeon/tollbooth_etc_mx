@@ -10,31 +10,94 @@ from tb_map_editor.data_files import DataModel, DataStage
 from tb_map_editor.pipeline import DataPipeline
 
 
-def sts_catalog():
-    from_year = 2018
-    to_year = 2024
+def sts_ids(year: int, start_year: int):
+    if year == start_year:
+        from_year = year
+        to_year = None
+    elif year > start_year:
+        from_year = year - 1
+        to_year = year
+    else:
+        raise Exception("year should not be less than 2018")
+    
+    if to_year is None:
+        data_model_from = DataModel(from_year, DataStage.stg)
+        ldf_tb_sts_from = pl.scan_parquet(
+            data_model_from.tb_sts.parquet, 
+            #columns=["index", "tollbooth_name", "way", "lat", "lng", "info_year"]
+        )
+        hex_resolution = 10
+        ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
+            h3_cell=plh3.latlng_to_cell("lat", "lng", hex_resolution)
+        )
+        ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
+            pl.col("index").rank("ordinal").over("h3_cell", "tollbooth_name", "way", order_by=["index"]).alias("rank")
+        )
+        ldf_tb_sts_from = ldf_tb_sts_from.sort("h3_cell", "tollbooth_name", "way")
+        ldf_tb_sts_from = ldf_tb_sts_from.with_row_index(
+            "tollbooth_id", 1
+        )
+        ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
+            pl.col("tollbooth_id").cast(pl.String) + "-" +pl.col("rank").cast(pl.String)
+        ).select(pl.exclude("rank", "h3_cell"))
+        #print(ldf_tb_sts_from.collect())
+        ldf_tb_sts_from.sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
+    else:
+        data_model_from = DataModel(from_year, DataStage.prd)
+        ldf_tb_sts_from = pl.scan_parquet(
+            data_model_from.tb_sts.parquet,
+        )
+        data_model_to = DataModel(to_year, DataStage.stg)
+        ldf_tb_sts_to = pl.scan_parquet(
+            data_model_to.tb_sts.parquet, 
+        )
 
-    def concat_data():
-        df_dict = {}
-        for year in range(from_year, to_year + 1):
-            data_model = DataModel(year, DataStage.stg)
-            df_dict[year] = pl.read_parquet(
-                data_model.tb_sts.parquet, 
-                columns=["index", "tollbooth_name", "way", "lat", "lng", "info_year"]
-            )
-        df_tbsts = pl.concat(df_dict.values())
-        return df_tbsts
+        hex_resolution = 10
+        ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
+            h3_cell=plh3.latlng_to_cell("lat", "lng", hex_resolution)
+        )
+        ldf_tb_sts_to = ldf_tb_sts_to.with_columns(
+            h3_cell=plh3.latlng_to_cell("lat", "lng", hex_resolution)
+        )
+        ldf_tb_sts_from_to_new = ldf_tb_sts_to.join(
+            ldf_tb_sts_from,
+            on=["h3_cell", "tollbooth_name", "way"],
+            how="anti"
+        )
+        
+        index = ldf_tb_sts_from.last().select("tollbooth_id").collect().row(0)[0].split("-")[0]
+        ldf_tb_sts_from_to_new = ldf_tb_sts_from_to_new.with_row_index(
+            "tollbooth_id", int(index) + 1
+        )
+        ldf_tb_sts_from_to_new = ldf_tb_sts_from_to_new.with_columns(
+            pl.col("tollbooth_id").cast(pl.String)
+        )
+        ldf_all = pl.concat([ldf_tb_sts_from, ldf_tb_sts_from_to_new])
+        ldf_all = ldf_all.with_columns(
+            pl.col("index").rank("ordinal").over("h3_cell", "tollbooth_name", "way", order_by=["index"]).alias("rank")
+        )
 
-    df_tbsts = concat_data()
-    hex_resolution = 10
-    df_tbsts = df_tbsts.with_columns(
-        h3_cell=plh3.latlng_to_cell("lat", "lng", hex_resolution)
-    )
-    df_tbsts = df_tbsts.group_by("h3_cell", "tollbooth_name", "way").agg(pl.min("info_year"))
-    df_tbsts = df_tbsts.sort("info_year", "tollbooth_name", "way")
-    df_tbsts.with_row_index(
-        "tollbooth_id", 1
-    ).select("tollbooth_id", "tollbooth_name", "way", "info_year").write_parquet(DataModel(to_year, DataStage.stg).tb_sts_id.parquet)
+        ldf_all = ldf_all.with_columns(
+            pl.col("tollbooth_id").str.split("-").list.first() + "-" +pl.col("rank").cast(pl.String),
+            pl.col("tollbooth_id").str.split("-").list.first().cast(pl.Int32).alias("id")
+        ).select(pl.exclude("rank", "h3_cell"))
+        ldf_all = ldf_all.sort("id")
+
+        #print(ldf_tb_sts_from_to_new.collect())
+        #print(ldf_tb_sts_from_to_del.collect())
+        #print(ldf_all.collect())
+        ldf_all.select(pl.exclude("id")).sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
+        
+    #print(df_tbsts.filter((pl.col("tollbooth_name")=="huimilpan") & (pl.col("info_year") == 2024)))
+
+
+def stg_to_prod(year:int, option_selected: str):
+    models = ["tb_sts"]
+    options = ["tb_sts"]
+
+    catalogs = _opts_map(options, models)
+    if option_selected == "tb_sts":
+        sts_ids(year, start_year=2018)
 
 
 def _opts_map(options, models):
@@ -99,14 +162,14 @@ def raw_to_stg(year: int, option_selected: str):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--year", required=False, type=int)
+    parser.add_argument("--year", required=True, type=int)
     parser.add_argument("--pub-to-stg", help="generate parquet file", required=False, type=str)
-    parser.add_argument("--sts-catalog", help="generate tollbooth sts id catalog", required=False, action="store_true")
+    parser.add_argument("--stg-to-prod", required=False, type=str)
     parser.add_argument("--raw-to-stg", required=False, type=str)
 
     args = parser.parse_args()
-    if args.sts_catalog:
-        sts_catalog()
+    if args.stg_to_prod:
+        stg_to_prod(args.year, args.stg_to_prod)
     elif args.pub_to_stg:
         pub_to_stg(args.year, args.pub_to_stg)
     elif args.raw_to_stg:
