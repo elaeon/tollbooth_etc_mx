@@ -8,7 +8,7 @@ import sys
 import re
 from collections import defaultdict
 import argparse
-from tb_map_editor.data_files import DataModel
+from tb_map_editor.data_files import DataModel, DataStage
 
 
 _log = logging.getLogger(__name__)
@@ -106,7 +106,7 @@ def fill_list(small_list, total_size):
 def main(year, from_page, to_page):
     prev_year = year - 1
     file_path = f"./datos_viales/{year}/33_PC_DV{year}.pdf"
-    data_path = DataModel(prev_year)
+    data_path = DataModel(prev_year, DataStage.stg)
 
     with pdfplumber.open(file_path) as pdf:
         all_df = []
@@ -144,7 +144,15 @@ def main(year, from_page, to_page):
                 all_df.append(df)
                 if page_num == to_page:
                     break
-        pl.concat(all_df).cast(data_path.tb_sts.model.dict_schema(), strict=True).write_parquet(data_path.tb_sts.parquet)
+        
+        df_all = pl.concat(all_df)
+        pl_exp = data_path.tb_sts.model.str_normalize()
+        pl_exp.append(pl.lit("open").alias("status"))
+        schema = data_path.tb_sts.model.dict_schema()
+        del schema["tollbooth_id"]
+        df_all = df_all.with_columns(pl_exp)
+        df_all = df_all.cast(schema, strict=True)
+        df_all.write_parquet(data_path.tb_sts.parquet)
 
 
 if __name__ == "__main__":

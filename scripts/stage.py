@@ -11,6 +11,8 @@ from tb_map_editor.pipeline import DataPipeline
 
 
 def sts_ids(year: int, start_year: int):
+    hex_resolution = 10
+
     if year == start_year:
         from_year = year
         to_year = None
@@ -20,28 +22,29 @@ def sts_ids(year: int, start_year: int):
     else:
         raise Exception("year should not be less than 2018")
     
-    if to_year is None:
-        data_model_from = DataModel(from_year, DataStage.stg)
-        ldf_tb_sts_from = pl.scan_parquet(
-            data_model_from.tb_sts.parquet, 
-            #columns=["index", "tollbooth_name", "way", "lat", "lng", "info_year"]
-        )
-        hex_resolution = 10
-        ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
-            h3_cell=plh3.latlng_to_cell("lat", "lng", hex_resolution)
-        )
+    def _split_dup_and_add_id(ldf_tb_sts_from: pl.LazyFrame, start_index: int) -> pl.LazyFrame:
         ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
             pl.col("index").rank("ordinal").over("h3_cell", "tollbooth_name", "way", order_by=["index"]).alias("rank")
         )
-        ldf_tb_sts_from = ldf_tb_sts_from.sort("h3_cell", "tollbooth_name", "way")
+
+        ldf_tb_sts_from_key_dup = ldf_tb_sts_from.filter(pl.col("rank") > 1)
+        ldf_tb_sts_from = ldf_tb_sts_from.filter(pl.col("rank") == 1)
+        ldf_tb_sts_from = pl.concat([ldf_tb_sts_from, ldf_tb_sts_from_key_dup])
         ldf_tb_sts_from = ldf_tb_sts_from.with_row_index(
-            "tollbooth_id", 1
+            "tollbooth_id", start_index
+        ).select(pl.exclude("rank", "h3_cell"))
+        return ldf_tb_sts_from
+        
+
+    if to_year is None:
+        data_model_from = DataModel(from_year, DataStage.stg)
+        ldf_tb_sts_from = pl.scan_parquet(
+            data_model_from.tb_sts.parquet
         )
         ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
-            pl.col("tollbooth_id").cast(pl.String) + "-" +pl.col("rank").cast(pl.String)
-        ).select(pl.exclude("rank", "h3_cell"))
-        #print(ldf_tb_sts_from.collect())
-        ldf_tb_sts_from.sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
+            h3_cell=plh3.latlng_to_cell("lat", "lng", hex_resolution)
+        )
+        ldf_all = _split_dup_and_add_id(ldf_tb_sts_from, start_index=1)
     else:
         data_model_from = DataModel(from_year, DataStage.prd)
         ldf_tb_sts_from = pl.scan_parquet(
@@ -52,7 +55,6 @@ def sts_ids(year: int, start_year: int):
             data_model_to.tb_sts.parquet, 
         )
 
-        hex_resolution = 10
         ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
             h3_cell=plh3.latlng_to_cell("lat", "lng", hex_resolution)
         )
@@ -64,30 +66,25 @@ def sts_ids(year: int, start_year: int):
             on=["h3_cell", "tollbooth_name", "way"],
             how="anti"
         )
-        
-        index = ldf_tb_sts_from.last().select("tollbooth_id").collect().row(0)[0].split("-")[0]
-        ldf_tb_sts_from_to_new = ldf_tb_sts_from_to_new.with_row_index(
-            "tollbooth_id", int(index) + 1
+        ldf_tb_sts_from_to_del = ldf_tb_sts_from.join(
+            ldf_tb_sts_to,
+            on=["h3_cell", "tollbooth_name", "way"],
+            how="anti"
         )
-        ldf_tb_sts_from_to_new = ldf_tb_sts_from_to_new.with_columns(
-            pl.col("tollbooth_id").cast(pl.String)
+        ldf_tb_sts_from_to_del = ldf_tb_sts_from_to_del.with_columns(
+            pl.lit("closed").alias("status")
         )
+        ldf_tb_sts_from = ldf_tb_sts_from.update(
+            ldf_tb_sts_from_to_del,
+            on=["tollbooth_id"],
+            how="left"
+        ).select(pl.exclude("h3_cell"))
+
+        last_id = ldf_tb_sts_from.last().select("tollbooth_id").collect().row(0)[0]
+        ldf_tb_sts_from_to_new = _split_dup_and_add_id(ldf_tb_sts_from_to_new, start_index=last_id + 1)
         ldf_all = pl.concat([ldf_tb_sts_from, ldf_tb_sts_from_to_new])
-        ldf_all = ldf_all.with_columns(
-            pl.col("index").rank("ordinal").over("h3_cell", "tollbooth_name", "way", order_by=["index"]).alias("rank")
-        )
-
-        ldf_all = ldf_all.with_columns(
-            pl.col("tollbooth_id").str.split("-").list.first() + "-" +pl.col("rank").cast(pl.String),
-            pl.col("tollbooth_id").str.split("-").list.first().cast(pl.Int32).alias("id")
-        ).select(pl.exclude("rank", "h3_cell"))
-        ldf_all = ldf_all.sort("id")
-
-        #print(ldf_tb_sts_from_to_new.collect())
-        #print(ldf_tb_sts_from_to_del.collect())
-        #print(ldf_all.collect())
-        ldf_all.select(pl.exclude("id")).sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
-        
+    
+    ldf_all.sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
     #print(df_tbsts.filter((pl.col("tollbooth_name")=="huimilpan") & (pl.col("info_year") == 2024)))
 
 

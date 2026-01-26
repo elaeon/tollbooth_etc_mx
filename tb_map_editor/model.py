@@ -13,7 +13,9 @@ def _str_normalize(func):
         pl_exp = []
         for field in fields:
             pl_exp.append(
-                plds.to_snake_case(pl.col(field).str.normalize("NFKD").str.replace_all(r"\p{M}", "")).str.replace_all(r"[(\.,\\/:;)]+", "_").str.replace_all(r"_+", "_")
+                plds.to_snake_case(
+                    pl.col(field).str.normalize("NFKD").str.replace_all(r"\p{M}", "")
+                ).str.replace_all(r"[(\.,\\/:;)]+", "_").str.replace_all(r"_+", "_")
             )
         return pl_exp
     return wrapper
@@ -225,6 +227,13 @@ class TbSts(TbModel, table=True):
     nov: Float64 | None
     dec: Float64 | None
     info_year: UInt16 = Field(index=True)
+    status: String | None
+
+    @staticmethod
+    @_str_normalize
+    def str_normalize() -> list[str]:
+        fields = ["tollbooth_name", "way"]
+        return fields
 
 
 class Road(TbModel, table=True):

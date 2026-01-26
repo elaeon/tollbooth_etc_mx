@@ -76,6 +76,14 @@ build() {
 
     uv run scripts/join_tollbooths.py --year 2025 --tb-stretch-id-patch
 
+    uv run scripts/stage.py --year 2018 --stg-to-prod tb_sts
+    uv run scripts/stage.py --year 2019 --stg-to-prod tb_sts
+    uv run scripts/stage.py --year 2020 --stg-to-prod tb_sts
+    uv run scripts/stage.py --year 2021 --stg-to-prod tb_sts
+    uv run scripts/stage.py --year 2022 --stg-to-prod tb_sts
+    uv run scripts/stage.py --year 2023 --stg-to-prod tb_sts
+    uv run scripts/stage.py --year 2024 --stg-to-prod tb_sts
+
     echo "Build process completed successfully!"
 }
 
