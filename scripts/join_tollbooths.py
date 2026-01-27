@@ -10,60 +10,31 @@ from tb_map_editor.data_files import DataModel, DataStage
 
 
 def map_tb_sts(base_year: int, move_year: int):
-    data_path_prev_year = DataModel(base_year, DataStage.stg)
+    data_path_prev_year = DataModel(base_year, DataStage.prd)
     df_tb_sts = pl.read_parquet(
         data_path_prev_year.tb_sts.parquet,
-        columns=["tollbooth_name", "way", "lat", "lng"]
+        columns=["tollbooth_id", "lat", "lng", "tollbooth_name", "stretch_name"]
+    ).rename({"tollbooth_id": "tollbooth_imt_id"})
+    data_model = DataModel(move_year, DataStage.stg)
+    df_tb_catalog = pl.read_parquet(
+        data_model.tollbooths.parquet,
+        columns=["tollbooth_id", "lat", "lng"]
     )
-    df_tb_sts_id = pl.read_parquet(
-        data_path_prev_year.tb_sts_id.parquet,
-        columns=["tollbooth_id", "tollbooth_name", "way"]
-    )
-    df_tb_sts_full = df_tb_sts.join(
-        df_tb_sts_id, on=["tollbooth_name", "way"]
-    )
+    df_all_data = _find_closer_elem(df_tb_sts, df_tb_catalog, threshold=5)
+    df_all_data = df_all_data.with_columns(
+        pl.lit(move_year).alias("info_year")
+    ).rename({"tollbooth_imt_id": "tollbooth_sts_id"})
+    df_tb_sts = df_tb_sts.rename({"tollbooth_imt_id": "tollbooth_sts_id"})
 
-    print(df_tb_sts_full.join(
-        df_tb_sts_full.group_by("tollbooth_id").len().filter(pl.col("len")>1),
-        on="tollbooth_id"
-    ))
-
-    # df_tb_imt = pl.read_parquet(
-    #     data_model_prev_year.tb_imt.parquet, 
-    #     columns=["tollbooth_id", "lat", "lng"]
-    # ).rename({"tollbooth_id": "tollbooth_imt_id"})
-
-    # data_model = DataModel(move_year, DataStage.stg)
-    # df_tb_catalog = pl.read_parquet(
-    #     data_model.tollbooths.parquet,
-    #     columns=["tollbooth_id", "lat", "lng"]
-    # )
-
-    # _find_closer_elem(df_tbsts, df_tb_catalog)
-    # df_tbsts = df_tbsts.with_columns(
-    #     h3_cell=plh3.latlng_to_cell("lat", "lon", hex_resolution)
-    # )
-
-    # data_path = DataModel(year)
-    # df_tb = pl.read_parquet(
-    #     data_path.tollbooths.parquet
-    # )
-    # df_tb = df_tb.with_columns(
-    #     pl.col("lat").str.strip_chars().cast(pl.Float32),
-    #     pl.col("lon").str.strip_chars().cast(pl.Float32)
-    # )
-    # df_tb = df_tb.with_columns(
-    #     h3_cell=plh3.latlng_to_cell("lat", "lon", hex_resolution)
-    # )
-    
-    # df_tb_tbsts = df_tb.join(df_tbsts, on="h3_cell", how="left").select(
-    #     "tollbooth_id", "tollboothsts_id"
-    # )
-
-    # df_tb_tbsts.write_csv("./data/tables/tb_tbsts.csv")
+    df_all_data.write_parquet(data_model.map_tb_sts.parquet)
+    df_sts_no_map = df_tb_sts.join(
+        df_tb_sts.join(df_all_data, on="tollbooth_sts_id", how="anti"),
+        on="tollbooth_sts_id"
+    ).select("tollbooth_sts_id", "tollbooth_name", "stretch_name")
+    df_sts_no_map.write_csv(f"./tmp_data/{move_year}/df_sts_no_map.csv")
 
 
-def _find_closer_elem(df_ref, df_catalog):
+def _find_closer_elem(df_ref, df_catalog, threshold=0.3):
     hex_resolution_max = 5
     hex_resolution_max_name = "hex_rest_max"
 
@@ -118,7 +89,7 @@ def _find_closer_elem(df_ref, df_catalog):
         ).group_by("tollbooth_imt_id").agg(pl.col("distance").min()), 
         on=["tollbooth_imt_id", "distance"], 
         how="right")
-    df_all_data = df_imt_tb_catalog_no_dup_tb_join.extend(df_no_match).filter(pl.col("distance") <= 0.3)
+    df_all_data = df_imt_tb_catalog_no_dup_tb_join.extend(df_no_match).filter(pl.col("distance") <= threshold)
     return df_all_data
 
 
@@ -126,7 +97,7 @@ def map_tb_imt(base_year: int, move_year: int):
     data_model_prev_year = DataModel(base_year, DataStage.stg)
     df_tb_imt = pl.read_parquet(
         data_model_prev_year.tb_imt.parquet, 
-        columns=["tollbooth_id", "lat", "lng"]
+        columns=["tollbooth_id", "lat", "lng", "area", "subarea"]
     ).rename({"tollbooth_id": "tollbooth_imt_id"})
 
     data_model = DataModel(move_year, DataStage.stg)
@@ -140,9 +111,12 @@ def map_tb_imt(base_year: int, move_year: int):
         pl.lit(move_year).alias("info_year")
     )
 
-    print(df_all_data.shape)
     df_all_data.write_parquet(data_model.map_tb_imt.parquet)
-    print("LEFT", df_all_data.join(df_tb_imt, on="tollbooth_imt_id", how="left").filter(pl.col("lat").is_null()).shape)
+    df_imt_no_map = df_tb_imt.join(
+        df_tb_imt.join(df_all_data, left_on="tollbooth_imt_id", right_on="tollbooth_id", how="anti"),
+        on="tollbooth_imt_id"
+    ).select("tollbooth_imt_id", "area", "subarea")
+    df_imt_no_map.write_csv(f"./tmp_data/{move_year}/df_imt_no_map.csv")
 
 
 def _tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll, ldf_map_tb_imt):

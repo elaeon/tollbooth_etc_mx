@@ -110,7 +110,6 @@ def sts_ids(year: int, start_year: int):
         ldf_all = pl.concat([ldf_tb_sts_to, ldf_tb_sts_from_to_new])
 
     ldf_all.sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
-    #print(df_tbsts.filter((pl.col("tollbooth_name")=="huimilpan") & (pl.col("info_year") == 2024)))
 
 
 def stg_to_prod(year:int, option_selected: str):

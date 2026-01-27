@@ -87,10 +87,6 @@ class DataModel:
         return PathModel("tbsts_stretch_id", model.TbStsStretchId, self.attr, self.stage)
     
     @property
-    def tb_sts_id(self) -> PathModel:
-        return PathModel("tb_sts_id", model.TbStsId, self.attr, self.stage)
-    
-    @property
     def tb_imt(self) -> PathModel:
         return PathModel("tb_imt", model.TbImt, self.attr, self.stage)
     
@@ -101,3 +97,7 @@ class DataModel:
     @property
     def tb_toll_imt(self) -> PathModel:
         return PathModel("tb_toll_imt", model.TbTollImt, self.attr, self.stage)
+
+    @property
+    def map_tb_sts(self) -> PathModel:
+        return PathModel("map_tb_sts", model.MapTbSts, self.attr, self.stage)

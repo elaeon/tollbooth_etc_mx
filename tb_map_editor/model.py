@@ -281,6 +281,13 @@ class MapTbImt(TbModel, table=True):
     info_year: UInt16 = Field(primary_key=True)
 
 
+class MapTbSts(TbModel, table=True):
+    tollbooth_id: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
+    tollbooth_sts_id: UInt32 = Field(foreign_key="tbsts.tollbooth_id", primary_key=True)
+    distance: Float64
+    info_year: UInt16 = Field(primary_key=True)
+
+
 class TbStretchId(TbModel, table=True):
     stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)
     tollbooth_id_a: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id", primary_key=True)
@@ -358,15 +365,3 @@ class TbTollImt(TbModel, table=True):
     truck_9_axle: Float64 | None
     load_axle: Float64 | None
     info_year: UInt16 = Field(primary_key=True)
-
-
-# class TbStsId(TbModel, table=True):
-#     tollbooth_id: UInt32 | None = Field(default=None, primary_key=True)
-#     tollbooth_name: String
-#     way: String
-
-
-class TbStsStretchId(TbModel, table=True):
-    tollboothsts_id: UInt32 = Field(foreign_key="tbstsid.tollbooth_id", primary_key=True)
-    stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)
-    info_year: UInt16 = Field(default=None, primary_key=True)
