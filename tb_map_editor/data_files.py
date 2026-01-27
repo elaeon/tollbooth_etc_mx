@@ -8,16 +8,22 @@ from .model import TbModel
 def build_path(filename, attr:dict, folder: str) -> str:
     levels = list(attr.values())
     levels.append(filename)
-    path = os.path.abspath(os.path.join(folder, "/".join(map(str, levels))))
+    base_dir = "tollbooth_etc_mx"
+    index = os.getcwd().find(base_dir)
+    if index > -1:
+        base_path = os.getcwd()[:index+len(base_dir)]
+    else:
+        raise Exception("data folder not found.")
+    path = os.path.abspath(os.path.join(base_path, folder, "/".join(map(str, levels))))
     return path
 
 
 @dataclass
 class DataStage:
-    raw: str = "./data/raw/"
-    stg: str = "./data/staging/"
-    prd: str = "./data/production/"
-    pub: str = "./data/tables/"
+    raw: str = "data/raw/"
+    stg: str = "data/staging/"
+    prd: str = "data/production/"
+    pub: str = "data/tables/"
 
 
 @dataclass

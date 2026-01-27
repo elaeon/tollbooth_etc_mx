@@ -64,6 +64,8 @@ build() {
     uv run scripts/join_tollbooths.py --year 2024 --map-tb-imt 2024
     uv run scripts/join_tollbooths.py --year 2025 --map-tb-imt 2025
 
+    uv run scripts/join_tollbooths.py --year 2024 --map-tb-sts 2024
+
     uv run scripts/populate_db.py --year 2024 --new-map-tb-imt
     uv run scripts/populate_db.py --year 2025 --new-map-tb-imt
 
