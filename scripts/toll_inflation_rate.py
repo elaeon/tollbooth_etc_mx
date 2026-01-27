@@ -15,9 +15,10 @@ def calc_inflation_rate(filepath, from_year, to_year):
         df_strech_toll_dict[year] = {"dm": DataModel(year, DataStage.stg).stretchs_toll.parquet}
     
     actual_data_model = DataModel(to_year, DataStage.stg)
+    actual_data_model_prd = DataModel(to_year, DataStage.prd)
     df_strechs = pl.scan_parquet(actual_data_model.stretchs.parquet)
     df_tollbooths = pl.scan_parquet(actual_data_model.tollbooths.parquet).select("tollbooth_id", "state", "manage")
-    df_tb_stretch_id = pl.scan_parquet(actual_data_model.tb_stretch_id.parquet).select("stretch_id", "tollbooth_id_a")
+    df_tb_stretch_id = pl.scan_parquet(actual_data_model_prd.tb_stretch_id.parquet).select("stretch_id", "tollbooth_id_a")
     
     df_tb_stretch_id = df_tb_stretch_id.join(
         df_tollbooths, left_on="tollbooth_id_a", right_on="tollbooth_id", how="left"

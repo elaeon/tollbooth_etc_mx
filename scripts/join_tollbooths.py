@@ -177,6 +177,14 @@ def tb_stretch_id_imt(base_year: int, move_year: int):
     ldf_map_stretch = ldf_map_stretch.join(
        ldf_map_stretch_g, on=["tollbooth_id_a", "tollbooth_id_b", "lev_best"]
     ).select("stretch_id", "tollbooth_id_a", "tollbooth_id_b")
+
+    ldf_stretch_no_tb = ldf_stretch.join(ldf_map_stretch, on="stretch_id", how="anti")
+    ldf_stretch_no_tb = ldf_stretch_no_tb.select("stretch_id")
+    ldf_stretch_no_tb = ldf_stretch_no_tb.with_columns(
+        pl.lit(None).alias("tollbooth_id_a"),
+        pl.lit(None).alias("tollbooth_id_b")
+    )
+    ldf_map_stretch = pl.concat([ldf_map_stretch, ldf_stretch_no_tb])
     ldf_map_stretch.sink_parquet(data_model_move_year.tb_stretch_id.parquet)
 
 
