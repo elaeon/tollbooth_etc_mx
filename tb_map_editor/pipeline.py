@@ -24,9 +24,11 @@ class DataPipeline:
 
     def simple_pub_stg(self, model_name: str, year: int):
         model_dict = self._get_model(model_name, year)
+        print(f'Scan file: {model_dict["start"].csv}')
         ldf = pl.scan_csv(model_dict["start"].csv, schema=model_dict["start"].schema)
         ldf = ldf.pipe(self._simple_stg, model=model_dict["start"])
         ldf.sink_parquet(model_dict["end"].parquet)
+        print(f'Sink file: {model_dict["end"].parquet}')
 
     def simple_raw_stg(self, model_name: str, year: int, file_path: str, old_fields: list, date_columns: dict | None = None, filter_exp: pl.Expr | None = None):
         model_dict = self._get_model(model_name, year)
