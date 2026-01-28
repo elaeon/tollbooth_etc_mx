@@ -33,7 +33,7 @@
 "vice"|"bicentenario"|"Concesionaria Bicentenario S.A. de C.V."|"https://libramientocelaya.com.mx"|"https://libramientocelaya.com.mx/tarifas/"
 "hoatsa"|"Libramiento-irapuato"|"libramiento irapuato"|"http://libramientoirapuato.mx"|"http://libramientoirapuato.mx/tarifas.html"
 |"gma"|"grupo mexico autopistas"|"https://www.gmautopista.com"|"https://www.gmautopista.com/Paginas/Tarifas.aspx"
-|"ovi"|"Operadora Valle de la Independencia "||
+|"cvi"|"Operadora Valle de la Independencia "|"https://cvi.mx/"|
 "rco"|"Carreteras-occidente"|"Red De Carreteras De Occidente S.A.P.I.B. de C.V."|"https://redviacorta.mx"|"https://redviacorta.mx/es/tarifas"
 |"meta"|"mexicana de técnicos en autopistas s.a de c.v"|"https://www.libramientoslp.mx"|"https://www.libramientoslp.mx/meta#tabs"
 "coconal"|"coinsan"|"Concesionaria de Infraestructura de San Luis, S.A. de C.V."|"https://autopistasdecuota.com/ruta/san-luis-potosi"|"https://autopistasdecuota.com/ruta/san-luis-potosi"
@@ -96,3 +96,4 @@
 |"gipsa"|"Grupo de Infraestructura Potosino, S.A. de C.V."|"https://gipsaslp.com.mx/"|"https://gipsaslp.com.mx/tarifas/"
 "ohl"|"supervia"|"Autopista urbana poniente"|"https://supervia.mx"|"https://supervia.mx/tarifas.php"
 "pinfra"|"atisa"|"Autopista Tenango-Ixtapan de la Sal, S.A. de C.V.,"||
+"aleatica"|"viaducto-bicentenario"|"viaducto Bicentenario"|"https://www.viaductobicentenario.com.mx/"|"https://www.viaductobicentenario.com.mx/rutas-y-tarifas/"
