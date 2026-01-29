@@ -16,10 +16,11 @@ def calc_inflation_rate(filepath, from_year, to_year):
     
     actual_data_model = DataModel(to_year, DataStage.stg)
     actual_data_model_prd = DataModel(to_year, DataStage.prd)
-    df_strechs = pl.scan_parquet(actual_data_model.stretchs.parquet)
-    df_tollbooths = pl.scan_parquet(actual_data_model.tollbooths.parquet).select("tollbooth_id", "state", "manage")
+    df_strechs = pl.scan_parquet(actual_data_model.stretchs.parquet).rename({"manage": "stretch_manage"})
+    df_tollbooths = pl.scan_parquet(actual_data_model.tollbooths.parquet).select("tollbooth_id", "state", "manage").rename({"manage": "tb_manage"})
     df_tb_stretch_id = pl.scan_parquet(actual_data_model_prd.tb_stretch_id.parquet).select("stretch_id", "tollbooth_id_a")
-    
+    df_road = pl.scan_parquet(actual_data_model.roads.parquet).select("road_id", "road_name", "operation_date", "bond_issuance_date")
+
     df_tb_stretch_id = df_tb_stretch_id.join(
         df_tollbooths, left_on="tollbooth_id_a", right_on="tollbooth_id", how="left"
     )
@@ -40,6 +41,11 @@ def calc_inflation_rate(filepath, from_year, to_year):
             "truck_3_axle", "truck_4_axle", "truck_5_axle", "truck_6_axle", "truck_7_axle",
             "truck_8_axle", "truck_9_axle", "car_axle", "load_axle"
         ).alias(f"total_{year}"))
+        df_calc_dict[year] = df_calc_dict[year].with_columns(pl.mean_horizontal(
+            f"bike_{year}", f"car_{year}", "bus_2_axle", "bus_3_axle", "bus_4_axle", "truck_2_axle", 
+            "truck_3_axle", "truck_4_axle", "truck_5_axle", "truck_6_axle", "truck_7_axle",
+            "truck_8_axle", "truck_9_axle", "car_axle", "load_axle"
+        ).alias(f"total_mean_{year}"))
         df_calc_dict[year] = df_calc_dict[year].select(pl.exclude("car_axle", "load_axle"))
         df_calc_dict[year] = df_calc_dict[year].with_columns(
             pl.mean_horizontal("bus_2_axle", "bus_3_axle", "bus_4_axle").alias(f"bus_{year}")
@@ -58,7 +64,8 @@ def calc_inflation_rate(filepath, from_year, to_year):
     for year in years[1:]:
         df_toll = df_toll.join(df_calc_dict[year], how="left", on="stretch_id")
 
-    df_toll = df_toll.join(df_strechs.select("stretch_id", "stretch_name", "road_id"), on="stretch_id")
+    df_toll = df_toll.join(df_strechs, on="stretch_id")
+    df_toll = df_toll.join(df_road, on="road_id", how="left")
     df_toll = df_toll.join(df_tb_stretch_id, on="stretch_id", how="left")
 
     df_total_toll = df_toll.filter(
@@ -93,10 +100,16 @@ def calc_inflation_rate(filepath, from_year, to_year):
         inflation_rate_exp + accum_inflation_rate_exp + [avg_accum_inflation_rate_exp]
     ).filter(pl.col(f"accum_inflation_rate_{from_year+1}_{to_year}").is_not_null())
 
+    df_total_toll = df_total_toll.with_columns(
+        pl.when(
+            (pl.col("stretch_length_km").is_null()) | (pl.col("stretch_length_km") == 0)
+        ).then(None).otherwise((pl.col(f"total_mean_{to_year}") / pl.col("stretch_length_km")).round(2)).alias("cost_per_km")
+    )
     df_total_toll = df_total_toll.sort(f"accum_inflation_rate_{from_year+1}_{to_year}", descending=True).select(
-        ["stretch_id", "stretch_name", "state", "manage"] + inflation_columns
+        ["stretch_id", "stretch_name", "state", "tb_manage", "stretch_length_km", "stretch_manage",
+         "road_name", "operation_date", "bond_issuance_date", "cost_per_km"] + inflation_columns
         
-    ).unique(maintain_order=True)#.write_csv("inflation_rate_total.csv")
+    ).unique(maintain_order=True)
     filepath = os.path.join(filepath, f"inflation_rate_{from_year}_{to_year}.csv")
     df_total_toll.sink_csv(filepath)
     print(f"Saved result in {filepath}")
