@@ -17,7 +17,7 @@ def calc_inflation_rate(filepath, from_year, to_year):
     actual_data_model = DataModel(to_year, DataStage.stg)
     actual_data_model_prd = DataModel(to_year, DataStage.prd)
     df_strechs = pl.scan_parquet(actual_data_model.stretchs.parquet).rename({"manage": "stretch_manage"})
-    df_tollbooths = pl.scan_parquet(actual_data_model.tollbooths.parquet).select("tollbooth_id", "state", "manage").rename({"manage": "tb_manage"})
+    df_tollbooths = pl.scan_parquet(actual_data_model_prd.tollbooths.parquet).select("tollbooth_id", "state", "manage", "parent_manage").rename({"manage": "tb_manage", "parent_manage": "parent_tb_manage"})
     df_tb_stretch_id = pl.scan_parquet(actual_data_model_prd.tb_stretch_id.parquet).select("stretch_id", "tollbooth_id_a")
     df_road = pl.scan_parquet(actual_data_model.roads.parquet).select("road_id", "road_name", "operation_date", "bond_issuance_date")
 
@@ -106,8 +106,10 @@ def calc_inflation_rate(filepath, from_year, to_year):
         ).then(None).otherwise((pl.col(f"total_mean_{to_year}") / pl.col("stretch_length_km")).round(2)).alias("cost_per_km")
     )
     df_total_toll = df_total_toll.sort(f"accum_inflation_rate_{from_year+1}_{to_year}", descending=True).select(
-        ["stretch_id", "stretch_name", "state", "tb_manage", "stretch_length_km", "stretch_manage",
-         "road_name", "operation_date", "bond_issuance_date", "cost_per_km"] + inflation_columns
+        ["stretch_id", "stretch_name", "state", "tb_manage", "parent_tb_manage", 
+         "stretch_length_km", "stretch_manage", "road_name", "operation_date", 
+         "bond_issuance_date", "cost_per_km"
+        ] + inflation_columns
         
     ).unique(maintain_order=True)
     filepath = os.path.join(filepath, f"inflation_rate_{from_year}_{to_year}.csv")

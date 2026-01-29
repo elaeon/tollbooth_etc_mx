@@ -286,28 +286,31 @@ def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
     print(pl.concat([df_tb_imt[best_i], best_rows.select("eucli")], how="horizontal"))
 
 
-def map_stretch_toll_imt(base_year: int, other_year: int):
-    data_model_base = DataModel(base_year)
-    data_model_other_year = DataModel(other_year)
-    ldf_toll_imt = pl.scan_parquet(data_model_other_year.tb_toll_imt.parquet).select("tollbooth_imt_id_a", "tollbooth_imt_id_b")
-    ldf_tb_imt_tb_id = pl.scan_parquet(data_model_base.tb_imt_tb_id.parquet).select("tollbooth_id", "tollbooth_imt_id")
-    ldf_stretch_id = pl.scan_parquet(data_model_base.tb_stretch_id.parquet)
-    ldf_stretch = ldf_toll_imt.join(
-        ldf_tb_imt_tb_id, left_on="tollbooth_imt_id_a", right_on="tollbooth_imt_id"
-    ).rename({"tollbooth_id": "tollbooth_id_b"})
-    ldf_stretch = ldf_stretch.join(
-        ldf_tb_imt_tb_id, left_on="tollbooth_imt_id_b", right_on="tollbooth_imt_id"
-    ).rename({"tollbooth_id": "tollbooth_id_a"})
-    ldf_stretch = ldf_stretch.select(
-        "tollbooth_imt_id_b", 
-        "tollbooth_imt_id_a",
-        "tollbooth_id_a",
-        "tollbooth_id_b"
-    )
-    ldf_stretch = ldf_stretch_id.join(ldf_stretch, on=["tollbooth_id_a", "tollbooth_id_b"])
-    print(ldf_stretch.collect().shape)
-    #print(ldf_stretch.filter(pl.col("stretch_id")==1343).collect())
-    print(ldf_stretch.filter(pl.col("tollbooth_id_a")==791).collect())
+def first_parent(year: int):
+    df = pl.read_csv("data/tables/area_operators_mx.csv", separator="|").select("parent", "short_name")
+    df = df.join(df, left_on="parent", right_on="short_name", how="left")
+    while True:
+        if not df.filter(pl.col("parent_right").is_not_null()).is_empty():
+            df = df.rename({"parent_right": "sparent"}).select("parent", "short_name", "sparent")
+            df = df.with_columns(
+                pl.when(pl.col("sparent").is_not_null()).then(pl.col("sparent")).otherwise("parent").alias("parent")
+            ).select("parent", "short_name")
+            df = df.join(df, left_on="parent", right_on="short_name", how="left")
+        else:
+            df = df.select("parent", "short_name")
+            break
+    
+    df = df.with_columns(
+        pl.when(pl.col("parent").is_null()).then(pl.col("short_name")).otherwise("parent").alias("parent")
+    ).unique()
+    df.write_parquet("tmp_data/first_parent.parquet")
+
+    data_model = DataModel(year, DataStage.stg)
+    df_tb = pl.scan_parquet(data_model.tollbooths.parquet)
+    df_manage_parent = pl.scan_parquet("tmp_data/first_parent.parquet")
+    df_tb = df_tb.join(df_manage_parent, left_on="manage", right_on="short_name", how="left")
+    df_tb = df_tb.select(pl.exclude("short_name")).rename({"parent": "parent_manage"})
+    df_tb.sink_parquet(DataModel(year, DataStage.prd).tollbooths.parquet)
 
 
 if __name__ == "__main__":
@@ -322,6 +325,7 @@ if __name__ == "__main__":
     parser.add_argument("--id", required=False, type=int)
     parser.add_argument("--tb-stretch-id-patch", required=False, action="store_true")
     parser.add_argument("--map-stretch-toll-imt", required=False)
+    parser.add_argument("--first-parent", required=False, action="store_true")
     args = parser.parse_args()
 
     if args.map_tb_sts:
@@ -336,6 +340,6 @@ if __name__ == "__main__":
         find_similarity_toll(args.year, args.similarity_toll, args.id)
     elif args.tb_stretch_id_patch:
         tb_stretch_id_imt_patch(args.year)
-    elif args.map_stretch_toll_imt:
-        map_stretch_toll_imt(args.year, args.map_stretch_toll_imt)
+    elif args.first_parent:
+        first_parent(args.year)
     
