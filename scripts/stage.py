@@ -128,14 +128,14 @@ def _opts_map(options, models):
     return catalogs
 
 
-def pub_to_stg(year: int, option_selected: str):
+def pub_to_stg(year: int, option_selected: str, normalize: bool):
     pipeline = DataPipeline()
     
     models = ["tollbooths", "stretchs", "stretchs_toll", "roads"]
     options = ["tb", "stretch", "stretch_toll", "road"]
     catalogs = _opts_map(options, models)
 
-    pipeline.simple_pub_stg(catalogs[option_selected], year)
+    pipeline.simple_pub_stg(catalogs[option_selected], year, normalize)
 
 
 def raw_to_stg(year: int, option_selected: str):
@@ -184,14 +184,20 @@ def raw_to_stg(year: int, option_selected: str):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", required=True, type=int)
-    parser.add_argument("--pub-to-stg", help="generate parquet file", required=False, type=str)
+    parser.add_argument(
+        "--pub-to-stg", 
+        help="generate parquet file", 
+        required=False, type=str, 
+        choices=["tb", "stretch", "stretch_toll", "road"]
+    )
     parser.add_argument("--stg-to-prod", required=False, type=str)
     parser.add_argument("--raw-to-stg", required=False, type=str)
+    parser.add_argument("--normalize", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.stg_to_prod:
         stg_to_prod(args.year, args.stg_to_prod)
     elif args.pub_to_stg:
-        pub_to_stg(args.year, args.pub_to_stg)
+        pub_to_stg(args.year, args.pub_to_stg, args.normalize)
     elif args.raw_to_stg:
         raw_to_stg(args.year, args.raw_to_stg)

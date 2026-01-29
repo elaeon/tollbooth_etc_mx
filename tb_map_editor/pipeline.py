@@ -5,8 +5,11 @@ from .data_files import DataModel, DataStage, PathModel
 
 class DataPipeline:
 
-    def _simple_stg(self, ldf: pl.LazyFrame, model: PathModel) -> pl.LazyFrame:
-        exp_list = model.str_normalize
+    def _simple_stg(self, ldf: pl.LazyFrame, model: PathModel, normalize: bool = True) -> pl.LazyFrame:
+        exp_list = []
+        if normalize is True:
+            exp_list.extend(model.str_normalize)
+        
         exp_list.append(
             pl.lit(model.attr.get("year")).alias("info_year")
         )
@@ -22,11 +25,11 @@ class DataPipeline:
         }
         return model_dict
 
-    def simple_pub_stg(self, model_name: str, year: int):
+    def simple_pub_stg(self, model_name: str, year: int, normalize: bool):
         model_dict = self._get_model(model_name, year)
         print(f'Scan file: {model_dict["start"].csv}')
         ldf = pl.scan_csv(model_dict["start"].csv, schema=model_dict["start"].schema)
-        ldf = ldf.pipe(self._simple_stg, model=model_dict["start"])
+        ldf = ldf.pipe(self._simple_stg, model=model_dict["start"], normalize=normalize)
         ldf.sink_parquet(model_dict["end"].parquet)
         print(f'Sink file: {model_dict["end"].parquet}')
 

@@ -105,6 +105,18 @@ class Date(str):
         return pl.Date
 
 
+class Bool(int):
+    @classmethod
+    def __get_pydantic_core_schema__(
+        cls, source_type: Any, handler: GetCoreSchemaHandler
+    ) -> CoreSchema:
+        return core_schema.no_info_after_validator_function(cls, handler(int))
+
+    @staticmethod
+    def polars_dtype():
+        return pl.Boolean
+
+
 class Schema:
     _polar_dtype_attr = "polars_dtype"
 
@@ -154,7 +166,7 @@ class TbModel(SQLModel, Schema, table=False):
 
 class Tollbooth(TbModel, table=True):
     tollbooth_id: UInt16 | None = Field(default=None, primary_key=True)
-    legacy_id: UInt16 | None = Field(default=None)
+    legacy_id: UInt16 | None
     tollbooth_name: String | None = Field(default=None, index=True)
     lat: Float64 | None
     lng: Float64 | None
@@ -166,6 +178,7 @@ class Tollbooth(TbModel, table=True):
     manage: String | None
     gate_to: String | None
     info_year: UInt16 = Field(index=True)
+    anti_evation_sys: Bool | None
 
     @classmethod
     def online_empty_fields(cls, exclude_fields: set | None = None) -> dict:
@@ -195,8 +208,8 @@ class TbSts(TbModel, table=True):
     index: String
     tollbooth_name: String
     stretch_name: String
-    highway: String | None = Field(default=None)
-    km: Float64 | None = Field(default=None)
+    highway: String | None
+    km: Float64 | None
     lat: Float64
     lng: Float64
     way: UInt16 | None

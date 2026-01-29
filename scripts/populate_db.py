@@ -65,7 +65,9 @@ def insert_tb_from_db(data_model: DataModel):
 def insert_tb_stretch_from_data(data_model: DataModel):
     ldf_tb_stretch = pl.scan_parquet(data_model.tb_stretch_id.parquet)
     model_name = data_model.tb_stretch_id.model.name()
-    insert_data_from_parquet(ldf_tb_stretch, model_name)
+    ldf_tb_stretch = ldf_tb_stretch.filter(pl.col("tollbooth_id_a").is_not_null()).with_columns(pl.lit(2025).alias("info_year"))
+    ldf_tb_stretch = ldf_tb_stretch.filter(pl.col("tollbooth_id_b").is_not_null())
+    insert_data_from_parquet(ldf_tb_stretch.unique(), model_name)
 
 
 def insert_stretch_from_data(data_model: DataModel):
@@ -92,7 +94,7 @@ def insert_new_map_tb_imt_from_data(data_model: DataModel):
     insert_data_from_parquet(ldf_map_tb_imt, model_name)
     
 
-def clean_db():
+def clean_db(option):
     table_parameter = "{table_parameter}"
     drop_table_query = f"DROP TABLE {table_parameter};"
     get_tables_query = "SELECT name FROM sqlite_schema WHERE type='table';"
@@ -113,7 +115,10 @@ def clean_db():
         cur.close()
 
     conn = sqlite3.connect(sqlite_url.replace("sqlite:///", ""))
-    tables = get_tables(conn)
+    if option == "all":
+        tables = get_tables(conn)
+    else:
+        tables = [(option,)]
     delete_tables(conn, tables)
 
     _log.info(f"Cleaned data in {sqlite_url}")
@@ -131,7 +136,7 @@ if __name__ == "__main__":
     parser.add_argument("--new-map-tb-imt", required=False, action="store_true")
     parser.add_argument("--export-tb", action="store_true")
     parser.add_argument("--year", help="model year", required=False, type=int)
-    parser.add_argument("--clean-db", required=False, action="store_true")
+    parser.add_argument("--clean-db", required=False, type=str, help="all or table name")
     args = parser.parse_args()
     data_model = DataModel(args.year, DataStage.stg)
     if args.new_tb:
@@ -143,6 +148,7 @@ if __name__ == "__main__":
     elif args.export_tb:
         insert_tb_from_db(data_model)
     elif args.new_tb_stretch:
+        data_model = DataModel(args.year, DataStage.prd)
         insert_tb_stretch_from_data(data_model)
     elif args.new_stretch:
         insert_stretch_from_data(data_model)
@@ -153,6 +159,6 @@ if __name__ == "__main__":
     elif args.new_map_tb_imt:
         insert_new_map_tb_imt_from_data(data_model)
     elif args.clean_db:
-        clean_db()
+        clean_db(args.clean_db)
     else:
         parser.print_help()
