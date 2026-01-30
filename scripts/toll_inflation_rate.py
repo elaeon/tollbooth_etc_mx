@@ -61,6 +61,17 @@ def calc_inflation_rate(filepath, from_year, to_year):
         ).select(pl.exclude("truck_7_axle", "truck_8_axle", "truck_9_axle"))
 
     df_toll = df_calc_dict[from_year]
+    stretchs = []
+    for year in years[1:]:
+        new_stretch_ids = df_calc_dict[year].join(df_toll, how="anti", on="stretch_id")
+        stretchs.append(new_stretch_ids.select("stretch_id"))
+    
+    df_stretch_ids = pl.concat(stretchs).unique()
+    df_toll = df_toll.join(df_stretch_ids, on="stretch_id", how="full")
+    df_toll = df_toll.with_columns(
+        stretch_id=pl.when(pl.col("stretch_id_right").is_null()).then(pl.col("stretch_id")).otherwise(pl.col("stretch_id_right"))
+    ).select(pl.exclude("stretch_id_right"))
+
     for year in years[1:]:
         df_toll = df_toll.join(df_calc_dict[year], how="left", on="stretch_id")
 
@@ -68,44 +79,39 @@ def calc_inflation_rate(filepath, from_year, to_year):
     df_toll = df_toll.join(df_road, on="road_id", how="left")
     df_toll = df_toll.join(df_tb_stretch_id, on="stretch_id", how="left")
 
-    df_total_toll = df_toll.filter(
-        pl.col(f"total_{from_year}") != 0
-    )
-    for year in years[1:-1]:
-        df_total_toll = df_total_toll.filter(
-            pl.col(f"total_{year}") != 0
-        )
-
     inflation_columns = []
     inflation_rate_exp = []
-    for prev_year, base_year in zip(years, years[1:]):
-        result_col_name = f"inflation_rate_{base_year}"
+    for start_year, end_year in zip(years, years[1:]):
+        result_col_name = f"inflation_rate_{end_year}"
         inflation_rate_exp.append(
-            ((pl.col(f"total_{base_year}") - pl.col(f"total_{prev_year}")) * 100 / pl.col(f"total_{prev_year}")).round(2).alias(result_col_name)
+            ((pl.col(f"total_{end_year}") - pl.col(f"total_{start_year}")) * 100 / pl.col(f"total_{start_year}")).round(2).alias(result_col_name)
         )
         inflation_columns.append(result_col_name)
     
-    accum_inflation_rate_exp = []
-    for prev_year, base_year in zip(years[1:], years[2:]):
-        result_col_name = f"accum_inflation_rate_{from_year+1}_{base_year}"
-        accum_inflation_rate_exp.append(
-            ((pl.col(f"total_{base_year}") / pl.col(f"total_{from_year}") - 1) * 100).round(2).alias(result_col_name)
+    avg_cum_inflation_rate_exp = []
+    for _, end_year in zip(years[1:], years[2:]):
+        result_col_name = f"avg_cum_inflation_rate_{from_year+1}_{end_year}"
+        avg_cum_inflation_rate_exp.append(
+            ((pl.col(f"total_{end_year}") / pl.col(f"total_{from_year}") - 1) * 100).round(2).alias(result_col_name)
         )
         inflation_columns.append(result_col_name)
     
-    result_col_name = f"accum_inflation_rate_avg_{from_year+1}_{to_year}"
+    result_col_name = f"cagr_inflation_rate_{from_year+1}_{to_year}"
     inflation_columns.append(result_col_name)
-    avg_accum_inflation_rate_exp = (((pl.col(f"total_{to_year}") / pl.col(f"total_{from_year}")).pow(1/4) - 1) * 100).round(2).alias(result_col_name)
-    df_total_toll = df_total_toll.with_columns(
-        inflation_rate_exp + accum_inflation_rate_exp + [avg_accum_inflation_rate_exp]
-    ).filter(pl.col(f"accum_inflation_rate_{from_year+1}_{to_year}").is_not_null())
+    num_of_years = len(years)
+    cagr_inflation_rate_exp = (((pl.col(f"total_{to_year}") / pl.col(f"total_{from_year}")).pow(1/num_of_years) - 1) * 100).round(2).alias(result_col_name)
+    df_toll = df_toll.with_columns(
+        inflation_rate_exp + avg_cum_inflation_rate_exp + [cagr_inflation_rate_exp]
+    )
 
-    df_total_toll = df_total_toll.with_columns(
+    df_toll = df_toll.with_columns(
         pl.when(
             (pl.col("stretch_length_km").is_null()) | (pl.col("stretch_length_km") == 0)
         ).then(None).otherwise((pl.col(f"total_mean_{to_year}") / pl.col("stretch_length_km")).round(2)).alias("cost_per_km")
     )
-    df_total_toll = df_total_toll.sort(f"accum_inflation_rate_{from_year+1}_{to_year}", descending=True).select(
+    df_toll = df_toll.sort(
+        f"cagr_inflation_rate_{from_year+1}_{to_year}", descending=True, nulls_last=True
+    ).select(
         ["stretch_id", "stretch_name", "state", "tb_manage", "parent_tb_manage", 
          "stretch_length_km", "stretch_manage", "road_name", "operation_date", 
          "bond_issuance_date", "cost_per_km"
@@ -113,7 +119,7 @@ def calc_inflation_rate(filepath, from_year, to_year):
         
     ).unique(maintain_order=True)
     filepath = os.path.join(filepath, f"inflation_rate_{from_year}_{to_year}.csv")
-    df_total_toll.sink_csv(filepath)
+    df_toll.sink_csv(filepath)
     print(f"Saved result in {filepath}")
 
 
