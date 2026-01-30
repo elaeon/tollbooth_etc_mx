@@ -123,10 +123,107 @@ def calc_inflation_rate(filepath, from_year, to_year):
     print(f"Saved result in {filepath}")
 
 
+def join_range(start, end, dict_data, data_join_key: str):
+    range_keys = range(start, end + 1)
+    df_join_range = dict_data[start]
+    df_ids = df_join_range.select(data_join_key)
+
+    for key in range_keys[1:]:
+        new_tb_ids = dict_data[key].select(data_join_key).join(df_ids, how="anti", on=data_join_key)
+        df_ids = pl.concat([df_ids, new_tb_ids])
+        
+    df_join_range = df_join_range.join(df_ids, on=data_join_key, how="full")
+    df_join_range = df_join_range.with_columns(
+        (pl.when(
+            pl.col(f"{data_join_key}_right").is_null()
+        ).then(
+            pl.col(data_join_key)
+        ).otherwise(pl.col(f"{data_join_key}_right"))
+        ).alias(data_join_key)
+    ).select(pl.exclude(f"{data_join_key}_right"))
+
+    for key in range_keys[1:]:
+        df_join_range = df_join_range.join(dict_data[key], how="left", on="tollbooth_id")
+
+    return df_join_range
+
+
+def growth_rate_exprs(start, end, prefix_col: str):
+    range_keys = range(start, end + 1)
+    growth_rate_columns = []
+    growth_rate_exp = []
+    
+    def growth_rate():
+        for start_year, end_year in zip(range_keys, range_keys[1:]):
+            result_col_name = f"{prefix_col}_growth_rate_{end_year}"
+            growth_rate_exp.append(
+                ((pl.col(f"{prefix_col}_{end_year}") - pl.col(f"{prefix_col}_{start_year}")) * 100 / pl.col(f"{prefix_col}_{start_year}")).round(2).alias(result_col_name)
+            )
+            growth_rate_columns.append(result_col_name)
+
+    def cum_growth_rate():
+        for _, end_year in zip(range_keys[1:], range_keys[2:]):
+            result_col_name = f"{prefix_col}_cum_growth_rate_{start+1}_{end_year}"
+            growth_rate_exp.append(
+                ((pl.col(f"{prefix_col}_{end_year}") / pl.col(f"{prefix_col}_{start}") - 1) * 100).round(2).alias(result_col_name)
+            )
+            growth_rate_columns.append(result_col_name)
+        
+    def cagr_growth_rate():
+        result_col_name = f"{prefix_col}_cagr_growth_rate_{start+1}_{end}"
+        growth_rate_columns.append(result_col_name)
+        num_of_years = len(range_keys)
+        cagr_inflation_rate_exp = (((pl.col(f"{prefix_col}_{end}") / pl.col(f"{prefix_col}_{start}")).pow(1/num_of_years) - 1) * 100).round(2).alias(result_col_name)
+        growth_rate_exp.append(cagr_inflation_rate_exp)
+    
+    growth_rate()
+    cum_growth_rate()
+    cagr_growth_rate()
+
+    return growth_rate_columns, growth_rate_exp
+
+
+def tdpa_vta_growth_rate(from_year, to_year):
+    years = range(from_year, to_year + 1)
+    df_tb_dict = {}
+
+    actual_data_model_stg = DataModel(to_year, DataStage.stg)
+    df_map_tb_sts = pl.scan_parquet(
+        actual_data_model_stg.map_tb_sts.parquet
+    ).select("tollbooth_id", "tollbooth_sts_id")
+
+    for year in years:
+        filepath = DataModel(year, DataStage.prd).tb_sts.parquet
+        df_tb_dict[year] = pl.scan_parquet(filepath)
+    
+    tdpa_cols = []
+    for year in df_tb_dict:
+        df_tb_dict[year] = df_tb_dict[year].select(
+            "tollbooth_id", "tdpa", "vta"
+        ).cast({"tdpa": pl.Int32, "vta": pl.Int64}).rename({"tdpa": f"tdpa_{year}", "vta": f"vta_{year}"})
+        tdpa_cols.append(f"tdpa_{year}")
+
+    df_sts = join_range(from_year, to_year, df_tb_dict, data_join_key="tollbooth_id")
+    tdpa_growth_rate_columns, tdpa_growth_rate_expr = growth_rate_exprs(from_year, to_year, "tdpa")
+    vta_growth_rate_columns, vta_growth_rate_expr = growth_rate_exprs(from_year, to_year, "vta")
+
+    df_sts = df_sts.with_columns(
+        tdpa_growth_rate_expr + vta_growth_rate_expr
+    ).select(["tollbooth_id"] + tdpa_growth_rate_columns + vta_growth_rate_columns)
+
+    #print(df_sts.collect().select(["tollbooth_id"]+vta_growth_rate_columns).filter(pl.col("tollbooth_id")==874))
+    df_sts = df_map_tb_sts.join(
+        df_sts, left_on="tollbooth_sts_id", right_on="tollbooth_id"
+    ).select(pl.exclude("tollbooth_sts_id"))
+
+    return df_sts
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--save", required=True, type=str)
 
     args = parser.parse_args()
     if args.save:
-        calc_inflation_rate(args.save, from_year=2021, to_year=2025)
+        #calc_inflation_rate(args.save, from_year=2021, to_year=2025)
+        tdpa_vta_growth_rate(from_year=2021, to_year=2024)
