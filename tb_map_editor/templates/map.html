@@ -509,8 +509,12 @@ function clearAllLayers() {
 function processMarkerResponse(data, sourceLabel) {
 	const coords = extractCoordinates(data);
 	if (!coords.length) throw new Error('No coordinates found in response');
-	addMarkersFromCoords(coords, sourceLabel);
+	const markers = addMarkersFromCoords(coords, sourceLabel);
 	searchBar._populateMarkerLabels(map);
+	// If exactly one marker was returned, show its properties in the panel
+	if (Array.isArray(markers) && markers.length === 1) {
+		try { showMarkerProps(markers[0]); } catch (err) { console.warn('showMarkerProps error', err); }
+	}
 }
 
 function showMarkerProps(marker) {
@@ -795,6 +799,7 @@ function addMarkersFromCoords(coords, sourceLabel) {
 	}
 	const statusEl = document.getElementById('query-status');
 	if (statusEl) statusEl.textContent = `Loaded ${markers.length} markers from ${sourceLabel || 'query'}`;
+	return markers;
 }
 
 // popup form helpers

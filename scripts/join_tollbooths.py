@@ -218,13 +218,13 @@ def tb_stretch_id_imt_patch(year: int):
 
 
 def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
-    data_model = DataModel(move_year)
+    data_model = DataModel(move_year, DataStage.stg)
     df_tb_imt = pl.read_parquet(data_model.tb_toll_imt.parquet)
     df_tb_imt = df_tb_imt.select(
         pl.exclude("tollbooth_id_a", "tollbooth_id_b", "info_year", "car_axle", 
                    "load_axle", "nombre_sal", "nombre_ent")
     )
-    data_model_base = DataModel(base_year)
+    data_model_base = DataModel(base_year, DataStage.stg)
     df_tb_toll = pl.scan_parquet(data_model_base.stretchs_toll.parquet).select(
         pl.exclude("car_axle", "load_axle", "bicycle", "car_rush_hour", "pedestrian", "car_rush_hour_2",
                 "car_evening_hour_2", "car_morning_night", "motorbike_axle", "toll_ref", "truck_10_axle",
