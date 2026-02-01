@@ -116,7 +116,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 119,483,leon guzman,25.5195498106948,-103.639733039609,open,durango,entronque,2,toll,acsa,
 120,96,llano grande,23.8708050159367,-105.191435760013,open,durango,troncal,3,toll,capufe,
 121,481,yerbanis,24.730753,-103.861954,open,durango,troncal,3,toll,acsa,
-122,316,a-32 bis,19.7042822667285,-99.0886173858502,open,edomx,entronque,6,toll,cem,
+122,316,a-32 bis,19.7042822667285,-99.0886173858502,open,edomx,entronque,6,toll,cem,,1
 123,442,acambay,19.92349305994267,-99.84424889087678,open,edomx,entronque,2,toll,arconorte,
 124,436,ajoloapan,19.9558772322749,-99.0554418856879,open,edomx,entronque,2,toll,arconorte,
 125,436,ajoloapan,19.9561077051433,-99.0533617790827,open,edomx,entronque,2,toll,arconorte,
@@ -153,38 +153,38 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 156,413,chamapa inbursa,19.431723548883,-99.296849713189,open,edomx,troncal,2,ticket,chamapa-laventa,
 157,470,chapultepec,19.19657722346314,-99.52524304389955,open,edomx,troncal,3,toll,lerma-santiago,
 159,134,cipreses,19.4688428446155,-99.3113364746613,open,edomx,entronque,1,toll,capufe,
-160,316,circuito exterior mexiquense-a-12 entronque santa ines,19.702077285062,-99.0857239049988,open,edomx,entronque,8,toll,cem,
-161,316,circuito exterior mexiquense-a-1a huehuetoca,19.8221362439279,-99.2362438824378,open,edomx,entronque,2,toll,cem,
-162,316,circuito exterior mexiquense-a-1b huehuetoca,19.8232358802547,-99.2355312251485,open,edomx,entronque,2,toll,cem,
-163,316,circuito exterior mexiquense-a-2 los reyes,19.6108656849047,-99.0385518111732,open,edomx,troncal,5,toll,cem,
-164,316,circuito exterior mexiquense-a-21 bordo xochiaca,19.4256339193153,-98.9985588878843,open,edomx,entronque,2,toll,cem,
-165,316,circuito exterior mexiquense-a-22 bordo xochiaca,19.4256771492297,-98.9987669281238,open,edomx,troncal,2,toll,cem,
-166,316,circuito exterior mexiquense-a-27 san buena aventura,19.3070781629101,-98.8717998848697,open,edomx,entronque,2,toll,cem,
-167,316,circuito exterior mexiquense-a-28 san marcos,19.3000044561586,-98.8750632429357,open,edomx,entronque,2,toll,cem,
-168,316,circuito exterior mexiquense-a-3 pachuca,19.6030917988298,-99.0386258765502,open,edomx,entronque,1,toll,cem,
-169,316,circuito exterior mexiquense-a-31 ent. tultepec,19.7023252048145,-99.0852268569273,open,edomx,entronque,4,toll,cem,
-170,316,circuito exterior mexiquense-a-32 ent. tultepec,19.7042601240312,-99.0872982554282,open,edomx,entronque,4,toll,cem,
-171,316,circuito exterior mexiquense-a-33 vialidad mexiquense,19.638353310851,-99.1562264874497,open,edomx,entronque,3,toll,cem,
-172,316,circuito exterior mexiquense-a-34 vialidad mexiquense,19.63734321178694,-99.16439473628999,open,edomx,entronque,4,toll,cem,
-173,316,circuito exterior mexiquense-a-35 vialidad mexiquense,19.6382391604722,-99.1589328843303,open,edomx,entronque,1,toll,cem,
-174,316,circuito exterior mexiquense-a-36 vialidad mexiquense,19.6383364532437,-99.1591983084272,open,edomx,entronque,4,toll,cem,
-175,316,circuito exterior mexiquense-a-4 pachuca,19.6033925997714,-99.037243200214,open,edomx,entronque,2,toll,cem,
-176,316,circuito exterior mexiquense-a-5 hank gonzalez,19.5848210454982,-99.0280728965625,open,edomx,entronque,2,toll,cem,
-177,316,circuito exterior mexiquense-a-6 periferico,19.4872266389019,-99.0163808873065,open,edomx,entronque,2,toll,cem,
-178,316,circuito exterior mexiquense-a-7 periferico,19.4857143481535,-99.0151694821313,open,edomx,entronque,2,toll,cem,
-179,316,circuito exterior mexiquense-a-8 pichardo,19.5063674846948,-99.014963201681,open,edomx,troncal,1,toll,cem,
-180,316,circuito exterior mexiquense-a-9 ctm,19.488289296902,-99.0187359797232,open,edomx,entronque,1,toll,cem,
-181,316,circuito exterior mexiquense-aifa a35 de distribuidor santa ines,19.6374553433972,-99.1557590152763,open,edomx,entronque,3,toll,cem,
-183,316,circuito exterior mexiquense-t-5 tultitlan,19.637828242996566,-99.1644698381424,open,edomx,troncal,10,toll,cem,
-184,316,circuito exterior mexiquense-t-7 -texcoco,19.4507435928314,-98.9111007411002,open,edomx,troncal,3,toll,cem,
-185,316,circuito exterior mexiquense-t0 jorobas,19.8199355174303,-99.2398769545456,open,edomx,troncal,4,toll,cem,
-186,316,circuito exterior mexiquense-t1 jaltenco,19.69400110301813,-99.08026456832886,open,edomx,troncal,11,toll,cem,
-187,316,circuito exterior mexiquense-t1 tultepec,19.693849584020334,-99.0806829929352,open,edomx,troncal,11,toll,cem,
-188,316,circuito exterior mexiquense-t2 conmex,19.57558071962016,-99.0203708410263,open,edomx,troncal,7,toll,cem,
-189,316,circuito exterior mexiquense-t3 nabor carillo,19.4358443631285,-98.9985464586299,open,edomx,troncal,4,toll,cem,
-190,316,circuito exterior mexiquense-t3 nabor carillo,19.4358295337978,-98.9983784923055,open,edomx,troncal,4,toll,cem,
-193,316,circuito exterior mexiquense-t4 chalco,19.30012170802191,-98.87531697750093,open,edomx,troncal,3,toll,cem,
-194,316,circuito exterior mexiquense-t6 cuautitlan izcalli,19.6354551388205,-99.2051693736003,open,edomx,troncal,7,toll,cem,
+160,316,circuito exterior mexiquense-a-12 entronque santa ines,19.702077285062,-99.0857239049988,open,edomx,entronque,8,toll,cem,,1
+161,316,circuito exterior mexiquense-a-1a huehuetoca,19.8221362439279,-99.2362438824378,open,edomx,entronque,2,toll,cem,,1
+162,316,circuito exterior mexiquense-a-1b huehuetoca,19.8232358802547,-99.2355312251485,open,edomx,entronque,2,toll,cem,,1
+163,316,circuito exterior mexiquense-a-2 los reyes,19.6108656849047,-99.0385518111732,open,edomx,troncal,5,toll,cem,,1
+164,316,circuito exterior mexiquense-a-21 bordo xochiaca,19.4256339193153,-98.9985588878843,open,edomx,entronque,2,toll,cem,,1
+165,316,circuito exterior mexiquense-a-22 bordo xochiaca,19.4256771492297,-98.9987669281238,open,edomx,troncal,2,toll,cem,,1
+166,316,circuito exterior mexiquense-a-27 san buena aventura,19.3070781629101,-98.8717998848697,open,edomx,entronque,2,toll,cem,,1
+167,316,circuito exterior mexiquense-a-28 san marcos,19.3000044561586,-98.8750632429357,open,edomx,entronque,2,toll,cem,,1
+168,316,circuito exterior mexiquense-a-3 pachuca,19.6030917988298,-99.0386258765502,open,edomx,entronque,1,toll,cem,,1
+169,316,circuito exterior mexiquense-a-31 ent. tultepec,19.7023252048145,-99.0852268569273,open,edomx,entronque,4,toll,cem,,1
+170,316,circuito exterior mexiquense-a-32 ent. tultepec,19.7042601240312,-99.0872982554282,open,edomx,entronque,4,toll,cem,,1
+171,316,circuito exterior mexiquense-a-33 vialidad mexiquense,19.638353310851,-99.1562264874497,open,edomx,entronque,3,toll,cem,,1
+172,316,circuito exterior mexiquense-a-34 vialidad mexiquense,19.63734321178694,-99.16439473628999,open,edomx,entronque,4,toll,cem,,1
+173,316,circuito exterior mexiquense-a-35 vialidad mexiquense,19.6382391604722,-99.1589328843303,open,edomx,entronque,1,toll,cem,,1
+174,316,circuito exterior mexiquense-a-36 vialidad mexiquense,19.6383364532437,-99.1591983084272,open,edomx,entronque,4,toll,cem,,1
+175,316,circuito exterior mexiquense-a-4 pachuca,19.6033925997714,-99.037243200214,open,edomx,entronque,2,toll,cem,,1
+176,316,circuito exterior mexiquense-a-5 hank gonzalez,19.5848210454982,-99.0280728965625,open,edomx,entronque,2,toll,cem,,1
+177,316,circuito exterior mexiquense-a-6 periferico,19.4872266389019,-99.0163808873065,open,edomx,entronque,2,toll,cem,,1
+178,316,circuito exterior mexiquense-a-7 periferico,19.4857143481535,-99.0151694821313,open,edomx,entronque,2,toll,cem,,1
+179,316,circuito exterior mexiquense-a-8 pichardo,19.5063674846948,-99.014963201681,open,edomx,troncal,1,etc,cem,,0
+180,316,circuito exterior mexiquense-a-9 ctm,19.488289296902,-99.0187359797232,open,edomx,entronque,1,toll,cem,,1
+181,316,circuito exterior mexiquense-aifa a35 de distribuidor santa ines,19.6374553433972,-99.1557590152763,open,edomx,entronque,3,toll,cem,,1
+183,316,circuito exterior mexiquense-t-5 tultitlan,19.637828242996566,-99.1644698381424,open,edomx,troncal,10,toll,cem,,1
+184,316,circuito exterior mexiquense-t-7 -texcoco,19.4507435928314,-98.9111007411002,open,edomx,troncal,3,toll,cem,,1
+185,316,circuito exterior mexiquense-t0 jorobas,19.8199355174303,-99.2398769545456,open,edomx,troncal,4,toll,cem,,1
+186,316,circuito exterior mexiquense-t1 jaltenco,19.69400110301813,-99.08026456832886,open,edomx,troncal,11,toll,cem,,1
+187,316,circuito exterior mexiquense-t1 tultepec,19.693849584020334,-99.0806829929352,open,edomx,troncal,11,toll,cem,,1
+188,316,circuito exterior mexiquense-t2 conmex,19.57558071962016,-99.0203708410263,open,edomx,troncal,7,toll,cem,,1
+189,316,circuito exterior mexiquense-t3 nabor carillo,19.4358443631285,-98.9985464586299,open,edomx,troncal,4,toll,cem,,1
+190,316,circuito exterior mexiquense-t3 nabor carillo,19.4358295337978,-98.9983784923055,open,edomx,troncal,4,toll,cem,,1
+193,316,circuito exterior mexiquense-t4 chalco,19.30012170802191,-98.87531697750093,open,edomx,troncal,3,toll,cem,,1
+194,316,circuito exterior mexiquense-t6 cuautitlan izcalli,19.6354551388205,-99.2051693736003,open,edomx,troncal,7,toll,cem,,1
 195,139,cuautitlan (lecheria),19.6049153800799,-99.2058332123623,open,edomx,troncal,3,ticket,capufe,
 196,139,cuautitlan (lecheria),19.6048004143814,-99.2058855154375,open,edomx,troncal,4,toll,capufe,
 197,904,ecatepec (piramides),19.61184164395046,-99.02574598789217,open,edomx,troncal,6,toll,ecatepec-piramides,
