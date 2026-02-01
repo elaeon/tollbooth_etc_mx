@@ -212,7 +212,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 219,835,la finca,18.906352470984665,-99.65455770492555,open,edomx,troncal,3,toll,omc,,0
 220,835,la finca,18.8998280229582,-99.653212507084,open,edomx,entronque,2,toll,omc,
 221,532,la hortaliza,19.381419413433,-99.8046930151196,open,edomx,troncal,2,toll,acomex,
-222,532,la hortaliza,19.3818811565397,-99.806883942413,open,edomx,entronque,1,toll,acomex,
+222,532,la hortaliza,19.3818811565397,-99.806883942413,open,edomx,entronque,2,toll,acomex,,0
 223,532,la hortaliza,19.3812646770569,-99.8047053821462,open,edomx,troncal,3,toll,acomex,,0
 224,532,la hortaliza,19.3818064512847,-99.8087650967359,open,edomx,entronque,1,toll,acomex,,0
 225,138,lago de guadalupe,19.609587934985,-99.2362018021454,open,edomx,entronque,1,ticket,capufe,
@@ -230,16 +230,16 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 237,136,madin,19.5448561237424,-99.2769206196619,open,edomx,entronque,5,toll,capufe,
 238,934,marquesa t2,19.2905813679219,-99.4344414140522,open,edomx,troncal,5,toll,pinfra,
 239,572,mexico-pachuca,19.5159170273964,-99.1030875275007,open,edomx,troncal,4,toll,anesa,
-240,489,monumento,19.4013505510476,-100.112264987303,open,edomx,troncal,5,toll,acomex,
-241,939,nabor carrillo,19.495983167883,-98.9472240168867,open,edomx,troncal,2,toll,ecatepec-piramides,
-242,939,nabor carrillo,19.4959325993907,-98.9473795849938,open,edomx,troncal,4,toll,ecatepec-piramides,
+240,489,monumento,19.4013505510476,-100.112264987303,open,edomx,troncal,5,toll,acomex,,0
+241,939,nabor carrillo,19.495983167883,-98.9472240168867,open,edomx,troncal,4,toll,ecatepec-piramides,,0
+242,939,nabor carrillo,19.4959325993907,-98.9473795849938,open,edomx,troncal,3,toll,ecatepec-piramides,,0
 244,135,nopala,19.4871287263989,-99.3100891102143,open,edomx,entronque,2,ticket,capufe,
 245,135,nopala,19.4874575191213,-99.3110182157513,open,edomx,entronque,2,ticket,capufe,
 246,135,nopala,19.4882148178064,-99.3110353684686,open,edomx,entronque,2,toll,capufe,
 247,135,nopala,19.4862580684472,-99.3114811703218,open,edomx,entronque,2,ticket,capufe,
 248,135,nopala,19.4873631934039,-99.3098546897097,open,edomx,entronque,2,toll,capufe,
 249,196,ozumba,19.0460461082194,-98.8283386202082,open,edomx,troncal,5,toll,capufe,bypass
-250,913,peñon,19.4585991884125,-99.0337245623198,open,edomx,troncal,9,toll,pinfra,
+250,913,peñon,19.4585991884125,-99.0337245623198,open,edomx,troncal,9,toll,desarrollo-global,,0
 251,70,polotitlan,20.2264940558826,-99.8106991185484,open,edomx,entronque,2,toll,capufe,
 252,1031,puente de vigas,19.5161435835187,-99.2079068928162,open,edomx,troncal,6,toll,anesa,
 253,440,queretaro-arco norte,19.9978731259507,-99.492063312003,open,edomx,entronque,1,toll,arconorte,
@@ -270,9 +270,8 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 279,837,tenango,19.1224561248118,-99.6021286824601,open,edomx,troncal,2,toll,omc,
 280,905,tepexpan,19.6161913939216,-98.948274781243,open,edomx,troncal,6,toll,ecatepec-piramides,
 281,4,tepotzotlan,19.715348695614328,-99.2074227333069,open,edomx,troncal,10,toll,capufe,
-282,914,texcoco,19.502794358861,-98.9126716939724,open,edomx,troncal,5,toll,desarrollo-global,
-283,914,texcoco,19.5028271560487,-98.9127100887858,open,edomx,troncal,6,toll,desarrollo-global,
-284,914,texcoco t2,19.5020740322376,-98.9149895242464,open,edomx,troncal,3,toll,desarrollo-global,
+283,914,texcoco,19.5028271560487,-98.9127100887858,open,edomx,troncal,6,toll,desarrollo-global,,0
+284,914,texcoco,19.5020740322376,-98.9149895242464,open,edomx,troncal,3,toll,desarrollo-global,,0
 285,928,tezoyuca (589),19.6006575114844,-98.9255380669232,open,edomx,troncal,6,toll,pinfra,
 286,575,tizatyca (ojo de agua),19.618840198507904,-99.02966201305391,open,edomx,troncal,10,toll,golfo-centro,
 287,434,tulancingo,19.8336648839833,-98.7015982353397,open,edomx,entronque,2,toll,arconorte,
@@ -901,8 +900,8 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 935,421,libramiento matehuala,23.6641489489375,-100.606240971637,closed,san luis potosi,entronque,2,toll,omega,
 936,,Emiliano Zapata,18.837445111190828,-99.21539962291719,closed,morelos,troncal,4,toll,capufe,
 938,,La Venta,19.33361468235331,-99.31365430355073,open,cdmx,troncal,5,toll,pinfra,
-939,,Laguna Seca,19.3541145324707,-99.9829788208008,open,edomx,entronque,1,toll,acomex,
-940,,Laguna Seca,19.354726509352794,-99.98312830924989,open,edomx,entronque,1,toll,acomex,
+939,,Laguna Seca,19.3541145324707,-99.9829788208008,open,edomx,entronque,1,toll,acomex,,0
+940,,Laguna Seca,19.354726509352794,-99.98312830924989,closed,edomx,entronque,1,toll,acomex,,0
 941,,Tulancingo,19.8325176239014,-98.7001342773438,open,edomx,entronque,3,toll,arconorte,
 942,,Tulancingo,19.8323976253653,-98.7001349033128,open,edomx,entronque,1,ticket,arconorte,
 949,1052,Zaragoza,19.7600003137051,-97.548290837125,open,puebla,entronque,1,toll,opervite,
@@ -1315,17 +1314,17 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1454,,atlacomulco,19.911781968774402,-99.85233843326569,open,edomx,troncal,4,toll,arconorte,
 1455,,atlacomulco,19.837536098576678,-99.94555592536928,open,edomx,troncal,5,toll,mexico-michoacan,
 1456,,atlacomulco sur,19.762457847219693,-99.85579848289491,open,edomx,troncal,5,toll,ideal,
-1457,,amanalco,19.233515331158188,-100.07226884365083,open,edomx,entronque,1,toll,acomex,
-1460,,la hortaliza,19.381827234515377,-99.80691790580751,open,edomx,entronque,1,toll,acomex,
-1461,,la hortaliza,19.381736147190253,-99.80874717235567,open,edomx,entronque,1,toll,acomex,
-1463,,la hortaliza,19.380263561698627,-99.80870962142946,open,edomx,entronque,1,toll,acomex,
-1464,,la hortaliza,19.380162352584797,-99.80877935886384,open,edomx,entronque,1,toll,acomex,
-1465,,la hortaliza,19.38037995210178,-99.80717539787294,open,edomx,entronque,1,toll,acomex,
-1466,,la hortaliza,19.38031922668442,-99.80710029602051,open,edomx,entronque,1,toll,acomex,
+1457,,amanalco,19.233515331158188,-100.07226884365083,open,edomx,entronque,1,toll,acomex,,0
+1460,,la hortaliza,19.381827234515377,-99.80691790580751,open,edomx,entronque,1,toll,acomex,,0
+1461,,la hortaliza,19.381736147190253,-99.80874717235567,open,edomx,entronque,1,toll,acomex,,0
+1463,,la hortaliza,19.380263561698627,-99.80870962142946,open,edomx,entronque,1,toll,acomex,,0
+1464,,la hortaliza,19.380162352584797,-99.80877935886384,open,edomx,entronque,1,toll,acomex,,0
+1465,,la hortaliza,19.38037995210178,-99.80717539787294,open,edomx,entronque,1,toll,acomex,,0
+1466,,la hortaliza,19.38031922668442,-99.80710029602051,open,edomx,entronque,1,toll,acomex,,0
 1467,,el dorado,19.408164514640866,-99.71614122390748,open,edomx,troncal,5,toll,ideal,
 1469,,Valle de Bravo,19.348167001337025,-99.98934030532838,open,edomx,troncal,3,toll,acomex,
 1471,,Laguna Seca,19.354058423377904,-99.98292982578279,open,edomx,entronque,1,toll,acomex,
-1473,,Monumento,19.401288391007718,-100.1123356819153,open,edomx,troncal,3,toll,acomex,
+1473,,Monumento,19.401288391007718,-100.1123356819153,open,edomx,troncal,3,toll,acomex,,0
 1475,,Zitácuaro,19.452374227909626,-100.28184056282045,open,edomx,troncal,2,toll,acomex,
 1486,,Marquesa T2,19.29044614541032,-99.43428397178651,open,edomx,troncal,5,toll,pinfra,
 1488,,Marquesa T2,19.290005643075567,-99.43531930446625,open,edomx,troncal,5,toll,pinfra,
