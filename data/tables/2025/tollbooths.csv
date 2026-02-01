@@ -190,11 +190,11 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 197,904,ecatepec (piramides),19.61184164395046,-99.02574598789217,open,edomx,troncal,6,toll,ecatepec-piramides,
 198,573,ecatepec (san cristobal),19.5878611788836,-99.0423408398211,open,edomx,troncal,6,toll,golfo-centro,
 199,573,ecatepec (san cristobal),19.5877196676328,-99.0417185673369,open,edomx,troncal,6,toll,golfo-centro,
-200,444,el dorado,19.408230289254284,-99.71592128276826,open,edomx,troncal,4,toll,ideal,
-201,399,ent. gran canal,19.507143955204,-99.0843726041781,open,edomx,entronque,2,toll,anesa,
+200,444,el dorado,19.408230289254284,-99.71592128276826,open,edomx,troncal,4,toll,ideal,,0
+201,399,ent. gran canal,19.507143955204,-99.0843726041781,open,edomx,entronque,2,toll,anesa,,0
 202,399,ent. gran canal,19.5072233740303,-99.0843383755434,open,edomx,entronque,2,toll,anesa,
 203,588,ent. indios verdes,19.5135365861925,-99.0988628962673,open,edomx,entronque,1,toll,anesa,
-204,915,ent. peñon,19.4688423056394,-99.0044319335029,open,edomx,entronque,2,toll,pinfra,
+204,915,ent. peñon,19.4688423056394,-99.0044319335029,open,edomx,entronque,2,toll,pinfra,,0
 205,576,entronque ojo de agua,19.665029989506,-99.0017402167334,open,edomx,entronque,3,toll,golfo-centro,
 206,576,entronque ojo de agua,19.6653758296542,-99.002033909126,open,edomx,entronque,3,toll,golfo-centro,
 207,412,huixquilucan,19.414362390194096,-99.29977118968965,open,edomx,entronque,3,toll,chamapa-laventa,
@@ -207,14 +207,14 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 214,1057,ixtapan de la sal,18.8528916597987,-99.6674768563603,closed,edomx,entronque,2,toll,atisa,
 215,1057,ixtapan de la sal,18.854036254452,-99.6667627298176,closed,edomx,entronque,2,toll,atisa,
 216,441,jilotepec,19.976600685784415,-99.53148186206819,open,edomx,entronque,2,toll,arconorte,
-217,69,jorobas,19.8256731393049,-99.2500793205841,open,edomx,entronque,1,toll,capufe,
-218,69,jorobas,19.8261890886413,-99.2497502458536,open,edomx,entronque,1,toll,capufe,
-219,835,la finca,18.906352470984665,-99.65455770492555,open,edomx,troncal,3,toll,omc,
+217,69,jorobas,19.8256731393049,-99.2500793205841,open,edomx,entronque,1,toll,capufe,,0
+218,69,jorobas,19.8261890886413,-99.2497502458536,open,edomx,entronque,1,toll,capufe,,0
+219,835,la finca,18.906352470984665,-99.65455770492555,open,edomx,troncal,3,toll,omc,,0
 220,835,la finca,18.8998280229582,-99.653212507084,open,edomx,entronque,2,toll,omc,
 221,532,la hortaliza,19.381419413433,-99.8046930151196,open,edomx,troncal,2,toll,acomex,
 222,532,la hortaliza,19.3818811565397,-99.806883942413,open,edomx,entronque,1,toll,acomex,
-223,532,la hortaliza,19.3812646770569,-99.8047053821462,open,edomx,troncal,3,toll,acomex,
-224,532,la hortaliza,19.3818064512847,-99.8087650967359,open,edomx,entronque,1,toll,acomex,
+223,532,la hortaliza,19.3812646770569,-99.8047053821462,open,edomx,troncal,3,toll,acomex,,0
+224,532,la hortaliza,19.3818064512847,-99.8087650967359,open,edomx,entronque,1,toll,acomex,,0
 225,138,lago de guadalupe,19.609587934985,-99.2362018021454,open,edomx,entronque,1,ticket,capufe,
 226,138,lago de guadalupe,19.6097288072063,-99.2360979521691,open,edomx,entronque,2,ticket,capufe,
 227,138,lago de guadalupe,19.6100096754187,-99.2364566146133,open,edomx,entronque,3,toll,capufe,
@@ -248,7 +248,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 256,440,queretaro-arco norte,19.9987015299002,-99.487584544606,open,edomx,entronque,2,toll,arconorte,
 257,440,queretaro-arco norte,19.9977986808863,-99.4918622107788,open,edomx,entronque,3,toll,arconorte,
 258,440,queretaro-arco norte,19.9961434280043,-99.4896541969381,open,edomx,entronque,3,toll,arconorte,
-259,440,queretaro-arco norte,20.0004546317291,-99.489978526474,open,edomx,entronque,4,toll,arconorte,
+259,440,queretaro-arco norte,20.0004546317291,-99.489978526474,open,edomx,entronque,4,toll,arconorte,,1
 260,471,rayon,19.1510772445431,-99.543733111379,open,edomx,troncal,2,toll,lerma-santiago,
 261,471,rayon,19.1513965300673,-99.5437197307788,open,edomx,troncal,2,toll,lerma-santiago,
 262,471,rayon,19.1514532821541,-99.5483302531251,open,edomx,entronque,1,toll,lerma-santiago,
@@ -1312,7 +1312,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1442,,Polotitlán,20.22527967837001,-99.81069445610048,open,edomx,entronque,2,toll,capufe,
 1443,,jilotepec,19.97650993600581,-99.53153550624849,open,edomx,entronque,1,toll,arconorte,
 1451,,Querétaro,20.000299713636018,-99.48991835117342,open,edomx,entronque,2,toll,arconorte,
-1452,,Querétaro,20.000657616734365,-99.48855578899385,open,edomx,entronque,4,toll,arconorte,
+1452,,Querétaro,20.000657616734365,-99.48855578899385,open,edomx,entronque,4,toll,arconorte,,1
 1453,,acambay,19.923382106215485,-99.84425425529481,open,edomx,entronque,2,toll,arconorte,
 1454,,atlacomulco,19.911781968774402,-99.85233843326569,open,edomx,troncal,4,toll,arconorte,
 1455,,atlacomulco,19.837536098576678,-99.94555592536928,open,edomx,troncal,5,toll,mexico-michoacan,
