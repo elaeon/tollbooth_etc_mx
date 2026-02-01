@@ -118,14 +118,14 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 121,481,yerbanis,24.730753,-103.861954,open,durango,troncal,3,toll,acsa,
 122,316,a-32 bis,19.7042822667285,-99.0886173858502,open,edomx,entronque,6,toll,cem,,1
 123,442,acambay,19.92349305994267,-99.84424889087678,open,edomx,entronque,2,toll,arconorte,
-124,436,ajoloapan,19.9558772322749,-99.0554418856879,open,edomx,entronque,2,toll,arconorte,
-125,436,ajoloapan,19.9561077051433,-99.0533617790827,open,edomx,entronque,2,toll,arconorte,
-126,436,ajoloapan,19.9554716865023,-99.0527782522661,open,edomx,entronque,1,toll,arconorte,
-127,436,ajoloapan,19.9564415219751,-99.0554878574819,open,edomx,entronque,1,toll,arconorte,
+124,436,ajoloapan,19.9558772322749,-99.0554418856879,open,edomx,entronque,2,toll,arconorte,,0
+125,436,ajoloapan,19.9561077051433,-99.0533617790827,open,edomx,entronque,2,toll,arconorte,,0
+126,436,ajoloapan,19.9554716865023,-99.0527782522661,open,edomx,entronque,1,toll,arconorte,,0
+127,436,ajoloapan,19.9564415219751,-99.0554878574819,open,edomx,entronque,1,toll,arconorte,,0
 128,530,amanalco,19.2354263802432,-100.070772728276,open,edomx,entronque,1,toll,acomex,
 129,530,amanalco,19.233636891036376,-100.0722634792328,open,edomx,entronque,1,toll,acomex,
-130,462,apaxco,19.9978053024865,-99.1413529125953,open,edomx,entronque,2,toll,arconorte,
-131,462,apaxco,19.9978925304972,-99.1413864520397,open,edomx,entronque,2,toll,arconorte,
+130,462,apaxco,19.9978053024865,-99.1413529125953,open,edomx,entronque,2,toll,arconorte,,0
+131,462,apaxco,19.9978925304972,-99.1413864520397,open,edomx,entronque,2,toll,arconorte,,0
 132,137,atizapan,19.5825732063593,-99.2710972342119,open,edomx,troncal,4,toll,capufe,
 133,137,atizapan,19.5825148187655,-99.2711268121337,open,edomx,troncal,2,ticket,capufe,
 134,443,atlacomulco,19.91182736227489,-99.85259592533113,open,edomx,troncal,6,toll,arconorte,
@@ -263,10 +263,10 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 272,566,san nicolas,19.3556956910827,-99.4812603786564,open,edomx,entronque,1,toll,autovan,
 273,566,san nicolas,19.3538847941069,-99.4802911560869,open,edomx,entronque,1,toll,autovan,
 274,566,san nicolas,19.3539220539845,-99.4803391863654,open,edomx,entronque,1,toll,autovan,
-275,433,shagun,19.7566736390523,-98.6283339959742,open,edomx,entronque,1,toll,arconorte,
-276,433,shagun,19.755408882136,-98.629535586774,open,edomx,entronque,1,toll,arconorte,
-277,433,shagun,19.7560434380331,-98.6305517036597,open,edomx,entronque,2,toll,arconorte,
-278,433,shagun,19.755939830461,-98.6281190984548,open,edomx,entronque,2,toll,arconorte,
+275,433,sahagun,19.7566736390523,-98.6283339959742,open,edomx,entronque,1,toll,arconorte,,0
+276,433,sahagun,19.755408882136,-98.629535586774,open,edomx,entronque,1,toll,arconorte,,0
+277,433,sahagun,19.7560434380331,-98.6305517036597,open,edomx,entronque,2,toll,arconorte,,0
+278,433,sahagun,19.755939830461,-98.6281190984548,open,edomx,entronque,2,toll,arconorte,,0
 279,837,tenango,19.1224561248118,-99.6021286824601,open,edomx,troncal,2,toll,omc,
 280,905,tepexpan,19.6161913939216,-98.948274781243,open,edomx,troncal,6,toll,ecatepec-piramides,
 281,4,tepotzotlan,19.715348695614328,-99.2074227333069,open,edomx,troncal,10,toll,capufe,
@@ -371,13 +371,13 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 385,437,atitalaquia,20.0672637478677,-99.2185349597693,open,hidalgo,entronque,2,toll,arconorte,
 386,437,atitalaquia,20.0673135452607,-99.2184958954071,open,hidalgo,entronque,2,toll,arconorte,
 387,437,atitalaquia,20.0650421507589,-99.2186652946269,open,hidalgo,entronque,2,toll,arconorte,
-388,432,calpulalpan,19.6215356301528,-98.5480697800228,open,hidalgo,entronque,1,toll,arconorte,
-389,432,calpulalpan,19.6214186655159,-98.5480998224324,open,hidalgo,entronque,2,toll,arconorte,
-390,432,calpulalpan,19.6194376769189,-98.5496436465899,open,hidalgo,entronque,2,toll,arconorte,
+388,432,calpulalpan,19.6215356301528,-98.5480697800228,open,hidalgo,entronque,1,toll,arconorte,,0
+389,432,calpulalpan,19.6214186655159,-98.5480998224324,open,hidalgo,entronque,2,toll,arconorte,,0
+390,432,calpulalpan,19.6194376769189,-98.5496436465899,open,hidalgo,entronque,2,toll,arconorte,,0
 391,578,nuevo necaxa,20.135538183756,-98.1227454141174,open,hidalgo,entronque,3,toll,golfo-centro,
 392,578,nuevo necaxa,20.1350477943877,-98.1227168501895,open,hidalgo,entronque,4,toll,golfo-centro,
-393,435,pachuca,19.9273681239182,-98.8914761722353,open,hidalgo,entronque,4,toll,arconorte,
-394,435,pachuca,19.927516851428,-98.8915156633801,open,hidalgo,entronque,5,toll,arconorte,
+393,435,pachuca,19.9273681239182,-98.8914761722353,open,hidalgo,entronque,4,toll,arconorte,,0
+394,435,pachuca,19.927516851428,-98.8915156633801,open,hidalgo,entronque,5,toll,arconorte,,1
 395,577,tejocotal,20.1474520277015,-98.2857958693598,open,hidalgo,troncal,14,toll,golfo-centro,
 396,577,tejocotal,20.1490662599189,-98.2866060153835,open,hidalgo,entronque,2,toll,golfo-centro,
 397,577,tejocotal,20.1464505338776,-98.2875498923801,open,hidalgo,entronque,3,toll,golfo-centro,
@@ -650,10 +650,10 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 678,92,nuevo necaxa,20.1866544581,-98.0298252849204,closed,puebla,entronque,2,toll,capufe,
 679,1052,payuca,19.521631605408082,-97.6381105184555,open,puebla,troncal,2,toll,opervite,
 680,8,san marti puebla,19.241583672824856,-98.38541150093079,open,puebla,troncal,14,toll,capufe,
-681,430,san martin texmelucan,19.2963465811604,-98.4097605337239,open,puebla,entronque,2,toll,arconorte,
-682,430,san martin texmelucan,19.3017853210061,-98.409440166325,open,puebla,troncal,4,toll,arconorte,
-683,430,san martin texmelucan,19.3018308869915,-98.4096601074648,open,puebla,troncal,5,toll,arconorte,
-684,430,san martin texmelucan,19.2971490735423,-98.4110640873011,open,puebla,entronque,2,toll,arconorte,
+681,430,san martin texmelucan,19.2963465811604,-98.4097605337239,open,puebla,entronque,2,toll,arconorte,,0
+682,430,san martin texmelucan,19.3017853210061,-98.409440166325,open,puebla,troncal,4,toll,arconorte,,0
+683,430,san martin texmelucan,19.3018308869915,-98.4096601074648,open,puebla,troncal,5,toll,arconorte,,1
+684,430,san martin texmelucan,19.2971490735423,-98.4110640873011,open,puebla,entronque,2,toll,arconorte,,0
 685,76,tehuacan,18.4875699198343,-97.4569102550398,open,puebla,entronque,1,toll,capufe,
 686,76,tehuacan,18.48713884920562,-97.45622992515565,open,puebla,troncal,2,toll,capufe,
 687,76,tehuacan,18.486706403810242,-97.45536088943483,open,puebla,entronque,1,toll,capufe,
@@ -800,17 +800,17 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 831,990,amozoc-perote (cuapiaxtla),19.31027764852955,-97.79741227626802,open,tlaxcala,troncal,2,toll,gana,
 832,990,amozoc-perote (cuapiaxtla),19.3044264996191,-97.8056249451758,open,tlaxcala,entronque,2,toll,gana,
 834,990,amozoc-perote (cuapiaxtla),19.310336909942,-97.7974910626891,open,tlaxcala,troncal,2,toll,gana,
-835,432,calpulalpan,19.6191929210533,-98.5494089513827,open,tlaxcala,entronque,1,toll,arconorte,
-836,432,calpulalpan,19.6201362270719,-98.5469437844679,open,tlaxcala,entronque,2,toll,arconorte,
-837,432,calpulalpan,19.6201336723777,-98.5470698641364,open,tlaxcala,entronque,1,toll,arconorte,
+835,432,calpulalpan,19.6191929210533,-98.5494089513827,open,tlaxcala,entronque,1,toll,arconorte,,0
+836,432,calpulalpan,19.6201362270719,-98.5469437844679,open,tlaxcala,entronque,2,toll,arconorte,,0
+837,432,calpulalpan,19.6201336723777,-98.5470698641364,open,tlaxcala,entronque,1,toll,arconorte,,0
 838,917,san martin texmelucan,19.301600079552337,-98.4040689468384,open,tlaxcala,troncal,2,toll,pinfra,
-839,431,sanctorum,19.5159077517567,-98.4695727344538,open,tlaxcala,entronque,1,toll,arconorte,
-840,431,sanctorum,19.5126855046563,-98.4668704349799,open,tlaxcala,entronque,2,toll,arconorte,
-841,431,sanctorum,19.512772519775,-98.4669825283504,open,tlaxcala,entronque,1,toll,arconorte,
-842,431,sanctorum,19.5138694534692,-98.4698577777784,open,tlaxcala,entronque,2,toll,arconorte,
-843,431,sanctorum,19.5127146160511,-98.4688176945708,open,tlaxcala,entronque,2,toll,arconorte,
-844,431,sanctorum,19.5165557792904,-98.469363852306,open,tlaxcala,entronque,3,toll,arconorte,
-845,431,sanctorum,19.515585183553,-98.4690030613379,open,tlaxcala,entronque,2,toll,arconorte,
+839,431,sanctorum,19.5159077517567,-98.4695727344538,open,tlaxcala,entronque,1,toll,arconorte,,0
+840,431,sanctorum,19.5126855046563,-98.4668704349799,open,tlaxcala,entronque,2,toll,arconorte,,0
+841,431,sanctorum,19.512772519775,-98.4669825283504,open,tlaxcala,entronque,1,toll,arconorte,,0
+842,431,sanctorum,19.5138694534692,-98.4698577777784,open,tlaxcala,entronque,2,toll,arconorte,,0
+843,431,sanctorum,19.5127146160511,-98.4688176945708,open,tlaxcala,entronque,2,toll,arconorte,,0
+844,431,sanctorum,19.5165557792904,-98.469363852306,open,tlaxcala,entronque,3,toll,arconorte,,0
+845,431,sanctorum,19.515585183553,-98.4690030613379,open,tlaxcala,entronque,2,toll,arconorte,,0
 846,1018,zacatelco,19.2143367626985,-98.2667667599111,open,tlaxcala,troncal,2,toll,pinfra,
 847,1018,zacatelco,19.213652577941,-98.2662670885483,open,tlaxcala,troncal,2,toll,pinfra,
 848,1018,zacatelco,19.2129772653421,-98.2658054986939,open,tlaxcala,troncal,2,toll,pinfra,
@@ -945,7 +945,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 987,,Constituyentes Poniente,19.4112358093262,-99.1940536499023,open,cdmx,entronque,1,etc,aunorte,
 988,,Minería Poniente,19.4031352996826,-99.1924362182617,open,cdmx,entronque,2,etc,aunorte,
 989,,San Antonio Poniente,19.3802738189697,-99.1918640136719,open,cdmx,troncal,3,etc,aunorte,
-990,,San Martín Texmelucan,19.2951984405518,-98.4109268188477,open,puebla,entronque,1,toll,arconorte,
+990,,San Martín Texmelucan,19.2951984405518,-98.4109268188477,open,puebla,entronque,1,toll,arconorte,,0
 991,,Río San Joaquín,19.4559173583984,-99.2188568115234,open,edomx,troncal,2,etc,viaducto-bicentenario,
 992,,Conscripto Poniente,19.4437465667725,-99.2203750610352,open,edomx,entronque,1,etc,aunorte,
 993,,Ejército Nacional Oriente,19.439582824707,-99.2143859863281,open,cdmx,entronque,1,etc,aunorte,
@@ -1215,7 +1215,6 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1320,,huitzo,17.27867348309561,-96.91458463668825,open,oaxaca,entronque,1,toll,capufe,
 1321,,caracol,18.133061354339322,-96.13660991191865,open,oaxaca,troncal,1,toll,capufe,bridge
 1322,,papaloapan,18.159502687368697,-96.09673082828522,open,oaxaca,troncal,2,toll,capufe,bridge
-1325,,calpulalpan,19.619411186266944,-98.54961633682252,open,tlaxcala,entronque,2,toll,arconorte,
 1326,,san martin texmelucan,19.30152413613483,-98.40396702289583,open,tlaxcala,troncal,3,toll,pinfra,
 1328,,arriaga viapass,16.257238125146507,-93.87545943260194,open,chiapas,troncal,2,toll,cas,
 1329,,jiquipilas,16.622262314593076,-93.60237300395967,open,chiapas,entronque,1,toll,cas,
@@ -1245,7 +1244,6 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1359,,alpuyeca (puente de ixtla),18.72236904329031,-99.25994575023653,open,morelos,entronque,1,toll,capufe,
 1360,,ing. francisco velazco duran,18.698412506183075,-99.27795946598054,open,morelos,troncal,4,toll,capufe,
 1362,,nuevo necaxa,20.134723144858164,-98.1231987476349,open,hidalgo,entronque,1,toll,golfo-centro,
-1363,,calpulalpan,19.61912821913546,-98.54940712451936,open,hidalgo,entronque,1,toll,arconorte,
 1366,,puente nacional tampico,22.21835221831807,-97.82479226589203,open,veracruz,troncal,2,toll,capufe,bridge
 1367,,puente el prieto,22.20324947297645,-97.93739676475526,open,veracruz,troncal,2,toll,pinfra,bridge
 1368,,puente nacional panuco,22.148730001957453,-98.14501583576204,open,veracruz,troncal,2,toll,capufe,bridge
@@ -1293,9 +1291,9 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1417,,miahuatlan,18.26463193656571,-97.31566607952118,open,puebla,troncal,1,toll,capufe,
 1418,,miahuatlan,18.265100598094996,-97.31470584869386,open,puebla,entronque,1,toll,capufe,
 1419,,miahuatlan,18.26392894189957,-97.31618106365205,open,puebla,entronque,1,toll,capufe,
-1420,,san martin texmelucan,19.296329522710202,-98.41139674186708,open,puebla,entronque,1,toll,arconorte,
-1421,,san martin texmelucan,19.297914251694205,-98.40918123722078,open,puebla,entronque,1,toll,arconorte,
-1422,,san martin texmelucan,19.297235807298648,-98.40940117836,open,puebla,entronque,1,toll,arconorte,
+1420,,san martin texmelucan,19.296329522710202,-98.41139674186708,open,puebla,entronque,1,toll,arconorte,,0
+1421,,san martin texmelucan,19.297914251694205,-98.40918123722078,open,puebla,entronque,1,toll,arconorte,,0
+1422,,san martin texmelucan,19.297235807298648,-98.40940117836,open,puebla,entronque,1,toll,arconorte,,0
 1423,,huejotzingo,19.253525913852638,-98.44210803508759,open,puebla,troncal,2,toll,cap,
 1424,,san marti puebla,19.241193686773137,-98.38590502738954,open,puebla,troncal,13,toll,capufe,
 1425,,amazoc-perote (amozoc),19.063633884456813,-98.06893765926363,open,puebla,troncal,3,toll,gana,
