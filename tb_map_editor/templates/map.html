@@ -525,6 +525,7 @@ function showMarkerProps(marker) {
 	const props = data.props || {};
 	let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
 	html += `<span>Marker properties</span>`;
+	html += `<div style="margin-top:6px;display:flex;gap:8px"><a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">tolls</a></div>`;
 	html += `<button class="btn-copy-marker" style="padding:2px 8px;font-size:12px;cursor:pointer">Copy</button>`;
 	html += `</div>`;
 	html += '<table style="width:100%;font-size:12px;border-collapse:collapse">';
@@ -533,8 +534,7 @@ function showMarkerProps(marker) {
 		html += `<tr><td style="padding:2px 6px;border-bottom:1px solid #eee;width:40%"><strong>${escapeHtml(key)}</strong></td><td style="padding:2px 6px;border-bottom:1px solid #eee">${escapeHtml(val)}</td></tr>`;
 	}
 	if (!Object.keys(props).length) html += `<tr><td colspan="2" style="padding:4px;color:#666">(no properties)</td></tr>`;
-	html += '</table>';
-	html += `<div style="margin-top:6px;display:flex;gap:8px"><a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">tolls</a></div>`;
+	html += '</table>';	
 	panel.innerHTML = html;
 	panel.style.display = 'block';
 	// Store the marker reference for later use

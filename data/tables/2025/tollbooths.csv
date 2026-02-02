@@ -240,7 +240,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 248,135,nopala,19.4873631934039,-99.3098546897097,open,edomx,entronque,2,toll,capufe,
 249,196,ozumba,19.0460461082194,-98.8283386202082,open,edomx,troncal,5,toll,capufe,bypass
 250,913,peñon,19.4585991884125,-99.0337245623198,open,edomx,troncal,9,toll,desarrollo-global,,0
-251,70,polotitlan,20.2264940558826,-99.8106991185484,open,edomx,entronque,2,toll,capufe,
+251,70,polotitlan,20.2264940558826,-99.8106991185484,open,edomx,entronque,1,toll,capufe,,0
 252,1031,puente de vigas,19.5161435835187,-99.2079068928162,open,edomx,troncal,6,toll,anesa,
 253,440,queretaro-arco norte,19.9978731259507,-99.492063312003,open,edomx,entronque,1,toll,arconorte,
 254,440,queretaro-arco norte,19.99628469499,-99.4903908118255,open,edomx,entronque,3,toll,arconorte,
@@ -249,20 +249,20 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 257,440,queretaro-arco norte,19.9977986808863,-99.4918622107788,open,edomx,entronque,3,toll,arconorte,
 258,440,queretaro-arco norte,19.9961434280043,-99.4896541969381,open,edomx,entronque,3,toll,arconorte,
 259,440,queretaro-arco norte,20.0004546317291,-99.489978526474,open,edomx,entronque,4,toll,arconorte,,1
-260,471,rayon,19.1510772445431,-99.543733111379,open,edomx,troncal,2,toll,lerma-santiago,
-261,471,rayon,19.1513965300673,-99.5437197307788,open,edomx,troncal,2,toll,lerma-santiago,
-262,471,rayon,19.1514532821541,-99.5483302531251,open,edomx,entronque,1,toll,lerma-santiago,
-264,471,rayon,19.1499867476865,-99.5499992794603,open,edomx,entronque,1,toll,lerma-santiago,
+260,471,rayon,19.1510772445431,-99.543733111379,open,edomx,troncal,2,toll,lerma-santiago,,0
+261,471,rayon,19.1513965300673,-99.5437197307788,open,edomx,troncal,2,toll,lerma-santiago,,0
+262,471,auxiliar metepec,19.1514532821541,-99.5483302531251,open,edomx,entronque,1,toll,lerma-santiago,,0
+264,471,auxiliar malinalco,19.1499867476865,-99.5499992794603,open,edomx,entronque,1,toll,lerma-santiago,,0
 265,574,revolucion,19.6022693192758,-99.0374704920243,open,edomx,entronque,4,toll,golfo-centro,
 266,574,revolucion,19.6029868150986,-99.0384013839432,open,edomx,troncal,10,toll,golfo-centro,
 267,574,revolucion,19.6026945023719,-99.0377878415421,open,edomx,troncal,9,toll,golfo-centro,
 268,7,san marcos,19.296537107891492,-98.87076258659364,open,edomx,troncal,8,toll,capufe,
 269,188,san marcos bis,19.2933911292749,-98.8759876783721,open,edomx,entronque,4,toll,capufe,
 270,311,san miguel,19.6352997202249,-99.2051557710495,open,edomx,troncal,8,toll,capufe,
-271,566,san nicolas,19.3556294019289,-99.481258974708,open,edomx,entronque,1,toll,autovan,
-272,566,san nicolas,19.3556956910827,-99.4812603786564,open,edomx,entronque,1,toll,autovan,
-273,566,san nicolas,19.3538847941069,-99.4802911560869,open,edomx,entronque,1,toll,autovan,
-274,566,san nicolas,19.3539220539845,-99.4803391863654,open,edomx,entronque,1,toll,autovan,
+271,566,san nicolas,19.3556294019289,-99.481258974708,open,edomx,entronque,1,toll,autovan,,0
+272,566,san nicolas,19.3556956910827,-99.4812603786564,open,edomx,entronque,1,toll,autovan,,0
+273,566,san nicolas,19.3538847941069,-99.4802911560869,open,edomx,entronque,1,toll,autovan,,0
+274,566,san nicolas,19.3539220539845,-99.4803391863654,open,edomx,entronque,1,toll,autovan,,0
 275,433,sahagun,19.7566736390523,-98.6283339959742,open,edomx,entronque,1,toll,arconorte,,0
 276,433,sahagun,19.755408882136,-98.629535586774,open,edomx,entronque,1,toll,arconorte,,0
 277,433,sahagun,19.7560434380331,-98.6305517036597,open,edomx,entronque,2,toll,arconorte,,0
@@ -286,7 +286,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 296,1046,vallejo r6,19.51267204252763,-99.16352033615114,open,edomx,entronque,2,toll,anesa,
 297,1046,vallejo r7,19.513602403990177,-99.16553199291229,open,edomx,entronque,2,ticket,anesa,
 298,1046,vallejo r7,19.513622629179913,-99.16498482227327,open,edomx,entronque,2,ticket,anesa,
-299,836,villa guerrero,18.989338628029927,-99.65654790401459,open,edomx,troncal,3,toll,omc,
+299,836,villa guerrero,18.989338628029927,-99.65654790401459,open,edomx,troncal,3,toll,omc,,0
 300,416,xonacatlan,19.3806941450148,-99.5553966061021,open,edomx,entronque,1,toll,libramiento-toluca,
 301,416,xonacatlan,19.375714149916327,-99.5495116710663,open,edomx,troncal,6,toll,libramiento-toluca,
 303,416,xonacatlan,19.37584572534483,-99.54936146736146,open,edomx,entronque,5,toll,libramiento-toluca,
@@ -301,7 +301,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 312,120,central de abastos,21.0692351227581,-101.678323547286,open,guanajuato,entronque,2,toll,rco,
 313,120,central de abastos,21.0689777271156,-101.679083817071,open,guanajuato,entronque,2,toll,rco,
 314,185,cerro gordo,20.5922723826768,-101.141489638655,open,guanajuato,entronque,1,toll,capufe,
-315,185,cerro gordo,20.5921678220542,-101.141393122998,open,guanajuato,entronque,1,toll,capufe,
+315,185,cerro gordo,20.5921678220542,-101.141393122998,open,guanajuato,entronque,1,toll,capufe,,0
 317,185,cerro gordo,20.5919147072208,-101.137290533016,open,guanajuato,entronque,2,toll,capufe,
 318,185,cerro gordo,20.5901331131325,-101.136231960994,open,guanajuato,troncal,8,toll,capufe,
 319,185,cerro gordo,20.5918533155651,-101.137345148479,open,guanajuato,entronque,1,toll,capufe,
@@ -1306,7 +1306,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1436,,huimilpan,20.34828857823777,-100.27757048606873,open,queretaro,entronque,2,toll,macrolibramiento-queretaro,bypass
 1438,,amealco i,20.277741599526678,-100.05906701087952,open,queretaro,entronque,2,toll,macrolibramiento-queretaro,bypass
 1440,,palmillas,20.295910909583128,-99.92922127246858,open,queretaro,troncal,5,toll,capufe,
-1442,,Polotitlán,20.22527967837001,-99.81069445610048,open,edomx,entronque,2,toll,capufe,
+1442,,Polotitlán,20.22527967837001,-99.81069445610048,open,edomx,entronque,1,toll,capufe,,0
 1443,,jilotepec,19.97650993600581,-99.53153550624849,open,edomx,entronque,1,toll,arconorte,
 1451,,Querétaro,20.000299713636018,-99.48991835117342,open,edomx,entronque,2,toll,arconorte,
 1452,,Querétaro,20.000657616734365,-99.48855578899385,open,edomx,entronque,4,toll,arconorte,,1
@@ -1345,7 +1345,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1532,,La Venta ,19.33060282303124,-99.31519389152528,open,cdmx,troncal,3,toll,pinfra,
 1533,,chapultepec,19.196582289598076,-99.5250713825226,open,edomx,troncal,3,toll,lerma-santiago,
 1534,,tenango,19.12234669565879,-99.60213661193849,open,edomx,troncal,2,toll,omc,
-1535,,villa guerrero,18.989287903204357,-99.65666592121126,open,edomx,troncal,3,toll,omc,
+1535,836,villa guerrero,18.989287903204357,-99.65666592121126,open,edomx,troncal,3,toll,omc,,0
 1536,,la finca,18.906291570917514,-99.6547293663025,open,edomx,troncal,3,toll,omc,
 1537,,la finca,18.899790361256617,-99.65328097343446,open,edomx,entronque,1,toll,omc,
 1538,,ozumba,19.045958176313967,-98.82815301418306,open,edomx,troncal,5,toll,capufe,bypass
@@ -1367,3 +1367,5 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1563,,salamanca,20.59755249194034,-101.18103504180908,open,guanajuato,entronque,1,toll,capufe,
 1564,,salamanca,20.599079018859914,-101.18071854114534,open,guanajuato,entronque,1,toll,capufe,
 1565,,arandas,20.73745727782512,-101.37996375560762,open,guanajuato,troncal,3,toll,libramiento-irapuato,bypass
+1566,70,polotitlan,20.226457548274052, -99.81073737144472,open,edomx,entronque,1,toll,capufe,,0
+1567,70,Polotitlán,20.225229341850536, -99.81064617633821,open,edomx,entronque,1,toll,capufe,,0
