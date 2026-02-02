@@ -378,3 +378,8 @@ class TbTollImt(TbModel, table=True):
     truck_9_axle: Float64 | None
     load_axle: Float64 | None
     info_year: UInt16 = Field(primary_key=True)
+
+
+class TbNeighbour(TbModel, table=True):
+    tollbooth_id: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
+    neighbour_id: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)

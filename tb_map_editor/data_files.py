@@ -107,3 +107,7 @@ class DataModel:
     @property
     def map_tb_sts(self) -> PathModel:
         return PathModel("map_tb_sts", model.MapTbSts, self.attr, self.stage)
+
+    @property
+    def tb_neighbour(self) -> PathModel:
+        return PathModel("tb_neighbour", model.TbNeighbour, self.attr, self.stage)
