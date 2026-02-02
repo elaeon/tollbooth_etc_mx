@@ -525,7 +525,7 @@ function showMarkerProps(marker) {
 	const props = data.props || {};
 	let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
 	html += `<span>Marker properties</span>`;
-	html += `<div style="margin-top:6px;display:flex;gap:8px"><a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">tolls</a></div>`;
+	html += `<div style="margin-top:6px;display:flex;gap:8px"><a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">tolls</a> <a href="#" class="show-neighbours-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">neighbours</a></div>`;
 	html += `<button class="btn-copy-marker" style="padding:2px 8px;font-size:12px;cursor:pointer">Copy</button>`;
 	html += `</div>`;
 	html += '<table style="width:100%;font-size:12px;border-collapse:collapse">';
@@ -548,6 +548,13 @@ function showMarkerProps(marker) {
 	if (tollsLink) tollsLink.addEventListener('click', (e) => { 
 		e.preventDefault(); 
 		toggleTollsView(marker, panel);
+	});
+
+	// attach neighbours handler
+	const neighboursLink = panel.querySelector('.show-neighbours-link');
+	if (neighboursLink) neighboursLink.addEventListener('click', (e) => {
+		e.preventDefault();
+		showMarkerNeighbours(marker, panel);
 	});
 }
 
@@ -697,6 +704,44 @@ async function showTollboothMarkers(tollboothIds) {
 	// This is a placeholder that clears layers and would be expanded based on your data structure
 	const statusEl = document.getElementById('query-status');
 	if (statusEl) statusEl.textContent = `Displaying markers for tollbooths: ${tollboothIds.join(', ')}`;
+}
+
+async function showMarkerNeighbours(marker, panel) {
+	const data = marker.__data;
+	if (!data || !data.tollbooth_id) {
+		if (panel) panel.innerHTML = '<div style="color:#666;font-size:12px">No tollbooth ID available</div>';
+		return;
+	}
+	try {
+		if (panel) panel.innerHTML = '<div style="color:#999;font-size:12px">Loading neighbours...</div>';
+		const payload = { tollbooth_id: data.tollbooth_id };
+		const resp = await fetch('{{ url_for("tollbooth_neighbours") }}', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(payload)
+		});
+		if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
+		const neighboursData = await resp.json();
+
+		// show a simple panel and provide a back link to properties
+		// if (panel) {
+		// 	let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
+		// 	html += `<span>Neighbours: ${Array.isArray(neighboursData) ? neighboursData.length : 0}</span>`;
+		// 	html += `</div>`;
+		// 	html += `<div style="font-size:12px;margin-top:6px"><a href="#" class="back-to-props" style="text-decoration:underline;cursor:pointer;color:#0066cc">properties</a></div>`;
+		// 	panel.innerHTML = html;
+		// 	panel._currentMarker = marker;
+		// 	panel._showingProperties = false;
+		// 	const back = panel.querySelector('.back-to-props');
+		// 	if (back) back.addEventListener('click', (e) => { e.preventDefault(); showMarkerProps(marker); });
+		// }
+		console.log(neighboursData.length)
+
+		// Add neighbour markers to the map using the existing processor
+		try { processMarkerResponse(neighboursData, 'neighbours'); } catch (err) { console.warn('processMarkerResponse error', err); }
+	} catch (err) {
+		if (panel) panel.innerHTML = `<div style="color:#d9534f;font-size:12px">Error loading neighbours: ${escapeHtml(err.message)}</div>`;
+	}
 }
 
 function extractCoordinates(data) {

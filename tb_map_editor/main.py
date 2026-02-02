@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 
 from sqlmodel import select, or_
 
-from .model import Tollbooth, TbSts, TbImt, TbStretchId, Stretch, StretchToll
+from .model import Tollbooth, TbSts, TbImt, TbStretchId, Stretch, StretchToll, TbNeighbour
 from contextlib import asynccontextmanager
 from .utils.connector import SessionDep, create_db_and_tables
 from .data_files import DataModel
@@ -199,3 +199,19 @@ def query_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
         fields.update(tolls)
         data.append(fields)
     return data
+
+
+@app.post("/api/tollbooth_neightbours")
+def tollbooth_neighbours(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=10):
+    print(body)
+    stm = select(Tollbooth, TbNeighbour).where(
+        TbNeighbour.tollbooth_id == body.get("tollbooth_id"),
+        TbNeighbour.neighbour_id == Tollbooth.tollbooth_id
+    )
+    tollbooths = session.exec(stm.offset(offset).limit(limit))
+    data = []
+    for tb, _ in tollbooths:
+        data.append(tb)
+    print(data)
+    return tb
+    
