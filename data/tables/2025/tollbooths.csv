@@ -300,11 +300,11 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 311,564,arandas,20.7335200161033,-101.381240910132,open,guanajuato,entronque,1,toll,libramiento-irapuato,bypass
 312,120,central de abastos,21.0692351227581,-101.678323547286,open,guanajuato,entronque,2,toll,rco,
 313,120,central de abastos,21.0689777271156,-101.679083817071,open,guanajuato,entronque,2,toll,rco,
-314,185,cerro gordo,20.5922723826768,-101.141489638655,open,guanajuato,entronque,1,toll,capufe,
+314,185,cerro gordo,20.5922723826768,-101.141489638655,open,guanajuato,entronque,1,toll,capufe,,0
 315,185,cerro gordo,20.5921678220542,-101.141393122998,open,guanajuato,entronque,1,toll,capufe,,0
-317,185,cerro gordo,20.5919147072208,-101.137290533016,open,guanajuato,entronque,2,toll,capufe,
-318,185,cerro gordo,20.5901331131325,-101.136231960994,open,guanajuato,troncal,8,toll,capufe,
-319,185,cerro gordo,20.5918533155651,-101.137345148479,open,guanajuato,entronque,1,toll,capufe,
+317,185,cerro gordo,20.5919147072208,-101.137290533016,open,guanajuato,entronque,2,toll,capufe,,0
+318,186,cerro gordo,20.5901331131325,-101.136231960994,open,guanajuato,troncal,8,toll,capufe,,0
+319,185,cerro gordo,20.5918533155651,-101.137345148479,open,guanajuato,entronque,1,toll,capufe,,0
 320,351,cervera,20.9719430429973,-101.29950012928,open,guanajuato,entronque,4,toll,cvi,
 321,514,cinta-copandaro,20.0762343040407,-101.135734323152,open,guanajuato,entronque,1,ticket,camssa,
 322,590,crespo,20.5066856317214,-100.870887312803,open,guanajuato,troncal,8,toll,bicentenario,bypass
@@ -328,9 +328,9 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 342,41,salamanca,20.597612749871693,-101.18099212646484,open,guanajuato,entronque,1,toll,capufe,
 343,120,salamanca,21.0464994200608,-101.628725726243,open,guanajuato,entronque,1,toll,rco,
 344,41,salamanca,20.5984800197803,-101.180963733065,open,guanajuato,troncal,3,toll,capufe,
-345,120,san francisco del rincon,21.0823103188257,-101.745558972452,open,guanajuato,entronque,1,toll,rco,
-346,120,san francisco del rincon,21.0813558008892,-101.746052150112,open,guanajuato,entronque,1,toll,rco,
-347,592,san miguel,20.5809934883179,-100.795320000112,open,guanajuato,troncal,4,toll,bicentenario,bypass
+345,120,san francisco del rincon,21.0823103188257,-101.745558972452,open,guanajuato,entronque,1,toll,rco,,0
+346,120,san francisco del rincon,21.0813558008892,-101.746052150112,open,guanajuato,entronque,1,toll,rco,,0
+347,592,san miguel,20.58104543576328, -100.79530262783862,open,guanajuato,troncal,2,toll,bicentenario,bypass,0
 348,513,uriangato,20.1829891554319,-101.157212411943,open,guanajuato,entronque,2,ticket,camssa,
 349,513,uriangato,20.1828799390238,-101.157191255309,open,guanajuato,entronque,2,toll,camssa,
 350,512,valle de santiago,20.3726381761672,-101.147396186626,open,guanajuato,entronque,1,ticket,camssa,
@@ -358,12 +358,12 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 373,223,la venta bis,16.938358316581,-99.8199553542747,open,guerrero,troncal,3,toll,capufe,
 374,423,las cruces (maxitunel),16.8860213778503,-99.83938336372377,open,guerrero,troncal,6,toll,atuca,tunnel
 375,420,libramiento tecpan,17.1969830368345,-100.62673256934,open,guerrero,troncal,2,toll,omega,
-376,1051,metlapil,16.8557314369337,-99.7539372786716,open,guerrero,troncal,2,toll,gmd,
-377,1051,metlapil,16.8559448626736,-99.7539353798572,open,guerrero,troncal,2,toll,gmd,
+376,1051,metlapil,16.8557314369337,-99.7539372786716,open,guerrero,troncal,2,toll,gmd,,0
+377,1051,metlapil,16.8559448626736,-99.7539353798572,open,guerrero,troncal,2,toll,gmd,,0
 378,103,palo blanco,17.423997924250415,-99.4668459892273,open,guerrero,troncal,4,toll,capufe,
 379,102,paso morelos,18.2314978556559,-99.2154992133098,open,guerrero,troncal,2,toll,capufe,
 380,1051,pinotepa,16.8301900586207,-99.7592040053626,open,guerrero,entronque,3,toll,gmd,
-381,1051,pinotepa,16.8309198210656,-99.7581473713304,open,guerrero,entronque,2,ticket,gmd,
+381,1051,pinotepa,16.8309198210656,-99.7581473713304,open,guerrero,entronque,2,ticket,gmd,,0
 382,99,taxco,18.5886507449847,-99.5599745779042,open,guerrero,troncal,1,toll,capufe,
 383,56,zacapalco,18.5379427134007,-99.4474150954751,open,guerrero,troncal,2,toll,capufe,
 384,437,atitalaquia,20.0649824271071,-99.2186546544101,open,hidalgo,entronque,1,toll,arconorte,
@@ -1369,3 +1369,4 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1565,,arandas,20.73745727782512,-101.37996375560762,open,guanajuato,troncal,3,toll,libramiento-irapuato,bypass
 1566,70,polotitlan,20.226457548274052, -99.81073737144472,open,edomx,entronque,1,toll,capufe,,0
 1567,70,Polotitlán,20.225229341850536, -99.81064617633821,open,edomx,entronque,1,toll,capufe,,0
+1568,592,san miguel,20.580962632063418, -100.79538550893263,open,guanajuato,troncal,2,toll,bicentenario,bypass,0
