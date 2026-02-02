@@ -124,6 +124,12 @@ def clean_db(option):
     _log.info(f"Cleaned data in {sqlite_url}")
 
 
+def insert_tb_neighbours(data_model: DataModel):
+    ldf = pl.scan_parquet(data_model.tb_neighbour.parquet)
+    model_name = data_model.tb_neighbour.model.name()
+    insert_data_from_parquet(ldf, model_name)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--new-tb", help="insert-tb", required=False, action='store_true')
@@ -134,6 +140,7 @@ if __name__ == "__main__":
     parser.add_argument("--new-road", required=False, action="store_true")
     parser.add_argument("--new-stretch-toll", required=False, action="store_true")
     parser.add_argument("--new-map-tb-imt", required=False, action="store_true")
+    parser.add_argument("--insert-tb-neighbours", required=False, action="store_true")
     parser.add_argument("--export-tb", action="store_true")
     parser.add_argument("--year", help="model year", required=False, type=int)
     parser.add_argument("--clean-db", required=False, type=str, help="all or table name")
@@ -158,6 +165,9 @@ if __name__ == "__main__":
         insert_stretch_toll_from_data(data_model)
     elif args.new_map_tb_imt:
         insert_new_map_tb_imt_from_data(data_model)
+    elif args.insert_tb_neighbours:
+        data_model = DataModel(args.year, DataStage.prd)
+        insert_tb_neighbours(data_model)
     elif args.clean_db:
         clean_db(args.clean_db)
     else:

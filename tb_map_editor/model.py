@@ -179,6 +179,7 @@ class Tollbooth(TbModel, table=True):
     gate_to: String | None
     info_year: UInt16 = Field(index=True)
     anti_evation_sys: Bool | None
+    in_out: String | None
 
     @classmethod
     def online_empty_fields(cls, exclude_fields: set | None = None) -> dict:
