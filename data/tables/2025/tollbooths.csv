@@ -1,4 +1,4 @@
-tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,manage,gate_to,anti_evation_sys
+tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,manage,gate_to,anti_evation_sys,in_out
 1,583,chichimeco,22.0007122283422,-102.360061260952,open,aguascalientes,entronque,2,toll,ops,
 2,583,chichimeco,22.0009752578311,-102.359613331946,open,aguascalientes,entronque,2,toll,ops,
 3,583,chichimeco,22.00583616405477,-102.35781133174898,open,aguascalientes,troncal,3,toll,ops,
@@ -124,8 +124,8 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 127,436,ajoloapan,19.9564415219751,-99.0554878574819,open,edomx,entronque,1,toll,arconorte,,0
 128,530,amanalco,19.2354263802432,-100.070772728276,open,edomx,entronque,1,toll,acomex,
 129,530,amanalco,19.233636891036376,-100.0722634792328,open,edomx,entronque,1,toll,acomex,
-130,462,apaxco,19.9978053024865,-99.1413529125953,open,edomx,entronque,2,toll,arconorte,,0
-131,462,apaxco,19.9978925304972,-99.1413864520397,open,edomx,entronque,2,toll,arconorte,,0
+130,462,apaxco,19.9978053024865,-99.1413529125953,open,edomx,entronque,2,toll,arconorte,,0,in
+131,462,apaxco,19.9978925304972,-99.1413864520397,open,edomx,entronque,2,toll,arconorte,,0,out
 132,137,atizapan,19.5825732063593,-99.2710972342119,open,edomx,troncal,4,toll,capufe,
 133,137,atizapan,19.5825148187655,-99.2711268121337,open,edomx,troncal,2,ticket,capufe,
 134,443,atlacomulco,19.91182736227489,-99.85259592533113,open,edomx,troncal,6,toll,arconorte,
@@ -263,10 +263,10 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 272,566,san nicolas,19.3556956910827,-99.4812603786564,open,edomx,entronque,1,toll,autovan,,0
 273,566,san nicolas,19.3538847941069,-99.4802911560869,open,edomx,entronque,1,toll,autovan,,0
 274,566,san nicolas,19.3539220539845,-99.4803391863654,open,edomx,entronque,1,toll,autovan,,0
-275,433,sahagun,19.7566736390523,-98.6283339959742,open,edomx,entronque,1,toll,arconorte,,0
-276,433,sahagun,19.755408882136,-98.629535586774,open,edomx,entronque,1,toll,arconorte,,0
-277,433,sahagun,19.7560434380331,-98.6305517036597,open,edomx,entronque,2,toll,arconorte,,0
-278,433,sahagun,19.755939830461,-98.6281190984548,open,edomx,entronque,2,toll,arconorte,,0
+275,433,sahagun,19.7566736390523,-98.6283339959742,open,edomx,entronque,1,toll,arconorte,,0,in
+276,433,sahagun,19.755408882136,-98.629535586774,open,edomx,entronque,1,toll,arconorte,,0,in
+277,433,sahagun,19.7560434380331,-98.6305517036597,open,edomx,entronque,2,toll,arconorte,,0,out
+278,433,sahagun,19.755939830461,-98.6281190984548,open,edomx,entronque,2,toll,arconorte,,0,out
 279,837,tenango,19.1224561248118,-99.6021286824601,open,edomx,troncal,2,toll,omc,
 280,905,tepexpan,19.6161913939216,-98.948274781243,open,edomx,troncal,6,toll,ecatepec-piramides,
 281,4,tepotzotlan,19.715348695614328,-99.2074227333069,open,edomx,troncal,10,toll,capufe,
@@ -274,11 +274,11 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 284,914,texcoco,19.5020740322376,-98.9149895242464,open,edomx,troncal,3,toll,desarrollo-global,,0
 285,928,tezoyuca (589),19.6006575114844,-98.9255380669232,open,edomx,troncal,6,toll,pinfra,
 286,575,tizatyca (ojo de agua),19.618840198507904,-99.02966201305391,open,edomx,troncal,10,toll,golfo-centro,
-287,434,tulancingo,19.8336648839833,-98.7015982353397,open,edomx,entronque,2,toll,arconorte,
-288,434,tulancingo,19.8336724681593,-98.7014506788197,open,edomx,entronque,1,toll,arconorte,
-289,434,tulancingo,19.8347756951661,-98.7001433051862,open,edomx,entronque,2,toll,arconorte,
-290,434,tulancingo,19.8337042681866,-98.6986999279764,open,edomx,entronque,2,toll,arconorte,
-291,434,tulancingo,19.8349471399433,-98.7001453080135,open,edomx,entronque,1,toll,arconorte,
+287,434,tulancingo,19.8336648839833,-98.7015982353397,open,edomx,entronque,2,toll,arconorte,,1,out
+288,434,tulancingo,19.8336724681593,-98.7014506788197,open,edomx,entronque,1,toll,arconorte,,0,in
+289,434,tulancingo,19.8347756951661,-98.7001433051862,open,edomx,entronque,2,toll,arconorte,,1,out
+290,434,tulancingo,19.8337042681866,-98.6986999279764,open,edomx,entronque,2,toll,arconorte,,1,out
+291,434,tulancingo,19.8349471399433,-98.7001453080135,open,edomx,entronque,1,toll,arconorte,,0,in
 292,434,tulancingo,19.8337041852705,-98.698868590806,open,edomx,entronque,1,toll,arconorte,
 293,531,valle de bravo,19.3482184605364,-99.9894469838757,open,edomx,troncal,7,toll,acomex,
 294,1046,vallejo r4,19.512100676584694,-99.16268348693849,open,edomx,entronque,3,toll,anesa,
@@ -375,8 +375,8 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 390,432,calpulalpan,19.6194376769189,-98.5496436465899,open,hidalgo,entronque,2,toll,arconorte,,0
 391,578,nuevo necaxa,20.135538183756,-98.1227454141174,open,hidalgo,entronque,3,toll,golfo-centro,
 392,578,nuevo necaxa,20.1350477943877,-98.1227168501895,open,hidalgo,entronque,4,toll,golfo-centro,
-393,435,pachuca,19.9273681239182,-98.8914761722353,open,hidalgo,entronque,4,toll,arconorte,,0
-394,435,pachuca,19.927516851428,-98.8915156633801,open,hidalgo,entronque,5,toll,arconorte,,1
+393,435,pachuca,19.9273681239182,-98.8914761722353,open,hidalgo,entronque,4,toll,arconorte,,0,in
+394,435,pachuca,19.927516851428,-98.8915156633801,open,hidalgo,entronque,5,toll,arconorte,,1,out
 395,577,tejocotal,20.1474520277015,-98.2857958693598,open,hidalgo,troncal,14,toll,golfo-centro,
 396,577,tejocotal,20.1490662599189,-98.2866060153835,open,hidalgo,entronque,2,toll,golfo-centro,
 397,577,tejocotal,20.1464505338776,-98.2875498923801,open,hidalgo,entronque,3,toll,golfo-centro,
@@ -649,10 +649,10 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 678,92,nuevo necaxa,20.1866544581,-98.0298252849204,closed,puebla,entronque,2,toll,capufe,
 679,1052,payuca,19.521631605408082,-97.6381105184555,open,puebla,troncal,2,toll,opervite,
 680,8,san marti puebla,19.241583672824856,-98.38541150093079,open,puebla,troncal,14,toll,capufe,
-681,430,san martin texmelucan,19.2963465811604,-98.4097605337239,open,puebla,entronque,2,toll,arconorte,,0
-682,430,san martin texmelucan,19.3017853210061,-98.409440166325,open,puebla,troncal,4,toll,arconorte,,0
-683,430,san martin texmelucan,19.3018308869915,-98.4096601074648,open,puebla,troncal,5,toll,arconorte,,1
-684,430,san martin texmelucan,19.2971490735423,-98.4110640873011,open,puebla,entronque,2,toll,arconorte,,0
+681,430,san martin texmelucan,19.2963465811604,-98.4097605337239,open,puebla,entronque,2,toll,arconorte,,0,out
+682,430,san martin texmelucan,19.3017853210061,-98.409440166325,open,puebla,troncal,4,toll,arconorte,,0,in
+683,430,san martin texmelucan,19.3018308869915,-98.4096601074648,open,puebla,troncal,5,toll,arconorte,,1,out
+684,430,san martin texmelucan,19.2971490735423,-98.4110640873011,open,puebla,entronque,2,toll,arconorte,,0,in
 685,76,tehuacan,18.4875699198343,-97.4569102550398,open,puebla,entronque,1,toll,capufe,
 686,76,tehuacan,18.48713884920562,-97.45622992515565,open,puebla,troncal,2,toll,capufe,
 687,76,tehuacan,18.486706403810242,-97.45536088943483,open,puebla,entronque,1,toll,capufe,
@@ -803,13 +803,13 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 836,432,calpulalpan,19.6201362270719,-98.5469437844679,open,tlaxcala,entronque,2,toll,arconorte,,0
 837,432,calpulalpan,19.6201336723777,-98.5470698641364,open,tlaxcala,entronque,1,toll,arconorte,,0
 838,917,san martin texmelucan,19.301600079552337,-98.4040689468384,open,tlaxcala,troncal,2,toll,pinfra,
-839,431,sanctorum,19.5159077517567,-98.4695727344538,open,tlaxcala,entronque,1,toll,arconorte,,0
-840,431,sanctorum,19.5126855046563,-98.4668704349799,open,tlaxcala,entronque,2,toll,arconorte,,0
-841,431,sanctorum,19.512772519775,-98.4669825283504,open,tlaxcala,entronque,1,toll,arconorte,,0
-842,431,sanctorum,19.5138694534692,-98.4698577777784,open,tlaxcala,entronque,2,toll,arconorte,,0
-843,431,sanctorum,19.5127146160511,-98.4688176945708,open,tlaxcala,entronque,2,toll,arconorte,,0
-844,431,sanctorum,19.5165557792904,-98.469363852306,open,tlaxcala,entronque,3,toll,arconorte,,0
-845,431,sanctorum,19.515585183553,-98.4690030613379,open,tlaxcala,entronque,2,toll,arconorte,,0
+839,431,sanctorum,19.5159077517567,-98.4695727344538,open,tlaxcala,entronque,1,toll,arconorte,,0,in
+840,431,sanctorum,19.5126855046563,-98.4668704349799,open,tlaxcala,entronque,2,toll,arconorte,,0,out
+841,431,sanctorum,19.512772519775,-98.4669825283504,open,tlaxcala,entronque,1,toll,arconorte,,0,in
+842,431,sanctorum,19.5138694534692,-98.4698577777784,open,tlaxcala,entronque,2,toll,arconorte,,0,out
+843,431,sanctorum,19.5127146160511,-98.4688176945708,open,tlaxcala,entronque,2,toll,arconorte,,0,in
+844,431,sanctorum,19.5165557792904,-98.469363852306,open,tlaxcala,entronque,3,toll,arconorte,,0,in
+845,431,sanctorum,19.515585183553,-98.4690030613379,open,tlaxcala,entronque,2,toll,arconorte,,0,out
 846,1018,zacatelco,19.2143367626985,-98.2667667599111,open,tlaxcala,troncal,2,toll,pinfra,
 847,1018,zacatelco,19.213652577941,-98.2662670885483,open,tlaxcala,troncal,2,toll,pinfra,
 848,1018,zacatelco,19.2129772653421,-98.2658054986939,open,tlaxcala,troncal,2,toll,pinfra,
@@ -902,8 +902,8 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 938,,La Venta,19.33361468235331,-99.31365430355073,open,cdmx,troncal,5,toll,pinfra,
 939,,Laguna Seca,19.3541145324707,-99.9829788208008,open,edomx,entronque,1,toll,acomex,,0
 940,,Laguna Seca,19.354726509352794,-99.98312830924989,closed,edomx,entronque,1,toll,acomex,,0
-941,,Tulancingo,19.8325176239014,-98.7001342773438,open,edomx,entronque,3,toll,arconorte,
-942,,Tulancingo,19.8323976253653,-98.7001349033128,open,edomx,entronque,1,ticket,arconorte,
+941,,Tulancingo,19.8325176239014,-98.7001342773438,open,edomx,entronque,3,toll,arconorte,,1,out
+942,,Tulancingo,19.8323976253653,-98.7001349033128,open,edomx,entronque,1,ticket,arconorte,,0,in
 949,1052,Zaragoza,19.7600003137051,-97.548290837125,open,puebla,entronque,1,toll,opervite,
 950,,San Marcos bis,19.2961144691615,-98.8759108784579,closed,edomx,entronque,2,toll,capufe,
 951,,San Marcos bis,19.2954673873578,-98.877064227032,closed,edomx,entronque,2,toll,capufe,
@@ -944,7 +944,7 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 987,,Constituyentes Poniente,19.4112358093262,-99.1940536499023,open,cdmx,entronque,1,etc,aunorte,
 988,,Minería Poniente,19.4031352996826,-99.1924362182617,open,cdmx,entronque,2,etc,aunorte,
 989,,San Antonio Poniente,19.3802738189697,-99.1918640136719,open,cdmx,troncal,3,etc,aunorte,
-990,,San Martín Texmelucan,19.2951984405518,-98.4109268188477,open,puebla,entronque,1,toll,arconorte,,0
+990,,San Martín Texmelucan,19.2951984405518,-98.4109268188477,open,puebla,entronque,1,toll,arconorte,,0,in
 991,,Río San Joaquín,19.4559173583984,-99.2188568115234,open,edomx,troncal,2,etc,viaducto-bicentenario,
 992,,Conscripto Poniente,19.4437465667725,-99.2203750610352,open,edomx,entronque,1,etc,aunorte,
 993,,Ejército Nacional Oriente,19.439582824707,-99.2143859863281,open,cdmx,entronque,1,etc,aunorte,
@@ -1290,9 +1290,9 @@ tollbooth_id,legacy_id,tollbooth_name,lat,lng,status,state,place,lines,type,mana
 1417,,miahuatlan,18.26463193656571,-97.31566607952118,open,puebla,troncal,1,toll,capufe,
 1418,,miahuatlan,18.265100598094996,-97.31470584869386,open,puebla,entronque,1,toll,capufe,
 1419,,miahuatlan,18.26392894189957,-97.31618106365205,open,puebla,entronque,1,toll,capufe,
-1420,,san martin texmelucan,19.296329522710202,-98.41139674186708,open,puebla,entronque,1,toll,arconorte,,0
-1421,,san martin texmelucan,19.297914251694205,-98.40918123722078,open,puebla,entronque,1,toll,arconorte,,0
-1422,,san martin texmelucan,19.297235807298648,-98.40940117836,open,puebla,entronque,1,toll,arconorte,,0
+1420,,san martin texmelucan,19.296329522710202,-98.41139674186708,open,puebla,entronque,1,toll,arconorte,,0,out
+1421,,san martin texmelucan,19.297914251694205,-98.40918123722078,open,puebla,entronque,1,toll,arconorte,,0,out
+1422,,san martin texmelucan,19.297235807298648,-98.40940117836,open,puebla,entronque,1,toll,arconorte,,0,in
 1423,,huejotzingo,19.253525913852638,-98.44210803508759,open,puebla,troncal,2,toll,cap,
 1424,,san marti puebla,19.241193686773137,-98.38590502738954,open,puebla,troncal,13,toll,capufe,
 1425,,amazoc-perote (amozoc),19.063633884456813,-98.06893765926363,open,puebla,troncal,3,toll,gana,
