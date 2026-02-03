@@ -395,15 +395,15 @@
 410,439,"tula ii",20.0726450121052,-99.3697958932874,"open","hidalgo","entronque",1,"toll","arconorte",,,
 411,439,"tula ii",20.0703484415602,-99.3682492699621,"open","hidalgo","entronque",2,"toll","arconorte",,,
 412,439,"tula ii",20.071904806747,-99.3676968873244,"open","hidalgo","entronque",1,"toll","arconorte",,,
-413,113,"acatic",20.7370945680769,-102.910970506696,"open","jalisco","entronque",1,"ticket","rco",,,
-414,113,"acatic",20.7390050425803,-102.909747487198,"open","jalisco","entronque",1,"toll","rco",,,
-415,113,"acatic",20.7390245507494,-102.90969186101,"open","jalisco","entronque",1,"ticket","rco",,,
-416,113,"acatic",20.7370593359349,-102.911011581183,"open","jalisco","entronque",1,"toll","rco",,,
+413,113,"acatic",20.7370945680769,-102.910970506696,"open","jalisco","entronque",1,"ticket","rco",,0,"in"
+414,113,"acatic",20.7390050425803,-102.909747487198,"open","jalisco","entronque",1,"toll","rco",,0,"in"
+415,113,"acatic",20.7390245507494,-102.90969186101,"open","jalisco","entronque",1,"toll","rco",,0,"out"
+416,113,"acatic",20.7370593359349,-102.911011581183,"open","jalisco","entronque",1,"toll","rco",,0,"out"
 417,57,"acatlan ii",20.3734566760366,-103.576318332231,"open","jalisco","troncal",5,"toll","autopistas-sayula",,,
 418,155,"arenal",20.7788058243767,-103.662454176485,"open","jalisco","troncal",3,"toll","guadalajara-tepic",,,
 419,325,"chapala",20.3902079228279,-103.302166704701,"open","jalisco","troncal",5,"toll","guadalajara-tepic",,,
 420,123,"encarnacion de diaz",21.4896826931754,-102.243151412095,"open","jalisco","troncal",3,"toll","rco",,,
-421,114,"jalostotitlan",21.1174411420451,-102.45796734964,"open","jalisco","entronque",1,"toll","rco",,,
+421,114,"jalostotitlan",21.1174411420451,-102.45796734964,"open","jalisco","troncal",2,"toll","rco",,,
 422,114,"jalostotitlan",21.0300651135245,-102.555257440899,"open","jalisco","entronque",1,"toll","rco",,,
 423,114,"jalostotitlan",21.1175612501846,-102.458109855652,"open","jalisco","troncal",2,"toll","rco",,,
 424,114,"jalostotitlan",21.03108707336,-102.554575452069,"open","jalisco","entronque",1,"toll","rco",,,
@@ -428,9 +428,9 @@
 445,405,"santa cecilia",20.4425086585422,-103.545795099295,"open","jalisco","troncal",5,"toll","guadalajara-tepic",,,
 446,58,"sayula",19.9332264246907,-103.530017137527,"open","jalisco","troncal",5,"toll","autopistas-sayula",,,
 447,59,"sayula remota",19.8791308752164,-103.519329854188,"open","jalisco","troncal",3,"toll","autopistas-sayula",,,
-449,113,"tepatitlan",20.8208353834692,-102.793966215855,"open","jalisco","troncal",2,"toll","rco",,,
-450,113,"tepatitlan",20.8245877217498,-102.795001192039,"open","jalisco","troncal",8,"toll","rco",,,
-451,113,"tepatitlan",20.8209271445476,-102.793849735981,"open","jalisco","troncal",2,"toll","rco",,,
+449,113,"tepatitlan",20.8208353834692,-102.793966215855,"open","jalisco","troncal",2,"toll","rco",,0,"out"
+450,113,"tepatitlan",20.82460029695199,-102.79509186744691,"open","jalisco","troncal",4,"toll","rco",,1,"out"
+451,113,"tepatitlan",20.8209271445476,-102.793849735981,"open","jalisco","troncal",2,"ticket","rco",,0,"in"
 452,,"tequila",20.8542801172832,-103.860937356949,"open","jalisco","entronque",2,"toll","guadalajara-tepic",,,
 453,120,"union de san antonio",21.2513231348003,-101.95086971997,"open","jalisco","entronque",1,"toll","rco",,,
 454,120,"union de san antonio",21.2551379987838,-101.949494090351,"open","jalisco","entronque",1,"toll","rco",,,
@@ -1370,3 +1370,4 @@
 1566,70,"polotitlan",20.2264575482741,-99.8107373714447,"open","edomx","entronque",1,"toll","capufe",,0,
 1567,70,"Polotitlán",20.2252293418505,-99.8106461763382,"open","edomx","entronque",1,"toll","capufe",,0,
 1568,592,"san miguel",20.5809626320634,-100.795385508933,"open","guanajuato","troncal",2,"toll","bicentenario","bypass",0,
+1569,,"tepatitlan",20.824515059312883,-102.79489338397981,"open","jalisco","troncal",4,"toll","rco",,1,"in"
