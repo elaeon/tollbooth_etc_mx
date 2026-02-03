@@ -870,6 +870,7 @@ function createPopupFormHTML(marker) {
 	html += `<input type="hidden" name="lng" value="${escapeHtml(position.lng)}">`;
 	html += `<input type="hidden" name="tollbooth_id" value="${escapeHtml(data.tollbooth_id ?? '')}">`;
 	for (const key of Object.keys(props)) {
+		if (key == "info_year") {continue;}
 		const val = props[key] == null ? '' : (typeof props[key] === 'object' ? JSON.stringify(props[key]) : String(props[key]));
 		html += `<div style="margin:4px 0"><label style="font-size:12px">${escapeHtml(key)}:<br><input name="${escapeHtml(key)}" value="${escapeHtml(val)}" style="width:100%"/></label></div>`;
 	}
