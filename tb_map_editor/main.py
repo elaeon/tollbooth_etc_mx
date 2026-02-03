@@ -15,6 +15,7 @@ import logging
 import sys
 import polars as pl
 import polars_h3 as plh3
+import datetime
 
 
 _log = logging.getLogger(__name__)
@@ -120,6 +121,8 @@ def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
         session.commit()
         session.refresh(db_tb)
     else:
+        info_year = datetime.date.today().year
+        tollbooth.info_year = info_year
         session.add(tollbooth)
         session.commit()
         session.refresh(tollbooth)

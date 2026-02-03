@@ -186,7 +186,7 @@ function addInfoPopup(marker, moveOpt) {
 		if (acceptDragLink) {
 			acceptDragLink.addEventListener('click', async (ev) => {
 				const position = marker.getLatLng();
-				payload = structuredClone(marker.__data.props);
+				payload = specialStructuredClone(marker.__data.props);
 				payload.tollbooth_id = marker.__data.tollbooth_id;
 				payload.lat = position.lat;
 				payload.lng = position.lng;
@@ -244,7 +244,7 @@ map.on('click', async (e) => {
 	else {
 		_clickMarker.setLatLng(new L.LatLng(e.latlng.lat, e.latlng.lng)).update();
 	}
-	_clickMarker.__data.props = structuredClone(_tpl_empty_tb_data);
+	_clickMarker.__data.props = specialStructuredClone(_tpl_empty_tb_data);
 	_clickMarker.__data.tollbooth_id = null;
 
 	if ((_layers[_activeLayer] != _layers.tb)) {
@@ -910,7 +910,7 @@ function createInfoPopupHTML(marker, moveOpt) {
 
 function copyMarkerPropsToTemp(marker) {
 	if (!marker || !marker.__data) return;
-	_tmpMarkerData = structuredClone(marker.__data);
+	_tmpMarkerData = specialStructuredClone(marker.__data);
 	alert(`Copied marker data (ID: ${marker.__data.tollbooth_id || 'new'})`);
 	// update paste button state in any open form
 	const forms = document.querySelectorAll('.btn-paste-marker');
@@ -992,6 +992,124 @@ function attachPopupFormHandlers(popup, marker) {
 
 function isValidLat(v) { return Number.isFinite(v) && v >= -90 && v <= 90; }
 function isValidLng(v) { return Number.isFinite(v) && v >= -180 && v <= 180; }
+
+function specialStructuredClone(data) {
+	// Use native structuredClone when available (most accurate and fast).
+	try {
+		if (typeof structuredClone === 'function') {
+			return structuredClone(data);
+		}
+	} catch (err) {
+		// fall through to JS fallback
+	}
+
+	// Fallback deep clone that tries to mimic structuredClone for common types.
+	// This is synchronous and supports circular refs, Date, RegExp, Map, Set,
+	// ArrayBuffer / TypedArray, plain objects and arrays. It will throw on
+	// functions and DOM nodes to mimic structuredClone limitations.
+	const seen = new WeakMap();
+
+	function _clone(val) {
+		// primitives
+		if (val === null || typeof val !== 'object') {
+			if (typeof val === 'function') throw new Error('Cannot clone function');
+			return val;
+		}
+
+		if (seen.has(val)) return seen.get(val);
+
+		// Dates
+		if (val instanceof Date) return new Date(val.getTime());
+
+		// RegExp
+		if (val instanceof RegExp) return new RegExp(val.source, val.flags);
+
+		// ArrayBuffer
+		if (val instanceof ArrayBuffer) {
+			const copy = val.slice(0);
+			seen.set(val, copy);
+			return copy;
+		}
+
+		// TypedArray / DataView
+		if (ArrayBuffer.isView(val)) {
+			// For DataView, create a new ArrayBuffer copy and new DataView
+			if (val instanceof DataView) {
+				const buf = val.buffer.slice(0);
+				const dv = new DataView(buf, val.byteOffset, val.byteLength);
+				seen.set(val, dv);
+				return dv;
+			}
+			const ctor = val.constructor;
+			const copy = new ctor(val.buffer.slice(0), val.byteOffset, val.length);
+			seen.set(val, copy);
+			return copy;
+		}
+
+		// Map
+		if (val instanceof Map) {
+			const m = new Map();
+			seen.set(val, m);
+			for (const [k, v] of val.entries()) {
+				m.set(_clone(k), _clone(v));
+			}
+			return m;
+		}
+
+		// Set
+		if (val instanceof Set) {
+			const s = new Set();
+			seen.set(val, s);
+			for (const v of val.values()) s.add(_clone(v));
+			return s;
+		}
+
+		// Array
+		if (Array.isArray(val)) {
+			const arr = [];
+			seen.set(val, arr);
+			for (let i = 0; i < val.length; i++) arr[i] = _clone(val[i]);
+			return arr;
+		}
+
+		// Blob (try shallow copy via slice if available)
+		if (typeof Blob !== 'undefined' && val instanceof Blob) {
+			try {
+				const b = val.slice(0, val.size, val.type);
+				seen.set(val, b);
+				return b;
+			} catch (e) {
+				throw new Error('Cannot clone Blob');
+			}
+		}
+
+		// If it's a DOM node or other non-plain object, structuredClone would
+		// either clone or throw; to be safe we throw for nodes.
+		if (typeof Node !== 'undefined' && val instanceof Node) {
+			throw new Error('Cannot clone DOM Node');
+		}
+
+		// Generic object: copy property descriptors to preserve non-enumerables
+		const proto = Object.getPrototypeOf(val);
+		const out = Object.create(proto);
+		seen.set(val, out);
+
+		const keys = Object.getOwnPropertyNames(val).concat(Object.getOwnPropertySymbols(val));
+		for (const key of keys) {
+			const desc = Object.getOwnPropertyDescriptor(val, key);
+			if (!desc) continue;
+			if ('value' in desc) {
+				if (typeof desc.value === 'function') throw new Error('Cannot clone function');
+				desc.value = _clone(desc.value);
+			}
+			Object.defineProperty(out, key, desc);
+		}
+
+		return out;
+	}
+
+	return _clone(data);
+}
 
 // add control to map
 (new QueryControl({ position: 'topright' })).addTo(map);
