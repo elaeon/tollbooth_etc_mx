@@ -526,7 +526,7 @@
 547,407,"san blas",21.5073447727133,-105.201060175896,"open","nayarit","troncal",3,"toll","rco",,,
 548,157,"santa maria del oro",21.3279962843704,-104.663201357681,"open","nayarit","entronque",1,"toll","guadalajara-tepic",,,
 549,157,"santa maria del oro",21.3270170496967,-104.664832949638,"open","nayarit","entronque",1,"toll","guadalajara-tepic",,,
-550,157,"santa maria del oro",21.3742266861805,-104.708901643753,"open","nayarit","troncal",4,"toll","guadalajara-tepic",,,
+550,157,"santa maria del oro",21.3742266861805,-104.708901643753,"open","nayarit","troncal",4,"toll","guadalajara-tepic",,0,"io"
 551,,"tequepexpan",21.2136632779626,-104.594145958218,"closed","nayarit","entronque",1,"toll","capufe",,,
 552,,"tequepexpan",21.2137537345792,-104.592658748776,"closed","nayarit","entronque",1,"toll","capufe",,,
 553,403,"trapichillo",21.571748191967,-104.98744288123,"open","nayarit","troncal",8,"toll","tepic-mazatlan",,,
@@ -567,24 +567,24 @@
 593,499,"lincon",25.833565230741,-100.305787485599,"open","nuevo leon","entronque",1,"toll","reanal",,,
 594,499,"lincon",25.790548,-100.463523,"open","nuevo leon","troncal",6,"toll","reanal",,,
 595,141,"los chorros",25.1867527317298,-100.731975056865,"open","nuevo leon","troncal",8,"toll","capufe",,,
-596,129,"los herrera",25.7593817019285,-99.3742097933222,"open","nuevo leon","entronque",1,"toll","opan",,,
-597,129,"los herrera",25.7572439078648,-99.3738367695033,"open","nuevo leon","entronque",1,"toll","opan",,,
-598,129,"los herrera",25.7573005522797,-99.3739196743032,"open","nuevo leon","entronque",1,"toll","opan",,,
-599,129,"los herrera",25.7594517563394,-99.3740971405496,"open","nuevo leon","entronque",1,"toll","opan",,,
-600,130,"los ramones",25.6628511338973,-99.6286434320474,"open","nuevo leon","entronque",1,"toll","opan",,,
-601,130,"los ramones",25.6630109818878,-99.6286254588177,"open","nuevo leon","entronque",1,"toll","opan",,,
-602,130,"los ramones",25.6561136509165,-99.6310978439679,"open","nuevo leon","entronque",1,"toll","opan",,,
-603,130,"los ramones",25.6559455588189,-99.6310167462799,"open","nuevo leon","entronque",1,"toll","opan",,,
-604,110,"paras",26.508623,-100.009173,"open","nuevo leon","entronque",1,"toll","opan",,,
-605,110,"paras",26.50798,-100.009575,"open","nuevo leon","entronque",1,"toll","opan",,,
-606,110,"paras",26.508378,-100.008159,"open","nuevo leon","entronque",1,"toll","opan",,,
+596,129,"los herrera",25.7593817019285,-99.3742097933222,"open","nuevo leon","entronque",1,"toll","opan",,0,"in"
+597,129,"los herrera",25.7572439078648,-99.3738367695033,"open","nuevo leon","entronque",1,"toll","opan",,0,"in"
+598,129,"los herrera",25.7573005522797,-99.3739196743032,"open","nuevo leon","entronque",1,"toll","opan",,0,"out"
+599,129,"los herrera",25.7594517563394,-99.3740971405496,"open","nuevo leon","entronque",1,"toll","opan",,0,"out"
+600,130,"los ramones",25.6628511338973,-99.6286434320474,"open","nuevo leon","entronque",1,"toll","opan",,0,"in"
+601,130,"los ramones",25.6630109818878,-99.6286254588177,"open","nuevo leon","entronque",1,"toll","opan",,0,"out"
+602,130,"los ramones",25.6561136509165,-99.6310978439679,"open","nuevo leon","entronque",1,"toll","opan",,0,"in"
+603,130,"los ramones",25.6559455588189,-99.6310167462799,"open","nuevo leon","entronque",1,"toll","opan",,0,"out"
+604,110,"paras",26.508623,-100.009173,"open","nuevo leon","entronque",1,"toll","opan",,0,"out"
+605,110,"paras",26.50798,-100.009575,"open","nuevo leon","entronque",1,"toll","opan",,0,"in"
+606,110,"paras",26.508378,-100.008159,"open","nuevo leon","entronque",1,"toll","opan",,0,"out"
 607,490,"periferico",25.6960335690435,-100.577338086311,"open","nuevo leon","entronque",4,"toll","cams",,,
 608,490,"periferico",25.6933438718399,-100.565559267998,"open","nuevo leon","troncal",4,"toll","cams",,,
 609,490,"periferico",25.6949975524778,-100.569429676268,"open","nuevo leon","entronque",2,"toll","cams",,,
 610,490,"periferico",25.6964200190808,-100.577381882534,"open","nuevo leon","entronque",4,"toll","cams",,,
 611,490,"periferico",25.6945809923388,-100.569670950165,"open","nuevo leon","entronque",2,"toll","cams",,,
 612,1022,"puente colombia",27.6973741372118,-99.7477884181062,"open","nuevo leon","troncal",7,"toll","gob-nuevoleon","International-bridge",,
-613,108,"sabinas",26.5120982878635,-100.007327198982,"open","nuevo leon","troncal",4,"toll","opan",,,
+613,108,"sabinas",26.5120982878635,-100.007327198982,"open","nuevo leon","troncal",4,"toll","opan",,0,"io"
 614,225,"barranca larga",16.4691300216743,-96.7449134588242,"open","oaxaca","troncal",3,"toll","capufe",,,
 615,29,"caracol",18.1330884638594,-96.1366922307271,"open","oaxaca","troncal",1,"toll","capufe","bridge",,
 616,79,"huitzo",17.2750073056769,-96.9152950564572,"open","oaxaca","troncal",2,"toll","capufe",,,
@@ -610,7 +610,7 @@
 638,26,"amozoc",19.0492301291607,-98.0290999474155,"open","puebla","entronque",1,"toll","capufe",,,
 639,26,"amozoc",19.0494417480046,-98.0319178104401,"open","puebla","entronque",2,"toll","capufe",,,
 640,26,"amozoc",19.0482016662952,-98.0312800283277,"open","puebla","entronque",1,"toll","capufe",,,
-641,990,"amozoc-perote (audi cuapiaxtla a1 y a2)",19.2744607214921,-97.8265142440796,"open","puebla","entronque",2,"toll","gana",,,
+641,990,"amozoc-perote (audi)",19.2744607214921,-97.8265142440796,"open","puebla","entronque",2,"toll","gana",,0,"out"
 642,990,"amozoc-perote (audi cuapiaxtla)",19.2744607214921,-97.8263425827026,"open","puebla","entronque",2,"toll","gana",,,
 643,990,"amozoc-perote (audi)",19.2744657852247,-97.8264337778092,"open","puebla","entronque",2,"toll","gana",,,
 644,990,"amozoc-perote (cantona)",19.5090498460962,-97.497136046232,"open","puebla","entronque",1,"toll","gana",,,
@@ -1090,7 +1090,7 @@
 1165,,"la cuchilla",25.6268720136106,-102.878251075745,"open","coahuila","troncal",4,"toll","capufe",,,
 1166,,"play de ayala",25.4440884232028,-101.303923130035,"open","coahuila","troncal",2,"toll","capufe",,,
 1170,,"huachichil",25.2455110992388,-100.801545381546,"open","coahuila","troncal",1,"toll","capufe",,,
-1171,,"sabinas",26.5120310836929,-100.007085800171,"open","nuevo leon","troncal",3,"toll","opan",,,
+1171,,"sabinas",26.5120310836929,-100.007085800171,"open","nuevo leon","troncal",3,"toll","opan",,0,"io"
 1173,,"agualeguas",26.3403548697947,-100.070498585701,"open","nuevo leon","entronque",1,"toll","opan",,,
 1174,,"periferico",25.6932181871485,-100.565623641014,"open","nuevo leon","troncal",4,"toll","cams",,,
 1175,,"apodaca",25.8176341371761,-100.393243432045,"open","nuevo leon","entronque",1,"toll","reanal",,,
@@ -1155,7 +1155,7 @@
 1248,,"estacion ruiz",21.951772813388,-105.116130709648,"open","nayarit","troncal",2,"toll","mazatlan-culiacan",,,
 1249,,"san blas",21.5072249911431,-105.200952887535,"open","nayarit","troncal",3,"toll","rco",,,
 1250,,"la cantera",21.4984906524178,-104.813486337662,"open","nayarit","troncal",3,"toll","guadalajara-tepic",,,
-1251,,"santa maria del oro",21.3740768225266,-104.709035754204,"open","nayarit","troncal",4,"toll","guadalajara-tepic",,,
+1251,,"santa maria del oro",21.3740768225266,-104.709035754204,"open","nayarit","troncal",4,"toll","guadalajara-tepic",,0,"io"
 1252,,"santa maria del oro",21.3278765418115,-104.663234353065,"open","nayarit","entronque",1,"toll","guadalajara-tepic",,,
 1253,,"santa maria del oro",21.3270420350036,-104.664757847786,"open","nayarit","entronque",1,"toll","guadalajara-tepic",,,
 1254,,"santa maria del oro",21.3282113426102,-104.664500355721,"closed","nayarit","troncal",6,"toll","guadalajara-tepic",,,
