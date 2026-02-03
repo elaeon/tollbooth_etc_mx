@@ -52,14 +52,23 @@ def insert_tb_imt_from_data(data_model: DataModel):
     insert_data_from_parquet(ldf_tb_imt, model_name)
 
 
-def insert_tb_from_db(data_model: DataModel):
-    query = f"""
-        SELECT * FROM tollbooth WHERE info_year={data_model.attr.get("year")}
-    """
-    conn = sqlite3.connect(sqlite_url.replace("sqlite:///", ""))
-    df = pl.read_database(query, connection=conn)
-    df.write_parquet(data_model.tollbooths.parquet)
-    _log.info(f"Saved data in {data_model.tollbooths.parquet}")
+def insert_tb_from_db(data_model: DataModel, file_format: str):
+    if data_model.attr.get("year") is None:
+        print("--year argument is required for this option.")
+    else:
+        query = f"""
+            SELECT * FROM tollbooth WHERE info_year={data_model.attr.get("year")}
+        """
+        conn = sqlite3.connect(sqlite_url.replace("sqlite:///", ""))
+        df = pl.read_database(query, connection=conn, infer_schema_length=200)
+        df = df.select(pl.exclude("info_year"))
+        if file_format == "csv":
+           file_dest_path = data_model.tollbooths.csv
+           df.write_csv(file_dest_path, quote_style="non_numeric")
+        else:
+           file_dest_path = data_model.tollbooths.parquet
+           df.write_parquet(file_dest_path)
+        _log.info(f"Saved data in {file_dest_path}")
 
 
 def insert_tb_stretch_from_data(data_model: DataModel):
@@ -141,7 +150,7 @@ if __name__ == "__main__":
     parser.add_argument("--new-stretch-toll", required=False, action="store_true")
     parser.add_argument("--new-map-tb-imt", required=False, action="store_true")
     parser.add_argument("--insert-tb-neighbours", required=False, action="store_true")
-    parser.add_argument("--export-tb", action="store_true")
+    parser.add_argument("--export-tb", type=str, choices=("csv", "parquet"), default="parquet")
     parser.add_argument("--year", help="model year", required=False, type=int)
     parser.add_argument("--clean-db", required=False, type=str, help="all or table name")
     args = parser.parse_args()
@@ -153,7 +162,8 @@ if __name__ == "__main__":
     elif args.new_tb_imt:
         insert_tb_imt_from_data(data_model)
     elif args.export_tb:
-        insert_tb_from_db(data_model)
+        data_model = DataModel(args.year, DataStage.pub)
+        insert_tb_from_db(data_model, args.export_tb)
     elif args.new_tb_stretch:
         data_model = DataModel(args.year, DataStage.prd)
         insert_tb_stretch_from_data(data_model)
