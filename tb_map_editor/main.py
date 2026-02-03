@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from sqlmodel import select, or_
+from sqlmodel import select, or_, join
 
 from .model import Tollbooth, TbSts, TbImt, TbStretchId, Stretch, StretchToll, TbNeighbour
 from contextlib import asynccontextmanager
@@ -46,18 +46,6 @@ def map_root(request: Request):
     return templates.TemplateResponse(
         request=request, name="map.html", context={"query_endpoints": query_endpoints}
     )
-
-
-# @app.post("/tollbooth/")
-# #def create_tollbooth(tollbooth: Tollbooth, session: SessionDep) -> Tollbooth:
-# def create_tollbooth(tollbooth_name: Annotated[str, Form()], coords: Annotated[str, Form()], session: SessionDep):
-#     tollbooth = Tollbooth(
-#         tollbooth_name=tollbooth_name, coords=coords, status="open", state="", place="", lines=0, type="toll" 
-#         )
-#     session.add(tollbooth)
-#     session.commit()
-#     session.refresh(tollbooth)
-#     return tollbooth
 
 
 @app.post("/api/tollbooths/")
@@ -203,15 +191,14 @@ def query_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
 
 @app.post("/api/tollbooth_neightbours")
 def tollbooth_neighbours(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=10):
-    print(body)
-    stm = select(Tollbooth, TbNeighbour).where(
-        TbNeighbour.tollbooth_id == body.get("tollbooth_id"),
-        TbNeighbour.neighbour_id == Tollbooth.tollbooth_id
+    stm = select(Tollbooth).select_from(
+            join(Tollbooth, TbNeighbour, TbNeighbour.neighbour_id == Tollbooth.tollbooth_id)
+        ).where(
+        TbNeighbour.tollbooth_id == body.get("tollbooth_id")
     )
     tollbooths = session.exec(stm.offset(offset).limit(limit))
     data = []
-    for tb, _ in tollbooths:
+    for tb in tollbooths:
         data.append(tb)
-    print(data)
-    return tb
+    return data
     

@@ -471,7 +471,7 @@ const QueryControl = L.Control.extend({
 				});
 				if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
 				const data = await resp.json();
-				processMarkerResponse(data, query);
+				processMarkerResponse(data, query, true);
 			} catch (err) {
 				statusEl.textContent = `Error: ${err.message}`;
 			}
@@ -506,10 +506,10 @@ function clearAllLayers() {
 }
 
 
-function processMarkerResponse(data, sourceLabel) {
+function processMarkerResponse(data, sourceLabel, clearLayers) {
 	const coords = extractCoordinates(data);
 	if (!coords.length) throw new Error('No coordinates found in response');
-	const markers = addMarkersFromCoords(coords, sourceLabel);
+	const markers = addMarkersFromCoords(coords, sourceLabel, clearLayers);
 	searchBar._populateMarkerLabels(map);
 	// If exactly one marker was returned, show its properties in the panel
 	if (Array.isArray(markers) && markers.length === 1) {
@@ -526,7 +526,6 @@ function showMarkerProps(marker) {
 	let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
 	html += `<span>Marker properties</span>`;
 	html += `<div style="margin-top:6px;display:flex;gap:8px"><a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">tolls</a> <a href="#" class="show-neighbours-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">neighbours</a></div>`;
-	html += `<button class="btn-copy-marker" style="padding:2px 8px;font-size:12px;cursor:pointer">Copy</button>`;
 	html += `</div>`;
 	html += '<table style="width:100%;font-size:12px;border-collapse:collapse">';
 	for (const key of Object.keys(props)) {
@@ -534,7 +533,8 @@ function showMarkerProps(marker) {
 		html += `<tr><td style="padding:2px 6px;border-bottom:1px solid #eee;width:40%"><strong>${escapeHtml(key)}</strong></td><td style="padding:2px 6px;border-bottom:1px solid #eee">${escapeHtml(val)}</td></tr>`;
 	}
 	if (!Object.keys(props).length) html += `<tr><td colspan="2" style="padding:4px;color:#666">(no properties)</td></tr>`;
-	html += '</table>';	
+	html += '</table>';
+	html += `<button class="btn-copy-marker" style="padding:2px 8px;font-size:12px;cursor:pointer">Copy</button>`;
 	panel.innerHTML = html;
 	panel.style.display = 'block';
 	// Store the marker reference for later use
@@ -593,8 +593,9 @@ async function showMarkerTolls(marker, panel) {
 		// Render tolls data with tabs
 		let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
 		html += `<span>Tolls Data: ${tollsData.length}</span>`;
+		html += `<span style="margin-top:6px;display:flex;gap:8px"><a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">properties</a></span>`;
 		html += `</div>`;
-		
+
 		if (Array.isArray(tollsData) && tollsData.length > 0) {
 			// Create tabs for each toll item
 			html += '<div style="display:flex;gap:1px;border-bottom:1px solid #ccc;margin-bottom:6px;flex-wrap:wrap">';
@@ -630,7 +631,6 @@ async function showMarkerTolls(marker, panel) {
 			html += '<div style="color:#666;font-size:12px;margin-top:4px">No tolls data found</div>';
 		}
 		
-		html += `<div style="margin-top:6px;display:flex;gap:8px"><a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">properties</a></div>`;
 		panel.innerHTML = html;
 		panel._showingProperties = false;
 		panel._tollsData = tollsData;
@@ -696,7 +696,7 @@ async function showTollboothMarkers(tollboothIds) {
 		});
 		if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
 		const data = await resp.json();
-		processMarkerResponse(data, "");
+		processMarkerResponse(data, "query", true);
 	} catch (err) {
 		statusEl.textContent = `Error: ${err.message}`;
 	}
@@ -724,21 +724,20 @@ async function showMarkerNeighbours(marker, panel) {
 		const neighboursData = await resp.json();
 
 		// show a simple panel and provide a back link to properties
-		// if (panel) {
-		// 	let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
-		// 	html += `<span>Neighbours: ${Array.isArray(neighboursData) ? neighboursData.length : 0}</span>`;
-		// 	html += `</div>`;
-		// 	html += `<div style="font-size:12px;margin-top:6px"><a href="#" class="back-to-props" style="text-decoration:underline;cursor:pointer;color:#0066cc">properties</a></div>`;
-		// 	panel.innerHTML = html;
-		// 	panel._currentMarker = marker;
-		// 	panel._showingProperties = false;
-		// 	const back = panel.querySelector('.back-to-props');
-		// 	if (back) back.addEventListener('click', (e) => { e.preventDefault(); showMarkerProps(marker); });
-		// }
-		console.log(neighboursData.length)
-
+		if (panel) {
+			let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
+			html += `<span>Neighbours: ${Array.isArray(neighboursData) ? neighboursData.length : 0}</span>`;
+			html += `<span style="font-size:12px;margin-top:6px"><a href="#" class="back-to-props" style="text-decoration:underline;cursor:pointer;color:#0066cc">properties</a></span>`;
+			html += `</div>`;
+			panel.innerHTML = html;
+			panel._currentMarker = marker;
+			panel._showingProperties = false;
+			const back = panel.querySelector('.back-to-props');
+			if (back) back.addEventListener('click', (e) => { e.preventDefault(); showMarkerProps(marker); });
+		}
+		
 		// Add neighbour markers to the map using the existing processor
-		try { processMarkerResponse(neighboursData, 'neighbours'); } catch (err) { console.warn('processMarkerResponse error', err); }
+		try { processMarkerResponse(neighboursData, 'neighbours', false); } catch (err) { console.warn('processMarkerResponse error', err); }
 	} catch (err) {
 		if (panel) panel.innerHTML = `<div style="color:#d9534f;font-size:12px">Error loading neighbours: ${escapeHtml(err.message)}</div>`;
 	}
@@ -810,7 +809,7 @@ function parseCoordItem(item) {
 }
 
 
-function addTbMarker(c, sourceLabel) {
+function addTbMarker(c) {
 	const marker = L.marker(
 		[c.lat, c.lng], 
 		{ 
@@ -819,7 +818,7 @@ function addTbMarker(c, sourceLabel) {
 		}
 	);
 	// attach original data to marker for use in the popup
-	marker.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, query: sourceLabel, tollbooth_id: c.tollbooth_id };
+	marker.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, tollbooth_id: c.tollbooth_id };
 	addInfoPopup(marker, moveOpt=false);
 	marker.addTo(_layers[_activeLayer]);
 	// show properties in QueryControl panel when marker is clicked
@@ -830,12 +829,14 @@ function addTbMarker(c, sourceLabel) {
 }
 
 
-function addMarkersFromCoords(coords, sourceLabel) {
+function addMarkersFromCoords(coords, sourceLabel, clearLayers) {
 	const markers = [];
-	_layers[_activeLayer].clearLayers();
+	if (clearLayers === true) {
+		_layers[_activeLayer].clearLayers();
+	}
 	for (const c of coords) {
 		if (!isValidLat(c.lat) || !isValidLng(c.lng)) continue;
-		const marker = addTbMarker(c, sourceLabel);
+		const marker = addTbMarker(c);
 		markers.push(marker);
 	}
 	if (markers.length) {
@@ -955,7 +956,7 @@ function attachPopupFormHandlers(popup, marker) {
 		marker.__data.lat = obj.lat;
 		marker.__data.lng = obj.lng;
 		obj.tollbooth_id = obj.tollbooth_id === "" ? null : obj.tollbooth_id;
-		const payload = { props: obj, source: marker.__data.source, query: marker.__data.query };
+		const payload = { props: obj, source: marker.__data.source };
 		console.log(payload);
 		if (status) status.textContent = 'Saved (client-side)';
 		try {
@@ -970,7 +971,7 @@ function attachPopupFormHandlers(popup, marker) {
 				status.textContent = 'Saved to server';
 				marker.__data.tollbooth_id = respData.tollbooth_id;
 				try { showMarkerProps(marker); } catch (err) { console.warn('showMarkerProps error', err); }
-				new_marker = addTbMarker(marker.__data, '');
+				new_marker = addTbMarker(marker.__data);
 				marker.closePopup();
 				addInfoPopup(new_marker, moveOpt=false);
 				if (_layers[_activeLayer].hasLayer(marker)) {
