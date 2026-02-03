@@ -402,11 +402,11 @@
 417,57,"acatlan ii",20.3734566760366,-103.576318332231,"open","jalisco","troncal",5,"toll","autopistas-sayula",,,
 418,155,"arenal",20.7788058243767,-103.662454176485,"open","jalisco","troncal",3,"toll","guadalajara-tepic",,,
 419,325,"chapala",20.3902079228279,-103.302166704701,"open","jalisco","troncal",5,"toll","guadalajara-tepic",,,
-420,123,"encarnacion de diaz",21.4896826931754,-102.243151412095,"open","jalisco","troncal",3,"toll","rco",,,
+420,123,"encarnacion de diaz",21.4896826931754,-102.243151412095,"open","jalisco","troncal",3,"toll","rco",,0,"out"
 421,114,"jalostotitlan",21.1174411420451,-102.45796734964,"open","jalisco","troncal",2,"toll","rco",,,
-422,114,"jalostotitlan",21.0300651135245,-102.555257440899,"open","jalisco","entronque",1,"toll","rco",,,
+422,114,"san miguel el alto",21.0300651135245,-102.555257440899,"open","jalisco","entronque",1,"toll","rco",,0,"out"
 423,114,"jalostotitlan",21.1175612501846,-102.458109855652,"open","jalisco","troncal",2,"toll","rco",,,
-424,114,"jalostotitlan",21.03108707336,-102.554575452069,"open","jalisco","entronque",1,"toll","rco",,,
+424,114,"san miguel el alto",21.03108707336,-102.554575452069,"open","jalisco","entronque",1,"toll","rco",,0,"in"
 426,114,"jalostotitlan",21.1190454623828,-102.455756387886,"open","jalisco","entronque",1,"toll","rco",,,
 427,114,"jalostotitlan",21.120225227194,-102.455586750846,"open","jalisco","entronque",1,"toll","rco",,,
 428,114,"jalostotitlan",21.2256710279328,-102.313630185093,"open","jalisco","entronque",2,"toll","rco",,,
@@ -434,10 +434,10 @@
 452,,"tequila",20.8542801172832,-103.860937356949,"open","jalisco","entronque",2,"toll","guadalajara-tepic",,,
 453,120,"union de san antonio",21.2513231348003,-101.95086971997,"open","jalisco","entronque",1,"toll","rco",,,
 454,120,"union de san antonio",21.2551379987838,-101.949494090351,"open","jalisco","entronque",1,"toll","rco",,,
-455,1054,"zapotlan del rey",20.4676201332687,-102.908391133237,"open","jalisco","entronque",1,"toll","rco",,,
-456,1054,"zapotlan del rey",20.4676324670294,-102.908337157313,"open","jalisco","entronque",1,"mixed","rco",,,
-457,1054,"zapotlan del rey",20.4669611520111,-102.911553270068,"open","jalisco","entronque",1,"ticket","rco",,,
-458,1054,"zapotlan del rey",20.4670239742926,-102.911513036933,"open","jalisco","entronque",1,"toll","rco",,,
+455,1054,"zapotlan del rey",20.4676201332687,-102.908391133237,"open","jalisco","entronque",1,"toll","rco",,0,"in"
+456,1054,"zapotlan del rey",20.4676324670294,-102.908337157313,"open","jalisco","entronque",1,"toll","rco",,0,"out"
+457,1054,"zapotlan del rey",20.4669611520111,-102.911553270068,"open","jalisco","entronque",1,"ticket","rco",,0,"in"
+458,1054,"zapotlan del rey",20.4670239742926,-102.911513036933,"open","jalisco","entronque",1,"toll","rco",,,"out"
 459,159,"zapotlanejo",20.6157241999414,-103.08930337429,"open","jalisco","troncal",3,"toll","rco",,,
 460,159,"zapotlanejo (arroyo de enmedio)",20.6154783275444,-103.242773705162,"open","jalisco","entronque",1,"toll","rco",,,
 461,159,"zapotlanejo (arroyo de enmedio)",20.6158133521432,-103.242815569957,"open","jalisco","entronque",1,"toll","rco",,,
@@ -453,10 +453,10 @@
 471,933,"capula (cuto)",19.7107915918247,-101.337177729773,"open","michoacan","troncal",2,"toll","autopistas-michoacan",,,
 472,927,"chapultepec morelia",19.5455315573318,-101.535878425306,"open","michoacan","troncal",2,"toll","autopistas-michoacan",,,
 473,449,"contepec",19.8757236036103,-100.188107110493,"open","michoacan","troncal",5,"toll","mexico-michoacan",,,
-474,516,"cuitzeo",19.9683158689496,-101.162069918484,"open","michoacan","entronque",1,"toll","camssa",,,
-475,516,"cuitzeo",19.968860443429,-101.159671263411,"open","michoacan","entronque",1,"ticket","camssa",,,
-476,516,"cuitzeo",19.9683742632108,-101.161970958961,"open","michoacan","entronque",1,"ticket","camssa",,,
-477,516,"cuitzeo",19.968928509069,-101.159745024158,"open","michoacan","entronque",1,"toll","camssa",,,
+474,516,"cuitzeo",19.9683158689496,-101.162069918484,"open","michoacan","entronque",1,"toll","camssa",,0,"in"
+475,516,"cuitzeo",19.968860443429,-101.159671263411,"open","michoacan","entronque",1,"toll","camssa",,0,"out"
+476,516,"cuitzeo",19.9683742632108,-101.161970958961,"open","michoacan","entronque",1,"ticket","camssa",,0,"out"
+477,516,"cuitzeo",19.968928509069,-101.159745024158,"open","michoacan","entronque",1,"toll","camssa",,0,"in"
 479,146,"ecuandureo",20.1750102878037,-102.191314254631,"open","michoacan","troncal",5,"toll","rco",,,
 480,146,"ecuandureo",20.1748969940368,-102.191319199161,"open","michoacan","entronque",1,"toll","rco",,,
 481,146,"ecuandureo-vista hermosa",20.269198485915,-102.443130756586,"open","michoacan","entronque",2,"toll","rco",,,
@@ -490,10 +490,10 @@
 510,106,"aeropuerto",18.8023502070447,-99.2212930395253,"open","morelos","entronque",2,"toll","capufe",,,
 511,101,"alpuyeca (puente de ixtla)",18.7224974495408,-99.2599268571526,"open","morelos","entronque",2,"toll","capufe",,,
 512,101,"alpuyeca balnearios",18.7238220772148,-99.2602622509003,"open","morelos","entronque",2,"toll","capufe",,,
-513,558,"el higueron",18.6527103962021,-99.0087997913361,"open","morelos","troncal",2,"toll","pinfra",,,
-514,558,"el higueron",18.6526233086585,-99.0088059643153,"open","morelos","entronque",2,"toll","pinfra",,,
-516,558,"el higueron",18.652765075251,-99.0016987637839,"open","morelos","entronque",1,"toll","pinfra",,,
-517,558,"el higueron",18.6523970341345,-99.0012437005927,"open","morelos","entronque",1,"toll","pinfra",,,
+513,558,"el higueron",18.6527103962021,-99.0087997913361,"open","morelos","troncal",2,"toll","pinfra",,0,"io"
+514,558,"el higueron",18.6526233086585,-99.0088059643153,"open","morelos","troncal",2,"toll","pinfra",,0,"io"
+516,558,"el higueron",18.652765075251,-99.0016987637839,"open","morelos","entronque",1,"toll","pinfra",,0,"out"
+517,558,"el higueron",18.6523970341345,-99.0012437005927,"open","morelos","entronque",1,"toll","pinfra",,0,"in"
 518,107,"emiliano zapata",18.838094911995,-99.2169977047202,"open","morelos","troncal",2,"toll","capufe",,,
 519,107,"emiliano zapata",18.8381101432094,-99.217373213978,"open","morelos","troncal",2,"toll","capufe",,,
 520,107,"emiliano zapata",18.8383843048332,-99.2175448753529,"open","morelos","entronque",3,"toll","capufe",,,
@@ -1371,3 +1371,4 @@
 1567,70,"Polotitlán",20.2252293418505,-99.8106461763382,"open","edomx","entronque",1,"toll","capufe",,0,
 1568,592,"san miguel",20.5809626320634,-100.795385508933,"open","guanajuato","troncal",2,"toll","bicentenario","bypass",0,
 1569,,"tepatitlan",20.824515059312883,-102.79489338397981,"open","jalisco","troncal",4,"toll","rco",,1,"in"
+1570,,"encarnacion de diaz",21.489601052625215,-102.24327564239502,"open","jalisco","troncal",5,"toll","rco",,0,"in"
