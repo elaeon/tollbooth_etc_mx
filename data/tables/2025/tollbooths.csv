@@ -683,7 +683,7 @@
 715,486,"cerritos (san luis potosi-cemosa)",22.4760505007498,-100.386269259921,"open","san luis potosi","entronque",1,"toll","coinsan",,0,"out"
 716,486,"cerritos (san luis-cerritos-san luis)",22.4403335038242,-100.33457103881,"open","san luis potosi","entronque",1,"toll","coinsan",,0,"out"
 717,486,"cerritos (san luis-charco blanco-san luis)",22.4418256752409,-100.339943611588,"open","san luis potosi","entronque",1,"toll","coinsan",,0,"out"
-718,486,"cerritos (san luis-rio verde)",22.4288360748582,-100.320437550545,"open","san luis potosi","troncal",3,"toll","coinsan",,,
+718,486,"cerritos (san luis-rio verde)",22.4288360748582,-100.320437550545,"open","san luis potosi","troncal",3,"toll","coinsan",,0,"io"
 719,493,"la calera",21.9042000381491,-98.9555271859013,"open","san luis potosi","troncal",2,"toll","opasa","bypass",,
 720,493,"la calera",21.9055038647276,-98.9528770798643,"open","san luis potosi","entronque",1,"toll","opasa","bypass",,
 721,493,"la calera",21.9023034329865,-98.9529535098043,"open","san luis potosi","entronque",1,"toll","opasa","bypass",,
@@ -1133,7 +1133,7 @@
 1228,,"libramiento matehuala",23.6641397446988,-100.607154965401,"open","san luis potosi","troncal",3,"toll","omega",,,
 1229,,"la hincada buenavista",22.6301335801966,-100.113258361816,"open","san luis potosi","troncal",3,"toll","gipsa",,,
 1230,,"ventura-el peyote",22.5207037630913,-100.656191110611,"open","san luis potosi","troncal",6,"toll","libramiento-slp",,,
-1231,,"cerritos (san luis-rio verde)",22.4289253300248,-100.32036781311,"open","san luis potosi","troncal",2,"toll","coinsan",,,
+1231,,"cerritos (san luis-rio verde)",22.4289253300248,-100.32036781311,"open","san luis potosi","troncal",2,"toll","coinsan",,0,"io"
 1232,,"cerritos (cerritos-rioverde)",22.4276559178152,-100.318538546562,"open","san luis potosi","entronque",1,"toll","coinsan",,,
 1233,,"libramiento arco norte san luis potosi",22.2997627858729,-100.971297025681,"open","san luis potosi","troncal",2,"toll","libramiento-slp","bypass",,
 1234,,"libramiento poniente san luis potosi",22.1635653657783,-101.079341769218,"open","san luis potosi","troncal",2,"toll","libramiento-slp","bypass",,
