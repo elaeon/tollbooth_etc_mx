@@ -508,21 +508,21 @@
 529,24,"tepoztlan",18.9870391283263,-99.112506135935,"open","morelos","troncal",9,"toll","capufe",,,
 530,224,"tepoztlan bis",18.9847394621035,-99.1105872756711,"open","morelos","entronque",3,"toll","capufe",,,
 531,195,"tres marias",19.0563699107673,-99.2410805536357,"open","morelos","entronque",1,"toll","capufe",,,
-532,105,"xochitepec",18.7750056028702,-99.2253398895264,"open","morelos","entronque",1,"toll","capufe",,,
-533,402,"acaponeta",22.4538685583001,-105.424741222489,"open","nayarit","troncal",5,"toll","mazatlan-culiacan",,,
-534,402,"acaponeta",22.4540981887947,-105.418787977671,"open","nayarit","entronque",2,"toll","mazatlan-culiacan",,,
+532,105,"xochitepec",18.7750056028702,-99.2253398895264,"open","morelos","entronque",1,"toll","capufe",,0,"in"
+533,402,"acaponeta",22.4538685583001,-105.424741222489,"open","nayarit","troncal",2,"toll","mazatlan-culiacan",,0,"io"
+534,402,"acaponeta",22.4540981887947,-105.418787977671,"open","nayarit","entronque",1,"toll","mazatlan-culiacan",,0,"in"
 535,581,"amado nervo",21.0890512256896,-104.717122918588,"open","nayarit","troncal",3,"toll","ocacsa",,,
 536,581,"amado nervo",21.0889075962791,-104.717287248551,"open","nayarit","troncal",3,"toll","ocacsa",,,
-537,520,"bucerias",20.7813771896944,-105.370039154327,"open","nayarit","troncal",4,"toll","lasvaras-vallarta",,,
-538,521,"bucerias",20.7750791386472,-105.374137759209,"open","nayarit","troncal",4,"ticket","lasvaras-vallarta",,,
+537,520,"bucerias",20.7813771896944,-105.370039154327,"open","nayarit","troncal",4,"toll","lasvaras-vallarta",,,"in"
+538,521,"bucerias",20.7750791386472,-105.374137759209,"open","nayarit","troncal",4,"toll","lasvaras-vallarta",,,"out"
 539,582,"compostela",21.2044280194314,-104.886415600777,"open","nayarit","troncal",1,"toll","ocacsa",,,
 540,53,"compostela",21.2294719577148,-104.88745147168,"open","nayarit","troncal",2,"toll","capufe",,,
 541,401,"estacion ruiz",21.9518374947628,-105.116023421288,"open","nayarit","troncal",2,"toll","mazatlan-culiacan",,,
 542,401,"estacion ruiz",21.9530887161182,-105.120887358763,"open","nayarit","entronque",1,"toll","mazatlan-culiacan",,,
-543,469,"florida",20.9740127004325,-105.303971171379,"open","nayarit","troncal",2,"ticket","lasvaras-vallarta",,,
+543,469,"florida",20.9740127004325,-105.303971171379,"open","nayarit","entronque",2,"ticket","lasvaras-vallarta",,,"out"
 544,446,"la cantera",21.4984706876142,-104.813325405121,"open","nayarit","troncal",3,"toll","guadalajara-tepic",,,
-545,406,"la peñita",21.0663648659723,-105.218102931976,"open","nayarit","troncal",3,"toll","lasvaras-vallarta",,,
-546,406,"la peñita",21.0664512158638,-105.218399624817,"open","nayarit","troncal",1,"ticket","lasvaras-vallarta",,,
+545,406,"la peñita",21.0663648659723,-105.218102931976,"open","nayarit","troncal",3,"toll","lasvaras-vallarta",,,"io"
+546,406,"la peñita",21.0664512158638,-105.218399624817,"open","nayarit","troncal",4,"ticket","lasvaras-vallarta",,,"io"
 547,407,"san blas",21.5073447727133,-105.201060175896,"open","nayarit","troncal",3,"toll","rco",,,
 548,157,"santa maria del oro",21.3279962843704,-104.663201357681,"open","nayarit","entronque",1,"toll","guadalajara-tepic",,,
 549,157,"santa maria del oro",21.3270170496967,-104.664832949638,"open","nayarit","entronque",1,"toll","guadalajara-tepic",,,
@@ -533,8 +533,8 @@
 554,404,"trapichillo bis",21.5608137776931,-104.967873156035,"open","nayarit","entronque",2,"toll","tepic-mazatlan",,,
 555,404,"trapichillo bis",21.5606206670508,-104.971054413273,"open","nayarit","entronque",2,"toll","tepic-mazatlan",,,
 556,404,"trapichillo bis",21.5621718288267,-104.970454218747,"open","nayarit","entronque",2,"toll","tepic-mazatlan",,,
-557,468,"vallarta",20.7797130205773,-105.253376338729,"open","nayarit","troncal",2,"toll","lasvaras-vallarta",,,
-558,468,"vallarta",20.7798839334425,-105.253394850539,"open","nayarit","troncal",2,"ticket","lasvaras-vallarta",,,
+557,468,"vallarta",20.7797130205773,-105.253376338729,"open","nayarit","troncal",2,"toll","lasvaras-vallarta",,,"out"
+558,468,"vallarta",20.7798839334425,-105.253394850539,"open","nayarit","troncal",2,"ticket","lasvaras-vallarta",,,"in"
 559,409,"yago",21.8437868061645,-105.085358301373,"open","nayarit","entronque",1,"toll","mazatlan-culiacan",,,
 560,409,"yago",21.8446683465271,-105.084906059695,"open","nayarit","entronque",1,"toll","mazatlan-culiacan",,,
 561,409,"yago",21.8452244224306,-105.086524785061,"open","nayarit","entronque",1,"toll","mazatlan-culiacan",,,
@@ -1047,8 +1047,8 @@
 1098,,"Río Remedios",19.5043003510874,-99.078026797724,"open","edomx","troncal",2,"etc","ausn",,,
 1099,,"Rioverde-la pila",22.1268119812012,-100.822364807129,"open","san luis potosi","entronque",1,"toll","libramiento-slp",,,
 1100,,"Rioverde-la pila",22.1267596756841,-100.822356369236,"open","san luis potosi","entronque",1,"toll","libramiento-slp",,,
-1101,,"El Capomo - La Peñita",21.0704846748855,-105.217637969041,"open","nayarit","entronque",2,"toll","lasvaras-vallarta",,,
-1102,,"El Capomo - La Peñita",21.0701217651367,-105.216911315918,"open","nayarit","entronque",2,"toll","lasvaras-vallarta",,,
+1101,,"El Capomo - La Peñita",21.0704846748855,-105.217637969041,"open","nayarit","entronque",2,"toll","lasvaras-vallarta",,,"out"
+1102,,"El Capomo - La Peñita",21.0701217651367,-105.216911315918,"open","nayarit","entronque",2,"toll","lasvaras-vallarta",,,"in"
 1103,,"Tepoztlán B",18.9846782684326,-99.1070556640625,"open","morelos","entronque",3,"toll","capufe",,,
 1104,,"Tepoztlán A",18.9841532019227,-99.109198411567,"open","morelos","entronque",2,"ticket","capufe",,,
 1105,,"bosque real 2-e",19.4214882554875,-99.2995043690689,"open","edomx","entronque",3,"toll","chamapa-laventa",,,
@@ -1161,7 +1161,7 @@
 1254,,"santa maria del oro",21.3282113426102,-104.664500355721,"closed","nayarit","troncal",6,"toll","guadalajara-tepic",,,
 1255,,"compostela",21.2292520113666,-104.88744020462,"open","nayarit","troncal",2,"toll","capufe",,,
 1256,,"compostela",21.2044130157566,-104.88629758358,"open","nayarit","troncal",2,"toll","ocacsa",,,
-1258,,"florida",20.9739425745966,-105.304030179977,"open","nayarit","troncal",1,"ticket","lasvaras-vallarta",,,
+1258,,"florida",20.9739425745966,-105.304030179977,"open","nayarit","entronque",2,"ticket","lasvaras-vallarta",,,"in"
 1264,,"tequila",20.8541447665251,-103.861189484596,"open","jalisco","entronque",1,"toll","guadalajara-tepic",,,
 1265,,"arenal",20.7786803135959,-103.662534356117,"open","jalisco","troncal",3,"toll","guadalajara-tepic",,,
 1266,,"zapotlanejo (la joya)",20.6046075295309,-103.138811588287,"closed","jalisco","troncal",3,"toll","rco",,,
@@ -1239,7 +1239,7 @@
 1354,,"oacalco",18.9304417828539,-99.0260463953018,"open","morelos","entronque",2,"toll","capufe",,,
 1356,,"aeropuerto",18.8022571838482,-99.2212843894959,"open","morelos","entronque",2,"toll","capufe",,,
 1357,,"aeropuerto",18.8026634356978,-99.2199110984802,"open","morelos","entronque",1,"toll","capufe",,,
-1358,,"xochitepec",18.7749852869648,-99.2252272367477,"open","morelos","entronque",1,"toll","capufe",,,
+1358,,"xochitepec",18.7749852869648,-99.2252272367477,"open","morelos","entronque",1,"toll","capufe",,0,"out"
 1359,,"alpuyeca (puente de ixtla)",18.7223690432903,-99.2599457502365,"open","morelos","entronque",1,"toll","capufe",,,
 1360,,"ing. francisco velazco duran",18.6984125061831,-99.2779594659805,"open","morelos","troncal",4,"toll","capufe",,,
 1362,,"nuevo necaxa",20.1347231448582,-98.1231987476349,"open","hidalgo","entronque",1,"toll","golfo-centro",,,
@@ -1372,3 +1372,5 @@
 1568,592,"san miguel",20.5809626320634,-100.795385508933,"open","guanajuato","troncal",2,"toll","bicentenario","bypass",0,
 1569,,"tepatitlan",20.824515059312883,-102.79489338397981,"open","jalisco","troncal",4,"toll","rco",,1,"in"
 1570,,"encarnacion de diaz",21.489601052625215,-102.24327564239502,"open","jalisco","troncal",5,"toll","rco",,0,"in"
+1571,,"acaponeta",22.45378065959675,-105.42484223842622,"open","nayarit","troncal",3,"toll","mazatlan-culiacan",,0,"io"
+1572,,"acaponeta",22.454013672730703,-105.41886627674104,"open","nayarit","entronque",1,"toll","mazatlan-culiacan",,0,"out"
