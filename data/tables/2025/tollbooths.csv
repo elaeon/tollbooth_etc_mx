@@ -16,8 +16,8 @@
 15,419,"libramiento de mexicalli",32.5335493209816,-115.420753955841,"open","baja california","troncal",2,"toll","omega",,,
 16,419,"libramiento de mexicalli",32.5328277280155,-115.409823102157,"open","baja california","entronque",1,"toll","omega",,,
 17,419,"libramiento de mexicalli",32.5336157925707,-115.408764213555,"open","baja california","entronque",1,"toll","omega",,,
-18,189,"nodo popotla",32.2838396578447,-117.029616942825,"open","baja california","entronque",3,"toll","capufe",,,
-19,189,"nodo popotla",32.2837885569719,-117.030571314363,"open","baja california","entronque",2,"toll","capufe",,,
+18,189,"nodo popotla",32.2838396578447,-117.029616942825,"open","baja california","entronque",3,"toll","capufe",,0,"out"
+19,189,"nodo popotla",32.2837885569719,-117.030571314363,"open","baja california","entronque",2,"toll","capufe",,0,"in"
 20,418,"paso del aguila",32.527353,-116.692395,"open","baja california","entronque",1,"toll","tijuana-tecate",,,
 21,467,"paso del aguila bis",32.5258551031647,-116.690267818002,"open","baja california","entronque",2,"toll","tijuana-tecate",,,
 22,34,"playas de tijuana",32.5141316332033,-117.109403014183,"open","baja california","troncal",5,"toll","capufe",,,
@@ -111,9 +111,9 @@
 113,482,"cuencame",24.9816672268594,-103.735281229019,"open","durango","troncal",3,"toll","acsa",,,
 114,480,"durango",24.1317837009969,-104.534118175507,"open","durango","troncal",3,"toll","acsa",,,
 115,198,"durango capufe",24.00517,-104.734501,"open","durango","troncal",4,"toll","capufe","bypass",,
-117,483,"leon guzman",25.5194534454728,-103.639318424487,"open","durango","entronque",2,"toll","acsa",,,
-118,483,"leon guzman",25.52065277795,-103.639694771618,"open","durango","entronque",1,"toll","acsa",,,
-119,483,"leon guzman",25.5195498106948,-103.639733039609,"open","durango","entronque",2,"toll","acsa",,,
+117,483,"leon guzman",25.5194534454728,-103.639318424487,"open","durango","entronque",2,"toll","acsa",,,"out"
+118,483,"leon guzman",25.52064437177546,-103.63961219787599,"open","durango","troncal",4,"toll","acsa",,,"io"
+119,483,"leon guzman",25.5195498106948,-103.639733039609,"open","durango","entronque",2,"toll","acsa",,,"in"
 120,96,"llano grande",23.8708050159367,-105.191435760013,"open","durango","troncal",3,"toll","capufe",,,
 121,481,"yerbanis",24.730753,-103.861954,"open","durango","troncal",3,"toll","acsa",,,
 122,316,"a-32 bis",19.7042822667285,-99.0886173858502,"open","edomx","entronque",6,"toll","cem",,1,
@@ -878,17 +878,17 @@
 919,479,"tintal",20.9000178955207,-87.435041194702,"open","quintana roo","troncal",3,"toll","mayab",,0,"io"
 920,479,"cedral",20.8956916755645,-87.4408962065033,"open","quintana roo","entronque",2,"ticket","mayab",,0,"in"
 921,479,"cedral",20.8957046674953,-87.4408023373108,"open","quintana roo","entronque",2,"toll","mayab",,0,"out"
-922,1042,"calera",22.9648279325732,-102.713780994946,"open","zacatecas","entronque",1,"toll","profrezac",,,
-923,1042,"calera",22.9536719103226,-102.691890617807,"open","zacatecas","entronque",1,"toll","profrezac",,,
-924,1042,"calera",22.9418598227077,-102.689815163612,"open","zacatecas","troncal",3,"toll","profrezac",,,
-925,1042,"calera",22.9531280517323,-102.692537658216,"open","zacatecas","entronque",1,"toll","profrezac",,,
+922,1042,"calera",22.9648279325732,-102.713780994946,"open","zacatecas","entronque",1,"toll","profrezac",,0,"in"
+923,1042,"calera",22.9536719103226,-102.691890617807,"open","zacatecas","entronque",1,"toll","profrezac",,,"in"
+924,1042,"calera",22.9418598227077,-102.689815163612,"open","zacatecas","troncal",3,"toll","profrezac",,,"io"
+925,1042,"calera",22.9531280517323,-102.692537658216,"open","zacatecas","entronque",1,"toll","profrezac",,,"out"
 926,1041,"mofin chavez",23.1779428295418,-102.828651666641,"open","zacatecas","troncal",2,"toll","profrezac",,,
-927,1043,"vetagrande",22.8470756313888,-102.563365101814,"open","zacatecas","troncal",2,"toll","profrezac",,,
-928,1043,"vetagrande aux.1",22.8467291794546,-102.567022706917,"open","zacatecas","entronque",1,"toll","profrezac",,,
-929,1043,"vetagrande aux.2",22.8463761552787,-102.566999836626,"open","zacatecas","entronque",1,"toll","profrezac",,,
+927,1043,"vetagrande",22.8470756313888,-102.563365101814,"open","zacatecas","troncal",2,"toll","profrezac",,,"io"
+928,1043,"vetagrande aux.1",22.8467291794546,-102.567022706917,"open","zacatecas","entronque",1,"toll","profrezac",,,"in"
+929,1043,"vetagrande aux.2",22.8463761552787,-102.566999836626,"open","zacatecas","entronque",1,"toll","profrezac",,,"out"
 930,87,"zacatecas",22.710779523705,-102.44886864138,"open","zacatecas","troncal",2,"toll","capufe",,,
-931,189,"nodo popotla",32.2856497814063,-117.032710783977,"open","baja california","entronque",2,"toll","capufe",,,
-932,483,"León Guzmán",25.5222339630127,-103.639106750488,"open","durango","entronque",1,"toll","acsa",,,
+931,189,"nodo popotla",32.2856497814063,-117.032710783977,"open","baja california","entronque",2,"toll","capufe",,0,"in"
+932,483,"León Guzmán",25.5222339630127,-103.639106750488,"open","durango","entronque",1,"toll","acsa",,,"in"
 933,,"Guanajuato",20.9824302713286,-101.290116417182,"open","guanajuato","troncal",5,"toll","cvi",,,
 934,421,"libramiento matehuala",23.6637767620676,-100.608342811911,"closed","san luis potosi","entronque",2,"toll","omega",,,
 935,421,"libramiento matehuala",23.6641489489375,-100.606240971637,"closed","san luis potosi","entronque",2,"toll","omega",,,
@@ -1100,8 +1100,8 @@
 1191,,"nuevo progreso",26.0370997263295,-97.9546058177948,"open","tamaulipas","entronque",1,"toll","opan",,,
 1192,,"libramiento poniente tampico",22.2752671480275,-97.8935104608536,"open","tamaulipas","troncal",2,"toll","capufe","bypass",,
 1194,,"mofin chavez",23.1779033780211,-102.828753590584,"open","zacatecas","troncal",2,"toll","profrezac",,,
-1196,,"calera",22.9418301821211,-102.689976096153,"open","zacatecas","troncal",3,"toll","profrezac",,,
-1197,,"vetagrande",22.8469619296993,-102.563343644142,"open","zacatecas","troncal",2,"toll","profrezac",,,
+1196,,"calera",22.9418301821211,-102.689976096153,"open","zacatecas","troncal",3,"toll","profrezac",,,"io"
+1197,,"vetagrande",22.8469619296993,-102.563343644142,"open","zacatecas","troncal",2,"toll","profrezac",,,"io"
 1200,,"zacatecas",22.7107682069492,-102.448727488518,"open","zacatecas","troncal",2,"toll","capufe",,,
 1201,,"puente san miguel",25.9762557716335,-109.033416509628,"open","sinaloa","troncal",2,"toll","orler","bridge",,
 1202,,"puente nacional sinaloa",25.5128113582221,-108.347693681717,"open","sinaloa","troncal",3,"toll","capufe","bridge",,
@@ -1123,7 +1123,7 @@
 1220,,"durango",24.1317200580737,-104.534021615982,"open","durango","troncal",3,"toll","acsa",,,
 1221,,"yerbanis",24.7306607964279,-103.861801028252,"open","durango","troncal",3,"toll","acsa",,,
 1222,,"cuencame",24.9816477767019,-103.73514175415,"open","durango","troncal",3,"toll","acsa",,,
-1223,,"leon guzman",25.5206395307631,-103.639365434647,"open","durango","troncal",3,"toll","acsa",,,
+1223,,"leon guzman",25.5206395307631,-103.639365434647,"open","durango","troncal",3,"toll","acsa",,,"io"
 1224,,"bermejillo",25.9238044255058,-103.622092008591,"open","durango","troncal",2,"toll","capufe",,,
 1225,,"ceballos",26.5865363343361,-104.05789732933,"open","durango","troncal",2,"toll","capufe",,,
 1228,,"libramiento matehuala",23.6641397446988,-100.607154965401,"open","san luis potosi","troncal",3,"toll","omega",,,
