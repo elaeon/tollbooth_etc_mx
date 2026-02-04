@@ -763,13 +763,13 @@
 795,181,"malpasito",17.3482778914197,-93.5869717597962,"open","tabasco","entronque",1,"toll","capufe",,,"out"
 796,181,"malpasito",17.3491519391501,-93.5855207083418,"open","tabasco","entronque",1,"toll","capufe",,,"in"
 797,181,"malpasito",17.3490920316329,-93.586397767067,"open","tabasco","troncal",3,"toll","capufe",,,"io"
-798,227,"nacajuca",18.0765918888967,-92.9367399215698,"open","tabasco","entronque",1,"toll","oav",,,
-800,227,"nacajuca",18.0761278206621,-92.9306727647782,"open","tabasco","troncal",5,"toll","oav",,,
-801,227,"nacajuca",18.0764898959833,-92.936761379242,"open","tabasco","entronque",1,"toll","oav",,,
+798,227,"nacajuca",18.0765918888967,-92.9367399215698,"open","tabasco","entronque",1,"toll","oav",,,"out"
+800,227,"nacajuca",18.0761278206621,-92.9306727647782,"open","tabasco","troncal",5,"toll","oav",,,"io"
+801,227,"nacajuca",18.0764898959833,-92.936761379242,"open","tabasco","entronque",1,"toll","oav",,,"in"
 803,176,"sanchez magallanes",18.0299516774441,-93.8131170158558,"open","tabasco","entronque",1,"toll","capufe",,,
 804,176,"sanchez magallanes",18.0316145947275,-93.8136802797191,"open","tabasco","entronque",1,"toll","capufe",,,
 805,176,"sanchez magallanes",18.0306329847151,-93.8129371404648,"open","tabasco","troncal",3,"toll","capufe",,,
-806,39,"usumacinta",17.8598541170046,-91.7836836866297,"open","tabasco","troncal",2,"toll","capufe","bridge",,
+806,39,"usumacinta",17.8598541170046,-91.7836836866297,"open","tabasco","troncal",2,"toll","capufe","bridge",,"in"
 807,30,"camargo",26.3624441099892,-98.8064511355999,"open","tamaulipas","troncal",3,"toll","capufe","International-bridge",,
 808,171,"ignacio zaragoza (los tomates)",25.8742172236398,-97.4746700487261,"open","tamaulipas","troncal",8,"toll","opan","International-bridge",,
 809,74,"juarez-lincon",27.4982973897018,-99.5025443162606,"open","tamaulipas","troncal",4,"toll","capufe","International-bridge",,
@@ -778,7 +778,7 @@
 812,112,"libramiento poniente tampico",22.276503353088,-97.8933317432988,"open","tamaulipas","entronque",1,"toll","capufe","bypass",,
 813,112,"libramiento poniente tampico",22.2753118248297,-97.8933924436569,"open","tamaulipas","troncal",2,"toll","capufe","bypass",,
 814,15,"lucio blanco",25.9876830162135,-98.4316271732293,"open","tamaulipas","troncal",4,"toll","opan",,,
-815,20,"matamoros",25.8914246296093,-97.5039375531113,"open","tamaulipas","troncal",3,"toll","copa","International-bridge",,
+815,20,"puente viejo B&M",25.8914246296093,-97.5039375531113,"open","tamaulipas","troncal",3,"toll","copa","International-bridge",,"in"
 816,31,"miguel aleman",26.4028552196051,-99.0206931196858,"open","tamaulipas","troncal",2,"toll","capufe","International-bridge",,
 817,938,"nuevo laredo pinfra",27.2689113996388,-99.6152633428574,"open","tamaulipas","troncal",5,"toll","opan",,,
 818,170,"nuevo progreso",26.0371382861894,-97.9545307159424,"open","tamaulipas","entronque",1,"toll","opan",,,
@@ -808,17 +808,17 @@
 843,431,"sanctorum",19.5127146160511,-98.4688176945708,"open","tlaxcala","entronque",2,"toll","arconorte",,0,"in"
 844,431,"sanctorum",19.5165557792904,-98.469363852306,"open","tlaxcala","entronque",3,"toll","arconorte",,0,"in"
 845,431,"sanctorum",19.515585183553,-98.4690030613379,"open","tlaxcala","entronque",2,"toll","arconorte",,0,"out"
-846,1018,"zacatelco",19.2143367626985,-98.2667667599111,"open","tlaxcala","troncal",2,"toll","pinfra",,,
-847,1018,"zacatelco",19.213652577941,-98.2662670885483,"open","tlaxcala","troncal",2,"toll","pinfra",,,
-848,1018,"zacatelco",19.2129772653421,-98.2658054986939,"open","tlaxcala","troncal",2,"toll","pinfra",,,
-849,1018,"zacatelco",19.21155439276,-98.2649139557129,"open","tlaxcala","troncal",4,"toll","pinfra",,,
-850,1018,"zacatelco ii",19.2114511456844,-98.2631295544077,"open","tlaxcala","entronque",3,"toll","pinfra",,,
+846,1018,"zacatelco",19.2143367626985,-98.2667667599111,"open","tlaxcala","troncal",2,"toll","pinfra",,,"io"
+847,1018,"zacatelco",19.213652577941,-98.2662670885483,"open","tlaxcala","troncal",2,"toll","pinfra",,,"io"
+848,1018,"zacatelco",19.2129772653421,-98.2658054986939,"open","tlaxcala","troncal",2,"toll","pinfra",,,"io"
+849,1018,"zacatelco",19.21155439276,-98.2649139557129,"open","tlaxcala","troncal",4,"toll","pinfra",,,"io"
+850,1018,"zacatelco ii",19.211465920521547,-98.26311349868776,"open","tlaxcala","entronque",1,"toll","pinfra",,0,"in"
 851,119,"acayucan (sayula)",17.9097424926721,-94.9373061583801,"open","veracruz","entronque",2,"toll","capufe",,,
 852,119,"acayucan (sayula)",17.910803786741,-94.9368171505412,"open","veracruz","entronque",2,"toll","capufe",,,
 853,119,"acayucan (sayula)",17.9100710030995,-94.9372923374176,"open","veracruz","troncal",3,"toll","capufe",,,
 854,119,"acayucan (sayula)",17.9095668896522,-94.9378505668816,"open","veracruz","entronque",1,"toll","capufe",,,
 855,428,"allende",18.1471669548684,-94.3969291448593,"open","veracruz","troncal",4,"toll","tunel-coatzacoalcos","tunnel",,
-856,22,"alvarado",18.7698984768342,-95.7445876024632,"open","veracruz","troncal",2,"toll","capufe","bridge",,
+856,22,"alvarado",18.7698984768342,-95.7445876024632,"open","veracruz","troncal",2,"toll","capufe","bridge",,"in"
 857,990,"amozoc-perote (perote)",19.5518035851268,-97.2895397511599,"open","veracruz","troncal",3,"toll","gana",,,
 858,457,"antigua",19.3203924598105,-96.3107174634934,"open","veracruz","troncal",4,"toll","cardel-veracruz",,,
 859,118,"cosamaloapan",18.335130879313,-95.8222496509552,"open","veracruz","troncal",3,"toll","capufe",,,
@@ -836,10 +836,8 @@
 872,584,"miahuapan",20.6109468726598,-97.6145598484767,"open","veracruz","troncal",3,"toll","auneti",,,
 873,461,"miradores",19.4744265227846,-96.7753511667252,"open","veracruz","troncal",4,"toll","copexa",,,
 874,556,"naranjos",21.3243065152292,-97.6262173229553,"open","veracruz","entronque",1,"toll","autopista-tuxpan-tampico",,,
-875,556,"naranjos",21.3270017490051,-97.6275208669197,"open","veracruz","entronque",2,"toll","autopista-tuxpan-tampico",,,
-876,556,"naranjos",21.3271569673607,-97.6272958517075,"open","veracruz","troncal",2,"toll","autopista-tuxpan-tampico",,,
 877,556,"naranjos",21.3243786667974,-97.6251432274458,"open","veracruz","entronque",1,"toll","autopista-tuxpan-tampico",,,
-878,556,"naranjos",21.3272198396034,-97.627142719318,"open","veracruz","entronque",2,"toll","autopista-tuxpan-tampico",,,
+878,556,"naranjos",21.3271919467559,-97.62723684310915,"open","veracruz","entronque",4,"toll","autopista-tuxpan-tampico",,,"io"
 879,33,"nautla",20.2102384016123,-96.778736114502,"open","veracruz","troncal",1,"toll","capufe","bridge",,
 880,117,"paso del toro",19.0847004177133,-96.1968254939115,"open","veracruz","entronque",1,"toll","capufe",,,
 881,117,"paso del toro",19.0817183514591,-96.1984992027283,"open","veracruz","troncal",2,"toll","capufe",,,
@@ -856,7 +854,7 @@
 892,580,"puente tuxpan aux. 1 (tihuatlan)",20.688195588487,-97.49490448459,"open","veracruz","entronque",2,"toll","golfo-centro",,,
 893,580,"puente tuxpan axu. 2 (tihuatlan)",20.6887610585399,-97.4942530867572,"open","veracruz","entronque",3,"toll","golfo-centro",,,
 894,99,"refineria lazaro cardenas",18.0151161422607,-94.4537657424698,"open","veracruz","entronque",2,"toll","capufe",,,
-895,458,"san julian",19.2392234833353,-96.257883310318,"open","veracruz","troncal",3,"toll","cardel-veracruz",,,
+895,458,"san julian",19.2392234833353,-96.257883310318,"open","veracruz","troncal",3,"toll","cardel-veracruz",,0,"in"
 896,43,"tecolutla",20.4377754379587,-97.0864981412888,"open","veracruz","troncal",1,"toll","capufe","bridge",,
 897,63,"tlacotalpan",18.7046115537119,-95.6412917375565,"open","veracruz","troncal",1,"toll","capufe","bridge",,
 898,177,"totomoxtle",20.461974987355,-97.2460544454181,"open","veracruz","entronque",1,"toll","cardel-pozarica",,,
@@ -864,24 +862,22 @@
 900,555,"totomoxtle ii",20.4610110723239,-97.2478186300367,"open","veracruz","entronque",2,"toll","cardel-pozarica",,,
 901,555,"totomoxtle ii",20.4595038033763,-97.2463587112581,"open","veracruz","troncal",2,"toll","cardel-pozarica",,,
 902,555,"totomoxtle ii",20.4589466022492,-97.246465086937,"open","veracruz","entronque",2,"toll","cardel-pozarica",,,
-903,569,"vega de alatorre",20.0439539821633,-96.6844728221322,"open","veracruz","entronque",1,"toll","cardel-pozarica",,,
-904,569,"vega de alatorre",20.0441709232603,-96.6842213702487,"open","veracruz","entronque",1,"toll","cardel-pozarica",,,
-905,569,"vega de alatorre",20.0399820134827,-96.6807660823281,"open","veracruz","entronque",2,"toll","cardel-pozarica",,,
-906,569,"vega de alatorre",20.0440889086172,-96.6843116283417,"open","veracruz","troncal",3,"toll","cardel-pozarica",,,
-907,569,"vega de alatorre",20.0403442197993,-96.680305179202,"open","veracruz","entronque",1,"toll","cardel-pozarica",,,
-908,478,"chichen itza (valladolid)",20.7290793807312,-88.5831758515434,"open","yucatan","entronque",1,"toll","mayab",,,
-909,478,"chichen itza (valladolid)",20.7291528697115,-88.5847372937042,"open","yucatan","entronque",1,"toll","mayab",,,
-910,478,"chichen itza (valladolid)",20.7290185628334,-88.5824285570085,"open","yucatan","entronque",1,"ticket","mayab",,,
-911,478,"chichen itza (valladolid)",20.7289785264651,-88.5832250118256,"open","yucatan","troncal",3,"toll","mayab",,,
-912,478,"chichen itza (valladolid)",20.727734090467,-88.5782094094919,"open","yucatan","entronque",1,"toll","mayab",,,
-913,479,"tintal",20.6989305070085,-87.1443139607406,"open","quintana roo","troncal",2,"toll","mayab",,,
-914,479,"tintal",20.8953294787957,-87.4385228354479,"open","quintana roo","entronque",2,"toll","mayab",,,
-915,479,"tintal",20.8953212407763,-87.4387232876563,"open","quintana roo","entronque",2,"ticket","mayab",,,
-917,479,"tintal",20.8999190799347,-87.4349082611379,"open","quintana roo","troncal",3,"toll","mayab",,,
-918,479,"tintal",20.6989916151708,-87.1442740979257,"open","quintana roo","troncal",2,"ticket","mayab",,,
-919,479,"tintal",20.9000178955207,-87.435041194702,"open","quintana roo","troncal",3,"toll","mayab",,,
-920,479,"tintal (playa del carmen)",20.8956916755645,-87.4408962065033,"open","quintana roo","entronque",2,"ticket","mayab",,,
-921,479,"tintal (playa del carmen)",20.8957046674953,-87.4408023373108,"open","quintana roo","entronque",2,"toll","mayab",,,
+904,569,"vega de alatorre",20.044139303516268,-96.68426871299745,"open","veracruz","troncal",4,"toll","cardel-pozarica",,,"io"
+905,569,"vega de alatorre",20.0399820134827,-96.6807660823281,"open","veracruz","entronque",2,"toll","cardel-pozarica",,,"in"
+907,569,"vega de alatorre",20.0403442197993,-96.680305179202,"open","veracruz","entronque",1,"toll","cardel-pozarica",,,"out"
+908,478,"chichen itza (valladolid)",20.7290793807312,-88.5831758515434,"open","yucatan","troncal",3,"toll","mayab",,,"io"
+909,478,"chichen itza (valladolid)",20.7291528697115,-88.5847372937042,"open","yucatan","entronque",1,"toll","mayab",,0,"out"
+910,478,"chichen itza (valladolid)",20.7290185628334,-88.5824285570085,"open","yucatan","entronque",1,"ticket","mayab",,0,"in"
+911,478,"chichen itza (valladolid)",20.7289785264651,-88.5832250118256,"open","yucatan","troncal",3,"toll","mayab",,,"in"
+912,478,"chichen itza (valladolid)",20.727734090467,-88.5782094094919,"open","yucatan","entronque",1,"toll","mayab",,,"in"
+913,479,"playa del carmen",20.6989305070085,-87.1443139607406,"open","quintana roo","troncal",2,"toll","mayab",,0,"out"
+914,479,"tintal",20.8953294787957,-87.4385228354479,"open","quintana roo","entronque",2,"toll","mayab",,,"out"
+915,479,"tintal",20.8953212407763,-87.4387232876563,"open","quintana roo","entronque",2,"ticket","mayab",,,"in"
+917,479,"tintal",20.8999190799347,-87.4349082611379,"open","quintana roo","troncal",3,"toll","mayab",,0,"io"
+918,479,"playa del carmen",20.6989916151708,-87.1442740979257,"open","quintana roo","troncal",2,"ticket","mayab",,0,"in"
+919,479,"tintal",20.9000178955207,-87.435041194702,"open","quintana roo","troncal",3,"toll","mayab",,0,"io"
+920,479,"cedral",20.8956916755645,-87.4408962065033,"open","quintana roo","entronque",2,"ticket","mayab",,0,"in"
+921,479,"cedral",20.8957046674953,-87.4408023373108,"open","quintana roo","entronque",2,"toll","mayab",,0,"out"
 922,1042,"calera",22.9648279325732,-102.713780994946,"open","zacatecas","entronque",1,"toll","profrezac",,,
 923,1042,"calera",22.9536719103226,-102.691890617807,"open","zacatecas","entronque",1,"toll","profrezac",,,
 924,1042,"calera",22.9418598227077,-102.689815163612,"open","zacatecas","troncal",3,"toll","profrezac",,,
@@ -1226,9 +1222,9 @@
 1338,,"sanchez magallanes",18.0299086443895,-93.8130122423172,"open","tabasco","entronque",1,"toll","capufe",,,
 1339,,"sanchez magallanes",18.0315409564061,-93.8137418031693,"open","tabasco","entronque",1,"toll","capufe",,,
 1340,,"sanchez magallanes",18.0304391474553,-93.8129961490631,"open","tabasco","troncal",3,"toll","capufe",,,
-1341,,"nacajuca",18.0759646315408,-92.9305976629257,"open","tabasco","troncal",4,"toll","oav",,,
+1341,,"nacajuca",18.0759646315408,-92.9305976629257,"open","tabasco","troncal",4,"toll","oav",,,"io"
 1342,,"grijalva",17.9475695038282,-92.7853399515152,"open","tabasco","troncal",3,"toll","capufe","bridge",,
-1343,,"usumacinta",17.8598104748843,-91.7835831642151,"open","tabasco","troncal",1,"toll","capufe","bridge",,
+1343,,"usumacinta",17.8598104748843,-91.7835831642151,"open","tabasco","troncal",1,"toll","capufe","bridge",,"out"
 1344,,"zacatal",18.612776406435,-91.8608736991883,"open","campeche","troncal",2,"toll","capufe","bridge",,
 1345,,"puente la unidad",18.7855289126034,-91.4947843551636,"open","campeche","troncal",1,"toll","gob-campeche","bridge",,
 1346,,"la seyba",19.6361963092446,-90.6715124845505,"open","campeche","troncal",2,"toll","capufe",,,
@@ -1244,7 +1240,7 @@
 1366,,"puente nacional tampico",22.2183522183181,-97.824792265892,"open","veracruz","troncal",2,"toll","capufe","bridge",,
 1367,,"puente el prieto",22.2032494729765,-97.9373967647553,"open","veracruz","troncal",2,"toll","pinfra","bridge",,
 1368,,"puente nacional panuco",22.1487300019575,-98.145015835762,"open","veracruz","troncal",2,"toll","capufe","bridge",,
-1369,,"naranjos",21.3270970026639,-97.6274085044861,"open","veracruz","troncal",3,"toll","autopista-tuxpan-tampico",,,
+1369,,"naranjos",21.3270970026639,-97.6274085044861,"open","veracruz","troncal",5,"toll","autopista-tuxpan-tampico",,,"io"
 1370,,"puente jose lopez portillo",20.9300674107111,-97.6807630062103,"open","veracruz","troncal",2,"toll","gob-veracruz","bridge",,
 1371,,"los gil",20.8861092260202,-97.4669319391251,"open","veracruz","troncal",3,"toll","autopista-tuxpan-tampico",,,
 1372,,"puente tuxpan",20.7529435694081,-97.4825263023377,"open","veracruz","troncal",5,"toll","golfo-centro",,,
@@ -1252,15 +1248,15 @@
 1374,,"totomoxtle ii",20.4594441799953,-97.246465086937,"open","veracruz","troncal",2,"toll","cardel-pozarica",,,
 1375,,"tecolutla",20.4377050636038,-97.0865625143051,"open","veracruz","troncal",1,"toll","capufe","bridge",,
 1376,,"nautla",20.2101578553864,-96.7787897586823,"open","veracruz","troncal",1,"toll","capufe","bridge",,
-1377,,"vega de alatorre",20.0440385137019,-96.6843920946121,"open","veracruz","troncal",2,"toll","cardel-pozarica",,,
+1377,,"vega de alatorre",20.044008276744957,-96.68443500995637,"open","veracruz","troncal",3,"toll","cardel-pozarica",,,"io"
 1378,,"las vigas",19.6303656736239,-97.1280026435852,"open","veracruz","troncal",4,"toll","copexa",,,
 1379,,"amozoc-perote (perote)",19.5517527221591,-97.2893857955933,"open","veracruz","troncal",3,"toll","gana",,,
 1380,,"miradores",19.4742393943714,-96.775496006012,"open","veracruz","troncal",4,"toll","copexa",,,
 1381,,"plan del rio",19.3970026834864,-96.6216605901718,"open","veracruz","troncal",3,"toll","cpm",,,
 1382,,"antigua",19.3203013381785,-96.3109052181244,"open","veracruz","troncal",3,"toll","cardel-veracruz",,,
-1384,,"san julian",19.2392234833353,-96.2580013275147,"open","veracruz","troncal",3,"toll","cardel-veracruz",,,
+1384,,"san julian",19.2392234833353,-96.2580013275147,"open","veracruz","troncal",3,"toll","cardel-veracruz",,0,"out"
 1388,,"cuitlahuac",18.839394702993,-96.7469412088394,"open","veracruz","troncal",3,"toll","capufe",,,
-1390,,"alvarado",18.7698148094509,-95.7445728778839,"open","veracruz","troncal",1,"toll","capufe","bridge",,
+1390,,"alvarado",18.7698148094509,-95.7445728778839,"open","veracruz","troncal",1,"toll","capufe","bridge",,"out"
 1391,,"tlacotalpan",18.7045607427699,-95.641393661499,"open","veracruz","troncal",1,"toll","capufe","bridge",,
 1393,,"cosamaloapan",18.3355026008565,-95.8234995603562,"open","veracruz","entronque",1,"etc","capufe",,,
 1394,,"cosamaloapan",18.3346522229977,-95.8212143182755,"open","veracruz","entronque",1,"etc","capufe",,,
@@ -1357,7 +1353,7 @@
 1554,,"tlalpan",19.2424649365942,-99.1487574577332,"open","cdmx","troncal",9,"toll","capufe",,,
 1555,,"Los Poetas",19.3462233927603,-99.2531168460846,"open","cdmx","entronque",1,"etc",,,,
 1556,,"circuito exterior mexiquense-t-7 -texcoco",19.4505836117856,-98.9111083745956,"open","edomx","troncal",3,"toll","cem",,,
-1559,,"Matamoros",25.8969040449209,-97.4979865550995,"open","tamaulipas","troncal",2,"toll","capufe","International-bridge",,
+1559,,"puente matamoros (Gateway)",25.8969040449209,-97.4979865550995,"open","tamaulipas","troncal",2,"toll","capufe","International-bridge",,"in"
 1560,,"Balnearios",21.8115641610372,-101.014255285263,"open","san luis potosi","entronque",1,"etc",,,,
 1561,,"apodaca",25.7876279631573,-100.16862988472,"open","nuevo leon","entronque",6,"toll","reanal",,,
 1562,,"salamanca",20.5983760149405,-101.181008219719,"open","guanajuato","troncal",3,"toll","capufe",,,
@@ -1373,3 +1369,5 @@
 1572,,"acaponeta",22.454013672730703,-105.41886627674104,"open","nayarit","entronque",1,"toll","mazatlan-culiacan",,0,"out"
 1573,,"palmillas",20.295100858324826,-99.92731153964996,"open","queretaro","troncal",6,"toll","capufe",,0,"io"
 1574,,"esperanza hornos",27.60439682197781,-109.89881515502931,"open","sonora","troncal",3,"toll","lico",,0,"io"
+1575,,"zacatelco",19.213608687710696,-98.26635360717775,"open","tlaxcala","troncal",1,"toll","pinfra",,,"io"
+1576,,"zacatelco ii",19.211405132392517,-98.26316714286806,"open","tlaxcala","entronque",2,"toll","pinfra",,0,"out"
