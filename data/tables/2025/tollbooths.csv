@@ -695,19 +695,19 @@
 727,421,"libramiento matehuala",23.6641200913153,-100.607326626778,"open","san luis potosi","troncal",3,"toll","omega",,,
 728,425,"libramiento oriente san luis potosi",22.1297537598161,-100.825052261353,"open","san luis potosi","troncal",5,"toll","libramiento-slp","bypass",,
 729,425,"libramiento oriente san luis potosi",22.1260386724492,-100.825079896569,"open","san luis potosi","entronque",2,"toll","libramiento-slp","bypass",,
-730,504,"libramiento poniente san luis potosi",22.1564509457713,-101.072142720222,"open","san luis potosi","entronque",1,"toll","libramiento-slp","bypass",,
+730,504,"libramiento poniente san luis potosi",22.1564509457713,-101.072142720222,"open","san luis potosi","entronque",1,"toll","libramiento-slp","bypass",1,"in"
 731,504,"libramiento poniente san luis potosi",22.1636349183878,-101.079213023186,"open","san luis potosi","troncal",2,"toll","libramiento-slp","bypass",,
-732,497,"logistik",21.9849575259905,-100.871384862749,"open","san luis potosi","entronque",2,"toll","coinsan",,,
-733,497,"logistik",21.9838789644164,-100.873250188181,"open","san luis potosi","entronque",3,"toll","coinsan",,,
+732,497,"logistik",21.9849575259905,-100.871384862749,"open","san luis potosi","entronque",2,"toll","coinsan",,0,"in"
+733,497,"logistik",21.9838789644164,-100.873250188181,"open","san luis potosi","entronque",3,"toll","coinsan",,0,"out"
 734,473,"rayon",21.8635418412859,-99.6234031337635,"open","san luis potosi","troncal",2,"toll","rioverde-valles",,,
 735,495,"san felipe",21.8052339531399,-101.014459133148,"open","san luis potosi","troncal",2,"toll","coinsan",,,
-736,474,"tamasopo",21.905653111109,-99.3850873171496,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,,
-737,474,"tamasopo",21.9041904709351,-99.3847484416349,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,,
-738,474,"tamasopo",21.9041506128211,-99.3846866186213,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,,
-739,474,"tamasopo",21.9057333914295,-99.3851074834443,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,,
-740,475,"tambaca",21.9401896402258,-99.2737174673038,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,,
-741,475,"tambaca",21.939219094147,-99.2700254917145,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,,
-742,475,"tambaca",21.9401708589277,-99.2737754495049,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,,
+736,474,"tamasopo",21.905653111109,-99.3850873171496,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,0,"in"
+737,474,"tamasopo",21.9041904709351,-99.3847484416349,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,0,"out"
+738,474,"tamasopo",21.9041506128211,-99.3846866186213,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,0,"in"
+739,474,"tamasopo",21.9057333914295,-99.3851074834443,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,0,"out"
+740,475,"tambaca",21.9401896402258,-99.2737174673038,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,,"in"
+741,475,"tambaca",21.939219094147,-99.2700254917145,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,,"out"
+742,475,"tambaca",21.9401708589277,-99.2737754495049,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,,"out"
 743,454,"ventura-el peyote",22.5209515295639,-100.656470060349,"open","san luis potosi","troncal",6,"toll","libramiento-slp",,,
 744,1050,"villa juarez",22.3192306475727,-100.284698173456,"open","san luis potosi","entronque",1,"toll","coinsan",,,
 745,1050,"villa juarez",22.3192945791081,-100.28471283729,"open","san luis potosi","entronque",1,"toll","coinsan",,,
@@ -738,14 +738,14 @@
 770,408,"quila",24.3975535768343,-107.270023566453,"open","sinaloa","entronque",1,"toll","mazatlan-culiacan",,,
 771,408,"quila",24.3976777316082,-107.269973254626,"open","sinaloa","entronque",1,"toll","mazatlan-culiacan",,,
 772,408,"quila",24.396618911926,-107.271828854285,"open","sinaloa","entronque",1,"toll","mazatlan-culiacan",,,
-773,603,"san pedro-libramiento culhuacan",24.6934348336388,-107.525424957275,"open","sinaloa","troncal",3,"toll","mazatlan-culiacan",,,
+773,603,"san pedro-libramiento culhuacan",24.6934348336388,-107.525424957275,"open","sinaloa","troncal",3,"toll","mazatlan-culiacan",,0,"io"
 774,604,"vainillo",23.2161685718205,-106.260344798178,"open","sinaloa","troncal",3,"toll","mazatlan-culiacan",,,
 775,604,"vainillo",23.2167032570949,-106.264894008636,"open","sinaloa","entronque",3,"toll","mazatlan-culiacan",,,
 776,150,"esperanza",27.6037923765132,-109.939077909593,"open","sonora","troncal",3,"toll","capufe",,,
 777,150,"esperanza",27.6037075223298,-109.939198493958,"open","sonora","troncal",3,"toll","capufe",,,
-778,557,"esperanza hornos",27.604540266231,-109.898775330045,"open","sonora","troncal",6,"toll","lico",,,
-779,557,"esperanza hornos",27.6042459096162,-109.901638768136,"open","sonora","entronque",1,"toll","lico",,,
-780,557,"esperanza hornos",27.6069102293933,-109.90310133338,"open","sonora","entronque",1,"toll","lico",,,
+778,557,"esperanza hornos",27.604540266231,-109.898775330045,"open","sonora","troncal",3,"toll","lico",,0,"io"
+779,557,"esperanza hornos",27.6042459096162,-109.901638768136,"open","sonora","entronque",1,"toll","lico",,0,"in"
+780,557,"esperanza hornos",27.6069102293933,-109.90310133338,"open","sonora","entronque",1,"toll","lico",,0,"out"
 781,1021,"estacion doctor",32.3751455920901,-114.760646224022,"open","sonora","troncal",2,"toll","pinfra",,,
 782,148,"estacion don",26.8498229183013,-109.373166561127,"open","sonora","troncal",3,"toll","capufe",,,
 783,149,"fundicion",27.3205061694086,-109.719729423523,"open","sonora","troncal",3,"toll","capufe",,,
@@ -760,9 +760,9 @@
 792,1020,"san luis rio colorado ii",32.4570757258847,-114.70138923845,"open","sonora","entronque",3,"toll","puente-colorado","International-bridge",,
 793,1005,"santa ana",30.5936050303953,-111.51849090106,"open","sonora","troncal",3,"toll","ccp",,,
 794,38,"grijalva",17.947625640994,-92.7852058410645,"open","tabasco","troncal",3,"toll","capufe","bridge",,
-795,181,"malpasito",17.3482778914197,-93.5869717597962,"open","tabasco","entronque",1,"toll","capufe",,,
-796,181,"malpasito",17.3491519391501,-93.5855207083418,"open","tabasco","entronque",1,"toll","capufe",,,
-797,181,"malpasito",17.3490920316329,-93.586397767067,"open","tabasco","troncal",3,"toll","capufe",,,
+795,181,"malpasito",17.3482778914197,-93.5869717597962,"open","tabasco","entronque",1,"toll","capufe",,,"out"
+796,181,"malpasito",17.3491519391501,-93.5855207083418,"open","tabasco","entronque",1,"toll","capufe",,,"in"
+797,181,"malpasito",17.3490920316329,-93.586397767067,"open","tabasco","troncal",3,"toll","capufe",,,"io"
 798,227,"nacajuca",18.0765918888967,-92.9367399215698,"open","tabasco","entronque",1,"toll","oav",,,
 800,227,"nacajuca",18.0761278206621,-92.9306727647782,"open","tabasco","troncal",5,"toll","oav",,,
 801,227,"nacajuca",18.0764898959833,-92.936761379242,"open","tabasco","entronque",1,"toll","oav",,,
@@ -1115,7 +1115,7 @@
 1206,,"alhuey",25.3922599844139,-108.127763271332,"open","sinaloa","entronque",1,"toll","orler",,,
 1207,,"el pisal",24.8323065427994,-107.597667574883,"open","sinaloa","troncal",3,"toll","orler",,,
 1208,,"culiacan",24.7487994834903,-107.462253570557,"closed","sinaloa","troncal",2,"toll","orler",,,
-1209,,"san pedro-libramiento culhuacan",24.6933081128382,-107.525596618652,"open","sinaloa","troncal",3,"toll","mazatlan-culiacan",,,
+1209,,"san pedro-libramiento culhuacan",24.6933081128382,-107.525596618652,"open","sinaloa","troncal",3,"toll","mazatlan-culiacan",,0,"io"
 1210,,"costa rica",24.570230748065,-107.430319190025,"open","sinaloa","troncal",3,"toll","mazatlan-culiacan",,,
 1211,,"marmol",23.4711834477039,-106.56958758831,"open","sinaloa","troncal",3,"toll","mazatlan-culiacan",,,
 1213,,"vainillo",23.2166638170099,-106.264824271202,"open","sinaloa","entronque",1,"toll","mazatlan-culiacan",,,
@@ -1137,7 +1137,7 @@
 1232,,"cerritos (cerritos-rioverde)",22.4276559178152,-100.318538546562,"open","san luis potosi","entronque",1,"toll","coinsan",,,
 1233,,"libramiento arco norte san luis potosi",22.2997627858729,-100.971297025681,"open","san luis potosi","troncal",2,"toll","libramiento-slp","bypass",,
 1234,,"libramiento poniente san luis potosi",22.1635653657783,-101.079341769218,"open","san luis potosi","troncal",2,"toll","libramiento-slp","bypass",,
-1235,,"libramiento poniente san luis potosi",22.1563515798159,-101.072051525116,"open","san luis potosi","entronque",2,"toll","libramiento-slp","bypass",,
+1235,,"libramiento poniente san luis potosi",22.1563515798159,-101.072051525116,"open","san luis potosi","entronque",2,"toll","libramiento-slp","bypass",1,"out"
 1236,,"libramiento oriente san luis potosi",22.129733882862,-100.82522392273,"open","san luis potosi","troncal",5,"toll","libramiento-slp","bypass",,
 1237,,"logistik",21.9824583312045,-100.874281525612,"open","san luis potosi","entronque",2,"toll","coinsan",,,
 1238,,"logistik",21.9827518214921,-100.874657034874,"open","san luis potosi","entronque",2,"toll","coinsan",,,
@@ -1146,7 +1146,7 @@
 1241,,"calderon (villa de arriaga)",21.8133222257673,-101.012667417526,"open","san luis potosi","troncal",3,"toll","coinsan",,0,"io"
 1242,,"san felipe",21.805253875555,-101.014325022697,"open","san luis potosi","troncal",2,"toll","coinsan",,,
 1243,,"rayon",21.8634453712729,-99.6233797073364,"open","san luis potosi","troncal",2,"toll","rioverde-valles",,,
-1244,,"tambaca",21.9391693348306,-99.270116686821,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,,
+1244,,"tambaca",21.9391693348306,-99.270116686821,"open","san luis potosi","entronque",1,"toll","rioverde-valles",,,"in"
 1245,,"la pitahaya",21.9676387701389,-99.1746085882187,"open","san luis potosi","troncal",2,"toll","rioverde-valles",,,
 1246,,"la calera",21.9040697553152,-98.9555686712265,"open","san luis potosi","troncal",2,"toll","opasa","bypass",,
 1247,,"estacion ruiz",21.9530614598471,-105.120824575424,"open","nayarit","entronque",1,"toll","mazatlan-culiacan",,,
@@ -1220,9 +1220,9 @@
 1332,,"ocotzocoautla",16.7384223523684,-93.4003704786301,"open","chiapas","troncal",2,"toll","cas",,,
 1333,,"ocozocoautla (ocuilapa)",16.8630851675236,-93.4069418907166,"open","chiapas","troncal",3,"toll","capufe",,,
 1334,,"chiapa de corzo viapass",16.730613761814,-93.0096530914307,"open","chiapas","troncal",3,"toll","cas",,,
-1335,,"malpasito",17.3490459483211,-93.5865050554276,"open","tabasco","troncal",3,"toll","capufe",,,
-1336,,"malpasito",17.3490613094263,-93.5855501890183,"open","tabasco","entronque",1,"toll","capufe",,,
-1337,,"malpasito",17.3482676506393,-93.5869020223618,"open","tabasco","entronque",1,"toll","capufe",,,
+1335,,"malpasito",17.3490459483211,-93.5865050554276,"open","tabasco","troncal",3,"toll","capufe",,,"io"
+1336,,"malpasito",17.3490613094263,-93.5855501890183,"open","tabasco","entronque",1,"toll","capufe",,,"out"
+1337,,"malpasito",17.3482676506393,-93.5869020223618,"open","tabasco","entronque",1,"toll","capufe",,,"in"
 1338,,"sanchez magallanes",18.0299086443895,-93.8130122423172,"open","tabasco","entronque",1,"toll","capufe",,,
 1339,,"sanchez magallanes",18.0315409564061,-93.8137418031693,"open","tabasco","entronque",1,"toll","capufe",,,
 1340,,"sanchez magallanes",18.0304391474553,-93.8129961490631,"open","tabasco","troncal",3,"toll","capufe",,,
@@ -1371,3 +1371,5 @@
 1570,,"encarnacion de diaz",21.489601052625215,-102.24327564239502,"open","jalisco","troncal",5,"toll","rco",,0,"in"
 1571,,"acaponeta",22.45378065959675,-105.42484223842622,"open","nayarit","troncal",3,"toll","mazatlan-culiacan",,0,"io"
 1572,,"acaponeta",22.454013672730703,-105.41886627674104,"open","nayarit","entronque",1,"toll","mazatlan-culiacan",,0,"out"
+1573,,"palmillas",20.295100858324826,-99.92731153964996,"open","queretaro","troncal",6,"toll","capufe",,0,"io"
+1574,,"esperanza hornos",27.60439682197781,-109.89881515502931,"open","sonora","troncal",3,"toll","lico",,0,"io"
