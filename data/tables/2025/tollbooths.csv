@@ -544,9 +544,9 @@
 565,109,"agualeguas",26.3402845424828,-100.070447145027,"open","nuevo leon","entronque",1,"toll","opan",,,
 566,109,"agualeguas",26.339400952022,-100.071894652321,"open","nuevo leon","entronque",1,"toll","opan",,,
 568,452,"apodaca",25.7751699371749,-100.159500510663,"open","nuevo leon","entronque",2,"toll","reanal",,,
-569,452,"apodaca",25.8177126585108,-100.393278500147,"open","nuevo leon","entronque",1,"toll","reanal",,,
+569,452,"apodaca",25.8177126585108,-100.393278500147,"open","nuevo leon","entronque",1,"toll","reanal",,,"in"
 570,452,"apodaca",25.7877728687775,-100.168399214745,"open","nuevo leon","entronque",7,"toll","reanal",,,
-571,452,"apodaca",25.8183024879081,-100.393384928713,"open","nuevo leon","entronque",1,"toll","reanal",,,
+571,452,"apodaca",25.8183024879081,-100.393384928713,"open","nuevo leon","entronque",1,"toll","reanal",,,"out"
 572,452,"apodaca",25.7752419579773,-100.159063209437,"open","nuevo leon","entronque",2,"toll","reanal",,,
 574,450,"cadereyta",25.6074848708663,-100.001195669174,"open","nuevo leon","troncal",4,"toll","reanal",,,
 575,40,"cadereyta",25.6010820777139,-100.005770528644,"open","nuevo leon","troncal",4,"toll","capufe","bridge",,
@@ -562,9 +562,9 @@
 587,499,"lincon",25.7904004599719,-100.463372468948,"open","nuevo leon","entronque",1,"toll","reanal",,,
 589,499,"lincon",25.78248290758,-100.472370901854,"open","nuevo leon","entronque",1,"toll","reanal",,,
 590,499,"lincon",25.7821077444692,-100.474203138514,"open","nuevo leon","entronque",1,"toll","reanal",,,
-591,499,"lincon",25.8342661194434,-100.305784881109,"open","nuevo leon","entronque",1,"toll","reanal",,,
+591,499,"lincon",25.8342661194434,-100.305784881109,"open","nuevo leon","entronque",1,"toll","reanal",,,"out"
 592,499,"lincon",25.7851294794316,-100.470581989338,"open","nuevo leon","entronque",1,"toll","reanal",,,
-593,499,"lincon",25.833565230741,-100.305787485599,"open","nuevo leon","entronque",1,"toll","reanal",,,
+593,499,"lincon",25.833565230741,-100.305787485599,"open","nuevo leon","entronque",1,"toll","reanal",,,"in"
 594,499,"lincon",25.790548,-100.463523,"open","nuevo leon","troncal",6,"toll","reanal",,,
 595,141,"los chorros",25.1867527317298,-100.731975056865,"open","nuevo leon","troncal",8,"toll","capufe",,,
 596,129,"los herrera",25.7593817019285,-99.3742097933222,"open","nuevo leon","entronque",1,"toll","opan",,0,"in"
@@ -1086,9 +1086,6 @@
 1171,,"sabinas",26.5120310836929,-100.007085800171,"open","nuevo leon","troncal",3,"toll","opan",,0,"io"
 1173,,"agualeguas",26.3403548697947,-100.070498585701,"open","nuevo leon","entronque",1,"toll","opan",,,
 1174,,"periferico",25.6932181871485,-100.565623641014,"open","nuevo leon","troncal",4,"toll","cams",,,
-1175,,"apodaca",25.8176341371761,-100.393243432045,"open","nuevo leon","entronque",1,"toll","reanal",,,
-1176,,"apodaca",25.8182280986821,-100.393361449242,"open","nuevo leon","entronque",1,"toll","reanal",,,
-1178,,"lincon",25.8341770238916,-100.305781960487,"open","nuevo leon","entronque",1,"toll","reanal",,,
 1183,,"juarez",25.6222141623706,-100.071367621422,"open","nuevo leon","troncal",4,"toll","reanal",,,
 1184,,"cadereyta",25.6072913705567,-100.001227855682,"open","nuevo leon","troncal",4,"toll","reanal",,,
 1186,,"nuevo laredo pinfra",27.270513519624,-99.6139222383499,"open","tamaulipas","troncal",5,"toll","opan",,,
