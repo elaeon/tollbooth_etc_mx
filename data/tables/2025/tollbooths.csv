@@ -693,8 +693,8 @@
 725,476,"la pitahaya",21.967539271384,-99.1745281219483,"open","san luis potosi","troncal",2,"toll","rioverde-valles",,,
 726,426,"libramiento arco norte san luis potosi",22.2999067191823,-100.971313118935,"open","san luis potosi","troncal",2,"toll","libramiento-slp","bypass",,
 727,421,"libramiento matehuala",23.6641200913153,-100.607326626778,"open","san luis potosi","troncal",3,"toll","omega",,,
-728,425,"libramiento oriente san luis potosi",22.1297537598161,-100.825052261353,"open","san luis potosi","troncal",5,"toll","libramiento-slp","bypass",,
-729,425,"libramiento oriente san luis potosi",22.1260386724492,-100.825079896569,"open","san luis potosi","entronque",2,"toll","libramiento-slp","bypass",,
+728,425,"libramiento oriente san luis potosi",22.1297537598161,-100.825052261353,"open","san luis potosi","troncal",5,"toll","libramiento-slp","bypass",,"io"
+729,425,"libramiento oriente san luis potosi",22.1260386724492,-100.825079896569,"open","san luis potosi","entronque",2,"toll","libramiento-slp","bypass",,"in"
 730,504,"libramiento poniente san luis potosi",22.1564509457713,-101.072142720222,"open","san luis potosi","entronque",1,"toll","libramiento-slp","bypass",1,"in"
 731,504,"libramiento poniente san luis potosi",22.1636349183878,-101.079213023186,"open","san luis potosi","troncal",2,"toll","libramiento-slp","bypass",,
 732,497,"logistik",21.9849575259905,-100.871384862749,"open","san luis potosi","entronque",2,"toll","coinsan",,0,"in"
@@ -1039,8 +1039,7 @@
 1096,,"Alfredo del Mazo",19.5175607712255,-99.0687138869248,"open","edomx","entronque",1,"etc","ausn",,,
 1097,,"Río Remedios",19.504853262755,-99.0795634012265,"open","edomx","entronque",1,"etc","ausn",,,
 1098,,"Río Remedios",19.5043003510874,-99.078026797724,"open","edomx","troncal",2,"etc","ausn",,,
-1099,,"Rioverde-la pila",22.1268119812012,-100.822364807129,"open","san luis potosi","entronque",1,"toll","libramiento-slp",,,
-1100,,"Rioverde-la pila",22.1267596756841,-100.822356369236,"open","san luis potosi","entronque",1,"toll","libramiento-slp",,,
+1099,,"Rioverde-la pila",22.126752308001254,-100.82234859466554,"open","san luis potosi","entronque",2,"toll","libramiento-slp",,,"out"
 1101,,"El Capomo - La Peñita",21.0704846748855,-105.217637969041,"open","nayarit","entronque",2,"toll","lasvaras-vallarta",,,"out"
 1102,,"El Capomo - La Peñita",21.0701217651367,-105.216911315918,"open","nayarit","entronque",2,"toll","lasvaras-vallarta",,,"in"
 1103,,"Tepoztlán B",18.9846782684326,-99.1070556640625,"open","morelos","entronque",3,"toll","capufe",,,
@@ -1134,7 +1133,7 @@
 1233,,"libramiento arco norte san luis potosi",22.2997627858729,-100.971297025681,"open","san luis potosi","troncal",2,"toll","libramiento-slp","bypass",,
 1234,,"libramiento poniente san luis potosi",22.1635653657783,-101.079341769218,"open","san luis potosi","troncal",2,"toll","libramiento-slp","bypass",,
 1235,,"libramiento poniente san luis potosi",22.1563515798159,-101.072051525116,"open","san luis potosi","entronque",2,"toll","libramiento-slp","bypass",1,"out"
-1236,,"libramiento oriente san luis potosi",22.129733882862,-100.82522392273,"open","san luis potosi","troncal",5,"toll","libramiento-slp","bypass",,
+1236,,"libramiento oriente san luis potosi",22.129733882862,-100.82522392273,"open","san luis potosi","troncal",5,"toll","libramiento-slp","bypass",,"io"
 1237,,"logistik",21.9824583312045,-100.874281525612,"open","san luis potosi","entronque",2,"toll","coinsan",,,
 1238,,"logistik",21.9827518214921,-100.874657034874,"open","san luis potosi","entronque",2,"toll","coinsan",,,
 1239,,"wtc ii",21.9465882567057,-100.917073488235,"open","san luis potosi","entronque",2,"toll","coinsan",,,
