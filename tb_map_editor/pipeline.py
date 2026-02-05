@@ -29,11 +29,14 @@ class DataPipeline:
         model_dict = self._get_model(model_name, year)
         print(f'Scan file: {model_dict["start"].csv}')
         schema = model_dict["start"].schema
-        if "info_year" in schema:
-            del schema["info_year"]
+        #if "info_year" in schema:
+        #    del schema["info_year"]
         
-        ldf = pl.scan_csv(model_dict["start"].csv, infer_schema=True)
-        ldf = ldf.cast(schema)
+        ldf = pl.scan_csv(model_dict["start"].csv, infer_schema_length=10000)
+        cast_schema = {}
+        for col in ldf.collect_schema().names():
+            cast_schema[col] = schema[col]
+        ldf = ldf.cast(cast_schema)
         ldf = ldf.pipe(self._simple_stg, model=model_dict["start"], normalize=normalize)
         ldf.sink_parquet(model_dict["end"].parquet)
         print(f'Sink file: {model_dict["end"].parquet}')
