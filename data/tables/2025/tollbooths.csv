@@ -43,10 +43,10 @@
 42,1045,"cien metros r2",19.5137035299135,-99.1588371992111,"open","cdmx","entronque",1,"ticket","anesa",,,
 43,1045,"cien metros r3",19.5141451303256,-99.1567611603932,"open","cdmx","entronque",2,"toll","anesa",,,
 44,410,"la venta",19.352279438016,-99.3057018634177,"open","cdmx","entronque",2,"ticket","chamapa-laventa",,,
-45,410,"Contadero",19.3358071550412,-99.3110191569385,"open","cdmx","entronque",1,"toll","chamapa-laventa",,,
+45,410,"Contadero",19.3358071550412,-99.3110191569385,"open","cdmx","entronque",1,"toll","chamapa-laventa",,0,"out"
 46,410,"la venta",19.3489973934565,-99.3067763487482,"open","cdmx","troncal",7,"toll","chamapa-laventa",,,
 47,410,"la venta",19.348949338795,-99.3065143426424,"open","cdmx","troncal",3,"ticket","chamapa-laventa",,,
-48,908,"La Venta ",19.3317675798998,-99.315122002156,"open","cdmx","troncal",2,"toll","pinfra",,,
+48,908,"La Venta ",19.3317675798998,-99.315122002156,"open","cdmx","entronque",2,"toll","pinfra",,,"in"
 49,908,"marquesa",19.3327136613537,-99.3141156435013,"open","cdmx","troncal",4,"toll","pinfra",,,
 50,909,"santa fe",19.3597587148297,-99.272667958659,"open","cdmx","entronque",3,"toll","pinfra",,,
 51,909,"santa fe",19.3634139042647,-99.2673382308222,"open","cdmx","entronque",3,"toll","pinfra",,,
@@ -907,7 +907,7 @@
 955,,"Gustavo Baz",19.4794425964355,-99.2323760986328,"open","edomx","entronque",2,"etc","viaducto-bicentenario",,,
 956,,"Lomas Verdes",19.487813949585,-99.2391204833984,"open","edomx","troncal",2,"etc","viaducto-bicentenario",,,
 957,,"Santa Mónica",19.5322456359863,-99.2251358032227,"open","edomx","troncal",2,"etc","viaducto-bicentenario",,,
-958,,"Lago de Guadalupe",19.5776439951247,-99.20857298872,"open","edomx","entronque",1,"etc","viaducto-bicentenario",,,
+958,,"Lago de Guadalupe",19.5776439951247,-99.20857298872,"open","edomx","entronque",1,"etc","viaducto-bicentenario",,,"in"
 959,,"Lechería",19.5980609282205,-99.2015647888184,"open","edomx","entronque",1,"etc","viaducto-bicentenario",,,
 960,,"Vía José López Portillo",19.6010678224016,-99.1898167133331,"open","edomx","entronque",3,"etc","viaducto-bicentenario",,,
 961,,"Tepalcapa",19.6221160888672,-99.1922302246094,"open","edomx","troncal",2,"etc","viaducto-bicentenario",,,
@@ -919,7 +919,7 @@
 967,,"Circunvalación",19.5174255371094,-99.2319946289063,"open","edomx","troncal",2,"etc","viaducto-bicentenario",,,
 968,,"Santa Mónica",19.5322608947754,-99.2250900268555,"open","edomx","troncal",2,"etc","viaducto-bicentenario",,,
 969,,"Valle Dorado",19.5517253875732,-99.207649230957,"open","edomx","entronque",1,"etc","viaducto-bicentenario",,,
-970,,"Lago de Guadalupe",19.5772285461426,-99.2065200805664,"open","edomx","entronque",2,"etc","viaducto-bicentenario",,,
+970,,"Lago de Guadalupe",19.5772285461426,-99.2065200805664,"open","edomx","entronque",2,"etc","viaducto-bicentenario",,,"out"
 971,,"Lechería",19.5976696014404,-99.1998748779297,"open","edomx","entronque",1,"etc","viaducto-bicentenario",,,
 973,,"1o. de Mayo",19.4654655456543,-99.2275543212891,"open","edomx","entronque",1,"etc","viaducto-bicentenario",,,
 974,,"Gustavo Baz",19.4828262329102,-99.2307205200195,"open","edomx","entronque",1,"etc","viaducto-bicentenario",,,
@@ -938,7 +938,7 @@
 987,,"Constituyentes Poniente",19.4112358093262,-99.1940536499023,"open","cdmx","entronque",1,"etc","aunorte",,,
 988,,"Minería Poniente",19.4031352996826,-99.1924362182617,"open","cdmx","entronque",2,"etc","aunorte",,,
 989,,"San Antonio Poniente",19.3802738189697,-99.1918640136719,"open","cdmx","troncal",3,"etc","aunorte",,,
-990,,"San Martín Texmelucan",19.2951984405518,-98.4109268188477,"open","puebla","entronque",1,"toll","arconorte",,0,"in"
+990,,"San Martín Texmelucan",19.2951984405518,-98.4109268188477,"open","puebla","entronque",1,"toll","pinfra",,0,"out"
 991,,"Río San Joaquín",19.4559173583984,-99.2188568115234,"open","edomx","troncal",2,"etc","viaducto-bicentenario",,,
 992,,"Conscripto Poniente",19.4437465667725,-99.2203750610352,"open","edomx","entronque",1,"etc","aunorte",,,
 993,,"Ejército Nacional Oriente",19.439582824707,-99.2143859863281,"open","cdmx","entronque",1,"etc","aunorte",,,
@@ -1002,9 +1002,9 @@
 1054,,"CE Jaltenco",19.6936855316162,-99.0809936523438,"open","edomx","entronque",1,"toll","cem",,,
 1055,,"Dr. Gustavo Baz",19.4795951843262,-99.2313003540039,"open","edomx","entronque",1,"etc","viaducto-bicentenario",,,
 1056,,"1o. de Mayo",19.4653701782227,-99.2264633178711,"open","edomx","entronque",1,"etc","viaducto-bicentenario",,,
-1057,,"Vallejo - Vallejo",19.5685903930083,-99.2080610990524,"open","edomx","entronque",2,"etc","viaducto-bicentenario",,,
-1058,,"Vallejo - Vallejo",19.5685701747042,-99.2081093788147,"open","edomx","entronque",1,"etc","viaducto-bicentenario",,,
-1059,,"Vallejo - Periférico",19.5690078735352,-99.2084503173828,"open","edomx","entronque",2,"etc","viaducto-bicentenario",,,
+1057,,"Vallejo - Vallejo",19.5685903930083,-99.2080610990524,"open","edomx","entronque",2,"etc","viaducto-bicentenario",,,"in"
+1058,,"Vallejo - Vallejo",19.5685701747042,-99.2081093788147,"open","edomx","entronque",1,"etc","viaducto-bicentenario",,,"out"
+1059,,"Vallejo - Periférico",19.5690078735352,-99.2084503173828,"open","edomx","entronque",2,"etc","viaducto-bicentenario",,,"in"
 1062,,"Palmas Poniente",19.4314079284668,-99.2086410522461,"open","cdmx","entronque",2,"etc","aunorte",,,
 1063,,"San Antonio Oriente",19.3822326660156,-99.1917343139648,"open","cdmx","troncal",4,"etc","aunorte",,,
 1064,,"San Antonio Oriente",19.383020401001,-99.1915969848633,"open","cdmx","troncal",3,"etc","aunorte",,,
@@ -1284,8 +1284,8 @@
 1418,,"miahuatlan",18.265100598095,-97.3147058486939,"open","puebla","entronque",1,"toll","capufe",,,
 1419,,"miahuatlan",18.2639289418996,-97.3161810636521,"open","puebla","entronque",1,"toll","capufe",,,
 1420,,"san martin texmelucan",19.2963295227102,-98.4113967418671,"open","puebla","entronque",1,"toll","arconorte",,0,"out"
-1421,,"san martin texmelucan",19.2979142516942,-98.4091812372208,"open","puebla","entronque",1,"toll","arconorte",,0,"out"
-1422,,"san martin texmelucan",19.2972358072986,-98.40940117836,"open","puebla","entronque",1,"toll","arconorte",,0,"in"
+1421,,"san martin texmelucan",19.2979142516942,-98.4091812372208,"open","puebla","entronque",1,"toll","pinfra",,0,"in"
+1422,,"san martin texmelucan",19.2972358072986,-98.40940117836,"open","puebla","entronque",1,"toll","pinfra",,0,"out"
 1423,,"huejotzingo",19.2535259138526,-98.4421080350876,"open","puebla","troncal",2,"toll","cap",,,
 1424,,"san marti puebla",19.2411936867731,-98.3859050273895,"open","puebla","troncal",13,"toll","capufe",,,
 1425,,"amazoc-perote (amozoc)",19.0636338844568,-98.0689376592636,"open","puebla","troncal",3,"toll","gana",,,
@@ -1322,10 +1322,9 @@
 1486,,"Marquesa T2",19.2904461454103,-99.4342839717865,"open","edomx","troncal",5,"toll","pinfra",,,
 1488,,"Marquesa T2",19.2900056430756,-99.4353193044663,"open","edomx","troncal",5,"toll","pinfra",,,
 1490,,"La Venta ",19.3328199618427,-99.314249753952,"open","edomx","troncal",4,"toll","pinfra",,,
-1491,,"La Venta ",19.3317468299207,-99.3151187896729,"open","edomx","troncal",3,"toll","pinfra",,,
-1492,,"La Venta ",19.3311444556105,-99.3155157566071,"open","cdmx","troncal",2,"toll","pinfra",,,
-1493,,"La Venta ",19.3301320568071,-99.3155479431153,"open","cdmx","troncal",4,"toll","pinfra",,,
-1494,,"La Venta ",19.333118615227,-99.313697218895,"open","cdmx","troncal",2,"toll","pinfra",,,
+1492,,"La Venta ",19.3311444556105,-99.3155157566071,"open","cdmx","entronque",2,"toll","pinfra",,,"in"
+1493,,"La Venta ",19.3301320568071,-99.3155479431153,"open","cdmx","entronque",4,"toll","pinfra",,0,"out"
+1494,,"La Venta ",19.333118615227,-99.313697218895,"open","cdmx","entronque",2,"toll","pinfra",,0,"in"
 1496,,"La Venta ",19.3341411192882,-99.3132841587067,"open","cdmx","troncal",3,"toll","pinfra",,,
 1497,,"La Venta ",19.334667554526,-99.3126726150513,"open","cdmx","troncal",2,"toll","pinfra",,,
 1498,,"interlomas",19.3954846962546,-99.2942833900452,"open","edomx","entronque",4,"toll","chamapa-laventa",,,
@@ -1333,9 +1332,9 @@
 1512,,"Madin",19.5498216610632,-99.2774873971939,"open","edomx","entronque",3,"toll",,,,
 1524,,"Tepotzotlán",19.7152981960367,-99.2077606916428,"open","edomx","troncal",10,"toll","capufe",,,
 1525,,"circuito exterior mexiquense-t0 jorobas",19.8198384884999,-99.2398023605347,"open","edomx","troncal",3,"toll","cem",,,
-1526,,"Lago de Guadalupe",19.577233485708,-99.2082756757736,"open","edomx","entronque",2,"etc",,,,
-1530,,"Vallejo - Periférico",19.5685701747042,-99.2085599899292,"open","edomx","entronque",3,"etc",,,,
-1532,,"La Venta ",19.3306028230312,-99.3151938915253,"open","cdmx","troncal",3,"toll","pinfra",,,
+1526,,"Lago de Guadalupe",19.577233485708,-99.2082756757736,"open","edomx","entronque",2,"etc","viaducto-bicentenario",,,"in"
+1530,,"Vallejo - Periférico",19.5685701747042,-99.2085599899292,"open","edomx","entronque",3,"etc","viaducto-bicentenario",,,"in"
+1532,,"La Venta ",19.3306028230312,-99.3151938915253,"open","cdmx","entronque",3,"toll","pinfra",,,"out"
 1533,,"chapultepec",19.1965822895981,-99.5250713825226,"open","edomx","troncal",3,"toll","lerma-santiago",,,
 1534,,"tenango",19.1223466956588,-99.6021366119385,"open","edomx","troncal",2,"toll","omc",,,
 1535,836,"villa guerrero",18.9892879032044,-99.6566659212113,"open","edomx","troncal",3,"toll","omc",,0,
