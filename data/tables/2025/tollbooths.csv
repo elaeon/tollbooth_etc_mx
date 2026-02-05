@@ -964,22 +964,22 @@
 1013,,"Boulevard de la Luz",19.3255577087402,-99.2143402099609,"open","cdmx","entronque",1,"etc","asur",,,
 1014,,"Cuicuilco",19.303111393715,-99.1766807998485,"open","cdmx","entronque",1,"etc","asur",,,
 1015,,"Viaducto Tlalpan",19.2867984771729,-99.1564483642578,"open","cdmx","entronque",1,"etc","asur",,,
-1016,,"Xochimilco - Vaqueritos",19.2854061126709,-99.1473007202148,"open","cdmx","entronque",1,"etc","asur",,,
-1017,,"Xochimilco - Vaqueritos",19.2857159776979,-99.1475918640651,"open","cdmx","entronque",1,"etc","asur",,,
-1018,,"Estadio Azteca",19.3018403834303,-99.1652696477611,"open","cdmx","entronque",1,"etc","asur",,,
+1016,,"Xochimilco - Vaqueritos",19.2854061126709,-99.1473007202148,"open","cdmx","entronque",1,"etc","asur",,0,"in"
+1017,,"Xochimilco - Vaqueritos",19.2857159776979,-99.1475918640651,"open","cdmx","entronque",1,"etc","asur",,,"in"
+1018,,"Estadio Azteca",19.3018403834303,-99.1652696477611,"open","cdmx","entronque",1,"etc","asur",,,"in"
 1019,,"Estadio Azteca",19.3019477207585,-99.1657653206016,"open","cdmx","entronque",1,"etc","asur",,,
-1020,,"Cerro Zacatepetl",19.3036861419678,-99.1990127563477,"open","cdmx","entronque",1,"etc","asur",,,
-1021,,"Cerro Zacatepetl",19.3039712351796,-99.1994057095398,"open","cdmx","entronque",1,"etc","asur",,,
-1022,,"Picacho Ajusco Pedregal",19.3067898057293,-99.2111036503193,"open","cdmx","entronque",1,"etc","asur",,,
-1023,,"Picacho Ajusco Pedregal",19.3069076614547,-99.2115668756764,"open","cdmx","entronque",1,"etc","asur",,,
-1024,,"Salida Supervía Poniente",19.3205099486204,-99.2212698421329,"open","cdmx","entronque",2,"etc","supervia",,,
+1020,,"Cerro Zacatepetl",19.3036861419678,-99.1990127563477,"open","cdmx","entronque",1,"etc","asur",,,"in"
+1021,,"Cerro Zacatepetl",19.3039712351796,-99.1994057095398,"open","cdmx","entronque",1,"etc","asur",,,"in"
+1022,,"Picacho Ajusco Pedregal",19.3067898057293,-99.2111036503193,"open","cdmx","entronque",1,"etc","asur",,,"in"
+1023,,"Picacho Ajusco Pedregal",19.3069076614547,-99.2115668756764,"open","cdmx","entronque",1,"etc","asur",,,"in"
+1024,,"Salida Supervía Poniente",19.320524079855847,-99.2211824655533,"open","cdmx","entronque",2,"etc","supervia",,,"io"
 1025,,"Estadio Azteca",19.3016699270296,-99.1663051108865,"open","cdmx","entronque",2,"etc","asur",,,
 1026,,"Picacho Ajusco Pedregal",19.3086477556662,-99.2172993936082,"open","cdmx","entronque",2,"etc","asur",,,
 1027,,"Cerro Zacatepetl",19.3038654327393,-99.1999816894531,"open","cdmx","entronque",2,"etc","asur",,,
-1028,,"Xochimilco - Vaqueritos",19.2856979370117,-99.1481399536133,"open","cdmx","troncal",2,"etc","asur",,,
-1029,,"Cuicuilco",19.3033544774975,-99.1761302275776,"open","cdmx","entronque",2,"etc","asur",,,
-1030,,"Boulevard de la Luz",19.3251953125,-99.2142105102539,"open","cdmx","entronque",2,"etc","asur",,,
-1031,,"San Jerónimo",19.3299388885498,-99.2109985351563,"open","cdmx","entronque",2,"etc","asur",,,
+1028,,"Xochimilco - Vaqueritos",19.2856979370117,-99.1481399536133,"open","cdmx","troncal",2,"etc","asur",,,"out"
+1029,,"Cuicuilco",19.3033544774975,-99.1761302275776,"open","cdmx","entronque",2,"etc","asur",,,"out"
+1030,,"Boulevard de la Luz",19.3251953125,-99.2142105102539,"open","cdmx","entronque",2,"etc","asur",,,"out"
+1031,,"San Jerónimo",19.3299388885498,-99.2109985351563,"open","cdmx","entronque",2,"etc","asur",,,"out"
 1032,,"San Joaquín",19.4569473266602,-99.2206268310547,"open","edomx","entronque",2,"etc","viaducto-bicentenario",,,
 1033,,"Periférico - Toreo",19.4538593292236,-99.2197723388672,"open","cdmx","entronque",2,"etc","viaducto-bicentenario",,,
 1034,,"Campo Marte Oriente",19.4253482818604,-99.200569152832,"open","cdmx","entronque",1,"etc","aunorte",,,
@@ -996,7 +996,7 @@
 1046,,"Caminero",19.2791500091553,-99.1642913818359,"open","cdmx","entronque",1,"etc","asur",,,
 1047,,"Tlalpan (V.E.T.)",19.2382907867432,-99.1464691162109,"open","cdmx","troncal",2,"etc","asur",,,
 1048,,"Tlalpan (V.E.T.)",19.2359218597412,-99.1452941894531,"open","cdmx","troncal",2,"etc","asur",,,
-1051,,"Entrada a Supervía Poniente",19.3195105332323,-99.2213521039295,"open","cdmx","troncal",2,"etc","supervia",,,
+1051,,"Entrada a Supervía Poniente",19.319526802255417,-99.2212736606598,"open","cdmx","troncal",2,"etc","supervia",,,"out"
 1052,,"Panindícuaro",19.9725395275969,-101.756364425733,"open","michoacan","troncal",1,"ticket","rco",,,
 1053,,"Vía Atlixcáyotl",19.0053691864014,-98.2706069946289,"open","puebla","troncal",7,"toll","omc",,,
 1054,,"CE Jaltenco",19.6936855316162,-99.0809936523438,"open","edomx","entronque",1,"toll","cem",,,
@@ -1283,7 +1283,7 @@
 1417,,"miahuatlan",18.2646319365657,-97.3156660795212,"open","puebla","troncal",1,"toll","capufe",,,
 1418,,"miahuatlan",18.265100598095,-97.3147058486939,"open","puebla","entronque",1,"toll","capufe",,,
 1419,,"miahuatlan",18.2639289418996,-97.3161810636521,"open","puebla","entronque",1,"toll","capufe",,,
-1420,,"san martin texmelucan",19.2963295227102,-98.4113967418671,"open","puebla","entronque",1,"toll","arconorte",,0,"out"
+1420,,"san martin texmelucan",19.2963295227102,-98.4113967418671,"open","puebla","entronque",1,"toll","pinfra",,0,"in"
 1421,,"san martin texmelucan",19.2979142516942,-98.4091812372208,"open","puebla","entronque",1,"toll","pinfra",,0,"in"
 1422,,"san martin texmelucan",19.2972358072986,-98.40940117836,"open","puebla","entronque",1,"toll","pinfra",,0,"out"
 1423,,"huejotzingo",19.2535259138526,-98.4421080350876,"open","puebla","troncal",2,"toll","cap",,,
