@@ -559,13 +559,13 @@
 584,505,"juarez",,,"not_found","nuevo leon",,,"toll","reanal",,,
 585,505,"juarez",25.6222383469063,-100.071190595627,"open","nuevo leon","troncal",4,"toll","reanal",,,
 586,,"libramiento los herrera",25.8987392194616,-99.3936533002868,"closed","nuevo leon","troncal",2,"toll",,,,
-587,499,"lincon",25.7904004599719,-100.463372468948,"open","nuevo leon","entronque",1,"toll","reanal",,,
+587,499,"lincon",25.7904004599719,-100.463372468948,"open","nuevo leon","troncal",4,"toll","reanal",,,"io"
 589,499,"lincon",25.78248290758,-100.472370901854,"open","nuevo leon","entronque",1,"toll","reanal",,,
 590,499,"lincon",25.7821077444692,-100.474203138514,"open","nuevo leon","entronque",1,"toll","reanal",,,
 591,499,"lincon",25.8342661194434,-100.305784881109,"open","nuevo leon","entronque",1,"toll","reanal",,,"out"
 592,499,"lincon",25.7851294794316,-100.470581989338,"open","nuevo leon","entronque",1,"toll","reanal",,,
 593,499,"lincon",25.833565230741,-100.305787485599,"open","nuevo leon","entronque",1,"toll","reanal",,,"in"
-594,499,"lincon",25.790548,-100.463523,"open","nuevo leon","troncal",6,"toll","reanal",,,
+594,499,"lincon",25.790548,-100.463523,"open","nuevo leon","troncal",5,"toll","reanal",,,"io"
 595,141,"los chorros",25.1867527317298,-100.731975056865,"open","nuevo leon","troncal",8,"toll","capufe",,,
 596,129,"los herrera",25.7593817019285,-99.3742097933222,"open","nuevo leon","entronque",1,"toll","opan",,0,"in"
 597,129,"los herrera",25.7572439078648,-99.3738367695033,"open","nuevo leon","entronque",1,"toll","opan",,0,"in"
@@ -672,9 +672,9 @@
 703,207,"palmillas bis",20.2905570945392,-99.9205808536107,"open","queretaro","entronque",7,"toll","capufe",,0,"in"
 704,207,"palmillas bis",20.2909936571435,-99.9185991821772,"open","queretaro","entronque",7,"toll","capufe",,0,"out"
 705,6,"queretaro",20.5721566761826,-100.472872853279,"open","queretaro","troncal",6,"toll","capufe",,,
-706,1044,"felipe carrillo puerto",19.5903876811414,-88.0712857740722,"open","quintana roo","troncal",7,"toll","libramiento-carrillopuerto",,,
-707,1044,"felipe carrillo puerto aux. 1",19.5876575094965,-88.0704598430559,"open","quintana roo","entronque",2,"toll","libramiento-carrillopuerto",,,
-708,1044,"felipe carrillo puerto aux. 2",19.5888479206139,-88.072746068695,"open","quintana roo","entronque",2,"toll","libramiento-carrillopuerto",,,
+706,1044,"felipe carrillo puerto",19.590389303345162,-88.07134687900545,"open","quintana roo","troncal",3,"toll","libramiento-carrillopuerto",,0,"io"
+707,1044,"felipe carrillo puerto aux. 1",19.5876575094965,-88.0704598430559,"open","quintana roo","entronque",2,"toll","libramiento-carrillopuerto",,,"out"
+708,1044,"felipe carrillo puerto aux. 2",19.588746780144703,-88.07278454303741,"open","quintana roo","entronque",2,"toll","libramiento-carrillopuerto",,,"in"
 709,487,"calderon (villa de arriaga)",21.8133670486651,-101.012780070305,"open","san luis potosi","troncal",2,"toll","coinsan",,0,"io"
 711,486,"cerritos (cerritos-rioverde)",22.427611289831,-100.318468809128,"open","san luis potosi","entronque",1,"toll","coinsan",,,
 712,486,"cerritos (charco blanco-rioverde-charco blanco)",22.4413845512445,-100.339368524677,"open","san luis potosi","entronque",1,"toll","coinsan",,0,"in"
@@ -1366,3 +1366,5 @@
 1575,,"zacatelco",19.213608687710696,-98.26635360717775,"open","tlaxcala","troncal",1,"toll","pinfra",,,"io"
 1576,,"zacatelco ii",19.211405132392517,-98.26316714286806,"open","tlaxcala","entronque",2,"toll","pinfra",,0,"out"
 1577,,"la carbonera",25.511078150194447,-100.8681607246399,"open","coahuila","troncal",4,"toll","capufe",,,
+1578,,"lincon",25.789347498433006,-100.46426832675935,"open","nuevo leon","entronque",2,"toll","reanal",,,"in"
+1579,,"felipe carrillo puerto",19.590358979991738,-88.0711752176285,"open","quintana roo","troncal",2,"toll","libramiento-carrillopuerto",,0,"io"
