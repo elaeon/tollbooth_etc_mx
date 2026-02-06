@@ -210,7 +210,7 @@
 217,69,"jorobas",19.8256731393049,-99.2500793205841,"open","edomx","entronque",1,"toll","capufe",,0,
 218,69,"jorobas",19.8261890886413,-99.2497502458536,"open","edomx","entronque",1,"toll","capufe",,0,
 219,835,"la finca",18.9063524709847,-99.6545577049256,"open","edomx","troncal",3,"toll","omc",,0,
-220,835,"la finca",18.8998280229582,-99.653212507084,"open","edomx","entronque",2,"toll","omc",,,
+220,835,"la finca",18.89981573727326,-99.65316832065584,"open","edomx","entronque",2,"toll","omc",,0,"out"
 221,532,"la hortaliza",19.381419413433,-99.8046930151196,"open","edomx","troncal",2,"toll","acomex",,,
 222,532,"la hortaliza",19.3818811565397,-99.806883942413,"open","edomx","entronque",2,"toll","acomex",,0,
 223,532,"la hortaliza",19.3812646770569,-99.8047053821462,"open","edomx","troncal",3,"toll","acomex",,0,
@@ -240,7 +240,7 @@
 248,135,"nopala",19.4873631934039,-99.3098546897097,"open","edomx","entronque",2,"toll","capufe",,,
 249,196,"ozumba",19.0460461082194,-98.8283386202082,"open","edomx","troncal",5,"toll","capufe","bypass",,
 250,913,"peñon",19.4585991884125,-99.0337245623198,"open","edomx","troncal",9,"toll","desarrollo-global",,0,
-251,70,"polotitlan",20.2264940558826,-99.8106991185484,"open","edomx","entronque",1,"toll","capufe",,0,
+251,70,"polotitlan",20.226482716337042,-99.81064617633821,"open","edomx","entronque",1,"toll","capufe",,0,"out"
 252,1031,"puente de vigas",19.5161435835187,-99.2079068928162,"open","edomx","troncal",6,"toll","anesa",,,
 253,440,"queretaro-arco norte",19.9978731259507,-99.492063312003,"open","edomx","entronque",1,"toll","arconorte",,,"in"
 254,440,"queretaro-arco norte",19.99628469499,-99.4903908118255,"open","edomx","entronque",3,"toll","arconorte",,,"in"
@@ -894,8 +894,8 @@
 935,421,"libramiento matehuala",23.6641489489375,-100.606240971637,"closed","san luis potosi","entronque",2,"toll","omega",,,
 936,,"Emiliano Zapata",18.8374451111908,-99.2153996229172,"closed","morelos","troncal",4,"toll","capufe",,,
 938,,"La Venta",19.3336146823533,-99.3136543035507,"open","cdmx","troncal",5,"toll","pinfra",,,
-939,,"Laguna Seca",19.3541145324707,-99.9829788208008,"open","edomx","entronque",1,"toll","acomex",,0,
-940,,"Laguna Seca",19.3547265093528,-99.9831283092499,"closed","edomx","entronque",1,"toll","acomex",,0,
+939,,"Laguna Seca",19.3541145324707,-99.9829788208008,"closed","edomx","entronque",1,"toll","acomex",,0,"out"
+940,,"Laguna Seca",19.3547265093528,-99.9831283092499,"closed","edomx","entronque",1,"toll","acomex",,0,"in"
 941,,"Tulancingo",19.8325176239014,-98.7001342773438,"open","edomx","entronque",3,"toll","arconorte",,1,"out"
 942,,"Tulancingo",19.8323976253653,-98.7001349033128,"open","edomx","entronque",1,"ticket","arconorte",,0,"in"
 949,1052,"Zaragoza",19.7600003137051,-97.548290837125,"open","puebla","entronque",1,"toll","opervite",,,
@@ -1295,7 +1295,7 @@
 1436,,"huimilpan",20.3482885782378,-100.277570486069,"open","queretaro","entronque",2,"toll","macrolibramiento-queretaro","bypass",,
 1438,,"amealco i",20.2777415995267,-100.05906701088,"open","queretaro","entronque",2,"toll","macrolibramiento-queretaro","bypass",,
 1440,,"palmillas",20.2959109095831,-99.9292212724686,"open","queretaro","troncal",5,"toll","capufe",,0,"io"
-1442,,"Polotitlán",20.22527967837,-99.8106944561005,"open","edomx","entronque",1,"toll","capufe",,0,
+1442,,"Polotitlán",20.225324981223583,-99.8107159137726,"open","edomx","entronque",1,"toll","capufe",,0,"in"
 1443,,"jilotepec",19.9765099360058,-99.5315355062485,"open","edomx","entronque",1,"toll","arconorte",,,
 1451,,"Querétaro",20.000299713636,-99.4899183511734,"open","edomx","entronque",2,"toll","arconorte",,,"in"
 1452,,"Querétaro",20.0006576167344,-99.4885557889939,"open","edomx","entronque",4,"toll","arconorte",,1,"out"
@@ -1312,7 +1312,6 @@
 1466,,"la hortaliza",19.3803192266844,-99.8071002960205,"open","edomx","entronque",1,"toll","acomex",,0,
 1467,,"el dorado",19.4081645146409,-99.7161412239075,"open","edomx","troncal",5,"toll","ideal",,,
 1469,,"Valle de Bravo",19.348167001337,-99.9893403053284,"open","edomx","troncal",3,"toll","acomex",,,
-1471,,"Laguna Seca",19.3540584233779,-99.9829298257828,"open","edomx","entronque",1,"toll","acomex",,,
 1473,,"Monumento",19.4012883910077,-100.112335681915,"open","edomx","troncal",3,"toll","acomex",,0,
 1475,,"Zitácuaro",19.4523742279096,-100.28184056282,"open","edomx","troncal",2,"toll","acomex",,,
 1486,,"Marquesa T2",19.2904461454103,-99.4342839717865,"open","edomx","troncal",5,"toll","pinfra",,,
@@ -1335,7 +1334,7 @@
 1534,,"tenango",19.1223466956588,-99.6021366119385,"open","edomx","troncal",2,"toll","omc",,,
 1535,836,"villa guerrero",18.9892879032044,-99.6566659212113,"open","edomx","troncal",3,"toll","omc",,0,
 1536,,"la finca",18.9062915709175,-99.6547293663025,"open","edomx","troncal",3,"toll","omc",,,
-1537,,"la finca",18.8997903612566,-99.6532809734345,"open","edomx","entronque",1,"toll","omc",,,
+1537,,"la finca",18.89980051166375,-99.65325951576233,"open","edomx","entronque",1,"toll","omc",,0,"in"
 1538,,"ozumba",19.045958176314,-98.8281530141831,"open","edomx","troncal",5,"toll","capufe","bypass",,
 1539,,"San Marcos bis",19.29371190161,-98.8749307394028,"closed","edomx","entronque",3,"toll","capufe",,,
 1540,,"san marcos",19.2962890182539,-98.8706713914871,"open","edomx","troncal",7,"toll","capufe",,,
@@ -1355,8 +1354,8 @@
 1563,,"salamanca",20.5975524919403,-101.181035041809,"open","guanajuato","entronque",1,"toll","capufe",,,
 1564,,"salamanca",20.5990790188599,-101.180718541145,"open","guanajuato","entronque",1,"toll","capufe",,,
 1565,,"arandas",20.7374572778251,-101.379963755608,"open","guanajuato","troncal",3,"toll","libramiento-irapuato","bypass",,
-1566,70,"polotitlan",20.2264575482741,-99.8107373714447,"open","edomx","entronque",1,"toll","capufe",,0,
-1567,70,"Polotitlán",20.2252293418505,-99.8106461763382,"open","edomx","entronque",1,"toll","capufe",,0,
+1566,70,"polotitlan",20.226437413820733,-99.81072127819063,"open","edomx","entronque",1,"toll","capufe",,0,"in"
+1567,70,"Polotitlán",20.2252293418505,-99.8106461763382,"open","edomx","entronque",1,"toll","capufe",,0,"out"
 1568,592,"san miguel",20.5809626320634,-100.795385508933,"open","guanajuato","troncal",2,"toll","bicentenario","bypass",0,
 1569,,"tepatitlan",20.824515059312883,-102.79489338397981,"open","jalisco","troncal",4,"toll","rco",,1,"in"
 1570,,"encarnacion de diaz",21.489601052625215,-102.24327564239502,"open","jalisco","troncal",5,"toll","rco",,0,"in"
