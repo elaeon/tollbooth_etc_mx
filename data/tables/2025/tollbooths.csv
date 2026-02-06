@@ -195,8 +195,8 @@
 202,399,"ent. gran canal",19.5072233740303,-99.0843383755434,"open","edomx","entronque",2,"toll","anesa",,,
 203,588,"ent. indios verdes",19.5135365861925,-99.0988628962673,"open","edomx","entronque",1,"toll","anesa",,,
 204,915,"ent. peñon",19.4688423056394,-99.0044319335029,"open","edomx","entronque",2,"toll","pinfra",,0,
-205,576,"entronque ojo de agua",19.665029989506,-99.0017402167334,"open","edomx","entronque",3,"toll","golfo-centro",,,
-206,576,"entronque ojo de agua",19.6653758296542,-99.002033909126,"open","edomx","entronque",3,"toll","golfo-centro",,,
+205,576,"entronque ojo de agua",19.665029989506,-99.0017402167334,"open","edomx","entronque",3,"toll","golfo-centro",,,"in"
+206,576,"entronque ojo de agua",19.6653758296542,-99.002033909126,"open","edomx","entronque",2,"toll","golfo-centro",,,"out"
 207,412,"huixquilucan",19.4143623901941,-99.2997711896897,"open","edomx","entronque",3,"toll","chamapa-laventa",,,
 208,412,"huixquilucan",19.4144585186482,-99.2997175455094,"open","edomx","entronque",1,"ticket","chamapa-laventa",,,
 209,411,"interlomas",19.3948677261955,-99.2955139235045,"open","edomx","entronque",3,"ticket","chamapa-laventa",,,
@@ -1368,3 +1368,4 @@
 1577,,"la carbonera",25.511078150194447,-100.8681607246399,"open","coahuila","troncal",4,"toll","capufe",,,
 1578,,"lincon",25.789347498433006,-100.46426832675935,"open","nuevo leon","entronque",2,"toll","reanal",,,"in"
 1579,,"felipe carrillo puerto",19.590358979991738,-88.0711752176285,"open","quintana roo","troncal",2,"toll","libramiento-carrillopuerto",,0,"io"
+1580,,"entronque ojo de agua",19.666235378429963,-99.00102674961092,"open","edomx","entronque",1,"toll","golfo-centro",,,"out"
