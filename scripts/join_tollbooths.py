@@ -34,15 +34,16 @@ def map_tb_sts(base_year: int, move_year: int):
     df_sts_no_map.write_csv(f"./tmp_data/{move_year}/df_sts_no_map.csv")
 
 
-def map_tb_imt(base_year: int, move_year: int):
+def imt_no_tb(base_year: int, move_year: int):
     data_model_prev_year = DataModel(base_year, DataStage.stg)
     ldf_neighbour = pl.scan_parquet(data_model_prev_year.tb_neighbour.parquet)
     
-    threshold = 0.3
+    threshold = 0.1
     ldf_neighbour = ldf_neighbour.filter(pl.col("scope") == "local-imt")
-    ldf_closest = ldf_neighbour.filter(
-        pl.col("distance") == pl.col("distance").min().over("tollbooth_id")
-    ).filter(pl.col("distance") <= threshold)
+    ldf_closest = ldf_neighbour.filter(pl.col("distance") <= threshold)
+    # ldf_neighbour.filter(
+    #     pl.col("distance") == pl.col("distance").min().over("tollbooth_id")
+    # )
     
     ldf_tb_imt = pl.scan_parquet(
         data_model_prev_year.tb_imt.parquet, 
@@ -51,8 +52,7 @@ def map_tb_imt(base_year: int, move_year: int):
     df_imt_no_map = ldf_tb_imt.join(
         ldf_closest, left_on="tollbooth_id", right_on="neighbour_id", how="anti"
     ).select("tollbooth_id", "area", "subarea")
-    print(df_imt_no_map.collect())
-    # df_imt_no_map.write_csv(f"./tmp_data/{move_year}/df_imt_no_map.csv")
+    df_imt_no_map.sink_csv(f"./tmp_data/{move_year}/imt_no_tb.csv")
 
 
 def _tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll, ldf_map_tb_imt):
@@ -253,7 +253,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", help="data year", required=True, type=int)
     parser.add_argument("--map-tb-sts", help="join tollbooths their statistics", required=False, type=int)
-    parser.add_argument("--map-tb-imt", required=False, type=int)
+    parser.add_argument("--imt-no-tb", required=False, type=int)
     parser.add_argument("--tb-stretch-id-imt", required=False, type=int)
     parser.add_argument("--tb-stretch-id-imt-delta", required=False, type=int)
     parser.add_argument("--pivot-year", required=False, type=int)
@@ -266,8 +266,8 @@ if __name__ == "__main__":
 
     if args.map_tb_sts:
         map_tb_sts(args.year, args.map_tb_sts)
-    elif args.map_tb_imt:
-        map_tb_imt(args.year, args.map_tb_imt)
+    elif args.imt_no_tb:
+        imt_no_tb(args.year, args.imt_no_tb)
     elif args.tb_stretch_id_imt:
         tb_stretch_id_imt(args.year, args.tb_stretch_id_imt)
     elif args.tb_stretch_id_imt_delta:
