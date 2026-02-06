@@ -20,7 +20,7 @@ def map_tb_sts(base_year: int, move_year: int):
         data_model.tollbooths.parquet,
         columns=["tollbooth_id", "lat", "lng"]
     )
-    df_all_data = _find_closer_elem(df_tb_sts, df_tb_catalog, threshold=5)
+    #df_all_data = _find_closer_elem(df_tb_sts, df_tb_catalog, threshold=5)
     df_all_data = df_all_data.with_columns(
         pl.lit(move_year).alias("info_year")
     ).rename({"tollbooth_imt_id": "tollbooth_sts_id"})
@@ -34,89 +34,25 @@ def map_tb_sts(base_year: int, move_year: int):
     df_sts_no_map.write_csv(f"./tmp_data/{move_year}/df_sts_no_map.csv")
 
 
-def _find_closer_elem(df_ref, df_catalog, threshold=0.3):
-    hex_resolution_max = 5
-    hex_resolution_max_name = "hex_rest_max"
-
-    df_ref = df_ref.with_columns(
-        plh3.latlng_to_cell("lat", "lng", hex_resolution_max).alias(hex_resolution_max_name)
-    )
-    
-    df_catalog = df_catalog.with_columns(
-        plh3.latlng_to_cell("lat", "lng", hex_resolution_max).alias(hex_resolution_max_name)
-    )
-
-    df_ref_tb_catalog = df_ref.join(
-        df_catalog, on=hex_resolution_max_name
-    )
-
-    df_ref_tb_catalog = df_ref_tb_catalog.with_columns(
-        plh3.great_circle_distance("lat", "lng", "lat_right", "lng_right").alias("distance")
-    ).select("tollbooth_id", "tollbooth_imt_id", "distance")
-
-    df_ref_tb_catalog_no_dup_tb = df_ref_tb_catalog.group_by("tollbooth_id").agg(pl.col("distance").min())
-    df_ref_tb_catalog_no_dup_tb = df_ref_tb_catalog_no_dup_tb.join(
-        df_ref_tb_catalog, on=["tollbooth_id", "distance"]
-    )
-
-    df_imt_tb_catalog_no_dup_imt_tb = df_ref_tb_catalog_no_dup_tb.group_by("tollbooth_imt_id").agg(pl.col("distance").min())
-    df_imt_tb_catalog_no_dup_tb_join = df_imt_tb_catalog_no_dup_imt_tb.join(
-       df_ref_tb_catalog_no_dup_tb, on=["tollbooth_imt_id", "distance"]
-    ).select("tollbooth_id", "tollbooth_imt_id", "distance")
-
-    df_tb_not_found = df_ref_tb_catalog.join(
-        df_imt_tb_catalog_no_dup_tb_join, on="tollbooth_id", how="left"
-    ).filter(pl.col("tollbooth_imt_id_right").is_null()).select("tollbooth_id", "tollbooth_imt_id", "distance")
-    
-    df_tb_not_found_best = df_tb_not_found.group_by("tollbooth_imt_id").agg(pl.col("distance").min())
-    df_tb_not_found = df_tb_not_found_best.join(
-        df_tb_not_found, on=["tollbooth_imt_id", "distance"], how="left"
-    ).select("tollbooth_id", "tollbooth_imt_id", "distance")
-
-    df_tb_not_found = df_tb_not_found.join(
-        df_imt_tb_catalog_no_dup_tb_join, on="tollbooth_imt_id", how="left"
-    ).filter(pl.col("tollbooth_id_right").is_null()).select("tollbooth_id", "tollbooth_imt_id", "distance")
-    
-    df_tb_match = df_imt_tb_catalog_no_dup_tb_join.extend(df_tb_not_found)
-    df_no_match = df_tb_match.select("tollbooth_imt_id", "tollbooth_id").join(
-        df_ref.select("tollbooth_imt_id"), on=["tollbooth_imt_id"], how="right"
-    ).filter(pl.col("tollbooth_id").is_null())
-    
-    df_no_match = df_ref_tb_catalog.join(
-        df_no_match.select("tollbooth_imt_id").join(
-            df_ref_tb_catalog, 
-            on="tollbooth_imt_id"
-        ).group_by("tollbooth_imt_id").agg(pl.col("distance").min()), 
-        on=["tollbooth_imt_id", "distance"], 
-        how="right")
-    df_all_data = df_imt_tb_catalog_no_dup_tb_join.extend(df_no_match).filter(pl.col("distance") <= threshold)
-    return df_all_data
-
-
 def map_tb_imt(base_year: int, move_year: int):
     data_model_prev_year = DataModel(base_year, DataStage.stg)
-    df_tb_imt = pl.read_parquet(
-        data_model_prev_year.tb_imt.parquet, 
-        columns=["tollbooth_id", "lat", "lng", "area", "subarea"]
-    ).rename({"tollbooth_id": "tollbooth_imt_id"})
-
-    data_model = DataModel(move_year, DataStage.stg)
-    df_tb_catalog = pl.read_parquet(
-        data_model.tollbooths.parquet,
-        columns=["tollbooth_id", "lat", "lng"]
-    )
+    ldf_neighbour = pl.scan_parquet(data_model_prev_year.tb_neighbour.parquet)
     
-    df_all_data = _find_closer_elem(df_ref=df_tb_imt, df_catalog=df_tb_catalog)
-    df_all_data = df_all_data.with_columns(
-        pl.lit(move_year).alias("info_year")
-    )
+    threshold = 0.3
+    ldf_neighbour = ldf_neighbour.filter(pl.col("scope") == "local-imt")
+    ldf_closest = ldf_neighbour.filter(
+        pl.col("distance") == pl.col("distance").min().over("tollbooth_id")
+    ).filter(pl.col("distance") <= threshold)
+    
+    ldf_tb_imt = pl.scan_parquet(
+        data_model_prev_year.tb_imt.parquet, 
+    ).select("tollbooth_id", "lat", "lng", "area", "subarea")
 
-    df_all_data.write_parquet(data_model.map_tb_imt.parquet)
-    df_imt_no_map = df_tb_imt.join(
-        df_tb_imt.join(df_all_data, left_on="tollbooth_imt_id", right_on="tollbooth_id", how="anti"),
-        on="tollbooth_imt_id"
-    ).select("tollbooth_imt_id", "area", "subarea")
-    df_imt_no_map.write_csv(f"./tmp_data/{move_year}/df_imt_no_map.csv")
+    df_imt_no_map = ldf_tb_imt.join(
+        ldf_closest, left_on="tollbooth_id", right_on="neighbour_id", how="anti"
+    ).select("tollbooth_id", "area", "subarea")
+    print(df_imt_no_map.collect())
+    # df_imt_no_map.write_csv(f"./tmp_data/{move_year}/df_imt_no_map.csv")
 
 
 def _tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll, ldf_map_tb_imt):

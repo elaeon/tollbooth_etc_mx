@@ -41,7 +41,7 @@ class DataPipeline:
         ldf.sink_parquet(model_dict["end"].parquet)
         print(f'Sink file: {model_dict["end"].parquet}')
 
-    def simple_raw_stg(self, model_name: str, year: int, file_path: str, old_fields: list, date_columns: dict | None = None, filter_exp: pl.Expr | None = None):
+    def simple_raw_stg(self, model_name: str, year: int, file_path: str, old_fields: list, date_columns: dict | None = None, filter_exp: pl.Expr | None = None, normalize: bool | None = True):
         model_dict = self._get_model(model_name, year)
         schema = model_dict["start"].schema
         field_map = {}
@@ -59,6 +59,6 @@ class DataPipeline:
         if filter_exp is not None:
             ldf.filter(filter_exp)
 
-        ldf = ldf.pipe(self._simple_stg, model=model_dict["start"])
+        ldf = ldf.pipe(self._simple_stg, model=model_dict["start"], normalize=normalize)
         ldf = ldf.cast(schema)
         ldf.select(list(schema.keys())).sink_parquet(model_dict["end"].parquet)

@@ -382,5 +382,8 @@ class TbTollImt(TbModel, table=True):
 
 
 class TbNeighbour(TbModel, table=True):
-    tollbooth_id: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
-    neighbour_id: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
+    id: UInt32 | None = Field(default=None, primary_key=True)
+    tollbooth_id: UInt16 = Field(foreign_key="tbimt.tollbooth_id", index=True)
+    neighbour_id: UInt16
+    scope: String
+    distance: Float64

@@ -135,9 +135,9 @@ def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offs
     if body["query"]:
         param, values = map(str.strip, body["query"].split(":"))
         values = values.split(",")
-        stm = select(TbImt).where(TbImt.calirepr != "Virtual")
+        stm = select(TbImt)#.where(TbImt.calirepr != "Virtual")
         if param in ["id"]:
-            param = f"tollbooth_imt_{param}"
+            param = f"tollbooth_{param}"
         if len(values) > 1:
             params = []
             for value in values:
@@ -151,9 +151,11 @@ def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offs
     data = []
     for tb in tbs:
         data.append({
-            "tollbooth_id": tb.tollbooth_imt_id,
+            "tollbooth_id": tb.tollbooth_id,
             "tollbooth_name": tb.tollbooth_name,
-            "state": tb.state,
+            "calirepr": tb.calirepr,
+            "area": tb.area,
+            "subarea": tb.subarea,
             "lat": tb.lat,
             "lng": tb.lng,
             "source": TbImt.name()
