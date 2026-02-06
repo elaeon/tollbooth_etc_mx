@@ -83,7 +83,7 @@
 82,65,"acuña",29.3252643429945,-100.928434415453,"open","coahuila","troncal",2,"toll","capufe","International-bridge",,
 83,586,"agujita-allende",28.3034030062659,-100.9099817276,"open","coahuila","troncal",3,"toll","supercarreteras",,,
 84,142,"huachichil",25.245414058105,-100.801384449005,"open","coahuila","troncal",2,"toll","capufe",,,
-85,140,"la carbonera",25.5111058882902,-100.868310275897,"open","coahuila","troncal",8,"toll","capufe",,,
+85,140,"la carbonera",25.511116881373407,-100.86839675903322,"open","coahuila","troncal",4,"toll","capufe",,,
 86,163,"la cuchilla",25.6270412986567,-102.878374457359,"open","coahuila","troncal",4,"toll","capufe",,,
 87,491,"ojo caliente",25.6162596835307,-100.908422827854,"open","coahuila","entronque",2,"toll","cams",,,
 88,491,"ojo caliente",25.6156450794724,-100.90846814541,"open","coahuila","entronque",2,"toll","cams",,,
@@ -1365,3 +1365,4 @@
 1574,,"esperanza hornos",27.60439682197781,-109.89881515502931,"open","sonora","troncal",3,"toll","lico",,0,"io"
 1575,,"zacatelco",19.213608687710696,-98.26635360717775,"open","tlaxcala","troncal",1,"toll","pinfra",,,"io"
 1576,,"zacatelco ii",19.211405132392517,-98.26316714286806,"open","tlaxcala","entronque",2,"toll","pinfra",,0,"out"
+1577,,"la carbonera",25.511078150194447,-100.8681607246399,"open","coahuila","troncal",4,"toll","capufe",,,
