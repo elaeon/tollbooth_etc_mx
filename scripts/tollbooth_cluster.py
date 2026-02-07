@@ -33,26 +33,37 @@ def _tollbooth_neightbours(ldf: pl.LazyFrame):
 
 def tollbooth_neighbours(year: int):
     data_model = DataModel(year, DataStage.stg)
-    data_mode_stg = DataModel(year, DataStage.stg)
+    data_model_stg = DataModel(year, DataStage.stg)
+    data_model_sts = DataModel(year - 1, DataStage.prd)
 
     ldf_tb = pl.scan_parquet(
         data_model.tollbooths.parquet
     ).select("tollbooth_id", "lat", "lng")
     ldf_tb_imt = pl.scan_parquet(
-        data_mode_stg.tb_imt.parquet
+        data_model_stg.tb_imt.parquet
     ).select("tollbooth_id", "lat", "lng")
-
+    ldf_tb_sts = pl.scan_parquet(
+        data_model_sts.tb_sts.parquet
+    ).select(["tollbooth_id", "lat", "lng"]).cast({"tollbooth_id": pl.UInt16})
     ldf_tb = ldf_tb.with_columns(
         pl.lit("local").alias("scope")
     )
     ldf_tb_imt = ldf_tb_imt.with_columns(
         pl.lit("imt").alias("scope")
     )
-    ldf = pl.concat([ldf_tb, ldf_tb_imt])
-    ldf_neighbour = _tollbooth_neightbours(ldf)
+    ldf_tb_sts = ldf_tb_sts.with_columns(
+        pl.lit("sts").alias("scope")
+    )
+    ldf_imt = pl.concat([ldf_tb, ldf_tb_imt])
+    ldf_sts = pl.concat([ldf_tb, ldf_tb_sts])
+    ldf_neighbour_imt = _tollbooth_neightbours(ldf_imt)
+    ldf_neighbour_sts = _tollbooth_neightbours(ldf_sts)
 
-    ldf_neighbour = ldf_neighbour.filter(pl.col("scope") != "imt-local")
+    ldf_neighbour_imt = ldf_neighbour_imt.filter(pl.col("scope") != "imt-local")
+    ldf_neighbour_sts = ldf_neighbour_sts.filter((pl.col("scope") != "sts-local") & (pl.col("scope") != "local-local"))
+    ldf_neighbour = pl.concat([ldf_neighbour_imt, ldf_neighbour_sts])
     ldf_neighbour.sink_parquet(data_model.tb_neighbour.parquet)
+    print(ldf_neighbour.group_by("scope").len().collect())
     print(f"Saved file in: {data_model.tb_neighbour.parquet}")
 
 

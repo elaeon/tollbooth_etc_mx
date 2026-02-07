@@ -2,60 +2,55 @@ import os, sys
 sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
 
 import polars as pl
-import polars_h3 as plh3
 import polars_ds as plds
 import argparse
 
 from tb_map_editor.data_files import DataModel, DataStage
 
 
-def map_tb_sts(base_year: int, move_year: int):
-    data_path_prev_year = DataModel(base_year, DataStage.prd)
-    df_tb_sts = pl.read_parquet(
-        data_path_prev_year.tb_sts.parquet,
-        columns=["tollbooth_id", "lat", "lng", "tollbooth_name", "stretch_name"]
-    ).rename({"tollbooth_id": "tollbooth_imt_id"})
-    data_model = DataModel(move_year, DataStage.stg)
-    df_tb_catalog = pl.read_parquet(
-        data_model.tollbooths.parquet,
-        columns=["tollbooth_id", "lat", "lng"]
+def _no_tb(ldf_neighbour, ldf, scope: str, threshold: float = 0.1):
+    ldf_neighbour = ldf_neighbour.filter(pl.col("scope") == scope)
+    ldf_closest = ldf_neighbour.filter(pl.col("distance") <= threshold)
+    ldf_no_map = ldf.join(
+        ldf_closest, left_on="tollbooth_id", right_on="neighbour_id", how="anti"
     )
-    #df_all_data = _find_closer_elem(df_tb_sts, df_tb_catalog, threshold=5)
-    df_all_data = df_all_data.with_columns(
-        pl.lit(move_year).alias("info_year")
-    ).rename({"tollbooth_imt_id": "tollbooth_sts_id"})
-    df_tb_sts = df_tb_sts.rename({"tollbooth_imt_id": "tollbooth_sts_id"})
+    return ldf_no_map
 
-    df_all_data.write_parquet(data_model.map_tb_sts.parquet)
-    df_sts_no_map = df_tb_sts.join(
-        df_tb_sts.join(df_all_data, on="tollbooth_sts_id", how="anti"),
-        on="tollbooth_sts_id"
-    ).select("tollbooth_sts_id", "tollbooth_name", "stretch_name")
-    df_sts_no_map.write_csv(f"./tmp_data/{move_year}/df_sts_no_map.csv")
+
+def sts_no_tb(base_year: int, move_year: int):
+    data_model_prev_year = DataModel(base_year, DataStage.prd)
+    data_model = DataModel(move_year, DataStage.stg)
+
+    ldf_neighbour = pl.scan_parquet(data_model.tb_neighbour.parquet)
+    ldf_tb_sts = pl.scan_parquet(
+        data_model_prev_year.tb_sts.parquet
+    ).select("tollbooth_id", "lat", "lng", "tollbooth_name", "stretch_name")
+
+    ldf_sts_no_map = _no_tb(ldf_neighbour, ldf_tb_sts, "local-sts")
+    ldf_sts_no_map.select(
+        "tollbooth_id", "tollbooth_name", "stretch_name"
+    ).sink_csv(f"./tmp_data/{base_year}/sts_no_tb.csv")
 
 
 def imt_no_tb(base_year: int, move_year: int):
     data_model_prev_year = DataModel(base_year, DataStage.stg)
+
     ldf_neighbour = pl.scan_parquet(data_model_prev_year.tb_neighbour.parquet)
-    
-    threshold = 0.1
-    ldf_neighbour = ldf_neighbour.filter(pl.col("scope") == "local-imt")
-    ldf_closest = ldf_neighbour.filter(pl.col("distance") <= threshold)
-    # ldf_neighbour.filter(
-    #     pl.col("distance") == pl.col("distance").min().over("tollbooth_id")
-    # )
-    
     ldf_tb_imt = pl.scan_parquet(
         data_model_prev_year.tb_imt.parquet, 
     ).select("tollbooth_id", "lat", "lng", "area", "subarea")
 
-    df_imt_no_map = ldf_tb_imt.join(
-        ldf_closest, left_on="tollbooth_id", right_on="neighbour_id", how="anti"
-    ).select("tollbooth_id", "area", "subarea")
-    df_imt_no_map.sink_csv(f"./tmp_data/{move_year}/imt_no_tb.csv")
+    ldf_imt_no_map = _no_tb(ldf_neighbour, ldf_tb_imt, "local-imt")
+    ldf_imt_no_map.select(
+        "tollbooth_id", "area", "subarea"
+    ).sink_csv(f"./tmp_data/{base_year}/imt_no_tb.csv")
 
 
 def _tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll, ldf_map_tb_imt):
+    # ldf_neighbour.filter(
+    #     pl.col("distance") == pl.col("distance").min().over("tollbooth_id")
+    # )
+
     ldf_stretch_toll = ldf_stretch_toll.with_columns(
         pl.all().fill_null(strategy="zero"),
     ).with_columns(
@@ -252,7 +247,7 @@ def first_parent(year: int):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", help="data year", required=True, type=int)
-    parser.add_argument("--map-tb-sts", help="join tollbooths their statistics", required=False, type=int)
+    parser.add_argument("--sts-no-tb", help="join tollbooths their statistics", required=False, type=int)
     parser.add_argument("--imt-no-tb", required=False, type=int)
     parser.add_argument("--tb-stretch-id-imt", required=False, type=int)
     parser.add_argument("--tb-stretch-id-imt-delta", required=False, type=int)
@@ -264,8 +259,8 @@ if __name__ == "__main__":
     parser.add_argument("--first-parent", required=False, action="store_true")
     args = parser.parse_args()
 
-    if args.map_tb_sts:
-        map_tb_sts(args.year, args.map_tb_sts)
+    if args.sts_no_tb:
+        sts_no_tb(args.year, args.sts_no_tb)
     elif args.imt_no_tb:
         imt_no_tb(args.year, args.imt_no_tb)
     elif args.tb_stretch_id_imt:
