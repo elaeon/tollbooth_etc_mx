@@ -83,7 +83,7 @@
 82,65,"acuña",29.3252643429945,-100.928434415453,"open","coahuila","troncal",2,"toll","capufe","International-bridge",,
 83,586,"agujita-allende",28.3034030062659,-100.9099817276,"open","coahuila","troncal",3,"toll","supercarreteras",,,
 84,142,"huachichil",25.245414058105,-100.801384449005,"open","coahuila","troncal",2,"toll","capufe",,,
-85,140,"la carbonera",25.511116881373407,-100.86839675903322,"open","coahuila","troncal",4,"toll","capufe",,,
+85,140,"la carbonera",25.5111168813734,-100.868396759033,"open","coahuila","troncal",4,"toll","capufe",,,
 86,163,"la cuchilla",25.6270412986567,-102.878374457359,"open","coahuila","troncal",4,"toll","capufe",,,
 87,491,"ojo caliente",25.6162596835307,-100.908422827854,"open","coahuila","entronque",2,"toll","cams",,,
 88,491,"ojo caliente",25.6156450794724,-100.90846814541,"open","coahuila","entronque",2,"toll","cams",,,
@@ -112,7 +112,7 @@
 114,480,"durango",24.1317837009969,-104.534118175507,"open","durango","troncal",3,"toll","acsa",,,
 115,198,"durango capufe",24.00517,-104.734501,"open","durango","troncal",4,"toll","capufe","bypass",,
 117,483,"leon guzman",25.5194534454728,-103.639318424487,"open","durango","entronque",2,"toll","acsa",,,"out"
-118,483,"leon guzman",25.52064437177546,-103.63961219787599,"open","durango","troncal",4,"toll","acsa",,,"io"
+118,483,"leon guzman",25.5206443717755,-103.639612197876,"open","durango","troncal",4,"toll","acsa",,,"io"
 119,483,"leon guzman",25.5195498106948,-103.639733039609,"open","durango","entronque",2,"toll","acsa",,,"in"
 120,96,"llano grande",23.8708050159367,-105.191435760013,"open","durango","troncal",3,"toll","capufe",,,
 121,481,"yerbanis",24.730753,-103.861954,"open","durango","troncal",3,"toll","acsa",,,
@@ -210,7 +210,7 @@
 217,69,"jorobas",19.8256731393049,-99.2500793205841,"open","edomx","entronque",1,"toll","capufe",,0,
 218,69,"jorobas",19.8261890886413,-99.2497502458536,"open","edomx","entronque",1,"toll","capufe",,0,
 219,835,"la finca",18.9063524709847,-99.6545577049256,"open","edomx","troncal",3,"toll","omc",,0,
-220,835,"la finca",18.89981573727326,-99.65316832065584,"open","edomx","entronque",2,"toll","omc",,0,"out"
+220,835,"la finca",18.8998157372733,-99.6531683206558,"open","edomx","entronque",2,"toll","omc",,0,"out"
 221,532,"la hortaliza",19.381419413433,-99.8046930151196,"open","edomx","troncal",2,"toll","acomex",,,
 222,532,"la hortaliza",19.3818811565397,-99.806883942413,"open","edomx","entronque",2,"toll","acomex",,0,
 223,532,"la hortaliza",19.3812646770569,-99.8047053821462,"open","edomx","troncal",3,"toll","acomex",,0,
@@ -240,7 +240,7 @@
 248,135,"nopala",19.4873631934039,-99.3098546897097,"open","edomx","entronque",2,"toll","capufe",,,
 249,196,"ozumba",19.0460461082194,-98.8283386202082,"open","edomx","troncal",5,"toll","capufe","bypass",,
 250,913,"peñon",19.4585991884125,-99.0337245623198,"open","edomx","troncal",9,"toll","desarrollo-global",,0,
-251,70,"polotitlan",20.226482716337042,-99.81064617633821,"open","edomx","entronque",1,"toll","capufe",,0,"out"
+251,70,"polotitlan",20.226482716337,-99.8106461763382,"open","edomx","entronque",1,"toll","capufe",,0,"out"
 252,1031,"puente de vigas",19.5161435835187,-99.2079068928162,"open","edomx","troncal",6,"toll","anesa",,,
 253,440,"queretaro-arco norte",19.9978731259507,-99.492063312003,"open","edomx","entronque",1,"toll","arconorte",,,"in"
 254,440,"queretaro-arco norte",19.99628469499,-99.4903908118255,"open","edomx","entronque",3,"toll","arconorte",,,"in"
@@ -429,7 +429,7 @@
 446,58,"sayula",19.9332264246907,-103.530017137527,"open","jalisco","troncal",5,"toll","autopistas-sayula",,,
 447,59,"sayula remota",19.8791308752164,-103.519329854188,"open","jalisco","troncal",3,"toll","autopistas-sayula",,,
 449,113,"tepatitlan",20.8208353834692,-102.793966215855,"open","jalisco","troncal",2,"toll","rco",,0,"out"
-450,113,"tepatitlan",20.82460029695199,-102.79509186744691,"open","jalisco","troncal",4,"toll","rco",,1,"out"
+450,113,"tepatitlan",20.824600296952,-102.795091867447,"open","jalisco","troncal",4,"toll","rco",,1,"out"
 451,113,"tepatitlan",20.8209271445476,-102.793849735981,"open","jalisco","troncal",2,"ticket","rco",,0,"in"
 452,,"tequila",20.8542801172832,-103.860937356949,"open","jalisco","entronque",2,"toll","guadalajara-tepic",,,
 453,120,"union de san antonio",21.2513231348003,-101.95086971997,"open","jalisco","entronque",1,"toll","rco",,,
@@ -668,13 +668,13 @@
 699,61,"libramiento sur poniente queretaro",20.5703394523202,-100.480494144713,"open","queretaro","entronque",2,"toll","capufe",,,
 700,61,"libramiento sur poniente queretaro",20.5698830800817,-100.481371567722,"open","queretaro","entronque",2,"toll","capufe",,,
 701,61,"libramiento sur poniente queretaro",20.5723289646334,-100.480878884164,"open","queretaro","entronque",2,"toll","capufe",,,
-702,5,"palmillas",20.295674435429937,-99.92781043052675,"open","queretaro","troncal",4,"toll","capufe",,0,"io"
+702,5,"palmillas",20.2956744354299,-99.9278104305268,"open","queretaro","troncal",4,"toll","capufe",,0,"io"
 703,207,"palmillas bis",20.2905570945392,-99.9205808536107,"open","queretaro","entronque",7,"toll","capufe",,0,"in"
 704,207,"palmillas bis",20.2909936571435,-99.9185991821772,"open","queretaro","entronque",7,"toll","capufe",,0,"out"
 705,6,"queretaro",20.5721566761826,-100.472872853279,"open","queretaro","troncal",6,"toll","capufe",,,
-706,1044,"felipe carrillo puerto",19.590389303345162,-88.07134687900545,"open","quintana roo","troncal",3,"toll","libramiento-carrillopuerto",,0,"io"
+706,1044,"felipe carrillo puerto",19.5903893033452,-88.0713468790055,"open","quintana roo","troncal",3,"toll","libramiento-carrillopuerto",,0,"io"
 707,1044,"felipe carrillo puerto aux. 1",19.5876575094965,-88.0704598430559,"open","quintana roo","entronque",2,"toll","libramiento-carrillopuerto",,,"out"
-708,1044,"felipe carrillo puerto aux. 2",19.588746780144703,-88.07278454303741,"open","quintana roo","entronque",2,"toll","libramiento-carrillopuerto",,,"in"
+708,1044,"felipe carrillo puerto aux. 2",19.5887467801447,-88.0727845430374,"open","quintana roo","entronque",2,"toll","libramiento-carrillopuerto",,,"in"
 709,487,"calderon (villa de arriaga)",21.8133670486651,-101.012780070305,"open","san luis potosi","troncal",2,"toll","coinsan",,0,"io"
 711,486,"cerritos (cerritos-rioverde)",22.427611289831,-100.318468809128,"open","san luis potosi","entronque",1,"toll","coinsan",,,
 712,486,"cerritos (charco blanco-rioverde-charco blanco)",22.4413845512445,-100.339368524677,"open","san luis potosi","entronque",1,"toll","coinsan",,0,"in"
@@ -756,8 +756,8 @@
 788,559,"sahuaripa",29.0302228263409,-110.855540858042,"open","sonora","entronque",1,"toll","libramientohermosillo","bypass",,
 789,559,"sahuaripa",29.030270982054,-110.853056134734,"open","sonora","entronque",1,"toll","libramientohermosillo","bypass",,
 790,559,"sahuaripa",29.0297234979266,-110.854191184044,"open","sonora","troncal",3,"toll","libramientohermosillo","bypass",,
-791,1003,"san luis rio colorado",32.4917090275577,-114.808860491721,"open","sonora","troncal",3,"toll","capufe","bridge",,
-792,1020,"san luis rio colorado ii",32.4570757258847,-114.70138923845,"open","sonora","entronque",3,"toll","puente-colorado","International-bridge",,
+791,1003,"san luis rio colorado",32.4917090275577,-114.808860491721,"open","sonora","troncal",3,"toll","puente-colorado","bridge",,
+792,1020,"san luis rio colorado ii",32.4570757258847,-114.70138923845,"open","sonora","entronque",3,"toll","cucapa","International-bridge",,
 793,1005,"santa ana",30.5936050303953,-111.51849090106,"open","sonora","troncal",3,"toll","ccp",,,
 794,38,"grijalva",17.947625640994,-92.7852058410645,"open","tabasco","troncal",3,"toll","capufe","bridge",,
 795,181,"malpasito",17.3482778914197,-93.5869717597962,"open","tabasco","entronque",1,"toll","capufe",,,"out"
@@ -812,7 +812,7 @@
 847,1018,"zacatelco",19.213652577941,-98.2662670885483,"open","tlaxcala","troncal",2,"toll","pinfra",,,"io"
 848,1018,"zacatelco",19.2129772653421,-98.2658054986939,"open","tlaxcala","troncal",2,"toll","pinfra",,,"io"
 849,1018,"zacatelco",19.21155439276,-98.2649139557129,"open","tlaxcala","troncal",4,"toll","pinfra",,,"io"
-850,1018,"zacatelco ii",19.211465920521547,-98.26311349868776,"open","tlaxcala","entronque",1,"toll","pinfra",,0,"in"
+850,1018,"zacatelco ii",19.2114659205215,-98.2631134986878,"open","tlaxcala","entronque",1,"toll","pinfra",,0,"in"
 851,119,"acayucan (sayula)",17.9097424926721,-94.9373061583801,"open","veracruz","entronque",2,"toll","capufe",,,
 852,119,"acayucan (sayula)",17.910803786741,-94.9368171505412,"open","veracruz","entronque",2,"toll","capufe",,,
 853,119,"acayucan (sayula)",17.9100710030995,-94.9372923374176,"open","veracruz","troncal",3,"toll","capufe",,,
@@ -837,7 +837,7 @@
 873,461,"miradores",19.4744265227846,-96.7753511667252,"open","veracruz","troncal",4,"toll","copexa",,,
 874,556,"naranjos",21.3243065152292,-97.6262173229553,"open","veracruz","entronque",1,"toll","autopista-tuxpan-tampico",,,
 877,556,"naranjos",21.3243786667974,-97.6251432274458,"open","veracruz","entronque",1,"toll","autopista-tuxpan-tampico",,,
-878,556,"naranjos",21.3271919467559,-97.62723684310915,"open","veracruz","entronque",4,"toll","autopista-tuxpan-tampico",,,"io"
+878,556,"naranjos",21.3271919467559,-97.6272368431092,"open","veracruz","entronque",4,"toll","autopista-tuxpan-tampico",,,"io"
 879,33,"nautla",20.2102384016123,-96.778736114502,"open","veracruz","troncal",1,"toll","capufe","bridge",,
 880,117,"paso del toro",19.0847004177133,-96.1968254939115,"open","veracruz","entronque",1,"toll","capufe",,,
 881,117,"paso del toro",19.0817183514591,-96.1984992027283,"open","veracruz","troncal",2,"toll","capufe",,,
@@ -862,7 +862,7 @@
 900,555,"totomoxtle ii",20.4610110723239,-97.2478186300367,"open","veracruz","entronque",2,"toll","cardel-pozarica",,,
 901,555,"totomoxtle ii",20.4595038033763,-97.2463587112581,"open","veracruz","troncal",2,"toll","cardel-pozarica",,,
 902,555,"totomoxtle ii",20.4589466022492,-97.246465086937,"open","veracruz","entronque",2,"toll","cardel-pozarica",,,
-904,569,"vega de alatorre",20.044139303516268,-96.68426871299745,"open","veracruz","troncal",4,"toll","cardel-pozarica",,,"io"
+904,569,"vega de alatorre",20.0441393035163,-96.6842687129975,"open","veracruz","troncal",4,"toll","cardel-pozarica",,,"io"
 905,569,"vega de alatorre",20.0399820134827,-96.6807660823281,"open","veracruz","entronque",2,"toll","cardel-pozarica",,,"in"
 907,569,"vega de alatorre",20.0403442197993,-96.680305179202,"open","veracruz","entronque",1,"toll","cardel-pozarica",,,"out"
 908,478,"chichen itza (valladolid)",20.7290793807312,-88.5831758515434,"open","yucatan","troncal",3,"toll","mayab",,,"io"
@@ -972,7 +972,7 @@
 1021,,"Cerro Zacatepetl",19.3039712351796,-99.1994057095398,"open","cdmx","entronque",1,"etc","asur",,,"in"
 1022,,"Picacho Ajusco Pedregal",19.3067898057293,-99.2111036503193,"open","cdmx","entronque",1,"etc","asur",,,"in"
 1023,,"Picacho Ajusco Pedregal",19.3069076614547,-99.2115668756764,"open","cdmx","entronque",1,"etc","asur",,,"in"
-1024,,"Salida Supervía Poniente",19.320524079855847,-99.2211824655533,"open","cdmx","entronque",2,"etc","supervia",,,"io"
+1024,,"Salida Supervía Poniente",19.3205240798558,-99.2211824655533,"open","cdmx","entronque",2,"etc","supervia",,,"io"
 1025,,"Estadio Azteca",19.3016699270296,-99.1663051108865,"open","cdmx","entronque",2,"etc","asur",,,
 1026,,"Picacho Ajusco Pedregal",19.3086477556662,-99.2172993936082,"open","cdmx","entronque",2,"etc","asur",,,
 1027,,"Cerro Zacatepetl",19.3038654327393,-99.1999816894531,"open","cdmx","entronque",2,"etc","asur",,,
@@ -996,7 +996,7 @@
 1046,,"Caminero",19.2791500091553,-99.1642913818359,"open","cdmx","entronque",1,"etc","asur",,,
 1047,,"Tlalpan (V.E.T.)",19.2382907867432,-99.1464691162109,"open","cdmx","troncal",2,"etc","asur",,,
 1048,,"Tlalpan (V.E.T.)",19.2359218597412,-99.1452941894531,"open","cdmx","troncal",2,"etc","asur",,,
-1051,,"Entrada a Supervía Poniente",19.319526802255417,-99.2212736606598,"open","cdmx","troncal",2,"etc","supervia",,,"out"
+1051,,"Entrada a Supervía Poniente",19.3195268022554,-99.2212736606598,"open","cdmx","troncal",2,"etc","supervia",,,"out"
 1052,,"Panindícuaro",19.9725395275969,-101.756364425733,"open","michoacan","troncal",1,"ticket","rco",,,
 1053,,"Vía Atlixcáyotl",19.0053691864014,-98.2706069946289,"open","puebla","troncal",7,"toll","omc",,,
 1054,,"CE Jaltenco",19.6936855316162,-99.0809936523438,"open","edomx","entronque",1,"toll","cem",,,
@@ -1039,7 +1039,7 @@
 1096,,"Alfredo del Mazo",19.5175607712255,-99.0687138869248,"open","edomx","entronque",1,"etc","ausn",,,
 1097,,"Río Remedios",19.504853262755,-99.0795634012265,"open","edomx","entronque",1,"etc","ausn",,,
 1098,,"Río Remedios",19.5043003510874,-99.078026797724,"open","edomx","troncal",2,"etc","ausn",,,
-1099,,"Rioverde-la pila",22.126752308001254,-100.82234859466554,"open","san luis potosi","entronque",2,"toll","libramiento-slp",,,"out"
+1099,,"Rioverde-la pila",22.1267523080013,-100.822348594666,"open","san luis potosi","entronque",2,"toll","libramiento-slp",,,"out"
 1101,,"El Capomo - La Peñita",21.0704846748855,-105.217637969041,"open","nayarit","entronque",2,"toll","lasvaras-vallarta",,,"out"
 1102,,"El Capomo - La Peñita",21.0701217651367,-105.216911315918,"open","nayarit","entronque",2,"toll","lasvaras-vallarta",,,"in"
 1103,,"Tepoztlán B",18.9846782684326,-99.1070556640625,"open","morelos","entronque",3,"toll","capufe",,,
@@ -1055,7 +1055,7 @@
 1114,,"san jose del cabo",23.0498269633571,-109.719589948654,"open","baja california sur","troncal",2,"toll","capufe",,,
 1115,,"san lucas",22.9242768750837,-109.917370676994,"open","baja california sur","troncal",2,"toll","capufe",,,
 1116,,"el mangle",22.954046493854,-109.973954558373,"open","baja california sur","troncal",2,"toll","capufe",,,
-1117,,"san luis rio colorado",32.4915560690259,-114.808915257454,"open","sonora","troncal",2,"toll","capufe","bridge",,
+1117,,"san luis rio colorado",32.4915560690259,-114.808915257454,"open","sonora","troncal",2,"toll","puente-colorado","bridge",,
 1118,,"estacion doctor",32.3751410615156,-114.760774970055,"open","sonora","troncal",2,"toll","pinfra",,,
 1119,,"nogales",31.2582979886708,-110.974906682968,"open","sonora","troncal",4,"toll","vias-norte",,,
 1120,,"magdalena",30.629280523383,-110.948814153671,"open","sonora","troncal",2,"toll","capufe",,,
@@ -1244,7 +1244,7 @@
 1374,,"totomoxtle ii",20.4594441799953,-97.246465086937,"open","veracruz","troncal",2,"toll","cardel-pozarica",,,
 1375,,"tecolutla",20.4377050636038,-97.0865625143051,"open","veracruz","troncal",1,"toll","capufe","bridge",,"in"
 1376,,"nautla",20.2101578553864,-96.7787897586823,"open","veracruz","troncal",1,"toll","capufe","bridge",,
-1377,,"vega de alatorre",20.044008276744957,-96.68443500995637,"open","veracruz","troncal",3,"toll","cardel-pozarica",,,"io"
+1377,,"vega de alatorre",20.044008276745,-96.6844350099564,"open","veracruz","troncal",3,"toll","cardel-pozarica",,,"io"
 1378,,"las vigas",19.6303656736239,-97.1280026435852,"open","veracruz","troncal",4,"toll","copexa",,,
 1379,,"amozoc-perote (perote)",19.5517527221591,-97.2893857955933,"open","veracruz","troncal",3,"toll","gana",,,
 1380,,"miradores",19.4742393943714,-96.775496006012,"open","veracruz","troncal",4,"toll","copexa",,,
@@ -1295,7 +1295,7 @@
 1436,,"huimilpan",20.3482885782378,-100.277570486069,"open","queretaro","entronque",2,"toll","macrolibramiento-queretaro","bypass",,
 1438,,"amealco i",20.2777415995267,-100.05906701088,"open","queretaro","entronque",2,"toll","macrolibramiento-queretaro","bypass",,
 1440,,"palmillas",20.2959109095831,-99.9292212724686,"open","queretaro","troncal",5,"toll","capufe",,0,"io"
-1442,,"Polotitlán",20.225324981223583,-99.8107159137726,"open","edomx","entronque",1,"toll","capufe",,0,"in"
+1442,,"Polotitlán",20.2253249812236,-99.8107159137726,"open","edomx","entronque",1,"toll","capufe",,0,"in"
 1443,,"jilotepec",19.9765099360058,-99.5315355062485,"open","edomx","entronque",1,"toll","arconorte",,,
 1451,,"Querétaro",20.000299713636,-99.4899183511734,"open","edomx","entronque",2,"toll","arconorte",,,"in"
 1452,,"Querétaro",20.0006576167344,-99.4885557889939,"open","edomx","entronque",4,"toll","arconorte",,1,"out"
@@ -1334,7 +1334,7 @@
 1534,,"tenango",19.1223466956588,-99.6021366119385,"open","edomx","troncal",2,"toll","omc",,,
 1535,836,"villa guerrero",18.9892879032044,-99.6566659212113,"open","edomx","troncal",3,"toll","omc",,0,
 1536,,"la finca",18.9062915709175,-99.6547293663025,"open","edomx","troncal",3,"toll","omc",,,
-1537,,"la finca",18.89980051166375,-99.65325951576233,"open","edomx","entronque",1,"toll","omc",,0,"in"
+1537,,"la finca",18.8998005116638,-99.6532595157623,"open","edomx","entronque",1,"toll","omc",,0,"in"
 1538,,"ozumba",19.045958176314,-98.8281530141831,"open","edomx","troncal",5,"toll","capufe","bypass",,
 1539,,"San Marcos bis",19.29371190161,-98.8749307394028,"closed","edomx","entronque",3,"toll","capufe",,,
 1540,,"san marcos",19.2962890182539,-98.8706713914871,"open","edomx","troncal",7,"toll","capufe",,,
@@ -1354,18 +1354,18 @@
 1563,,"salamanca",20.5975524919403,-101.181035041809,"open","guanajuato","entronque",1,"toll","capufe",,,
 1564,,"salamanca",20.5990790188599,-101.180718541145,"open","guanajuato","entronque",1,"toll","capufe",,,
 1565,,"arandas",20.7374572778251,-101.379963755608,"open","guanajuato","troncal",3,"toll","libramiento-irapuato","bypass",,
-1566,70,"polotitlan",20.226437413820733,-99.81072127819063,"open","edomx","entronque",1,"toll","capufe",,0,"in"
+1566,70,"polotitlan",20.2264374138207,-99.8107212781906,"open","edomx","entronque",1,"toll","capufe",,0,"in"
 1567,70,"Polotitlán",20.2252293418505,-99.8106461763382,"open","edomx","entronque",1,"toll","capufe",,0,"out"
 1568,592,"san miguel",20.5809626320634,-100.795385508933,"open","guanajuato","troncal",2,"toll","bicentenario","bypass",0,
-1569,,"tepatitlan",20.824515059312883,-102.79489338397981,"open","jalisco","troncal",4,"toll","rco",,1,"in"
-1570,,"encarnacion de diaz",21.489601052625215,-102.24327564239502,"open","jalisco","troncal",5,"toll","rco",,0,"in"
-1571,,"acaponeta",22.45378065959675,-105.42484223842622,"open","nayarit","troncal",3,"toll","mazatlan-culiacan",,0,"io"
-1572,,"acaponeta",22.454013672730703,-105.41886627674104,"open","nayarit","entronque",1,"toll","mazatlan-culiacan",,0,"out"
-1573,,"palmillas",20.295100858324826,-99.92731153964996,"open","queretaro","troncal",6,"toll","capufe",,0,"io"
-1574,,"esperanza hornos",27.60439682197781,-109.89881515502931,"open","sonora","troncal",3,"toll","lico",,0,"io"
-1575,,"zacatelco",19.213608687710696,-98.26635360717775,"open","tlaxcala","troncal",1,"toll","pinfra",,,"io"
-1576,,"zacatelco ii",19.211405132392517,-98.26316714286806,"open","tlaxcala","entronque",2,"toll","pinfra",,0,"out"
-1577,,"la carbonera",25.511078150194447,-100.8681607246399,"open","coahuila","troncal",4,"toll","capufe",,,
-1578,,"lincon",25.789347498433006,-100.46426832675935,"open","nuevo leon","entronque",2,"toll","reanal",,,"in"
-1579,,"felipe carrillo puerto",19.590358979991738,-88.0711752176285,"open","quintana roo","troncal",2,"toll","libramiento-carrillopuerto",,0,"io"
-1580,,"entronque ojo de agua",19.666235378429963,-99.00102674961092,"open","edomx","entronque",1,"toll","golfo-centro",,,"out"
+1569,,"tepatitlan",20.8245150593129,-102.79489338398,"open","jalisco","troncal",4,"toll","rco",,1,"in"
+1570,,"encarnacion de diaz",21.4896010526252,-102.243275642395,"open","jalisco","troncal",5,"toll","rco",,0,"in"
+1571,,"acaponeta",22.4537806595968,-105.424842238426,"open","nayarit","troncal",3,"toll","mazatlan-culiacan",,0,"io"
+1572,,"acaponeta",22.4540136727307,-105.418866276741,"open","nayarit","entronque",1,"toll","mazatlan-culiacan",,0,"out"
+1573,,"palmillas",20.2951008583248,-99.92731153965,"open","queretaro","troncal",6,"toll","capufe",,0,"io"
+1574,,"esperanza hornos",27.6043968219778,-109.898815155029,"open","sonora","troncal",3,"toll","lico",,0,"io"
+1575,,"zacatelco",19.2136086877107,-98.2663536071778,"open","tlaxcala","troncal",1,"toll","pinfra",,,"io"
+1576,,"zacatelco ii",19.2114051323925,-98.2631671428681,"open","tlaxcala","entronque",2,"toll","pinfra",,0,"out"
+1577,,"la carbonera",25.5110781501944,-100.86816072464,"open","coahuila","troncal",4,"toll","capufe",,,
+1578,,"lincon",25.789347498433,-100.464268326759,"open","nuevo leon","entronque",2,"toll","reanal",,,"in"
+1579,,"felipe carrillo puerto",19.5903589799917,-88.0711752176285,"open","quintana roo","troncal",2,"toll","libramiento-carrillopuerto",,0,"io"
+1580,,"entronque ojo de agua",19.66623537843,-99.0010267496109,"open","edomx","entronque",1,"toll","golfo-centro",,,"out"
