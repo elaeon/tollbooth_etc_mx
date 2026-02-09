@@ -99,17 +99,18 @@ def tb_stretch_id_imt(base_year: int, move_year: int):
     print(ldf_map_stretch.collect().shape)
     
     ldf_map_stretch = ldf_map_stretch.with_columns(
-        plds.str_jw("area", "stretch_name").alias("lev_area"),
-        plds.str_jw("subarea", "stretch_name").alias("lev_sub"),
-        plds.str_jw("tollbooth_name", "stretch_name").alias("lev_tb")
+        plds.str_jw("area", "stretch_name").alias("score_area"),
+        plds.str_jw("subarea", "stretch_name").alias("score_sub"),
+        plds.str_jw("tollbooth_name", "stretch_name").alias("score_tb"),
+        plds.str_jaccard("tollbooth_name", "stretch_name").alias("score_tb_j"),
     )
     ldf_map_stretch = ldf_map_stretch.with_columns(
-        pl.max_horizontal("lev_area", "lev_sub", "lev_tb").alias("lev_best")
+        pl.mean_horizontal("score_area", "score_sub", "score_tb", "score_tb_j").alias("score_best")
     )
     ldf_map_stretch = ldf_map_stretch.filter(
-        pl.col("lev_best") == pl.col("lev_best").max().over("tollbooth_id_a", "tollbooth_id_b")
+        pl.col("score_best") == pl.col("score_best").max().over("tollbooth_id_a", "tollbooth_id_b")
     )
-    ldf_map_stretch = ldf_map_stretch.filter(pl.col("lev_best") > 0.5)
+    ldf_map_stretch = ldf_map_stretch.filter(pl.col("score_best") > 0.5)
     ldf_map_stretch = ldf_map_stretch.select("stretch_id", "tollbooth_id_a", "tollbooth_id_b")
 
     print(ldf_map_stretch.collect().shape)
