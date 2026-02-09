@@ -92,7 +92,21 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
 
 @app.post("/api/tollbooths_sts")
 def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=1000):
-    stm = select(TbSts)
+    if body["query"]:
+        param, values = map(str.strip, body["query"].split(":"))
+        values = values.split(",")
+        stm = select(TbSts)
+        if param in ["id"]:
+            param = f"tollbooth_{param}"
+        if len(values) > 1:
+            params = []
+            for value in values:
+                params.append(getattr(TbSts, param) == value)
+            stm = stm.where(or_(*params))
+        else:
+            stm = stm.where(getattr(TbSts, param) == values[0])
+    else:
+        stm = select(TbSts)
     tollbooths_sts = session.exec(stm.offset(offset).limit(limit))
     data = []
     for tb_sts in tollbooths_sts:
@@ -146,7 +160,7 @@ def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offs
         else:
             stm = stm.where(getattr(TbImt, param) == values[0])
     else:
-        stm = select(TbImt).where(TbImt.calirepr != "Virtual").where(TbImt.state == None)
+        stm = select(TbImt).where(TbImt.calirepr != "Virtual")
     tbs = session.exec(stm.offset(offset).limit(limit))
     data = []
     for tb in tbs:

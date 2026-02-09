@@ -26,7 +26,7 @@ def sts_no_tb(base_year: int, move_year: int):
         data_model_prev_year.tb_sts.parquet
     ).select("tollbooth_id", "lat", "lng", "tollbooth_name", "stretch_name")
 
-    ldf_sts_no_map = _no_tb(ldf_neighbour, ldf_tb_sts, "local-sts")
+    ldf_sts_no_map = _no_tb(ldf_neighbour, ldf_tb_sts, "local-sts", threshold=100)
     ldf_sts_no_map.select(
         "tollbooth_id", "tollbooth_name", "stretch_name"
     ).sink_csv(f"./tmp_data/{base_year}/sts_no_tb.csv")
@@ -49,7 +49,7 @@ def imt_no_tb(base_year: int, move_year: int):
 def _tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll, ldf_neighbour):
     ldf_neighbour_imt = ldf_neighbour.filter(pl.col("scope") == "local-imt")
     ldf_neighbour_imt_closest = ldf_neighbour_imt.filter(
-        pl.col("distance") == pl.col("distance").min().over("tollbooth_id")
+        pl.col("distance") == pl.col("distance").min().over("neighbour_id")
     )
 
     ldf_stretch_toll = ldf_stretch_toll.with_columns(
@@ -99,12 +99,9 @@ def tb_stretch_id_imt(base_year: int, move_year: int):
     print(ldf_map_stretch.collect().shape)
     
     ldf_map_stretch = ldf_map_stretch.with_columns(
-        # plds.str_d_leven("area", "stretch_name", return_sim=True).alias("lev_area"),
-        # plds.str_d_leven("subarea", "stretch_name", return_sim=True).alias("lev_sub"),
-        # plds.str_d_leven("tollbooth_name", "stretch_name", return_sim=True).alias("lev_tb")
-        plds.str_jaccard("area", "stretch_name").alias("lev_area"),
-        plds.str_jaccard("subarea", "stretch_name").alias("lev_sub"),
-        plds.str_jaccard("tollbooth_name", "stretch_name").alias("lev_tb")
+        plds.str_jw("area", "stretch_name").alias("lev_area"),
+        plds.str_jw("subarea", "stretch_name").alias("lev_sub"),
+        plds.str_jw("tollbooth_name", "stretch_name").alias("lev_tb")
     )
     ldf_map_stretch = ldf_map_stretch.with_columns(
         pl.max_horizontal("lev_area", "lev_sub", "lev_tb").alias("lev_best")
@@ -115,6 +112,7 @@ def tb_stretch_id_imt(base_year: int, move_year: int):
     ldf_map_stretch = ldf_map_stretch.filter(pl.col("lev_best") > 0.5)
     ldf_map_stretch = ldf_map_stretch.select("stretch_id", "tollbooth_id_a", "tollbooth_id_b")
 
+    print(ldf_map_stretch.collect().shape)
     ldf_stretch_no_tb = ldf_stretch.join(ldf_map_stretch, on="stretch_id", how="anti")
     ldf_stretch_no_tb = ldf_stretch_no_tb.select("stretch_id")
     ldf_stretch_no_tb = ldf_stretch_no_tb.with_columns(
@@ -138,7 +136,7 @@ def tb_stretch_id_sts(base_year: int, move_year: int):
     ldf_tb_stretch_name = ldf_stretch.join(ldf_tb_stretch_id, on="stretch_id")
     ldf_neighbour_sts = ldf_neighbour.filter(pl.col("scope") == "local-sts")
     ldf_neighbour_sts_closest = ldf_neighbour_sts.filter(
-        pl.col("distance") == pl.col("distance").min().over("tollbooth_id")
+        pl.col("distance") == pl.col("distance").min().over("neighbour_id")
     ).select(pl.exclude("scope"))
 
     ldf_tb_stretch_name_in = ldf_neighbour_sts_closest.join(

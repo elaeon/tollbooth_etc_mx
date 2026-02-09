@@ -288,20 +288,6 @@ class Stretch(TbModel, table=True):
         return fields
 
 
-# class MapTbImt(TbModel, table=True):
-#     tollbooth_id: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
-#     tollbooth_imt_id: UInt32 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
-#     distance: Float64
-#     info_year: UInt16 = Field(primary_key=True)
-
-
-# class MapTbSts(TbModel, table=True):
-#     tollbooth_id: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", primary_key=True)
-#     tollbooth_sts_id: UInt32 = Field(foreign_key="tbsts.tollbooth_id", primary_key=True)
-#     distance: Float64
-#     info_year: UInt16 = Field(primary_key=True)
-
-
 class TbStretchId(TbModel, table=True):
     stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)
     tollbooth_id_a: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id", primary_key=True)

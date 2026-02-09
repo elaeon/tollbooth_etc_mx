@@ -150,7 +150,7 @@ if __name__ == "__main__":
     parser.add_argument("--new-stretch-toll", required=False, action="store_true")
     parser.add_argument("--new-map-tb-imt", required=False, action="store_true")
     parser.add_argument("--insert-tb-neighbours", required=False, action="store_true")
-    parser.add_argument("--export-tb", type=str, choices=("csv", "parquet"), default="parquet")
+    parser.add_argument("--export-tb", type=str, choices=("csv", "parquet"))
     parser.add_argument("--year", help="model year", required=False, type=int)
     parser.add_argument("--clean-db", required=False, type=str, help="all or table name")
     args = parser.parse_args()
@@ -158,6 +158,7 @@ if __name__ == "__main__":
     if args.new_tb:
         insert_tb_from_data(data_model)
     elif args.new_tb_sts:
+        data_model = DataModel(args.year, DataStage.prd)
         insert_tb_sts_from_data(data_model)
     elif args.new_tb_imt:
         insert_tb_imt_from_data(data_model)

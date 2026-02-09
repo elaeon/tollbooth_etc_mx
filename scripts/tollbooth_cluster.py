@@ -8,8 +8,7 @@ import argparse
 from tb_map_editor.data_files import DataModel, DataStage
 
 
-def _tollbooth_neightbours(ldf: pl.LazyFrame):
-    hex_resolution = 8
+def _tollbooth_neightbours(ldf: pl.LazyFrame, hex_resolution:int = 8):
     
     ldf = ldf.with_columns(
         plh3.latlng_to_cell("lat", "lng", hex_resolution).alias("h3_cell"),
@@ -57,7 +56,7 @@ def tollbooth_neighbours(year: int):
     ldf_imt = pl.concat([ldf_tb, ldf_tb_imt])
     ldf_sts = pl.concat([ldf_tb, ldf_tb_sts])
     ldf_neighbour_imt = _tollbooth_neightbours(ldf_imt)
-    ldf_neighbour_sts = _tollbooth_neightbours(ldf_sts)
+    ldf_neighbour_sts = _tollbooth_neightbours(ldf_sts, hex_resolution=4)
 
     ldf_neighbour_imt = ldf_neighbour_imt.filter(pl.col("scope") != "imt-local")
     ldf_neighbour_sts = ldf_neighbour_sts.filter((pl.col("scope") != "sts-local") & (pl.col("scope") != "local-local"))
