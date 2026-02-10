@@ -149,9 +149,11 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
     if option_selected == "tb_imt":
         file_path = f"./tmp_data/plazas_{year}.csv"
         old_fields = [
-            "ID_PLAZA", "NOMBRE", "SECCION", "SUBSECCION", "MODALIDAD",
-            "FUNCIONAL", "CALIREPR", "ycoord", "xcoord"
+            "ID_PLAZA", "ADMINISTRA", "NOMBRE", "SECCION", "SUBSECCION", "MODALIDAD",
+            "FUNCIONAL", "FECHA_ACT", "CALIREPR", "ycoord", "xcoord"
         ]
+        date_format = "%Y-%m-%d %H:%M:%S"
+        date_columns = {"FECHA_ACT": date_format}
     
     elif option_selected == "tb_toll_imt":
         file_path = f"./tmp_data/tarifas_imt_{year}.csv"
@@ -160,7 +162,7 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
             "T_MOTO", "T_AUTO", "T_EJE_LIG", "T_AUTOBUS2",
             "T_AUTOBUS3", "T_AUTOBUS4", "T_CAMION2", "T_CAMION3",
             "T_CAMION4", "T_CAMION5", "T_CAMION6", "T_CAMION7",
-            "T_CAMION8", "T_CAMION9", "T_EJE_PES"
+            "T_CAMION8", "T_CAMION9", "T_EJE_PES", "FECHA_ACT"
         ]
         if year == 2025:
            date_format = "%Y-%m-%d %H:%M:%S"

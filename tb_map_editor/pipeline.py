@@ -49,7 +49,6 @@ class DataPipeline:
             field_map[old_name] = new_name
 
         ldf = pl.scan_csv(file_path, infer_schema=False)
-        ldf = ldf.rename(field_map)
         if date_columns is not None:
             pl_date_exp = []
             for date_column, date_format in date_columns.items():
@@ -59,6 +58,7 @@ class DataPipeline:
         if filter_exp is not None:
             ldf.filter(filter_exp)
 
+        ldf = ldf.rename(field_map)
         ldf = ldf.pipe(self._simple_stg, model=model_dict["start"], normalize=normalize)
         ldf = ldf.cast(schema)
         ldf.select(list(schema.keys())).sink_parquet(model_dict["end"].parquet)

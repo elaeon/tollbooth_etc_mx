@@ -327,11 +327,13 @@ class StretchToll(TbModel, table=True):
 
 class TbImt(TbModel, table=True):
     tollbooth_id: UInt16 = Field(primary_key=True)
+    manage: String | None
     tollbooth_name: String
     area: String | None
     subarea: String | None
     type: String | None
     function: String | None
+    update_date: Date | None
     calirepr: String | None
     lat: Float64 | None
     lng: Float64 | None
@@ -340,13 +342,13 @@ class TbImt(TbModel, table=True):
     @staticmethod
     @_str_normalize
     def str_normalize() -> list[str]:
-        fields = ["tollbooth_name", "area", "subarea"]
+        fields = ["manage", "tollbooth_name", "area", "subarea", "type", "function", "calirepr"]
         return fields
     
 
 class TbTollImt(TbModel, table=True):
-    tollbooth_id_a: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
-    tollbooth_id_b: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
+    tollbooth_id_out: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
+    tollbooth_id_in: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
     nombre_sal: String | None
     nombre_ent: String | None
     motorbike: Float64 | None
@@ -364,6 +366,7 @@ class TbTollImt(TbModel, table=True):
     truck_8_axle: Float64 | None
     truck_9_axle: Float64 | None
     load_axle: Float64 | None
+    update_date: Date | None
     info_year: UInt16 = Field(primary_key=True)
 
 
