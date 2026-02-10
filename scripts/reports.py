@@ -142,7 +142,7 @@ def tdpa_vta_growth_rate(from_year, to_year):
     return df_sts
 
 
-def build_info_table(output_filepath: str, from_year: int, to_year: int):
+def growth_rate_report(output_filepath: str, from_year: int, to_year: int):
     df_toll = inflation_growth_rate(from_year, to_year)
     df_sts = tdpa_vta_growth_rate(from_year, to_year=to_year-1)
 
@@ -195,7 +195,7 @@ def build_info_table(output_filepath: str, from_year: int, to_year: int):
     print(f"Saved result in {filepath}")
 
 
-def build_toll_update_date(output_filepath: str, from_year: int, to_year: int):
+def toll_update_date_report(output_filepath: str, from_year: int, to_year: int):
     years = range(from_year, to_year + 1)
     ldf_dict = {}
     data = []
@@ -250,14 +250,59 @@ def build_toll_update_date(output_filepath: str, from_year: int, to_year: int):
     print(f"Saved result in {filepath}")
 
 
+def tollbooth_names_report(output_filepath: str, year: int):
+    data_model = DataModel(year, DataStage.stg)
+    data_model_sts = DataModel(year - 1, DataStage.prd)
+
+    ldf_tb = pl.scan_parquet(
+        data_model.tollbooths.parquet
+    ).select("tollbooth_id", "tollbooth_name")
+    ldf_tb_imt = pl.scan_parquet(
+        data_model.tb_imt.parquet
+    ).select("tollbooth_id", "tollbooth_name").rename({"tollbooth_name": "tollbooth_imt_name"})
+    ldf_tb_sts = pl.scan_parquet(
+        data_model_sts.tb_sts.parquet
+    ).select("tollbooth_id", "tollbooth_name").rename({"tollbooth_name": "tollbooth_sts_name"})
+
+    ldf_neighbour = pl.scan_parquet(
+        data_model.tb_neighbour.parquet
+    )
+    ldf_neighbour_imt = ldf_neighbour.filter(pl.col("scope") == "local-imt")
+    ldf_neighbour_imt_closest = ldf_neighbour_imt.filter(
+        pl.col("distance") == pl.col("distance").min().over("neighbour_id")
+    )
+    ldf_neighbour_imt_closest = ldf_neighbour_imt_closest.filter(pl.col("distance") <= 0.3)
+    ldf_neighbour_imt_closest = ldf_neighbour_imt_closest.rename({"neighbour_id": "neighbour_imt_id"})
+
+    ldf_neighbour_sts = ldf_neighbour.filter(pl.col("scope") == "local-sts")
+    ldf_neighbour_sts_closest = ldf_neighbour_sts.filter(
+        pl.col("distance") == pl.col("distance").min().over("neighbour_id")
+    )
+    ldf_neighbour_sts_closest = ldf_neighbour_sts_closest.rename({"neighbour_id": "neighbour_sts_id"})
+
+    ldf_tb = ldf_tb.join(ldf_neighbour_imt_closest, on="tollbooth_id")
+    ldf_tb = ldf_tb.select(pl.exclude("distance", "scope"))
+    ldf_tb = ldf_tb.join(ldf_tb_imt, left_on="neighbour_imt_id", right_on="tollbooth_id", how="left")
+    ldf_tb = ldf_tb.join(ldf_neighbour_sts_closest, on="tollbooth_id", how="left")
+    ldf_tb = ldf_tb.select(pl.exclude("distance", "scope"))
+    ldf_tb = ldf_tb.join(ldf_tb_sts, left_on="neighbour_sts_id", right_on="tollbooth_id", how="left")
+
+    filepath = os.path.join(output_filepath, f"tollbooth_names_{year}.csv")
+    ldf_tb.sort("tollbooth_name").sink_csv(filepath)
+    print(f"Saved result in {filepath}")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--save", required=True, type=str)
     parser.add_argument("--growth-rate", required=False, action="store_true")
     parser.add_argument("--tb-update-date", required=False, action="store_true")
+    parser.add_argument("--tb-names", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
-        build_info_table(args.save, from_year=2021, to_year=2025)
+        growth_rate_report(args.save, from_year=2021, to_year=2025)
     elif args.tb_update_date:
-        build_toll_update_date(args.save, from_year=2024, to_year=2025)
+        toll_update_date_report(args.save, from_year=2024, to_year=2025)
+    elif args.tb_names:
+        tollbooth_names_report(args.save, year=2025)

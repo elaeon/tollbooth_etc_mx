@@ -15,7 +15,7 @@ def _str_normalize(func):
             pl_exp.append(
                 plds.to_snake_case(
                     pl.col(field).str.normalize("NFKD").str.replace_all(r"\p{M}", "")
-                ).str.replace_all(r"[(\.,\\/:;)]+", "_").str.replace_all(r"_+", "_")
+                ).str.replace_all(r"[(\.,\\/:;)]+", "_").str.replace_all(r"_+", "_").str.strip_chars("_")
             )
         return pl_exp
     return wrapper
@@ -290,8 +290,8 @@ class Stretch(TbModel, table=True):
 
 class TbStretchId(TbModel, table=True):
     stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)
-    tollbooth_id_a: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id", primary_key=True)
-    tollbooth_id_b: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id", primary_key=True)
+    tollbooth_id_in: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id", primary_key=True)
+    tollbooth_id_out: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id", primary_key=True)
     info_year: UInt16 = Field(primary_key=True)
 
 
