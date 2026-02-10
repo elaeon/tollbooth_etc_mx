@@ -181,7 +181,7 @@ def build_info_table(output_filepath: str, from_year: int, to_year: int):
         df_sts, left_on="tollbooth_id_a", right_on="tollbooth_id"
     )
 
-    df_toll_sts = df_toll.join(df_tbsts_stretch, on=["stretch_id", "tollbooth_id_a"], how="left")#.unique()
+    df_toll_sts = df_toll.join(df_tbsts_stretch, on=["stretch_id", "tollbooth_id_a"], how="left").unique()
 
     filepath = os.path.join(output_filepath, f"growth_rate_{from_year}_{to_year}.csv")
     output_cols = [
@@ -195,10 +195,69 @@ def build_info_table(output_filepath: str, from_year: int, to_year: int):
     print(f"Saved result in {filepath}")
 
 
+def build_toll_update_date(output_filepath: str, from_year: int, to_year: int):
+    years = range(from_year, to_year + 1)
+    ldf_dict = {}
+    data = []
+
+    data_model = DataModel(to_year, DataStage.stg)
+    ldf_tb = pl.scan_parquet(
+            data_model.tollbooths.parquet
+        ).select("tollbooth_id", "manage")
+    ldf_neighbour = pl.scan_parquet(
+        data_model.tb_neighbour.parquet
+    )
+    ldf_neighbour = ldf_neighbour.filter(pl.col("scope") == "local-imt")
+    ldf_neighbour_closest = ldf_neighbour.filter(
+        pl.col("distance") == pl.col("distance").min().over("neighbour_id")
+    )
+    ldf_neighbour_closest = ldf_neighbour_closest.filter(pl.col("distance") <= 0.1)
+    ldf_neighbour_closest = ldf_neighbour_closest.select(pl.exclude("distance", "scope"))
+    ldf_neighbour_closest = ldf_neighbour_closest.join(ldf_tb, on="tollbooth_id")
+    
+    for year in years:
+        data_model = DataModel(year, DataStage.stg)
+        ldf_dict[year] = pl.scan_parquet(
+            data_model.tb_toll_imt.parquet
+        ).select("tollbooth_id_out", "update_date", "tollbooth_id_in")
+
+        ldf_dict[year] = ldf_dict[year].with_columns(
+            month=pl.col("update_date").dt.month()
+        ).select(pl.exclude("update_date"))
+
+        ldf_dict[year] = ldf_dict[year].select("tollbooth_id_out", "month").rename({"tollbooth_id_out": "tollbooth_id"})
+        ldf_dict[year] = ldf_dict[year].join(ldf_neighbour_closest, left_on="tollbooth_id", right_on="neighbour_id").select(pl.exclude("tollbooth_id_right"))
+        data.append(ldf_dict[year])
+
+    ldf = pl.concat(data)
+    ldf = ldf.group_by("manage").agg(pl.col("month").explode())
+    ldf = ldf.with_columns(
+        pl.col("month").list.unique().sort()
+    )
+
+    month_exprs = [
+        pl.when(pl.col("month").list.contains(m))
+        .then(m)
+        .otherwise(None)
+        .alias(f"month_{m}")
+        for m in range(1, 13)
+    ]
+    ldf = ldf.with_columns(month_exprs).select(pl.exclude("month"))
+    ldf = ldf.sort("manage")
+
+    filepath = os.path.join(output_filepath, f"toll_update_date_{from_year}_{to_year}.csv")
+    ldf.sink_csv(filepath)
+    print(f"Saved result in {filepath}")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--save", required=True, type=str)
+    parser.add_argument("--growth-rate", required=False, action="store_true")
+    parser.add_argument("--tb-update-date", required=False, action="store_true")
 
     args = parser.parse_args()
-    if args.save:
+    if args.growth_rate:
         build_info_table(args.save, from_year=2021, to_year=2025)
+    elif args.tb_update_date:
+        build_toll_update_date(args.save, from_year=2024, to_year=2025)
