@@ -263,32 +263,16 @@ def tollbooth_names_report(output_filepath: str, year: int):
     ldf_tb_sts = pl.scan_parquet(
         data_model_sts.tb_sts.parquet
     ).select("tollbooth_id", "tollbooth_name").rename({"tollbooth_name": "tollbooth_sts_name"})
-
-    ldf_neighbour = pl.scan_parquet(
-        data_model.tb_neighbour.parquet
+    ldf_map_tb_id = pl.scan_parquet(
+        data_model.map_tb_id.parquet
     )
-    ldf_neighbour_imt = ldf_neighbour.filter(pl.col("scope") == "local-imt")
-    ldf_neighbour_imt_closest = ldf_neighbour_imt.filter(
-        pl.col("distance") == pl.col("distance").min().over("neighbour_id")
-    )
-    ldf_neighbour_imt_closest = ldf_neighbour_imt_closest.filter(pl.col("distance") <= 0.3)
-    ldf_neighbour_imt_closest = ldf_neighbour_imt_closest.rename({"neighbour_id": "neighbour_imt_id"})
 
-    ldf_neighbour_sts = ldf_neighbour.filter(pl.col("scope") == "local-sts")
-    ldf_neighbour_sts_closest = ldf_neighbour_sts.filter(
-        pl.col("distance") == pl.col("distance").min().over("neighbour_id")
-    )
-    ldf_neighbour_sts_closest = ldf_neighbour_sts_closest.rename({"neighbour_id": "neighbour_sts_id"})
-
-    ldf_tb = ldf_tb.join(ldf_neighbour_imt_closest, on="tollbooth_id")
-    ldf_tb = ldf_tb.select(pl.exclude("distance", "scope"))
-    ldf_tb = ldf_tb.join(ldf_tb_imt, left_on="neighbour_imt_id", right_on="tollbooth_id", how="left")
-    ldf_tb = ldf_tb.join(ldf_neighbour_sts_closest, on="tollbooth_id", how="left")
-    ldf_tb = ldf_tb.select(pl.exclude("distance", "scope"))
-    ldf_tb = ldf_tb.join(ldf_tb_sts, left_on="neighbour_sts_id", right_on="tollbooth_id", how="left")
+    ldf_map_tb_id = ldf_map_tb_id.join(ldf_tb, on="tollbooth_id")
+    ldf_map_tb_id = ldf_map_tb_id.join(ldf_tb_imt, left_on="neighbour_imt_id", right_on="tollbooth_id", how="left")
+    ldf_map_tb_id = ldf_map_tb_id.join(ldf_tb_sts, left_on="neighbour_sts_id", right_on="tollbooth_id", how="left")
 
     filepath = os.path.join(output_filepath, f"tollbooth_names_{year}.csv")
-    ldf_tb.sort("tollbooth_name").sink_csv(filepath)
+    ldf_map_tb_id.sort("tollbooth_name").sink_csv(filepath)
     print(f"Saved result in {filepath}")
 
 

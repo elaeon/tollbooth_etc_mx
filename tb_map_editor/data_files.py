@@ -75,10 +75,6 @@ class DataModel:
     @property
     def stretchs_toll(self) -> PathModel:
         return PathModel("stretchs_toll", model.StretchToll, self.attr, self.stage)
-        
-    # @property
-    # def map_tb_imt(self) -> PathModel:
-    #     return PathModel("map_tb_imt", model.MapTbImt, self.attr, self.stage)
 
     @property
     def tb_stretch_id(self) -> PathModel:
@@ -104,10 +100,10 @@ class DataModel:
     def tb_toll_imt(self) -> PathModel:
         return PathModel("tb_toll_imt", model.TbTollImt, self.attr, self.stage)
 
-    # @property
-    # def map_tb_sts(self) -> PathModel:
-    #     return PathModel("map_tb_sts", model.MapTbSts, self.attr, self.stage)
-
     @property
     def tb_neighbour(self) -> PathModel:
         return PathModel("tb_neighbour", model.TbNeighbour, self.attr, self.stage)
+
+    @property
+    def map_tb_id(self) -> PathModel:
+        return PathModel("map_tb_id", model.MapTbId, self.attr, self.stage)

@@ -277,6 +277,47 @@ def first_parent(year: int):
     df_tb.sink_parquet(DataModel(year, DataStage.prd).tollbooths.parquet)
 
 
+def map_tb_id(year: int):
+    data_model = DataModel(year, DataStage.stg)
+    data_model_sts = DataModel(year - 1, DataStage.prd)
+
+    ldf_tb = pl.scan_parquet(
+        data_model.tollbooths.parquet
+    ).select("tollbooth_id")
+    ldf_tb_imt = pl.scan_parquet(
+        data_model.tb_imt.parquet
+    ).select("tollbooth_id")
+    ldf_tb_sts = pl.scan_parquet(
+        data_model_sts.tb_sts.parquet
+    ).select("tollbooth_id")
+
+    ldf_neighbour = pl.scan_parquet(
+        data_model.tb_neighbour.parquet
+    )
+    ldf_neighbour_imt = ldf_neighbour.filter(pl.col("scope") == "local-imt")
+    ldf_neighbour_imt_closest = ldf_neighbour_imt.filter(
+        pl.col("distance") == pl.col("distance").min().over("neighbour_id")
+    )
+    ldf_neighbour_imt_closest = ldf_neighbour_imt_closest.filter(pl.col("distance") <= 0.3)
+    ldf_neighbour_imt_closest = ldf_neighbour_imt_closest.rename({"neighbour_id": "neighbour_imt_id"})
+
+    ldf_neighbour_sts = ldf_neighbour.filter(pl.col("scope") == "local-sts")
+    ldf_neighbour_sts_closest = ldf_neighbour_sts.filter(
+        pl.col("distance") == pl.col("distance").min().over("neighbour_id")
+    )
+    ldf_neighbour_sts_closest = ldf_neighbour_sts_closest.rename({"neighbour_id": "neighbour_sts_id"})
+
+    ldf_tb = ldf_tb.join(ldf_neighbour_imt_closest, on="tollbooth_id")
+    ldf_tb = ldf_tb.select(pl.exclude("distance", "scope"))
+    ldf_tb = ldf_tb.join(ldf_tb_imt, left_on="neighbour_imt_id", right_on="tollbooth_id", how="left")
+    ldf_tb = ldf_tb.join(ldf_neighbour_sts_closest, on="tollbooth_id", how="left")
+    ldf_tb = ldf_tb.select(pl.exclude("distance", "scope"))
+    ldf_tb = ldf_tb.join(ldf_tb_sts, left_on="neighbour_sts_id", right_on="tollbooth_id", how="left")
+
+    ldf_tb.sink_parquet(data_model.map_tb_id.parquet)
+    print(f"Saved result in {data_model.map_tb_id.parquet}")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", help="data year", required=True, type=int)
@@ -290,6 +331,7 @@ if __name__ == "__main__":
     parser.add_argument("--tb-stretch-id-patch", required=False, action="store_true")
     parser.add_argument("--map-stretch-toll-imt", required=False)
     parser.add_argument("--first-parent", required=False, action="store_true")
+    parser.add_argument("--map-tb-id", required=False, action="store_true")
     args = parser.parse_args()
 
     if args.sts_no_tb:
@@ -306,4 +348,6 @@ if __name__ == "__main__":
         tb_stretch_id_imt_patch(args.year)
     elif args.first_parent:
         first_parent(args.year)
+    elif args.map_tb_id:
+        map_tb_id(args.year)
     

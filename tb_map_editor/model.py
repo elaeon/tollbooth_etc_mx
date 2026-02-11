@@ -376,3 +376,10 @@ class TbNeighbour(TbModel, table=True):
     neighbour_id: UInt16
     scope: String
     distance: Float64
+
+
+class MapTbId(TbModel, table=True):
+    id: UInt32 | None = Field(default=None, primary_key=True)
+    tollbooth_id: UInt32 | None = Field(foreign_key="tollbooth.tollbooth_id", index=True)
+    neighbour_imt_id: UInt32 | None = Field(foreign_key="tbimt.tollbooth_id", index=True)
+    neighbour_sts_id: UInt32 | None = Field(foreign_key="tbsts.tollbooth_id", index=True)
