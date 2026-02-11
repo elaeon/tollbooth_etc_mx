@@ -268,8 +268,8 @@ def tollbooth_names_report(output_filepath: str, year: int):
     )
 
     ldf_map_tb_id = ldf_map_tb_id.join(ldf_tb, on="tollbooth_id")
-    ldf_map_tb_id = ldf_map_tb_id.join(ldf_tb_imt, left_on="neighbour_imt_id", right_on="tollbooth_id", how="left")
-    ldf_map_tb_id = ldf_map_tb_id.join(ldf_tb_sts, left_on="neighbour_sts_id", right_on="tollbooth_id", how="left")
+    ldf_map_tb_id = ldf_map_tb_id.join(ldf_tb_imt, left_on="tollbooth_imt_id", right_on="tollbooth_id", how="left")
+    ldf_map_tb_id = ldf_map_tb_id.join(ldf_tb_sts, left_on="tollbooth_sts_id", right_on="tollbooth_id", how="left")
 
     filepath = os.path.join(output_filepath, f"tollbooth_names_{year}.csv")
     ldf_map_tb_id.sort("tollbooth_name").sink_csv(filepath)
