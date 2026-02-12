@@ -175,7 +175,8 @@ def growth_rate_report(output_filepath: str, from_year: int, to_year: int):
     )
     df_toll = df_toll.join(df_strechs, on="stretch_id")
     df_toll = df_toll.join(df_road, on="road_id", how="left")
-    df_toll = df_toll.join(df_tb_stretch, on="stretch_id", how="left").select(pl.exclude("tollbooth_id_out", "road_id"))
+    df_toll = df_toll.join(df_tb_stretch, on="stretch_id", how="left")
+    df_toll = df_toll.select(pl.exclude("tollbooth_id_out", "road_id")).unique()
 
     # df_toll = df_toll.with_columns(
     #     pl.when(

@@ -61,7 +61,7 @@ def _tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll):
             "truck_2_axle", "truck_3_axle", "truck_4_axle", "truck_5_axle",
             "truck_6_axle", "truck_7_axle", "truck_8_axle", "truck_9_axle"
         ]
-    )#.select("stretch_id", "tollbooth_imt_id_in", "tollbooth_imt_id_out", "area", "subarea", "tollbooth_name", "tollbooth_id_in", "tollbooth_id_out")
+    )
     ldf_stretch = ldf_stretch.select(
         "stretch_id", "tollbooth_id_in", "tollbooth_id_out", "area", "subarea", "tollbooth_name"
     ).unique()
@@ -124,47 +124,41 @@ def tb_stretch_id_imt(base_year: int, move_year: int):
 
 def tb_stretch_id_sts(base_year: int, move_year: int):
     data_model_base = DataModel(base_year, DataStage.stg)
-    data_model_prd = DataModel(base_year, DataStage.prd)
-    data_model_move_year = DataModel(move_year, DataStage.prd)
+    data_model_sts = DataModel(move_year, DataStage.prd)
     
-    ldf_tb_sts = pl.scan_parquet(data_model_move_year.tb_sts.parquet).select("tollbooth_id", "tollbooth_name", "stretch_name")
+    ldf_tb_sts = pl.scan_parquet(data_model_sts.tb_sts.parquet).select("tollbooth_id", "tollbooth_name", "stretch_name").rename({"stretch_name": "stretch_name_sts"})
     ldf_stretch = pl.scan_parquet(data_model_base.stretchs.parquet).select("stretch_id", "stretch_name")
-    ldf_neighbour = pl.scan_parquet(data_model_base.tb_neighbour.parquet)
-    ldf_tb_stretch_id = pl.scan_parquet(data_model_prd.tb_stretch_id.parquet)
+    ldf_tb_stretch_id = pl.scan_parquet(data_model_base.tb_stretch_id.parquet)
+    ldf_map_tb_id = pl.scan_parquet(data_model_base.map_tb_id.parquet).select("tollbooth_id", "tollbooth_sts_id")
 
     ldf_tb_stretch_name = ldf_stretch.join(ldf_tb_stretch_id, on="stretch_id")
-    ldf_neighbour_sts = ldf_neighbour.filter(pl.col("scope") == "local-sts")
-    ldf_neighbour_sts_closest = ldf_neighbour_sts.filter(
-        pl.col("distance") == pl.col("distance").min().over("neighbour_id")
-    ).select(pl.exclude("scope"))
+    ldf_tb_stretch_name_in = ldf_map_tb_id.join(
+        ldf_tb_stretch_name, left_on="tollbooth_id", right_on="tollbooth_id_in", how="left",
+    ).select(pl.exclude("tollbooth_id_out"))
+    ldf_tb_stretch_name_out = ldf_map_tb_id.join(
+        ldf_tb_stretch_name, left_on="tollbooth_id", right_on="tollbooth_id_out", how="left",
+    ).select(pl.exclude("tollbooth_id_in"))
+    ldf_tb_stretch_sts = pl.concat([ldf_tb_stretch_name_in, ldf_tb_stretch_name_out]).unique()
+    ldf_tb_stretch_sts = ldf_tb_stretch_sts.join(ldf_tb_sts, left_on="tollbooth_sts_id", right_on="tollbooth_id")
 
-    ldf_tb_stretch_name_in = ldf_neighbour_sts_closest.join(
-        ldf_tb_stretch_name, right_on="tollbooth_id_a", left_on="tollbooth_id", how="left",
-    ).rename({"neighbour_id": "tollbooth_sts_id"}).select(pl.exclude("tollbooth_id_b"))
-
-    ldf_tb_stretch_name_out = ldf_neighbour_sts_closest.join(
-        ldf_tb_stretch_name, right_on="tollbooth_id_b", left_on="tollbooth_id", how="left",
-    ).rename({"neighbour_id": "tollbooth_sts_id"}).select(pl.exclude("tollbooth_id_a"))
-
-    ldf_map_stretch = pl.concat([ldf_tb_stretch_name_in, ldf_tb_stretch_name_out]).unique()
-    ldf_map_stretch = ldf_map_stretch.filter(
-        pl.col("distance") == pl.col("distance").min().over("tollbooth_sts_id")
+    ldf_tb_stretch_sts = ldf_tb_stretch_sts.with_columns(
+        plds.str_jaccard("stretch_name", "stretch_name_sts").alias("score_jac"),
+        plds.str_jw("stretch_name", "stretch_name_sts").alias("score_jw")
     )
-    ldf_map_stretch = ldf_map_stretch.join(ldf_tb_sts, left_on="tollbooth_sts_id", right_on="tollbooth_id")
-    ldf_map_stretch = ldf_map_stretch.with_columns(
-        plds.str_d_leven("stretch_name", "stretch_name_right", return_sim=True).alias("score_lev"),
-        plds.str_jw("stretch_name", "stretch_name_right").alias("score_jw")
+    ldf_tb_stretch_sts = ldf_tb_stretch_sts.with_columns(
+        pl.mean_horizontal("score_jac", "score_jw").alias("score_best")
     )
-    ldf_map_stretch = ldf_map_stretch.with_columns(
-        pl.mean_horizontal("score_jw", "score_lev").alias("score_best")
+    print(ldf_tb_stretch_sts.collect().filter(pl.col("tollbooth_id").is_in([88,90])))
+    print(ldf_tb_stretch_id.collect().filter(pl.col("tollbooth_id_in").is_in([88,90])))
+    ldf_tb_stretch_sts = ldf_tb_stretch_sts.filter(
+        pl.col("score_best") == pl.col("score_best").max().over("stretch_id")
     )
-    ldf_map_stretch = ldf_map_stretch.with_columns(
-        score_best=pl.when(pl.col("stretch_name").is_null()).then(1).otherwise(pl.col("score_best"))
+    ldf_tb_stretch_sts = ldf_tb_stretch_sts.filter(
+        pl.col("score_best") == pl.col("score_best").max().over("tollbooth_sts_id")
     )
-    ldf_map_stretch = ldf_map_stretch.filter(
-       pl.col("score_best") == pl.col("score_best").max().over("tollbooth_sts_id")
-    ).group_by("tollbooth_sts_id").first()
-    ldf_map_stretch.sort("tollbooth_sts_id").sink_csv("./tmp_data/_stretch_sts_id.csv")
+    #print(ldf_tb_stretch_sts.collect())
+    #return
+    ldf_tb_stretch_sts.sort("tollbooth_id").sink_csv("./tmp_data/_stretch_sts_id_new.csv")
 
 
 def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
@@ -311,7 +305,6 @@ if __name__ == "__main__":
     parser.add_argument("--imt-no-tb", required=False, type=int)
     parser.add_argument("--tb-stretch-id-imt", required=False, type=int)
     parser.add_argument("--tb-stretch-id-sts", required=False, type=int)
-    parser.add_argument("--pivot-year", required=False, type=int)
     parser.add_argument("--similarity-toll", required=False, type=int)
     parser.add_argument("--id", required=False, type=int)
     parser.add_argument("--map-stretch-toll-imt", required=False)

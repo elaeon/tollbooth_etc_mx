@@ -113,7 +113,7 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
         data.append({
             "tollbooth_id": tb_sts.index,
             "tollbooth_name": tb_sts.tollbooth_name,
-            "way": tb_sts.way,
+            "stretch_name": tb_sts.stretch_name,
             "lat": tb_sts.lat,
             "lng": tb_sts.lng,
             "info_year": tb_sts.info_year,
@@ -189,8 +189,8 @@ def get_tb_tpl(body: Annotated[Any, Body()]):
 def query_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=10):
     print(body)
     params = [
-        TbStretchId.tollbooth_id_a == body.get("tollbooth_id"),
-        TbStretchId.tollbooth_id_b == body.get("tollbooth_id")
+        TbStretchId.tollbooth_id_in == body.get("tollbooth_id"),
+        TbStretchId.tollbooth_id_out == body.get("tollbooth_id")
     ]
     stm = select(TbStretchId, Stretch, StretchToll).join(TbStretchId).join(StretchToll, isouter=True).where(or_(*params))
     tb_stretch = session.exec(stm.offset(offset).limit(limit))
@@ -200,8 +200,8 @@ def query_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
         fields = {
             "stretch_id": stretch.stretch_id,
             "stretch_name": stretch.stretch_name,
-            "tollbooth_id_a": tb_st.tollbooth_id_a,
-            "tollbooth_id_b": tb_st.tollbooth_id_b
+            "tollbooth_id_in": tb_st.tollbooth_id_in,
+            "tollbooth_id_out": tb_st.tollbooth_id_out
         }
         fields.update(tolls)
         data.append(fields)

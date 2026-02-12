@@ -74,8 +74,8 @@ def insert_tb_from_db(data_model: DataModel, file_format: str):
 def insert_tb_stretch_from_data(data_model: DataModel):
     ldf_tb_stretch = pl.scan_parquet(data_model.tb_stretch_id.parquet)
     model_name = data_model.tb_stretch_id.model.name()
-    ldf_tb_stretch = ldf_tb_stretch.filter(pl.col("tollbooth_id_a").is_not_null()).with_columns(pl.lit(2025).alias("info_year"))
-    ldf_tb_stretch = ldf_tb_stretch.filter(pl.col("tollbooth_id_b").is_not_null())
+    ldf_tb_stretch = ldf_tb_stretch.filter(pl.col("tollbooth_id_in").is_not_null()).with_columns(pl.lit(2025).alias("info_year"))
+    ldf_tb_stretch = ldf_tb_stretch.filter(pl.col("tollbooth_id_out").is_not_null())
     insert_data_from_parquet(ldf_tb_stretch.unique(), model_name)
 
 
@@ -166,7 +166,7 @@ if __name__ == "__main__":
         data_model = DataModel(args.year, DataStage.pub)
         insert_tb_from_db(data_model, args.export_tb)
     elif args.new_tb_stretch:
-        data_model = DataModel(args.year, DataStage.prd)
+        data_model = DataModel(args.year, DataStage.stg)
         insert_tb_stretch_from_data(data_model)
     elif args.new_stretch:
         insert_stretch_from_data(data_model)
