@@ -141,7 +141,7 @@ def tdpa_vta_growth_rate(from_year, to_year):
     return df_sts
 
 
-def growth_rate_report(output_filepath: str, from_year: int, to_year: int):
+def growth_rate_report(from_year: int, to_year: int):
     df_toll = inflation_growth_rate(from_year, to_year)
     #df_sts = tdpa_vta_growth_rate(from_year, to_year=to_year-1)
 
@@ -210,7 +210,7 @@ def growth_rate_report(output_filepath: str, from_year: int, to_year: int):
     print(f"Saved result in {filepath}")
 
 
-def toll_update_date_report(output_filepath: str, from_year: int, to_year: int):
+def toll_update_date_report(from_year: int, to_year: int):
     years = range(from_year, to_year + 1)
     ldf_dict = {}
     data = []
@@ -265,7 +265,7 @@ def toll_update_date_report(output_filepath: str, from_year: int, to_year: int):
     print(f"Saved result in {filepath}")
 
 
-def tollbooth_names_report(output_filepath: str, year: int):
+def tollbooth_names_report(year: int):
     data_model = DataModel(year, DataStage.stg)
     data_model_sts = DataModel(year - 1, DataStage.prd)
 
@@ -291,17 +291,43 @@ def tollbooth_names_report(output_filepath: str, year: int):
     print(f"Saved result in {filepath}")
 
 
+def stretch_names_report(year: int):
+    data_model = DataModel(year, DataStage.stg)
+    data_model_sts = DataModel(year - 1, DataStage.prd)
+
+    ldf_stretch = pl.scan_parquet(
+        data_model.stretchs.parquet
+    ).select("stretch_id", "stretch_name")
+    ldf_tb_sts = pl.scan_parquet(
+        data_model_sts.tb_sts.parquet
+    ).select("tollbooth_id", "stretch_name").rename({"stretch_name": "stretch_sts_name"})
+    ldf_tbsts_stretch_id = pl.scan_parquet(
+        data_model.tbsts_stretch_id.parquet
+    )
+
+    ldf_tbsts_stretch_id = ldf_tbsts_stretch_id.join(ldf_stretch, on="stretch_id")
+    ldf_tbsts_stretch_id = ldf_tbsts_stretch_id.join(ldf_tb_sts, left_on="tollbooth_sts_id", right_on="tollbooth_id", how="left")
+
+    filepath = os.path.join(output_filepath, f"stretch_names_{year}.csv")
+    ldf_tbsts_stretch_id.sort("stretch_name").sink_csv(filepath)
+    print(f"Saved result in {filepath}")
+
+
 if __name__ == "__main__":
+    output_filepath = "reports/"
+
     parser = argparse.ArgumentParser()
-    parser.add_argument("--save", required=True, type=str)
     parser.add_argument("--growth-rate", required=False, action="store_true")
     parser.add_argument("--tb-update-date", required=False, action="store_true")
     parser.add_argument("--tb-names", required=False, action="store_true")
+    parser.add_argument("--stretch-names", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
-        growth_rate_report(args.save, from_year=2021, to_year=2025)
+        growth_rate_report(from_year=2021, to_year=2025)
     elif args.tb_update_date:
-        toll_update_date_report(args.save, from_year=2024, to_year=2025)
+        toll_update_date_report(from_year=2024, to_year=2025)
     elif args.tb_names:
-        tollbooth_names_report(args.save, year=2025)
+        tollbooth_names_report(year=2025)
+    elif args.stretch_names:
+        stretch_names_report(year=2025)

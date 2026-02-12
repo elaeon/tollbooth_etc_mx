@@ -148,17 +148,25 @@ def tb_stretch_id_sts(base_year: int, move_year: int):
     ldf_tb_stretch_sts = ldf_tb_stretch_sts.with_columns(
         pl.mean_horizontal("score_jac", "score_jw").alias("score_best")
     )
-    print(ldf_tb_stretch_sts.collect().filter(pl.col("tollbooth_id").is_in([88,90])))
-    print(ldf_tb_stretch_id.collect().filter(pl.col("tollbooth_id_in").is_in([88,90])))
     ldf_tb_stretch_sts = ldf_tb_stretch_sts.filter(
         pl.col("score_best") == pl.col("score_best").max().over("stretch_id")
     )
     ldf_tb_stretch_sts = ldf_tb_stretch_sts.filter(
         pl.col("score_best") == pl.col("score_best").max().over("tollbooth_sts_id")
     )
-    #print(ldf_tb_stretch_sts.collect())
-    #return
-    ldf_tb_stretch_sts.sort("tollbooth_id").sink_csv("./tmp_data/_stretch_sts_id_new.csv")
+
+    ldf_tb_stretch_sts = (
+        ldf_tb_stretch_sts
+        .select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
+    )
+
+    ldf_stretch_no_tb = ldf_stretch.join(ldf_tb_stretch_sts, on="stretch_id", how="anti")
+    ldf_stretch_no_tb = ldf_stretch_no_tb.with_columns(
+        pl.lit(None).alias("tollbooth_id"),
+        pl.lit(None).alias("tollbooth_sts_id")
+    ).select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
+    ldf_tb_stretch_sts = pl.concat([ldf_tb_stretch_sts, ldf_stretch_no_tb])
+    ldf_tb_stretch_sts.sink_parquet(data_model_base.tbsts_stretch_id.parquet)
 
 
 def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):

@@ -295,6 +295,13 @@ class TbStretchId(TbModel, table=True):
     info_year: UInt16 = Field(primary_key=True)
 
 
+class TbStsStretchId(TbModel, table=True):
+    stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)
+    tollbooth_id: UInt32 | None = Field(default=None, foreign_key="tollbooth.tollbooth_id", primary_key=True)
+    tollbooth_sts_id: UInt32 | None = Field(default=None, foreign_key="tbsts.tollbooth_id", primary_key=True)
+    info_year: UInt16 = Field(primary_key=True)
+
+
 class StretchToll(TbModel, table=True):
     stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", primary_key=True)
     motorbike: Float64 | None

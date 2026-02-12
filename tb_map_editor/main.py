@@ -186,7 +186,7 @@ def get_tb_tpl(body: Annotated[Any, Body()]):
 
 
 @app.post("/api/query_tollbooths")
-def query_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=10):
+def query_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=20):
     print(body)
     params = [
         TbStretchId.tollbooth_id_in == body.get("tollbooth_id"),
