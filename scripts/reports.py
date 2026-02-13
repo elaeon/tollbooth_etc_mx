@@ -111,9 +111,18 @@ def growth_rate_exprs(start, end, prefix_col: str, result_prefix_col: str):
         cagr_inflation_rate_exp = (((pl.col(f"{prefix_col}_{end}") / pl.col(f"{prefix_col}_{start}")).pow(1/num_of_years) - 1) * 100).round(2).alias(result_col_name)
         growth_rate_exp.append(cagr_inflation_rate_exp)
     
+    def rank():
+        for year in range_keys:
+            result_col_name = f"{prefix_col}_rank_{year}"
+            growth_rate_exp.append(
+                pl.col(f"{prefix_col}_{year}").rank(method="ordinal", descending=True).alias(result_col_name)
+            )
+            growth_rate_columns.append(result_col_name)
+
     growth_rate()
     cum_growth_rate()
     cagr_growth_rate()
+    rank()
 
     return growth_rate_columns, growth_rate_exp
 
@@ -198,11 +207,11 @@ def growth_rate_report(from_year: int, to_year: int):
     ).select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
 
     ldf_tbsts_stretch_id = ldf_tbsts_stretch_id.join(
-        ldf_sts, left_on="tollbooth_sts_id", right_on="tollbooth_id"
+        ldf_sts, left_on="tollbooth_sts_id", right_on="tollbooth_id", how="full"
     ).select(pl.exclude("tollbooth_sts_id"))
 
     ldf_toll_sts = ldf_toll.join(
-        ldf_tbsts_stretch_id, left_on=["stretch_id", "tollbooth_id_out"], right_on=["stretch_id", "tollbooth_id"], how="left"
+        ldf_tbsts_stretch_id, left_on=["stretch_id", "tollbooth_id_out"], right_on=["stretch_id", "tollbooth_id"], how="full"
     ).unique()
 
     filepath = os.path.join(output_filepath, f"growth_rate_{from_year}_{to_year}.csv")
@@ -318,7 +327,7 @@ if __name__ == "__main__":
     output_filepath = "reports/"
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--growth-rate", required=False, action="store_true")
+    parser.add_argument("--growth-rate", required=False, choices=("all", "bike", "car", "bus", "truck"))
     parser.add_argument("--tb-update-date", required=False, action="store_true")
     parser.add_argument("--tb-names", required=False, action="store_true")
     parser.add_argument("--stretch-names", required=False, action="store_true")
