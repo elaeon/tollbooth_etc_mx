@@ -3,7 +3,7 @@ sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
 
 import polars as pl
 import argparse
-from dataclasses import dataclass
+from collections import defaultdict
 
 from tb_map_editor.data_files import DataModel, DataStage
 
@@ -40,10 +40,6 @@ _VEHICLE_TYPE_DICT: dict = {
 def inflation_growth_rate(from_year, to_year, vehicle_type):
     years = range(from_year, to_year + 1)
     df_strech_toll_dict = {}
-    #vehicle_year_name = {}
-
-    # for year in years:
-    #     vehicle_year_name[year] = f"{vehicle_type}_{year}"
 
     for year in years:
         filepath = DataModel(year, DataStage.stg).stretchs_toll.parquet
@@ -146,10 +142,23 @@ def tdpa_vta_growth_rate(from_year, to_year, vehicle_type):
     years = range(from_year, to_year + 1)
     df_tb_dict = {}
 
+    exclude_vehicle = ["load_axle", "truck_10_axle"]
+    rename_vehicle = {"bus_2_axle": "bus", "bus_3_axle":"bus", "bus_4_axle": "bus"}
+    vehicle_type_cols = defaultdict(list)
+
+    for vehicle in _VEHICLE_TYPE_DICT[vehicle_type]:
+        if vehicle in exclude_vehicle:
+            continue
+        elif vehicle in rename_vehicle:
+            if rename_vehicle[vehicle] not in vehicle_type_cols[vehicle_type]:
+                vehicle_type_cols[vehicle_type].append(rename_vehicle[vehicle])
+        else:
+            vehicle_type_cols[vehicle_type].append(vehicle)
+
     for year in years:
         filepath = DataModel(year, DataStage.prd).tb_sts.parquet
         df_tb_dict[year] = pl.scan_parquet(filepath).select(
-            ["tollbooth_id", "tdpa", "vta"] + _VEHICLE_TYPE_DICT[vehicle_type]
+            ["tollbooth_id", "tdpa", "vta"] + vehicle_type_cols[vehicle_type]
         )
         df_tb_dict[year] = df_tb_dict[year].fill_null(0)
         df_tb_dict[year] = df_tb_dict[year].cast(
@@ -159,7 +168,7 @@ def tdpa_vta_growth_rate(from_year, to_year, vehicle_type):
         if vehicle_type != "all":        
             df_tb_dict[year] = df_tb_dict[year].with_columns(
                 (pl.sum_horizontal(
-                    _VEHICLE_TYPE_DICT[vehicle_type]
+                    vehicle_type_cols[vehicle_type]
                 ) / 100.
                 ).alias("tdpa_vehicle_ratio")
             )
@@ -168,7 +177,7 @@ def tdpa_vta_growth_rate(from_year, to_year, vehicle_type):
                 (pl.col("tdpa_vehicle_ratio") * pl.col(f"vta_{year}")).alias(f"vta_{year}"),
             )
             
-        df_tb_dict[year] = df_tb_dict[year].select(pl.exclude(["tdpa_vehicle_ratio"] + _VEHICLE_TYPE_DICT[vehicle_type]))
+        df_tb_dict[year] = df_tb_dict[year].select(pl.exclude(["tdpa_vehicle_ratio"] + vehicle_type_cols[vehicle_type]))
 
     df_sts = join_range(from_year, to_year, df_tb_dict, data_join_key="tollbooth_id")
     tdpa_growth_rate_columns, tdpa_growth_rate_expr = growth_rate_exprs(from_year, to_year, "tdpa", "tdpa")
@@ -222,7 +231,7 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
     ldf_toll = ldf_toll.join(ldf_strechs, on="stretch_id")
     ldf_toll = ldf_toll.join(ldf_road, on="road_id", how="left")
     ldf_toll = ldf_toll.join(ldf_tb_stretch, on="stretch_id", how="left")
-    ldf_toll = ldf_toll.select(pl.exclude("road_id")).unique()
+    ldf_toll = ldf_toll.select(pl.exclude("road_id"))
 
     ldf_toll = ldf_toll.with_columns(
         pl.when(
@@ -241,12 +250,15 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
     ).select(pl.exclude("tollbooth_sts_id"))
 
     ldf_toll_sts = ldf_toll.join(
-        ldf_tbsts_stretch_id, left_on=["stretch_id", "tollbooth_id_out"], right_on=["stretch_id", "tollbooth_id"], how="full"
-    ).unique()
+        ldf_tbsts_stretch_id, left_on=["stretch_id", "tollbooth_id_out"], right_on=["stretch_id", "tollbooth_id"], how="left"
+    )
 
-    filepath = os.path.join(output_filepath, f"growth_rate_{from_year}_{to_year}.csv")
+    filepath = os.path.join(output_filepath, f"growth_rate_{vehicle_type}_{from_year}_{to_year}.csv")
     ldf_toll_sts = ldf_toll_sts.select(list(output_cols_dict.keys()))
-    ldf_toll_sts.sink_csv(filepath)
+    # stretchs could have different tollbooth_id_out
+    # so it's eliminated from columns and call unique
+    ldf_toll_sts = ldf_toll_sts.unique()
+    ldf_toll_sts.sort("stretch_name").sink_csv(filepath)
     print(f"Saved result in {filepath}")
 
 
