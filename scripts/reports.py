@@ -3,50 +3,65 @@ sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
 
 import polars as pl
 import argparse
+from dataclasses import dataclass
 
 from tb_map_editor.data_files import DataModel, DataStage
 
 
-def inflation_growth_rate(from_year, to_year):
+_BIKE: list = ["motorbike"]
+_CAR: list = ["car"]
+_BUS: list = [
+    "bus_2_axle", "bus_3_axle", "bus_4_axle"
+]
+_LIGH_TRUCK: list = [
+    "truck_2_axle", "truck_3_axle", "truck_4_axle",
+]
+_HEAVY_TRUCK: list = [
+    "truck_5_axle", "truck_6_axle", "truck_7_axle", 
+]
+_U_HEAVY_TRUCK: list = [
+    "truck_8_axle", "truck_9_axle", "truck_10_axle"
+]
+_TRUCK: list = _LIGH_TRUCK + _HEAVY_TRUCK + _U_HEAVY_TRUCK
+_EXTRA_AXLE: list = [
+    "car_axle", "load_axle"
+]
+_VEHICLE_TYPE_DICT: dict = {
+    "bike": _BIKE,
+    "car": _CAR,
+    "bus": _BUS,
+    "truck": _TRUCK,
+    "light_truck": _LIGH_TRUCK,
+    "extra_axle": _EXTRA_AXLE,
+    "all": _BIKE + _CAR + _BUS + _TRUCK + _EXTRA_AXLE
+}
+
+
+def inflation_growth_rate(from_year, to_year, vehicle_type):
     years = range(from_year, to_year + 1)
     df_strech_toll_dict = {}
-    prefix = "inflation"
-    
+    #vehicle_year_name = {}
+
+    # for year in years:
+    #     vehicle_year_name[year] = f"{vehicle_type}_{year}"
+
     for year in years:
         filepath = DataModel(year, DataStage.stg).stretchs_toll.parquet
-        df_strech_toll_dict[year] = pl.scan_parquet(filepath)
-
-    for year in df_strech_toll_dict:
-        df_strech_toll_dict[year] = df_strech_toll_dict[year].select(
-            "stretch_id", "motorbike", "car", "car_axle", "bus_2_axle", "bus_3_axle",
-            "bus_4_axle", "truck_2_axle", "truck_3_axle", "truck_4_axle",
-            "truck_5_axle", "truck_6_axle", "truck_7_axle", "truck_8_axle",
-            "truck_9_axle", "load_axle"
-        ).rename({"car": f"car_{year}", "motorbike": f"bike_{year}"})
+        df_strech_toll_dict[year] = pl.scan_parquet(filepath).select(
+            ["stretch_id"] + _VEHICLE_TYPE_DICT[vehicle_type]
+        )
         df_strech_toll_dict[year] = df_strech_toll_dict[year].fill_null(0)
-        df_strech_toll_dict[year] = df_strech_toll_dict[year].with_columns(pl.sum_horizontal(
-            f"bike_{year}", f"car_{year}", "bus_2_axle", "bus_3_axle", "bus_4_axle", "truck_2_axle", 
-            "truck_3_axle", "truck_4_axle", "truck_5_axle", "truck_6_axle", "truck_7_axle",
-            "truck_8_axle", "truck_9_axle", "car_axle", "load_axle"
-        ).alias(f"total_{year}"))
-        df_strech_toll_dict[year] = df_strech_toll_dict[year].with_columns(pl.mean_horizontal(
-            f"bike_{year}", f"car_{year}", "bus_2_axle", "bus_3_axle", "bus_4_axle", "truck_2_axle", 
-            "truck_3_axle", "truck_4_axle", "truck_5_axle", "truck_6_axle", "truck_7_axle",
-            "truck_8_axle", "truck_9_axle", "car_axle", "load_axle"
-        ).alias(f"total_mean_{year}"))
-        df_strech_toll_dict[year] = df_strech_toll_dict[year].select(pl.exclude("car_axle", "load_axle"))
         df_strech_toll_dict[year] = df_strech_toll_dict[year].with_columns(
-            pl.mean_horizontal("bus_2_axle", "bus_3_axle", "bus_4_axle").alias(f"bus_{year}")
-        ).select(pl.exclude("bus_2_axle", "bus_3_axle", "bus_4_axle"))
+            pl.sum_horizontal(
+                _VEHICLE_TYPE_DICT[vehicle_type]
+            ).alias(f"total_{year}")
+        )
         df_strech_toll_dict[year] = df_strech_toll_dict[year].with_columns(
-            pl.mean_horizontal("truck_2_axle", "truck_3_axle").alias(f"light_truck_{year}")
-        ).select(pl.exclude("truck_2_axle", "truck_3_axle"))
-        df_strech_toll_dict[year] = df_strech_toll_dict[year].with_columns(
-            pl.mean_horizontal("truck_4_axle", "truck_5_axle", "truck_6_axle").alias(f"heavy_truck_{year}")
-        ).select(pl.exclude("truck_4_axle", "truck_5_axle", "truck_6_axle"))
-        df_strech_toll_dict[year] = df_strech_toll_dict[year].with_columns(
-            pl.mean_horizontal("truck_7_axle", "truck_8_axle", "truck_9_axle").alias(f"uheavy_truck_{year}")
-        ).select(pl.exclude("truck_7_axle", "truck_8_axle", "truck_9_axle"))
+            pl.mean_horizontal(
+                _VEHICLE_TYPE_DICT[vehicle_type]
+            ).alias(f"total_mean_{year}")
+        )
+        df_strech_toll_dict[year] = df_strech_toll_dict[year].select(pl.exclude(_VEHICLE_TYPE_DICT[vehicle_type]))
 
     df_toll = join_range(from_year, to_year, df_strech_toll_dict, data_join_key="stretch_id")
     infla_growth_rate_columns, infla_growth_rate_expr = growth_rate_exprs(from_year, to_year, "total", "inflation")
@@ -127,18 +142,33 @@ def growth_rate_exprs(start, end, prefix_col: str, result_prefix_col: str):
     return growth_rate_columns, growth_rate_exp
 
 
-def tdpa_vta_growth_rate(from_year, to_year):
+def tdpa_vta_growth_rate(from_year, to_year, vehicle_type):
     years = range(from_year, to_year + 1)
     df_tb_dict = {}
 
     for year in years:
         filepath = DataModel(year, DataStage.prd).tb_sts.parquet
-        df_tb_dict[year] = pl.scan_parquet(filepath)
-    
-    for year in df_tb_dict:
-        df_tb_dict[year] = df_tb_dict[year].select(
-            "tollbooth_id", "tdpa", "vta"
-        ).cast({"tdpa": pl.Int32, "vta": pl.Int64}).rename({"tdpa": f"tdpa_{year}", "vta": f"vta_{year}"})
+        df_tb_dict[year] = pl.scan_parquet(filepath).select(
+            ["tollbooth_id", "tdpa", "vta"] + _VEHICLE_TYPE_DICT[vehicle_type]
+        )
+        df_tb_dict[year] = df_tb_dict[year].fill_null(0)
+        df_tb_dict[year] = df_tb_dict[year].cast(
+            {"tdpa": pl.Int32, "vta": pl.Int64}
+        ).rename({"tdpa": f"tdpa_{year}", "vta": f"vta_{year}"})
+
+        if vehicle_type != "all":        
+            df_tb_dict[year] = df_tb_dict[year].with_columns(
+                (pl.sum_horizontal(
+                    _VEHICLE_TYPE_DICT[vehicle_type]
+                ) / 100.
+                ).alias("tdpa_vehicle_ratio")
+            )
+            df_tb_dict[year] = df_tb_dict[year].with_columns(
+                (pl.col("tdpa_vehicle_ratio") * pl.col(f"tdpa_{year}")).alias(f"tdpa_{year}"),
+                (pl.col("tdpa_vehicle_ratio") * pl.col(f"vta_{year}")).alias(f"vta_{year}"),
+            )
+            
+        df_tb_dict[year] = df_tb_dict[year].select(pl.exclude(["tdpa_vehicle_ratio"] + _VEHICLE_TYPE_DICT[vehicle_type]))
 
     df_sts = join_range(from_year, to_year, df_tb_dict, data_join_key="tollbooth_id")
     tdpa_growth_rate_columns, tdpa_growth_rate_expr = growth_rate_exprs(from_year, to_year, "tdpa", "tdpa")
@@ -151,9 +181,9 @@ def tdpa_vta_growth_rate(from_year, to_year):
     return df_sts
 
 
-def growth_rate_report(from_year: int, to_year: int):
-    ldf_toll = inflation_growth_rate(from_year, to_year)
-    ldf_sts = tdpa_vta_growth_rate(from_year, to_year=to_year-1)
+def growth_rate_report(from_year: int, to_year: int, vehicle_type):
+    ldf_toll = inflation_growth_rate(from_year, to_year, vehicle_type)
+    ldf_sts = tdpa_vta_growth_rate(from_year, to_year=to_year-1, vehicle_type=vehicle_type)
 
     toll_col_names = ldf_toll.collect_schema().names()
     sts_col_names = ldf_sts.collect_schema().names()[1:]
@@ -327,14 +357,14 @@ if __name__ == "__main__":
     output_filepath = "reports/"
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--growth-rate", required=False, choices=("all", "bike", "car", "bus", "truck"))
+    parser.add_argument("--growth-rate", required=False, choices=tuple(_VEHICLE_TYPE_DICT))
     parser.add_argument("--tb-update-date", required=False, action="store_true")
     parser.add_argument("--tb-names", required=False, action="store_true")
     parser.add_argument("--stretch-names", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
-        growth_rate_report(from_year=2021, to_year=2025)
+        growth_rate_report(from_year=2021, to_year=2025, vehicle_type=args.growth_rate)
     elif args.tb_update_date:
         toll_update_date_report(from_year=2024, to_year=2025)
     elif args.tb_names:
