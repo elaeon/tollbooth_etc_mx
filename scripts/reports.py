@@ -365,6 +365,76 @@ def stretch_names_report(year: int):
     print(f"Saved result in {filepath}")
 
 
+def tollbooth_stretch_rel(year: int):
+    data_model = DataModel(year, DataStage.stg)
+
+    ldf_tb_stretch_id = pl.scan_parquet(
+        data_model.tb_stretch_id.parquet
+    )
+    ldf_stretch = pl.scan_parquet(
+        data_model.stretchs.parquet
+    ).select("stretch_id", "stretch_name")
+    ldf_tollbooth = pl.scan_parquet(
+        data_model.tollbooths.parquet
+    ).select("tollbooth_id", "tollbooth_name")
+    ldf_tb_stretch_id = ldf_stretch.join(
+        ldf_tb_stretch_id, on="stretch_id", how="left"
+    )
+    ldf_tb_stretch_id = ldf_tb_stretch_id.join(
+        ldf_tollbooth, left_on="tollbooth_id_out", right_on="tollbooth_id", how="left"
+    ).rename({"tollbooth_name": "tollbooth_name_out"})
+    ldf_tb_stretch_id = ldf_tb_stretch_id.join(
+        ldf_tollbooth, left_on="tollbooth_id_in", right_on="tollbooth_id", how="left"
+    ).rename({"tollbooth_name": "tollbooth_name_in"})
+    ldf_tb_stretch_id = ldf_tb_stretch_id.select(
+        "stretch_id", "tollbooth_id_in", "tollbooth_id_out", "stretch_name", "tollbooth_name_in", "tollbooth_name_out"
+    )
+
+    filepath = os.path.join(output_filepath, f"tollbooth_stretch_rel_{year}.csv")
+    ldf_tb_stretch_id.sort("stretch_id").sink_csv(filepath)
+    print(f"Saved result in {filepath}")
+
+
+def tollbooth_without_stretch(year: int):
+    data_model = DataModel(year, DataStage.stg)
+
+    ldf_tb_stretch_id = pl.scan_parquet(
+        data_model.tb_stretch_id.parquet
+    )
+    ldf_tollbooth = pl.scan_parquet(
+        data_model.tollbooths.parquet
+    ).select("tollbooth_id", "tollbooth_name", "state")
+    ldf_map_tb_id = pl.scan_parquet(
+        data_model.map_tb_id.parquet
+    ).select("tollbooth_id", "tollbooth_imt_id")
+    ldf_tb_imt = pl.scan_parquet(
+        data_model.tb_imt.parquet
+    ).select("tollbooth_id", "area", "subarea", "calirepr")
+
+    ldf_tb_stretch_in = ldf_tb_stretch_id.select(
+        "stretch_id", "tollbooth_id_in"
+    ).rename({"tollbooth_id_in": "tollbooth_id"})
+    ldf_tb_stretch_out = ldf_tb_stretch_id.select(
+        "stretch_id", "tollbooth_id_out"
+    ).rename({"tollbooth_id_out": "tollbooth_id"})
+    ldf_tb_stretch = pl.concat([ldf_tb_stretch_in, ldf_tb_stretch_out])
+    ldf_tb_stretch = ldf_tb_stretch.unique()
+    ldf_tb_no_stretch = ldf_tollbooth.join(
+        ldf_tb_stretch, on="tollbooth_id", how="anti"
+    )
+    ldf_tb_no_stretch = ldf_tb_no_stretch.join(
+        ldf_map_tb_id, on="tollbooth_id", how="left"
+    )
+    ldf_tb_no_stretch = ldf_tb_no_stretch.join(
+        ldf_tb_imt, left_on="tollbooth_imt_id", right_on="tollbooth_id", how="left"
+    )
+    
+    filepath = os.path.join(output_filepath, f"tollbooth_wo_stretch{year}.csv")
+    ldf_tb_no_stretch.sort("tollbooth_id").sink_csv(filepath)
+    print(f"Saved result in {filepath}")
+
+
+
 if __name__ == "__main__":
     output_filepath = "reports/"
 
@@ -373,6 +443,8 @@ if __name__ == "__main__":
     parser.add_argument("--tb-update-date", required=False, action="store_true")
     parser.add_argument("--tb-names", required=False, action="store_true")
     parser.add_argument("--stretch-names", required=False, action="store_true")
+    parser.add_argument("--tb-stretch-rel", required=False, action="store_true")
+    parser.add_argument("--tb-wo-stretch", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
@@ -383,3 +455,7 @@ if __name__ == "__main__":
         tollbooth_names_report(year=2025)
     elif args.stretch_names:
         stretch_names_report(year=2025)
+    elif args.tb_stretch_rel:
+        tollbooth_stretch_rel(year=2025)
+    elif args.tb_wo_stretch:
+        tollbooth_without_stretch(year=2025)
