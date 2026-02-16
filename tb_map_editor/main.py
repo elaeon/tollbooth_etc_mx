@@ -209,11 +209,12 @@ def query_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
 
 
 @app.post("/api/tollbooth_neightbours")
-def tollbooth_neighbours(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=10):
+def tollbooth_neighbours(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=20):
     stm = select(Tollbooth).select_from(
             join(Tollbooth, TbNeighbour, TbNeighbour.neighbour_id == Tollbooth.tollbooth_id)
         ).where(
-        TbNeighbour.tollbooth_id == body.get("tollbooth_id")
+        TbNeighbour.tollbooth_id == body.get("tollbooth_id"),
+        TbNeighbour.scope == 'local-local'
     )
     tollbooths = session.exec(stm.offset(offset).limit(limit))
     data = []

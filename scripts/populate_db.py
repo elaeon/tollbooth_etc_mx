@@ -177,7 +177,7 @@ if __name__ == "__main__":
     elif args.new_map_tb_imt:
         insert_new_map_tb_imt_from_data(data_model)
     elif args.insert_tb_neighbours:
-        data_model = DataModel(args.year, DataStage.prd)
+        data_model = DataModel(args.year, DataStage.stg)
         insert_tb_neighbours(data_model)
     elif args.clean_db:
         clean_db(args.clean_db)
