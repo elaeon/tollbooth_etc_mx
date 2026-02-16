@@ -503,7 +503,6 @@
 525,465,"oaxtepec",18.9032498875937,-98.9853500731736,"open","morelos","entronque",2,"toll","capufe",,,
 526,465,"oaxtepec",18.9054734221685,-98.9875001412582,"open","morelos","troncal",4,"toll","capufe",,,
 527,465,"oaxtepec",18.9037134477406,-98.9852660894394,"open","morelos","entronque",2,"toll","capufe",,,
-528,465,"oaxtepec",18.9313748878619,-99.0249683753439,"open","morelos","entronque",2,"toll","capufe",,,
 529,24,"tepoztlan",18.9870391283263,-99.112506135935,"open","morelos","troncal",9,"toll","capufe",,,
 530,224,"tepoztlan bis",18.9847394621035,-99.1105872756711,"open","morelos","entronque",3,"toll","capufe",,,
 531,195,"tres marias",19.0563699107673,-99.2410805536357,"open","morelos","entronque",1,"toll","capufe",,,
@@ -1224,7 +1223,7 @@
 1345,,"puente la unidad",18.7855289126034,-91.4947843551636,"open","campeche","troncal",1,"toll","gob-campeche","bridge",,"out"
 1346,,"la seyba",19.6361963092446,-90.6715124845505,"open","campeche","troncal",2,"toll","capufe",,,
 1352,,"tepoztlan",18.9869646896315,-99.1126602888107,"open","morelos","troncal",4,"toll","capufe",,,
-1353,,"oaxtepec",18.9313247040961,-99.0250861644745,"open","morelos","entronque",2,"toll","capufe",,,
+1353,,"oacalco",18.9313247040961,-99.0250861644745,"open","morelos","entronque",2,"toll","capufe",,,
 1354,,"oacalco",18.9304417828539,-99.0260463953018,"open","morelos","entronque",2,"toll","capufe",,,
 1356,,"aeropuerto",18.8022571838482,-99.2212843894959,"open","morelos","entronque",2,"toll","capufe",,,
 1357,,"aeropuerto",18.8026634356978,-99.2199110984802,"open","morelos","entronque",1,"toll","capufe",,,
