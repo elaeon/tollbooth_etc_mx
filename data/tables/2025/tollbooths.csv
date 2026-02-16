@@ -314,7 +314,7 @@
 327,120,"las joyas",21.0974297871295,-101.776929353264,"open","guanajuato","entronque",1,"toll","rco",,,
 328,120,"las joyas",21.0982899318069,-101.778697959026,"open","guanajuato","entronque",1,"toll","rco",,,
 329,120,"leon",21.1027925706311,-101.784598034564,"open","guanajuato","troncal",6,"toll","rco",,,
-330,463,"libramiento la piedad",20.3954822533392,-101.99808250182,"open","guanajuato","entronque",1,"toll","lipsa",,,
+330,463,"libramiento la piedad",20.3954822533392,-101.99808250182,"open","guanajuato","entronque",2,"toll","lipsa",,,
 331,463,"libramiento la piedad",20.3956076396429,-101.993362124809,"open","guanajuato","troncal",4,"toll","lipsa",,,
 332,41,"mendoza",20.6730365630931,-101.21357279709,"open","guanajuato","troncal",10,"toll","gma",,,
 333,120,"plan de ayala",21.0768737580968,-101.709859726805,"open","guanajuato","entronque",1,"toll","rco",,,
@@ -1368,3 +1368,4 @@
 1578,,"lincon",25.789347498433,-100.464268326759,"open","nuevo leon","entronque",2,"toll","reanal",,,"in"
 1579,,"felipe carrillo puerto",19.5903589799917,-88.0711752176285,"open","quintana roo","troncal",2,"toll","libramiento-carrillopuerto",,0,"io"
 1580,,"entronque ojo de agua",19.66623537843,-99.0010267496109,"open","edomx","entronque",1,"toll","golfo-centro",,,"out"
+1581,463,"libramiento la piedad",20.395358999537812, -101.99803054332735,"open","guanajuato","entronque",2,"toll","lipsa",,,
