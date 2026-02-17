@@ -267,28 +267,6 @@ const baseLayers = {
 
 const layerControl = L.control.layers(baseLayers, {}, { position: 'topleft' }).addTo(map);
 
-// Small control that shows the currently active base layer name
-const BaseLayerHint = L.Control.extend({
-	onAdd() {
-		const container = L.DomUtil.create('div');
-		container.style.background = 'rgba(255,255,255,0.9)';
-		container.style.padding = '4px 8px';
-		container.style.borderRadius = '4px';
-		container.style.fontSize = '12px';
-		container.style.boxShadow = '0 1px 3px rgba(0,0,0,0.2)';
-		container.style.pointerEvents = 'none';
-		container.textContent = 'Base: none';
-		this._container = container;
-		return container;
-	},
-	update(name) {
-		if (!this._container) return;
-		this._container.textContent = `Base: ${name}`;
-	}
-});
-
-const baseHintControl = new BaseLayerHint({ position: 'topleft' }).addTo(map);
-
 // update on layer change
 map.on('baselayerchange', (e) => {
 	try { baseHintControl.update(e.name || 'unknown'); } catch (err) { console.warn('baseHint update', err); }
@@ -340,14 +318,22 @@ var searchBar = L.control.pinSearch({
 // Container styles
 const uploadControlStyle = document.createElement('style');
 uploadControlStyle.innerHTML = `
-	.leaflet-control-query { background: rgba(255,255,255,0.9); padding: 8px; width: 280px; font-size: 13px; z-index: 0; transition: width 0.3s ease; }
-	.leaflet-control-query.collapsed { width: auto; padding: 4px; }
-	.leaflet-control-query.collapsed #control-title { display: none; }
-	.leaflet-control-query input[type="text"], .leaflet-control-query textarea { width: 100%; box-sizing: border-box; margin-bottom:6px; font-family: monospace; }
-	.leaflet-control-query textarea { height: 80px; resize: vertical; }
-	.leaflet-control-query button { margin-right:6px; padding: 4px 8px; }
-	.leaflet-control-query .status { font-size: 12px; color: #333; margin-top:6px; white-space:pre-wrap; }
-	.leaflet-control-query #btn-toggle-control { margin-right: 0; }
+	:root{--qc-bg:rgba(255,255,255,0.98);--qc-border:#e6e6e6;--qc-accent:#0b6efd;--qc-text:#222}
+	.leaflet-control-query{background:var(--qc-bg);padding:10px;width:340px;max-width:92vw;font-size:13px;z-index:1000;transition:width .25s ease,box-shadow .15s;box-shadow:0 6px 18px rgba(0,0,0,0.08);border:1px solid var(--qc-border);border-radius:8px}
+	.leaflet-control-query.collapsed{width:auto;padding:6px}
+	.leaflet-control-query.collapsed #control-title{display:none}
+	.leaflet-control-query .query-grid{display:grid;grid-template-columns:1fr;gap:8px}
+	.leaflet-control-query textarea,.leaflet-control-query select,.leaflet-control-query input[type="text"]{width:100%;box-sizing:border-box;padding:8px;border:1px solid #ddd;border-radius:6px;font-family:monospace;background:#fff;color:var(--qc-text)}
+	.leaflet-control-query textarea{min-height:90px;resize:vertical}
+	.leaflet-control-query .row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+	.leaflet-control-query .btn-group{display:flex;gap:6px}
+	.leaflet-control-query button{border:1px solid #d0d0d0;background:#fff;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:13px}
+	.leaflet-control-query button.btn-primary{background:var(--qc-accent);color:#fff;border-color:transparent}
+	.leaflet-control-query button.btn-ghost{background:transparent;border:1px dashed #ddd}
+	.leaflet-control-query label{font-size:13px;color:#444}
+	.leaflet-control-query .status{font-size:12px;color:#333;margin-top:6px;white-space:pre-wrap}
+	.leaflet-control-query #btn-toggle-control{margin-right:0;min-width:36px}
+	.leaflet-control-query #zoom-viewer{font-size:12px;color:#666;margin-top:6px;padding:6px;background:#fbfbfb;border-radius:4px}
 `;
 document.head.appendChild(uploadControlStyle);
 
@@ -355,25 +341,27 @@ const QueryControl = L.Control.extend({
 	onAdd(map) {
 		const container = L.DomUtil.create('div', 'leaflet-control-query');
 		container.innerHTML = `
-			<div style="display:flex;align-items:center;justify-content:space-between;"><strong id="control-title">Query & Fetch Markers</strong><button id="btn-toggle-control" style="padding:2px 6px;font-size:12px;cursor:pointer">−</button></div>
+			<div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><strong id="control-title">Query & Fetch Markers</strong><button id="btn-toggle-control" class="btn-ghost" style="padding:4px 8px;font-size:12px;cursor:pointer">−</button></div>
 			<div id="control-content">
-				<textarea id="query-input" placeholder="Enter query (JSON or text)"></textarea>
-				<select id="query-endpoints">
-					{% for name, endpoint in query_endpoints.items() %}
-					<option value="{{ url_for(endpoint) }}">{{ name }}</option>
-					{% endfor %}
-				</select>
-				<label>
-					<input id="btn-checkbox-edit" type="checkbox" placeholder="edit markers">Edit markers
-				</label>
-				<div>
-					<button id="btn-send-query">Send</button>
-					<button id="btn-clear-markers">Clear</button>
-					<button id="btn-clear-group-layers">Clear All</button>
+				<div class="query-grid">
+					<textarea id="query-input" placeholder="Enter query (JSON or text)"></textarea>
+					<select id="query-endpoints">
+						{% for name, endpoint in query_endpoints.items() %}
+						<option value="{{ url_for(endpoint) }}">{{ name }}</option>
+						{% endfor %}
+					</select>
+					<div class="row">
+						<label><input id="btn-checkbox-edit" type="checkbox"> Edit markers</label>
+						<div class="btn-group">
+							<button id="btn-send-query" class="btn-primary">Send</button>
+							<button id="btn-clear-markers">Clear</button>
+							<button id="btn-clear-group-layers">Clear All</button>
+						</div>
+					</div>
 				</div>
 				<div class="status" id="query-status"></div>
-				<div style="font-size:12px; color:#666; margin-top:6px; padding:4px; background:#f0f0f0; border-radius:3px;" id="zoom-viewer">Zoom level: 10</div>
-				<div id="marker-props-panel" style="margin-top:8px; max-height:250px; overflow:auto; font-size:12px; background:#f9f9f9; padding:6px; border-radius:4px; display:none"></div>
+				<div id="zoom-viewer">Zoom level: 10</div>
+				<div id="marker-props-panel" style="margin-top:8px; max-height:260px; overflow:auto; font-size:12px; background:#f9f9f9; padding:6px; border-radius:4px; display:none"></div>
 			</div>
 		`;
 
@@ -602,7 +590,7 @@ async function showMarkerTolls(marker, panel) {
 			for (let i = 0; i < tollsData.length; i++) {
 				const isFirst = i === 0;
 				html += `<button class="toll-tab" data-tab="${i}" style="padding:2px 8px;font-size:10px;cursor:pointer;border:1px solid #ccc;background:${isFirst ? '#f0f0f0' : '#fff'};border-bottom:none;${isFirst ? 'font-weight:bold' : ''}" data-toll-id-a="${tollsData[i].tollbooth_id_a || ''}" data-toll-id-b="${tollsData[i].tollbooth_id_b || ''}">
-					Tab ${i + 1}
+					Toll: ${i + 1}
 				</button>`;
 			}
 			html += '</div>';
