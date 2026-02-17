@@ -334,6 +334,11 @@ uploadControlStyle.innerHTML = `
 	.leaflet-control-query .status{font-size:12px;color:#333;margin-top:6px;white-space:pre-wrap}
 	.leaflet-control-query #btn-toggle-control{margin-right:0;min-width:36px}
 	.leaflet-control-query #zoom-viewer{font-size:12px;color:#666;margin-top:6px;padding:6px;background:#fbfbfb;border-radius:4px}
+	/* tollbooth autocomplete suggestions */
+	.leaflet-control-query .tb-search{position:relative}
+	.leaflet-control-query .tb-suggestions{position:relative;margin-top:4px;border:1px solid #e6e6e6;background:#fff;border-radius:6px;max-height:220px;overflow:auto;box-shadow:0 6px 12px rgba(0,0,0,0.06);}
+	.leaflet-control-query .tb-suggestion-item{padding:8px 10px;cursor:pointer;font-size:13px;border-bottom:1px solid #f4f4f4}
+	.leaflet-control-query .tb-suggestion-item:hover{background:#f6f8ff}
 `;
 document.head.appendChild(uploadControlStyle);
 
@@ -344,6 +349,10 @@ const QueryControl = L.Control.extend({
 			<div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><strong id="control-title">Query & Fetch Markers</strong><button id="btn-toggle-control" class="btn-ghost" style="padding:4px 8px;font-size:12px;cursor:pointer">−</button></div>
 			<div id="control-content">
 				<div class="query-grid">
+					<div class="tb-search">
+						<input id="tb-search" type="text" placeholder="Search tollbooth name..." />
+						<div id="tb-suggestions" class="tb-suggestions" style="display:none"></div>
+					</div>
 					<textarea id="query-input" placeholder="Enter query (JSON or text)"></textarea>
 					<select id="query-endpoints">
 						{% for name, endpoint in query_endpoints.items() %}
@@ -476,7 +485,10 @@ const QueryControl = L.Control.extend({
 			statusEl.textContent = 'Layers cleared';
 		});
 
-		return container;
+			// initialize tollbooth search handlers (autocomplete)
+			try { initTbSearchHandlers(container); } catch (err) { console.warn('initTbSearchHandlers', err); }
+
+			return container;
 	}
 });
 
@@ -503,6 +515,73 @@ function processMarkerResponse(data, sourceLabel, clearLayers) {
 	if (Array.isArray(markers) && markers.length === 1) {
 		try { showMarkerProps(markers[0]); } catch (err) { console.warn('showMarkerProps error', err); }
 	}
+}
+
+// --- Tollbooth name autocomplete ---
+const _tb_suggestions = { list: [], lastQuery: '' };
+async function loadTollSuggestions(ev) {
+	try {
+		const resp = await fetch('{{ url_for("fetch_tollbooths") }}', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ suggestions: true, query: ev.target.value.trim().toLowerCase()})
+		});
+		if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
+		const data = await resp.json();
+		if (Array.isArray(data)) {
+			_tb_suggestions.list = data.map(d => ({ id: d.tollbooth_id || d.tollbooth_id_a || d.tollbooth_id_b || d.id, name: d.tollbooth_name || d.name || (d.props && d.props.tollbooth_name) }));
+		}
+	} catch (err) {
+		console.warn('toll suggestions load failed', err);
+	}
+}
+
+function debounce(fn, wait) {
+	let t;
+	return function(...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), wait); };
+}
+
+function renderTbSuggestions(filtered) {
+	const box = document.getElementById('tb-suggestions');
+	if (!box) return;
+	box.innerHTML = '';
+	if (!filtered || !filtered.length) { box.style.display = 'none'; return; }
+	for (const item of filtered) {
+		const el = document.createElement('div');
+		el.className = 'tb-suggestion-item';
+		el.textContent = item.name || String(item.id);
+		el.dataset.id = item.id;
+		el.addEventListener('click', (ev) => {
+			const qEl = document.getElementById('query-input');
+			if (qEl) qEl.value = el.textContent;
+			try { showTollboothMarkers([el.dataset.id]); } catch (err) { console.warn(err); }
+			box.style.display = 'none';
+		});
+		box.appendChild(el);
+	}
+	box.style.display = 'block';
+}
+
+const _onTbInput = debounce(function(ev) {
+	const v = ev.target.value && ev.target.value.trim().toLowerCase();
+	if (!v) { renderTbSuggestions([]); return; }
+	const list = _tb_suggestions.list.filter(i => (i.name || '').toLowerCase().includes(v));
+	renderTbSuggestions(list.slice(0, 60));
+}, 180);
+
+// attach handlers once control exists in DOM
+function initTbSearchHandlers(container) {
+	const input = container.querySelector('#tb-search');
+	const box = container.querySelector('#tb-suggestions');
+	if (!input || !box) return;
+	input.addEventListener('input', _onTbInput);
+	input.addEventListener('keyup', async (ev) => {
+		if (!_tb_suggestions.list.length) await loadTollSuggestions(ev);
+		_onTbInput(ev);
+	});
+	document.addEventListener('click', (ev) => {
+		if (!container.contains(ev.target)) box.style.display = 'none';
+	});
 }
 
 function showMarkerProps(marker) {

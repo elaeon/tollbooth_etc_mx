@@ -51,42 +51,50 @@ def map_root(request: Request):
 
 @app.post("/api/tollbooths/")
 def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit: int=1000):
-    param, values = map(str.strip, body["query"].split(":"))
-    values = values.split(",")
-    if param == "h3_cell":
-        hex_resolution = int(values[1])
-        stm = select(Tollbooth)
-        data = []
+    if body.get("suggestions", False) is True:
+        stm = select(Tollbooth).where(Tollbooth.tollbooth_name.ilike(f"%{body['query']}%"))
         tollbooths = session.exec(stm)
+        data = []
         for row in tollbooths:
             data.append(row)
-        df_tb = pl.DataFrame(data)
-        df_tb = df_tb.with_columns(
-            plh3.latlng_to_cell("lat", "lng", hex_resolution).alias("h3_cell")
-        ).filter(h3_cell=int(values[0]))
-        data = []
-        for row in df_tb.select(pl.exclude("h3_cell", "legacy_id")).iter_rows(named=True):
-            data.append(row)
+        print(data)
     else:
-        if param in ["id", "name"]:
-            param = f"tollbooth_{param}"
-        if len(values) > 1:
-            params = []
-            for value in values:
-                params.append(getattr(Tollbooth, param) == value)
-            stm = select(Tollbooth).where(or_(*params))
-            tollbooths = session.exec(stm.offset(offset).limit(limit))
+        param, values = map(str.strip, body["query"].split(":"))
+        values = values.split(",")
+        if param == "h3_cell":
+            hex_resolution = int(values[1])
+            stm = select(Tollbooth)
+            data = []
+            tollbooths = session.exec(stm)
+            for row in tollbooths:
+                data.append(row)
+            df_tb = pl.DataFrame(data)
+            df_tb = df_tb.with_columns(
+                plh3.latlng_to_cell("lat", "lng", hex_resolution).alias("h3_cell")
+            ).filter(h3_cell=int(values[0]))
+            data = []
+            for row in df_tb.select(pl.exclude("h3_cell", "legacy_id")).iter_rows(named=True):
+                data.append(row)
         else:
-            if values[0] == "all":
-                stm = select(Tollbooth)
-                tollbooths = session.exec(stm)
-            else:
-                stm = select(Tollbooth).where(getattr(Tollbooth, param) == values[0])
+            if param in ["id", "name"]:
+                param = f"tollbooth_{param}"
+            if len(values) > 1:
+                params = []
+                for value in values:
+                    params.append(getattr(Tollbooth, param) == value)
+                stm = select(Tollbooth).where(or_(*params))
                 tollbooths = session.exec(stm.offset(offset).limit(limit))
-        data = []
-        for tb in tollbooths:
-            tb_data = tb.online_filled_fields(exclude_fields={"legacy_id"})
-            data.append(tb_data)
+            else:
+                if values[0] == "all":
+                    stm = select(Tollbooth)
+                    tollbooths = session.exec(stm)
+                else:
+                    stm = select(Tollbooth).where(getattr(Tollbooth, param) == values[0])
+                    tollbooths = session.exec(stm.offset(offset).limit(limit))
+            data = []
+            for tb in tollbooths:
+                tb_data = tb.online_filled_fields(exclude_fields={"legacy_id"})
+                data.append(tb_data)
     return data
 
 
