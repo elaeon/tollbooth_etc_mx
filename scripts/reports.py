@@ -50,21 +50,21 @@ def inflation_growth_rate(from_year, to_year, vehicle_type):
         df_strech_toll_dict[year] = df_strech_toll_dict[year].with_columns(
             pl.sum_horizontal(
                 _VEHICLE_TYPE_DICT[vehicle_type]
-            ).alias(f"cost_{year}")
+            ).alias(f"toll_{year}")
         )
         df_strech_toll_dict[year] = df_strech_toll_dict[year].with_columns(
             pl.mean_horizontal(
                 _VEHICLE_TYPE_DICT[vehicle_type]
-            ).alias(f"cost_mean_{year}")
+            ).alias(f"mean_toll_{year}")
         )
         df_strech_toll_dict[year] = df_strech_toll_dict[year].select(pl.exclude(_VEHICLE_TYPE_DICT[vehicle_type]))
 
     df_toll = join_range(from_year, to_year, df_strech_toll_dict, data_join_key="stretch_id")
-    infla_growth_rate_columns, infla_growth_rate_expr = growth_rate_exprs(from_year, to_year, "cost_mean", "cost")
+    infla_growth_rate_columns, infla_growth_rate_expr = growth_rate_exprs(from_year, to_year, "mean_toll", "toll")
 
     df_toll = df_toll.with_columns(
         infla_growth_rate_expr
-    ).select(["stretch_id"] + infla_growth_rate_columns + [f"cost_mean_{year}"])
+    ).select(["stretch_id"] + infla_growth_rate_columns + [f"mean_toll_{year}"])
 
     return df_toll
 
@@ -103,7 +103,14 @@ def growth_rate_exprs(start, end, prefix_col: str, result_prefix_col: str):
         for start_year, end_year in zip(range_keys, range_keys[1:]):
             result_col_name = f"{result_prefix_col}_growth_rate_{end_year}"
             growth_rate_exp.append(
-                ((pl.col(f"{prefix_col}_{end_year}") - pl.col(f"{prefix_col}_{start_year}")) * 100 / pl.col(f"{prefix_col}_{start_year}")).round(2).alias(result_col_name)
+                (
+                    pl.when(pl.col(f"{prefix_col}_{start_year}") != 0)
+                    .then(
+                        ((pl.col(f"{prefix_col}_{end_year}") - pl.col(f"{prefix_col}_{start_year}")) * 100 / pl.col(f"{prefix_col}_{start_year}")).round(2)
+                    )
+                    .otherwise(None)
+                    .alias(result_col_name)
+                )
             )
             growth_rate_columns.append(result_col_name)
 
@@ -111,7 +118,14 @@ def growth_rate_exprs(start, end, prefix_col: str, result_prefix_col: str):
         for _, end_year in zip(range_keys[1:], range_keys[2:]):
             result_col_name = f"{result_prefix_col}_cum_growth_rate_{start+1}_{end_year}"
             growth_rate_exp.append(
-                ((pl.col(f"{prefix_col}_{end_year}") / pl.col(f"{prefix_col}_{start}") - 1) * 100).round(2).alias(result_col_name)
+                (
+                    pl.when(pl.col(f"{prefix_col}_{start}") != 0)
+                    .then(
+                        ((pl.col(f"{prefix_col}_{end_year}") / pl.col(f"{prefix_col}_{start}") - 1) * 100).round(2)
+                    )
+                    .otherwise(None)
+                    .alias(result_col_name)
+                )
             )
             growth_rate_columns.append(result_col_name)
         
@@ -119,21 +133,28 @@ def growth_rate_exprs(start, end, prefix_col: str, result_prefix_col: str):
         result_col_name = f"{result_prefix_col}_cagr_growth_rate_{start+1}_{end}"
         growth_rate_columns.append(result_col_name)
         num_of_years = len(range_keys)
-        cagr_inflation_rate_exp = (((pl.col(f"{prefix_col}_{end}") / pl.col(f"{prefix_col}_{start}")).pow(1/num_of_years) - 1) * 100).round(2).alias(result_col_name)
+        cagr_inflation_rate_exp = (
+            pl.when(pl.col(f"{prefix_col}_{start}") != 0)
+            .then(
+                (((pl.col(f"{prefix_col}_{end}") / pl.col(f"{prefix_col}_{start}")).pow(1/num_of_years) - 1) * 100).round(2)
+            )
+            .otherwise(None)
+            .alias(result_col_name)
+        )
         growth_rate_exp.append(cagr_inflation_rate_exp)
     
-    def rank():
+    def round():
         for year in range_keys:
             result_col_name = f"{result_prefix_col}_round_{year}"
             growth_rate_exp.append(
-                pl.col(f"{prefix_col}_{year}").round().alias(result_col_name)#.rank(method="ordinal", descending=True).alias(result_col_name)
+                pl.col(f"{prefix_col}_{year}").round().alias(result_col_name)
             )
             growth_rate_columns.append(result_col_name)
 
     growth_rate()
     cum_growth_rate()
     cagr_growth_rate()
-    rank()
+    round()
 
     return growth_rate_columns, growth_rate_exp
 
@@ -236,10 +257,10 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
     ldf_toll = ldf_toll.with_columns(
         pl.when(
             (pl.col("stretch_length_km").is_null()) | (pl.col("stretch_length_km") == 0)
-        ).then(None).otherwise((pl.col(f"cost_mean_{to_year}") / pl.col("stretch_length_km")).round(2)).alias("km_cost")
+        ).then(None).otherwise((pl.col(f"mean_toll_{to_year}") / pl.col("stretch_length_km")).round(2)).alias("km_cost")
     )
-    ldf_toll = ldf_toll.select(pl.exclude(f"cost_mean_{to_year}"))
-    del output_cols_dict[f"cost_mean_{to_year}"]
+    ldf_toll = ldf_toll.select(pl.exclude(f"mean_toll_{to_year}"))
+    del output_cols_dict[f"mean_toll_{to_year}"]
 
     ldf_tbsts_stretch_id = pl.scan_parquet(
         data_model.tbsts_stretch_id.parquet
