@@ -112,6 +112,29 @@ def sts_ids(year: int, start_year: int):
     ldf_all.sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
 
 
+def add_parent_manage(ldf: pl.LazyFrame):
+    df = pl.read_csv("data/tables/area_operators_mx.csv", separator="|").select("parent", "short_name")
+    df = df.join(df, left_on="parent", right_on="short_name", how="left")
+    while True:
+        if not df.filter(pl.col("parent_right").is_not_null()).is_empty():
+            df = df.rename({"parent_right": "sparent"}).select("parent", "short_name", "sparent")
+            df = df.with_columns(
+                pl.when(pl.col("sparent").is_not_null()).then(pl.col("sparent")).otherwise("parent").alias("parent")
+            ).select("parent", "short_name")
+            df = df.join(df, left_on="parent", right_on="short_name", how="left")
+        else:
+            df = df.select("parent", "short_name")
+            break
+    
+    df = df.with_columns(
+        pl.when(pl.col("parent").is_null()).then(pl.col("short_name")).otherwise("parent").alias("parent")
+    ).unique()
+    
+    df_tb = ldf.join(df.lazy(), left_on="manage", right_on="short_name", how="left")
+    df_tb = df_tb.select(pl.exclude("short_name")).rename({"parent": "parent_manage"})
+    return df_tb
+
+
 def stg_to_prod(year:int, option_selected: str):
     models = ["tb_sts"]
     options = ["tb_sts"]
@@ -135,7 +158,11 @@ def pub_to_stg(year: int, option_selected: str, normalize: bool):
     options = ["tb", "stretch", "stretch_toll", "road"]
     catalogs = _opts_map(options, models)
 
-    pipeline.simple_pub_stg(catalogs[option_selected], year, normalize)
+    ldf, data_model = pipeline.simple_pub_stg(catalogs[option_selected], year, normalize)
+    if option_selected == "tb":
+        ldf = add_parent_manage(ldf)
+    ldf.sink_parquet(data_model.parquet)
+    print(f'Sink file: {data_model.parquet}')
 
 
 def raw_to_stg(year: int, option_selected: str, normalize: bool):

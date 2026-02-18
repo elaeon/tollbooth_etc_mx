@@ -50,21 +50,21 @@ def inflation_growth_rate(from_year, to_year, vehicle_type):
         df_strech_toll_dict[year] = df_strech_toll_dict[year].with_columns(
             pl.sum_horizontal(
                 _VEHICLE_TYPE_DICT[vehicle_type]
-            ).alias(f"total_{year}")
+            ).alias(f"cost_{year}")
         )
         df_strech_toll_dict[year] = df_strech_toll_dict[year].with_columns(
             pl.mean_horizontal(
                 _VEHICLE_TYPE_DICT[vehicle_type]
-            ).alias(f"total_mean_{year}")
+            ).alias(f"cost_mean_{year}")
         )
         df_strech_toll_dict[year] = df_strech_toll_dict[year].select(pl.exclude(_VEHICLE_TYPE_DICT[vehicle_type]))
 
     df_toll = join_range(from_year, to_year, df_strech_toll_dict, data_join_key="stretch_id")
-    infla_growth_rate_columns, infla_growth_rate_expr = growth_rate_exprs(from_year, to_year, "total", "inflation")
+    infla_growth_rate_columns, infla_growth_rate_expr = growth_rate_exprs(from_year, to_year, "cost_mean", "cost")
 
     df_toll = df_toll.with_columns(
         infla_growth_rate_expr
-    ).select(["stretch_id"] + infla_growth_rate_columns + [f"total_mean_{year}"])
+    ).select(["stretch_id"] + infla_growth_rate_columns + [f"cost_mean_{year}"])
 
     return df_toll
 
@@ -124,9 +124,9 @@ def growth_rate_exprs(start, end, prefix_col: str, result_prefix_col: str):
     
     def rank():
         for year in range_keys:
-            result_col_name = f"{prefix_col}_rank_{year}"
+            result_col_name = f"{result_prefix_col}_round_{year}"
             growth_rate_exp.append(
-                pl.col(f"{prefix_col}_{year}").rank(method="ordinal", descending=True).alias(result_col_name)
+                pl.col(f"{prefix_col}_{year}").round().alias(result_col_name)#.rank(method="ordinal", descending=True).alias(result_col_name)
             )
             growth_rate_columns.append(result_col_name)
 
@@ -198,7 +198,7 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
     sts_col_names = ldf_sts.collect_schema().names()[1:]
 
     output_cols = [
-       "stretch_id", "stretch_name", "tollbooth_name", "state", "tb_manage", #"parent_tb_manage", 
+       "stretch_id", "stretch_name", "tollbooth_name", "state", "tb_manage", "parent_tb_manage", 
        "stretch_length_km", "stretch_manage", "road_name", "operation_date", 
        "bond_issuance_date", "km_cost"
     ] + toll_col_names + sts_col_names
@@ -213,8 +213,8 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
     )
     ldf_tollbooths = (
         pl.scan_parquet(data_model.tollbooths.parquet)
-        .select("tollbooth_id", "tollbooth_name", "state", "manage")
-        .rename({"manage": "tb_manage"})
+        .select("tollbooth_id", "tollbooth_name", "state", "manage", "parent_manage")
+        .rename({"manage": "tb_manage", "parent_manage": "parent_tb_manage"})
     )
     ldf_tb_stretch_id = (
         pl.scan_parquet(data_model.tb_stretch_id.parquet)
@@ -236,10 +236,10 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
     ldf_toll = ldf_toll.with_columns(
         pl.when(
             (pl.col("stretch_length_km").is_null()) | (pl.col("stretch_length_km") == 0)
-        ).then(None).otherwise((pl.col(f"total_mean_{to_year}") / pl.col("stretch_length_km")).round(2)).alias("km_cost")
+        ).then(None).otherwise((pl.col(f"cost_mean_{to_year}") / pl.col("stretch_length_km")).round(2)).alias("km_cost")
     )
-    ldf_toll = ldf_toll.select(pl.exclude(f"total_mean_{to_year}"))
-    del output_cols_dict[f"total_mean_{to_year}"]
+    ldf_toll = ldf_toll.select(pl.exclude(f"cost_mean_{to_year}"))
+    del output_cols_dict[f"cost_mean_{to_year}"]
 
     ldf_tbsts_stretch_id = pl.scan_parquet(
         data_model.tbsts_stretch_id.parquet
@@ -255,8 +255,8 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
 
     filepath = os.path.join(output_filepath, f"growth_rate_{vehicle_type}_{from_year}_{to_year}.csv")
     ldf_toll_sts = ldf_toll_sts.select(list(output_cols_dict.keys()))
-    # stretchs could have different tollbooth_id_out
-    # so it's eliminated from columns and call unique
+    # stretchs could have distincts tollbooth_id_out
+    # so it's eliminated from the columns
     ldf_toll_sts = ldf_toll_sts.unique()
     ldf_toll_sts.sort("stretch_name").sink_csv(filepath)
     print(f"Saved result in {filepath}")
