@@ -34,7 +34,7 @@ Welcome! Whether you're improving data quality, reporting issues, or enhancing t
 
 ### Questions?
 
-Open a [discussion](../../discussions) or create an [issue](../../issues) to ask questions or suggest improvements.
+Open an [issue](../../issues) to ask questions or suggest improvements.
 
 ## Citing
 
