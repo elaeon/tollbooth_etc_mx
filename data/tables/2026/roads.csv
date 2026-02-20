@@ -77,7 +77,7 @@
 58,"méxico-cuernavaca","11-08-1994",,,,,,,
 48,"méxico-la marquesa","19-10-1990",,,,,,,
 24,"mexico-pachuca","23-02-1994",,,,,,,
-1,"mexico-puebla","05-05-1962",,,,,,,
+1,"mexico-puebla","05-05-1962",,,,"MXPUCB 18,MXPUCB 18U",2018-03-26,20,2300000000
 35,"méxico-querétaro","01-10-1958",,,,,,,
 9,"mitla-tehuantepec","04-03-2016",,,,,,,
 93,"monterrey-nuevo laredo","31-07-1991",,,,,,,
@@ -214,4 +214,4 @@
 217,"Atizapan-atlacomulco",,142,"https://www.fonadin.gob.mx/fni2/fp111/",77.2,,,,"en construcción"
 218,"Atlacomulco-popotitlan",,913,,82.8,,,,"en construcción"
 219,"Nuevo Necaxa-Ávila Camacho","27-11-2012",80,,36.646,"AUNETCB 22U,AUNETCB 24U, AUNETCB 24-2U","2022-08-12,2024-02-26,2024-12-10","12,24,32","8000000000,1400000000,12900000000"
-220,"Periférico del Área Metropolitana de Monterrey",,,,,"PAMMSCB 14U",2014-12-18,49,1600000000
+220,"Periférico del Área Metropolitana de Monterrey",,,,69.5,"PAMMSCB 14U",2014-12-18,49,1600000000
