@@ -9,6 +9,9 @@ on malformed input. Endpoints should convert the parsed result to DB filters.
 """
 from typing import Any, Dict, List, Tuple
 
+_RESERVED_WORDS = {
+    "empty_stretch"
+}
 
 def _split_once_colon(q: str) -> Tuple[str, str]:
     if ":" not in q:
@@ -30,24 +33,15 @@ def parse_query(query: str) -> Dict[str, Any]:
     Examples:
     - "id:1,2" -> {"param":"id","values":["1","2"]}
     - "name: Main Toll " -> {"param":"name","values":["Main Toll"]}
-    - "h3_cell:8928308280,8" -> {"param":"h3_cell","cell":8928308280,"resolution":8}
     """
     if not isinstance(query, str):
         raise ValueError("query must be a string")
 
-    param, values_str = _split_once_colon(query)
-    param = param.strip().lower()
-
-    if param == "h3_cell":
-        parts = [p.strip() for p in values_str.split(",") if p.strip()]
-        if len(parts) != 2:
-            raise ValueError("h3_cell queries must provide 'cell,resolution' (e.g. h3_cell:8928...,8)")
-        try:
-            cell = int(parts[0])
-            resolution = int(parts[1])
-        except ValueError:
-            raise ValueError("h3_cell cell and resolution must be integers")
-        return {"param": "h3_cell", "cell": cell, "resolution": resolution}
+    if query in _RESERVED_WORDS:
+        return {"param": query}
+    else:
+        param, values_str = _split_once_colon(query)
+        param = param.strip().lower()
 
     # Generic param: allow comma-separated values
     values: List[str] = [v.strip() for v in values_str.split(",") if v.strip()]

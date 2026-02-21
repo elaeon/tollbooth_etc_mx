@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from sqlmodel import select, or_, join
+from sqlmodel import select, or_, join, not_
 
 from .model import Tollbooth, TbSts, TbImt, TbStretchId, Stretch, StretchToll, TbNeighbour
 from contextlib import asynccontextmanager
@@ -64,21 +64,19 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
         except ValueError as e:
             raise HTTPException(status_code=400, detail=str(e))
 
-        if parsed["param"] == "h3_cell":
-            hex_resolution = parsed["resolution"]
-            cell = parsed["cell"]
-            stm = select(Tollbooth)
-            data = []
+        if parsed["param"] == "empty_stretch":
+            # Find tollbooths not in either TbStretchId.tollbooth_id_in or tollbooth_id_out
+            subquery_in = select(TbStretchId.tollbooth_id_in)
+            subquery_out = select(TbStretchId.tollbooth_id_out)
+            stm = select(Tollbooth).where(
+                not_(Tollbooth.tollbooth_id.in_(subquery_in)),
+                not_(Tollbooth.tollbooth_id.in_(subquery_out))
+            )
             tollbooths = session.exec(stm)
-            for row in tollbooths:
-                data.append(row)
-            df_tb = pl.DataFrame(data)
-            df_tb = df_tb.with_columns(
-                plh3.latlng_to_cell("lat", "lng", hex_resolution).alias("h3_cell")
-            ).filter(pl.col("h3_cell") == cell)
             data = []
-            for row in df_tb.select(pl.exclude("h3_cell", "legacy_id")).iter_rows(named=True):
-                data.append(row)
+            for tb in tollbooths:
+                tb_data = tb.online_filled_fields(exclude_fields={"legacy_id"})
+                data.append(tb_data)
         else:
             param = parsed["param"]
             values = parsed.get("values", [])
