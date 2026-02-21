@@ -13,9 +13,6 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
 <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
-<link href="{{ url_for('static', path='/Leaflet.PinSearch.css') }}" rel="stylesheet">
-<script src="{{ url_for('static', path='/Leaflet.PinSearch.js') }}" crossorigin=""></script>
-
 <style>
 #map { height: 100vh; flex: 1;}
 body { height: 100%; display: flex;}
@@ -297,23 +294,6 @@ const ZoomViewer = L.Control.extend({
 	});
 
 
-// ZoomViewer integrated into QueryControl
-// const zoomViewerControl = (new ZoomViewer()).addTo(map);
-
-// PinSearch component
-var searchBar = L.control.pinSearch({
-            position: 'topleft',
-            placeholder: 'Search...',
-            buttonText: 'Search',
-            onSearch: function(query) {
-                console.log('Search query:', query);
-                // Handle the search query here
-            },
-            searchBarWidth: '200px',
-            searchBarHeight: '30px',
-            maxSearchResults: 3
-}).addTo(map);
-
 // --- AJAX Query Control for fetching markers ---
 // Container styles
 const uploadControlStyle = document.createElement('style');
@@ -510,7 +490,6 @@ function processMarkerResponse(data, sourceLabel, clearLayers) {
 	const coords = extractCoordinates(data);
 	if (!coords.length) throw new Error('No coordinates found in response');
 	const markers = addMarkersFromCoords(coords, sourceLabel, clearLayers);
-	searchBar._populateMarkerLabels(map);
 	// If exactly one marker was returned, show its properties in the panel
 	if (Array.isArray(markers) && markers.length === 1) {
 		try { showMarkerProps(markers[0]); } catch (err) { console.warn('showMarkerProps error', err); }

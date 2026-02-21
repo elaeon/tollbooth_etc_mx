@@ -8,7 +8,7 @@ from sqlmodel import select, or_, join
 from .model import Tollbooth, TbSts, TbImt, TbStretchId, Stretch, StretchToll, TbNeighbour
 from contextlib import asynccontextmanager
 from .utils.connector import SessionDep, create_db_and_tables
-from .data_files import DataModel
+from .utils.query_parser import parse_query
 
 from typing import Annotated, Any
 import logging
@@ -59,10 +59,14 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
             data.append(row)
         print(data)
     else:
-        param, values = map(str.strip, body["query"].split(":"))
-        values = values.split(",")
-        if param == "h3_cell":
-            hex_resolution = int(values[1])
+        try:
+            parsed = parse_query(body["query"])
+        except ValueError as e:
+            raise HTTPException(status_code=400, detail=str(e))
+
+        if parsed["param"] == "h3_cell":
+            hex_resolution = parsed["resolution"]
+            cell = parsed["cell"]
             stm = select(Tollbooth)
             data = []
             tollbooths = session.exec(stm)
@@ -71,11 +75,13 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
             df_tb = pl.DataFrame(data)
             df_tb = df_tb.with_columns(
                 plh3.latlng_to_cell("lat", "lng", hex_resolution).alias("h3_cell")
-            ).filter(h3_cell=int(values[0]))
+            ).filter(pl.col("h3_cell") == cell)
             data = []
             for row in df_tb.select(pl.exclude("h3_cell", "legacy_id")).iter_rows(named=True):
                 data.append(row)
         else:
+            param = parsed["param"]
+            values = parsed.get("values", [])
             if param in ["id", "name"]:
                 param = f"tollbooth_{param}"
             if len(values) > 1:
@@ -101,11 +107,15 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
 @app.post("/api/tollbooths_sts")
 def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=1000):
     if body["query"]:
-        param, values = map(str.strip, body["query"].split(":"))
-        values = values.split(",")
+        try:
+            parsed = parse_query(body["query"])
+        except ValueError as e:
+            raise HTTPException(status_code=400, detail=str(e))
         stm = select(TbSts)
+        param = parsed.get("param")
         if param in ["id"]:
             param = f"tollbooth_{param}"
+        values = parsed.get("values", [])
         if len(values) > 1:
             params = []
             for value in values:
@@ -155,8 +165,12 @@ def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
 @app.post("/api/tollbooths_imt")
 def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=1000):
     if body["query"]:
-        param, values = map(str.strip, body["query"].split(":"))
-        values = values.split(",")
+        try:
+            parsed = parse_query(body["query"])
+        except ValueError as e:
+            raise HTTPException(status_code=400, detail=str(e))
+        param = parsed.get("param")
+        values = parsed.get("values", [])
         stm = select(TbImt)#.where(TbImt.calirepr != "Virtual")
         if param in ["id"]:
             param = f"tollbooth_{param}"
