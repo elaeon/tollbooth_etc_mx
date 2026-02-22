@@ -238,33 +238,6 @@ def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
     print(pl.concat([df_tb_imt[best_i], best_rows.select("eucli")], how="horizontal"))
 
 
-def first_parent(year: int):
-    df = pl.read_csv("data/tables/area_operators_mx.csv", separator="|").select("parent", "short_name")
-    df = df.join(df, left_on="parent", right_on="short_name", how="left")
-    while True:
-        if not df.filter(pl.col("parent_right").is_not_null()).is_empty():
-            df = df.rename({"parent_right": "sparent"}).select("parent", "short_name", "sparent")
-            df = df.with_columns(
-                pl.when(pl.col("sparent").is_not_null()).then(pl.col("sparent")).otherwise("parent").alias("parent")
-            ).select("parent", "short_name")
-            df = df.join(df, left_on="parent", right_on="short_name", how="left")
-        else:
-            df = df.select("parent", "short_name")
-            break
-    
-    df = df.with_columns(
-        pl.when(pl.col("parent").is_null()).then(pl.col("short_name")).otherwise("parent").alias("parent")
-    ).unique()
-    df.write_parquet("tmp_data/first_parent.parquet")
-
-    data_model = DataModel(year, DataStage.stg)
-    df_tb = pl.scan_parquet(data_model.tollbooths.parquet)
-    df_manage_parent = pl.scan_parquet("tmp_data/first_parent.parquet")
-    df_tb = df_tb.join(df_manage_parent, left_on="manage", right_on="short_name", how="left")
-    df_tb = df_tb.select(pl.exclude("short_name")).rename({"parent": "parent_manage"})
-    df_tb.sink_parquet(DataModel(year, DataStage.prd).tollbooths.parquet)
-
-
 def _find_closest_tb(ldf_neighbour):
     i = 0
     while i < 2:
@@ -359,7 +332,6 @@ if __name__ == "__main__":
     parser.add_argument("--similarity-toll", required=False, type=int)
     parser.add_argument("--id", required=False, type=int)
     parser.add_argument("--map-stretch-toll-imt", required=False)
-    parser.add_argument("--first-parent", required=False, action="store_true")
     parser.add_argument("--map-tb-id", required=False, action="store_true")
     args = parser.parse_args()
 
@@ -373,8 +345,6 @@ if __name__ == "__main__":
         tb_stretch_id_sts(args.year, args.tb_stretch_id_sts)
     elif args.similarity_toll:
         find_similarity_toll(args.year, args.similarity_toll, args.id)
-    elif args.first_parent:
-        first_parent(args.year)
     elif args.map_tb_id:
         map_tb_id(args.year)
     
