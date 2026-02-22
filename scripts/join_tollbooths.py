@@ -265,42 +265,85 @@ def first_parent(year: int):
     df_tb.sink_parquet(DataModel(year, DataStage.prd).tollbooths.parquet)
 
 
+def _find_closest_tb(ldf_neighbour):
+    i = 0
+    while i < 2:
+        # Step 1: Find closest neighbour for each origin (tollbooth_id)
+        ldf_neighbour_closest = ldf_neighbour.filter(
+            pl.col("distance") == pl.col("distance").min().over("tollbooth_id")
+        )
+        # Step 2: Ensure each neighbour_id is matched to at most one tollbooth_id 
+        #         (if multiple tollbooths have same closest neighbour, keep the one with smallest distance)
+        ldf_neighbour_unique = ldf_neighbour_closest.filter(
+            pl.col("distance") == pl.col("distance").min().over("neighbour_id")
+        )
+        # Step 3: Get each tollbooth and neighbour left without a close match
+        ldf_ids_unmatched_tb = ldf_neighbour.join(
+            ldf_neighbour_unique, on=["tollbooth_id"], how="anti"
+        )
+        ldf_ids_unmatched_nb = ldf_neighbour.join(
+            ldf_neighbour_unique, on=["neighbour_id"], how="anti"
+        )
+        ldf_imt_ids_unmatched = ldf_ids_unmatched_tb.join(
+            ldf_ids_unmatched_nb, on=["tollbooth_id", "neighbour_id"]
+        ).select(pl.exclude("distance_right"))
+        # Step 4: Do another search with the remaining relations
+        ldf_neighbour = ldf_imt_ids_unmatched
+        i = i + 1
+        yield ldf_neighbour_unique
+
+
 def map_tb_id(year: int):
     data_model = DataModel(year, DataStage.stg)
-    data_model_sts = DataModel(year - 1, DataStage.prd)
 
     ldf_tb = pl.scan_parquet(
         data_model.tollbooths.parquet
-    ).select("tollbooth_id")
-    ldf_tb_imt = pl.scan_parquet(
-        data_model.tb_imt.parquet
-    ).select("tollbooth_id")
-    ldf_tb_sts = pl.scan_parquet(
-        data_model_sts.tb_sts.parquet
     ).select("tollbooth_id")
 
     ldf_neighbour = pl.scan_parquet(
         data_model.tb_neighbour.parquet
     )
-    ldf_neighbour_imt = ldf_neighbour.filter(pl.col("scope") == "local-imt")
-    ldf_neighbour_imt_closest = ldf_neighbour_imt.filter(
-        pl.col("distance") == pl.col("distance").min().over("neighbour_id")
+    
+    # --- IMT Mapping: ensure 1:1 relationship between tollbooth_id and neighbour_id ---
+    ldf_neighbour_imt = (
+        ldf_neighbour
+        .filter(pl.col("scope") == "local-imt")
+        .filter(pl.col("distance") <= 0.3)
+        .select(pl.exclude("scope"))
     )
-    ldf_neighbour_imt_closest = ldf_neighbour_imt_closest.filter(pl.col("distance") <= 0.3)
-    ldf_neighbour_imt_closest = ldf_neighbour_imt_closest.rename({"neighbour_id": "tollbooth_imt_id"})
+    closest_tb_imt = []
+    for ldf in _find_closest_tb(ldf_neighbour_imt):
+        closest_tb_imt.append(ldf)
 
-    ldf_neighbour_sts = ldf_neighbour.filter(pl.col("scope") == "local-sts")
-    ldf_neighbour_sts_closest = ldf_neighbour_sts.filter(
-        pl.col("distance") == pl.col("distance").min().over("neighbour_id")
+    ldf_map_tb_imt = pl.concat(closest_tb_imt)
+
+    # Rename for clarity
+    ldf_map_tb_imt = (
+        ldf_map_tb_imt
+        .rename({"neighbour_id": "tollbooth_imt_id"})
+        .select(pl.exclude("distance"))
     )
-    ldf_neighbour_sts_closest = ldf_neighbour_sts_closest.rename({"neighbour_id": "tollbooth_sts_id"})
 
-    ldf_tb = ldf_tb.join(ldf_neighbour_imt_closest, on="tollbooth_id")
-    ldf_tb = ldf_tb.select(pl.exclude("distance", "scope"))
-    ldf_tb = ldf_tb.join(ldf_tb_imt, left_on="tollbooth_imt_id", right_on="tollbooth_id", how="left")
-    ldf_tb = ldf_tb.join(ldf_neighbour_sts_closest, on="tollbooth_id", how="left")
-    ldf_tb = ldf_tb.select(pl.exclude("distance", "scope"))
-    ldf_tb = ldf_tb.join(ldf_tb_sts, left_on="tollbooth_sts_id", right_on="tollbooth_id", how="left")
+    # --- STS Mapping: ensure each origin ID gets exactly one closest neighbour ---
+    ldf_neighbour_sts = (
+        ldf_neighbour
+        .filter(pl.col("scope") == "local-sts")
+        .filter(pl.col("distance") <= 1)
+        .select(pl.exclude("scope"))
+    )
+    closest_tb_sts = []
+    for ldf in _find_closest_tb(ldf_neighbour_sts):
+        closest_tb_sts.append(ldf)
+    
+    ldf_map_tb_sts = pl.concat(closest_tb_sts)
+    ldf_map_tb_sts = (
+        ldf_map_tb_sts
+        .rename({"neighbour_id": "tollbooth_sts_id"})
+        .select(pl.exclude("distance"))
+    )
+
+    ldf_tb = ldf_tb.join(ldf_map_tb_imt, on="tollbooth_id", how="left")
+    ldf_tb = ldf_tb.join(ldf_map_tb_sts, on="tollbooth_id", how="left")
 
     ldf_tb.sink_parquet(data_model.map_tb_id.parquet)
     print(f"Saved result in {data_model.map_tb_id.parquet}")
