@@ -6,7 +6,7 @@ import polars as pl
 import sqlite3
 
 from tb_map_editor.data_files import DataModel, DataStage
-from tb_map_editor.utils.connector import sqlite_url
+from tb_map_editor.utils.connector import sqlite_url, create_db_and_tables
 
 import argparse
 
@@ -71,10 +71,10 @@ def insert_tb_from_db(data_model: DataModel, file_format: str):
         _log.info(f"Saved data in {file_dest_path}")
 
 
-def insert_tb_stretch_from_data(data_model: DataModel):
+def insert_tb_stretch_from_data(year: int, data_model: DataModel):
     ldf_tb_stretch = pl.scan_parquet(data_model.tb_stretch_id.parquet)
     model_name = data_model.tb_stretch_id.model.name()
-    ldf_tb_stretch = ldf_tb_stretch.filter(pl.col("tollbooth_id_in").is_not_null()).with_columns(pl.lit(2025).alias("info_year"))
+    ldf_tb_stretch = ldf_tb_stretch.filter(pl.col("tollbooth_id_in").is_not_null()).with_columns(pl.lit(year).alias("info_year"))
     ldf_tb_stretch = ldf_tb_stretch.filter(pl.col("tollbooth_id_out").is_not_null())
     insert_data_from_parquet(ldf_tb_stretch.unique(), model_name)
 
@@ -103,32 +103,32 @@ def insert_new_map_tb_imt_from_data(data_model: DataModel):
     insert_data_from_parquet(ldf_map_tb_imt, model_name)
     
 
-def clean_db(option):
+def drop_table(option):
     table_parameter = "{table_parameter}"
     drop_table_query = f"DROP TABLE {table_parameter};"
     get_tables_query = "SELECT name FROM sqlite_schema WHERE type='table';"
 
-    def get_tables(conn):
+    def _get_table(conn):
         cur = conn.cursor()
         cur.execute(get_tables_query)
         tables = cur.fetchall()
         cur.close()
         return tables
 
-    def delete_tables(conn, tables):
+    def _drop_table(conn, tables):
         cur = conn.cursor()
         for table, in tables:
-            _log.info(f"Delete table {table}")
+            _log.info(f"Drop table {table}")
             sql = drop_table_query.replace(table_parameter, table)
             cur.execute(sql)
         cur.close()
 
     conn = sqlite3.connect(sqlite_url.replace("sqlite:///", ""))
     if option == "all":
-        tables = get_tables(conn)
+        tables = _get_table(conn)
     else:
         tables = [(option,)]
-    delete_tables(conn, tables)
+    _drop_table(conn, tables)
 
     _log.info(f"Cleaned data in {sqlite_url}")
 
@@ -137,6 +137,28 @@ def insert_tb_neighbours(data_model: DataModel):
     ldf = pl.scan_parquet(data_model.tb_neighbour.parquet)
     model_name = data_model.tb_neighbour.model.name()
     insert_data_from_parquet(ldf, model_name)
+
+
+def recreate(option):
+    drop_table(option)
+    create_db_and_tables()
+
+
+def delete_table(year: int, option: str):
+    table_parameter = "{table_parameter}"
+    drop_table_query = f"DELETE TABLE {table_parameter} WHERE info_year={year}"
+
+    def _delete_tables(conn, tables):
+        cur = conn.cursor()
+        for table, in tables:
+            _log.info(f"Delete table {table}")
+            sql = drop_table_query.replace(table_parameter, table)
+            cur.execute(sql)
+        cur.close()
+
+    tables = [(option,)]
+    conn = sqlite3.connect(sqlite_url.replace("sqlite:///", ""))
+    _delete_tables(conn, tables)
 
 
 if __name__ == "__main__":
@@ -152,7 +174,9 @@ if __name__ == "__main__":
     parser.add_argument("--insert-tb-neighbours", required=False, action="store_true")
     parser.add_argument("--export-tb", type=str, choices=("csv", "parquet"))
     parser.add_argument("--year", help="model year", required=False, type=int)
-    parser.add_argument("--clean-db", required=False, type=str, help="all or table name")
+    parser.add_argument("--drop-table", required=False, type=str, help="drop all tables or by table name")
+    parser.add_argument("--recreate", required=False, type=str, help="drop and create a table.")
+    parser.add_argument("--delete-table", required=False, type=str, help="delete and refill a table.")
     args = parser.parse_args()
     data_model = DataModel(args.year, DataStage.stg)
     if args.new_tb:
@@ -167,7 +191,7 @@ if __name__ == "__main__":
         insert_tb_from_db(data_model, args.export_tb)
     elif args.new_tb_stretch:
         data_model = DataModel(args.year, DataStage.stg)
-        insert_tb_stretch_from_data(data_model)
+        insert_tb_stretch_from_data(args.year, data_model)
     elif args.new_stretch:
         insert_stretch_from_data(data_model)
     elif args.new_road:
@@ -179,7 +203,11 @@ if __name__ == "__main__":
     elif args.insert_tb_neighbours:
         data_model = DataModel(args.year, DataStage.stg)
         insert_tb_neighbours(data_model)
-    elif args.clean_db:
-        clean_db(args.clean_db)
+    elif args.drop_table:
+        drop_table(args.clean_db)
+    elif args.recreate:
+        recreate(args.recreate)
+    elif args.refill:
+        delete_table(args.year, args.refill)
     else:
         parser.print_help()
