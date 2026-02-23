@@ -161,7 +161,7 @@ def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
 
 
 @app.post("/api/tollbooths_imt")
-def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=1000):
+def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offset: int=0, limit=2000):
     if body["query"]:
         try:
             parsed = parse_query(body["query"])
@@ -169,7 +169,7 @@ def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offs
             raise HTTPException(status_code=400, detail=str(e))
         param = parsed.get("param")
         values = parsed.get("values", [])
-        stm = select(TbImt)#.where(TbImt.calirepr != "Virtual")
+        stm = select(TbImt)
         if param in ["id"]:
             param = f"tollbooth_{param}"
         if len(values) > 1:
@@ -180,7 +180,7 @@ def fetch_tollbooths_imt(body: Annotated[Any, Body()], session: SessionDep, offs
         else:
             stm = stm.where(getattr(TbImt, param) == values[0])
     else:
-        stm = select(TbImt).where(TbImt.calirepr != "Virtual")
+        stm = select(TbImt)
     tbs = session.exec(stm.offset(offset).limit(limit))
     data = []
     for tb in tbs:

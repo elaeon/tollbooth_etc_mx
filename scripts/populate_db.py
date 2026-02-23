@@ -34,7 +34,7 @@ def insert_data_from_parquet(ldf, model_name: str):
 def insert_tb_from_data(data_model: DataModel):
     parquet_file = data_model.tollbooths.parquet
     model_name = data_model.tollbooths.model.name()    
-    ldf_tb = pl.scan_parquet(parquet_file)
+    ldf_tb = pl.scan_parquet(parquet_file).select(pl.exclude("parent_manage"))
     insert_data_from_parquet(ldf_tb, model_name)
 
 
