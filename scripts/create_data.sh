@@ -89,6 +89,20 @@ build() {
     echo "Build process completed successfully!"
 }
 
+tb() {
+    uv run scripts/stage.py --year 2025 --pub-to-stg tb --normalize
+    uv run scripts/tollbooth_cluster.py --year 2025 --tollbooth-neighbours
+    uv run scripts/join_tollbooths.py --year 2025 --map-tb-id
+    uv run scripts/populate_db.py --year 2025 --delete-table tollbooth
+    uv run scripts/populate_db.py --year 2025 --new-tb
+}
+
+tb_stretch_id() {
+    uv run scripts/join_tollbooths.py --year 2025 --tb-stretch-id-imt 2025
+    uv run scripts/populate_db.py --year 2025 --delete-table tbstretchid
+    uv run scripts/populate_db.py --year 2025 --new-tb-stretch
+}
+
 clean() {
     echo "Clean functionality is not available yet."
     uv run scripts/populate_db.py --clean-db

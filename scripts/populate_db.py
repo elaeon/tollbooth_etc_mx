@@ -122,6 +122,7 @@ def drop_table(option):
             sql = drop_table_query.replace(table_parameter, table)
             cur.execute(sql)
         cur.close()
+        conn.commit()
 
     conn = sqlite3.connect(sqlite_url.replace("sqlite:///", ""))
     if option == "all":
@@ -146,7 +147,7 @@ def recreate(option):
 
 def delete_table(year: int, option: str):
     table_parameter = "{table_parameter}"
-    drop_table_query = f"DELETE TABLE {table_parameter} WHERE info_year={year}"
+    drop_table_query = f"DELETE FROM {table_parameter} WHERE info_year={year}"
 
     def _delete_tables(conn, tables):
         cur = conn.cursor()
@@ -155,6 +156,7 @@ def delete_table(year: int, option: str):
             sql = drop_table_query.replace(table_parameter, table)
             cur.execute(sql)
         cur.close()
+        conn.commit()
 
     tables = [(option,)]
     conn = sqlite3.connect(sqlite_url.replace("sqlite:///", ""))
@@ -207,7 +209,7 @@ if __name__ == "__main__":
         drop_table(args.clean_db)
     elif args.recreate:
         recreate(args.recreate)
-    elif args.refill:
-        delete_table(args.year, args.refill)
+    elif args.delete_table:
+        delete_table(args.year, args.delete_table)
     else:
         parser.print_help()
