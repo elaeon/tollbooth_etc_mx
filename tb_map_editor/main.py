@@ -70,7 +70,8 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
             subquery_out = select(TbStretchId.tollbooth_id_out)
             stm = select(Tollbooth).where(
                 not_(Tollbooth.tollbooth_id.in_(subquery_in)),
-                not_(Tollbooth.tollbooth_id.in_(subquery_out))
+                not_(Tollbooth.tollbooth_id.in_(subquery_out)),
+                Tollbooth.status == "open"
             )
             tollbooths = session.exec(stm)
             data = []
