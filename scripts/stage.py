@@ -198,6 +198,16 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
 
         date_columns = {"FECHA_ACT": date_format}
         filter_exp = (pl.col("FECHA_ACT") < date(year + 1, 1, 1))
+    elif option_selected == "inflation":
+        data_model = DataModel(year, DataStage.stg)
+        file_path = f"./raw_data/inegi/monthly_inflation.csv"
+        df = pl.read_csv(file_path).transpose(include_header=True).rename({"column": "year", "column_0": "value"})
+        df = df.filter(pl.col("year").str.contains("/12"))
+        df = df.with_columns(
+            pl.col("year").str.replace(r"\/12", "")
+        ).cast(data_model.inflation.schema)
+        df.write_parquet(data_model.inflation.parquet)
+        return
     
     catalogs = _opts_map(options, models)
     pipeline.simple_raw_stg(
@@ -221,7 +231,7 @@ if __name__ == "__main__":
         choices=["tb", "stretch", "stretch_toll", "road"]
     )
     parser.add_argument("--stg-to-prod", required=False, type=str)
-    parser.add_argument("--raw-to-stg", required=False, type=str, choices=("tb_imt", "tb_toll_imt"))
+    parser.add_argument("--raw-to-stg", required=False, type=str, choices=("tb_imt", "tb_toll_imt", "inflation"))
     parser.add_argument("--normalize", required=False, action="store_true")
 
     args = parser.parse_args()

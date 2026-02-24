@@ -390,3 +390,8 @@ class MapTbId(TbModel, table=True):
     tollbooth_id: UInt32 | None = Field(foreign_key="tollbooth.tollbooth_id", index=True)
     tollbooth_imt_id: UInt32 | None = Field(foreign_key="tbimt.tollbooth_id", index=True)
     tollbooth_sts_id: UInt32 | None = Field(foreign_key="tbsts.tollbooth_id", index=True)
+
+
+class Inflation(TbModel, table=False):
+    year: UInt16 = Field(primary_key=True)
+    value: Float32

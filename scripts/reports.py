@@ -116,7 +116,7 @@ def growth_rate_exprs(start, end, prefix_col: str, result_prefix_col: str):
 
     def cum_growth_rate():
         for _, end_year in zip(range_keys[1:], range_keys[2:]):
-            result_col_name = f"{result_prefix_col}_cum_growth_rate_{start+1}_{end_year}"
+            result_col_name = f"{result_prefix_col}_cum_growth_rate_{start}_{end_year}"
             growth_rate_exp.append(
                 (
                     pl.when(pl.col(f"{prefix_col}_{start}") != 0)
@@ -130,7 +130,7 @@ def growth_rate_exprs(start, end, prefix_col: str, result_prefix_col: str):
             growth_rate_columns.append(result_col_name)
         
     def cagr_growth_rate():
-        result_col_name = f"{result_prefix_col}_cagr_growth_rate_{start+1}_{end}"
+        result_col_name = f"{result_prefix_col}_cagr_growth_rate_{start}_{end}"
         growth_rate_columns.append(result_col_name)
         num_of_years = len(range_keys)
         cagr_inflation_rate_exp = (
@@ -245,7 +245,32 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
         pl.scan_parquet(data_model.roads.parquet)
         .select("road_id", "road_name", "operation_date", "bond_issuance_date")
     )
-
+    df_inflation = (
+        pl.read_parquet(data_model.inflation.parquet)
+    )
+    df_inflation = df_inflation.filter((pl.col("year") >= from_year) & (pl.col("year") <= to_year))
+    df_inflation = df_inflation.cast({"year": pl.String})
+    df_inflation = df_inflation.with_columns(
+        pl.lit(0).alias("index"),
+        ("annual_inflation_" + pl.col("year")).alias("year")
+    )
+    inflation_label = f"inflation_{from_year}_{to_year}"
+    df_inflation_mean = (
+        df_inflation
+        .with_columns(
+            (1 + (pl.col("value")/100.)).alias(inflation_label)
+        )
+        .group_by("index")
+        .agg(pl.col(inflation_label).product())
+        .with_columns(
+            ((pl.col(inflation_label).pow(1/len(range(from_year, to_year+1))) - 1)*100).round(2)
+        )
+        .select(pl.exclude("index"))
+    )
+    df_inflation = df_inflation.pivot(index="index", on="year", values="value")
+    df_inflation = df_inflation.select(pl.exclude("index"))
+    ldf_inflation = pl.concat([df_inflation, df_inflation_mean], how="horizontal").lazy()
+    
     ldf_tb_stretch = ldf_tb_stretch_id.join(
         ldf_tollbooths, left_on="tollbooth_id_out", right_on="tollbooth_id", how="left"
     )
@@ -279,6 +304,7 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
     # stretchs could have distincts tollbooth_id_out
     # so it's eliminated from the columns
     ldf_toll_sts = ldf_toll_sts.unique()
+    ldf_toll_sts = ldf_toll_sts.join(ldf_inflation, how="cross")
     ldf_toll_sts.sort("stretch_name").sink_csv(filepath)
     print(f"Saved result in {filepath}")
 
