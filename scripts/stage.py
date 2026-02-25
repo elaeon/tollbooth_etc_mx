@@ -158,9 +158,16 @@ def pub_to_stg(year: int, option_selected: str, normalize: bool):
     options = ["tb", "stretch", "stretch_toll", "road"]
     catalogs = _opts_map(options, models)
 
-    ldf, data_model = pipeline.simple_pub_stg(catalogs[option_selected], year, normalize)
+    if option_selected == "road":
+        date_format = "%d-%m-%Y"
+        date_columns = {"operation_date": date_format}
+    else:
+        date_columns = None
+    
+    ldf, data_model = pipeline.simple_pub_stg(catalogs[option_selected], year, normalize, date_columns=date_columns)
     if option_selected == "tb":
         ldf = add_parent_manage(ldf)
+    
     ldf.sink_parquet(data_model.parquet)
     print(f'Sink file: {data_model.parquet}')
 

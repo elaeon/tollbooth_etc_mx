@@ -25,11 +25,17 @@ class DataPipeline:
         }
         return model_dict
 
-    def simple_pub_stg(self, model_name: str, year: int, normalize: bool):
+    def simple_pub_stg(self, model_name: str, year: int, normalize: bool, date_columns: dict | None = None):
         model_dict = self._get_model(model_name, year)
         print(f'Scan file: {model_dict["start"].csv}')
         schema = model_dict["start"].schema
         ldf = pl.scan_csv(model_dict["start"].csv, infer_schema_length=10000)
+        if date_columns is not None:
+            pl_date_exp = []
+            for date_column, date_format in date_columns.items():
+                pl_date_exp.append(pl.col(date_column).str.to_date(date_format))
+            ldf = ldf.with_columns(pl_date_exp)
+        
         cast_schema = {}
         for col in ldf.collect_schema().names():
             cast_schema[col] = schema[col]
