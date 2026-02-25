@@ -554,7 +554,6 @@
 579,128,"general bravo",25.8133990570101,-99.1695445775986,"open","nuevo leon","entronque",4,"toll","opan",,,
 581,451,"guadalupe",25.6917389650446,-100.157718658447,"open","nuevo leon","troncal",9,"toll","reanal",,,
 582,451,"guadalupe",25.6915069285377,-100.157809853554,"open","nuevo leon","entronque",2,"toll","reanal",,,
-584,505,"juarez",,,"not_found","nuevo leon",,,"toll","reanal",,,
 585,505,"juarez",25.6222383469063,-100.071190595627,"open","nuevo leon","troncal",4,"toll","reanal",,,
 586,,"libramiento los herrera",25.8987392194616,-99.3936533002868,"closed","nuevo leon","troncal",2,"toll",,,,
 587,499,"lincon",25.7904004599719,-100.463372468948,"open","nuevo leon","troncal",4,"toll","reanal",,,"io"
@@ -1322,7 +1321,7 @@
 1497,,"La Venta ",19.334667554526,-99.3126726150513,"open","cdmx","troncal",2,"toll","pinfra",,,
 1498,,"interlomas",19.3954846962546,-99.2942833900452,"open","edomx","entronque",4,"toll","chamapa-laventa",,,
 1500,,"chamapa",19.4344874126062,-99.3035638332367,"open","edomx","troncal",4,"toll","autovan",,,
-1512,,"Madin",19.5498216610632,-99.2774873971939,"open","edomx","entronque",3,"toll",,,,
+1512,,"Madin",19.5498216610632,-99.2774873971939,"open","edomx","entronque",3,"toll","capufe",,,
 1524,,"Tepotzotlán",19.7152981960367,-99.2077606916428,"open","edomx","troncal",10,"toll","capufe",,,
 1525,,"circuito exterior mexiquense-t0 jorobas",19.8198384884999,-99.2398023605347,"open","edomx","troncal",3,"toll","cem",,,
 1526,,"Lago de Guadalupe",19.577233485708,-99.2082756757736,"open","edomx","entronque",2,"etc","viaducto-bicentenario",,,"in"
@@ -1338,15 +1337,15 @@
 1540,,"san marcos",19.2962890182539,-98.8706713914871,"open","edomx","troncal",7,"toll","capufe",,,
 1541,,"circuito exterior mexiquense-t4 chalco",19.3000761415639,-98.8752096891403,"open","edomx","troncal",3,"toll","cem",,,
 1542,,"circuito exterior mexiquense-t2 conmex",19.5753886539599,-99.020681977272,"open","edomx","troncal",7,"toll","cem",,,
-1543,,"circuito exterior mexiquense-a-2 los reyes",19.611159458078347,-99.03858840465547,"open","edomx","troncal",1,"etc","cem",,,
+1543,,"circuito exterior mexiquense-a-2 los reyes",19.6111594580783,-99.0385884046555,"open","edomx","troncal",1,"etc","cem",,,
 1544,,"ecatepec (piramides)",19.6116243554312,-99.0256869792938,"open","edomx","troncal",6,"toll","ecatepec-piramides",,,
 1545,,"tizatyca (ojo de agua)",19.6186633434809,-99.0292382240295,"open","edomx","troncal",11,"toll","golfo-centro",,,
 1548,,"circuito exterior mexiquense-t-5 tultitlan",19.6375806751664,-99.1644430160523,"open","edomx","troncal",5,"toll","cem",,,
 1554,,"tlalpan",19.2424649365942,-99.1487574577332,"open","cdmx","troncal",9,"toll","capufe",,,
-1555,,"Los Poetas",19.3462233927603,-99.2531168460846,"open","cdmx","entronque",1,"etc",,,,
+1555,,"Los Poetas",19.3462233927603,-99.2531168460846,"open","cdmx","entronque",1,"etc","supervia",,,
 1556,,"circuito exterior mexiquense-t-7 -texcoco",19.4505836117856,-98.9111083745956,"open","edomx","troncal",3,"toll","cem",,,
 1559,,"puente matamoros (Gateway)",25.8969040449209,-97.4979865550995,"open","tamaulipas","troncal",2,"toll","capufe","International-bridge",,"in"
-1560,,"Balnearios",21.8115641610372,-101.014255285263,"open","san luis potosi","entronque",1,"etc",,,,
+1560,,"Balnearios",21.8115641610372,-101.014255285263,"open","san luis potosi","entronque",1,"etc","coinsan",,,
 1561,,"apodaca",25.7876279631573,-100.16862988472,"open","nuevo leon","entronque",6,"toll","reanal",,,
 1562,,"salamanca",20.5983760149405,-101.181008219719,"open","guanajuato","troncal",3,"toll","capufe",,,
 1563,,"salamanca",20.5975524919403,-101.181035041809,"open","guanajuato","entronque",1,"toll","capufe",,,
@@ -1367,8 +1366,8 @@
 1578,,"lincon",25.789347498433,-100.464268326759,"open","nuevo leon","entronque",2,"toll","reanal",,,"in"
 1579,,"felipe carrillo puerto",19.5903589799917,-88.0711752176285,"open","quintana roo","troncal",2,"toll","libramiento-carrillopuerto",,0,"io"
 1580,,"entronque ojo de agua",19.66623537843,-99.0010267496109,"open","edomx","entronque",1,"toll","golfo-centro",,,"out"
-1581,463,"libramiento la piedad",20.395358999537812,-101.99803054332735,"open","guanajuato","entronque",2,"toll","lipsa",,,
-1582,825,"libramiento elevado de puebla - cuahutemoc salida",19.078076589796446,-98.15410867023053,"open","puebla","troncal",2,"toll","lep","bypass",,
-1583,825,"libramiento elevado de puebla - periferico salida",19.12722783856162,-98.26382764784996,"open","puebla","troncal",2,"toll","lep","bypass",,
-1586,102,"paso morelos",18.231445448138132,-99.2155820131302,"open","morelos","troncal",3,"toll","capufe",,,
-1587,102,"paso morelos",18.231394496861903,-99.21533524990083,"open","morelos","troncal",4,"toll","capufe",,,
+1581,463,"libramiento la piedad",20.3953589995378,-101.998030543327,"open","guanajuato","entronque",2,"toll","lipsa",,,
+1582,825,"libramiento elevado de puebla - cuahutemoc salida",19.0780765897964,-98.1541086702305,"open","puebla","troncal",2,"toll","lep","bypass",,
+1583,825,"libramiento elevado de puebla - periferico salida",19.1272278385616,-98.26382764785,"open","puebla","troncal",2,"toll","lep","bypass",,
+1586,102,"paso morelos",18.2314454481381,-99.2155820131302,"open","morelos","troncal",3,"toll","capufe",,,
+1587,102,"paso morelos",18.2313944968619,-99.2153352499008,"open","morelos","troncal",4,"toll","capufe",,,
