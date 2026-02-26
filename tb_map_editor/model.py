@@ -57,6 +57,18 @@ class UInt64(int):
         return pl.UInt64
 
 
+class Int64(int):
+    @classmethod
+    def __get_pydantic_core_schema__(
+        cls, source_type: Any, handler: GetCoreSchemaHandler
+    ) -> CoreSchema:
+        return core_schema.no_info_after_validator_function(cls, handler(int))
+
+    @staticmethod
+    def polars_dtype():
+        return pl.Int64
+
+
 class Float32(float):
     @classmethod
     def __get_pydantic_core_schema__(
@@ -261,6 +273,7 @@ class Road(TbModel, table=True):
     bond_code: String | None
     bond_issuance_date: String | None
     bond_terms_years: String | None
+    bond_amount: Int64 | None
     notes: String | None
     info_year: UInt16 = Field(index=True)
 
