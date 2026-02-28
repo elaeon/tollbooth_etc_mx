@@ -522,7 +522,7 @@ def toll_ref(year: int):
     ldf_toll.sink_csv(f"./reports/toll_ref_{year}.csv")
 
 
-def tollbooth_road(year: int):
+def tollbooth_stretch_manage(year: int):
     data_model = DataModel(year, DataStage.stg)
     
     ldf_tb_imt = (
@@ -571,7 +571,7 @@ if __name__ == "__main__":
     parser.add_argument("--tb-wo-stretch", required=False, action="store_true")
     parser.add_argument("--mx-projects", required=False, action="store_true")
     parser.add_argument("--toll-ref", required=False, action="store_true")
-    parser.add_argument("--tollbooth-road", required=False, action="store_true")
+    parser.add_argument("--tollbooth-stretch-manage", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
@@ -590,5 +590,5 @@ if __name__ == "__main__":
         mx_projects_report()
     elif args.toll_ref:
         toll_ref(year=2026)
-    elif args.tollbooth_road:
-        tollbooth_road(year=2025)
+    elif args.tollbooth_stretch_manage:
+        tollbooth_stretch_manage(year=2025)
