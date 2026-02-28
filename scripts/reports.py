@@ -522,6 +522,42 @@ def toll_ref(year: int):
     ldf_toll.sink_csv(f"./reports/toll_ref_{year}.csv")
 
 
+def tollbooth_road(year: int):
+    data_model = DataModel(year, DataStage.stg)
+    
+    ldf_tb_imt = (
+        pl.scan_parquet(data_model.tb_imt.parquet)
+        .select("tollbooth_id", "manage")
+        .rename({"manage": "manage_imt"})
+    )
+    ldf_tb = (
+        pl.scan_parquet(data_model.tollbooths.parquet)
+        .select("tollbooth_id", "manage")
+    )
+    ldf_map_tb = (
+        pl.scan_parquet(data_model.map_tb_id.parquet)
+        .select("tollbooth_id", "tollbooth_imt_id")
+    )
+    ldf_tb_stretch = (
+        pl.scan_parquet(data_model.tb_stretch_id.parquet)
+    )
+    ldf_stretch = (
+        pl.scan_parquet(data_model.stretchs.parquet)
+        .select("stretch_id", "manage")
+        .rename({"manage": "stretch_manage"})
+    )
+    ldf_tb = ldf_tb.join(ldf_map_tb, on="tollbooth_id", how="left")
+    ldf_tb = ldf_tb.join(ldf_tb_imt, left_on="tollbooth_imt_id", right_on="tollbooth_id", how="left")
+
+    ldf_stretch = ldf_stretch.join(ldf_tb_stretch, on="stretch_id")
+    ldf_stretch_tb_in = ldf_stretch.select("stretch_id", "tollbooth_id_in", "stretch_manage").rename({"tollbooth_id_in": "tollbooth_id"})
+    ldf_stretch_tb_out = ldf_stretch.select("stretch_id", "tollbooth_id_out", "stretch_manage").rename({"tollbooth_id_out": "tollbooth_id"})
+    ldf_stretch = pl.concat([ldf_stretch_tb_in, ldf_stretch_tb_out]).unique()
+    ldf_stretch = ldf_stretch.join(ldf_tb, on="tollbooth_id", how="left").unique()
+    ldf_stretch = ldf_stretch.sort("stretch_id")
+    ldf_stretch = ldf_stretch.select("stretch_id", "tollbooth_id", "tollbooth_imt_id", "stretch_manage", "manage", "manage_imt")
+    ldf_stretch.sink_csv("./reports/tollbooth_stretch_manage.csv")
+
 
 if __name__ == "__main__":
     output_filepath = "reports/"
@@ -535,6 +571,7 @@ if __name__ == "__main__":
     parser.add_argument("--tb-wo-stretch", required=False, action="store_true")
     parser.add_argument("--mx-projects", required=False, action="store_true")
     parser.add_argument("--toll-ref", required=False, action="store_true")
+    parser.add_argument("--tollbooth-road", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
@@ -553,3 +590,5 @@ if __name__ == "__main__":
         mx_projects_report()
     elif args.toll_ref:
         toll_ref(year=2026)
+    elif args.tollbooth_road:
+        tollbooth_road(year=2025)
