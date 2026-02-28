@@ -481,6 +481,47 @@ def tollbooth_without_stretch(year: int):
     print(f"Saved result in {filepath}")
 
 
+def mx_projects_report():
+    data_model = DataModel(2026, DataStage.pub)
+
+    def extract(url):
+        ldf_mxpj = (
+            pl.scan_csv(url)
+            .select("Proyecto", "Sector", "Subsector", "Tipo de contrato", "Entidad responsable")
+            #.select("Proyecto")
+            .with_columns(
+                pl.col("Proyecto").str.extract_groups(r"(?P<id>\d{4})\s+(?P<name>.+)")
+            )
+            .unnest("Proyecto")
+            .filter(pl.col("id").is_not_null())
+            .cast({"id": pl.UInt16})
+        )
+        return ldf_mxpj
+
+    ldf_mxpj = extract("./raw_data/proyectos_mexico/Proyectos_Progreso – Proyectos México_202601.csv")
+    ldf_mxpj_old = extract("./raw_data/proyectos_mexico/Proyectos – Proyectos México_202511.csv")
+
+    print(ldf_mxpj.join(ldf_mxpj_old, on="id", how="anti").collect())
+    print(ldf_mxpj_old.join(ldf_mxpj, on="id", how="anti").collect())
+    
+
+def toll_ref(year: int):
+    data_model = DataModel(year, DataStage.stg)
+    data_model_pub = DataModel(year, DataStage.pub)
+    ldf_toll = pl.scan_csv(data_model_pub.stretchs_toll.csv)
+    ldf_stretch_id = pl.scan_csv(data_model_pub.tb_stretch_id.csv)
+    ldf_tb = pl.scan_parquet(data_model.tollbooths.parquet).select("tollbooth_id", "manage")
+    ldf_operator = pl.scan_csv("data/tables/area_operators_mx.csv", separator="|").select("short_name", "toll_ref")
+    
+    ldf_tb = ldf_tb.join(ldf_operator, left_on="manage", right_on="short_name").select(pl.exclude("manage"))
+    ldf_toll = ldf_toll.join(ldf_stretch_id, on="stretch_id", how="left")
+    ldf_toll = ldf_toll.join(
+        ldf_tb, left_on="tollbooth_id_out", right_on="tollbooth_id", how="left"
+    ).select("stretch_id", "stretch_name", "toll_ref", "toll_ref_right")
+    ldf_toll = ldf_toll.unique().sort("stretch_id")
+    ldf_toll.sink_csv(f"./reports/toll_ref_{year}.csv")
+
+
 
 if __name__ == "__main__":
     output_filepath = "reports/"
@@ -492,6 +533,8 @@ if __name__ == "__main__":
     parser.add_argument("--stretch-names", required=False, action="store_true")
     parser.add_argument("--tb-stretch-rel", required=False, action="store_true")
     parser.add_argument("--tb-wo-stretch", required=False, action="store_true")
+    parser.add_argument("--mx-projects", required=False, action="store_true")
+    parser.add_argument("--toll-ref", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
@@ -506,3 +549,7 @@ if __name__ == "__main__":
         tollbooth_stretch_rel(year=2025)
     elif args.tb_wo_stretch:
         tollbooth_without_stretch(year=2025)
+    elif args.mx_projects:
+        mx_projects_report()
+    elif args.toll_ref:
+        toll_ref(year=2026)

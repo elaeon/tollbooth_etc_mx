@@ -112,7 +112,7 @@ def sts_ids(year: int, start_year: int):
     ldf_all.sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
 
 
-def add_parent_manage(ldf: pl.LazyFrame):
+def get_parent_manage() -> pl.DataFrame:
     df = pl.read_csv("data/tables/area_operators_mx.csv", separator="|").select("parent", "short_name")
     df = df.join(df, left_on="parent", right_on="short_name", how="left")
     while True:
@@ -130,9 +130,8 @@ def add_parent_manage(ldf: pl.LazyFrame):
         pl.when(pl.col("parent").is_null()).then(pl.col("short_name")).otherwise("parent").alias("parent")
     ).unique()
     
-    df_tb = ldf.join(df.lazy(), left_on="manage", right_on="short_name", how="left")
-    df_tb = df_tb.select(pl.exclude("short_name")).rename({"parent": "parent_manage"})
-    return df_tb
+    df = df.rename({"parent": "parent_manage"})
+    return df
 
 
 def stg_to_prod(year:int, option_selected: str):
@@ -166,9 +165,11 @@ def pub_to_stg(year: int, option_selected: str, normalize: bool):
     
     ldf, data_model = pipeline.simple_pub_stg(catalogs[option_selected], year, normalize, date_columns=date_columns)
     if option_selected == "tb":
-        ldf = add_parent_manage(ldf)
-    
-    ldf.sink_parquet(data_model.parquet)
+        df_parent_manage = get_parent_manage()
+        ldf = ldf.collect().join(df_parent_manage, left_on="manage", right_on="short_name", how="left")
+        ldf.write_parquet(data_model.parquet)
+    else:
+        ldf.sink_parquet(data_model.parquet)
     print(f'Sink file: {data_model.parquet}')
 
 
