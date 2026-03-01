@@ -130,35 +130,58 @@ def tb_stretch_id_sts(base_year: int, move_year: int):
     data_model_base = DataModel(base_year, DataStage.stg)
     data_model_sts = DataModel(move_year, DataStage.prd)
     
-    ldf_tb_sts = pl.scan_parquet(data_model_sts.tb_sts.parquet).select("tollbooth_id", "tollbooth_name", "stretch_name").rename({"stretch_name": "stretch_name_sts"})
-    ldf_stretch = pl.scan_parquet(data_model_base.stretchs.parquet).select("stretch_id", "stretch_name")
+    ldf_tb_sts = (
+        pl.scan_parquet(data_model_sts.tb_sts.parquet)
+        .select("tollbooth_id", "tollbooth_name", "stretch_name")
+        .rename({"stretch_name": "stretch_name_sts", "tollbooth_name": "tollbooth_sts_name"})
+    )
+    ldf_tb = (
+        pl.scan_parquet(data_model_base.tollbooths.parquet)
+        .select("tollbooth_id", "tollbooth_name")
+    )
+    ldf_stretch = (
+        pl.scan_parquet(data_model_base.stretchs.parquet)
+        .select("stretch_id", "stretch_name")
+    )
     ldf_tb_stretch_id = pl.scan_parquet(data_model_base.tb_stretch_id.parquet)
-    ldf_map_tb_id = pl.scan_parquet(data_model_base.map_tb_id.parquet).select("tollbooth_id", "tollbooth_sts_id")
+    ldf_neighbour = pl.scan_parquet(
+        data_model_base.tb_neighbour.parquet
+    )
+    ldf_map_tb_id = (
+        ldf_neighbour
+        .filter(pl.col("scope") == "local-sts")
+        .filter(pl.col("distance") <= 1)
+        .select(pl.exclude("scope", "distance"))
+        .rename({"neighbour_id": "tollbooth_sts_id"})
+    )
 
-    ldf_tb_stretch_name = ldf_stretch.join(ldf_tb_stretch_id, on="stretch_id")
-    ldf_tb_stretch_name_in = ldf_map_tb_id.join(
-        ldf_tb_stretch_name, left_on="tollbooth_id", right_on="tollbooth_id_in", how="left",
-    ).select(pl.exclude("tollbooth_id_out"))
-    ldf_tb_stretch_name_out = ldf_map_tb_id.join(
-        ldf_tb_stretch_name, left_on="tollbooth_id", right_on="tollbooth_id_out", how="left",
-    ).select(pl.exclude("tollbooth_id_in"))
-    ldf_tb_stretch_sts = pl.concat([ldf_tb_stretch_name_in, ldf_tb_stretch_name_out]).unique()
-    ldf_tb_stretch_sts = ldf_tb_stretch_sts.join(ldf_tb_sts, left_on="tollbooth_sts_id", right_on="tollbooth_id")
+    ldf_tb_stretch_id_in = (
+        ldf_tb_stretch_id.join(ldf_map_tb_id, left_on="tollbooth_id_in", right_on="tollbooth_id", how="left")
+        .rename({"tollbooth_id_in": "tollbooth_id"})
+        .select(pl.exclude("tollbooth_id_out"))
+    )
+    ldf_tb_stretch_id_out = (
+        ldf_tb_stretch_id.join(ldf_map_tb_id, left_on="tollbooth_id_out", right_on="tollbooth_id")
+        .rename({"tollbooth_id_out": "tollbooth_id"})
+        .select(pl.exclude("tollbooth_id_in"))
+    )
+    ldf_tb_stretch_map = pl.concat([ldf_tb_stretch_id_in, ldf_tb_stretch_id_out]).unique()
+    ldf_tb_stretch_map = ldf_tb_stretch_map.join(ldf_tb, on="tollbooth_id")
+    ldf_tb_stretch_map = ldf_stretch.join(ldf_tb_stretch_map, on="stretch_id", how="left")
+    ldf_tb_stretch_sts = ldf_tb_stretch_map.join(ldf_tb_sts, left_on="tollbooth_sts_id", right_on="tollbooth_id")
 
     ldf_tb_stretch_sts = ldf_tb_stretch_sts.with_columns(
-        plds.str_jaccard("stretch_name", "stretch_name_sts").alias("score_jac"),
-        plds.str_jw("stretch_name", "stretch_name_sts").alias("score_jw")
+        plds.str_jw("stretch_name", "stretch_name_sts").alias("score_st"),
+        (1 - plds.str_jw("stretch_name", "stretch_name_sts")).alias("score_st_inv"),
+        (plds.str_lcs_subseq_dist("stretch_name", "stretch_name_sts")).alias("score_st_lcs"),
+        plds.str_jw("tollbooth_sts_name", "tollbooth_name").alias("score_tb")
     )
     ldf_tb_stretch_sts = ldf_tb_stretch_sts.with_columns(
-        pl.mean_horizontal("score_jac", "score_jw").alias("score_best")
+        pl.mean_horizontal("score_st", "score_st_inv", "score_st_lcs", "score_tb").alias("score_mean")
     )
     ldf_tb_stretch_sts = ldf_tb_stretch_sts.filter(
-        pl.col("score_best") == pl.col("score_best").max().over("stretch_id")
+        pl.col("score_mean") == pl.col("score_mean").max().over("tollbooth_sts_id")
     )
-    ldf_tb_stretch_sts = ldf_tb_stretch_sts.filter(
-        pl.col("score_best") == pl.col("score_best").max().over("tollbooth_sts_id")
-    )
-
     ldf_tb_stretch_sts = (
         ldf_tb_stretch_sts
         .select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
