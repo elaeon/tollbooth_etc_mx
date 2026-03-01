@@ -129,6 +129,7 @@ def tb_stretch_id_imt(base_year: int, move_year: int):
 def tb_stretch_id_sts(base_year: int, move_year: int):
     data_model_base = DataModel(base_year, DataStage.stg)
     data_model_sts = DataModel(move_year, DataStage.prd)
+    data_model_pub = DataModel(base_year, DataStage.pub)
     
     ldf_tb_sts = (
         pl.scan_parquet(data_model_sts.tb_sts.parquet)
@@ -172,26 +173,36 @@ def tb_stretch_id_sts(base_year: int, move_year: int):
 
     ldf_tb_stretch_sts = ldf_tb_stretch_sts.with_columns(
         plds.str_jw("stretch_name", "stretch_name_sts").alias("score_st"),
-        (1 - plds.str_jw("stretch_name", "stretch_name_sts")).alias("score_st_inv"),
-        (plds.str_lcs_subseq_dist("stretch_name", "stretch_name_sts")).alias("score_st_lcs"),
-        plds.str_jw("tollbooth_sts_name", "tollbooth_name").alias("score_tb")
+        (plds.str_lcs_subseq_dist("stretch_name", "stretch_name_sts")*.6).alias("score_st_lcs"),
+        plds.str_jw("tollbooth_sts_name", "tollbooth_name").alias("score_tb"),
+        (1 - plds.str_lcs_subseq_dist("tollbooth_sts_name", "tollbooth_name")).alias("score_tb_inv")
     )
     ldf_tb_stretch_sts = ldf_tb_stretch_sts.with_columns(
-        pl.mean_horizontal("score_st", "score_st_inv", "score_st_lcs", "score_tb").alias("score_mean")
+        pl.mean_horizontal("score_st", "score_st_lcs", "score_tb", "score_tb_inv").alias("score_mean")
     )
     ldf_tb_stretch_sts = ldf_tb_stretch_sts.filter(
         pl.col("score_mean") == pl.col("score_mean").max().over("tollbooth_sts_id")
-    )
+    )   
     ldf_tb_stretch_sts = (
         ldf_tb_stretch_sts
-        .select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
+        .select("stretch_id", "tollbooth_sts_id")
     )
+
+    try:
+        ldf_tb_stretch_id_patch = pl.scan_csv(data_model_pub.tb_sts_stretch_id_patch.csv).cast({"tollbooth_sts_id": pl.UInt16, "stretch_id": pl.UInt32})
+        ldf_tb_stretch_sts = ldf_tb_stretch_sts.update(
+            ldf_tb_stretch_id_patch, on="tollbooth_sts_id", how="full"
+        ).unique()
+    except FileNotFoundError as e:
+        print("Patch not found. Skip.")
+    else:
+        print("Applying patch.")
 
     ldf_stretch_no_tb = ldf_stretch.join(ldf_tb_stretch_sts, on="stretch_id", how="anti")
     ldf_stretch_no_tb = ldf_stretch_no_tb.with_columns(
         pl.lit(None).alias("tollbooth_id"),
         pl.lit(None).alias("tollbooth_sts_id")
-    ).select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
+    ).select("stretch_id", "tollbooth_sts_id")
     ldf_tb_stretch_sts = pl.concat([ldf_tb_stretch_sts, ldf_stretch_no_tb])
     ldf_tb_stretch_sts.sink_parquet(data_model_base.tbsts_stretch_id.parquet)
 

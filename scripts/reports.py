@@ -577,7 +577,7 @@ def stretch_sts(year: int):
     )
 
     ldf_sts = ldf_sts.join(ldf_tbsts_stretch_id, left_on="tollbooth_id", right_on="tollbooth_sts_id", how="left")
-    ldf_sts = ldf_sts.join(ldf_stretch, on="stretch_id", how="left")
+    ldf_sts = ldf_sts.join(ldf_stretch, on="stretch_id", how="left").unique()
     ldf_sts = ldf_sts.sort("tollbooth_id")
     ldf_sts.sink_csv(f"./reports/stretch_sts_{data_model_sts.attr.get("year")}.csv")
 
