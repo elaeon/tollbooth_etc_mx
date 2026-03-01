@@ -559,6 +559,30 @@ def tollbooth_stretch_manage(year: int):
     ldf_stretch.sink_csv("./reports/tollbooth_stretch_manage.csv")
 
 
+def stretch_sts(year: int):
+    data_model = DataModel(year, DataStage.stg)
+    data_model_sts = DataModel(year - 1, DataStage.prd)
+
+    ldf_stretch = (
+        pl.scan_parquet(data_model.stretchs.parquet)
+        .select("stretch_id", "stretch_name")
+    )
+    ldf_sts = (
+        pl.scan_parquet(data_model_sts.tb_sts.parquet)
+        .select("tollbooth_id", "tollbooth_name", "stretch_name", "status")
+    )
+    ldf_tbsts_stretch_id = (
+        pl.scan_parquet(data_model.tbsts_stretch_id.parquet)
+        .select("stretch_id", "tollbooth_sts_id")
+    )
+
+    ldf_sts = ldf_sts.join(ldf_tbsts_stretch_id, left_on="tollbooth_id", right_on="tollbooth_sts_id", how="left")
+    ldf_sts = ldf_sts.join(ldf_stretch, on="stretch_id", how="left")
+    ldf_sts = ldf_sts.sort("tollbooth_id")
+    ldf_sts.sink_csv(f"./reports/stretch_sts_{data_model_sts.attr.get("year")}.csv")
+
+
+
 if __name__ == "__main__":
     output_filepath = "reports/"
 
@@ -572,6 +596,7 @@ if __name__ == "__main__":
     parser.add_argument("--mx-projects", required=False, action="store_true")
     parser.add_argument("--toll-ref", required=False, action="store_true")
     parser.add_argument("--tollbooth-stretch-manage", required=False, action="store_true")
+    parser.add_argument("--stretch-sts", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
@@ -592,3 +617,5 @@ if __name__ == "__main__":
         toll_ref(year=2026)
     elif args.tollbooth_stretch_manage:
         tollbooth_stretch_manage(year=2025)
+    elif args.stretch_sts:
+        stretch_sts(year=2025)
