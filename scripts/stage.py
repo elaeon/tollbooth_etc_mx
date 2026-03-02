@@ -3,6 +3,7 @@ sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
 
 import polars as pl
 import polars_h3 as plh3
+import polars_ds as plds
 import argparse
 
 from datetime import date
@@ -51,64 +52,64 @@ def sts_ids(year: int, start_year: int):
         ldf_tb_sts_from = pl.scan_parquet(
             data_model_from.tb_sts.parquet,
         )
+        columns = ldf_tb_sts_from.collect_schema().names()
         data_model_to = DataModel(to_year, DataStage.stg)
-        ldf_tb_sts_to = pl.scan_parquet(
+        ldf_tb_sts_to_base = pl.scan_parquet(
             data_model_to.tb_sts.parquet, 
         )
 
         ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
             h3_cell=plh3.latlng_to_cell("lat", "lng", hex_resolution)
         )
-        ldf_tb_sts_to = ldf_tb_sts_to.with_columns(
+        ldf_tb_sts_to_base = ldf_tb_sts_to_base.with_columns(
             h3_cell=plh3.latlng_to_cell("lat", "lng", hex_resolution)
         )
-        ldf_tb_sts_from_to_new = ldf_tb_sts_to.join(
-            ldf_tb_sts_from,
-            on=key,
+
+        ldf_tb_sts_to = ldf_tb_sts_to_base.with_columns(
+            plh3.grid_disk("h3_cell", 1).alias("h3_disk")
+        )
+
+        ldf_tb_sts_to = ldf_tb_sts_to.explode("h3_disk")
+        ldf_tb_sts_to = ldf_tb_sts_to.join(
+            ldf_tb_sts_from, left_on="h3_disk", right_on="h3_cell", how="left"
+        )
+        ldf_tb_sts_to = ldf_tb_sts_to.with_columns(
+            plds.str_jw("stretch_name", "stretch_name_right").alias("score_st"),
+            (plds.str_lcs_subseq_dist("stretch_name", "stretch_name_right")*.6).alias("score_st_lcs"),
+            plds.str_jw("tollbooth_name", "tollbooth_name_right").alias("score_tb"),
+        )
+        ldf_tb_sts_to = ldf_tb_sts_to.with_columns(
+            pl.mean_horizontal("score_st", "score_st_lcs", "score_tb").alias("score_mean")
+        )
+        ldf_tb_sts_to = ldf_tb_sts_to.filter(
+            pl.col("score_mean") == pl.col("score_mean").max().over("tollbooth_id")
+        )
+
+        ldf_tb_sts_from_to_new = ldf_tb_sts_to_base.join(
+            ldf_tb_sts_to.select(columns).select(pl.exclude("tollbooth_id", "status")),
+            on="index",
             how="anti"
         )
+        
+        columns[columns.index("index")] = "index_right"
         ldf_tb_sts_from_to_del = ldf_tb_sts_from.join(
-            ldf_tb_sts_to,
-            on=key,
+            ldf_tb_sts_to.select(columns),
+            left_on="index",
+            right_on="index_right",
             how="anti"
         )
+
         ldf_tb_sts_from_to_del = ldf_tb_sts_from_to_del.with_columns(
             pl.lit("closed").alias("status")
         ).select(pl.exclude("h3_cell"))
-
-        ldf_tb_sts_to = ldf_tb_sts_to.join(
-            ldf_tb_sts_from,
-            on=key,
-        ).select(["tollbooth_id"] + ldf_tb_sts_to.collect_schema().names())
-
-        # locate duplicates over the key in two df
-        ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
-            pl.col("index").rank("ordinal").over(key, order_by=["index"]).alias("rank")
-        )
-        ldf_tb_sts_to = ldf_tb_sts_to.with_columns(
-            pl.col("index").rank("ordinal").over(key, order_by=["index"]).alias("rank")
-        )
-        ldf_tb_sts_to_dup = ldf_tb_sts_to.filter(pl.col("rank") > 1)
-        ldf_tb_sts_to_dup = ldf_tb_sts_to_dup.join(
-            ldf_tb_sts_from, on=key + ["rank"],
-            how="anti"
-        )
-        ldf_tb_sts_to = ldf_tb_sts_to.join(
-            ldf_tb_sts_to_dup, on=key + ["rank"],
-            how="anti"
-        )
-
-        ldf_tb_sts_to_dup = ldf_tb_sts_to_dup.select(pl.exclude("rank", "tollbooth_id"))
-        ldf_tb_sts_from_to_new = pl.concat([ldf_tb_sts_from_to_new, ldf_tb_sts_to_dup])
-        ldf_tb_sts_from = ldf_tb_sts_from.select(pl.exclude("rank"))
-        ldf_tb_sts_to = ldf_tb_sts_to.select(pl.exclude("rank", "h3_cell"))
-        ##
-
-        ldf_tb_sts_to = pl.concat([ldf_tb_sts_to, ldf_tb_sts_from_to_del])
+        
         last_id = ldf_tb_sts_from.sort("tollbooth_id").last().select("tollbooth_id").collect().row(0)[0]
         ldf_tb_sts_from_to_new = _split_dup_and_add_id(ldf_tb_sts_from_to_new, start_index=last_id + 1)
-        ldf_all = pl.concat([ldf_tb_sts_to, ldf_tb_sts_from_to_new])
 
+        columns[columns.index("index_right")] = "index"
+        ldf_all = pl.concat([ldf_tb_sts_to.select(columns), ldf_tb_sts_from_to_new, ldf_tb_sts_from_to_del])
+        ldf_all = ldf_all.sort("tollbooth_id")
+        #ldf_all.sink_csv(f"./tmp_data/tb_sts_{year}.csv")
     ldf_all.sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
 
 
