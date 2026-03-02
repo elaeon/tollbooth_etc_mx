@@ -4,6 +4,7 @@ sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
 import polars as pl
 import polars_h3 as plh3
 import argparse
+import requests
 
 from tb_map_editor.data_files import DataModel, DataStage
 
@@ -70,8 +71,6 @@ def tollbooth_neighbours(year: int):
 
 
 def get_tollbooths_osm(country_name: str) -> pl.DataFrame:
-    import requests
-
     query = f'''
     [out:json];
     area["name"="{country_name}"]->.searchArea;
@@ -99,14 +98,43 @@ def get_tollbooths_osm(country_name: str) -> pl.DataFrame:
     df.write_csv("./tmp_data/osm_tb.csv")
 
 
+def get_osm_routing_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """
+    Get routing distance (in kilometers) between two points using OSRM API (OpenStreetMap Routing).
+    Returns float distance in kilometers. Returns -1 if failed.
+    """
+    url = f"http://router.project-osrm.org/route/v1/driving/{lon1},{lat1};{lon2},{lat2}?overview=false"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+        routes = data.get("routes", [])
+        if routes:
+            # OSRM returns distance in meters
+            return routes[0]["distance"] / 1000.0
+        else:
+            return -1
+    except Exception as e:
+        print(f"Error fetching routing distance: {e}")
+        return -1
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--tollbooth-neighbours", required=False, action="store_true")
     parser.add_argument("--year", required=False, type=int)
     parser.add_argument("--get-tb-osm", required=False, type=str)
+    parser.add_argument("--distance", required=False, action="store_true")
+
     args = parser.parse_args()
     if args.tollbooth_neighbours:
         tollbooth_neighbours(args.year)
     elif args.get_tb_osm:
         get_tollbooths_osm(args.get_tb_osm)
+    elif args.distance:
+        lat1 = 19.9234930599427
+        lon1 = -99.8442488908768
+        lat2 = 19.9118273622749
+        lon2 = -99.8525959253311
+        distance = get_osm_routing_distance(lat1, lon1, lat2, lon2)
+        print(distance)
