@@ -154,8 +154,8 @@ def _opts_map(options, models):
 def pub_to_stg(year: int, option_selected: str, normalize: bool):
     pipeline = DataPipeline()
     
-    models = ["tollbooths", "stretchs", "stretchs_toll", "roads"]
-    options = ["tb", "stretch", "stretch_toll", "road"]
+    models = ["tollbooths", "stretchs", "stretchs_toll", "roads", "tb_stretch_id"]
+    options = ["tb", "stretch", "stretch_toll", "road", "tb_stretch_id"]
     catalogs = _opts_map(options, models)
 
     if option_selected == "road":
@@ -241,7 +241,7 @@ if __name__ == "__main__":
         "--pub-to-stg", 
         help="generate parquet file", 
         required=False, type=str, 
-        choices=["tb", "stretch", "stretch_toll", "road"]
+        choices=["tb", "stretch", "stretch_toll", "road", "tb_stretch_id"]
     )
     parser.add_argument("--stg-to-prod", required=False, type=str)
     parser.add_argument("--raw-to-stg", required=False, type=str, choices=("tb_imt", "tb_toll_imt", "inflation"))

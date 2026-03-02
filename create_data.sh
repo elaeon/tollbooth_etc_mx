@@ -58,6 +58,13 @@ stretch_toll_imt() {
 
 tb_stretch_id() {
     local year="$1"
+    uv run scripts/stage.py --pub-to-stg tb_stretch_id --year "$year"
+    uv run scripts/populate_db.py --year "$year" --delete-table tbstretchid
+    uv run scripts/populate_db.py --year "$year" --new-tb-stretch
+}
+
+build_tb_stretch_id() {
+    local year="$1"
     uv run scripts/join_tollbooths.py --year "$year" --tb-stretch-id-imt "$year"
     uv run scripts/populate_db.py --year "$year" --delete-table tbstretchid
     uv run scripts/populate_db.py --year "$year" --new-tb-stretch
