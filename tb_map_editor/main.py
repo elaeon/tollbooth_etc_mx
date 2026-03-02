@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 
 from sqlmodel import select, or_, join, not_
 
-from .model import Tollbooth, TbSts, TbImt, TbStretchId, Stretch, StretchToll, TbNeighbour
+from .model import Tollbooth, TbSts, TbImt, TbStretchId, Stretch, StretchToll, TbNeighbour, Road
 from contextlib import asynccontextmanager
 from .utils.connector import SessionDep, create_db_and_tables
 from .utils.query_parser import parse_query
@@ -77,6 +77,18 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
             data = []
             for tb in tollbooths:
                 tb_data = tb.online_filled_fields(exclude_fields={"legacy_id"})
+                data.append(tb_data)
+        elif parsed["param"] == "road":
+            params = [
+                Stretch.road_id.in_(parsed.get("values", []))
+            ]
+            stm = select(Tollbooth).select_from(
+                join(TbStretchId, Tollbooth, TbStretchId.tollbooth_id_out == Tollbooth.tollbooth_id)
+            ).join(Stretch).where(*params)
+            tb_stretch = session.exec(stm.offset(offset).limit(limit))
+            data = []
+            for tb_st in tb_stretch:
+                tb_data = tb_st.online_filled_fields(exclude_fields={"legacy_id"})
                 data.append(tb_data)
         else:
             param = parsed["param"]
