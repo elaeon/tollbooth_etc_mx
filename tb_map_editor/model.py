@@ -267,14 +267,17 @@ class Road(TbModel, table=True):
     road_id: UInt16 | None = Field(default=None, primary_key=True)
     road_name: String
     operation_date: Date | None
+    start_contract_date: Date | None
+    end_contract_date: Date | None
     project_mx_id: String | None
     fonadin_ref: String | None
     road_length_km: Float64 | None
     bond_code: String | None
     bond_issuance_date: String | None
     bond_terms_years: String | None
-    bond_amount: Int64 | None
+    bond_amount: String | None
     notes: String | None
+    farac: String | None
     info_year: UInt16 = Field(index=True)
 
     @staticmethod
@@ -392,10 +395,11 @@ class TbTollImt(TbModel, table=True):
 
 class TbNeighbour(TbModel, table=True):
     id: UInt32 | None = Field(default=None, primary_key=True)
-    tollbooth_id: UInt16 = Field(foreign_key="tbimt.tollbooth_id", index=True)
-    neighbour_id: UInt16
+    tollbooth_id: UInt32
+    neighbour_id: UInt32
     scope: String
     distance: Float64
+    info_year: UInt16
 
 
 class MapTbId(TbModel, table=True):

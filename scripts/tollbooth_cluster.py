@@ -61,6 +61,9 @@ def tollbooth_neighbours(year: int):
     ldf_neighbour_imt = ldf_neighbour_imt.filter(pl.col("scope") != "imt-local")
     ldf_neighbour_sts = ldf_neighbour_sts.filter((pl.col("scope") != "sts-local") & (pl.col("scope") != "local-local"))
     ldf_neighbour = pl.concat([ldf_neighbour_imt, ldf_neighbour_sts])
+    ldf_neighbour = ldf_neighbour.with_columns(
+        info_year=pl.lit(year)
+    )
     ldf_neighbour.sink_parquet(data_model.tb_neighbour.parquet)
     print(ldf_neighbour.group_by("scope").len().collect())
     print(f"Saved file in: {data_model.tb_neighbour.parquet}")

@@ -20,7 +20,7 @@ tb() {
     uv run scripts/populate_db.py --year "$year" --delete-table tollbooth
     uv run scripts/populate_db.py --year "$year" --new-tb
     uv run scripts/populate_db.py --year "$year" --delete-table tbneighbour
-    uv run scripts/populate_db.py --year "$year" --insert-tbneighbours
+    uv run scripts/populate_db.py --year "$year" --insert-tb-neighbours
 }
 
 tb_imt() {

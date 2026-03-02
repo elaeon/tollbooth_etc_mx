@@ -160,7 +160,11 @@ def pub_to_stg(year: int, option_selected: str, normalize: bool):
 
     if option_selected == "road":
         date_format = "%d-%m-%Y"
-        date_columns = {"operation_date": date_format}
+        date_columns = {
+            "operation_date": date_format,
+            "start_contract_date": date_format,
+            "end_contract_date": date_format,
+        }
     else:
         date_columns = None
     

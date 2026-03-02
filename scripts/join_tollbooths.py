@@ -320,7 +320,7 @@ def map_tb_id(year: int):
         ldf_neighbour
         .filter(pl.col("scope") == "local-imt")
         .filter(pl.col("distance") <= 0.3)
-        .select(pl.exclude("scope"))
+        .select(pl.exclude("scope", "info_year"))
     )
     closest_tb_imt = []
     for ldf in _find_closest_tb(ldf_neighbour_imt):
@@ -340,7 +340,7 @@ def map_tb_id(year: int):
         ldf_neighbour
         .filter(pl.col("scope") == "local-sts")
         .filter(pl.col("distance") <= 1)
-        .select(pl.exclude("scope"))
+        .select(pl.exclude("scope", "info_year"))
     )
     closest_tb_sts = []
     for ldf in _find_closest_tb(ldf_neighbour_sts):

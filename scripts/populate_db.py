@@ -19,8 +19,8 @@ _log.addHandler(handler)
 
 
 def insert_data_from_parquet(ldf, model_name: str):
-    for i_batch, df in enumerate(ldf.collect_batches(chunk_size=100), 1):
-        _log.debug(f"saving row: {i_batch}")
+    for i_batch, df in enumerate(ldf.collect_batches(chunk_size=1000), 1):
+        _log.debug(f"saving batch: {i_batch}")
         df.write_database(
             table_name=model_name,
             connection=sqlite_url,

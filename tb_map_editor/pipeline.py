@@ -33,6 +33,11 @@ class DataPipeline:
         if date_columns is not None:
             pl_date_exp = []
             for date_column, date_format in date_columns.items():
+                pl_date_exp.append(pl.col(date_column).str.strip_chars())
+            ldf = ldf.with_columns(pl_date_exp)
+
+            pl_date_exp = []
+            for date_column, date_format in date_columns.items():
                 pl_date_exp.append(pl.col(date_column).str.to_date(date_format))
             ldf = ldf.with_columns(pl_date_exp)
         
