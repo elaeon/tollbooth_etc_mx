@@ -109,7 +109,7 @@ def sts_ids(year: int, start_year: int):
         columns[columns.index("index_right")] = "index"
         ldf_all = pl.concat([ldf_tb_sts_to.select(columns), ldf_tb_sts_from_to_new, ldf_tb_sts_from_to_del])
         ldf_all = ldf_all.sort("tollbooth_id")
-        #ldf_all.sink_csv(f"./tmp_data/tb_sts_{year}.csv")
+
     ldf_all.sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
 
 
