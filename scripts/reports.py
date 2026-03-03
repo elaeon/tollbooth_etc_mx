@@ -132,7 +132,7 @@ def growth_rate_exprs(start, end, prefix_col: str, result_prefix_col: str):
     def cagr_growth_rate():
         result_col_name = f"{result_prefix_col}_cagr_growth_rate_{start}_{end}"
         growth_rate_columns.append(result_col_name)
-        num_of_years = start - end
+        num_of_years = end - start
         cagr_inflation_rate_exp = (
             pl.when(pl.col(f"{prefix_col}_{start}") != 0)
             .then(
@@ -319,9 +319,9 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
     ldf_toll_sts = ldf_toll_sts.with_columns(
         pl.when(
             pl.col(f"toll_cagr_growth_rate_{from_year}_{to_year}").is_null()
-        ).then((pl.col(f"inflation_{from_year}_{to_year}") - pl.col(f"toll_growth_rate_{to_year}"))).otherwise(
-            (pl.col(f"inflation_{from_year}_{to_year}") - pl.col(f"toll_cagr_growth_rate_{from_year}_{to_year}"))
-        ).round(2).alias("inflation_toll_diff")
+        ).then((pl.col(f"toll_growth_rate_{to_year}") - pl.col(f"inflation_{from_year}_{to_year}"))).otherwise(
+            (pl.col(f"toll_cagr_growth_rate_{from_year}_{to_year}") - pl.col(f"inflation_{from_year}_{to_year}"))
+        ).round(2).alias("toll_inflation_diff")
     )
     ldf_toll_sts.sort("stretch_name").sink_csv(filepath)
     print(f"Saved result in {filepath}")
