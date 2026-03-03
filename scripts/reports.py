@@ -587,6 +587,70 @@ def stretch_sts(year: int):
     ldf_sts.sink_csv(f"./reports/stretch_sts_{data_model_sts.attr.get("year")}.csv")
 
 
+def toll_check(year: int):
+    data_model = DataModel(year, DataStage.stg)
+    toll_columns = [
+        "motorbike", "car", "car_axle",
+        "bus_2_axle", "bus_3_axle", "bus_4_axle", "truck_2_axle",
+        "truck_3_axle", "truck_4_axle", "truck_5_axle", "truck_6_axle", 
+        "truck_7_axle", "truck_8_axle", "truck_9_axle", "load_axle"
+    ]
+    ldf_tb_stretch_id = (
+        pl.scan_parquet(data_model.tb_stretch_id.parquet)
+        .select("stretch_id", "tollbooth_id_in", "tollbooth_id_out")
+    )
+    ldf_toll_imt = (
+        pl.scan_parquet(data_model.tb_toll_imt.parquet)
+        .select(pl.exclude("info_year"))
+    )
+    ldf_map_tb = (
+        pl.scan_parquet(data_model.map_tb_id.parquet)
+        .select("tollbooth_id", "tollbooth_imt_id")
+    )
+    ldf_stretch_toll = (
+        pl.scan_parquet(data_model.stretchs_toll.parquet)
+        .select(
+            ["stretch_id"] + toll_columns
+        )
+    )
+
+    ldf_stretch_imt = (
+        ldf_tb_stretch_id
+        .join(ldf_map_tb, left_on="tollbooth_id_in", right_on="tollbooth_id")
+        .rename({"tollbooth_imt_id": "tollbooth_imt_id_in"})
+    )
+    ldf_stretch_imt = (
+        ldf_stretch_imt
+        .join(ldf_map_tb, left_on="tollbooth_id_out", right_on="tollbooth_id")
+        .rename({"tollbooth_imt_id": "tollbooth_imt_id_out"})
+        .unique()
+    )
+    ldf_stretch_imt = (
+        ldf_toll_imt.join(ldf_stretch_imt, 
+                          left_on=["tollbooth_id_out", "tollbooth_id_in"],
+                            right_on=["tollbooth_imt_id_out", "tollbooth_imt_id_in"], 
+                            how="left"
+                        )
+    )
+    ldf_stretch_imt = ldf_stretch_imt.join(ldf_stretch_toll, on="stretch_id", how="left")
+    toll_exprs = []
+    total_cols = []
+    for col in toll_columns:
+        total_alias = f"{col}_diff"
+        toll_exprs.append((pl.col(col) - pl.col(f"{col}_right")).alias(total_alias))
+        total_cols.append(total_alias)
+    ldf_stretch_imt = ldf_stretch_imt.with_columns(
+        toll_exprs
+    )
+    ldf_stretch_imt = (
+        ldf_stretch_imt.with_columns(
+            pl.sum_horizontal(total_cols).alias("total_diff")
+        )
+        .filter(pl.col("total_diff") > 0)
+    )
+    ldf_stretch_imt = ldf_stretch_imt.sort("stretch_id")
+    ldf_stretch_imt.sink_csv(f"./reports/toll_check_{year}.csv")
+
 
 if __name__ == "__main__":
     output_filepath = "reports/"
@@ -602,6 +666,7 @@ if __name__ == "__main__":
     parser.add_argument("--toll-ref", required=False, action="store_true")
     parser.add_argument("--tollbooth-stretch-manage", required=False, action="store_true")
     parser.add_argument("--stretch-sts", required=False, action="store_true")
+    parser.add_argument("--toll-check", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
@@ -624,3 +689,5 @@ if __name__ == "__main__":
         tollbooth_stretch_manage(year=2025)
     elif args.stretch_sts:
         stretch_sts(year=2025)
+    elif args.toll_check:
+        toll_check(year=2025)

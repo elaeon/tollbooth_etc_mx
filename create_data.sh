@@ -124,6 +124,13 @@ case "$1" in
         fi
         stretch "$2"
         ;;
+    stretch_toll)
+        if [ -z "$2" ]; then
+            echo "Error: tb requires a year argument."
+            exit 1
+        fi
+        stretch_toll "$2"
+        ;;
     tb)
         if [ -z "$2" ]; then
             echo "Error: tb requires a year argument."

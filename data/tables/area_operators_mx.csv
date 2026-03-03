@@ -17,9 +17,9 @@
 "coconal"|"opan"|"nuevo leon-tamaulipas"|"https://autopistasdecuota.com/ruta/nuevo-leon-tamaulipas"|"https://autopistasdecuota.com/ruta/nuevo-leon-tamaulipas"
 |"copa"|"compañia operadora de puentes y autopistas"|"https://copaoperacion.com/"|"https://copaoperacion.com/operacion/"
 "aleatica"|"gana"|"Grupo Autopistas Nacionales S.A de C.V"|"https://www.ganamexico.com.mx"|"https://www.ganamexico.com.mx/rutas-y-tarifas/"
-"pinfra"|"ecatepec-piramides"|"promotora de carreteras ecatepec pirámides s.a de c.v"||
+"pinfra"|"ecatepec-piramides"|"promotora de carreteras ecatepec pirámides s.a de c.v"||"https://www.viapass.com.mx/Portal_web/tarifas"
 "ocacsa"|"golfo-centro"|"MRO Autopista Golfo Centro S.A. de C.V."|"https://autopistagolfocentro.com"|"https://autopistagolfocentro.com/tarifas"
-"pinfra"|"desarrollo-global"|"desarrollo global de concesiones s.a de c.v"||
+"pinfra"|"desarrollo-global"|"desarrollo global de concesiones s.a de c.v"||"https://www.viapass.com.mx/Portal_web/tarifas"
 |"pinfra"|"Promotora y Operadora de Infraestructura, S.A.B. de C.V"|"https://www.pinfra.com.mx/concesiones"|
 "mota-engil"|"copexa"|"Concesionaria Autopista Perote Xalapa, S.A de C.V."|"https://copexa.com"|"https://copexa.com/tarifas"
 |"cardel-veracruz"|"Cardel-Veracruz"|"https://caseta.mx"|"https://caseta.mx/servicios/tarifario/"
@@ -82,7 +82,7 @@
 |"libramiento-carrillopuerto"|"Mantenimiento y Operación Carrillo Puerto S.A. de C.V."|"https://www.libramientocarrillo.com"|"https://www.libramientocarrillo.com/maps-fees.php"
 |"cap"|"concesionaria de autopistas de puebla"||
 "ops"|"libramiento aguascalientes"|"libramiento aguscalientes"|"https://operadoradelasultana.com.mx/libramiento-aguascalientes"|"https://operadoradelasultana.com.mx/libramiento-aguascalientes/index.php?p=tarifas"
-"ops"|"rumbonuevo"|"Rumbo Nuevo, S.A. de C.V."|"https://operadoradelasultana.com.mx/rumbo-nuevo/index.php?p=home"|
+"ops"|"rumbonuevo"|"Rumbo Nuevo, S.A. de C.V."|"https://operadoradelasultana.com.mx/rumbo-nuevo/index.php?p=home"|"https://www.viapass.com.mx/Portal_web/tarifas"
 "pinfra"|"ops"|"operadora de la sultana s.a de c.v"|"https://operadoradelasultana.com.mx/"|
 "pinfra"|"omc"|"operadora metropolitana de carreteras s.a de c.v"||
 "hoatsa"|"lerma-santiago"|"autopista lerma santiago"|"http://autopista-lerma-tenango.com.mx/"|"http://autopista-lerma-tenango.com.mx/tarifas.html"
@@ -98,7 +98,7 @@
 "pinfra"|"opervite"|"operadora vias terrestres s.a de c.v"||
 |"gipsa"|"Grupo de Infraestructura Potosino, S.A. de C.V."|"https://gipsaslp.com.mx/"|"https://gipsaslp.com.mx/tarifas/"
 "ohl"|"supervia"|"Autopista urbana poniente"|"https://supervia.mx"|"https://supervia.mx/tarifas.php"
-"pinfra"|"atisa"|"Autopista Tenango-Ixtapan de la Sal, S.A. de C.V.,"||
+"pinfra"|"atisa"|"Autopista Tenango-Ixtapan de la Sal, S.A. de C.V.,"||"https://www.viapass.com.mx/Portal_web/tarifas"
 "aleatica"|"viaducto-bicentenario"|"viaducto bicentenario"|"https://www.viaductobicentenario.com.mx/"|"https://www.viaductobicentenario.com.mx/rutas-y-tarifas/"
 "mota-engil"|"ausn"|"autopista urbana siervo de la nación S.A.P.I. de C.V."|"https://ausn.mx/"|"https://ausn.mx/rutas-y-tarifas/"
 |"gob-bajacalifornia"|"Gobierno de Baja California"||
@@ -107,3 +107,4 @@
 |"gob-tamaulipas"|"Gobierno de Tamaulipas"||
 |"gob-veracruz"|"Gobierno de Veracruz"||
 |"ficeda"|"Fideicomiso para la construcción y operación de la Central de Abasto"|"https://ficeda.com.mx/"|
+"ica"|"oalprogreso"|"Operaciones Autovía Libramiento Progreso S.A. de C.V"||
