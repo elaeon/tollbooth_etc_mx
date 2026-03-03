@@ -132,7 +132,7 @@ def growth_rate_exprs(start, end, prefix_col: str, result_prefix_col: str):
     def cagr_growth_rate():
         result_col_name = f"{result_prefix_col}_cagr_growth_rate_{start}_{end}"
         growth_rate_columns.append(result_col_name)
-        num_of_years = len(range_keys)
+        num_of_years = start - end
         cagr_inflation_rate_exp = (
             pl.when(pl.col(f"{prefix_col}_{start}") != 0)
             .then(
@@ -222,7 +222,8 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
        "stretch_id", "stretch_name", "tollbooth_name", "state", "tb_manage",
        "parent_tb_manage", "stretch_length_km", "stretch_manage", "road_name",
        "start_contract_date", "end_contract_date", "operation_date", "bond_issuance_date",
-       "farac", "bond_issuance_date", "km_cost"
+       "farac", "bond_issuance_date", "km_cost", "operation_contract_days",
+       "end_start_contract_days"
     ] + toll_col_names + sts_col_names
     output_cols_dict = dict((k, None) for k in output_cols)
 
@@ -250,10 +251,15 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
             "bond_issuance_date", "farac"
         )
     )
+    ldf_road = ldf_road.with_columns(
+        ((pl.col("operation_date") - pl.col("start_contract_date")).dt.total_days()).alias("operation_contract_days"),
+        ((pl.col("end_contract_date") - pl.col("start_contract_date")).dt.total_days()).alias("end_start_contract_days")
+    )
+
     df_inflation = (
         pl.read_parquet(data_model.inflation.parquet)
     )
-    df_inflation = df_inflation.filter((pl.col("year") >= from_year) & (pl.col("year") <= to_year))
+    df_inflation = df_inflation.filter((pl.col("year") > from_year) & (pl.col("year") <= to_year))
     df_inflation = df_inflation.cast({"year": pl.String})
     df_inflation = df_inflation.with_columns(
         pl.lit(0).alias("index"),
@@ -268,7 +274,7 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
         .group_by("index")
         .agg(pl.col(inflation_label).product())
         .with_columns(
-            ((pl.col(inflation_label).pow(1/len(range(from_year, to_year+1))) - 1)*100).round(2)
+            ((pl.col(inflation_label).pow(1/(to_year - from_year)) - 1)*100).round(2)
         )
         .select(pl.exclude("index"))
     )
@@ -310,6 +316,13 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
     # so it's eliminated from the columns
     ldf_toll_sts = ldf_toll_sts.unique()
     ldf_toll_sts = ldf_toll_sts.join(ldf_inflation, how="cross")
+    ldf_toll_sts = ldf_toll_sts.with_columns(
+        pl.when(
+            pl.col(f"toll_cagr_growth_rate_{from_year}_{to_year}").is_null()
+        ).then((pl.col(f"inflation_{from_year}_{to_year}") - pl.col(f"toll_growth_rate_{to_year}"))).otherwise(
+            (pl.col(f"inflation_{from_year}_{to_year}") - pl.col(f"toll_cagr_growth_rate_{from_year}_{to_year}"))
+        ).round(2).alias("inflation_toll_diff")
+    )
     ldf_toll_sts.sort("stretch_name").sink_csv(filepath)
     print(f"Saved result in {filepath}")
 
