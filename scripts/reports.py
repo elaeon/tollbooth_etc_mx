@@ -616,10 +616,27 @@ def toll_check(year: int):
         pl.scan_parquet(data_model.tb_toll_imt.parquet)
         .select(pl.exclude("info_year"))
     )
-    ldf_map_tb = (
-        pl.scan_parquet(data_model.map_tb_id.parquet)
-        .select("tollbooth_id", "tollbooth_imt_id")
+    ldf_neighbour = (
+        pl.scan_parquet(
+            data_model.tb_neighbour.parquet
+        )
+        .select("tollbooth_id", "neighbour_id", "distance", "scope")
     )
+    ldf_tollbooth = (
+        pl.scan_parquet(
+            data_model.tollbooths.parquet
+        )
+        .select("tollbooth_id", "tollbooth_name")
+    )
+    ldf_map_tb = (
+        ldf_neighbour
+        .filter(pl.col("scope") == "local-imt")
+        .filter(pl.col("distance") <= 0.3)
+        .select(pl.exclude("scope"))
+        .rename({"neighbour_id": "tollbooth_imt_id"})
+        .join(ldf_tollbooth, on="tollbooth_id")
+    )
+    
     ldf_stretch_toll = (
         pl.scan_parquet(data_model.stretchs_toll.parquet)
         .select(
@@ -631,19 +648,28 @@ def toll_check(year: int):
         ldf_tb_stretch_id
         .join(ldf_map_tb, left_on="tollbooth_id_in", right_on="tollbooth_id")
         .rename({"tollbooth_imt_id": "tollbooth_imt_id_in"})
+        .filter(
+            pl.col("distance") == pl.col("distance").min().over("tollbooth_id_in")
+        )
+        .select(pl.exclude("distance"))
     )
     ldf_stretch_imt = (
         ldf_stretch_imt
         .join(ldf_map_tb, left_on="tollbooth_id_out", right_on="tollbooth_id")
         .rename({"tollbooth_imt_id": "tollbooth_imt_id_out"})
-        .unique()
+        .filter(
+            pl.col("distance") == pl.col("distance").min().over("tollbooth_id_out")
+        )
+        .select(pl.exclude("distance"))
     )
     ldf_stretch_imt = (
-        ldf_toll_imt.join(ldf_stretch_imt, 
-                          left_on=["tollbooth_id_out", "tollbooth_id_in"],
-                            right_on=["tollbooth_imt_id_out", "tollbooth_imt_id_in"], 
-                            how="left"
-                        )
+        ldf_toll_imt
+        .join(
+            ldf_stretch_imt, 
+            left_on=["tollbooth_id_out", "tollbooth_id_in"],
+            right_on=["tollbooth_imt_id_out", "tollbooth_imt_id_in"], 
+            how="left"
+        )
     )
     ldf_stretch_imt = ldf_stretch_imt.join(ldf_stretch_toll, on="stretch_id", how="left")
     toll_exprs = []
@@ -659,7 +685,9 @@ def toll_check(year: int):
         ldf_stretch_imt.with_columns(
             pl.sum_horizontal(total_cols).alias("total_diff")
         )
-        .filter(pl.col("total_diff") > 0)
+        .filter(pl.col("total_diff") != 0)
+        .select(pl.exclude("tollbooth_id_in_right", "tollbooth_id_out_right"))
+        .unique()
     )
     ldf_stretch_imt = ldf_stretch_imt.sort("stretch_id")
     ldf_stretch_imt.sink_csv(f"./reports/toll_check_{year}.csv")
