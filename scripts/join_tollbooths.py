@@ -371,6 +371,57 @@ def tb_imt_stretch_id(year: int):
     ldf_stretch_imt.sink_parquet(data_model.tb_imt_stretch_id.parquet)
 
 
+def fill_toll_from_year(year: int, origin_year: int):
+    data_model = DataModel(year, DataStage.stg)
+    data_model_origin = DataModel(origin_year, DataStage.stg)
+
+    ldf_tb_imt_stretch_id = (
+        pl.scan_parquet(data_model.tb_imt_stretch_id.parquet)
+        .filter(pl.col("stretch_id").is_not_null())
+    )
+    ldf_imt_toll = pl.scan_parquet(data_model_origin.tb_toll_imt.parquet)
+    ldf_stretch_toll = (
+        pl.scan_parquet(data_model_origin.stretchs_toll.parquet)
+        .select(pl.exclude("info_year"))
+    )
+
+    ldf_tb_imt_stretch_id = ldf_tb_imt_stretch_id.join(ldf_stretch_toll, on="stretch_id", how="anti")
+    empty_cols = [
+        "truck_10_axle", "toll_ref", "motorbike_axle", "car_rush_hour", "car_evening_hour",
+        "pedestrian", "bicycle", "car_rush_hour_2", "car_evening_hour_2", "car_morning_night"
+    ]
+    pl_expr = []
+    for col in empty_cols:
+        pl_expr.append(pl.lit(None).alias(col))
+
+    ldf_tb_imt_stretch_id = (
+        ldf_tb_imt_stretch_id
+        .join(
+            ldf_imt_toll, 
+            left_on=["tollbooth_imt_id_out", "tollbooth_imt_id_in"],
+            right_on=["tollbooth_id_out", "tollbooth_id_in"]
+        )
+        .with_columns(pl_expr)
+        .with_columns(
+            toll_ref=(
+                pl.when(pl.col("tollbooth_imt_id_out").is_not_null() & pl.col("tollbooth_imt_id_in").is_not_null())
+                .then("imt_" + pl.col("tollbooth_imt_id_in").cast(pl.String) + "_" + pl.col("tollbooth_imt_id_out").cast(pl.String))
+                .otherwise(pl.col("toll_ref"))
+            )
+        )
+        .select(pl.exclude(
+            "tollbooth_imt_id_out", "tollbooth_imt_id_in", "tollbooth_id_out", "tollbooth_id_in",
+            "update_date", "info_year", "nombre_sal", "nombre_ent"
+            )
+        )
+        .unique()
+    )
+    # print(ldf_tb_imt_stretch_id.collect())
+    ldf_stretch_toll_fill = pl.concat([ldf_stretch_toll, ldf_tb_imt_stretch_id])
+    ldf_stretch_toll_fill = ldf_stretch_toll_fill.sort("stretch_id")
+    ldf_stretch_toll_fill.sink_csv(f"./tmp_data/stretchs_toll_{origin_year}.csv")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", help="data year", required=True, type=int)
@@ -383,6 +434,7 @@ if __name__ == "__main__":
     parser.add_argument("--map-stretch-toll-imt", required=False)
     parser.add_argument("--map-tb-id", required=False, action="store_true")
     parser.add_argument("--tb-imt-stretch-id", required=False, action="store_true")
+    parser.add_argument("--fill-toll", required=False, type=int)
     args = parser.parse_args()
 
     if args.sts_no_tb:
@@ -399,4 +451,6 @@ if __name__ == "__main__":
         map_tb_id(args.year)
     elif args.tb_imt_stretch_id:
         tb_imt_stretch_id(args.year)
+    elif args.fill_toll:
+        fill_toll_from_year(args.year, args.fill_toll)
     
