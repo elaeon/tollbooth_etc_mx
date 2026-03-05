@@ -344,7 +344,7 @@ class StretchToll(TbModel, table=True):
     bicycle: Float64 | None
     car_rush_hour_2: Float64 | None
     car_evening_hour_2: Float64 | None
-    car_morning_night: Float64 | None
+    car_morning_night_hour: Float64 | None
     info_year: UInt16 = Field(index=True)
 
 

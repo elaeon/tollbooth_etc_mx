@@ -388,7 +388,7 @@ def fill_toll_from_year(year: int, origin_year: int):
     ldf_tb_imt_stretch_id = ldf_tb_imt_stretch_id.join(ldf_stretch_toll, on="stretch_id", how="anti")
     empty_cols = [
         "truck_10_axle", "toll_ref", "motorbike_axle", "car_rush_hour", "car_evening_hour",
-        "pedestrian", "bicycle", "car_rush_hour_2", "car_evening_hour_2", "car_morning_night"
+        "pedestrian", "bicycle", "car_rush_hour_2", "car_evening_hour_2", "car_morning_night_hour"
     ]
     pl_expr = []
     for col in empty_cols:
@@ -416,7 +416,6 @@ def fill_toll_from_year(year: int, origin_year: int):
         )
         .unique()
     )
-    # print(ldf_tb_imt_stretch_id.collect())
     ldf_stretch_toll_fill = pl.concat([ldf_stretch_toll, ldf_tb_imt_stretch_id])
     ldf_stretch_toll_fill = ldf_stretch_toll_fill.sort("stretch_id")
     ldf_stretch_toll_fill.sink_csv(f"./tmp_data/stretchs_toll_{origin_year}.csv")
