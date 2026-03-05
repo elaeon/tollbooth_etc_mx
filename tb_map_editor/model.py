@@ -412,3 +412,13 @@ class MapTbId(TbModel, table=True):
 class Inflation(TbModel, table=False):
     year: UInt16 = Field(primary_key=True)
     value: Float32
+
+
+class TbImtStretchId(TbModel, table=True):
+    id: UInt32 | None = Field(default=None, primary_key=True)
+    stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", index=True)
+    tollbooth_imt_id_in: UInt32 = Field(foreign_key="tbimt.tollbooth_id", index=True)
+    tollbooth_imt_id_out: UInt32 = Field(foreign_key="tbimt.tollbooth_id", index=True)
+    tollbooth_id_in: UInt32 = Field(foreign_key="tb.tollbooth_id", index=True)
+    tollbooth_id_out: UInt32 = Field(foreign_key="tb.tollbooth_id", index=True)
+    info_year: UInt16

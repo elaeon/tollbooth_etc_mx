@@ -360,6 +360,63 @@ def map_tb_id(year: int):
     print(f"Saved result in {data_model.map_tb_id.parquet}")
 
 
+def tb_imt_stretch_id(year: int):
+    data_model = DataModel(year, DataStage.stg)
+    ldf_tb_stretch_id = (
+        pl.scan_parquet(data_model.tb_stretch_id.parquet)
+        .select("stretch_id", "tollbooth_id_in", "tollbooth_id_out")
+    )
+    ldf_toll_imt = (
+        pl.scan_parquet(data_model.tb_toll_imt.parquet)
+        .select(["tollbooth_id_in", "tollbooth_id_out"])
+        .rename({"tollbooth_id_in": "tollbooth_imt_id_in", "tollbooth_id_out": "tollbooth_imt_id_out"})
+    )
+    ldf_neighbour = (
+        pl.scan_parquet(data_model.tb_neighbour.parquet)
+        .select("tollbooth_id", "neighbour_id", "distance", "scope")
+    )
+    ldf_map_tb = (
+        ldf_neighbour
+        .filter(pl.col("scope") == "local-imt")
+        .filter(pl.col("distance") <= 0.3)
+        .select(pl.exclude("scope"))
+        .rename({"neighbour_id": "tollbooth_imt_id"})
+    )
+    ldf_stretch_imt = (
+        ldf_toll_imt
+        .join(ldf_map_tb, left_on="tollbooth_imt_id_in", right_on="tollbooth_imt_id")
+        .rename({"tollbooth_id": "tollbooth_id_in"})
+        .filter(
+            pl.col("distance") == pl.col("distance").min().over("tollbooth_imt_id_in")
+        )
+        .select(pl.exclude("distance"))
+    )
+    ldf_stretch_imt = (
+        ldf_stretch_imt
+        .join(ldf_map_tb, left_on="tollbooth_imt_id_out", right_on="tollbooth_imt_id")
+        .rename({"tollbooth_id": "tollbooth_id_out"})
+        .filter(
+            pl.col("distance") == pl.col("distance").min().over("tollbooth_imt_id_out")
+        )
+        .select(pl.exclude("distance"))
+    )
+    ldf_stretch_imt = (
+        ldf_stretch_imt
+        .join(
+            ldf_tb_stretch_id, 
+            on=["tollbooth_id_out", "tollbooth_id_in"],
+            how="left"
+        )
+        .select(
+            "stretch_id",
+            "tollbooth_imt_id_in", "tollbooth_imt_id_out", 
+            "tollbooth_id_in", "tollbooth_id_out",
+        )
+    )
+    ldf_stretch_imt = ldf_stretch_imt.sort("stretch_id")
+    ldf_stretch_imt.sink_parquet(data_model.tb_imt_stretch_id.parquet)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", help="data year", required=True, type=int)
@@ -371,6 +428,7 @@ if __name__ == "__main__":
     parser.add_argument("--id", required=False, type=int)
     parser.add_argument("--map-stretch-toll-imt", required=False)
     parser.add_argument("--map-tb-id", required=False, action="store_true")
+    parser.add_argument("--tb-imt-stretch-id", required=False, action="store_true")
     args = parser.parse_args()
 
     if args.sts_no_tb:
@@ -385,4 +443,6 @@ if __name__ == "__main__":
         find_similarity_toll(args.year, args.similarity_toll, args.id)
     elif args.map_tb_id:
         map_tb_id(args.year)
+    elif args.tb_imt_stretch_id:
+        tb_imt_stretch_id(args.year)
     

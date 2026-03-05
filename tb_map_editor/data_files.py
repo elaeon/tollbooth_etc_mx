@@ -113,5 +113,9 @@ class DataModel:
         return PathModel("map_tb_id", model.MapTbId, self.attr, self.stage)
 
     @property
-    def inflation(self) ->PathModel:
+    def inflation(self) -> PathModel:
         return PathModel("inflation", model.Inflation, self.attr, self.stage)
+
+    @property
+    def tb_imt_stretch_id(self) -> PathModel:
+        return PathModel("tb_imt_stretch_id", model.TbImtStretchId, self.attr, self.stage)
