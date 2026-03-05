@@ -1,7 +1,7 @@
 import polars as pl
 
 
-def tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll):
+def join_tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll):
     ldf_stretch_toll = ldf_stretch_toll.with_columns(
         pl.all().fill_null(strategy="zero"),
     ).with_columns(
