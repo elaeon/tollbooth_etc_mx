@@ -18,3 +18,31 @@ def tb_stretch_id_imt(ldf_toll_imt, ldf_stretch_toll):
         ]
     )
     return ldf_stretch
+
+
+def find_closest_tb(ldf_neighbour):
+    i = 0
+    while i < 2:
+        # Step 1: Find closest neighbour for each origin (tollbooth_id)
+        ldf_neighbour_closest = ldf_neighbour.filter(
+            pl.col("distance") == pl.col("distance").min().over("tollbooth_id")
+        )
+        # Step 2: Ensure each neighbour_id is matched to at most one tollbooth_id 
+        #         (if multiple tollbooths have same closest neighbour, keep the one with smallest distance)
+        ldf_neighbour_unique = ldf_neighbour_closest.filter(
+            pl.col("distance") == pl.col("distance").min().over("neighbour_id")
+        )
+        # Step 3: Get each tollbooth and neighbour left without a close match
+        ldf_ids_unmatched_tb = ldf_neighbour.join(
+            ldf_neighbour_unique, on=["tollbooth_id"], how="anti"
+        )
+        ldf_ids_unmatched_nb = ldf_neighbour.join(
+            ldf_neighbour_unique, on=["neighbour_id"], how="anti"
+        )
+        ldf_imt_ids_unmatched = ldf_ids_unmatched_tb.join(
+            ldf_ids_unmatched_nb, on=["tollbooth_id", "neighbour_id"]
+        ).select(pl.exclude("distance_right"))
+        # Step 4: Do another search with the remaining relations
+        ldf_neighbour = ldf_imt_ids_unmatched
+        i = i + 1
+        yield ldf_neighbour_unique

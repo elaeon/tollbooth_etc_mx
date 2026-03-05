@@ -7,6 +7,7 @@ import argparse
 from collections import defaultdict
 
 from tb_map_editor.data_files import DataModel, DataStage
+from tb_map_editor.utils.tools import tb_stretch_id_imt
 
 
 _BIKE: list = ["motorbike"]
@@ -633,7 +634,7 @@ def tb_imt_stretch_id(year: int):
     ldf_tb_imt_stretch_id.sink_csv(f"./reports/tb_imt_stretch_id_{year}.csv")
 
 
-def toll_check(year: int):
+def complete_stretch_gaps(year: int, stretch_cols: str):
     data_model = DataModel(year, DataStage.stg)
     toll_columns = [
         "motorbike", "car", "car_axle",
@@ -674,13 +675,12 @@ def toll_check(year: int):
         .join(ldf_tb_imt, left_on="tollbooth_imt_id_out", right_on="tollbooth_imt_id")
         .rename({"tollbooth_name": "tollbooth_name_out"})
     )
-    
-    from tb_map_editor.utils.tools import tb_stretch_id_imt
 
     ldf_stretch_toll = tb_stretch_id_imt(ldf_tb_imt_stretch_id, ldf_stretch_toll)
     ldf_stretch_toll = ldf_stretch_toll.select(
-       "stretch_id", "tollbooth_imt_id_in", "tollbooth_imt_id_out", 
-       "tollbooth_name_in", "tollbooth_name_out", "area", "subarea"
+       "stretch_id", "tollbooth_id_in", "tollbooth_id_out",
+       "tollbooth_imt_id_in", "tollbooth_imt_id_out", 
+       "tollbooth_name_in", "tollbooth_name_out", "area", "subarea",
     )
     ldf_stretch_toll = ldf_stretch_toll.with_columns(
         (
@@ -708,9 +708,18 @@ def toll_check(year: int):
     ldf_stretch_toll = ldf_stretch_toll.filter(
        pl.col("score_best") == pl.col("score_best").max().over("tollbooth_imt_id_in", "tollbooth_imt_id_out")
     )
-    #print(ldf_stretch_imt.collect())
+    ldf_stretch_toll = ldf_stretch_toll.filter(pl.col("score_best") > 0.35)
+    if stretch_cols == "stretch_cols":
+        ldf_stretch_toll = ldf_stretch_toll.select("stretch_id", "tollbooth_id_in", "tollbooth_id_out")
+        ldf_tb_stretch_id = (
+            pl.scan_parquet(data_model.tb_stretch_id.parquet)
+            .select("stretch_id", "tollbooth_id_in", "tollbooth_id_out")
+        )
+        ldf_stretch_toll = ldf_stretch_toll.cast({"tollbooth_id_in": pl.UInt32, "tollbooth_id_out": pl.UInt32})
+        ldf_stretch_toll = pl.concat([ldf_tb_stretch_id, ldf_stretch_toll])
+    
     ldf_stretch_toll = ldf_stretch_toll.sort("stretch_id")
-    ldf_stretch_toll.sink_csv(f"./reports/toll_check_{year}.csv")
+    ldf_stretch_toll.sink_csv(f"./reports/complete_stretch_gaps_{year}.csv")
 
 
 if __name__ == "__main__":
@@ -727,7 +736,7 @@ if __name__ == "__main__":
     parser.add_argument("--toll-ref", required=False, action="store_true")
     parser.add_argument("--tollbooth-stretch-manage", required=False, action="store_true")
     parser.add_argument("--stretch-sts", required=False, action="store_true")
-    parser.add_argument("--toll-check", required=False, action="store_true")
+    parser.add_argument("--complete-stretch-gaps", required=False, type=str, choices=("calc_cols", "stretch_cols"))
     parser.add_argument("--tb-imt-stretch-id", required=False, action="store_true")
 
     args = parser.parse_args()
@@ -751,7 +760,7 @@ if __name__ == "__main__":
         tollbooth_stretch_manage(year=2025)
     elif args.stretch_sts:
         stretch_sts(year=2025)
-    elif args.toll_check:
-        toll_check(year=2025)
+    elif args.complete_stretch_gaps:
+        complete_stretch_gaps(year=2025, stretch_cols=args.complete_stretch_gaps)
     elif args.tb_imt_stretch_id:
         tb_imt_stretch_id(year=2025)
