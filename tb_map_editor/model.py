@@ -419,6 +419,6 @@ class TbImtStretchId(TbModel, table=True):
     stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", index=True)
     tollbooth_imt_id_in: UInt32 = Field(foreign_key="tbimt.tollbooth_id", index=True)
     tollbooth_imt_id_out: UInt32 = Field(foreign_key="tbimt.tollbooth_id", index=True)
-    tollbooth_id_in: UInt32 = Field(foreign_key="tb.tollbooth_id", index=True)
-    tollbooth_id_out: UInt32 = Field(foreign_key="tb.tollbooth_id", index=True)
+    tollbooth_id_in: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", index=True)
+    tollbooth_id_out: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", index=True)
     info_year: UInt16

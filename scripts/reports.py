@@ -606,6 +606,10 @@ def tb_imt_stretch_id(year: int):
     data_model = DataModel(year, DataStage.stg)
 
     ldf_tb_imt_stretch_id = pl.scan_parquet(data_model.tb_imt_stretch_id.parquet)
+    ldf_stretch = (
+        pl.scan_parquet(data_model.stretchs.parquet)
+        .select("stretch_id", "stretch_name")
+    )
     ldf_tollbooth = (
         pl.scan_parquet(data_model.tollbooths.parquet)
         .select("tollbooth_id", "tollbooth_name")
@@ -618,12 +622,13 @@ def tb_imt_stretch_id(year: int):
     
     ldf_tb_imt_stretch_id = (
         ldf_tb_imt_stretch_id
+        .join(ldf_stretch, on="stretch_id")
         .join(ldf_tollbooth, left_on="tollbooth_id_in", right_on="tollbooth_id")
         .join(ldf_tollbooth, left_on="tollbooth_id_out", right_on="tollbooth_id")
         .join(ldf_tb_imt, left_on="tollbooth_imt_id_in", right_on="tollbooth_imt_id")
         .join(ldf_tb_imt, left_on="tollbooth_imt_id_out", right_on="tollbooth_imt_id")
         .select(
-            "stretch_id", 
+            "stretch_id", "stretch_name",
             "tollbooth_imt_id_in", "tollbooth_imt_name", 
             "tollbooth_imt_id_out",	"tollbooth_imt_name_right",
             "tollbooth_id_in", "tollbooth_name", 
