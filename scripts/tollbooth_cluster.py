@@ -5,6 +5,7 @@ import polars as pl
 import polars_h3 as plh3
 import argparse
 import requests
+import time
 
 from tb_map_editor.data_files import DataModel, DataStage
 
@@ -70,7 +71,7 @@ def tollbooth_neighbours(year: int):
     print(f"Saved file in: {data_model.tb_neighbour.parquet}")
 
 
-def get_tollbooths_osm(country_name: str) -> pl.DataFrame:
+def get_tollbooths_osm(year: int, country_name: str) -> pl.DataFrame:
     query = f'''
     [out:json];
     area["name"="{country_name}"]->.searchArea;
@@ -98,12 +99,12 @@ def get_tollbooths_osm(country_name: str) -> pl.DataFrame:
     df.write_csv("./tmp_data/osm_tb.csv")
 
 
-def get_osm_routing_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+def get_osm_routing_distance(lat_in: float, lng_in: float, lat_out: float, lng_out: float) -> float:
     """
     Get routing distance (in kilometers) between two points using OSRM API (OpenStreetMap Routing).
     Returns float distance in kilometers. Returns -1 if failed.
     """
-    url = f"http://router.project-osrm.org/route/v1/driving/{lon1},{lat1};{lon2},{lat2}?overview=false"
+    url = f"http://router.project-osrm.org/route/v1/driving/{lng_in},{lat_in};{lng_out},{lat_out}?overview=false"
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -119,10 +120,72 @@ def get_osm_routing_distance(lat1: float, lon1: float, lat2: float, lon2: float)
         return -1
 
 
+def tb_distance(year: int):
+    data_model = DataModel(year, DataStage.stg)
+
+    ldf_tollbooth = (
+        pl.scan_parquet(data_model.tollbooths.parquet)
+        .select("tollbooth_id", "lat", "lng")
+    )
+    ldf_tb_stretch_id = (
+        pl.scan_parquet(data_model.tb_stretch_id.parquet)
+        .select("stretch_id", "tollbooth_id_in", "tollbooth_id_out")
+        .filter(
+            pl.col("tollbooth_id_in") != pl.col("tollbooth_id_out")
+        )
+        .join(
+            ldf_tollbooth,
+            left_on="tollbooth_id_in",
+            right_on="tollbooth_id"
+        )
+        .rename({"lat": "lat_in", "lng": "lng_in"})
+        .join(
+            ldf_tollbooth,
+            left_on="tollbooth_id_out",
+            right_on="tollbooth_id"
+        )
+        .rename({"lat": "lat_out", "lng": "lng_out"})
+    )
+
+    def save_batch(distance_tb: dict, batch_num: int) -> dict:
+        data = {"key": [], "distance": []}
+        for k, v in distance_tb.items():
+            data["key"].append(k)
+            data["distance"].append(v)
+
+        df_distance = pl.DataFrame(data)
+        df_distance = (
+            df_distance.with_columns(
+                pl.col("key").str.split("-").list.to_struct(fields=fields)
+            )
+            .unnest("key")
+        )
+        df_distance.write_csv(f"./tmp_data/distance/tb_distance_{batch_num}.csv")
+        return {}
+        
+    fields = ["stretch_id", "tollbooth_id_in", "tollbooth_id_out"]
+    batch_i = 1
+    batch_size = 50
+    while True:
+        distance_tb = {}
+        for row in ldf_tb_stretch_id.collect().iter_rows(named=True):
+            key = f"{row[fields[0]]}-{row[fields[1]]}-{row[fields[2]]}"
+            distance = get_osm_routing_distance(row["lat_in"], row["lng_in"], row["lat_out"], row["lng_in"])
+            distance_tb[key] = distance
+            print(key, distance)
+            time.sleep(1)
+    
+            if len(distance_tb) % batch_size == 0:
+                distance_tb = save_batch(distance_tb, batch_i)
+                batch_i += 1
+        save_batch(distance_tb, batch_i)
+        break
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--tollbooth-neighbours", required=False, action="store_true")
-    parser.add_argument("--year", required=False, type=int)
+    parser.add_argument("--year", required=True, type=int)
     parser.add_argument("--get-tb-osm", required=False, type=str)
     parser.add_argument("--distance", required=False, action="store_true")
 
@@ -130,11 +193,6 @@ if __name__ == "__main__":
     if args.tollbooth_neighbours:
         tollbooth_neighbours(args.year)
     elif args.get_tb_osm:
-        get_tollbooths_osm(args.get_tb_osm)
+        get_tollbooths_osm(args.year, args.get_tb_osm)
     elif args.distance:
-        lat1 = 19.9234930599427
-        lon1 = -99.8442488908768
-        lat2 = 19.9118273622749
-        lon2 = -99.8525959253311
-        distance = get_osm_routing_distance(lat1, lon1, lat2, lon2)
-        print(distance)
+        tb_distance(args.year)

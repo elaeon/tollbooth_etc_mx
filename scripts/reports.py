@@ -639,6 +639,22 @@ def tb_imt_stretch_id(year: int):
     ldf_tb_imt_stretch_id.sink_csv(f"./reports/tb_imt_stretch_id_{year}.csv")
 
 
+def stretch_length_comparation(year:int, filepath: str):
+    data_model = DataModel(year, DataStage.stg)
+    
+    ldf_osm_distance = pl.scan_csv(filepath)
+    ldf_stretch = (
+        pl.scan_parquet(data_model.stretchs.parquet)
+        .select("stretch_id", "stretch_name", "stretch_length_km")
+        .join(
+            ldf_osm_distance,
+            on="stretch_id"
+        )
+        .sort("stretch_id")
+    )
+    ldf_stretch.sink_csv("./reports/stretch_length_comparation.csv")
+
+
 if __name__ == "__main__":
     output_filepath = "reports/"
 
@@ -654,6 +670,7 @@ if __name__ == "__main__":
     parser.add_argument("--tollbooth-stretch-manage", required=False, action="store_true")
     parser.add_argument("--stretch-sts", required=False, action="store_true")
     parser.add_argument("--tb-imt-stretch-id", required=False, action="store_true")
+    parser.add_argument("--stretch-length", required=False, type=str)
 
     args = parser.parse_args()
     if args.growth_rate:
@@ -678,3 +695,5 @@ if __name__ == "__main__":
         stretch_sts(year=2025)
     elif args.tb_imt_stretch_id:
         tb_imt_stretch_id(year=2025)
+    elif args.stretch_length:
+        stretch_length_comparation(year=2025, filepath=args.stretch_length)
