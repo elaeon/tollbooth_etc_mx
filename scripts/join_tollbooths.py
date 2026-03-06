@@ -458,7 +458,7 @@ def fill_toll_from_year(year: int, origin_year: int):
         .with_columns(
             toll_ref=(
                 pl.when(pl.col("tollbooth_imt_id_out").is_not_null() & pl.col("tollbooth_imt_id_in").is_not_null())
-                .then("imt_" + pl.col("tollbooth_imt_id_in").cast(pl.String) + "_" + pl.col("tollbooth_imt_id_out").cast(pl.String))
+                .then(pl.lit("imt"))
                 .otherwise(pl.col("toll_ref"))
             )
         )
@@ -467,9 +467,8 @@ def fill_toll_from_year(year: int, origin_year: int):
             "update_date", "info_year", "nombre_sal", "nombre_ent"
             )
         )
-        .unique()
     )
-    ldf_stretch_toll_fill = pl.concat([ldf_stretch_toll, ldf_tb_imt_stretch_id])
+    ldf_stretch_toll_fill = pl.concat([ldf_stretch_toll, ldf_tb_imt_stretch_id]).unique()
     ldf_stretch_toll_fill = ldf_stretch_toll_fill.sort("stretch_id")
     ldf_stretch_toll_fill.sink_csv(f"./tmp_data/stretchs_toll_{origin_year}.csv")
 
