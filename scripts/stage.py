@@ -151,11 +151,10 @@ def _opts_map(options, models):
     return catalogs
 
 
-def pub_to_stg(year: int, option_selected: str, normalize: bool):
+def pub_to_stg(year: int, option_selected: str, normalize: bool, options: tuple):
     pipeline = DataPipeline()
     
-    models = ["tollbooths", "stretchs", "stretchs_toll", "roads", "tb_stretch_id"]
-    options = ["tb", "stretch", "stretch_toll", "road", "tb_stretch_id"]
+    models = ["tollbooths", "stretchs", "stretchs_toll", "roads", "tb_stretch_id", "osm_tb_distance"]
     catalogs = _opts_map(options, models)
 
     if option_selected == "road":
@@ -173,6 +172,10 @@ def pub_to_stg(year: int, option_selected: str, normalize: bool):
         df_parent_manage = get_parent_manage()
         ldf = ldf.collect().join(df_parent_manage, left_on="manage", right_on="short_name", how="left")
         ldf.write_parquet(data_model.parquet)
+    elif option_selected == "osm_tb_distance":
+        ldf = ldf.filter(pl.col("distance") == pl.col("distance").max().over("stretch_id"))
+        ldf = ldf.with_columns(pl.col("distance").round(2))
+        ldf.sink_parquet(data_model.parquet)
     else:
         ldf.sink_parquet(data_model.parquet)
     print(f'Sink file: {data_model.parquet}')
@@ -235,13 +238,14 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
 
 
 if __name__ == "__main__":
+    choices = ("tb", "stretch", "stretch_toll", "road", "tb_stretch_id", "osm_tb_distance")
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", required=True, type=int)
     parser.add_argument(
         "--pub-to-stg", 
         help="generate parquet file", 
         required=False, type=str, 
-        choices=["tb", "stretch", "stretch_toll", "road", "tb_stretch_id"]
+        choices=choices
     )
     parser.add_argument("--stg-to-prod", required=False, type=str)
     parser.add_argument("--raw-to-stg", required=False, type=str, choices=("tb_imt", "tb_toll_imt", "inflation"))
@@ -251,6 +255,6 @@ if __name__ == "__main__":
     if args.stg_to_prod:
         stg_to_prod(args.year, args.stg_to_prod)
     elif args.pub_to_stg:
-        pub_to_stg(args.year, args.pub_to_stg, args.normalize)
+        pub_to_stg(args.year, args.pub_to_stg, args.normalize, options=choices)
     elif args.raw_to_stg:
         raw_to_stg(args.year, args.raw_to_stg, args.normalize)

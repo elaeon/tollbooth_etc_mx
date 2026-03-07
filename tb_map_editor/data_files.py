@@ -119,3 +119,7 @@ class DataModel:
     @property
     def tb_imt_stretch_id(self) -> PathModel:
         return PathModel("tb_imt_stretch_id", model.TbImtStretchId, self.attr, self.stage)
+
+    @property
+    def osm_tb_distance(self) -> PathModel:
+        return PathModel("osm_tb_distance", model.OsmTbDistance, self.attr, self.stage)

@@ -181,24 +181,32 @@ def tb_distance(year: int):
         save_batch(distance_tb, batch_i)
         break
 
+    build_tb_distance_file(year)
+
+
+def build_tb_distance_file(year: int):
+    data_model = DataModel(year, DataStage.pub)
+
+    ldf_osm_distance = pl.scan_csv(f"./tmp_data/distance/*.csv")
+    ldf_osm_distance = ldf_osm_distance.sort("stretch_id")
+    ldf_osm_distance.sink_csv(data_model.osm_tb_distance.csv)
+
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--tollbooth-neighbours", required=False, action="store_true")
     parser.add_argument("--year", required=True, type=int)
     parser.add_argument("--get-tb-osm", required=False, type=str)
-    parser.add_argument("--distance", required=False, action="store_true")
+    parser.add_argument("--get-osm-tb-distance", required=False, action="store_true")
+    parser.add_argument("--build-tb-distance-file", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.tollbooth_neighbours:
         tollbooth_neighbours(args.year)
     elif args.get_tb_osm:
         get_tollbooths_osm(args.year, args.get_tb_osm)
-    elif args.distance:
+    elif args.get_osm_tb_distance:
         tb_distance(args.year)
-        # lat_in = 19.9234930599427
-        # lng_in = -99.8442488908768
-        # lat_out = 19.9118273622749
-        # lng_out = -99.8525959253311
-        # distance = get_osm_routing_distance(lat_in, lng_in, lat_out, lng_out)
-        # print(distance)
+    elif args.build_tb_distance_file:
+        build_tb_distance_file(args.year)

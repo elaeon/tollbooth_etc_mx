@@ -422,3 +422,12 @@ class TbImtStretchId(TbModel, table=True):
     tollbooth_id_in: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", index=True)
     tollbooth_id_out: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", index=True)
     info_year: UInt16
+
+
+class OsmTbDistance(TbModel, table=True):
+    id: UInt32 | None = Field(default=None, primary_key=True)
+    stretch_id: UInt32 = Field(foreign_key="stretch.stretch_id", index=True)
+    tollbooth_id_in: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", index=True)
+    tollbooth_id_out: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", index=True)
+    distance: Float64
+    info_year: UInt16
