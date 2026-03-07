@@ -639,10 +639,10 @@ def tb_imt_stretch_id(year: int):
     ldf_tb_imt_stretch_id.sink_csv(f"./reports/tb_imt_stretch_id_{year}.csv")
 
 
-def stretch_length_comparation(year:int, filepath: str):
+def stretch_length_comparation(year:int, dir_path: str):
     data_model = DataModel(year, DataStage.stg)
     
-    ldf_osm_distance = pl.scan_csv(filepath)
+    ldf_osm_distance = pl.scan_csv(f"{dir_path}/*.csv")
     ldf_stretch = (
         pl.scan_parquet(data_model.stretchs.parquet)
         .select("stretch_id", "stretch_name", "stretch_length_km")
@@ -696,4 +696,4 @@ if __name__ == "__main__":
     elif args.tb_imt_stretch_id:
         tb_imt_stretch_id(year=2025)
     elif args.stretch_length:
-        stretch_length_comparation(year=2025, filepath=args.stretch_length)
+        stretch_length_comparation(year=2025, dir_path=args.stretch_length)

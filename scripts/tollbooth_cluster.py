@@ -170,7 +170,7 @@ def tb_distance(year: int):
         distance_tb = {}
         for row in ldf_tb_stretch_id.collect().iter_rows(named=True):
             key = f"{row[fields[0]]}-{row[fields[1]]}-{row[fields[2]]}"
-            distance = get_osm_routing_distance(row["lat_in"], row["lng_in"], row["lat_out"], row["lng_in"])
+            distance = get_osm_routing_distance(row["lat_in"], row["lng_in"], row["lat_out"], row["lng_out"])
             distance_tb[key] = distance
             print(key, distance)
             time.sleep(1)
@@ -196,3 +196,9 @@ if __name__ == "__main__":
         get_tollbooths_osm(args.year, args.get_tb_osm)
     elif args.distance:
         tb_distance(args.year)
+        # lat_in = 19.9234930599427
+        # lng_in = -99.8442488908768
+        # lat_out = 19.9118273622749
+        # lng_out = -99.8525959253311
+        # distance = get_osm_routing_distance(lat_in, lng_in, lat_out, lng_out)
+        # print(distance)
