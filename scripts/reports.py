@@ -314,15 +314,18 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
     del output_cols_dict[f"mean_toll_{to_year}"]
 
     ldf_tbsts_stretch_id = pl.scan_parquet(
-        data_model.tbsts_stretch_id.parquet
-    ).select("stretch_id", "tollbooth_sts_id")
+        data_model.tb_sts_stretch_id.parquet
+    ).select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
 
     ldf_tbsts_stretch_id = ldf_tbsts_stretch_id.join(
         ldf_sts, left_on="tollbooth_sts_id", right_on="tollbooth_id", how="full"
-    ).select(pl.exclude("tollbooth_id"))
+    ).select(pl.exclude("tollbooth_id_right"))
 
     ldf_toll_sts = ldf_toll.join(
-        ldf_tbsts_stretch_id, left_on="stretch_id", right_on="stretch_id", how="left"
+        ldf_tbsts_stretch_id, 
+        left_on=["stretch_id", "tollbooth_id_out"], 
+        right_on=["stretch_id", "tollbooth_id"], 
+        how="left"
     )
 
     filepath = os.path.join(output_filepath, f"growth_rate_{vehicle_type}_{from_year}_{to_year}.csv")
@@ -434,7 +437,7 @@ def stretch_names_report(year: int):
         data_model_sts.tb_sts.parquet
     ).select("tollbooth_id", "stretch_name").rename({"stretch_name": "stretch_sts_name"})
     ldf_tbsts_stretch_id = pl.scan_parquet(
-        data_model.tbsts_stretch_id.parquet
+        data_model.tb_sts_stretch_id.parquet
     )
 
     ldf_tbsts_stretch_id = ldf_tbsts_stretch_id.join(ldf_stretch, on="stretch_id")
@@ -605,7 +608,7 @@ def stretch_sts(year: int):
         .select("tollbooth_id", "tollbooth_name", "stretch_name", "status")
     )
     ldf_tbsts_stretch_id = (
-        pl.scan_parquet(data_model.tbsts_stretch_id.parquet)
+        pl.scan_parquet(data_model.tb_sts_stretch_id.parquet)
         .select("stretch_id", "tollbooth_sts_id")
     )
 

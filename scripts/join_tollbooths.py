@@ -167,9 +167,8 @@ def tb_stretch_id_sts(base_year: int, move_year: int):
     )   
     ldf_tb_stretch_sts = (
         ldf_tb_stretch_sts
-        .select("stretch_id", "tollbooth_sts_id")
+        .select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
     )
-
     try:
         ldf_tb_stretch_id_patch = pl.scan_csv(data_model_pub.tb_sts_stretch_id_patch.csv).cast({"tollbooth_sts_id": pl.UInt16, "stretch_id": pl.UInt32})
         ldf_tb_stretch_sts = ldf_tb_stretch_sts.update(
@@ -184,9 +183,9 @@ def tb_stretch_id_sts(base_year: int, move_year: int):
     ldf_stretch_no_tb = ldf_stretch_no_tb.with_columns(
         pl.lit(None).alias("tollbooth_id"),
         pl.lit(None).alias("tollbooth_sts_id")
-    ).select("stretch_id", "tollbooth_sts_id")
+    ).select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
     ldf_tb_stretch_sts = pl.concat([ldf_tb_stretch_sts, ldf_stretch_no_tb])
-    ldf_tb_stretch_sts.sink_parquet(data_model_base.tbsts_stretch_id.parquet)
+    ldf_tb_stretch_sts.sink_parquet(data_model_base.tb_sts_stretch_id.parquet)
 
 
 def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
