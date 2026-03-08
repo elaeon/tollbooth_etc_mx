@@ -333,6 +333,14 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
         right_on=["stretch_id", "tollbooth_id"], 
         how="left"
     )
+    # Keep only groups where at least one row has non-null stretch_way for each stretch_id and tollbooth_name
+    ldf_toll_sts = ldf_toll_sts.with_columns(
+        pl.col("stretch_id").rank("ordinal").over("stretch_id", "tollbooth_name", order_by="stretch_way").alias("stretch_way_grp")
+    ).filter(
+        pl.col("stretch_way_grp") == pl.col("stretch_way_grp").max().over("stretch_id", "tollbooth_name")
+    ).select(
+       pl.exclude("stretch_way_grp")
+    )
     filepath = os.path.join(output_filepath, f"growth_rate_{vehicle_type}_{from_year}_{to_year}.csv")
     ldf_toll_sts = ldf_toll_sts.select(list(output_cols_dict.keys()))
     # stretchs could have distincts tollbooth_id_out
