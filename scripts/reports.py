@@ -221,7 +221,7 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
     sts_col_names = ldf_sts.collect_schema().names()[1:]
 
     output_cols = [
-       "stretch_id", "stretch_name", "tollbooth_name", "state", "tb_manage",
+       "stretch_id", "stretch_name", "stretch_way", "tollbooth_name", "state", "tb_manage",
        "parent_tb_manage", "stretch_length_km", "stretch_manage", "road_name",
        "start_contract_date", "end_contract_date", "operation_date", "bond_issuance_date",
        "farac", "bond_issuance_date", "km_cost", "operation_contract_days",
@@ -317,8 +317,14 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
         data_model.tb_sts_stretch_id.parquet
     ).select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
 
+    ldf_sts_name = (
+        pl.scan_parquet(DataModel(to_year - 1, DataStage.prd).tb_sts.parquet)
+        .select("tollbooth_id", "stretch_name")
+        .rename({"stretch_name": "stretch_way"})
+        .join(ldf_sts, on="tollbooth_id")
+    )
     ldf_tbsts_stretch_id = ldf_tbsts_stretch_id.join(
-        ldf_sts, left_on="tollbooth_sts_id", right_on="tollbooth_id", how="full"
+        ldf_sts_name, left_on="tollbooth_sts_id", right_on="tollbooth_id", how="full"
     ).select(pl.exclude("tollbooth_id_right"))
 
     ldf_toll_sts = ldf_toll.join(
@@ -327,7 +333,6 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
         right_on=["stretch_id", "tollbooth_id"], 
         how="left"
     )
-
     filepath = os.path.join(output_filepath, f"growth_rate_{vehicle_type}_{from_year}_{to_year}.csv")
     ldf_toll_sts = ldf_toll_sts.select(list(output_cols_dict.keys()))
     # stretchs could have distincts tollbooth_id_out
