@@ -193,7 +193,7 @@
 201,399,"ent. gran canal",19.507143955204,-99.0843726041781,"open","edomx","entronque",2,"toll","anesa",,0,
 202,399,"ent. gran canal",19.5072233740303,-99.0843383755434,"open","edomx","entronque",2,"toll","anesa",,,
 203,588,"ent. indios verdes",19.5135365861925,-99.0988628962673,"open","edomx","entronque",1,"toll","anesa",,,
-204,915,"ent. peñon",19.4688423056394,-99.0044319335029,"open","edomx","entronque",2,"toll","pinfra",,0,
+204,915,"ent. peñon",19.4688423056394,-99.0044319335029,"open","edomx","entronque",2,"toll","desarrollo-global",,0,
 205,576,"entronque ojo de agua",19.665029989506,-99.0017402167334,"open","edomx","entronque",3,"toll","golfo-centro",,,"in"
 206,576,"entronque ojo de agua",19.6653758296542,-99.002033909126,"open","edomx","entronque",2,"toll","golfo-centro",,,"out"
 207,412,"huixquilucan",19.4143623901941,-99.2997711896897,"open","edomx","entronque",3,"toll","chamapa-laventa",,,
@@ -271,7 +271,7 @@
 281,4,"tepotzotlan",19.7153486956143,-99.2074227333069,"open","edomx","troncal",10,"toll","capufe",,,
 283,914,"texcoco",19.5028271560487,-98.9127100887858,"open","edomx","troncal",6,"toll","desarrollo-global",,0,
 284,914,"texcoco",19.5020740322376,-98.9149895242464,"open","edomx","troncal",3,"toll","desarrollo-global",,0,
-285,928,"tezoyuca (589)",19.6006575114844,-98.9255380669232,"open","edomx","troncal",6,"toll","pinfra",,,
+285,928,"tezoyuca (589)",19.6006575114844,-98.9255380669232,"open","edomx","troncal",6,"toll","ecatepec-piramides",,,
 286,575,"tizatyca (ojo de agua)",19.6188401985079,-99.0296620130539,"open","edomx","troncal",10,"toll","golfo-centro",,,
 287,434,"tulancingo",19.8336648839833,-98.7015982353397,"open","edomx","entronque",2,"toll","arconorte",,1,"out"
 288,434,"tulancingo",19.8336724681593,-98.7014506788197,"open","edomx","entronque",1,"toll","arconorte",,0,"in"
