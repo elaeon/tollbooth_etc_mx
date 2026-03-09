@@ -176,6 +176,25 @@ def pub_to_stg(year: int, option_selected: str, normalize: bool, options: tuple)
         ldf = ldf.filter(pl.col("distance") == pl.col("distance").max().over("stretch_id"))
         ldf = ldf.with_columns(pl.col("distance").round(2))
         ldf.sink_parquet(data_model.parquet)
+    elif option_selected == "stretch":
+        ldf_osm_tb_distance = (
+            pl.scan_parquet(DataModel(year, DataStage.stg).osm_tb_distance.parquet)
+            .select("stretch_id", "distance")
+            .rename({"distance": "stretch_length_km"})
+        )
+        ldf = (
+            ldf
+            .rename({"manage": "stretch_manage"})
+            .join(ldf_osm_tb_distance, on="stretch_id", how="left")
+            .with_columns(
+                stretch_length_km=(
+                    pl.when(pl.col("stretch_length_km_right").is_null())
+                    .then(pl.col("stretch_length_km"))
+                    .otherwise(pl.col("stretch_length_km_right"))
+                )
+            )
+        )
+        ldf.sink_parquet(data_model.parquet)
     else:
         ldf.sink_parquet(data_model.parquet)
     print(f'Sink file: {data_model.parquet}')
