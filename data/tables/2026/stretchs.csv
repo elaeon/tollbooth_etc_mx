@@ -122,7 +122,7 @@
 118,"CTO. EXT. MEXIQUENSE  AIFA T-5 D.S.I.",,,178,"state",
 119,"CTO. EXT. MEXIQUENSE  AIFA A-35 D.S.I.",,,178,"state",
 1396,"A-12 entronque santa inés",,,178,"state",
-120,"indios verdes-san cristobal ecatepec",8.8,,,,
+120,"indios verdes-san cristobal ecatepec",8.8,,24,,
 121,"Mexico-lecheria",11.2,56,24,"federal",
 122,"MÉXICO-PACHUCA",,56,24,"federal",
 123,"indios verdez-tizayuca",45.8,56,24,"federal",
@@ -305,8 +305,8 @@
 300,"laguna larga-patti II",21.388,225,208,"federal",
 301,"Calera-patti II",16.08,225,208,"federal",
 302,"laguna larga-calera",5.3,225,208,"federal",
-303,"MORELIA-AEROPUERTO",,,,"federal",
-304,"MORELIA-AEROPUERTO",,,,"federal",
+303,"MORELIA-AEROPUERTO",,,250,"federal",
+304,"MORELIA-AEROPUERTO",,,250,"federal",
 305,"Morelia-copandaro (capula-patzcuaro)",34,247,54,"federal",
 306,"Quiroga-patzcuaro (patzcuaro-copandro)",29.57,247,54,"federal",
 307,"PATZCUARO-URUAPAN",56.5,61,55,"federal",
@@ -1321,23 +1321,23 @@ VIAL",,,121,"state",
 1316,"ALFREDO DEL MAZO (E) - JARDINES DE MORELOS (B)",,,126,"state","south-north"
 1317,"CIRCUNVALACIÓN SUR(E) - CIRCUITO EXTERIOR M. (B)",,,126,"state","south-north"
 1318,"CIRCUNVALACIÓN SUR (E) - JARDINES DE MORELOS (B)",,,126,"state","south-north"
-1319,"VENTA DE CARPIO - CIRCUNVALACIÓN (C)",,,127,"state","north-south"
-1320,"VENTA DE CARPIO - ALFREDO DEL MAZO (C)",,,127,"state","north-south"
-1321,"VENTA DE CARPIO - RÍO DE LOS REMEDIOS (TSN)",,,127,"state","north-south"
-1322,"VENTA DE CARPIO - RÍO DE LOS REMEDIOS (A)",,,127,"state","north-south"
-1323,"JARDINES DE MORELOS (A) - CIRCUNVALACIÓN (C)",,,127,"state","north-south"
-1324,"JARDINES DE MORELOS (A) - ALFREDO DEL MAZO (C)",,,127,"state","north-south"
-1325,"JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (TNS)",,,127,"state","north-south"
-1326,"JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (A)",,,127,"state","north-south"
-1327,"CIRCUITO EXTERIOR M.  (A) - CIRCUNVALACIÓN (C)",,,127,"state","north-south"
-1328,"CIRCUITO EXTERIOR M. (A) - ALFREDO DEL MAZO (C)",,,127,"state","north-south"
-1329,"CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (TNS)",,,127,"state","north-south"
-1330,"CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (A)",,,127,"state","north-south"
-1331,"CIRCUNVALACIÓN SUR (D) - ALFREDO DEL MAZO (C)",,,127,"state","north-south"
-1332,"CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (TNS)",,,127,"state","north-south"
-1333,"CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (A)",,,127,"state","north-south"
-1334,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (TNS)",,,127,"state","north-south"
-1335,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (A)",,,127,"state","north-south"
+1319,"VENTA DE CARPIO - CIRCUNVALACIÓN (C)",,,126,"state","north-south"
+1320,"VENTA DE CARPIO - ALFREDO DEL MAZO (C)",,,126,"state","north-south"
+1321,"VENTA DE CARPIO - RÍO DE LOS REMEDIOS (TSN)",,,126,"state","north-south"
+1322,"VENTA DE CARPIO - RÍO DE LOS REMEDIOS (A)",,,126,"state","north-south"
+1323,"JARDINES DE MORELOS (A) - CIRCUNVALACIÓN (C)",,,126,"state","north-south"
+1324,"JARDINES DE MORELOS (A) - ALFREDO DEL MAZO (C)",,,126,"state","north-south"
+1325,"JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (TNS)",,,126,"state","north-south"
+1326,"JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (A)",,,126,"state","north-south"
+1327,"CIRCUITO EXTERIOR M.  (A) - CIRCUNVALACIÓN (C)",,,126,"state","north-south"
+1328,"CIRCUITO EXTERIOR M. (A) - ALFREDO DEL MAZO (C)",,,126,"state","north-south"
+1329,"CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (TNS)",,,126,"state","north-south"
+1330,"CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (A)",,,126,"state","north-south"
+1331,"CIRCUNVALACIÓN SUR (D) - ALFREDO DEL MAZO (C)",,,126,"state","north-south"
+1332,"CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (TNS)",,,126,"state","north-south"
+1333,"CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (A)",,,126,"state","north-south"
+1334,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (TNS)",,,126,"state","north-south"
+1335,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (A)",,,126,"state","north-south"
 1336,"Atlixco-jantetelco",55.94,,193,"state",
 1337,"Puebla-atlixco",37.34,,194,"state",
 1338,"Mexicalli-rio colorado (puente colorado)",0.304,,133,"federal",
