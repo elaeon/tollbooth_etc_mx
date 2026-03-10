@@ -479,7 +479,7 @@
 474,"MONTERREY-CADEREYTA",,,201,"state",
 475,"MONTERREY-CADEREYTA",,,201,"state",
 476,"PUENTE CADEREYTA",0.179,66,91,,
-477,"AGUJITA-ALLENDE",102.76,,,"state",
+477,"AGUJITA-ALLENDE",52,,249,"state",
 478,"PUENTE ACUÑA",0.129,64,92,,
 479,"Monterrey-la gloria",123.1,59,93,"federal",
 480,"Monterrey-agua leguas",56.9,59,93,"federal",
@@ -1134,7 +1134,7 @@
 1130,"CAMINERO BIS (INTERCONEXIÓN VET) - BLVD DE LA LUZ",,,118,"state","south-north"
 1131,"CAMINERO BIS (INTERCONEXIÓN VET)- LUIS CABRERA",,,118,"state","south-north"
 1132,"CAMINERO BIS (INTERCONEXIÓN VET) - PEDREGAL DEL S.",,,118,"state","south-north"
-1133,"AUSUR BANOBRAS (VIADUCTO ELEVADO DE TLALPAN)",,,120,,
+1133,"AUSUR BANOBRAS (VIADUCTO ELEVADO DE TLALPAN)",,,120,"federal",
 1134,"POETAS -AGUILAS",,,121,"state",
 1135,"POETAS -TORRES",,,121,"state",
 1136,"POETAS LUIS CABRERA",,,121,"state",
@@ -1350,7 +1350,7 @@ VIAL",,,121,"state",
 1345,"Conchos-camargo",35,19,130,"federal",
 1346,"Camargo-jimenez",70,6,131,"federal",
 1347,"chihuahua-sacramento",27.9,,213,"state",
-1348,"flores magon-ojo laguna",77.32,,,"state",
+1348,"flores magon-ojo laguna",77.32,,248,"state",
 1349,"Cuahutémoc-santa isabel",,,247,"state",
 1350,"Jimenez-savalza",,,131,"state",
 1351,"flores magón-galeana",61.2,,246,"state",
