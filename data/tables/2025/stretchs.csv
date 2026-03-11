@@ -31,15 +31,15 @@
 30,"Nochixtlán-oaxaca",64.5,115,7,"federal",
 31,"Nochixtlán-huitzo",38.51,115,7,"federal",
 32,"Huitzo-oaxaca",25.99,115,7,"federal",
-33,"BARRANCA LARGA-VENTANILLA",,,197,,
-34,"BARRANCA LARGA-VENTANILLA",,,197,,
+33,"BARRANCA LARGA-VENTANILLA",15.2,,197,,
+34,"BARRANCA LARGA-VENTANILLA",89,,197,,
 35,"la tinaja-isla",118.15,33,8,"federal",
 36,"la tinaja-cosamaloapan",83.36,33,8,"federal",
 37,"Cosamaloapan-isla",34.79,33,8,"federal",
 38,"Isla-cosoleacaque",109.5,33,8,"federal",
 39,"Isla-acayucan",69.85,33,8,"federal",
 40,"Acayucan-cosoleacaque",40,33,8,"federal",
-41,"TÚNEL COATZACOALCOS",1.6,,,"state",
+41,"TÚNEL COATZACOALCOS",1.6,,243,"state",
 42,"MITLA-TEHUANTEPEC II",71,252,9,"federal",
 43,"Mitla-lachixitla",39.5,252,9,"federal",
 44,"LACHIXILA-ENT. TEHUANTEPEC II",40,252,9,"federal",
@@ -122,7 +122,7 @@
 118,"CTO. EXT. MEXIQUENSE  AIFA T-5 D.S.I.",,,178,"state",
 119,"CTO. EXT. MEXIQUENSE  AIFA A-35 D.S.I.",,,178,"state",
 1396,"A-12 entronque santa inés",,,178,"state",
-120,"indios verdes-san cristobal ecatepec",8.8,,,,
+120,"indios verdes-san cristobal ecatepec",8.8,,24,,
 121,"Mexico-lecheria",11.2,56,24,"federal",
 122,"MÉXICO-PACHUCA",,56,24,"federal",
 123,"indios verdez-tizayuca",45.8,56,24,"federal",
@@ -179,16 +179,16 @@
 174,"cerro gordo-salamanca",5,109,36,"federal",
 175,"Celaya-irapuato",59.25,109,36,"federal",
 176,"Celaya-salamanca",37.75,109,36,"federal",
-177,"cerro gordo-ent la garrida",31.034,242,38,"federal",
+177,"cerro gordo-ent la garrida",31.034,242,36,"federal",
 178,"entronque itesi-san cristobal",19.57,212,37,"federal",
 179,"san cristobal-entronque carretera 90",9.63,212,37,"federal",
 180,"entronque itesi-arandas",5.81,212,37,"federal",
 181,"Arandas-san cristobal",13.76,212,37,"federal",
-182,"Salamanca-irapuato",21.5,109,36,"federal",
+182,"Salamanca-irapuato",21.5,109,38,"federal",
 183,"Irapuato-leon",49.828,242,38,"federal",
 184,"Irapuato-silao (romita-irapuato)",25.3,242,38,"federal",
 185,"Silao-leon (romita-leon)",23.6,242,38,"federal",
-186,"eje metropolitano-ent los rodrigiez",9.5,242,38,"federal",
+186,"eje metropolitano-ent los rodrigiez",9.5,242,240,"federal",
 187,"GUANAJUATO-SILAO",,,186,"state",
 188,"Leon-lagos de moreno",60.05,36,39,"federal",
 189,"Leon-las joyas",22.8,36,39,"federal",
@@ -305,8 +305,8 @@
 300,"laguna larga-patti II",21.388,225,208,"federal",
 301,"Calera-patti II",16.08,225,208,"federal",
 302,"laguna larga-calera",5.3,225,208,"federal",
-303,"MORELIA-AEROPUERTO",,,,"federal",
-304,"MORELIA-AEROPUERTO",,,,"federal",
+303,"MORELIA-AEROPUERTO",,,250,"federal",
+304,"MORELIA-AEROPUERTO",,,250,"federal",
 305,"Morelia-copandaro (capula-patzcuaro)",34,247,54,"federal",
 306,"Quiroga-patzcuaro (patzcuaro-copandro)",29.57,247,54,"federal",
 307,"PATZCUARO-URUAPAN",56.5,61,55,"federal",
@@ -356,8 +356,8 @@
 351,"ZACAPALCO-RANCHO VIEJO",17.3,124,61,"federal",
 352,"RANCHO VIEJO-TAXCO",8.34,110,62,"federal",
 353,"PUENTE DE IXTLA-IGUALA",63.578,73,63,"federal",
-354,"MAXITUNEL ACAPULCO",2.953,,,"state",
-355,"MACROTUNEL ACAPULCO",3.3,,,,
+354,"MAXITUNEL ACAPULCO",2.953,,242,"state",
+355,"MACROTUNEL ACAPULCO",3.3,,241,,
 356,"LIBRAMIENTO TECPAN",4.369,205,64,"federal",
 357,"ZAPOTLANEJO-GUADALAJARA",,,65,"federal",
 358,"ZAPOTLANEJO-GUADALAJARA",,,65,"federal",
@@ -438,9 +438,9 @@
 433,"Yerbanis-pedriceña",48.55,123,82,"federal",
 434,"Yerbanis-cuencame",29.92,123,82,"federal",
 435,"Cuencame-pedriceña",18.63,123,82,"federal",
-436,"Pedriceña-gomez palacio",68.45,123,82,"federal",
-437,"Pedriceña-leon guzman",51.48,123,82,"federal",
-438,"leon guzman-gomez palacio",16.97,123,82,"federal",
+436,"Pedriceña-gomez palacio",68.45,123,232,"federal",
+437,"Pedriceña-leon guzman",51.48,123,232,"federal",
+438,"leon guzman-gomez palacio",16.97,123,232,"federal",
 439,"LIBRAMIENTO NORTE DE LA LAGUNA",40.7,241,83,"federal",
 440,"san pedro-matamoros",17.4,241,83,,
 441,"Vergel-san pedro",23.3,241,83,,
@@ -479,7 +479,7 @@
 474,"MONTERREY-CADEREYTA",,,201,"state",
 475,"MONTERREY-CADEREYTA",,,201,"state",
 476,"PUENTE CADEREYTA",0.179,66,91,,
-477,"AGUJITA-ALLENDE",102.76,,,"state",
+477,"AGUJITA-ALLENDE",52,,249,"state",
 478,"PUENTE ACUÑA",0.129,64,92,,
 479,"Monterrey-la gloria",123.1,59,93,"federal",
 480,"Monterrey-agua leguas",56.9,59,93,"federal",
@@ -1134,7 +1134,7 @@
 1130,"CAMINERO BIS (INTERCONEXIÓN VET) - BLVD DE LA LUZ",,,118,"state","south-north"
 1131,"CAMINERO BIS (INTERCONEXIÓN VET)- LUIS CABRERA",,,118,"state","south-north"
 1132,"CAMINERO BIS (INTERCONEXIÓN VET) - PEDREGAL DEL S.",,,118,"state","south-north"
-1133,"AUSUR BANOBRAS (VIADUCTO ELEVADO DE TLALPAN)",,,120,"state",
+1133,"AUSUR BANOBRAS (VIADUCTO ELEVADO DE TLALPAN)",,,120,"federal",
 1134,"POETAS -AGUILAS",,,121,"state",
 1135,"POETAS -TORRES",,,121,"state",
 1136,"POETAS LUIS CABRERA",,,121,"state",
@@ -1321,23 +1321,23 @@ VIAL",,,121,"state",
 1316,"ALFREDO DEL MAZO (E) - JARDINES DE MORELOS (B)",,,126,"state","south-north"
 1317,"CIRCUNVALACIÓN SUR(E) - CIRCUITO EXTERIOR M. (B)",,,126,"state","south-north"
 1318,"CIRCUNVALACIÓN SUR (E) - JARDINES DE MORELOS (B)",,,126,"state","south-north"
-1319,"VENTA DE CARPIO - CIRCUNVALACIÓN (C)",,,127,"state","north-south"
-1320,"VENTA DE CARPIO - ALFREDO DEL MAZO (C)",,,127,"state","north-south"
-1321,"VENTA DE CARPIO - RÍO DE LOS REMEDIOS (TSN)",,,127,"state","north-south"
-1322,"VENTA DE CARPIO - RÍO DE LOS REMEDIOS (A)",,,127,"state","north-south"
-1323,"JARDINES DE MORELOS (A) - CIRCUNVALACIÓN (C)",,,127,"state","north-south"
-1324,"JARDINES DE MORELOS (A) - ALFREDO DEL MAZO (C)",,,127,"state","north-south"
-1325,"JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (TNS)",,,127,"state","north-south"
-1326,"JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (A)",,,127,"state","north-south"
-1327,"CIRCUITO EXTERIOR M.  (A) - CIRCUNVALACIÓN (C)",,,127,"state","north-south"
-1328,"CIRCUITO EXTERIOR M. (A) - ALFREDO DEL MAZO (C)",,,127,"state","north-south"
-1329,"CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (TNS)",,,127,"state","north-south"
-1330,"CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (A)",,,127,"state","north-south"
-1331,"CIRCUNVALACIÓN SUR (D) - ALFREDO DEL MAZO (C)",,,127,"state","north-south"
-1332,"CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (TNS)",,,127,"state","north-south"
-1333,"CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (A)",,,127,"state","north-south"
-1334,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (TNS)",,,127,"state","north-south"
-1335,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (A)",,,127,"state","north-south"
+1319,"VENTA DE CARPIO - CIRCUNVALACIÓN (C)",,,126,"state","north-south"
+1320,"VENTA DE CARPIO - ALFREDO DEL MAZO (C)",,,126,"state","north-south"
+1321,"VENTA DE CARPIO - RÍO DE LOS REMEDIOS (TSN)",,,126,"state","north-south"
+1322,"VENTA DE CARPIO - RÍO DE LOS REMEDIOS (A)",,,126,"state","north-south"
+1323,"JARDINES DE MORELOS (A) - CIRCUNVALACIÓN (C)",,,126,"state","north-south"
+1324,"JARDINES DE MORELOS (A) - ALFREDO DEL MAZO (C)",,,126,"state","north-south"
+1325,"JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (TNS)",,,126,"state","north-south"
+1326,"JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (A)",,,126,"state","north-south"
+1327,"CIRCUITO EXTERIOR M.  (A) - CIRCUNVALACIÓN (C)",,,126,"state","north-south"
+1328,"CIRCUITO EXTERIOR M. (A) - ALFREDO DEL MAZO (C)",,,126,"state","north-south"
+1329,"CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (TNS)",,,126,"state","north-south"
+1330,"CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (A)",,,126,"state","north-south"
+1331,"CIRCUNVALACIÓN SUR (D) - ALFREDO DEL MAZO (C)",,,126,"state","north-south"
+1332,"CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (TNS)",,,126,"state","north-south"
+1333,"CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (A)",,,126,"state","north-south"
+1334,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (TNS)",,,126,"state","north-south"
+1335,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (A)",,,126,"state","north-south"
 1336,"Atlixco-jantetelco",55.94,,193,"state",
 1337,"Puebla-atlixco",37.34,,194,"state",
 1338,"Mexicalli-rio colorado (puente colorado)",0.304,,133,"federal",
@@ -1350,12 +1350,12 @@ VIAL",,,121,"state",
 1345,"Conchos-camargo",35,19,130,"federal",
 1346,"Camargo-jimenez",70,6,131,"federal",
 1347,"chihuahua-sacramento",27.9,,213,"state",
-1348,"flores magon-ojo laguna",77.32,,,"state",
-1349,"Cuahutémoc-santa isabel",,,,"state",
-1350,"Jimenez-savalza",,,,"state",
-1351,"flores magón-galeana",61.2,,,"state",
+1348,"flores magon-ojo laguna",77.32,,248,"state",
+1349,"Cuahutémoc-santa isabel",,,247,"state",
+1350,"Jimenez-savalza",,,131,"state",
+1351,"flores magón-galeana",61.2,,246,"state",
 1352,"libramiento de samalayuca-san jeronimo",80,,129,"state",
-1353,"Chihuahua-ojinaga",114.01,,,"state",
+1353,"Chihuahua-ojinaga",114.01,,245,"state",
 1354,"Puebla-tlaxcala",17,,192,"state",
 1355,"libramiento de nogales",12.5,39,132,"federal",
 1356,"puente san luis rio colorado ii",1.4,210,235,"federal",
@@ -1416,18 +1416,16 @@ VIAL",,,121,"state",
 1415,"Guadalajara-acatic",,,41,"federal",
 1416,"Ent. Libramiento calera-enrique estrada",,48,166,"federal",
 1417,"Ent. Libramiento calera-enrique estrada",,48,166,"federal",
-1418,"5 Sur Leyes de Reforma A",,,,,
-1419,"4 Oriente Río Churubusco A",,,,,
-1420,"La Nueva Viga",,,,,
-1421,"6 Sur Luis Méndez A",,,,,
-1422,"6 Sur Luis Méndez B",,,,,
-1423,"CHAMAPA INBURSA – CUAUTITLAN",,,,,
-1424,"CHAMAPA INBURSA – LOMAS VERDES",,,,,
-1425,"LA VENTA – NOPALA",,,,,
-1426,"APASEO EL GRANDE – ATLACOMULCO",,,,,
-1427,"La Cinta - Ent. Cerro Gordo",,,,,
-1428,"CHAMAPA CAPUFE – HUIXQUILUCAN",,,,,
-1429,"CHAMAPA CAPUFE – INTERLOMAS",,,,,
+1418,"5 Sur Leyes de Reforma A",1.2,,244,"state",
+1419,"4 Oriente Río Churubusco A",1.62,,244,"state",
+1421,"6 Sur Luis Méndez A",1.32,,244,"state",
+1422,"6 Sur Luis Méndez B",0.75,,244,"state",
+1423,"CHAMAPA INBURSA - CUAUTITLAN",,,115,"federal",
+1424,"CHAMAPA INBURSA - LOMAS VERDES",,,115,"federal",
+1426,"APASEO EL GRANDE - ATLACOMULCO",,,172,"federal",
+1427,"La Cinta - Ent. Cerro Gordo",,,117,"federal",
+1428,"CHAMAPA CAPUFE - HUIXQUILUCAN",,,202,"state",
+1429,"CHAMAPA CAPUFE - INTERLOMAS",,,202,"state",
 1430,"VILLA DE REYES - WTC",,,,,
 1431,"VILLA DE REYES - VILLA DE ARRIAGA",,,,,
 1432,"VILLA DE ARRIAGA - VILLA DE REYES",,,,,
@@ -1452,14 +1450,14 @@ VIAL",,,121,"state",
 1451,"SAN FELIPE-VILLA DE REYES",,,,,
 1452,"VILLA DE REYES-SAN FELIPE",,,,,
 1453,"Zaragoza-virreyes",,,209,"state",
-1454,"Celaya-cerro gordo",,,,,
-1455,"Xochitepec-alpuyeca",,,,,
-1456,"Puebla-zacatelco",,,,,
-1457,"Zacatelco-puebla",,,,,
-1458,"libramiento noreste zacatecas (ent. Saltillo)",,,,"state",
-1459,"Tlaxcala-san martin texmelucan (arco norte)",,,,,
+1454,"Celaya-cerro gordo",,,36,"federal",
+1455,"Xochitepec-alpuyeca",,,60,"federal",
+1456,"Puebla-zacatelco",,,192,,
+1457,"Zacatelco-puebla",,,192,,
+1458,"libramiento noreste zacatecas (ent. Saltillo)",,,167,"state",
+1459,"Tlaxcala-san martin texmelucan (arco norte)",,,3,,
 1460,"Leon-ramal",,,38,,
 1461,"Irapuato-ramal",,,38,,
 1462,"Romita-ramal",,,38,,
-1463,"Rumbo Nuevo",37,,224,"state",
+1463,"jaumave-cd. Victoria",37,,224,"state",
 1464,"libramiento de progreso",2.2,,238,"state",
