@@ -679,7 +679,7 @@ def road_manage_length(year: int):
 
     lf_road = (
         pl.scan_parquet(data_model.roads.parquet)
-        .select("road_id", "road_name", "road_length_km")
+        .select("road_id", "road_name", "road_length_km", "end_contract_date")
     )
     lf_stretch = (
         pl.scan_parquet(data_model.stretchs.parquet)
@@ -711,7 +711,7 @@ def road_manage_length(year: int):
     )
     lf_tb_stretch = (
         lf_tb_stretch_id.join(lf_tollbooth, left_on="tollbooth_id_out", right_on="tollbooth_id")
-        .group_by("road_id", "manage").agg(pl.col("stretch_id").count())
+        .group_by("road_id", "manage").agg(pl.col("stretch_id").count().alias("road_manage_total"))
         .join(lf_stretch_length, on="road_id", how="left")
         .join(lf_road, on="road_id", how="left")
         .join(lf_tb_stretch_grp, on="road_id", how="left")
@@ -719,9 +719,63 @@ def road_manage_length(year: int):
             tollbooths=pl.col("tollbooth_id_in").list.concat("tollbooth_id_out").list.unique().list.sort().cast(pl.List(pl.String)).list.join(",")
         )
         .sort("road_id")
-        .select("road_id", "road_name", "manage", "road_length_km", "stretch_length_km", "tollbooths")
+        .select(
+            "road_id", "road_name", "manage", "end_contract_date", 
+            "road_length_km", "stretch_length_km", "tollbooths"
+        )
     )
     lf_tb_stretch.sink_csv(os.path.join(output_filepath, f"road_manage_length_{year}.csv"))
+
+
+def manage_road_length(year: int):
+    data_model = DataModel(year, DataStage.stg)
+
+    lf_road = (
+        pl.scan_parquet(data_model.roads.parquet)
+        .select("road_id", "road_length_km")
+    )
+    lf_stretch = (
+        pl.scan_parquet(data_model.stretchs.parquet)
+        .select("stretch_id", "road_id")
+    )
+    lf_tollbooth = (
+        pl.scan_parquet(data_model.tollbooths.parquet)
+        .select("tollbooth_id", "manage", "parent_manage", "state")
+    )
+    lf_tb_stretch_id = (
+        pl.scan_parquet(data_model.tb_stretch_id.parquet)
+        .select("stretch_id", "tollbooth_id_out")
+        .join(lf_stretch, on="stretch_id", how="left")
+        .join(lf_tollbooth, left_on="tollbooth_id_out", right_on="tollbooth_id")
+    )
+    lf_tb_stretch = (
+        lf_tb_stretch_id
+        .join(lf_road, on="road_id", how="left")
+        .select("road_id", "parent_manage", "road_length_km")
+        .unique()
+    )
+    lf_manage_length = (
+        lf_tb_stretch
+        .group_by("parent_manage").agg(pl.col("road_length_km").sum().round(2).alias("total_km"))
+        
+    )
+    lf_manage_roads = (
+        lf_tb_stretch
+        .group_by("parent_manage").agg(pl.col("road_id").len().alias("total_roads"))
+    )
+    lf_manage_state = (
+        lf_tb_stretch_id
+        .select("parent_manage", "state")
+        .unique()
+        .group_by("parent_manage").agg(pl.col("state").len().alias("states"))
+    )
+    lf_manage = (
+        lf_manage_length
+        .join(lf_manage_roads, on="parent_manage")
+        .join(lf_manage_state, on="parent_manage")
+    )
+    lf_manage = lf_manage.sort("total_km", "parent_manage", descending=True)
+    lf_manage.sink_csv(os.path.join(output_filepath, f"manage_road_length_{year}.csv"))
 
 
 if __name__ == "__main__":
@@ -741,6 +795,7 @@ if __name__ == "__main__":
     parser.add_argument("--tb-imt-stretch-id", required=False, action="store_true")
     parser.add_argument("--stretch-length", required=False, action="store_true")
     parser.add_argument("--road-manage", required=False, action="store_true")
+    parser.add_argument("--manage-road-length", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
@@ -769,3 +824,5 @@ if __name__ == "__main__":
         stretch_length(year=2025)
     elif args.road_manage:
         road_manage_length(year=2026)
+    elif args.manage_road_length:
+        manage_road_length(year=2026)
