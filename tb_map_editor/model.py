@@ -189,7 +189,7 @@ class Tollbooth(TbModel, table=True):
     type: String
     manage: String | None
     gate_to: String | None
-    info_year: UInt16 = Field(index=True)
+    info_year: UInt16 = Field(primary_key=True)
     anti_evation_sys: Bool | None
     in_out: String | None
 
@@ -253,7 +253,7 @@ class TbSts(TbModel, table=True):
     oct: Float64 | None
     nov: Float64 | None
     dec: Float64 | None
-    info_year: UInt16 = Field(index=True)
+    info_year: UInt16 = Field(primary_key=True)
     status: String | None
 
     @staticmethod
@@ -278,7 +278,7 @@ class Road(TbModel, table=True):
     bond_amount: String | None
     notes: String | None
     farac: String | None
-    info_year: UInt16 = Field(index=True)
+    info_year: UInt16 = Field(primary_key=True)
 
     @staticmethod
     @_str_normalize
@@ -295,7 +295,7 @@ class Stretch(TbModel, table=True):
     road_id: UInt16 | None = Field(default=None, foreign_key="road.road_id")
     manage: String | None
     way: String | None
-    info_year: UInt16 = Field(index=True)
+    info_year: UInt16 = Field(primary_key=True)
 
     @staticmethod
     @_str_normalize
@@ -360,7 +360,7 @@ class TbImt(TbModel, table=True):
     calirepr: String | None
     lat: Float64 | None
     lng: Float64 | None
-    info_year: UInt16 = Field(index=True)
+    info_year: UInt16 = Field(primary_key=True)
 
     @staticmethod
     @_str_normalize
