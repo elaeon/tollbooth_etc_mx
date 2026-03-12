@@ -136,10 +136,6 @@ def get_parent_manage() -> pl.DataFrame:
 
 
 def stg_to_prod(year:int, option_selected: str):
-    models = ["tb_sts"]
-    options = ["tb_sts"]
-
-    catalogs = _opts_map(options, models)
     if option_selected == "tb_sts":
         sts_ids(year, start_year=2018)
 
@@ -184,7 +180,7 @@ def pub_to_stg(year: int, option_selected: str, normalize: bool, options: tuple)
         )
         ldf = (
             ldf
-            .rename({"manage": "stretch_manage"})
+            #.rename({"manage": "stretch_manage"})
             .join(ldf_osm_tb_distance, on="stretch_id", how="left")
             .with_columns(
                 stretch_length_km=(
@@ -194,6 +190,7 @@ def pub_to_stg(year: int, option_selected: str, normalize: bool, options: tuple)
                 )
             )
         )
+        ldf = ldf.select(data_model.model.dict_schema().keys())
         ldf.sink_parquet(data_model.parquet)
     else:
         ldf.sink_parquet(data_model.parquet)
