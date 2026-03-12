@@ -727,7 +727,7 @@ def road_manage_length(year: int):
     lf_tb_stretch.sink_csv(os.path.join(output_filepath, f"road_manage_length_{year}.csv"))
 
 
-def manage_road_length(year: int):
+def manage_data(year: int):
     data_model = DataModel(year, DataStage.stg)
 
     lf_road = (
@@ -740,13 +740,47 @@ def manage_road_length(year: int):
     )
     lf_tollbooth = (
         pl.scan_parquet(data_model.tollbooths.parquet)
-        .select("tollbooth_id", "manage", "parent_manage", "state")
+        .select("tollbooth_id", "tollbooth_name", "parent_manage", "state", "gate_to", "status")
     )
     lf_tb_stretch_id = (
         pl.scan_parquet(data_model.tb_stretch_id.parquet)
         .select("stretch_id", "tollbooth_id_out")
         .join(lf_stretch, on="stretch_id", how="left")
         .join(lf_tollbooth, left_on="tollbooth_id_out", right_on="tollbooth_id")
+    )
+    lf_tb_remove_dup = (
+        lf_tollbooth.select("tollbooth_name", "parent_manage", "state", "status", "gate_to")
+        .unique()
+    )
+    lf_tollbooth_bridge = (
+        lf_tb_remove_dup
+        .filter(pl.col("gate_to") == "bridge")
+        .group_by("parent_manage")
+        .len("bridges")
+    )
+    lf_tollbooth_tunnel = (
+        lf_tb_remove_dup
+        .filter(pl.col("gate_to") == "tunnel")
+        .group_by("parent_manage")
+        .len("tunnels")
+    )
+    lf_tollbooth_int_bridge = (
+        lf_tb_remove_dup
+        .filter(pl.col("gate_to") == "international_bridge")
+        .group_by("parent_manage")
+        .len("int_bridges")
+    )
+    lf_tollbooth_open_tb = (
+        lf_tollbooth
+        .filter(pl.col("status") == "open")
+        .group_by("parent_manage")
+        .len("open_tb")
+    )
+    lf_tollbooth_closed_tb = (
+        lf_tollbooth
+        .filter(pl.col("status") == "closed")
+        .group_by("parent_manage")
+        .len("closed_tb")
     )
     lf_tb_stretch = (
         lf_tb_stretch_id
@@ -771,11 +805,16 @@ def manage_road_length(year: int):
     )
     lf_manage = (
         lf_manage_length
-        .join(lf_manage_roads, on="parent_manage")
-        .join(lf_manage_state, on="parent_manage")
+        .join(lf_manage_roads, on="parent_manage", how="left")
+        .join(lf_manage_state, on="parent_manage", how="left")
+        .join(lf_tollbooth_bridge, on="parent_manage", how="left")
+        .join(lf_tollbooth_tunnel, on="parent_manage", how="left")
+        .join(lf_tollbooth_int_bridge, on="parent_manage", how="left")
+        .join(lf_tollbooth_open_tb, on="parent_manage", how="left")
+        .join(lf_tollbooth_closed_tb, on="parent_manage", how="left")
     )
     lf_manage = lf_manage.sort("total_km", "parent_manage", descending=True)
-    lf_manage.sink_csv(os.path.join(output_filepath, f"manage_road_length_{year}.csv"))
+    lf_manage.sink_csv(os.path.join(output_filepath, f"manage_road_data_{year}.csv"))
 
 
 if __name__ == "__main__":
@@ -795,7 +834,7 @@ if __name__ == "__main__":
     parser.add_argument("--tb-imt-stretch-id", required=False, action="store_true")
     parser.add_argument("--stretch-length", required=False, action="store_true")
     parser.add_argument("--road-manage", required=False, action="store_true")
-    parser.add_argument("--manage-road-length", required=False, action="store_true")
+    parser.add_argument("--manage-data", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
@@ -824,5 +863,5 @@ if __name__ == "__main__":
         stretch_length(year=2025)
     elif args.road_manage:
         road_manage_length(year=2026)
-    elif args.manage_road_length:
-        manage_road_length(year=2026)
+    elif args.manage_data:
+        manage_data(year=2026)

@@ -212,7 +212,7 @@ class Tollbooth(TbModel, table=True):
     @staticmethod
     @_str_normalize
     def str_normalize() -> list[str]:
-        fields = ["tollbooth_name"]
+        fields = ["tollbooth_name", "gate_to"]
         return fields
 
 
