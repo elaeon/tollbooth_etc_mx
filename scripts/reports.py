@@ -803,6 +803,52 @@ def manage_data(year: int):
         .unique()
         .group_by("parent_manage").agg(pl.col("state").len().alias("states"))
     )
+    lf_growth = pl.scan_csv("./reports/growth_rate_car_2021_2025.csv")
+    lf_km_cost_mean = (
+        lf_growth
+        .select("stretch_id", "km_cost", "parent_tb_manage", "gate_to")
+        .unique()
+        .filter(pl.col("km_cost").is_not_null())
+        .group_by("parent_tb_manage")
+        .agg(
+            pl.when(pl.col("km_cost").count() > 2)
+            .then(
+                pl.col("km_cost")
+                .sort()
+                .slice(1, pl.col("km_cost").count() - 2) # remove min and max
+                .mean()
+            )
+            .otherwise(pl.col("km_cost").mean())
+            .round(2)
+            .alias("km_cost_mean_excl_minmax")
+        )
+        .rename({"parent_tb_manage": "parent_manage"})
+    )
+    lf_km_cost_median = (
+        lf_growth
+        .select("stretch_id", "km_cost", "parent_tb_manage", "gate_to")
+        .unique()
+        .filter(pl.col("km_cost").is_not_null())
+        .group_by("parent_tb_manage")
+        .agg(
+            pl.col("km_cost").median()
+            .alias("km_cost_median")
+        )
+        .rename({"parent_tb_manage": "parent_manage"})
+    )
+    lf_toll_tdpa = (
+        lf_growth
+        .select("stretch_id","toll_round_2025", "tdpa_round_2024", "parent_tb_manage")
+        .unique()
+        .filter(pl.col("tdpa_round_2024").is_not_null())
+        .with_columns(
+            gross=pl.col("toll_round_2025") * pl.col("tdpa_round_2024") * 365
+        )
+        .group_by("parent_tb_manage")
+        .agg(pl.col("gross").sum())
+        .rename({"parent_tb_manage": "parent_manage"})
+    )
+
     lf_manage = (
         lf_manage_length
         .join(lf_manage_roads, on="parent_manage", how="left")
@@ -812,6 +858,9 @@ def manage_data(year: int):
         .join(lf_tollbooth_int_bridge, on="parent_manage", how="left")
         .join(lf_tollbooth_open_tb, on="parent_manage", how="left")
         .join(lf_tollbooth_closed_tb, on="parent_manage", how="left")
+        .join(lf_km_cost_mean, on="parent_manage", how="left")
+        .join(lf_km_cost_median, on="parent_manage", how="left")
+        .join(lf_toll_tdpa, on="parent_manage", how="left")
     )
     lf_manage = lf_manage.sort("total_km", "parent_manage", descending=True)
     lf_manage.sink_csv(os.path.join(output_filepath, f"manage_road_data_{year}.csv"))
@@ -864,4 +913,4 @@ if __name__ == "__main__":
     elif args.road_manage:
         road_manage_length(year=2026)
     elif args.manage_data:
-        manage_data(year=2026)
+        manage_data(year=2025)
