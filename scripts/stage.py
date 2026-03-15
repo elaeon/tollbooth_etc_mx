@@ -84,30 +84,45 @@ def sts_ids(year: int, start_year: int):
         ldf_tb_sts_to = ldf_tb_sts_to.filter(
             pl.col("score_mean") == pl.col("score_mean").max().over("tollbooth_id")
         )
+        ldf_tb_sts_to = ldf_tb_sts_to.filter(
+            pl.col("index") == pl.col("index").min().over("tollbooth_id")
+        )
+        ldf_tb_sts_to = ldf_tb_sts_to.with_columns(
+            status=pl.when(
+                pl.col("tollbooth_id")==pl.col("tollbooth_id").min().over("index")
+            ).then(pl.col("status")).otherwise(pl.lit("closed"))
 
+        )
         ldf_tb_sts_from_to_new = ldf_tb_sts_to_base.join(
-            ldf_tb_sts_to.select(columns).select(pl.exclude("tollbooth_id", "status")),
+            ldf_tb_sts_to.select(columns).filter(pl.col("status")=="open").select(pl.exclude("tollbooth_id", "status")),
             on="index",
             how="anti"
         )
         
         columns[columns.index("index")] = "index_right"
         ldf_tb_sts_from_to_del = ldf_tb_sts_from.join(
-            ldf_tb_sts_to.select(columns),
-            left_on="index",
-            right_on="index_right",
+            ldf_tb_sts_to.select(columns).filter(pl.col("status")=="open"),
+            on="tollbooth_id",
             how="anti"
         )
-
-        ldf_tb_sts_from_to_del = ldf_tb_sts_from_to_del.with_columns(
-            pl.lit("closed").alias("status")
-        ).select(pl.exclude("h3_cell"))
-        
+        ldf_tb_sts_from_to_del = (
+            ldf_tb_sts_from_to_del
+            .with_columns(
+                pl.lit("closed").alias("status")
+            )
+            .select(pl.exclude("h3_cell"))
+        )
         last_id = ldf_tb_sts_from.sort("tollbooth_id").last().select("tollbooth_id").collect().row(0)[0]
         ldf_tb_sts_from_to_new = _split_dup_and_add_id(ldf_tb_sts_from_to_new, start_index=last_id + 1)
 
         columns[columns.index("index_right")] = "index"
-        ldf_all = pl.concat([ldf_tb_sts_to.select(columns), ldf_tb_sts_from_to_new, ldf_tb_sts_from_to_del])
+        ldf_all = pl.concat([ldf_tb_sts_to.select(columns).unique(), ldf_tb_sts_from_to_new, ldf_tb_sts_from_to_del])
+        ldf_all = (
+            ldf_all
+            .filter(
+                pl.col("info_year") == pl.col("info_year").min().over("tollbooth_id")
+            )
+        )
         ldf_all = ldf_all.sort("tollbooth_id")
 
     ldf_all.sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
