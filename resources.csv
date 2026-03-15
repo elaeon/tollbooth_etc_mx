@@ -24,3 +24,4 @@
 "inpc inegi","https://www.inegi.org.mx/app/indicesdeprecios/CalculadoraInflacion.aspx",
 "bmv","https://www.bmv.com.mx/es/listados-y-prospectos/prospectos-de-colocacion",
 "hratings","https://www.hrratings.com/ratings/infrastructure.xhtml",
+"capufe ingresos","https://datos.capufe.gob.mx:8080/consulta_red/consulta_ingreso.jsp?lstCaminosPuentes=T&lsttipos=TT&lstAnios=2025&Submit3=Consultar",

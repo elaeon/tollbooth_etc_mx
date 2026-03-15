@@ -2,12 +2,11 @@ import os, sys
 sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
 
 import polars as pl
-import polars_ds as plds
 import argparse
 from collections import defaultdict
 
 from tb_map_editor.data_files import DataModel, DataStage
-from tb_map_editor.utils.tools import join_tb_stretch_id_imt
+from tb_map_editor.model import _str_normalize
 
 
 _BIKE: list = ["motorbike"]
@@ -879,10 +878,61 @@ def manage_data(year: int):
     lf_manage.sink_csv(os.path.join(output_filepath, f"manage_road_data_{year}.csv"))
 
 
+def revenue(from_year: int, to_year: int):
+    lf_dict = {}
+    numeric_cols = [
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre",
+        "Diciembre"
+    ]
+
+    @_str_normalize
+    def string_normalize():
+        fields = ["Tramo"]
+        return fields
+
+    pl_expr_normalize = string_normalize()
+
+    for year in range(from_year, to_year + 1):
+        file_path = f"raw_data/capufe/capufe_ingresos_{year}.csv"
+        lf_dict[year] = (
+            pl.scan_csv(file_path, infer_schema=False)
+            .with_columns(pl_expr_normalize)
+            .with_columns(
+                pl.col(numeric_cols).str.replace("-", "0")
+            )
+            .with_columns(
+                pl.col(numeric_cols).cast(pl.Int64)
+            )
+            .with_columns(
+                pl.sum_horizontal(numeric_cols).alias(f"anual_feed_{year}")
+            )
+            .select("Tramo", f"anual_feed_{year}")
+        )
+
+    lf_base = lf_dict[to_year]
+    prev_year = to_year - 1
+    while from_year <= prev_year:
+        lf_base = (
+            lf_base
+            .join(lf_dict[prev_year], on="Tramo", how="full")
+            .with_columns(
+                pl.when(pl.col("Tramo_right").is_not_null()).then(pl.col("Tramo_right")).otherwise(pl.col("Tramo")).alias("Tramo")
+            )
+            .select(pl.exclude("Tramo_right"))
+        )
+        prev_year = prev_year - 1
+    
+    lf_base = lf_base.sort("Tramo")
+    lf_base.sink_csv(f"./reports/capufe_revenue_{from_year}_{to_year}.csv")
+
+
 if __name__ == "__main__":
     output_filepath = "reports/"
 
     parser = argparse.ArgumentParser()
+    parser.add_argument("--from-year", required=False, type=int)
+    parser.add_argument("--to-year", required=True, type=int)
     parser.add_argument("--growth-rate", required=False, choices=tuple(_VEHICLE_TYPE_DICT))
     parser.add_argument("--tb-update-date", required=False, action="store_true")
     parser.add_argument("--tb-names", required=False, action="store_true")
@@ -897,6 +947,7 @@ if __name__ == "__main__":
     parser.add_argument("--stretch-length", required=False, action="store_true")
     parser.add_argument("--road-manage", required=False, action="store_true")
     parser.add_argument("--manage-data", required=False, action="store_true")
+    parser.add_argument("--revenue", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
@@ -927,3 +978,5 @@ if __name__ == "__main__":
         road_manage_length(year=2026)
     elif args.manage_data:
         manage_data(year=2025)
+    elif args.revenue:
+        revenue(from_year=args.from_year, to_year=args.to_year)
