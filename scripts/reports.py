@@ -602,23 +602,36 @@ def stretch_sts(year: int):
     data_model = DataModel(year, DataStage.stg)
     data_model_sts = DataModel(year - 1, DataStage.prd)
 
-    ldf_stretch = (
+    lf_stretch = (
         pl.scan_parquet(data_model.stretchs.parquet)
         .select("stretch_id", "stretch_name")
     )
-    ldf_sts = (
+    lf_sts = (
         pl.scan_parquet(data_model_sts.tb_sts.parquet)
         .select("tollbooth_id", "tollbooth_name", "stretch_name", "status")
+        .rename({"tollbooth_id": "tollbooth_sts_id"})
     )
-    ldf_tbsts_stretch_id = (
+    lf_tbsts_stretch_id = (
         pl.scan_parquet(data_model.tb_sts_stretch_id.parquet)
-        .select("stretch_id", "tollbooth_sts_id")
+        .select("stretch_id", "tollbooth_sts_id", "tollbooth_id")
     )
-
-    ldf_sts = ldf_sts.join(ldf_tbsts_stretch_id, left_on="tollbooth_id", right_on="tollbooth_sts_id", how="left")
-    ldf_sts = ldf_sts.join(ldf_stretch, on="stretch_id", how="left").unique()
-    ldf_sts = ldf_sts.sort("tollbooth_id")
-    ldf_sts.sink_csv(f"./reports/stretch_sts_{data_model_sts.attr.get("year")}.csv")
+    lf_tollbooth = (
+        pl.scan_parquet(data_model.tollbooths.parquet)
+        .select("tollbooth_id", "tollbooth_name")
+    )
+    lf_sts = (
+        lf_sts
+        .join(lf_tbsts_stretch_id, on="tollbooth_sts_id", how="left")
+        .join(lf_stretch, on="stretch_id", how="left")
+        .join(lf_tollbooth, on="tollbooth_id", how="left")
+        .select(
+            "tollbooth_sts_id", "tollbooth_name", "stretch_name", "status", "stretch_id",
+            "stretch_name_right", "tollbooth_name_right"
+        )
+        .unique()
+        .sort("tollbooth_sts_id")
+    )
+    lf_sts.sink_csv(f"./reports/stretch_sts_{data_model_sts.attr.get("year")}.csv")
 
 
 def tb_imt_stretch_id(year: int):

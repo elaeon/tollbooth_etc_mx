@@ -134,7 +134,7 @@ def tb_stretch_id_sts(base_year: int, move_year: int):
         ldf_neighbour
         .filter(pl.col("scope") == "local-sts")
         .filter(pl.col("distance") <= 1)
-        .select(pl.exclude("scope", "distance"))
+        .select(pl.exclude("scope"))
         .rename({"neighbour_id": "tollbooth_sts_id"})
     )
 
@@ -157,14 +157,14 @@ def tb_stretch_id_sts(base_year: int, move_year: int):
         plds.str_jw("stretch_name", "stretch_name_sts").alias("score_st"),
         (plds.str_lcs_subseq_dist("stretch_name", "stretch_name_sts")*.6).alias("score_st_lcs"),
         plds.str_jw("tollbooth_sts_name", "tollbooth_name").alias("score_tb"),
-        (1 - plds.str_lcs_subseq_dist("tollbooth_sts_name", "tollbooth_name")).alias("score_tb_inv")
+        (1 - pl.col("distance")).alias("score_distance_inv")
     )
     ldf_tb_stretch_sts = ldf_tb_stretch_sts.with_columns(
-        pl.mean_horizontal("score_st", "score_st_lcs", "score_tb", "score_tb_inv").alias("score_mean")
+        pl.mean_horizontal("score_st", "score_st_lcs", "score_tb", "score_distance_inv").alias("score_mean")
     )
     ldf_tb_stretch_sts = ldf_tb_stretch_sts.filter(
         pl.col("score_mean") == pl.col("score_mean").max().over("tollbooth_sts_id")
-    )   
+    )
     ldf_tb_stretch_sts = (
         ldf_tb_stretch_sts
         .select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
