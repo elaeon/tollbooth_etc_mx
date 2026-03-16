@@ -95,67 +95,74 @@ def join_range(start, end, dict_data, data_join_key: str):
     return df_join_range
 
 
+def growth_rate(range_keys, prefix_col: str, result_prefix_col: str, growth_rate_columns: list, growth_rate_exp: list):
+    for start_year, end_year in zip(range_keys, range_keys[1:]):
+        result_col_name = f"{result_prefix_col}_growth_rate_{end_year}"
+        growth_rate_exp.append(
+            (
+                pl.when(pl.col(f"{prefix_col}_{start_year}") != 0)
+                .then(
+                    ((pl.col(f"{prefix_col}_{end_year}") - pl.col(f"{prefix_col}_{start_year}")) * 100 / pl.col(f"{prefix_col}_{start_year}")).round(2)
+                )
+                .otherwise(None)
+                .alias(result_col_name)
+            )
+        )
+        growth_rate_columns.append(result_col_name)
+
+
+def cum_growth_rate(range_keys, prefix_col: str, result_prefix_col: str, growth_rate_columns: list, growth_rate_exp: list):
+    start = range_keys[0]
+    for _, end_year in zip(range_keys[1:], range_keys[2:]):
+        result_col_name = f"{result_prefix_col}_cum_growth_rate_{start}_{end_year}"
+        growth_rate_exp.append(
+            (
+                pl.when(pl.col(f"{prefix_col}_{start}") != 0)
+                .then(
+                    ((pl.col(f"{prefix_col}_{end_year}") / pl.col(f"{prefix_col}_{start}") - 1) * 100).round(2)
+                )
+                .otherwise(None)
+                .alias(result_col_name)
+            )
+        )
+        growth_rate_columns.append(result_col_name)
+
+
+def cagr_growth_rate(range_keys, prefix_col: str, result_prefix_col: str, growth_rate_columns: list, growth_rate_exp: list):
+    start = range_keys[0]
+    end = range_keys[-1]
+    result_col_name = f"{result_prefix_col}_cagr_growth_rate_{start}_{end}"
+    growth_rate_columns.append(result_col_name)
+    num_of_years = end - start
+    cagr_inflation_rate_exp = (
+        pl.when(pl.col(f"{prefix_col}_{start}") != 0)
+        .then(
+            (((pl.col(f"{prefix_col}_{end}") / pl.col(f"{prefix_col}_{start}")).pow(1/num_of_years) - 1) * 100).round(2)
+        )
+        .otherwise(None)
+        .alias(result_col_name)
+    )
+    growth_rate_exp.append(cagr_inflation_rate_exp)
+
+
+def round(range_keys, prefix_col: str, result_prefix_col: str, growth_rate_columns: list, growth_rate_exp: list):
+    for year in range_keys:
+        result_col_name = f"{result_prefix_col}_round_{year}"
+        growth_rate_exp.append(
+            pl.col(f"{prefix_col}_{year}").round().alias(result_col_name)
+        )
+        growth_rate_columns.append(result_col_name)
+
+
 def growth_rate_exprs(start, end, prefix_col: str, result_prefix_col: str):
     range_keys = range(start, end + 1)
     growth_rate_columns = []
     growth_rate_exp = []
-    
-    def growth_rate():
-        for start_year, end_year in zip(range_keys, range_keys[1:]):
-            result_col_name = f"{result_prefix_col}_growth_rate_{end_year}"
-            growth_rate_exp.append(
-                (
-                    pl.when(pl.col(f"{prefix_col}_{start_year}") != 0)
-                    .then(
-                        ((pl.col(f"{prefix_col}_{end_year}") - pl.col(f"{prefix_col}_{start_year}")) * 100 / pl.col(f"{prefix_col}_{start_year}")).round(2)
-                    )
-                    .otherwise(None)
-                    .alias(result_col_name)
-                )
-            )
-            growth_rate_columns.append(result_col_name)
 
-    def cum_growth_rate():
-        for _, end_year in zip(range_keys[1:], range_keys[2:]):
-            result_col_name = f"{result_prefix_col}_cum_growth_rate_{start}_{end_year}"
-            growth_rate_exp.append(
-                (
-                    pl.when(pl.col(f"{prefix_col}_{start}") != 0)
-                    .then(
-                        ((pl.col(f"{prefix_col}_{end_year}") / pl.col(f"{prefix_col}_{start}") - 1) * 100).round(2)
-                    )
-                    .otherwise(None)
-                    .alias(result_col_name)
-                )
-            )
-            growth_rate_columns.append(result_col_name)
-        
-    def cagr_growth_rate():
-        result_col_name = f"{result_prefix_col}_cagr_growth_rate_{start}_{end}"
-        growth_rate_columns.append(result_col_name)
-        num_of_years = end - start
-        cagr_inflation_rate_exp = (
-            pl.when(pl.col(f"{prefix_col}_{start}") != 0)
-            .then(
-                (((pl.col(f"{prefix_col}_{end}") / pl.col(f"{prefix_col}_{start}")).pow(1/num_of_years) - 1) * 100).round(2)
-            )
-            .otherwise(None)
-            .alias(result_col_name)
-        )
-        growth_rate_exp.append(cagr_inflation_rate_exp)
-    
-    def round():
-        for year in range_keys:
-            result_col_name = f"{result_prefix_col}_round_{year}"
-            growth_rate_exp.append(
-                pl.col(f"{prefix_col}_{year}").round().alias(result_col_name)
-            )
-            growth_rate_columns.append(result_col_name)
-
-    growth_rate()
-    cum_growth_rate()
-    cagr_growth_rate()
-    round()
+    growth_rate(range_keys, prefix_col, result_prefix_col, growth_rate_columns, growth_rate_exp)
+    cum_growth_rate(range_keys, prefix_col, result_prefix_col, growth_rate_columns, growth_rate_exp)
+    cagr_growth_rate(range_keys, prefix_col, result_prefix_col, growth_rate_columns, growth_rate_exp)
+    round(range_keys, prefix_col, result_prefix_col, growth_rate_columns, growth_rate_exp)
 
     return growth_rate_columns, growth_rate_exp
 
@@ -880,8 +887,9 @@ def manage_data(year: int):
 
 def revenue(from_year: int, to_year: int):
     lf_dict = {}
+    range_keys = range(from_year, to_year + 1)
 
-    for year in range(from_year, to_year + 1):
+    for year in range_keys:
         data_model = DataModel(year, DataStage.stg)
         lf_dict[year] = (
             pl.scan_parquet(data_model.manager_revenue.parquet)
@@ -949,6 +957,20 @@ def revenue(from_year: int, to_year: int):
         .unique()
     )
     print(lf_check.collect())
+    growth_rate_columns = []
+    growth_rate_expr = []
+    growth_rate(range_keys, "anual_revenue", "anual_revenue", growth_rate_columns, growth_rate_expr)
+    lf_base = (
+        lf_base
+        .with_columns(growth_rate_expr)
+    )
+    columns = [f"anual_revenue_{range_keys[0]}"]
+    for year in range_keys[1:]:
+        columns.append(f"anual_revenue_growth_rate_{year}")
+        columns.append(f"anual_revenue_{year}")
+    columns.reverse()
+
+    lf_base = lf_base.select(["stretch_name"] + columns)
     lf_base.sink_csv(f"./reports/capufe_revenue_{from_year}_{to_year}.csv")
 
 
@@ -976,7 +998,11 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if args.growth_rate:
-        growth_rate_report(from_year=2021, to_year=2025, vehicle_type=args.growth_rate)
+        if args.from_year is not None:
+            from_year = args.from_year
+        else:
+            from_year = 2021
+        growth_rate_report(from_year=from_year, to_year=args.to_year, vehicle_type=args.growth_rate)
     elif args.tb_update_date:
         toll_update_date_report(from_year=2024, to_year=2025)
     elif args.tb_names:

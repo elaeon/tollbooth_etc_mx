@@ -290,9 +290,9 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
         normalize=normalize,
         extra_expr=extra_expr
     )
+    print(lf.select(numeric_cols).with_columns(pl.sum_horizontal(pl.all()).alias("total")).select("total").sum().collect())
     if extra_pipe is not None:
         lf = lf.pipe(extra_pipe)
-    
     lf.sink_parquet(model_dict["end"].parquet)
 
 
