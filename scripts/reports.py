@@ -31,8 +31,9 @@ _VEHICLE_TYPE_DICT: dict = {
     "bike": _BIKE,
     "car": _CAR,
     "bus": _BUS,
-    "truck": _TRUCK,
-    "light_truck": _LIGH_TRUCK,
+    "ltruck": _LIGH_TRUCK,
+    "htruck": _HEAVY_TRUCK,
+    "utruck": _U_HEAVY_TRUCK,
     "extra_axle": _EXTRA_AXLE,
     "all": _BIKE + _CAR + _BUS + _TRUCK + _EXTRA_AXLE
 }
@@ -746,7 +747,7 @@ def road_manage_length(year: int):
     lf_tb_stretch.sink_csv(os.path.join(output_filepath, f"road_manage_length_{year}.csv"))
 
 
-def manage_data(year: int):
+def manage_data(year: int, vehicle_type: str):
     data_model = DataModel(year, DataStage.stg)
 
     lf_road = (
@@ -822,7 +823,7 @@ def manage_data(year: int):
         .unique()
         .group_by("parent_manage").agg(pl.col("state").len().alias("states"))
     )
-    lf_growth = pl.scan_csv("./reports/growth_rate_car_2021_2025.csv")
+    lf_growth = pl.scan_csv(f"./reports/growth_rate_{vehicle_type}_2021_2025.csv")
     lf_km_cost_mean = (
         lf_growth
         .select("stretch_id", "km_cost", "parent_tb_manage", "gate_to")
@@ -999,7 +1000,7 @@ if __name__ == "__main__":
     parser.add_argument("--tb-imt-stretch-id", required=False, action="store_true")
     parser.add_argument("--stretch-length", required=False, action="store_true")
     parser.add_argument("--road-manage", required=False, action="store_true")
-    parser.add_argument("--manage-data", required=False, action="store_true")
+    parser.add_argument("--manage-data", required=False, choices=tuple(_VEHICLE_TYPE_DICT))
     parser.add_argument("--revenue", required=False, action="store_true")
 
     args = parser.parse_args()
@@ -1034,6 +1035,6 @@ if __name__ == "__main__":
     elif args.road_manage:
         road_manage_length(year=2026)
     elif args.manage_data:
-        manage_data(year=2025)
+        manage_data(year=args.to_year, vehicle_type=args.manage_data)
     elif args.revenue:
         revenue(from_year=args.from_year, to_year=args.to_year)
