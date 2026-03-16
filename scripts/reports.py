@@ -919,7 +919,10 @@ def revenue(from_year: int, to_year: int):
             "aeropuerto_los_cabos_san_jose_del_cabo_cabo_san_lucas",
             "monterrey_nvo_laredo",
             "puente_nuevo_amanecer_reynosa_pharr",
-            "salina_cruz_la_ventosa"
+            "salina_cruz_la_ventosa",
+            "lib_noreste_de_queretaro",
+            "cd_mendoza_cordoba",
+            "la_rumorosa_tecate",
         ],
         "alias": [
             "acatzingo_cd_mendoza",
@@ -927,7 +930,10 @@ def revenue(from_year: int, to_year: int):
             "san_jose_del_cabo_san_lucas",
             "monterrey_nuevo_laredo",
             "puente_reynosa_pharr",
-            "salina_cruz_tehuantepec_la_ventosa"
+            "salina_cruz_tehuantepec_la_ventosa",
+            "libramiento_noreste_de_queretaro",
+            "ciudad_mendoza_cordoba",
+            "tecate_la_rumorosa"
         ]
     }).lazy()
     
