@@ -215,10 +215,12 @@ def pub_to_stg(year: int, option_selected: str, normalize: bool, options: tuple)
 def raw_to_stg(year: int, option_selected: str, normalize: bool):
     pipeline = DataPipeline()
     
-    models = ["tb_imt", "tb_toll_imt"]
-    options = ["tb_imt", "tb_toll_imt"]
+    models = ["tb_imt", "tb_toll_imt", "manager_revenue"]
+    options = ["tb_imt", "tb_toll_imt", "manager_revenue"]
     date_columns = None
-    filter_exp = None
+    filter_expr = None
+    extra_expr = None
+    extra_pipe = None
 
     if option_selected == "tb_imt":
         file_path = f"./tmp_data/plazas_{year}.csv"
@@ -244,7 +246,7 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
             date_format = "%Y-%m-%d"
 
         date_columns = {"FECHA_ACT": date_format}
-        filter_exp = (pl.col("FECHA_ACT") < date(year + 1, 1, 1))
+        filter_expr = (pl.col("FECHA_ACT") < date(year + 1, 1, 1))
     elif option_selected == "inflation":
         data_model = DataModel(year, DataStage.stg)
         file_path = f"./raw_data/inegi/monthly_inflation.csv"
@@ -255,17 +257,43 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
         ).cast(data_model.inflation.schema)
         df.write_parquet(data_model.inflation.parquet)
         return
+    elif option_selected == "manager_revenue":
+        data_model = DataModel(year, DataStage.stg)
+        file_path = f"./raw_data/capufe/capufe_ingresos_{year}.csv"
+        numeric_cols = data_model.manager_revenue.model.numeric_cols()
+        extra_expr = [pl.col(numeric_cols).str.replace("-", "0"), pl.lit("capufe").alias("manager")]
+        old_fields = [
+            "Tramo", "Enero", "Febrero", "Marzo",
+            "Abril", "Mayo", "Junio", "Julio",
+            "Agosto", "Septiembre", "Octubre", "Noviembre", 
+            "Diciembre",
+        ]
+        def extra_pipe_fn(lf: pl.LazyFrame):
+            lf = (
+                lf
+                .unique()
+                .group_by("stretch_name")
+                .agg([pl.col(col).sum().alias(col) for col in numeric_cols])
+                .sort("stretch_name")
+            )
+            return lf
+        extra_pipe = extra_pipe_fn
     
     catalogs = _opts_map(options, models)
-    pipeline.simple_raw_stg(
+    lf, model_dict = pipeline.simple_raw_stg(
         catalogs[option_selected], 
         year, 
         file_path, 
         old_fields, 
         date_columns=date_columns,
-        filter_exp=filter_exp,
-        normalize=normalize
+        filter_exp=filter_expr,
+        normalize=normalize,
+        extra_expr=extra_expr
     )
+    if extra_pipe is not None:
+        lf = lf.pipe(extra_pipe)
+    
+    lf.sink_parquet(model_dict["end"].parquet)
 
 
 if __name__ == "__main__":
@@ -279,7 +307,7 @@ if __name__ == "__main__":
         choices=choices
     )
     parser.add_argument("--stg-to-prod", required=False, type=str)
-    parser.add_argument("--raw-to-stg", required=False, type=str, choices=("tb_imt", "tb_toll_imt", "inflation"))
+    parser.add_argument("--raw-to-stg", required=False, type=str, choices=("tb_imt", "tb_toll_imt", "inflation", "manager_revenue"))
     parser.add_argument("--normalize", required=False, action="store_true")
 
     args = parser.parse_args()

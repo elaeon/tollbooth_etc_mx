@@ -48,24 +48,28 @@ class DataPipeline:
         ldf = ldf.pipe(self._simple_stg, model=model_dict["start"], normalize=normalize)
         return ldf, model_dict["end"]
 
-    def simple_raw_stg(self, model_name: str, year: int, file_path: str, old_fields: list, date_columns: dict | None = None, filter_exp: pl.Expr | None = None, normalize: bool | None = True):
+    def simple_raw_stg(self, model_name: str, year: int, file_path: str, old_fields: list, 
+                       date_columns: dict | None = None, filter_exp: pl.Expr | None = None, 
+                       normalize: bool | None = True, extra_expr: list | None = None):
         model_dict = self._get_model(model_name, year)
         schema = model_dict["start"].schema
         field_map = {}
         for old_name, new_name in zip(old_fields, schema.keys()):
             field_map[old_name] = new_name
 
-        ldf = pl.scan_csv(file_path, infer_schema=False)
+        lf = pl.scan_csv(file_path, infer_schema=False)
         if date_columns is not None:
             pl_date_exp = []
             for date_column, date_format in date_columns.items():
                 pl_date_exp.append(pl.col(date_column).str.to_date(date_format))
-            ldf = ldf.with_columns(pl_date_exp)
+            lf = lf.with_columns(pl_date_exp)
 
         if filter_exp is not None:
-            ldf.filter(filter_exp)
+            lf.filter(filter_exp)
 
-        ldf = ldf.rename(field_map)
-        ldf = ldf.pipe(self._simple_stg, model=model_dict["start"], normalize=normalize)
-        ldf = ldf.cast(schema)
-        ldf.select(list(schema.keys())).sink_parquet(model_dict["end"].parquet)
+        lf = lf.rename(field_map)
+        if extra_expr is not None:
+            lf = lf.with_columns(extra_expr)
+        lf = lf.pipe(self._simple_stg, model=model_dict["start"], normalize=normalize)
+        lf = lf.cast(schema)
+        return lf.select(list(schema.keys())), model_dict

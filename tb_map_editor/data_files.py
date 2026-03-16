@@ -123,3 +123,7 @@ class DataModel:
     @property
     def osm_tb_distance(self) -> PathModel:
         return PathModel("osm_tb_distance", model.OsmTbDistance, self.attr, self.stage)
+
+    @property
+    def manager_revenue(self) -> PathModel:
+        return PathModel("manager_revenue", model.ManagerRevenue, self.attr, self.stage)

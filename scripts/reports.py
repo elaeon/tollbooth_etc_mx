@@ -880,34 +880,15 @@ def manage_data(year: int):
 
 def revenue(from_year: int, to_year: int):
     lf_dict = {}
-    numeric_cols = [
-        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre",
-        "Diciembre"
-    ]
-
-    @_str_normalize
-    def string_normalize():
-        fields = ["Tramo"]
-        return fields
-
-    pl_expr_normalize = string_normalize()
 
     for year in range(from_year, to_year + 1):
-        file_path = f"raw_data/capufe/capufe_ingresos_{year}.csv"
+        data_model = DataModel(year, DataStage.stg)
         lf_dict[year] = (
-            pl.scan_csv(file_path, infer_schema=False)
-            .with_columns(pl_expr_normalize)
+            pl.scan_parquet(data_model.manager_revenue.parquet)
             .with_columns(
-                pl.col(numeric_cols).str.replace("-", "0")
+                pl.sum_horizontal(data_model.manager_revenue.model.numeric_cols()).alias(f"anual_revenue_{year}")
             )
-            .with_columns(
-                pl.col(numeric_cols).cast(pl.Int64)
-            )
-            .with_columns(
-                pl.sum_horizontal(numeric_cols).alias(f"anual_feed_{year}")
-            )
-            .select("Tramo", f"anual_feed_{year}")
+            .select("stretch_name", f"anual_revenue_{year}")
         )
 
     lf_base = lf_dict[to_year]
@@ -915,15 +896,59 @@ def revenue(from_year: int, to_year: int):
     while from_year <= prev_year:
         lf_base = (
             lf_base
-            .join(lf_dict[prev_year], on="Tramo", how="full")
+            .join(lf_dict[prev_year], on="stretch_name", how="full")
             .with_columns(
-                pl.when(pl.col("Tramo_right").is_not_null()).then(pl.col("Tramo_right")).otherwise(pl.col("Tramo")).alias("Tramo")
+                pl.when(pl.col("stretch_name_right").is_not_null()).then(pl.col("stretch_name_right")).otherwise(pl.col("stretch_name")).alias("stretch_name")
             )
-            .select(pl.exclude("Tramo_right"))
+            .select(pl.exclude("stretch_name_right"))
         )
         prev_year = prev_year - 1
     
-    lf_base = lf_base.sort("Tramo")
+    lf_alias = pl.DataFrame({
+        "name": [
+            "acatzingo_ciudad_mendoza",
+            "aero_los_cabos_san_jose_del_cabo_cabo_san_lucas",
+            "aeropuerto_los_cabos_san_jose_del_cabo_cabo_san_lucas",
+            "monterrey_nvo_laredo",
+            "puente_nuevo_amanecer_reynosa_pharr",
+            "salina_cruz_la_ventosa"
+        ],
+        "alias": [
+            "acatzingo_cd_mendoza",
+            "san_jose_del_cabo_san_lucas",
+            "san_jose_del_cabo_san_lucas",
+            "monterrey_nuevo_laredo",
+            "puente_reynosa_pharr",
+            "salina_cruz_tehuantepec_la_ventosa"
+        ]
+    }).lazy()
+    
+    
+    # Merge numeric rows by stretch_name using sum
+    numeric_cols = [col for col in lf_base.collect_schema().names() if col != "stretch_name"]
+    lf_base = (
+        lf_base
+        .unique()
+        .join(lf_alias, left_on="stretch_name", right_on="name", how="left")
+        .with_columns(
+            pl.when(pl.col("alias").is_null())
+            .then(pl.col("stretch_name"))
+            .otherwise(pl.col("alias"))
+            .alias("stretch_name")
+        )
+        .group_by("stretch_name")
+        .agg([pl.col(col).sum().alias(col) for col in numeric_cols])
+        .sort("stretch_name")
+    )
+    lf_check = (
+        lf_base
+        .select(numeric_cols)
+        .with_columns(
+            [pl.col(col).sum().alias(col) for col in numeric_cols]
+        )
+        .unique()
+    )
+    print(lf_check.collect())
     lf_base.sink_csv(f"./reports/capufe_revenue_{from_year}_{to_year}.csv")
 
 

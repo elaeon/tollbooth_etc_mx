@@ -144,10 +144,11 @@ class Schema:
         return polar_type
 
     @classmethod
-    def dict_schema(cls) -> dict:
+    def dict_schema(cls, ignore=[]) -> dict:
         dict_schema = {
             field_name: cls._get_polars_dtype(field_type)
             for field_name, field_type in cls.model_fields.items()
+            if field_name not in ignore
         }
         return dict_schema
 
@@ -174,6 +175,11 @@ class TbModel(SQLModel, Schema, table=False):
     def str_normalize() -> list[str]:
         fields = []
         return fields
+
+    @classmethod
+    def numeric_cols(cls) -> list[str]:
+        cols = []
+        return cols
 
 
 class Tollbooth(TbModel, table=True):
@@ -431,3 +437,41 @@ class OsmTbDistance(TbModel, table=True):
     tollbooth_id_out: UInt32 = Field(foreign_key="tollbooth.tollbooth_id", index=True)
     distance: Float64
     info_year: UInt16
+
+
+class ManagerRevenue(TbModel, table=True):
+    id: UInt64 | None = Field(default=None, primary_key=True)
+    stretch_name: String
+    jan: Int64 | None
+    feb: Int64 | None
+    mar: Int64 | None
+    apr: Int64 | None
+    may: Int64 | None
+    jun: Int64 | None
+    jul: Int64 | None
+    ago: Int64 | None
+    sep: Int64 | None
+    oct: Int64 | None
+    nov: Int64 | None
+    dec: Int64 | None
+    manager: String
+    info_year: UInt16
+
+    @staticmethod
+    @_str_normalize
+    def str_normalize() -> list[str]:
+        fields = ["stretch_name"]
+        return fields
+
+    @classmethod
+    def numeric_cols(cls) -> list[str]:
+        cols = []
+        for col, col_type in cls.dict_schema().items():
+            if col_type == pl.Int64:
+                cols.append(col)
+        return cols
+
+    @classmethod
+    def dict_schema(cls, ignore=[]) -> dict:
+        schema = super().dict_schema(ignore=["id"])
+        return schema
