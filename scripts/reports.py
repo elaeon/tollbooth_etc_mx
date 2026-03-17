@@ -833,7 +833,8 @@ def manage_data(from_year: int, to_year: int):
         .join(lf_tollbooth_open_tb, on="parent_manage", how="left")
         .join(lf_tollbooth_closed_tb, on="parent_manage", how="left")
     )
-    revenue_cols = []
+    revenue_cols = defaultdict(list)
+    years = range(from_year, to_year)
     for vehicle_type in _VEHICLE_TYPE_DICT:
         if vehicle_type in ["extra_axle", "all"]:
             continue
@@ -877,45 +878,49 @@ def manage_data(from_year: int, to_year: int):
                     )
                     .rename({"parent_tb_manage": "parent_manage"})
                 )
-                lf_toll_tdpa = (
-                    lf_growth
-                    .select("stretch_id", f"toll_round_{to_year}", f"tdpa_round_{to_year-1}", "parent_tb_manage")
-                    .unique()
-                    .filter(pl.col(f"tdpa_round_{to_year-1}").is_not_null())
-                    .with_columns(
-                        (pl.col(f"toll_round_{to_year}") * pl.col(f"tdpa_round_{to_year-1}") * 365).alias(f"revenue_from_{vehicle_type}")
-                    )
-                    .group_by("parent_tb_manage")
-                    .agg(pl.col(f"revenue_from_{vehicle_type}").sum())
-                    .rename({"parent_tb_manage": "parent_manage"})
-                )
                 lf_manage = (
                     lf_manage
                     .join(lf_km_cost_mean, on="parent_manage", how="left")
                     .join(lf_km_cost_median, on="parent_manage", how="left")
-                    .join(lf_toll_tdpa, on="parent_manage", how="left")
                 )
-                revenue_cols.append(f"revenue_from_{vehicle_type}")
+                for year in years:
+                    lf_toll_tdpa = (
+                        lf_growth
+                        .select("stretch_id", f"toll_round_{year}", f"tdpa_round_{year}", "parent_tb_manage")
+                        .unique()
+                        .filter(pl.col(f"tdpa_round_{year}").is_not_null())
+                        .with_columns(
+                            (pl.col(f"toll_round_{year}") * pl.col(f"tdpa_round_{year}") * 365).alias(f"revenue_from_{vehicle_type}_{year}")
+                        )
+                        .group_by("parent_tb_manage")
+                        .agg(pl.col(f"revenue_from_{vehicle_type}_{year}").sum())
+                        .rename({"parent_tb_manage": "parent_manage"})
+                        .select(pl.exclude("stretch_id"))
+                    )
+                    lf_manage = lf_manage.join(lf_toll_tdpa, on="parent_manage", how="left")
+                    revenue_cols[year].append(f"revenue_from_{vehicle_type}_{year}")
     
-    lf_sts_coverage = (
-        lf_growth
-        .select("stretch_id", "parent_tb_manage", f"tdpa_round_{to_year-1}", f"toll_round_{to_year}")
-        .filter(pl.col("parent_tb_manage").is_not_null())
-        .unique()
-        .group_by("parent_tb_manage")
-        .agg(
-            (pl.col(f"tdpa_round_{to_year-1}").count() / pl.col(f"toll_round_{to_year}").count() * 100).round().alias("tdpa_booth_coverage")
+    for year in years:
+        lf_manage = (
+            lf_manage
+            .with_columns(
+                pl.sum_horizontal(revenue_cols[year]).alias(f"total_revenue_{year}"),
+            )
         )
-        .rename({"parent_tb_manage": "parent_manage"})
-    )
+        lf_sts_coverage = (
+            lf_growth
+            .select("stretch_id", "parent_tb_manage", f"tdpa_round_{year}", f"toll_round_{year}")
+            .filter(pl.col("parent_tb_manage").is_not_null())
+            .unique()
+            .group_by("parent_tb_manage")
+            .agg(
+                (pl.col(f"tdpa_round_{year}").count() / pl.col(f"toll_round_{year}").count() * 100).round().alias(f"tdpa_booth_coverage_{year}")
+            )
+            .rename({"parent_tb_manage": "parent_manage"})
+            .select(pl.exclude("stretch_id"))
+        )
+        lf_manage = lf_manage.join(lf_sts_coverage, on="parent_manage", how="left")
 
-    lf_manage = (
-        lf_manage
-        .join(lf_sts_coverage, on="parent_manage", how="left")
-        .with_columns(
-            pl.sum_horizontal(revenue_cols).alias(f"total_revenue_{to_year}"),
-        )
-    )
     lf_manage = lf_manage.sort("total_km", "parent_manage", descending=True)
     lf_manage.sink_csv(os.path.join(output_filepath, f"manage_road_data_{from_year}_{to_year}.csv"))
 
