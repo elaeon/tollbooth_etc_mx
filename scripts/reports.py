@@ -747,8 +747,8 @@ def road_manage_length(year: int):
     lf_tb_stretch.sink_csv(os.path.join(output_filepath, f"road_manage_length_{year}.csv"))
 
 
-def manage_data(year: int, vehicle_type: str):
-    data_model = DataModel(year, DataStage.stg)
+def manage_data(from_year: int, to_year: int):
+    data_model = DataModel(to_year, DataStage.stg)
 
     lf_road = (
         pl.scan_parquet(data_model.roads.parquet)
@@ -823,52 +823,6 @@ def manage_data(year: int, vehicle_type: str):
         .unique()
         .group_by("parent_manage").agg(pl.col("state").len().alias("states"))
     )
-    lf_growth = pl.scan_csv(f"./reports/growth_rate_{vehicle_type}_2021_2025.csv")
-    lf_km_cost_mean = (
-        lf_growth
-        .select("stretch_id", "km_cost", "parent_tb_manage", "gate_to")
-        .unique()
-        .filter(pl.col("km_cost").is_not_null())
-        .group_by("parent_tb_manage")
-        .agg(
-            pl.when(pl.col("km_cost").count() > 2)
-            .then(
-                pl.col("km_cost")
-                .sort()
-                .slice(1, pl.col("km_cost").count() - 2) # remove min and max
-                .mean()
-            )
-            .otherwise(pl.col("km_cost").mean())
-            .round(2)
-            .alias("km_cost_mean_excl_minmax")
-        )
-        .rename({"parent_tb_manage": "parent_manage"})
-    )
-    lf_km_cost_median = (
-        lf_growth
-        .select("stretch_id", "km_cost", "parent_tb_manage", "gate_to")
-        .unique()
-        .filter(pl.col("km_cost").is_not_null())
-        .group_by("parent_tb_manage")
-        .agg(
-            pl.col("km_cost").median()
-            .alias("km_cost_median")
-        )
-        .rename({"parent_tb_manage": "parent_manage"})
-    )
-    lf_toll_tdpa = (
-        lf_growth
-        .select("stretch_id","toll_round_2025", "tdpa_round_2024", "parent_tb_manage")
-        .unique()
-        .filter(pl.col("tdpa_round_2024").is_not_null())
-        .with_columns(
-            gross=pl.col("toll_round_2025") * pl.col("tdpa_round_2024") * 365
-        )
-        .group_by("parent_tb_manage")
-        .agg(pl.col("gross").sum())
-        .rename({"parent_tb_manage": "parent_manage"})
-    )
-
     lf_manage = (
         lf_manage_length
         .join(lf_manage_roads, on="parent_manage", how="left")
@@ -878,12 +832,92 @@ def manage_data(year: int, vehicle_type: str):
         .join(lf_tollbooth_int_bridge, on="parent_manage", how="left")
         .join(lf_tollbooth_open_tb, on="parent_manage", how="left")
         .join(lf_tollbooth_closed_tb, on="parent_manage", how="left")
-        .join(lf_km_cost_mean, on="parent_manage", how="left")
-        .join(lf_km_cost_median, on="parent_manage", how="left")
-        .join(lf_toll_tdpa, on="parent_manage", how="left")
+    )
+    revenue_cols = []
+    for vehicle_type in _VEHICLE_TYPE_DICT:
+        if vehicle_type in ["extra_axle", "all"]:
+            continue
+        else:
+            try:
+                lf_growth = pl.scan_csv(f"./reports/growth_rate_{vehicle_type}_{from_year}_{to_year}.csv")
+                lf_growth.collect_schema()
+            except FileNotFoundError as e:
+                print(e)
+                print("Try to run the report --growth-rate {vehicle_type} first.")
+            else:
+                lf_km_cost_mean = (
+                    lf_growth
+                    .select("stretch_id", "km_cost", "parent_tb_manage", "gate_to")
+                    .unique()
+                    .filter(pl.col("km_cost").is_not_null())
+                    .group_by("parent_tb_manage")
+                    .agg(
+                        pl.when(pl.col("km_cost").count() > 2)
+                        .then(
+                            pl.col("km_cost")
+                            .sort()
+                            .slice(1, pl.col("km_cost").count() - 2) # remove min and max
+                            .mean()
+                        )
+                        .otherwise(pl.col("km_cost").mean())
+                        .round(2)
+                        .alias(f"km_cost_mean_{vehicle_type}")
+                    )
+                    .rename({"parent_tb_manage": "parent_manage"})
+                )
+                lf_km_cost_median = (
+                    lf_growth
+                    .select("stretch_id", "km_cost", "parent_tb_manage", "gate_to")
+                    .unique()
+                    .filter(pl.col("km_cost").is_not_null())
+                    .group_by("parent_tb_manage")
+                    .agg(
+                        pl.col("km_cost").median()
+                        .alias(f"km_cost_median_{vehicle_type}")
+                    )
+                    .rename({"parent_tb_manage": "parent_manage"})
+                )
+                lf_toll_tdpa = (
+                    lf_growth
+                    .select("stretch_id", f"toll_round_{to_year}", f"tdpa_round_{to_year-1}", "parent_tb_manage")
+                    .unique()
+                    .filter(pl.col(f"tdpa_round_{to_year-1}").is_not_null())
+                    .with_columns(
+                        (pl.col(f"toll_round_{to_year}") * pl.col(f"tdpa_round_{to_year-1}") * 365).alias(f"revenue_from_{vehicle_type}")
+                    )
+                    .group_by("parent_tb_manage")
+                    .agg(pl.col(f"revenue_from_{vehicle_type}").sum())
+                    .rename({"parent_tb_manage": "parent_manage"})
+                )
+                lf_manage = (
+                    lf_manage
+                    .join(lf_km_cost_mean, on="parent_manage", how="left")
+                    .join(lf_km_cost_median, on="parent_manage", how="left")
+                    .join(lf_toll_tdpa, on="parent_manage", how="left")
+                )
+                revenue_cols.append(f"revenue_from_{vehicle_type}")
+    
+    lf_sts_coverage = (
+        lf_growth
+        .select("stretch_id", "parent_tb_manage", f"tdpa_round_{to_year-1}", f"toll_round_{to_year}")
+        .filter(pl.col("parent_tb_manage").is_not_null())
+        .unique()
+        .group_by("parent_tb_manage")
+        .agg(
+            (pl.col(f"tdpa_round_{to_year-1}").count() / pl.col(f"toll_round_{to_year}").count() * 100).round().alias("tdpa_booth_coverage")
+        )
+        .rename({"parent_tb_manage": "parent_manage"})
+    )
+
+    lf_manage = (
+        lf_manage
+        .join(lf_sts_coverage, on="parent_manage", how="left")
+        .with_columns(
+            pl.sum_horizontal(revenue_cols).alias(f"total_revenue_{to_year}"),
+        )
     )
     lf_manage = lf_manage.sort("total_km", "parent_manage", descending=True)
-    lf_manage.sink_csv(os.path.join(output_filepath, f"manage_road_data_{year}.csv"))
+    lf_manage.sink_csv(os.path.join(output_filepath, f"manage_road_data_{from_year}_{to_year}.csv"))
 
 
 def revenue(from_year: int, to_year: int):
@@ -1000,7 +1034,7 @@ if __name__ == "__main__":
     parser.add_argument("--tb-imt-stretch-id", required=False, action="store_true")
     parser.add_argument("--stretch-length", required=False, action="store_true")
     parser.add_argument("--road-manage", required=False, action="store_true")
-    parser.add_argument("--manage-data", required=False, choices=tuple(_VEHICLE_TYPE_DICT))
+    parser.add_argument("--manage-data", required=False, action="store_true")
     parser.add_argument("--revenue", required=False, action="store_true")
 
     args = parser.parse_args()
@@ -1035,6 +1069,10 @@ if __name__ == "__main__":
     elif args.road_manage:
         road_manage_length(year=2026)
     elif args.manage_data:
-        manage_data(year=args.to_year, vehicle_type=args.manage_data)
+        if args.from_year is not None:
+            from_year = args.from_year
+        else:
+            from_year = 2021
+        manage_data(from_year=args.from_year, to_year=args.to_year)
     elif args.revenue:
         revenue(from_year=args.from_year, to_year=args.to_year)
