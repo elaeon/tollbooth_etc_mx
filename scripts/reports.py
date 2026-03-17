@@ -853,14 +853,7 @@ def manage_data(from_year: int, to_year: int):
                     .filter(pl.col("km_cost").is_not_null())
                     .group_by("parent_tb_manage")
                     .agg(
-                        pl.when(pl.col("km_cost").count() > 2)
-                        .then(
-                            pl.col("km_cost")
-                            .sort()
-                            .slice(1, pl.col("km_cost").count() - 2) # remove min and max
-                            .mean()
-                        )
-                        .otherwise(pl.col("km_cost").mean())
+                        pl.col("km_cost").mean()
                         .round(2)
                         .alias(f"km_cost_mean_{vehicle_type}")
                     )
