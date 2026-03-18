@@ -1,7 +1,7 @@
 "parent"|"short_name"|"project_or_owner_name"|"webpage"|"toll_ref"
 |"ideal"|"Impulsora del Desarrollo y el Empleo en América Latina"|"https://www.ideal.com.mx/"|
 |"rco"|"red via corta"|"https://redviacorta.mx/"|"https://redviacorta.mx/es/tarifas"
-|"aleatica"|"aleatica"|"https://www.aleatica.com/"|
+|"aleatica"|"Aleatica, S.A.B. de C.V."|"https://www.aleatica.com/"|
 "ideal"|"guadalajara-tepic"|"autopista guadalajara tepic s.a de cv."|"https://www.autopistaguadalajaratepic.com.mx"|"https://www.autopistaguadalajaratepic.com.mx/tarifas/"
 |"ocacsa"|"Operación y Conservación de Autopistas Concesionadas S.A. de C.V."||
 "ocacsa"|"jala-compostela"|"MRO Jala Compostela S.A de C.V"|"https://www.autopistajalacompostela.com"|"https://www.autopistajalacompostela.com/tarifas"
@@ -52,7 +52,7 @@
 "vice"|"lico"|"libramiento ciudad obregón s.a de c.v "|"https://lico.mx/"|"https://lico.mx/"
 |"autovan"|"Autopistas de Vanguardia S.A. de C.V."|"https://www.autovan.mx/"|"https://www.autovan.mx/"
 "lipsa"|"autovia"|||
-|"lep"|"Libramiento Elevado de Puebla, S.A. de C.V."|"https://www.clepsa.com"|"https://www.clepsa.com/rutas_tarifas.html"
+"pinfra"|"lep"|"Libramiento Elevado de Puebla, S.A. de C.V."|"https://www.clepsa.com"|"https://www.clepsa.com/rutas_tarifas.html"
 |"quantum"|"Exi operadora quantum"|"https://infraquantum.com/"|
 "quantum"|"macrolibramiento-queretaro"|"macro libramiento queretaro"|"https://infraquantum.com/proyecto-macro-libramiento/"|
 |"ica"|"Empresas ICA, S.A. de C.V."|"https://ica.com.mx/"|
@@ -108,3 +108,4 @@
 |"gob-veracruz"|"Gobierno de Veracruz"||
 |"ficeda"|"Fideicomiso para la construcción y operación de la Central de Abasto"|"https://ficeda.com.mx/"|
 "ica"|"oalprogreso"|"Operaciones Autovía Libramiento Progreso S.A. de C.V"||
+"aleatica"|"ohl"|"OHL México"||
