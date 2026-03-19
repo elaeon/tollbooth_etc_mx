@@ -752,7 +752,7 @@ def manage_data(from_year: int, to_year: int):
 
     lf_road = (
         pl.scan_parquet(data_model.roads.parquet)
-        .select("road_id", "road_length_km")
+        .select("road_id", "road_length_km", "bond_code")
     )
     lf_stretch = (
         pl.scan_parquet(data_model.stretchs.parquet)
@@ -805,8 +805,12 @@ def manage_data(from_year: int, to_year: int):
     lf_tb_stretch = (
         lf_tb_stretch_id
         .join(lf_road, on="road_id", how="left")
-        .select("road_id", "parent_manage", "road_length_km")
+        .select("road_id", "parent_manage", "road_length_km", "bond_code")
         .unique()
+    )
+    lf_manage_bond = (
+        lf_tb_stretch
+        .group_by("parent_manage").agg(pl.col("bond_code").count().alias("road_bonds"))
     )
     lf_manage_length = (
         lf_tb_stretch
@@ -832,6 +836,7 @@ def manage_data(from_year: int, to_year: int):
         .join(lf_tollbooth_int_bridge, on="parent_manage", how="left")
         .join(lf_tollbooth_open_tb, on="parent_manage", how="left")
         .join(lf_tollbooth_closed_tb, on="parent_manage", how="left")
+        .join(lf_manage_bond, on="parent_manage", how="left")
     )
     revenue_cols = defaultdict(list)
     years = range(from_year, to_year)
@@ -871,10 +876,38 @@ def manage_data(from_year: int, to_year: int):
                     )
                     .rename({"parent_tb_manage": "parent_manage"})
                 )
+                lf_cagr_inflation_mean = (
+                    lf_growth
+                    .select("stretch_id", f"toll_cagr_growth_rate_{from_year}_{to_year}", "parent_tb_manage")
+                    .unique()
+                    .filter(pl.col(f"toll_cagr_growth_rate_{from_year}_{to_year}").is_not_null())
+                    .group_by("parent_tb_manage")
+                    .agg(
+                        pl.col(f"toll_cagr_growth_rate_{from_year}_{to_year}").mean()
+                        .round(2)
+                        .alias(f"toll_cagr_growth_rate_{vehicle_type}")
+                    )
+                    .rename({"parent_tb_manage": "parent_manage"})
+                )
+                lf_last_year_inflation_mean = (
+                    lf_growth
+                    .select("stretch_id", f"toll_growth_rate_{to_year}", "parent_tb_manage")
+                    .unique()
+                    .filter(pl.col(f"toll_growth_rate_{to_year}").is_not_null())
+                    .group_by("parent_tb_manage")
+                    .agg(
+                        pl.col(f"toll_growth_rate_{to_year}").mean()
+                        .round(2)
+                        .alias(f"toll_last_year_growth_rate_{vehicle_type}")
+                    )
+                    .rename({"parent_tb_manage": "parent_manage"})
+                )
                 lf_manage = (
                     lf_manage
                     .join(lf_km_cost_mean, on="parent_manage", how="left")
                     .join(lf_km_cost_median, on="parent_manage", how="left")
+                    .join(lf_cagr_inflation_mean, on="parent_manage", how="left")
+                    .join(lf_last_year_inflation_mean, on="parent_manage", how="left")
                 )
                 for year in years:
                     lf_toll_tdpa = (
