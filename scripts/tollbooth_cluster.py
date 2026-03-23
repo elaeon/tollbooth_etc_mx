@@ -192,6 +192,18 @@ def build_tb_distance_file(year: int):
     ldf_osm_distance.sink_csv(data_model.osm_tb_distance.csv)
 
 
+def inegi_state_data(year: int):
+    url = "https://gaia.inegi.org.mx/wscatgeo/v2/mgee/"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+        df = pl.DataFrame(data.get("datos", []))
+        df.write_csv("./tmp_data/inegi_state_data.csv")
+    except Exception as e:
+        print(f"Error fetching State data: {e}")
+        return -1
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -200,6 +212,7 @@ if __name__ == "__main__":
     parser.add_argument("--get-tb-osm", required=False, type=str)
     parser.add_argument("--get-osm-tb-distance", required=False, action="store_true")
     parser.add_argument("--build-tb-distance-file", required=False, action="store_true")
+    parser.add_argument("--inegi-state-data", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.tollbooth_neighbours:
@@ -210,3 +223,5 @@ if __name__ == "__main__":
         tb_distance(args.year)
     elif args.build_tb_distance_file:
         build_tb_distance_file(args.year)
+    elif args.inegi_state_data:
+        inegi_state_data(args.year)

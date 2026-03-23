@@ -1046,6 +1046,21 @@ def revenue(from_year: int, to_year: int):
     lf_base.sink_csv(f"./reports/capufe_revenue_{from_year}_{to_year}.csv")
 
 
+def state_report(year: int):
+    lf = pl.scan_csv(f"./data/tables/{year}/inegi_state_data.csv")
+    lf = (
+        lf
+        .with_columns(
+            (pl.col("pob_femenina") / pl.col("pob_total")).round(2).alias("ratio_female"),
+            (pl.col("pob_masculina") / pl.col("pob_total")).round(2).alias("ratio_male"),
+            (pl.col("pob_total") / pl.col("pob_total").sum()).round(2).alias("ratio_population"),
+            (pl.col("pob_total") / pl.col("total_viviendas_habitadas")).round(2).alias("ratio_dwell")
+        )
+        .select("nomgeo", "ratio_female", "ratio_male", "ratio_population", "ratio_dwell")
+    )
+    lf.sink_csv(f"./reports/state_data_{year}.csv")
+
+
 if __name__ == "__main__":
     output_filepath = "reports/"
 
@@ -1067,6 +1082,7 @@ if __name__ == "__main__":
     parser.add_argument("--road-manage", required=False, action="store_true")
     parser.add_argument("--manage-data", required=False, action="store_true")
     parser.add_argument("--revenue", required=False, action="store_true")
+    parser.add_argument("--state-report", required=False, action="store_true")
 
     args = parser.parse_args()
     if args.growth_rate:
@@ -1107,3 +1123,5 @@ if __name__ == "__main__":
         manage_data(from_year=args.from_year, to_year=args.to_year)
     elif args.revenue:
         revenue(from_year=args.from_year, to_year=args.to_year)
+    elif args.state_report:
+        state_report(year=args.to_year)
