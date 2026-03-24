@@ -756,7 +756,8 @@ def manage_data(from_year: int, to_year: int):
     )
     lf_stretch = (
         pl.scan_parquet(data_model.stretchs.parquet)
-        .select("stretch_id", "road_id")
+        .select("stretch_id", "road_id", "manage", "stretch_length_km")
+        .rename({"manage": "stretch_manage"})
     )
     lf_tollbooth = (
         pl.scan_parquet(data_model.tollbooths.parquet)
@@ -802,6 +803,24 @@ def manage_data(from_year: int, to_year: int):
         .group_by("parent_manage")
         .len("closed_tb")
     )
+    lf_stretch_state_manage = (
+        lf_tb_stretch_id
+        .filter((pl.col("stretch_manage") == "state") | (pl.col("stretch_manage") == "federal_state"))
+        .group_by("parent_manage")
+        .agg(pl.col("stretch_length_km").sum().alias("state_stretch_use"))
+        .with_columns(
+            (pl.col("state_stretch_use") / pl.col("state_stretch_use").sum()).round(5)
+        )
+    )
+    lf_stretch_federal_manage = (
+        lf_tb_stretch_id
+        .filter((pl.col("stretch_manage") == "federal") | (pl.col("stretch_manage") == "federal_state"))
+        .group_by("parent_manage")
+        .agg(pl.col("stretch_length_km").sum().alias("federal_stretch_use"))
+        .with_columns(
+            (pl.col("federal_stretch_use") / pl.col("federal_stretch_use").sum()).round(5)
+        )
+    )
     lf_tb_stretch = (
         lf_tb_stretch_id
         .join(lf_road, on="road_id", how="left")
@@ -837,6 +856,8 @@ def manage_data(from_year: int, to_year: int):
         .join(lf_tollbooth_open_tb, on="parent_manage", how="left")
         .join(lf_tollbooth_closed_tb, on="parent_manage", how="left")
         .join(lf_manage_bond, on="parent_manage", how="left")
+        .join(lf_stretch_state_manage, on="parent_manage", how="left")
+        .join(lf_stretch_federal_manage, on="parent_manage", how="left")
     )
     revenue_cols = defaultdict(list)
     years = range(from_year, to_year)
@@ -1120,7 +1141,7 @@ if __name__ == "__main__":
             from_year = args.from_year
         else:
             from_year = 2021
-        manage_data(from_year=args.from_year, to_year=args.to_year)
+        manage_data(from_year=from_year, to_year=args.to_year)
     elif args.revenue:
         revenue(from_year=args.from_year, to_year=args.to_year)
     elif args.state_report:
