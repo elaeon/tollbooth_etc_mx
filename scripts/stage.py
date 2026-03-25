@@ -195,14 +195,13 @@ def pub_to_stg(year: int, option_selected: str, normalize: bool, options: tuple)
         )
         ldf = (
             ldf
-            #.rename({"manage": "stretch_manage"})
             .join(ldf_osm_tb_distance, on="stretch_id", how="left")
             .with_columns(
-                stretch_length_km=(
-                    pl.when(pl.col("stretch_length_km_right").is_null())
-                    .then(pl.col("stretch_length_km"))
-                    .otherwise(pl.col("stretch_length_km_right"))
-                )
+               stretch_length_km=(
+                   pl.when(pl.col("stretch_length_km_right").is_null())
+                   .then(pl.col("stretch_length_km"))
+                   .otherwise(pl.col("stretch_length_km_right"))
+               )
             )
         )
         ldf = ldf.select(data_model.model.dict_schema().keys())

@@ -41,11 +41,8 @@ class DataPipeline:
                 pl_date_exp.append(pl.col(date_column).str.to_date(date_format))
             ldf = ldf.with_columns(pl_date_exp)
         
-        cast_schema = {}
-        for col in ldf.collect_schema().names():
-            cast_schema[col] = schema[col]
-        ldf = ldf.cast(cast_schema)
         ldf = ldf.pipe(self._simple_stg, model=model_dict["start"], normalize=normalize)
+        ldf = ldf.cast(schema)
         return ldf, model_dict["end"]
 
     def simple_raw_stg(self, model_name: str, year: int, file_path: str, old_fields: list, 

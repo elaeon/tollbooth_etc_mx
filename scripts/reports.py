@@ -1135,7 +1135,7 @@ if __name__ == "__main__":
     elif args.stretch_length:
         stretch_length(year=2025)
     elif args.road_manage:
-        road_manage_length(year=2026)
+        road_manage_length(year=args.to_year)
     elif args.manage_data:
         if args.from_year is not None:
             from_year = args.from_year
