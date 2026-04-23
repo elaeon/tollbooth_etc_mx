@@ -57,7 +57,7 @@ def fetch_tollbooths(body: Annotated[Any, Body()], session: SessionDep, offset: 
         data = []
         for row in tollbooths:
             data.append(row)
-        print(data)
+        _log.debug(data)
     else:
         try:
             parsed = parse_query(body["query"])
@@ -155,7 +155,7 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
 def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
     _log.debug(tollbooth)
     if tollbooth.tollbooth_id is not None:
-        db_tb = session.get(Tollbooth, tollbooth.tollbooth_id)
+        db_tb = session.get(Tollbooth, [tollbooth.tollbooth_id, tollbooth.info_year])
         if not db_tb:
             raise HTTPException(status_code=404, detail="Tollbooth not found")
         tb_data = tollbooth.model_dump(exclude_unset=True) 
@@ -166,11 +166,14 @@ def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
     else:
         info_year = datetime.date.today().year
         tollbooth.info_year = info_year
-        session.add(tollbooth)
-        session.commit()
-        session.refresh(tollbooth)
+        try:
+            session.add(tollbooth)
+            session.commit()
+            session.refresh(tollbooth)
+        except Exception as e:
+            raise HTTPException(status_code=500)
     
-    return {"tollbooth_id": tollbooth.tollbooth_id}
+    return {"tollbooth_id": tollbooth.tollbooth_id, "info_year": tollbooth.info_year}
 
 
 @app.post("/api/tollbooths_imt")

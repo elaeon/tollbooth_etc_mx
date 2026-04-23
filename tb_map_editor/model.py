@@ -203,7 +203,7 @@ class Tollbooth(TbModel, table=True):
     def online_empty_fields(cls, exclude_fields: set | None = None) -> dict:
         fields = {}
         if exclude_fields is None:
-            exclude_fields = {"tollbooth_id", "legacy_id", "lat", "lng"}
+            exclude_fields = {"tollbooth_id", "legacy_id", "lat", "lng", "info_year"}
         for field, _ in cls.model_fields.items():
             if field not in exclude_fields:
                 fields[field] = None

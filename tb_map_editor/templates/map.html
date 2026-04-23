@@ -157,7 +157,7 @@ function addInfoPopup(marker, moveOpt) {
 		if (acceptLink) {
 			acceptLink.addEventListener('click', async () => {
 				const pos = marker.getLatLng();
-				const payload = { ...specialStructuredClone(marker.__data.props), tollbooth_id: marker.__data.tollbooth_id, lat: pos.lat, lng: pos.lng };
+				const payload = { ...specialStructuredClone(marker.__data.props), tollbooth_id: marker.__data.tollbooth_id, lat: pos.lat, lng: pos.lng, info_year: marker.__data.info_year};
 				try {
 					await postJSON('{{ url_for("upsert_tollbooth") }}', payload);
 					marker.__data.lat = pos.lat;
@@ -198,6 +198,7 @@ map.on('click', async (e) => {
 	}
 	pendingMarker.__data.props = specialStructuredClone(emptyTbTpl);
 	pendingMarker.__data.tollbooth_id = null;
+	pendingMarker.__data.info_year = null;
 
 	const statusEl = document.getElementById('query-status');
 	if (layers[activeLayer] !== layers.tb) {
@@ -616,10 +617,11 @@ function parseCoordItem(item) {
 		else if (['lon', 'longitude', 'lng'].includes(lk)) lng = parseFloat(item[key]);
 		else if (lk === 'source')                          source = item[key];
 		else if (lk === 'tollbooth_id')                    tollbooth_id = item[key];
+		else if (lk === 'info_year')                       info_year = item[key];
 		else                                               props[key] = item[key];
 	}
 	if (Number.isFinite(lat) && Number.isFinite(lng) && isValidLat(lat) && isValidLng(lng)) {
-		return { lat, lng, source, props, tollbooth_id };
+		return { lat, lng, source, props, tollbooth_id, info_year };
 	}
 	return null;
 }
@@ -636,7 +638,7 @@ function addTbMarker(coord) {
 			icon:  isOpen ? layers[activeLayer].options.markerIcon : icons.grey
 		}
 	);
-	marker.__data = { props: coord.props || {}, lat: coord.lat, lng: coord.lng, source: coord.source, tollbooth_id: coord.tollbooth_id };
+	marker.__data = { props: coord.props || {}, lat: coord.lat, lng: coord.lng, source: coord.source, tollbooth_id: coord.tollbooth_id, info_year: coord.info_year };
 	addInfoPopup(marker, false);
 	marker.addTo(layers[activeLayer]);
 	marker.on('click', () => { try { showMarkerProps(marker); } catch (err) { console.warn('showMarkerProps error', err); } });
@@ -667,8 +669,8 @@ function createPopupFormHTML(marker) {
 	html += `<input type="hidden" name="lat" value="${escapeHtml(pos.lat)}">`;
 	html += `<input type="hidden" name="lng" value="${escapeHtml(pos.lng)}">`;
 	html += `<input type="hidden" name="tollbooth_id" value="${escapeHtml(data.tollbooth_id ?? '')}">`;
+	html += `<input type="hidden" name="info_year" value="${escapeHtml(data.info_year ?? '')}">`;
 	for (const key of Object.keys(props)) {
-		if (key === 'info_year') continue;
 		const val = props[key] == null ? '' : (typeof props[key] === 'object' ? JSON.stringify(props[key]) : String(props[key]));
 		html += `<div style="margin:4px 0"><label style="font-size:12px">${escapeHtml(key)}:<br><input name="${escapeHtml(key)}" value="${escapeHtml(val)}" style="width:100%"/></label></div>`;
 	}
@@ -729,7 +731,7 @@ function attachPopupFormHandlers(popup, marker) {
 		ev.preventDefault();
 		const obj = {};
 		for (const [k, v] of new FormData(form).entries()) obj[k] = v === '' ? null : v;
-		marker.__data.props = Object.fromEntries(Object.entries(obj).filter(([k]) => !['lat', 'lng', 'tollbooth_id'].includes(k)));
+		marker.__data.props = Object.fromEntries(Object.entries(obj).filter(([k]) => !['lat', 'lng', 'tollbooth_id', 'info_year'].includes(k)));
 		marker.__data.lat = obj.lat;
 		marker.__data.lng = obj.lng;
 		obj.tollbooth_id = obj.tollbooth_id || null;
@@ -744,7 +746,9 @@ function attachPopupFormHandlers(popup, marker) {
 			if (!resp.ok) throw new Error(resp.statusText);
 			if (status) status.textContent = 'Saved to server';
 			marker.__data.tollbooth_id = respData.tollbooth_id;
+			marker.__data.info_year = respData.info_year;
 			try { showMarkerProps(marker); } catch (err) { console.warn('showMarkerProps error', err); }
+			//rebuild marker to clean up data in popup
 			const newMarker = addTbMarker(marker.__data);
 			marker.closePopup();
 			addInfoPopup(newMarker, false);
