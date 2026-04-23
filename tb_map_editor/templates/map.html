@@ -17,7 +17,7 @@
 #map { height: 100vh; flex: 1;}
 body { height: 100%; display: flex;}
 div.title-container {
-	display: flex; 
+	display: flex;
 	min-width: 160px;
 	min-height: 30px;
 	justify-content: center;
@@ -36,7 +36,6 @@ const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 });
 
-// Esri World Imagery (satellite) - free for non-commercial use per Esri terms
 const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	minZoom: 0,
 	maxZoom: 18,
@@ -49,255 +48,183 @@ const map = L.map('map', {
 	layers: [osm]
 });
 
-
-//https://github.com/pointhi/leaflet-color-markers
-const greenIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-  iconSize: [20, 36],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [36, 36]
-});
-
-
-const blueIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-  iconSize: [20, 36],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [36, 36]
-});
-
-
-const redIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-  iconSize: [20, 36],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [36, 36]
-});
-
-const goldIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-  iconSize: [20, 36],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [36, 36]
-});
-
-const greyIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-grey.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-  iconSize: [20, 36],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [36, 36]
-});
-
-
-function _buildLayersGrp() {
-	const _layers = {
-		tb: L.markerClusterGroup({
-			maxClusterRadius: 80,
-			disableClusteringAtZoom: 15
-		}),
-		tbsts: L.markerClusterGroup({
-			maxClusterRadius: 80,
-			disableClusteringAtZoom: 15
-		}),
-		tbimt: L.markerClusterGroup({
-			maxClusterRadius: 80,
-			disableClusteringAtZoom: 15
-		})
-	}
-	for (const layer in _layers) {
-		_layers[layer].addTo(map);
-	}
-	return _layers;
+// https://github.com/pointhi/leaflet-color-markers
+function makeIcon(color) {
+	return new L.Icon({
+		iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${color}.png`,
+		shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+		iconSize: [20, 36],
+		iconAnchor: [12, 41],
+		popupAnchor: [1, -34],
+		shadowSize: [36, 36]
+	});
 }
 
-const _layers = _buildLayersGrp();
+const icons = {
+	green: makeIcon('green'),
+	blue:  makeIcon('blue'),
+	red:   makeIcon('red'),
+	gold:  makeIcon('gold'),
+	grey:  makeIcon('grey'),
+};
 
-let _activeLayer = null;
-let _tmpMarkerData = null;
-let _tpl_empty_tb_data = null;
-let _clickMarker = null;
+// Layer groups
+const clusterOpts = { maxClusterRadius: 80, disableClusteringAtZoom: 15 };
+const layers = {
+	tb:    L.markerClusterGroup(clusterOpts),
+	tbsts: L.markerClusterGroup(clusterOpts),
+	tbimt: L.markerClusterGroup(clusterOpts),
+};
+for (const lyr of Object.values(layers)) lyr.addTo(map);
 
-function layerIcons() {
-	const icons = [blueIcon, goldIcon, redIcon];
-	let i = 0;
-	for(const layerName in _layers) {
-		_layers[layerName].options.markerIcon = icons[i%icons.length];
-		i++;
-	}
+const LAYER_ICON_CYCLE = [icons.blue, icons.gold, icons.red];
+Object.values(layers).forEach((lyr, i) => { lyr.options.markerIcon = LAYER_ICON_CYCLE[i % LAYER_ICON_CYCLE.length]; });
+layers.tb.options.editMode = false;
+
+// --- State ---
+let activeLayer   = null;
+let pendingMarker = null;  // temporary marker placed via map click
+let emptyTbTpl    = null;  // cached empty tollbooth template from server
+let clipboard     = null;  // copied marker data for paste
+
+// --- Utilities ---
+
+async function postJSON(url, payload) {
+	const resp = await fetch(url, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(payload)
+	});
+	if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
+	return resp.json();
 }
 
-window.addEventListener("load", function() {
-	_layers.tb.options.editMode = false;
-	layerIcons();
-	console.log("init settings.");
-});
+function bindMarkerPopup(marker, html, onOpen) {
+	marker.unbindPopup();
+	marker.bindPopup(html);
+	marker.off('popupopen');
+	marker.on('popupopen', onOpen);
+}
 
+function escapeHtml(str) {
+	return String(str)
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#039;');
+}
+
+function isValidLat(v) { return Number.isFinite(v) && v >= -90 && v <= 90; }
+function isValidLng(v) { return Number.isFinite(v) && v >= -180 && v <= 180; }
+
+function debounce(fn, wait) {
+	let t;
+	return function(...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), wait); };
+}
+
+// --- Marker popup binding ---
 
 function editTbMarker(marker) {
-	// remove previous popup and handlers
-	marker.unbindPopup();
-	marker.bindPopup(createPopupFormHTML(marker));
-	marker.off && marker.off('popupopen');
-	marker.on('popupopen', (e) => {
+	bindMarkerPopup(marker, createPopupFormHTML(marker), () => {
 		attachPopupFormHandlers(marker.getPopup(), marker);
 	});
 }
 
-
 function dragTbMarker(marker) {
 	marker.dragging.enable();
-	marker.on('dragend', function(e) {
-		addInfoPopup(marker, moveOpt=true);
+	marker.on('dragend', () => {
+		addInfoPopup(marker, true);
 		marker.openPopup();
 	});
 }
 
-
 function addInfoPopup(marker, moveOpt) {
-	// remove previous popup and handlers
-	marker.unbindPopup();
-	marker.bindPopup(createInfoPopupHTML(marker, moveOpt));
-	marker.off && marker.off('popupopen');
-	marker.on('popupopen', (e) => {
-		const setLink = e.popup.getElement().querySelector('.set-marker-link');
-		const acceptDragLink = e.popup.getElement().querySelector('.accept-move-marker');
-		const cancelDragLink = e.popup.getElement().querySelector('.cancel-move-marker');
+	bindMarkerPopup(marker, createInfoPopupHTML(marker, moveOpt), (e) => {
+		const popup     = e.popup.getElement();
+		const setLink   = popup.querySelector('.set-marker-link');
+		const acceptLink = popup.querySelector('.accept-move-marker');
+		const cancelLink = popup.querySelector('.cancel-move-marker');
+
 		if (setLink) {
-		 	setLink.addEventListener('click', function(ev) {
+			setLink.addEventListener('click', (ev) => {
 				ev.preventDefault();
-				editTbMarker(marker)
+				editTbMarker(marker);
 				marker.openPopup();
 			});
 		}
-		
-		if (acceptDragLink) {
-			acceptDragLink.addEventListener('click', async (ev) => {
-				const position = marker.getLatLng();
-				payload = specialStructuredClone(marker.__data.props);
-				payload.tollbooth_id = marker.__data.tollbooth_id;
-				payload.lat = position.lat;
-				payload.lng = position.lng;
-				try {
-					const resp = await fetch('{{ url_for("upsert_tollbooth") }}', { 
-						method: 'POST', 
-						headers: {'Content-Type':'application/json'}, 
-						body: JSON.stringify(payload)
-					});
-					if (!resp.ok) throw new Error(resp.statusText);
-					marker.__data.lat = position.lat;
-					marker.__data.lng = position.lng;
-					//if (status) {
-					//status.textContent = 'Saved to server';
-					marker.closePopup();
-					//}
-				} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
-			});
-		} 
 
-		if (cancelDragLink) {
-			cancelDragLink.addEventListener('click', function(ev) {
+		if (acceptLink) {
+			acceptLink.addEventListener('click', async () => {
+				const pos = marker.getLatLng();
+				const payload = { ...specialStructuredClone(marker.__data.props), tollbooth_id: marker.__data.tollbooth_id, lat: pos.lat, lng: pos.lng };
+				try {
+					await postJSON('{{ url_for("upsert_tollbooth") }}', payload);
+					marker.__data.lat = pos.lat;
+					marker.__data.lng = pos.lng;
+					marker.closePopup();
+				} catch (err) { console.warn('Save error:', err.message); }
+			});
+		}
+
+		if (cancelLink) {
+			cancelLink.addEventListener('click', (ev) => {
 				ev.preventDefault();
 				marker.closePopup();
-				const oldPosition = new L.LatLng(marker.__data.lat, marker.__data.lng);
-				marker.setLatLng(oldPosition).update();
+				marker.setLatLng(new L.LatLng(marker.__data.lat, marker.__data.lng)).update();
 			});
 		}
 	});
 }
 
 
-map.on('click', async (e) => {
-	if (_clickMarker === null) {
-		_clickMarker = L.marker(e.latlng, {icon: greenIcon, draggable: true});
-		if (_tpl_empty_tb_data == null) {
-			payload = { source: "tollbooth" };
-			try {
-				const resp = await fetch('{{ url_for("get_tb_tpl") }}', { 
-					method: 'POST', 
-					headers: {'Content-Type':'application/json'}, 
-					body: JSON.stringify(payload)
-				});
-				if (!resp.ok) throw new Error(resp.statusText);
-				if (status) console.log(payload)
-				_tpl_empty_tb_data = await resp.json();
-			} catch(err) { if (status) status.textContent = 'Save error: ' + err.message }
-		}
-		_clickMarker.__data = { lat: null, lng: null, props: {} };
-		_clickMarker.on('dragend', (e) => {
-			addInfoPopup(_clickMarker);
-			_clickMarker.openPopup();
-		});
-	}
-	else {
-		_clickMarker.setLatLng(new L.LatLng(e.latlng.lat, e.latlng.lng)).update();
-	}
-	_clickMarker.__data.props = specialStructuredClone(_tpl_empty_tb_data);
-	_clickMarker.__data.tollbooth_id = null;
+// --- Map click: place/move pending marker ---
 
-	if ((_layers[_activeLayer] != _layers.tb)) {
-		const statusEl = document.getElementById('query-status');
-		statusEl.textContent = "Read only layer."
+map.on('click', async (e) => {
+	if (pendingMarker === null) {
+		pendingMarker = L.marker(e.latlng, { icon: icons.green, draggable: true });
+		if (emptyTbTpl == null) {
+			try {
+				emptyTbTpl = await postJSON('{{ url_for("get_tb_tpl") }}', { source: 'tollbooth' });
+			} catch (err) { console.warn('Error fetching template:', err.message); }
+		}
+		pendingMarker.__data = { lat: null, lng: null, props: {} };
+		pendingMarker.on('dragend', () => {
+			addInfoPopup(pendingMarker, false);
+			pendingMarker.openPopup();
+		});
+	} else {
+		pendingMarker.setLatLng(new L.LatLng(e.latlng.lat, e.latlng.lng)).update();
 	}
-	else {
-		if (!_layers[_activeLayer].hasLayer(_clickMarker)) {
-			_clickMarker.addTo(_layers[_activeLayer]);
+	pendingMarker.__data.props = specialStructuredClone(emptyTbTpl);
+	pendingMarker.__data.tollbooth_id = null;
+
+	const statusEl = document.getElementById('query-status');
+	if (layers[activeLayer] !== layers.tb) {
+		if (statusEl) statusEl.textContent = 'Read only layer.';
+	} else {
+		if (!layers[activeLayer].hasLayer(pendingMarker)) {
+			pendingMarker.addTo(layers[activeLayer]);
 		}
 	}
-	addInfoPopup(_clickMarker);
-	_clickMarker.openPopup();
+	addInfoPopup(pendingMarker, false);
+	pendingMarker.openPopup();
 });
+
+
+// --- Base layers & layer control ---
 
 const baseLayers = {
 	'OpenStreetMap': osm,
 	'EsriSatellite': esriSat
 };
-
-const layerControl = L.control.layers(baseLayers, {}, { position: 'topleft' }).addTo(map);
-
-// update on layer change
-map.on('baselayerchange', (e) => {
-	try { baseHintControl.update(e.name || 'unknown'); } catch (err) { console.warn('baseHint update', err); }
-});
-
-// set initial value based on which base layer is currently on the map
-try {
-	let activeName = 'none';
-	for (const name in baseLayers) {
-		try { if (map.hasLayer(baseLayers[name])) { activeName = name; break; } } catch (e) {}
-	}
-	baseHintControl.update(activeName);
-} catch (err) { console.warn('init baseHint', err); }
-
-const ZoomViewer = L.Control.extend({
-		onAdd() {
-			const container = L.DomUtil.create('div');
-			const gauge = L.DomUtil.create('div');
-			container.style.width = '200px';
-			container.style.background = 'rgba(255,255,255,0.5)';
-			container.style.textAlign = 'left';
-			map.on('zoomstart zoom zoomend', (ev) => {
-				gauge.innerHTML = `Zoom level: ${map.getZoom()}`;
-			});
-			container.appendChild(gauge);
-			return container;
-		}
-	});
+L.control.layers(baseLayers, {}, { position: 'topleft' }).addTo(map);
 
 
-// --- AJAX Query Control for fetching markers ---
-// Container styles
-const uploadControlStyle = document.createElement('style');
-uploadControlStyle.innerHTML = `
+// --- Control panel styles ---
+
+const controlStyle = document.createElement('style');
+controlStyle.innerHTML = `
 	:root{--qc-bg:rgba(255,255,255,0.98);--qc-border:#e6e6e6;--qc-accent:#0b6efd;--qc-text:#222}
 	.leaflet-control-query{background:var(--qc-bg);padding:10px;width:340px;max-width:92vw;font-size:13px;z-index:1000;transition:width .25s ease,box-shadow .15s;box-shadow:0 6px 18px rgba(0,0,0,0.08);border:1px solid var(--qc-border);border-radius:8px}
 	.leaflet-control-query.collapsed{width:auto;padding:6px}
@@ -314,13 +241,15 @@ uploadControlStyle.innerHTML = `
 	.leaflet-control-query .status{font-size:12px;color:#333;margin-top:6px;white-space:pre-wrap}
 	.leaflet-control-query #btn-toggle-control{margin-right:0;min-width:36px}
 	.leaflet-control-query #zoom-viewer{font-size:12px;color:#666;margin-top:6px;padding:6px;background:#fbfbfb;border-radius:4px}
-	/* tollbooth autocomplete suggestions */
 	.leaflet-control-query .tb-search{position:relative}
 	.leaflet-control-query .tb-suggestions{position:relative;margin-top:4px;border:1px solid #e6e6e6;background:#fff;border-radius:6px;max-height:220px;overflow:auto;box-shadow:0 6px 12px rgba(0,0,0,0.06);}
 	.leaflet-control-query .tb-suggestion-item{padding:8px 10px;cursor:pointer;font-size:13px;border-bottom:1px solid #f4f4f4}
 	.leaflet-control-query .tb-suggestion-item:hover{background:#f6f8ff}
 `;
-document.head.appendChild(uploadControlStyle);
+document.head.appendChild(controlStyle);
+
+
+// --- Query Control ---
 
 const QueryControl = L.Control.extend({
 	onAdd(map) {
@@ -356,98 +285,68 @@ const QueryControl = L.Control.extend({
 
 		L.DomEvent.disableClickPropagation(container);
 
-		const queryInputEl = container.querySelector('#query-input');
-		const endpointEl = container.querySelector('#query-endpoints');
-		const statusEl = container.querySelector('#query-status');
-		const zoomViewerEl = container.querySelector('#zoom-viewer');
-		const btnSend = container.querySelector('#btn-send-query');
-		const btnClear = container.querySelector('#btn-clear-markers');
-		const btnClearAll = container.querySelector('#btn-clear-group-layers');
-		const btnCheckboxEdit = container.querySelector('#btn-checkbox-edit');
-		const btnToggleControl = container.querySelector('#btn-toggle-control');
-		const controlContent = container.querySelector('#control-content');
+		const queryInput   = container.querySelector('#query-input');
+		const endpointSel  = container.querySelector('#query-endpoints');
+		const statusEl     = container.querySelector('#query-status');
+		const zoomEl       = container.querySelector('#zoom-viewer');
+		const btnSend      = container.querySelector('#btn-send-query');
+		const btnClear     = container.querySelector('#btn-clear-markers');
+		const btnClearAll  = container.querySelector('#btn-clear-group-layers');
+		const editCheckbox = container.querySelector('#btn-checkbox-edit');
+		const btnToggle    = container.querySelector('#btn-toggle-control');
+		const content      = container.querySelector('#control-content');
 
-		// Start with control collapsed
-		//container.classList.add('collapsed');
-		//controlContent.style.display = 'none';
-
-		// Update zoom level display
-		map.on('zoomstart zoom zoomend', (ev) => {
-			if (zoomViewerEl) zoomViewerEl.innerHTML = `Zoom level: ${map.getZoom()}`;
+		map.on('zoomstart zoom zoomend', () => {
+			if (zoomEl) zoomEl.innerHTML = `Zoom level: ${map.getZoom()}`;
 		});
 
-		// Toggle entire control box visibility
-		btnToggleControl.addEventListener('click', () => {
-			const isHidden = controlContent.style.display === 'none';
-			controlContent.style.display = isHidden ? 'block' : 'none';
-			btnToggleControl.textContent = isHidden ? '−' : '+';
+		btnToggle.addEventListener('click', () => {
+			const hidden = content.style.display === 'none';
+			content.style.display = hidden ? 'block' : 'none';
+			btnToggle.textContent = hidden ? '−' : '+';
 			container.classList.toggle('collapsed');
 		});
 
-		// when the endpoint select changes, set `_activeLayer` to the corresponding _layers key (by matching endpoint URL)
-		endpointEl.addEventListener('change', () => {
-			_activeLayer = endpointEl.options[endpointEl.selectedIndex].text;
-			// toggle visibility: show only the active layer, hide others
-			for (const name in _layers) {
-				try {
-					const lyr = _layers[name];
-					if (!lyr) continue;
-					if (name === _activeLayer) {
-						if (!map.hasLayer(lyr)) map.addLayer(lyr);
-					} else {
-						if (map.hasLayer(lyr)) map.removeLayer(lyr);
-					}
-				} catch (err) { console.warn('Layer toggle error', err); }
+		endpointSel.addEventListener('change', () => {
+			activeLayer = endpointSel.options[endpointSel.selectedIndex].text;
+			for (const name in layers) {
+				const lyr = layers[name];
+				if (!lyr) continue;
+				if (name === activeLayer) { if (!map.hasLayer(lyr)) map.addLayer(lyr); }
+				else                      { if (map.hasLayer(lyr))  map.removeLayer(lyr); }
 			}
-			if (statusEl) statusEl.textContent = `Active layer: ${_activeLayer || 'none'} ${_layers[_activeLayer].getLayers().length} items`;
+			if (statusEl) statusEl.textContent = `Active layer: ${activeLayer || 'none'} — ${layers[activeLayer].getLayers().length} items`;
 		});
 
-		// set initial active layer based on the current select value
 		try {
-			endpointEl.dispatchEvent(new Event('change'));
+			endpointSel.dispatchEvent(new Event('change'));
 		} catch (err) {
-			// fallback: compute directly
-			_activeLayer = endpointEl.options[endpointEl.selectedIndex].text;
-			if (statusEl) statusEl.textContent = `Active layer: ${_activeLayer || 'none'} ${_layers[_activeLayer].getLayers().length} items`;
+			activeLayer = endpointSel.options[endpointSel.selectedIndex].text;
+			if (statusEl) statusEl.textContent = `Active layer: ${activeLayer || 'none'} — ${layers[activeLayer].getLayers().length} items`;
 		}
-		
-		btnCheckboxEdit.addEventListener('click', async() => {
-			// Toggle edit mode for uploaded markers
-			_layers.tb.options.editMode = btnCheckboxEdit.checked;
-			// Rebind popups for existing markers according to the new mode
-			_layers.tb.eachLayer(function(layer) {
-				try {
-					if (!layer || !layer.__data) return;
-					if (_layers.tb.options.editMode) {
-						layer.closePopup();
-						editTbMarker(layer);
-						dragTbMarker(layer);
-					} else {
-						layer.closePopup();
-						addInfoPopup(layer, moveOpt=false);
-						layer.dragging.disable();
-					}
-				} catch (err) {
-					console.warn('Error rebinding marker popup', err);
+
+		editCheckbox.addEventListener('click', () => {
+			layers.tb.options.editMode = editCheckbox.checked;
+			layers.tb.eachLayer((layer) => {
+				if (!layer || !layer.__data) return;
+				if (layers.tb.options.editMode) {
+					layer.closePopup();
+					editTbMarker(layer);
+					dragTbMarker(layer);
+				} else {
+					layer.closePopup();
+					addInfoPopup(layer, false);
+					layer.dragging.disable();
 				}
 			});
 		});
 
 		btnSend.addEventListener('click', async () => {
-			const query = queryInputEl.value && queryInputEl.value.trim();
-			const endpoint = endpointEl.value && endpointEl.value.trim();
-			//if (!query) { statusEl.textContent = 'Enter a query'; return; }
-			//if (!endpoint) { statusEl.textContent = 'Enter an endpoint'; return; }
-			
+			const query    = queryInput.value && queryInput.value.trim();
+			const endpoint = endpointSel.value && endpointSel.value.trim();
 			statusEl.textContent = 'Sending request...';
 			try {
-				const resp = await fetch(endpoint, {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ query: query })
-				});
-				if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
-				const data = await resp.json();
+				const data = await postJSON(endpoint, { query });
 				processMarkerResponse(data, query, true);
 			} catch (err) {
 				statusEl.textContent = `Error: ${err.message}`;
@@ -460,69 +359,60 @@ const QueryControl = L.Control.extend({
 		});
 
 		btnClearAll.addEventListener('click', () => {
-			queryInputEl.value = null;
+			queryInput.value = null;
 			clearAllLayers();
 			statusEl.textContent = 'Layers cleared';
 		});
 
-			// initialize tollbooth search handlers (autocomplete)
-			try { initTbSearchHandlers(container); } catch (err) { console.warn('initTbSearchHandlers', err); }
+		try { initTbSearchHandlers(container); } catch (err) { console.warn('initTbSearchHandlers', err); }
 
-			return container;
+		return container;
 	}
 });
 
 
+// --- Layer management ---
+
 function clearMarkers() {
-	try { _layers[_activeLayer].clearLayers(); } catch (e) {}
+	try { layers[activeLayer].clearLayers(); } catch (e) {}
 	const panel = document.getElementById('marker-props-panel');
 	if (panel) { panel.style.display = 'none'; panel.innerHTML = ''; }
 }
 
 function clearAllLayers() {
-	for (const layer in _layers) {
-		_layers[layer].clearLayers();
-	}
+	for (const lyr of Object.values(layers)) lyr.clearLayers();
 }
 
+
+// --- Marker response processing ---
 
 function processMarkerResponse(data, sourceLabel, clearLayers) {
 	const coords = extractCoordinates(data);
 	if (!coords.length) throw new Error('No coordinates found in response');
 	const markers = addMarkersFromCoords(coords, sourceLabel, clearLayers);
-	// If exactly one marker was returned, show its properties in the panel
 	if (Array.isArray(markers) && markers.length === 1) {
 		try { showMarkerProps(markers[0]); } catch (err) { console.warn('showMarkerProps error', err); }
 	}
 }
 
-// --- Tollbooth name autocomplete ---
-const _tb_suggestions = { list: [], lastQuery: '' };
-async function loadTollSuggestions(ev) {
+
+// --- Tollbooth autocomplete ---
+
+const suggestions = { list: [] };
+
+async function loadSuggestions(query) {
 	try {
-		const resp = await fetch('{{ url_for("fetch_tollbooths") }}', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ suggestions: true, query: ev.target.value.trim().toLowerCase()})
-		});
-		if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
-		const data = await resp.json();
+		const data = await postJSON('{{ url_for("fetch_tollbooths") }}', { suggestions: true, query: query.toLowerCase() });
 		if (Array.isArray(data)) {
-			_tb_suggestions.list = data.map(d => ({ id: d.tollbooth_id || d.tollbooth_id_a || d.tollbooth_id_b || d.id, name: d.tollbooth_name || d.name || (d.props && d.props.tollbooth_name) }));
+			suggestions.list = data.map(d => ({
+				id:   d.tollbooth_id || d.tollbooth_id_a || d.tollbooth_id_b || d.id,
+				name: d.tollbooth_name || d.name || (d.props && d.props.tollbooth_name)
+			}));
 		}
-	} catch (err) {
-		console.warn('toll suggestions load failed', err);
-	}
+	} catch (err) { console.warn('Suggestions load failed', err); }
 }
 
-function debounce(fn, wait) {
-	let t;
-	return function(...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), wait); };
-}
-
-function renderTbSuggestions(filtered) {
-	const box = document.getElementById('tb-suggestions');
-	if (!box) return;
+function renderSuggestions(filtered, box) {
 	box.innerHTML = '';
 	if (!filtered || !filtered.length) { box.style.display = 'none'; return; }
 	for (const item of filtered) {
@@ -530,7 +420,7 @@ function renderTbSuggestions(filtered) {
 		el.className = 'tb-suggestion-item';
 		el.textContent = item.name || String(item.id);
 		el.dataset.id = item.id;
-		el.addEventListener('click', (ev) => {
+		el.addEventListener('click', () => {
 			const qEl = document.getElementById('query-input');
 			if (qEl) qEl.value = el.textContent;
 			try { showTollboothMarkers([el.dataset.id]); } catch (err) { console.warn(err); }
@@ -541,30 +431,32 @@ function renderTbSuggestions(filtered) {
 	box.style.display = 'block';
 }
 
-const _onTbInput = debounce(function(ev) {
-	const v = ev.target.value && ev.target.value.trim().toLowerCase();
-	if (!v) { renderTbSuggestions([]); return; }
-	const list = _tb_suggestions.list.filter(i => (i.name || '').toLowerCase().includes(v));
-	renderTbSuggestions(list.slice(0, 60));
-}, 180);
-
-// attach handlers once control exists in DOM
 function initTbSearchHandlers(container) {
 	const input = container.querySelector('#tb-search');
-	const box = container.querySelector('#tb-suggestions');
+	const box   = container.querySelector('#tb-suggestions');
 	if (!input || !box) return;
-	input.addEventListener('input', _onTbInput);
+
+	const onInput = debounce((ev) => {
+		const v = ev.target.value && ev.target.value.trim().toLowerCase();
+		if (!v) { renderSuggestions([], box); return; }
+		renderSuggestions(suggestions.list.filter(i => (i.name || '').toLowerCase().includes(v)).slice(0, 60), box);
+	}, 180);
+
+	input.addEventListener('input', onInput);
 	input.addEventListener('keyup', async (ev) => {
-		if (!_tb_suggestions.list.length) await loadTollSuggestions(ev);
-		_onTbInput(ev);
+		if (!suggestions.list.length) await loadSuggestions(ev.target.value.trim());
+		onInput(ev);
 	});
 	document.addEventListener('click', (ev) => {
 		if (!container.contains(ev.target)) box.style.display = 'none';
 	});
 }
 
+
+// --- Marker props panel ---
+
 function showMarkerProps(marker) {
-	const data = marker.__data;
+	const data  = marker.__data;
 	const panel = document.getElementById('marker-props-panel');
 	if (!panel) return;
 	if (!data) { panel.style.display = 'none'; panel.innerHTML = ''; return; }
@@ -583,34 +475,19 @@ function showMarkerProps(marker) {
 	html += `<button class="btn-copy-marker" style="padding:2px 8px;font-size:12px;cursor:pointer">Copy</button>`;
 	panel.innerHTML = html;
 	panel.style.display = 'block';
-	// Store the marker reference for later use
 	panel._currentMarker = marker;
 	panel._showingProperties = true;
-	// attach copy button handler
-	const copyBtn = panel.querySelector('.btn-copy-marker');
-	if (copyBtn) copyBtn.addEventListener('click', () => { copyMarkerPropsToTemp(marker); });
-	// attach tolls toggle handler
-	const tollsLink = panel.querySelector('.toggle-tolls-link');
-	if (tollsLink) tollsLink.addEventListener('click', (e) => { 
-		e.preventDefault(); 
-		toggleTollsView(marker, panel);
-	});
 
-	// attach neighbours handler
-	const neighboursLink = panel.querySelector('.show-neighbours-link');
-	if (neighboursLink) neighboursLink.addEventListener('click', (e) => {
-		e.preventDefault();
-		showMarkerNeighbours(marker, panel);
-	});
+	panel.querySelector('.btn-copy-marker').addEventListener('click', () => { copyToClipboard(marker); });
+	panel.querySelector('.toggle-tolls-link').addEventListener('click', (e) => { e.preventDefault(); toggleTollsView(marker, panel); });
+	panel.querySelector('.show-neighbours-link').addEventListener('click', (e) => { e.preventDefault(); showMarkerNeighbours(marker, panel); });
 }
 
 function toggleTollsView(marker, panel) {
 	if (panel._showingProperties) {
-		// Switch to tolls view
 		showMarkerTolls(marker, panel);
 		panel._showingProperties = false;
 	} else {
-		// Switch back to properties view
 		showMarkerProps(marker);
 	}
 }
@@ -621,135 +498,72 @@ async function showMarkerTolls(marker, panel) {
 		panel.innerHTML = '<div style="color:#666;font-size:12px">No tollbooth ID available</div>';
 		return;
 	}
-	
 	try {
 		panel.innerHTML = '<div style="color:#999;font-size:12px">Loading tolls data...</div>';
-		
-		// Fetch toll data for this tollbooth
-		const payload = { tollbooth_id: data.tollbooth_id };
-		const resp = await fetch('{{ url_for("query_tollbooths") }}', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(payload)
-		});
-		
-		if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
-		const tollsData = await resp.json();
-		
-		// Render tolls data with tabs
+		const tollsData = await postJSON('{{ url_for("query_tollbooths") }}', { tollbooth_id: data.tollbooth_id });
+
 		let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
 		html += `<span>Tolls Data: ${tollsData.length}</span>`;
-		html += `<span style="margin-top:6px;display:flex;gap:8px"><a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">properties</a></span>`;
+		html += `<span style="margin-top:6px"><a href="#" class="back-to-props" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">properties</a></span>`;
 		html += `</div>`;
 
 		if (Array.isArray(tollsData) && tollsData.length > 0) {
-			// Create tabs for each toll item
 			html += '<div style="display:flex;gap:1px;border-bottom:1px solid #ccc;margin-bottom:6px;flex-wrap:wrap">';
 			for (let i = 0; i < tollsData.length; i++) {
-				const isFirst = i === 0;
-				html += `<button class="toll-tab" data-tab="${i}" style="padding:2px 8px;font-size:10px;cursor:pointer;border:1px solid #ccc;background:${isFirst ? '#f0f0f0' : '#fff'};border-bottom:none;${isFirst ? 'font-weight:bold' : ''}" data-toll-id-a="${tollsData[i].tollbooth_id_a || ''}" data-toll-id-b="${tollsData[i].tollbooth_id_b || ''}">
-					Toll: ${i + 1}
-				</button>`;
+				html += `<button class="toll-tab" data-tab="${i}" data-toll-id-a="${tollsData[i].tollbooth_id_a || ''}" data-toll-id-b="${tollsData[i].tollbooth_id_b || ''}" style="padding:2px 8px;font-size:10px;cursor:pointer;border:1px solid #ccc;background:${i === 0 ? '#f0f0f0' : '#fff'};border-bottom:none;${i === 0 ? 'font-weight:bold' : ''}">Toll: ${i + 1}</button>`;
 			}
-			html += '</div>';
-			
-			// Create content container for each tab
-			html += '<div class="toll-content">';
+			html += '</div><div class="toll-content">';
 			for (let i = 0; i < tollsData.length; i++) {
-				const item = tollsData[i];
-				//const keys = Object.keys(item);
-				const { tollbooth_id_a, tollbooth_id_b, ...newItem } = item;
-				const keys = Object.keys(newItem);
-				const isFirst = i === 0;
-				html += `<div class="toll-tab-content" data-tab="${i}" style="display:${isFirst ? 'block' : 'none'}">`;
+				const { tollbooth_id_a, tollbooth_id_b, ...item } = tollsData[i];
+				html += `<div class="toll-tab-content" data-tab="${i}" style="display:${i === 0 ? 'block' : 'none'}">`;
 				html += '<table style="width:100%;font-size:11px;border-collapse:collapse">';
-				for (const key of keys) {
-					html += '<tr>';
+				for (const key of Object.keys(item)) {
 					const val = item[key] == null ? '' : (typeof item[key] === 'object' ? JSON.stringify(item[key]) : String(item[key]));
-					html += `<td style="padding:2px 6px;border-bottom:1px solid #eee;width:40%"><strong>${escapeHtml(key)}</strong></td><td style="padding:2px 6px;border-bottom:1px solid #eee">${escapeHtml(val)}</td>`;
-					html += '</tr>';
+					html += `<tr><td style="padding:2px 6px;border-bottom:1px solid #eee;width:40%"><strong>${escapeHtml(key)}</strong></td><td style="padding:2px 6px;border-bottom:1px solid #eee">${escapeHtml(val)}</td></tr>`;
 				}
-				html += '</table>';
-				html += '</div>';
+				html += '</table></div>';
 			}
 			html += '</div>';
 		} else {
 			html += '<div style="color:#666;font-size:12px;margin-top:4px">No tolls data found</div>';
 		}
-		
+
 		panel.innerHTML = html;
 		panel._showingProperties = false;
-		panel._tollsData = tollsData;
-		
-		// Attach tab handlers
-		const tabs = panel.querySelectorAll('.toll-tab');
-		tabs.forEach(tab => {
-			tab.addEventListener('click', (e) => {
-				e.preventDefault();
-				const tabIndex = tab.dataset.tab;
-				const tollIdA = tab.dataset.tollIdA;
-				const tollIdB = tab.dataset.tollIdB;
-				
-				// Update tab styles
-				tabs.forEach(t => {
-					t.style.background = '#fff';
-					t.style.fontWeight = 'normal';
-				});
+
+		panel.querySelectorAll('.toll-tab').forEach(tab => {
+			tab.addEventListener('click', () => {
+				panel.querySelectorAll('.toll-tab').forEach(t => { t.style.background = '#fff'; t.style.fontWeight = 'normal'; });
 				tab.style.background = '#f0f0f0';
 				tab.style.fontWeight = 'bold';
-				
-				// Show content for this tab
-				panel.querySelectorAll('.toll-tab-content').forEach(content => {
-					content.style.display = 'none';
-				});
-				panel.querySelector(`div[data-tab="${tabIndex}"]`).style.display = 'block';
-				
-				// Show markers for tollbooth_id_a and tollbooth_id_b
-				if (tollIdA || tollIdB) {
-					showTollboothMarkers([tollIdA, tollIdB].filter(id => id));
-				}
+				panel.querySelectorAll('.toll-tab-content').forEach(c => { c.style.display = 'none'; });
+				panel.querySelector(`div[data-tab="${tab.dataset.tab}"]`).style.display = 'block';
+				const ids = [tab.dataset.tollIdA, tab.dataset.tollIdB].filter(Boolean);
+				if (ids.length) showTollboothMarkers(ids);
 			});
 		});
-		
-		// attach toggle handler to go back to properties
-		const tollsLink = panel.querySelector('.toggle-tolls-link');
-		if (tollsLink) tollsLink.addEventListener('click', (e) => { 
-			e.preventDefault(); 
-			showMarkerProps(panel._currentMarker);
-		});
+
+		panel.querySelector('.back-to-props').addEventListener('click', (e) => { e.preventDefault(); showMarkerProps(marker); });
 	} catch (err) {
 		panel.innerHTML = `<div style="color:#d9534f;font-size:12px">Error loading tolls: ${escapeHtml(err.message)}</div>`;
-		const backLink = document.createElement('div');
-		backLink.style.marginTop = '6px';
-		backLink.innerHTML = `<a href="#" class="toggle-tolls-link" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">back</a>`;
-		panel.appendChild(backLink);
-		backLink.querySelector('.toggle-tolls-link').addEventListener('click', (e) => {
-			e.preventDefault();
-			showMarkerProps(panel._currentMarker);
-		});
+		const back = document.createElement('div');
+		back.style.marginTop = '6px';
+		back.innerHTML = `<a href="#" style="font-size:12px;text-decoration:underline;cursor:pointer;color:#0066cc">back</a>`;
+		panel.appendChild(back);
+		back.querySelector('a').addEventListener('click', (e) => { e.preventDefault(); showMarkerProps(marker); });
 	}
 }
 
-async function showTollboothMarkers(tollboothIds) {
-	if (!Array.isArray(tollboothIds) || tollboothIds.length === 0) {
-		return;
-	}
-	try {
-		const resp = await fetch("{{ url_for('fetch_tollbooths') }}", {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ query: `id:${tollboothIds.join(', ')}`})
-		});
-		if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
-		const data = await resp.json();
-		processMarkerResponse(data, "query", true);
-	} catch (err) {
-		statusEl.textContent = `Error: ${err.message}`;
-	}
-	// For each tollbooth ID, we would need to fetch its location data
-	// This is a placeholder that clears layers and would be expanded based on your data structure
+async function showTollboothMarkers(ids) {
+	if (!Array.isArray(ids) || !ids.length) return;
 	const statusEl = document.getElementById('query-status');
-	if (statusEl) statusEl.textContent = `Displaying markers for tollbooths: ${tollboothIds.join(', ')}`;
+	try {
+		const data = await postJSON('{{ url_for("fetch_tollbooths") }}', { query: `id:${ids.join(', ')}` });
+		processMarkerResponse(data, 'query', true);
+		if (statusEl) statusEl.textContent = `Displaying markers for tollbooths: ${ids.join(', ')}`;
+	} catch (err) {
+		if (statusEl) statusEl.textContent = `Error: ${err.message}`;
+	}
 }
 
 async function showMarkerNeighbours(marker, panel) {
@@ -760,16 +574,7 @@ async function showMarkerNeighbours(marker, panel) {
 	}
 	try {
 		if (panel) panel.innerHTML = '<div style="color:#999;font-size:12px">Loading neighbours...</div>';
-		const payload = { tollbooth_id: data.tollbooth_id };
-		const resp = await fetch('{{ url_for("tollbooth_neighbours") }}', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(payload)
-		});
-		if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
-		const neighboursData = await resp.json();
-
-		// show a simple panel and provide a back link to properties
+		const neighboursData = await postJSON('{{ url_for("tollbooth_neighbours") }}', { tollbooth_id: data.tollbooth_id });
 		if (panel) {
 			let html = `<div style="font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
 			html += `<span>Neighbours: ${Array.isArray(neighboursData) ? neighboursData.length : 0}</span>`;
@@ -778,76 +583,41 @@ async function showMarkerNeighbours(marker, panel) {
 			panel.innerHTML = html;
 			panel._currentMarker = marker;
 			panel._showingProperties = false;
-			const back = panel.querySelector('.back-to-props');
-			if (back) back.addEventListener('click', (e) => { e.preventDefault(); showMarkerProps(marker); });
+			panel.querySelector('.back-to-props').addEventListener('click', (e) => { e.preventDefault(); showMarkerProps(marker); });
 		}
-		
-		// Add neighbour markers to the map using the existing processor
 		try { processMarkerResponse(neighboursData, 'neighbours', false); } catch (err) { console.warn('processMarkerResponse error', err); }
 	} catch (err) {
 		if (panel) panel.innerHTML = `<div style="color:#d9534f;font-size:12px">Error loading neighbours: ${escapeHtml(err.message)}</div>`;
 	}
 }
 
+
+// --- Coordinate extraction ---
+
 function extractCoordinates(data) {
-	const coords = [];
-	if (!data) return coords;
-
-	// Handle array of objects with lat/lng
-	if (Array.isArray(data)) {
-		for (const item of data) {
-			const c = parseCoordItem(item);
-			if (c) coords.push(c);
-		}
-	}
-	// Handle object with data/features/markers array
-	else if (typeof data === 'object') {
+	if (!data) return [];
+	if (Array.isArray(data)) return data.map(parseCoordItem).filter(Boolean);
+	if (typeof data === 'object') {
 		for (const key of ['data', 'features', 'markers', 'points', 'coordinates', 'results']) {
-			if (Array.isArray(data[key])) {
-				for (const item of data[key]) {
-					const c = parseCoordItem(item);
-					if (c) coords.push(c);
-				}
-				break;
-			}
+			if (Array.isArray(data[key])) return data[key].map(parseCoordItem).filter(Boolean);
 		}
-		// If no array found, try to parse the object itself
-		if (!coords.length) {
-			const c = parseCoordItem(data);
-			if (c) coords.push(c);
-		}
+		const c = parseCoordItem(data);
+		return c ? [c] : [];
 	}
-
-	return coords;
+	return [];
 }
 
 function parseCoordItem(item) {
 	if (!item || typeof item !== 'object') return null;
-
 	let lat, lng, source, tollbooth_id, props = {};
-
-	// Look for lat/lng fields (case insensitive)
 	for (const key in item) {
 		const lk = key.toLowerCase();
-		if (['lat', 'latitude'].includes(lk)) {
-			lat = parseFloat(item[key]);
-		} else if (['lon', 'longitude', 'lng'].includes(lk)) {
-			lng = parseFloat(item[key]);
-		} else {
-			if (['source'].includes(lk)) {
-				source = item[key];
-			}
-			else {
-				if(['tollbooth_id'].includes(lk)) {
-					tollbooth_id = item[key];
-				}
-				else {
-					props[key] = item[key];
-				}
-			}
-		}
+		if (['lat', 'latitude'].includes(lk))              lat = parseFloat(item[key]);
+		else if (['lon', 'longitude', 'lng'].includes(lk)) lng = parseFloat(item[key]);
+		else if (lk === 'source')                          source = item[key];
+		else if (lk === 'tollbooth_id')                    tollbooth_id = item[key];
+		else                                               props[key] = item[key];
 	}
-
 	if (Number.isFinite(lat) && Number.isFinite(lng) && isValidLat(lat) && isValidLng(lng)) {
 		return { lat, lng, source, props, tollbooth_id };
 	}
@@ -855,293 +625,189 @@ function parseCoordItem(item) {
 }
 
 
-function addTbMarker(c) {
+// --- Marker rendering ---
+
+function addTbMarker(coord) {
+	const isOpen = coord.props && coord.props.status !== 'closed';
 	const marker = L.marker(
-		[c.lat, c.lng], 
-		{ 
-			title: c.props && (`${c.props.tollbooth_name} [${c.tollbooth_id}]`) || '',
-			icon:  (c.props && (c.props.status != 'closed')) ? _layers[_activeLayer].options.markerIcon : greyIcon
+		[coord.lat, coord.lng],
+		{
+			title: coord.props && `${coord.props.tollbooth_name} [${coord.tollbooth_id}]` || '',
+			icon:  isOpen ? layers[activeLayer].options.markerIcon : icons.grey
 		}
 	);
-	// attach original data to marker for use in the popup
-	marker.__data = { props: c.props || {}, lat: c.lat, lng: c.lng, source: c.source, tollbooth_id: c.tollbooth_id };
-	addInfoPopup(marker, moveOpt=false);
-	marker.addTo(_layers[_activeLayer]);
-	// show properties in QueryControl panel when marker is clicked
-	marker.on('click', () => {
-		try { showMarkerProps(marker); } catch (err) { console.warn('showMarkerProps error', err); }
-	});
+	marker.__data = { props: coord.props || {}, lat: coord.lat, lng: coord.lng, source: coord.source, tollbooth_id: coord.tollbooth_id };
+	addInfoPopup(marker, false);
+	marker.addTo(layers[activeLayer]);
+	marker.on('click', () => { try { showMarkerProps(marker); } catch (err) { console.warn('showMarkerProps error', err); } });
 	return marker;
 }
 
-
 function addMarkersFromCoords(coords, sourceLabel, clearLayers) {
-	const markers = [];
-	if (clearLayers === true) {
-		_layers[_activeLayer].clearLayers();
-	}
-	for (const c of coords) {
-		if (!isValidLat(c.lat) || !isValidLng(c.lng)) continue;
-		const marker = addTbMarker(c);
-		markers.push(marker);
-	}
-	if (markers.length) {
-		const group = L.featureGroup(markers);
-		map.fitBounds(group.getBounds(), { maxZoom: 16 });
-	}
+	if (clearLayers === true) layers[activeLayer].clearLayers();
+	const markers = coords.filter(c => isValidLat(c.lat) && isValidLng(c.lng)).map(addTbMarker);
+	if (markers.length) map.fitBounds(L.featureGroup(markers).getBounds(), { maxZoom: 16 });
 	const statusEl = document.getElementById('query-status');
 	if (statusEl) statusEl.textContent = `Loaded ${markers.length} markers from ${sourceLabel || 'query'}`;
 	return markers;
 }
 
-// popup form helpers
-let _markerFormId = 0;
-function escapeHtml(str) {
-	return String(str)
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;')
-		.replace(/'/g, '&#039;');
-}
+
+// --- Popup forms ---
+
+let _popupFormId = 0;
 
 function createPopupFormHTML(marker) {
-	const data = marker.__data;
-	const position = marker.getLatLng();
-	const id = `marker-form-${++_markerFormId}`;
+	const data  = marker.__data;
+	const pos   = marker.getLatLng();
+	const id    = `marker-form-${++_popupFormId}`;
 	const props = data.props || {};
 	let html = `<div style="min-width:220px"><form id="${id}" class="marker-form">`;
-	html += `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><strong>Marker data</strong><button type="button" class="btn-paste-marker" style="padding:2px 8px;font-size:12px;cursor:pointer" ${!_tmpMarkerData ? 'disabled' : ''}>Paste</button></div>`;
-	html += `<input type="hidden" name="lat" value="${escapeHtml(position.lat)}">`;
-	html += `<input type="hidden" name="lng" value="${escapeHtml(position.lng)}">`;
+	html += `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><strong>Marker data</strong><button type="button" class="btn-paste-marker" style="padding:2px 8px;font-size:12px;cursor:pointer" ${!clipboard ? 'disabled' : ''}>Paste</button></div>`;
+	html += `<input type="hidden" name="lat" value="${escapeHtml(pos.lat)}">`;
+	html += `<input type="hidden" name="lng" value="${escapeHtml(pos.lng)}">`;
 	html += `<input type="hidden" name="tollbooth_id" value="${escapeHtml(data.tollbooth_id ?? '')}">`;
 	for (const key of Object.keys(props)) {
-		if (key == "info_year") {continue;}
+		if (key === 'info_year') continue;
 		const val = props[key] == null ? '' : (typeof props[key] === 'object' ? JSON.stringify(props[key]) : String(props[key]));
 		html += `<div style="margin:4px 0"><label style="font-size:12px">${escapeHtml(key)}:<br><input name="${escapeHtml(key)}" value="${escapeHtml(val)}" style="width:100%"/></label></div>`;
 	}
-	if (!Object.keys(props).length) {
-		html += `<div style="font-size:12px;color:#666">(no properties)</div>`;
-	}
+	if (!Object.keys(props).length) html += `<div style="font-size:12px;color:#666">(no properties)</div>`;
 	html += `<div style="margin-top:6px"><button type="submit">Save</button> <button type="button" class="btn-close">Close</button></div>`;
 	html += `<div class="form-status" style="margin-top:6px;font-size:12px;color:#333"></div>`;
 	html += `</form></div>`;
 	return html;
 }
 
-
-// simple non-editable popup showing lat, lng and tollbooth_name (if present)
 function createInfoPopupHTML(marker, moveOpt) {
-	const data = marker.__data;
+	const data  = marker.__data;
 	const props = data && data.props ? data.props : null;
-	const position = marker.getLatLng();
+	const pos   = marker.getLatLng();
 	let html = '<div style="min-width:160px;font-size:12px">';
 	if (data.tollbooth_id) {
-		const name = `${escapeHtml(props.tollbooth_name)} [${escapeHtml(data.tollbooth_id)}]`;
-		html += `<div class="title-container"><strong>${escapeHtml(String(name || ''))}</strong></div>`;
+		html += `<div class="title-container"><strong>${escapeHtml(`${props.tollbooth_name} [${data.tollbooth_id}]`)}</strong></div>`;
 		if (moveOpt) {
-			html += '<div style="display: inline-grid; align-content: center; justify-content: center;">';
+			html += '<div style="display:inline-grid;align-content:center;justify-content:center">';
 			html += '<div><a href="#" class="accept-move-marker">Save here?</a></div>';
 			html += '<div><a href="#" class="cancel-move-marker">Cancel</a></div>';
 			html += '</div>';
 		}
-	}
-	else {
+	} else {
 		html += `<div class="title-container"><a href="#" class="set-marker-link">Add Marker</a></div>`;
 	}
-	html += `<div>${position.lat}, ${position.lng}</div>`;
-	html += '</div>';
+	html += `<div>${pos.lat}, ${pos.lng}</div></div>`;
 	return html;
 }
 
-function copyMarkerPropsToTemp(marker) {
+function copyToClipboard(marker) {
 	if (!marker || !marker.__data) return;
-	_tmpMarkerData = specialStructuredClone(marker.__data);
+	clipboard = specialStructuredClone(marker.__data);
 	alert(`Copied marker data (ID: ${marker.__data.tollbooth_id || 'new'})`);
-	// update paste button state in any open form
-	const forms = document.querySelectorAll('.btn-paste-marker');
-	forms.forEach(btn => { btn.disabled = false; });
+	document.querySelectorAll('.btn-paste-marker').forEach(btn => { btn.disabled = false; });
 }
 
-function pasteMarkerPropsFromTemp(formId) {
+function pasteFromClipboard(formId) {
 	const form = document.getElementById(formId);
-	if (!form || !_tmpMarkerData) return;
-	const formData = new FormData(form);
-	const tmpProps = _tmpMarkerData.props || {};
-	for (const key of Object.keys(tmpProps)) {
+	if (!form || !clipboard) return;
+	for (const [key, val] of Object.entries(clipboard.props || {})) {
 		const input = form.querySelector(`input[name="${key}"]`);
-		if (input) input.value = tmpProps[key] == null ? '' : String(tmpProps[key]);
+		if (input) input.value = val == null ? '' : String(val);
 	}
-	//alert('Pasted marker properties');
 }
-
 
 function attachPopupFormHandlers(popup, marker) {
 	const el = popup.getElement();
 	if (!el) return;
 	const form = el.querySelector('form.marker-form');
-	if (!form) return;
+	if (!form || form._attached) return;
+	form._attached = true;
 	const status = el.querySelector('.form-status');
-	// prevent attaching multiple times
-	if (form._attached) return; form._attached = true;
-	
-	// attach paste button handler
-	const pasteBtn = el.querySelector('.btn-paste-marker');
-	if (pasteBtn) pasteBtn.addEventListener('click', () => { pasteMarkerPropsFromTemp(form.id); });
-	
+
+	el.querySelector('.btn-paste-marker').addEventListener('click', () => { pasteFromClipboard(form.id); });
+
 	form.addEventListener('submit', async (ev) => {
 		ev.preventDefault();
-		const fd = new FormData(form);
 		const obj = {};
-		//get data from html form
-		for (const [k,v] of fd.entries()) obj[k] = (v === "" ? null : v);
-		//update props and exclude hidden values
-		marker.__data.props = Object.fromEntries(
-  			Object.entries(obj).filter(([key]) => !['lat', 'lng', 'tollbooth_id'].includes(key))
-		);
-		//update position
+		for (const [k, v] of new FormData(form).entries()) obj[k] = v === '' ? null : v;
+		marker.__data.props = Object.fromEntries(Object.entries(obj).filter(([k]) => !['lat', 'lng', 'tollbooth_id'].includes(k)));
 		marker.__data.lat = obj.lat;
 		marker.__data.lng = obj.lng;
-		obj.tollbooth_id = obj.tollbooth_id === "" ? null : obj.tollbooth_id;
-		const payload = { props: obj, source: marker.__data.source };
-		console.log(payload);
-		if (status) status.textContent = 'Saved (client-side)';
+		obj.tollbooth_id = obj.tollbooth_id || null;
+		if (status) status.textContent = 'Saving...';
 		try {
-			const resp = await fetch('{{ url_for("upsert_tollbooth") }}', { 
-				method: 'POST', 
-				headers: {'Content-Type':'application/json'}, 
-				body: JSON.stringify(payload.props)
+			const resp = await fetch('{{ url_for("upsert_tollbooth") }}', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(obj)
 			});
 			const respData = await resp.json();
-		   	if (!resp.ok) throw new Error(resp.statusText);
-		   	if (status) {
-				status.textContent = 'Saved to server';
-				marker.__data.tollbooth_id = respData.tollbooth_id;
-				try { showMarkerProps(marker); } catch (err) { console.warn('showMarkerProps error', err); }
-				new_marker = addTbMarker(marker.__data);
-				marker.closePopup();
-				addInfoPopup(new_marker, moveOpt=false);
-				if (_layers[_activeLayer].hasLayer(marker)) {
-					_layers[_activeLayer].removeLayer(marker);
-				}
-		   	}
-		} catch(err) { if (status) status.textContent = 'Save error: '+err.message }
+			if (!resp.ok) throw new Error(resp.statusText);
+			if (status) status.textContent = 'Saved to server';
+			marker.__data.tollbooth_id = respData.tollbooth_id;
+			try { showMarkerProps(marker); } catch (err) { console.warn('showMarkerProps error', err); }
+			const newMarker = addTbMarker(marker.__data);
+			marker.closePopup();
+			addInfoPopup(newMarker, false);
+			if (layers[activeLayer].hasLayer(marker)) layers[activeLayer].removeLayer(marker);
+		} catch (err) { if (status) status.textContent = `Save error: ${err.message}`; }
 	});
-	const btnClose = el.querySelector('.btn-close');
-	if (btnClose) btnClose.addEventListener('click', () => {
+
+	el.querySelector('.btn-close').addEventListener('click', () => {
 		marker.closePopup();
-		if (!_layers.tb.options.editMode) {
-			addInfoPopup(marker, moveOpt=false);
-		}
+		if (!layers.tb.options.editMode) addInfoPopup(marker, false);
 	});
 }
 
-function isValidLat(v) { return Number.isFinite(v) && v >= -90 && v <= 90; }
-function isValidLng(v) { return Number.isFinite(v) && v >= -180 && v <= 180; }
+
+// --- Deep clone ---
 
 function specialStructuredClone(data) {
-	// Use native structuredClone when available (most accurate and fast).
 	try {
-		if (typeof structuredClone === 'function') {
-			return structuredClone(data);
-		}
-	} catch (err) {
-		// fall through to JS fallback
-	}
+		if (typeof structuredClone === 'function') return structuredClone(data);
+	} catch (err) {}
 
-	// Fallback deep clone that tries to mimic structuredClone for common types.
-	// This is synchronous and supports circular refs, Date, RegExp, Map, Set,
-	// ArrayBuffer / TypedArray, plain objects and arrays. It will throw on
-	// functions and DOM nodes to mimic structuredClone limitations.
 	const seen = new WeakMap();
-
 	function _clone(val) {
-		// primitives
 		if (val === null || typeof val !== 'object') {
 			if (typeof val === 'function') throw new Error('Cannot clone function');
 			return val;
 		}
-
 		if (seen.has(val)) return seen.get(val);
-
-		// Dates
-		if (val instanceof Date) return new Date(val.getTime());
-
-		// RegExp
-		if (val instanceof RegExp) return new RegExp(val.source, val.flags);
-
-		// ArrayBuffer
-		if (val instanceof ArrayBuffer) {
-			const copy = val.slice(0);
-			seen.set(val, copy);
-			return copy;
-		}
-
-		// TypedArray / DataView
+		if (val instanceof Date)        return new Date(val.getTime());
+		if (val instanceof RegExp)      return new RegExp(val.source, val.flags);
+		if (val instanceof ArrayBuffer) { const c = val.slice(0); seen.set(val, c); return c; }
 		if (ArrayBuffer.isView(val)) {
-			// For DataView, create a new ArrayBuffer copy and new DataView
 			if (val instanceof DataView) {
-				const buf = val.buffer.slice(0);
-				const dv = new DataView(buf, val.byteOffset, val.byteLength);
-				seen.set(val, dv);
-				return dv;
+				const dv = new DataView(val.buffer.slice(0), val.byteOffset, val.byteLength);
+				seen.set(val, dv); return dv;
 			}
-			const ctor = val.constructor;
-			const copy = new ctor(val.buffer.slice(0), val.byteOffset, val.length);
-			seen.set(val, copy);
-			return copy;
+			const copy = new val.constructor(val.buffer.slice(0), val.byteOffset, val.length);
+			seen.set(val, copy); return copy;
 		}
-
-		// Map
 		if (val instanceof Map) {
-			const m = new Map();
-			seen.set(val, m);
-			for (const [k, v] of val.entries()) {
-				m.set(_clone(k), _clone(v));
-			}
+			const m = new Map(); seen.set(val, m);
+			for (const [k, v] of val.entries()) m.set(_clone(k), _clone(v));
 			return m;
 		}
-
-		// Set
 		if (val instanceof Set) {
-			const s = new Set();
-			seen.set(val, s);
+			const s = new Set(); seen.set(val, s);
 			for (const v of val.values()) s.add(_clone(v));
 			return s;
 		}
-
-		// Array
 		if (Array.isArray(val)) {
-			const arr = [];
-			seen.set(val, arr);
+			const arr = []; seen.set(val, arr);
 			for (let i = 0; i < val.length; i++) arr[i] = _clone(val[i]);
 			return arr;
 		}
-
-		// Blob (try shallow copy via slice if available)
 		if (typeof Blob !== 'undefined' && val instanceof Blob) {
-			try {
-				const b = val.slice(0, val.size, val.type);
-				seen.set(val, b);
-				return b;
-			} catch (e) {
-				throw new Error('Cannot clone Blob');
-			}
+			try { const b = val.slice(0, val.size, val.type); seen.set(val, b); return b; }
+			catch (e) { throw new Error('Cannot clone Blob'); }
 		}
-
-		// If it's a DOM node or other non-plain object, structuredClone would
-		// either clone or throw; to be safe we throw for nodes.
-		if (typeof Node !== 'undefined' && val instanceof Node) {
-			throw new Error('Cannot clone DOM Node');
-		}
-
-		// Generic object: copy property descriptors to preserve non-enumerables
+		if (typeof Node !== 'undefined' && val instanceof Node) throw new Error('Cannot clone DOM Node');
 		const proto = Object.getPrototypeOf(val);
 		const out = Object.create(proto);
 		seen.set(val, out);
-
-		const keys = Object.getOwnPropertyNames(val).concat(Object.getOwnPropertySymbols(val));
-		for (const key of keys) {
+		for (const key of [...Object.getOwnPropertyNames(val), ...Object.getOwnPropertySymbols(val)]) {
 			const desc = Object.getOwnPropertyDescriptor(val, key);
 			if (!desc) continue;
 			if ('value' in desc) {
@@ -1150,20 +816,16 @@ function specialStructuredClone(data) {
 			}
 			Object.defineProperty(out, key, desc);
 		}
-
 		return out;
 	}
-
 	return _clone(data);
 }
 
-// add control to map
-(new QueryControl({ position: 'topright' })).addTo(map);
 
-// expose clear function to console for convenience
+// --- Init ---
+(new QueryControl({ position: 'topright' })).addTo(map);
 window.clearMarkers = clearMarkers;
 
 </script>
-
 </body>
 </html>
