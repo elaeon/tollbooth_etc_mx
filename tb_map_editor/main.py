@@ -155,7 +155,7 @@ def fetch_tollbooths_sts(body: Annotated[Any, Body()], session: SessionDep, offs
 def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
     _log.debug(tollbooth)
     if tollbooth.tollbooth_id is not None:
-        db_tb = session.get(Tollbooth, [tollbooth.tollbooth_id, tollbooth.info_year])
+        db_tb = session.get(Tollbooth, tollbooth.tollbooth_id)
         if not db_tb:
             raise HTTPException(status_code=404, detail="Tollbooth not found")
         tb_data = tollbooth.model_dump(exclude_unset=True) 
@@ -171,6 +171,7 @@ def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
             session.commit()
             session.refresh(tollbooth)
         except Exception as e:
+            _log.debug(e)
             raise HTTPException(status_code=500)
     
     return {"tollbooth_id": tollbooth.tollbooth_id, "info_year": tollbooth.info_year}

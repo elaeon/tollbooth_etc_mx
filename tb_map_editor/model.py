@@ -195,7 +195,7 @@ class Tollbooth(TbModel, table=True):
     type: String
     manage: String | None
     gate_to: String | None
-    info_year: UInt16 = Field(primary_key=True)
+    info_year: UInt16 = Field(index=True)
     anti_evation_sys: Bool | None
     in_out: String | None
 
@@ -284,7 +284,7 @@ class Road(TbModel, table=True):
     bond_amount: String | None
     notes: String | None
     farac: String | None
-    info_year: UInt16 = Field(primary_key=True)
+    info_year: UInt16 = Field(index=True)
 
     @staticmethod
     @_str_normalize
@@ -301,7 +301,7 @@ class Stretch(TbModel, table=True):
     road_id: UInt16 | None = Field(default=None, foreign_key="road.road_id")
     manage: String | None
     way: String | None
-    info_year: UInt16 = Field(primary_key=True)
+    info_year: UInt16 = Field(index=True)
 
     @staticmethod
     @_str_normalize
@@ -351,7 +351,7 @@ class StretchToll(TbModel, table=True):
     car_rush_hour_2: Float64 | None
     car_evening_hour_2: Float64 | None
     car_morning_night_hour: Float64 | None
-    info_year: UInt16 = Field(primary_key=True)
+    info_year: UInt16 = Field(index=True)
 
 
 class TbImt(TbModel, table=True):
