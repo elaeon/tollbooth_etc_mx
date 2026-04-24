@@ -644,7 +644,28 @@ def stretch_sts(year: int):
 def tb_imt_stretch_id(year: int):
     data_model = DataModel(year, DataStage.stg)
 
+    toll_columns = [
+        "motorbike", "car", "car_axle",
+        "bus_2_axle", "bus_3_axle", "bus_4_axle", "truck_2_axle",
+        "truck_3_axle", "truck_4_axle", "truck_5_axle", "truck_6_axle",
+        "truck_7_axle", "truck_8_axle", "truck_9_axle", "load_axle"
+    ]
+
+    # tb_imt_stretch_id was created in join_tollbooths.py with method tb_imt_stretch_id_rel
     ldf_tb_imt_stretch_id = pl.scan_parquet(data_model.tb_imt_stretch_id.parquet)
+    ldf_tb_stretch_id = (
+        pl.scan_parquet(data_model.tb_stretch_id.parquet)
+        .select("stretch_id", "tollbooth_id_in", "tollbooth_id_out")
+    )
+
+    ldf_tb_imt_stretch_id = (
+        ldf_tb_stretch_id
+        .join(
+            ldf_tb_imt_stretch_id,
+            on=["stretch_id", "tollbooth_id_in", "tollbooth_id_out"],
+            how="left"
+        )
+    )
     ldf_stretch = (
         pl.scan_parquet(data_model.stretchs.parquet)
         .select("stretch_id", "stretch_name")
@@ -658,14 +679,48 @@ def tb_imt_stretch_id(year: int):
         .select("tollbooth_id", "tollbooth_name")
         .rename({"tollbooth_name": "tollbooth_imt_name", "tollbooth_id": "tollbooth_imt_id"})
     )
-    
+    ldf_toll_imt = (
+        pl.scan_parquet(data_model.tb_toll_imt.parquet)
+    )
+    ldf_map_tb_id = (
+        pl.scan_parquet(data_model.map_tb_id.parquet)
+        .select("tollbooth_id", "tollbooth_imt_id")
+    )
+    ldf_stretch_toll = (
+        pl.scan_parquet(data_model.stretchs_toll.parquet)
+    )
+
+    ldf_toll_imt = (
+        ldf_map_tb_id
+        .join(
+            ldf_toll_imt,
+            left_on="tollbooth_imt_id",
+            right_on="tollbooth_id_in"
+        )
+        .rename({"tollbooth_imt_id": "tollbooth_imt_id_in_toll"})
+        .rename({"tollbooth_id": "tollbooth_id_in"})
+    )
+    ldf_toll_imt = (
+        ldf_map_tb_id.join(
+            ldf_toll_imt,
+            left_on="tollbooth_imt_id",
+            right_on="tollbooth_id_out"
+        )
+        .rename({"tollbooth_imt_id": "tollbooth_imt_id_out_toll"})
+        .rename({"tollbooth_id": "tollbooth_id_out"})
+    )
+    ldf_toll_imt = ldf_toll_imt.select(
+        ["tollbooth_id_in", "tollbooth_id_out",
+         "tollbooth_imt_id_in_toll", "tollbooth_imt_id_out_toll",
+         "update_date"] + toll_columns
+    ).unique()
     ldf_tb_imt_stretch_id = (
         ldf_tb_imt_stretch_id
         .join(ldf_stretch, on="stretch_id")
         .join(ldf_tollbooth, left_on="tollbooth_id_in", right_on="tollbooth_id")
         .join(ldf_tollbooth, left_on="tollbooth_id_out", right_on="tollbooth_id")
-        .join(ldf_tb_imt, left_on="tollbooth_imt_id_in", right_on="tollbooth_imt_id")
-        .join(ldf_tb_imt, left_on="tollbooth_imt_id_out", right_on="tollbooth_imt_id")
+        .join(ldf_tb_imt, left_on="tollbooth_imt_id_in", right_on="tollbooth_imt_id", how="left")
+        .join(ldf_tb_imt, left_on="tollbooth_imt_id_out", right_on="tollbooth_imt_id", how="left")
         .select(
             "stretch_id", "stretch_name",
             "tollbooth_imt_id_in", "tollbooth_imt_name", 
@@ -674,8 +729,22 @@ def tb_imt_stretch_id(year: int):
             "tollbooth_id_out", "tollbooth_name_right", 
         )
     )
-    ldf_tb_imt_stretch_id = ldf_tb_imt_stretch_id.sort("stretch_id")
-    ldf_tb_imt_stretch_id.sink_csv(f"./reports/tb_imt_stretch_id_{year}.csv")
+    ldf_toll_imt = (
+        ldf_toll_imt
+        .join(ldf_tb_imt_stretch_id, on=["tollbooth_id_in", "tollbooth_id_out"], how="left")
+    )
+    base_columns = ldf_toll_imt.collect_schema().names()
+    ldf_toll_imt = (
+        ldf_toll_imt
+        .join(ldf_stretch_toll, on="stretch_id", how="left")
+    )
+    ldf_toll_imt = ldf_toll_imt.with_columns(
+        [(pl.col(col) - pl.col(f"{col}_right")).alias(col) for col in toll_columns]
+    )
+    ldf_toll_imt = ldf_toll_imt.select(base_columns)
+    print(ldf_toll_imt.collect().shape)
+    ldf_toll_imt = ldf_toll_imt.sort("stretch_id")
+    ldf_toll_imt.sink_csv(f"./reports/tb_imt_stretch_id_{year}.csv")
 
 
 def stretch_length(year:int):

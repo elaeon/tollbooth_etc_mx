@@ -48,6 +48,10 @@ def imt_no_tb(base_year: int, move_year: int):
 
 
 def tb_stretch_id_imt(base_year: int, move_year: int):
+    """
+    Legacy method to get mapped stretch_id and tollbooths.
+    Actual method is tb_imt_stretch_id_rel
+    """
     data_model_base = DataModel(base_year, DataStage.stg)
     data_model_move_year = DataModel(move_year, DataStage.stg)
     data_model_pub = DataModel(base_year, DataStage.pub)
@@ -314,6 +318,9 @@ def map_tb_id(year: int):
 
 
 def tb_imt_stretch_id_rel(year: int):
+    """
+    Mapping tool to get stretch_id and imt tollbooth
+    """
     data_model = DataModel(year, DataStage.stg)
     toll_columns = [
         "motorbike", "car", "car_axle",
