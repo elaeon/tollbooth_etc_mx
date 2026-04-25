@@ -1,0 +1,16 @@
+**/__pycache__/*
+__pycache__/*
+*.db
+tb_map_editor/static/*
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+*-checkpoint.ipynb
+datos_viales/*
+tarifas/*
+tmp_data/*
+*.parquet
+.bruin.yml
+logs/runs
+logs/*.log
+__pycache__/
+*.py[cod]
