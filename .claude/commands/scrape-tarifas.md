@@ -72,6 +72,7 @@ Examina el snapshot y clasifica el tipo de contenido:
 | **Imagen** | Solo `img` en `main`, sin tablas ni texto de precios | → Paso 4E |
 | **PDF** | Links a `.pdf` con las tarifas | → Paso 4F |
 | **Párrafos** | Headings de caseta + párrafos con precios `$XX` | → Paso 4G |
+| **Dropdown form** | `combobox` de origen/destino/vehículo + tabla que cambia | → Paso 4H |
 
 Si hay **acordeones o botones "Ver Tarifa"**, haz clic en todos antes de continuar:
 ```bash
@@ -148,6 +149,8 @@ Cuando hay una lista de tabs y solo 1 tabla en el DOM que cambia al hacer clic:
 
 **Sitio conocido**: libramientoslp.mx (7 tabs: Oriente, Norte, Poniente, Horizontes-Zacatecas, Horizontes-Guadalajara, Rioverde-La Pila, Ventura-El Peyote)
 
+**Variante CSS tabs** (clepsa.com): todas las tablas ya están en el DOM, solo ocultas por CSS. Un click en cualquier tab las expone todas. Usa `r.length>=1` para capturar filas-título de una celda como nombre de tramo.
+
 ---
 
 ## Paso 4E – Extracción: Imagen con tabla de tarifas
@@ -191,6 +194,42 @@ Cuando los precios están en `<p>` como texto plano junto a headings de caseta:
 Lee los valores directamente del snapshot y escribe el CSV desde Python con datos hardcodeados. Los precios cambian anualmente, documenta la fecha de vigencia.
 
 **Sitio conocido**: libramientocelaya.com.mx (Crespo, Laja, San Miguel × 8 categorías)
+
+---
+
+## Paso 4H – Extracción: Formulario con dropdowns + tabla AJAX
+
+Cuando hay `combobox` de origen/destino/vehículo y una tabla que actualiza en respuesta:
+
+1. Toma snapshot para identificar los `id` de los selects (aparecen como `combobox [ref=eXX]`)
+2. Usa `playwright-cli run-code` para iterar todos los valores del dropdown de vehículo:
+
+```bash
+playwright-cli select <ref_origen> "<valor_origen>"
+playwright-cli select <ref_destino> "<valor_destino>"
+playwright-cli run-code "
+async page => {
+  const sel = page.locator('<selector_vehiculo>');
+  const options = await sel.locator('option').allTextContents();
+  const results = {};
+  for (const opt of options) {
+    await sel.selectOption(opt);
+    await page.waitForTimeout(600);
+    const rows = await page.evaluate(() =>
+      Array.from(document.querySelectorAll('table tr')).map(tr =>
+        Array.from(tr.querySelectorAll('th,td')).map(td => td.innerText.replace(/\s+/g,' ').trim())
+      ).filter(r => r.length >= 2)
+    );
+    results[opt] = rows;
+  }
+  return JSON.stringify(results);
+}
+"
+```
+
+3. Parsea el resultado JSON con Python: por cada vehículo, por cada plaza (excluye fila "Total"), genera una fila CSV con `clasificacion = "{origen}-{destino} {plaza} | {vehiculo}"`.
+
+**Sitio conocido**: autopistasmichoacan.mx (selects `#id_pbl_o`, `#id_pbl_d`, `#id_class`)
 
 ---
 
@@ -253,3 +292,11 @@ Reporta: `N filas guardadas en data/tarifas/tarifas_<dominio>.csv`
 | libramientocelaya.com.mx | Párrafos texto | Datos hardcodeados, vigencia 2026 |
 | libramientoirapuato.mx | HTML table | Parser estándar (fix tramo_kw aplicado) |
 | libramientoslp.mx | Tabs AJAX | **Requiere `--headed`**, click por tab |
+| libramientotoluca.com.mx | HTML table | **Requiere `--headed`**, tablas 2col título-en-fila-1 |
+| autopistaatlacomulcomaravatio.com | HTML table con rowspan | Parser custom: rowheaders con categoría + sub-ejes, 2 tramos-columna |
+| autopistasmichoacan.mx | Dropdown form + tabla AJAX | `run-code` async loop, selects `#id_pbl_o`/`#id_pbl_d`/`#id_class` |
+| autopistaguadalajaracolima.com | Imagen | `parsers/parser_autopistaguadalajaracolima.py`, vigencia abr-2026 |
+| lico.mx | HTML table en iframe | `parsers/parser_lico.py`; tabla en `iframe`, datos hardcodeados (iframe same-origin visible en snapshot) |
+| clepsa.com | Tabs CSS (todas en DOM) | Click cualquier tab → todas las tablas aparecen; eval `r.length>=1` para capturar filas-título |
+| camssa.com.mx | HTML table doble-header | `parsers/parser_camssa.py`; 7 tramos (cobro cerrado + abierto) × 8 vehículos, datos hardcodeados |
+| autopistacuapiaxtlacuacnopalan.com | Listas por dirección | `parsers/parser_autopistacuapiaxtlacuacnopalan.py`; 3 tramos × 7 vehículos, datos hardcodeados |
