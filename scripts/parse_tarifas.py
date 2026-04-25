@@ -66,9 +66,14 @@ def tables_to_csv(tables: list[dict], url: str, output_path: str) -> int:
 
         if is_matrix(rows):
             header = rows[0]
-            # Detect orientation: if col1 header looks like a vehicle type → rows=tramos
+            # Detect orientation: rows=tramos when col1 looks like a vehicle type
+            # OR when col0 header contains tramo/autopista keywords
             vehicle_kw = {"moto", "auto", "pickup", "camion", "autobus", "bus"}
-            rows_are_tramos = len(header) > 1 and any(kw in header[1].lower() for kw in vehicle_kw)
+            tramo_kw = {"tramo", "autopista", "caseta", "plaza", "ruta"}
+            rows_are_tramos = (
+                (len(header) > 1 and any(kw in header[1].lower() for kw in vehicle_kw))
+                or any(kw in header[0].lower() for kw in tramo_kw)
+            )
             for row in rows[1:]:
                 if rows_are_tramos:
                     # rows=tramos, cols=vehicle_types
