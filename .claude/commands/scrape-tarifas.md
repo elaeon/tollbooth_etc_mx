@@ -300,3 +300,17 @@ Reporta: `N filas guardadas en data/tarifas/tarifas_<dominio>.csv`
 | clepsa.com | Tabs CSS (todas en DOM) | Click cualquier tab → todas las tablas aparecen; eval `r.length>=1` para capturar filas-título |
 | camssa.com.mx | HTML table doble-header | `parsers/parser_camssa.py`; 7 tramos (cobro cerrado + abierto) × 8 vehículos, datos hardcodeados |
 | autopistacuapiaxtlacuacnopalan.com | Listas por dirección | `parsers/parser_autopistacuapiaxtlacuacnopalan.py`; 3 tramos × 7 vehículos, datos hardcodeados |
+| puentecolorado.sonora.gob.mx | HTML table (1 caseta) | `parsers/parser_puentecolorado.py`; 8 vehículos sin tramos |
+| carreteras.chihuahua.gob.mx | HTML tables (2 tablas, 11 casetas) | `parsers/parser_carreteras_chihuahua.py`; parse estándar falla (h2 pie-de-nota capturado como título), datos hardcodeados |
+| macrotunelacapulco.com.mx | HTML tables (2 sentidos) | **Requiere `--headed`**; `parsers/parser_macrotunelacapulco.py`; 2 sentidos × 8 vehículos, precios iguales en ambos |
+| tijuanatecate.com.mx | HTML tables (6 casetas, 2 col) | **Requiere `--headed`** (mismo antibot IDEAL); `parsers/parser_tijuanatecate.py`; 6 casetas × 9 vehículos |
+| libramientohermosillo.com | HTML table doble-header (grupos+ejes) | `parsers/parser_libramientohermosillo.py`; 3 tramos × 15 vehículos, vigencia 13/04/2026 |
+| arconorte.com.mx | Dropdown + 210 tablas pre-cargadas en DOM | **Requiere `--headed`** (antibot IDEAL); eval extrae todo, 1680 filas (210 OD × 8 vehículos) |
+| chamapalaventa.com.mx | Dropdown + 50 tablas pre-cargadas en DOM | **Requiere `--headed`** (antibot IDEAL); eval extrae todo, 900 filas (50 OD × 18 vehículos) |
+| lasvaras-ptovallarta.com.mx | HTML tables (10 casetas, 2 col) | `parsers/parser_lasvaras.py`; caseta en h2 externo a tabla; 10 casetas × 8 vehículos, datos hardcodeados |
+| viapass.com.mx | Dropdown + tablas pre-cargadas en DOM (.tablaOculta) | **Requiere `--headed`** (antibot); `parsers/parser_viapass.py`; 25 autopistas, N casetas × 15 vehículos, 1725 filas |
+| tunelcoatzacoalcos.com.mx | HTML tables (2 casetas, 2 col) | **Requiere `--headed`** (antibot IDEAL); `parsers/parser_tunelcoatzacoalcos.py`; 2 casetas × 8 vehículos, precios iguales en ambos |
+| autopistamitlatehuantepec.com.mx | HTML tables (3 casetas, 2 col) | **Requiere `--headed`** (antibot IDEAL); `parsers/parser_autopistamitlatehuantepec.py`; 3 casetas × 18 vehículos, datos hardcodeados |
+| puentecolombia.mx | Acordeón FAQ (párrafo de texto) | `parsers/parser_puentecolombia.py`; click tab "¿Cuánto cuesta...?"; 1 caseta × 7 vehículos, datos hardcodeados |
+| aunorte.com.mx | HTML tables OD matrix (2 dir × 2 horarios) | `parsers/parser_aunorte.py`; acordeón Norte↔Sur; tarifa por par entrada-salida × horario (Pico/Regular/Valle); 120 filas |
+| ausur.com.mx | HTML tables OD (1 vehículo por par) | **Requiere `--headed`** (antibot IDEAL); `parsers/parser_ausur.py`; 54 pares entrada-salida × Automóvil solo, datos hardcodeados |
