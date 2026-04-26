@@ -314,3 +314,11 @@ Reporta: `N filas guardadas en data/tarifas/tarifas_<dominio>.csv`
 | puentecolombia.mx | Acordeón FAQ (párrafo de texto) | `parsers/parser_puentecolombia.py`; click tab "¿Cuánto cuesta...?"; 1 caseta × 7 vehículos, datos hardcodeados |
 | aunorte.com.mx | HTML tables OD matrix (2 dir × 2 horarios) | `parsers/parser_aunorte.py`; acordeón Norte↔Sur; tarifa por par entrada-salida × horario (Pico/Regular/Valle); 120 filas |
 | ausur.com.mx | HTML tables OD (1 vehículo por par) | **Requiere `--headed`** (antibot IDEAL); `parsers/parser_ausur.py`; 54 pares entrada-salida × Automóvil solo, datos hardcodeados |
+| profrezac.com | Tabs CSS (3 tramos, 2 col) | `parsers/parser_profrezac.py`; 3 tramos (8-10 vehículos c/u), 27 filas, datos hardcodeados |
+| operadoradelasultana.com.mx | Imagen (tarifas.jpg) | `parsers/parser_operadoradelasultana.py`; 3 casetas × 8 vehículos, 24 filas, datos hardcodeados |
+| autopista-lerma-tenango.com.mx | HTML table (multi-caseta, columna vacía) | `parsers/parser_autopista_lerma_tenango.py`; 4 casetas × 8 vehículos, 32 filas; vigencia feb-2024 |
+| mronoreste.mx | Tabs CSS (10 casetas, 2 tramos c/u) | `parsers/parser_mronoreste.py`; click un tab → todos en DOM; eval h1→row→header+tables; 207 filas (10 casetas × N tramos × 6+3 vehículos) |
+| puentesfronterizos.gob.mx | HTML tables (3 puentes, 3 col) | `parsers/parser_puentesfronterizos.py`; 3 puentes internacionales × 9 vehículos, 27 filas; tarifas en pesos y dólares (se guarda pesos) |
+| gipsaslp.com.mx | Párrafos texto (1 tramo, sin caseta) | `parsers/parser_gipsaslp.py`; 7 vehículos, tarifas con IVA, datos hardcodeados |
+| supervia.mx | Imágenes PNG (OD pairs, 2 direcciones) | `parsers/parser_supervia.py`; 20 pares OD (10 poniente + 10 oriente); tarifas $74/$25/$99; vigencia feb-2026 |
+| viaductobicentenario.com.mx | OD matrix HTML tables (2 acordeones: N→S y S→N) | `parsers/parser_viaductobicentenario.py`; 88 pares OD (39 Norte-Sur + 49 Sur-Norte); N/A omitidos; vigencia 2026 |
