@@ -103,6 +103,8 @@ def classify(vehiculo_raw: str, context: str) -> list[str]:
         # EEC / E.E.C / etiquetas de carga
         if re.search(r"\beec\b|^\s*e\.?\s*e\.?\s*c\b|\bcamion(?!et)|\bcarga\b|\bpesado\b|\bc\b", s):
             return ["load_axle"]
+        if s == "eje excedente" and context in ["https://autopistasdecuota.com/ruta/chihuahua", "https://autopistasdecuota.com/ruta/durango-coahuila", "https://autopistasdecuota.com/ruta/san-luis-potosi"]:
+            return ["load_axle"]
         # default: eje ligero/auto/sencillo/excedente sin contexto
         return ["car_axle"]
 
@@ -132,9 +134,11 @@ def classify(vehiculo_raw: str, context: str) -> list[str]:
         re.search(r"\bcamion(?!et)|\bcarga\b|\bpesado\b|\btrailer\b", s)
         or re.search(r"^\s*c\d", s)
         or re.search(r"^\s*\d+\s*e\b", s)
-        or (re.search(r"^\d a \d", s) and re.search("CAS", context))
+        or (re.search(r"^\d a \d", s) and context in ["https://casmexico.com/mapasytarifas"])
     )
     if is_truck:
+        if re.search(r"camion$", s) and (context in ["https://autopistasdecuota.com/ruta/chihuahua", "https://autopistasdecuota.com/ruta/durango-coahuila", "https://autopistasdecuota.com/ruta/san-luis-potosi"]):
+            s = "camion 2 ejes"
         axles = extract_axles(s)
         cols = [f"truck_{n}_axle" for n in axles if 2 <= n <= 10]
         return cols
@@ -194,8 +198,10 @@ def process_files(input_dir: Path, warn_unmappable: bool = True, warn_duplicate:
                 if not autopista or not clasif or not tarifa:
                     skipped += 1
                     continue
+                if row.get("url_fuente") in ["https://www.mronoreste.mx/"]:
+                    clasif = re.sub(r"Eje Excedente \|", "| Eje Excedente", clasif)
                 tramo, vehiculo = split_tramo_vehiculo(clasif)
-                cols = classify(vehiculo, context=autopista)
+                cols = classify(vehiculo, context=(row.get("url_fuente") or "").strip())
                 if not cols:
                     if warn_unmappable:
                         print(
@@ -209,13 +215,15 @@ def process_files(input_dir: Path, warn_unmappable: bool = True, warn_duplicate:
                 bucket = sink.setdefault(key, {})
                 for col in cols:
                     prev = bucket.get(col)
-                    if prev is not None and prev != tarifa and warn_duplicate:
-                        print(
-                            f"warn: valor duplicado en {path.name} para "
-                            f"{key} columna={col}: {prev} -> {tarifa}",
-                            file=sys.stderr,
-                        )
-                    bucket[col] = tarifa
+                    if prev is not None and prev != tarifa:
+                        if warn_duplicate:
+                            print(
+                                f"warn: valor duplicado en {path.name} para "
+                                f"{key} columna={col}: {prev} -> {tarifa}",
+                                file=sys.stderr,
+                            )
+                    else:
+                        bucket[col] = tarifa
     return sink, total, skipped
 
 
