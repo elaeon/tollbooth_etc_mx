@@ -50,6 +50,17 @@ def split_tramo_vehiculo(clasificacion: str) -> tuple[str, str]:
 
 def extract_axles(s: str) -> list[int]:
     """Extrae números de eje de una etiqueta. Normalizado (lowercase, sin acentos)."""
+    # listas palabras: dos o tres, cuatro o cinco, seis a nueve
+    if re.search(r"dos|tres|cuatro|cinco|seis|siete|ocho|nueve", s):
+        s = re.sub("dos", "2", s)
+        s = re.sub("tres", "3", s)
+        s = re.sub("cuatro", "4", s)
+        s = re.sub("cinco", "5", s)
+        s = re.sub("seis", "6", s)
+        s = re.sub("siete", "7", s)
+        s = re.sub("ocho", "8", s)
+        s = re.sub("nueve", "9", s)
+
     # rangos: '2-4', '5-6', '7-9', '2 a 4', '2/4'
     m = re.search(r"(\d+)\s*[-–/a]\s*(\d+)", s)
     if m:
@@ -193,37 +204,43 @@ def process_files(input_dir: Path, warn_unmappable: bool = True, warn_duplicate:
             for row in reader:
                 total += 1
                 autopista = (row.get("autopista") or "").strip()
-                clasif = row.get("clasificacion") or ""
+                clasif = (row.get("clasificacion") or "").lower()
                 tarifa = to_number(row.get("tarifa_mxn") or "")
                 if not autopista or not clasif or not tarifa:
                     skipped += 1
                     continue
                 if row.get("url_fuente") in ["https://www.mronoreste.mx/"]:
-                    clasif = re.sub(r"Eje Excedente \|", "| Eje Excedente", clasif)
-                tramo, vehiculo = split_tramo_vehiculo(clasif)
-                cols = classify(vehiculo, context=(row.get("url_fuente") or "").strip())
-                if not cols:
-                    if warn_unmappable:
-                        print(
-                            f"warn: clasificación no mapeable en {path.name}: "
-                            f"autopista={autopista!r} clasificacion={clasif!r}",
-                            file=sys.stderr,
-                        )
-                    skipped += 1
-                    continue
-                key = (path.name, autopista, tramo)
-                bucket = sink.setdefault(key, {})
-                for col in cols:
-                    prev = bucket.get(col)
-                    if prev is not None and prev != tarifa:
-                        if warn_duplicate:
+                    clasif = re.sub(r"eje excedente \|", "| eje excedente", clasif)
+                if re.search("autobuses y camiones", clasif.lower()):
+                    clasif_many = [re.sub("camiones", "", clasif), re.sub("autobuses", "", clasif)]
+                else:
+                    clasif_many = [clasif]
+                
+                for clasif in clasif_many:
+                    tramo, vehiculo = split_tramo_vehiculo(clasif)
+                    cols = classify(vehiculo, context=(row.get("url_fuente") or "").strip())
+                    if not cols:
+                        if warn_unmappable:
                             print(
-                                f"warn: valor duplicado en {path.name} para "
-                                f"{key} columna={col}: {prev} -> {tarifa}",
+                                f"warn: clasificación no mapeable en {path.name}: "
+                                f"autopista={autopista!r} clasificacion={clasif!r}",
                                 file=sys.stderr,
                             )
-                    else:
-                        bucket[col] = tarifa
+                        skipped += 1
+                        continue
+                    key = (path.name, autopista, tramo)
+                    bucket = sink.setdefault(key, {})
+                    for col in cols:
+                        prev = bucket.get(col)
+                        if prev is not None and prev != tarifa:
+                            if warn_duplicate:
+                                print(
+                                    f"warn: valor duplicado en {path.name} para "
+                                    f"{key} columna={col}: {prev} -> {tarifa}",
+                                    file=sys.stderr,
+                                )
+                        else:
+                            bucket[col] = tarifa
     return sink, total, skipped
 
 
