@@ -1,6 +1,7 @@
 """Transforma data/tarifas/tarifas_*.csv (formato largo) a un único CSV columnar."""
 from __future__ import annotations
 
+import argparse
 import csv
 import re
 import sys
@@ -11,7 +12,7 @@ INPUT_DIR = Path("data/tarifas")
 OUTPUT_FILE = Path("data/tarifas_columnar.csv")
 
 OUTPUT_COLS = [
-    "autopista", "tramo",
+    "filename", "autopista", "tramo",
     "motorbike", "car", "car_axle",
     "bus_2_axle", "bus_3_axle", "bus_4_axle",
     "truck_2_axle", "truck_3_axle", "truck_4_axle", "truck_5_axle",
@@ -64,7 +65,7 @@ def extract_axles(s: str) -> list[int]:
     return []
 
 
-def classify(vehiculo_raw: str) -> list[str]:
+def classify(vehiculo_raw: str, context: str) -> list[str]:
     """Devuelve la lista de columnas de salida a las que mapea esta etiqueta.
 
     Lista vacía → no mapeable.
@@ -131,6 +132,7 @@ def classify(vehiculo_raw: str) -> list[str]:
         re.search(r"\bcamion(?!et)|\bcarga\b|\bpesado\b|\btrailer\b", s)
         or re.search(r"^\s*c\d", s)
         or re.search(r"^\s*\d+\s*e\b", s)
+        or (re.search(r"^\d a \d", s) and re.search("CAS", context))
     )
     if is_truck:
         axles = extract_axles(s)
@@ -164,16 +166,19 @@ def to_number(raw: str) -> str:
     return f"{f:g}"
 
 
-def process_files(input_dir: Path) -> tuple[dict, int, int]:
+def process_files(input_dir: Path, warn_unmappable: bool = True, warn_duplicate: bool = True, only_file: str | None = None) -> tuple[dict, int, int]:
     """Lee CSVs y agrega en un dict (autopista, tramo) -> {col: tarifa}.
 
     Devuelve (sink, total_rows, skipped_rows).
     """
-    sink: dict[tuple[str, str], dict[str, str]] = {}
+    sink: dict[tuple[str, str, str], dict[str, str]] = {}
     total = 0
     skipped = 0
 
-    files = sorted(input_dir.glob("tarifas_*.csv"))
+    if only_file:
+        files = [input_dir / only_file] if (input_dir / only_file).exists() else []
+    else:
+        files = sorted(input_dir.glob("tarifas_*.csv"))
     if not files:
         print(f"warn: no se encontraron archivos en {input_dir}", file=sys.stderr)
         return sink, total, skipped
@@ -190,20 +195,21 @@ def process_files(input_dir: Path) -> tuple[dict, int, int]:
                     skipped += 1
                     continue
                 tramo, vehiculo = split_tramo_vehiculo(clasif)
-                cols = classify(vehiculo)
+                cols = classify(vehiculo, context=autopista)
                 if not cols:
-                    print(
-                        f"warn: clasificación no mapeable en {path.name}: "
-                        f"autopista={autopista!r} clasificacion={clasif!r}",
-                        file=sys.stderr,
-                    )
+                    if warn_unmappable:
+                        print(
+                            f"warn: clasificación no mapeable en {path.name}: "
+                            f"autopista={autopista!r} clasificacion={clasif!r}",
+                            file=sys.stderr,
+                        )
                     skipped += 1
                     continue
-                key = (autopista, tramo)
+                key = (path.name, autopista, tramo)
                 bucket = sink.setdefault(key, {})
                 for col in cols:
                     prev = bucket.get(col)
-                    if prev is not None and prev != tarifa:
+                    if prev is not None and prev != tarifa and warn_duplicate:
                         print(
                             f"warn: valor duplicado en {path.name} para "
                             f"{key} columna={col}: {prev} -> {tarifa}",
@@ -218,13 +224,23 @@ def write_output(sink: dict, output_file: Path) -> None:
     with output_file.open("w", encoding="utf-8", newline="") as fh:
         writer = csv.writer(fh)
         writer.writerow(OUTPUT_COLS)
-        for (autopista, tramo), bucket in sorted(sink.items()):
-            row = [autopista, tramo] + [bucket.get(c, "") for c in OUTPUT_COLS[2:]]
+        for (filename, autopista, tramo), bucket in sorted(sink.items()):
+            key = [filename, autopista, tramo]
+            row = key + [bucket.get(c, "") for c in OUTPUT_COLS[len(key):]]
             writer.writerow(row)
 
 
 def main() -> int:
-    sink, total, skipped = process_files(INPUT_DIR)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--no-warn-unmappable", dest="warn_unmappable", action="store_false",
+                        help="Silencia warnings de clasificación no mapeable")
+    parser.add_argument("--no-warn-duplicate", dest="warn_duplicate", action="store_false",
+                        help="Silencia warnings de valor duplicado")
+    parser.add_argument("--file", metavar="NOMBRE",
+                        help="Procesa solo este archivo (ej: tarifas_viaducto.csv)")
+    args = parser.parse_args()
+
+    sink, total, skipped = process_files(INPUT_DIR, args.warn_unmappable, args.warn_duplicate, args.file)
     write_output(sink, OUTPUT_FILE)
     print(
         f"escritas {len(sink)} filas en {OUTPUT_FILE} "

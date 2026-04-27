@@ -14,3 +14,10 @@ logs/runs
 logs/*.log
 __pycache__/
 *.py[cod]
+.playwright-cli
+.playwright
+tarifas
+docs/
+parsers/
+raw_data/
+reports/
