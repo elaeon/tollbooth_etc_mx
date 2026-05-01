@@ -21,7 +21,7 @@ THRESHOLD = 0.65
 # Abreviaturas comunes en stretch_name y tramo
 ABBREVS = {
     "ent": "entronque",
-    "pte": "puente",
+    "lib": "libramiento",
     "libr": "libramiento",
     "libto": "libramiento",
     "blvd": "boulevard",
@@ -33,9 +33,14 @@ ABBREVS = {
     "hgo": "hidalgo",
     "nvo": "nuevo",
     "gral": "general",
+    "nte": "norte",
+    "ote": "oriente",
 }
 
-_PREFIX_NOISE = re.compile(r"^(?:autopista|plaza\s+de\s+cobro|caseta:?)\s+", re.IGNORECASE)
+_PREFIX_NOISE = re.compile(
+    r"^(?:autopista|plaza\s+de\s+cobro|caseta:?|cto\s+ext\s+mexiquense|circuito\s+exterior\s+mexiquense|amozoc\s+perote)\s+",
+    re.IGNORECASE,
+)
 _DASH_VARIANTS = re.compile(r"[‐-―]")  # –, —, ‐, etc.
 _NON_WORD = re.compile(r"[^\w\s]+")
 _WS = re.compile(r"\s+")
@@ -62,6 +67,7 @@ def normalize(s: str) -> str:
     s = _NON_WORD.sub(" ", s)
     s = _WS.sub(" ", s).strip()
     s = _SUFIX_NOISE.sub("", s).strip()
+    s = re.sub(r"\b([a-z]) ([0-9][a-z0-9]*)\b", r"\1\2", s)
     return s
 
 
@@ -79,12 +85,15 @@ def load_targets() -> tuple[list[dict], dict[str, list[dict]]]:
     with TOLL_REF_FILE.open(encoding="utf-8") as f:
         for r in csv.DictReader(f):
             stretch_name = r["stretch_name"]
+            tollbooth_name = r.get("tollbooth_name", "").strip()
             target_text = expand_abbrevs(normalize(stretch_name))
+            target_text_alt = expand_abbrevs(normalize(tollbooth_name)) if tollbooth_name else ""
             t: dict = {
                 "stretch_id": r["stretch_id"],
                 "stretch_name": stretch_name,
                 "target_text": target_text,
-                "target_tokens": tokenize(target_text),
+                "target_text_alt": target_text_alt,
+                "target_tokens": tokenize(target_text) | tokenize(target_text_alt),
             }
             targets.append(t)
             toll_ref = r.get("toll_ref", "").strip()
@@ -104,7 +113,11 @@ def _score_pool(
     for t in pool:
         if not (search_tokens & t["target_tokens"]):
             continue
-        score = scorer(search, t["target_text"]) / 100
+        s1 = scorer(search, t["target_text"]) / 100
+        # Only use tollbooth_name alt for fuzz.ratio (direction-sensitive); token_set_ratio
+        # would score 1.0 against any superset of a short tollbooth name (false positive).
+        s2 = fuzz.ratio(search, t["target_text_alt"]) / 100 if (t["target_text_alt"] and scorer is fuzz.ratio) else 0.0
+        score = max(s1, s2)
         if score > best_score:
             best_score = score
             best = t
