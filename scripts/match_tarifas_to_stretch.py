@@ -1,24 +1,43 @@
 """Asigna stretch_id a cada fila de data/tarifas_columnar.csv mediante matching difuso
-contra data/tables/2026/{roads.csv,stretchs.csv}."""
+contra reports/toll_ref_{year}.csv."""
 from __future__ import annotations
 
 import csv
 import re
 import sys
 import unicodedata
+from collections import defaultdict
 from pathlib import Path
+from typing import Callable
 
 from rapidfuzz import fuzz
 
-ROADS_FILE = Path("data/tables/2026/roads.csv")
-STRETCH_FILE = Path("data/tables/2026/stretchs.csv")
+YEAR = 2026
+TOLL_REF_FILE = Path(f"reports/toll_ref_{YEAR}.csv")
 TARIFAS_FILE = Path("data/tarifas_columnar.csv")
 OUTPUT_FILE = Path("data/tarifas_with_stretch_id.csv")
-THRESHOLD = 0.5
+THRESHOLD = 0.65
+
+# Abreviaturas comunes en stretch_name y tramo
+ABBREVS = {
+    "ent": "entronque",
+    "pte": "puente",
+    "libr": "libramiento",
+    "libto": "libramiento",
+    "blvd": "boulevard",
+    "cd": "ciudad",
+    "mty": "monterrey",
+    "gdl": "guadalajara",
+    "qro": "queretaro",
+    "slp": "san luis potosi",
+    "hgo": "hidalgo",
+    "nvo": "nuevo",
+    "gral": "general",
+}
 
 _PREFIX_NOISE = re.compile(r"^(?:autopista|plaza\s+de\s+cobro|caseta:?)\s+", re.IGNORECASE)
 _DASH_VARIANTS = re.compile(r"[‐-―]")  # –, —, ‐, etc.
-_NON_WORD = re.compile(r"[^\w\s-]+")
+_NON_WORD = re.compile(r"[^\w\s]+")
 _WS = re.compile(r"\s+")
 _TOKEN = re.compile(r"[a-z0-9]+")
 _SUFIX_NOISE = re.compile(r"tarifas\s+con\s+iva")
@@ -28,95 +47,162 @@ _COL_ORDER = [
     "truck_3_axle", "truck_4_axle", "truck_5_axle", "truck_6_axle",
     "truck_7_axle", "truck_8_axle", "truck_9_axle", "truck_10_axle",
     "load_axle", "motorbike_axle", "car_rush_hour", "car_evening_hour",
-    "pedestrian", "residente", 
-    "autopista", "tramo", "stretch_name", "road_name", "match_score", "filename"
+    "pedestrian", "residente",
+    "autopista", "tramo", "stretch_name", "match_score", "filename"
 ]
+
 
 def normalize(s: str) -> str:
     s = s or ""
     s = "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn")
     s = s.lower()
-    s = _DASH_VARIANTS.sub("-", s)
+    s = s.replace("_", " ")
+    s = _DASH_VARIANTS.sub(" ", s)
     s = _PREFIX_NOISE.sub("", s).strip()
     s = _NON_WORD.sub(" ", s)
     s = _WS.sub(" ", s).strip()
-    s = _SUFIX_NOISE.sub("", s)
+    s = _SUFIX_NOISE.sub("", s).strip()
     return s
+
+
+def expand_abbrevs(s: str) -> str:
+    return " ".join(ABBREVS.get(tok, tok) for tok in s.split())
 
 
 def tokenize(s: str) -> set[str]:
     return set(_TOKEN.findall(s))
 
 
-def load_targets() -> list[dict]:
-    with ROADS_FILE.open(encoding="utf-8") as f:
-        roads = {r["road_id"]: r["road_name"] for r in csv.DictReader(f)}
+def load_targets() -> tuple[list[dict], dict[str, list[dict]]]:
     targets: list[dict] = []
-    with STRETCH_FILE.open(encoding="utf-8") as f:
+    by_file: dict[str, list[dict]] = defaultdict(list)
+    with TOLL_REF_FILE.open(encoding="utf-8") as f:
         for r in csv.DictReader(f):
-            road_id = r["road_id"]
-            road_name = roads.get(road_id, "")
             stretch_name = r["stretch_name"]
-            target_text = normalize(f"{road_name} {stretch_name}")
-            targets.append({
+            target_text = expand_abbrevs(normalize(stretch_name))
+            t: dict = {
                 "stretch_id": r["stretch_id"],
-                "road_id": road_id,
-                "road_name": road_name,
                 "stretch_name": stretch_name,
                 "target_text": target_text,
                 "target_tokens": tokenize(target_text),
-            })
-    return targets
+            }
+            targets.append(t)
+            toll_ref = r.get("toll_ref", "").strip()
+            if toll_ref:
+                by_file[toll_ref].append(t)
+    return targets, by_file
 
 
-def best_match(search: str, search_tokens: set[str], targets: list[dict]) -> tuple[dict | None, float]:
-    if not search:
-        return None, 0.0
+def _score_pool(
+    search: str,
+    search_tokens: set[str],
+    pool: list[dict],
+    scorer: Callable[[str, str], float],
+) -> tuple[dict | None, float]:
     best: dict | None = None
     best_score = 0.0
-    for t in targets:
+    for t in pool:
         if not (search_tokens & t["target_tokens"]):
             continue
-        score = fuzz.ratio(search, t["target_text"]) / 100
+        score = scorer(search, t["target_text"]) / 100
         if score > best_score:
             best_score = score
             best = t
     return best, best_score
 
 
+def best_match(
+    search: str,
+    search_tokens: set[str],
+    candidates: list[dict],
+    targets_all: list[dict],
+    scorer: Callable[[str, str], float],
+) -> tuple[dict | None, float]:
+    """Busca en candidates (pre-filtrados por filename); si score < THRESHOLD,
+    intenta fallback contra todos los targets."""
+    if not search:
+        return None, 0.0
+    best, score = _score_pool(search, search_tokens, candidates, scorer)
+    if score < THRESHOLD and candidates is not targets_all:
+        best_fb, score_fb = _score_pool(search, search_tokens, targets_all, scorer)
+        if score_fb > score:
+            return best_fb, score_fb
+    return best, score
+
+
 def main() -> int:
-    targets = load_targets()
-    print(f"loaded {len(targets)} stretches")
+    targets, by_file = load_targets()
+    print(f"loaded {len(targets)} stretches ({len(by_file)} grupos por filename)")
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    rows_out: list[dict] = []
+    below = 0
+
     with TARIFAS_FILE.open(encoding="utf-8", newline="") as fin:
-        reader = csv.DictReader(fin)
-        total = 0
-        below = 0
-        rows_out = []
-        for row in reader:
-            total += 1
-            search = normalize(f"{row.get('autopista','')} {row.get('tramo','')}")
+        for row in csv.DictReader(fin):
+            tramo = row.get("tramo", "").strip()
+            autopista = row.get("autopista", "").strip()
+            filename = row.get("filename", "")
+
+            if tramo:
+                # Con tramo: fuzz.ratio para preservar dirección
+                search = expand_abbrevs(normalize(tramo))
+                scorer = fuzz.ratio
+            else:
+                # Sin tramo: token_set_ratio sobre autopista (más flexible)
+                search = expand_abbrevs(normalize(autopista))
+                scorer = fuzz.token_set_ratio
+
             tokens = tokenize(search)
-            best, score = best_match(search, tokens, targets)
+            candidates = by_file.get(filename) or targets
+            best, score = best_match(search, tokens, candidates, targets, scorer)
+
             if best is None or score < THRESHOLD:
                 below += 1
                 print(
                     f"warn: sin match (score={score:.2f}) "
-                    f"autopista={row.get('autopista','')!r} tramo={row.get('tramo','')!r}",
+                    f"autopista={autopista!r} tramo={tramo!r}",
                     file=sys.stderr,
                 )
-                rows_out.append({**row, "stretch_id": None, "road_id": "", "stretch_name": "", "road_name": "", "match_score": f"{score:.3f}"})
+                rows_out.append({**row, "stretch_id": None, "stretch_name": "", "match_score": f"{score:.3f}"})
             else:
-                rows_out.append({**row, "stretch_id": int(best["stretch_id"]), "road_id": best["road_id"], "stretch_name": best.get("stretch_name"), "road_name": best.get("road_name"), "match_score": f"{score:.3f}"})
+                rows_out.append({
+                    **row,
+                    "stretch_id": int(best["stretch_id"]),
+                    "stretch_name": best["stretch_name"],
+                    "match_score": f"{score:.3f}",
+                })
 
+    # Dedup: por stretch_id conservar la fila con mayor score
+    seen: dict[str, int] = {}  # stretch_id → índice en rows_out con mejor score
+    dedup = 0
+    for i, row in enumerate(rows_out):
+        sid = str(row["stretch_id"])
+        if sid in ("None", ""):
+            continue
+        if sid not in seen:
+            seen[sid] = i
+        else:
+            prev_i = seen[sid]
+            if float(row["match_score"]) > float(rows_out[prev_i]["match_score"]):
+                rows_out[prev_i]["stretch_id"] = None
+                seen[sid] = i
+            else:
+                row["stretch_id"] = None
+            dedup += 1
+            print(f"warn: stretch_id={sid} duplicado, descartando el de menor score", file=sys.stderr)
+
+    total = len(rows_out)
     rows_out.sort(key=lambda r: (r["stretch_id"] is None, r["stretch_id"] or 0))
 
     with OUTPUT_FILE.open("w", encoding="utf-8", newline="") as fout:
         writer = csv.DictWriter(fout, fieldnames=_COL_ORDER, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows_out)
-    print(f"escritas {total} filas en {OUTPUT_FILE} ({below} bajo umbral {THRESHOLD})")
+    print(
+        f"escritas {total} filas en {OUTPUT_FILE} "
+        f"({below} bajo umbral {THRESHOLD}, {dedup} duplicados resueltos)"
+    )
     return 0
 
 
