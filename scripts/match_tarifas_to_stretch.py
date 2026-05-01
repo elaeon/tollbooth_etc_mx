@@ -25,8 +25,8 @@ THRESHOLD = 0.65
 TERM_ALIASES: dict[str, str] = {
     "tramo 0 norte sur": "ent aut urbana nte",   # VB: tramo 0 (norte-sur) = conexión AUNORTE
     "tramo 0 sur norte": "ent aut urbana nte",   # VB: sentido inverso
-    "ent mexico puebla": "sanctorum",             # Arco Norte: caseta en la jcn Méx-Puebla
-    "ent mex puebla": "sanctorum",               # variante abreviada "méx."
+    "ent mexico puebla": "san martin texmelucan",             # Arco Norte: caseta en la jcn Méx-Puebla
+    "ent mex puebla": "san martin texmelucan",               # variante abreviada "méx."
     "tramo 0": "ent aut urbana nte",             # fallback para "tramo 0" sin dirección
 }
 
