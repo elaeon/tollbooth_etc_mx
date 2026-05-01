@@ -551,21 +551,38 @@ def mx_projects_report():
 def toll_ref(year: int):
     data_model = DataModel(year, DataStage.stg)
     data_model_pub = DataModel(year, DataStage.pub)
-    ldf_toll = pl.scan_csv(data_model_pub.stretchs_toll.csv)
-    ldf_stretch_id = pl.scan_csv(data_model_pub.tb_stretch_id.csv)
-    ldf_tb = pl.scan_parquet(data_model.tollbooths.parquet).select("tollbooth_id", "manage", "tollbooth_name")
-    ldf_operator = pl.scan_csv("data/tables/area_operators_mx.csv", separator="|").select("short_name", "toll_ref")
-    
-    ldf_tb = ldf_tb.join(ldf_operator, left_on="manage", right_on="short_name").select(pl.exclude("manage"))
-    ldf_toll = ldf_toll.join(ldf_stretch_id, on="stretch_id", how="left")
-    ldf_toll = (
-        ldf_toll
-        .join(ldf_tb, left_on="tollbooth_id_out", right_on="tollbooth_id", how="left")
-        .rename({"toll_ref_right": "toll_manage_ref"})
-        .select("stretch_id", "stretch_name", "tollbooth_name", "toll_ref", "toll_manage_ref")
+    lf_stretch_id = pl.scan_csv(data_model_pub.tb_stretch_id.csv)
+    lf_tb = (
+        pl.scan_parquet(data_model.tollbooths.parquet)
+        .select("tollbooth_id", "manage", "tollbooth_name")
     )
-    ldf_toll = ldf_toll.unique().sort("stretch_id")
-    ldf_toll.sink_csv(f"./reports/toll_ref_{year}.csv")
+    lf_operator = (
+        pl.scan_csv("data/tables/area_operators_mx.csv", separator="|")
+        .select("short_name", "toll_ref")
+    )
+    lf_stretch = (
+        pl.scan_parquet(data_model.stretchs.parquet)
+        .select("stretch_id", "stretch_name")
+    )
+    lf_toll = pl.scan_parquet(data_model.stretchs_toll.parquet)
+    lf_toll = (
+        lf_stretch
+        .join(lf_toll, on="stretch_id", how="left")
+    )
+    lf_tb = (
+        lf_tb
+        .join(lf_operator, left_on="manage", right_on="short_name")
+        .select(pl.exclude("manage"))
+    )
+    lf_toll = lf_toll.join(lf_stretch_id, on="stretch_id", how="left")
+    lf_toll = (
+        lf_toll
+        .join(lf_tb, left_on="tollbooth_id_out", right_on="tollbooth_id", how="left")
+        .rename({"toll_ref_right": "manage_ref"})
+        .select("stretch_id", "stretch_name", "tollbooth_name", "toll_ref", "manage_ref")
+    )
+    lf_toll = lf_toll.unique().sort("stretch_id")
+    lf_toll.sink_csv(f"./reports/toll_ref_{year}.csv")
 
 
 def tollbooth_stretch_manage(year: int):

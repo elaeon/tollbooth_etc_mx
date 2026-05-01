@@ -31,11 +31,14 @@ def normalize(s: str) -> str:
     return strip_accents(s).lower().strip()
 
 
-def split_tramo_vehiculo(clasificacion: str) -> tuple[str, str]:
+def split_tramo_vehiculo(clasificacion: str, cut_stretch_first_pipe: bool | None = None) -> tuple[str, str]:
     """Devuelve (tramo, vehiculo) a partir del campo clasificacion."""
     c = clasificacion.strip()
     if "|" in c:
-        idx = c.rfind("|")
+        if cut_stretch_first_pipe is not None:
+            idx = c.find("|")
+        else:
+            idx = c.rfind("|")
         left, right = c[:idx].strip(), c[idx + 1:].strip()
         # Algunos operadores (e.g. AUNORTE) invierten el orden: '<dirección+horario> | <OD pair>'.
         # Si el lado derecho es un par Origen→Destino, lo tratamos como tramo.
@@ -122,9 +125,9 @@ def classify(vehiculo_raw: str, context: str) -> list[str]:
     # 4. Hora pico / nocturna / regular (común en autopistas urbanas con tarifa por horario)
     if re.search(r"horario\s*pico|hora\s*pico|rush", s):
         return ["car_rush_hour"]
-    if re.search(r"nocturn|evening|horario\s*valle|hora\s*valle", s):
+    if re.search(r"nocturn|evening|tarde", s):
         return ["car_evening_hour"]
-    if re.search(r"horario\s*regular", s):
+    if re.search(r"horario\s*regular|horario\s*valle|hora\s*valle", s):
         return ["car"]
 
     # 5. Autobús (B2, B3, B4, "Autobús N ejes", "Bus N ejes", "NB - Autobús de N ejes")
@@ -181,7 +184,7 @@ def to_number(raw: str) -> str:
     return f"{f:g}"
 
 
-def process_files(input_dir: Path, warn_unmappable: bool = True, warn_duplicate: bool = True, only_file: str | None = None) -> tuple[dict, int, int]:
+def process_files(input_dir: Path, warn_unmappable: bool = True, warn_duplicate: bool = True, only_file: str | None = None, cut_stretch_first_pipe: bool | None = None) -> tuple[dict, int, int]:
     """Lee CSVs y agrega en un dict (autopista, tramo) -> {col: tarifa}.
 
     Devuelve (sink, total_rows, skipped_rows).
@@ -217,7 +220,7 @@ def process_files(input_dir: Path, warn_unmappable: bool = True, warn_duplicate:
                     clasif_many = [clasif]
                 
                 for clasif in clasif_many:
-                    tramo, vehiculo = split_tramo_vehiculo(clasif)
+                    tramo, vehiculo = split_tramo_vehiculo(clasif, cut_stretch_first_pipe)
                     cols = classify(vehiculo, context=(row.get("url_fuente") or "").strip())
                     if not cols:
                         if warn_unmappable:
@@ -263,9 +266,11 @@ def main() -> int:
                         help="Silencia warnings de valor duplicado")
     parser.add_argument("--file", metavar="NOMBRE",
                         help="Procesa solo este archivo (ej: tarifas_viaducto.csv)")
+    parser.add_argument("--cut-stretch-first-pipe", action="store_false",
+                        help="fix the position where the vehicle typeis located")
     args = parser.parse_args()
 
-    sink, total, skipped = process_files(INPUT_DIR, args.warn_unmappable, args.warn_duplicate, args.file)
+    sink, total, skipped = process_files(INPUT_DIR, args.warn_unmappable, args.warn_duplicate, args.file, args.cut_stretch_first_pipe)
     write_output(sink, OUTPUT_FILE)
     print(
         f"escritas {len(sink)} filas en {OUTPUT_FILE} "

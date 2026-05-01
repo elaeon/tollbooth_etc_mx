@@ -1,1465 +1,1117 @@
-"stretch_id","stretch_name","motorbike","car","car_axle","bus_2_axle","bus_3_axle","bus_4_axle","truck_2_axle","truck_3_axle","truck_4_axle","truck_5_axle","truck_6_axle","truck_7_axle","truck_8_axle","truck_9_axle","load_axle","truck_10_axle","toll_ref","motorbike_axle","car_rush_hour","car_evening_hour","pedestrian","bicycle","residente"
-1,"Mexico-chalco",,,,,,,,,,,,,,,,,"pase",,,,,,
-2,"Chalco-mexico",,,,,,,,,,,,,,,,,"pase",,,,,,
-3,"Mexico-san martin texmelucan",,,,,,,,,,,,,,,,,"pase",,,,,,
-4,"san martin texmelucan-puebla",,,,,,,,,,,,,,,,,"pase",,,,,,
-5,"Mexico-circuito exterior mexiquense",,,,,,,,,,,,,,,,,"pase",,,,,,
-6,"LIBRAMIENTO AMECAMECA-NEPANTLA",,,,,,,,,,,,,,,,,"pase",,,,,,
-7,"SAN MARTÍN TEXMELUCAN-TLAXCALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-8,"JANTETELCO - EL HIGUERON",,,,,,,,,,,,,,,,,"pase",,,,,,
-9,"Cuautla-chinameca",,,,,,,,,,,,,,,,,"pase",,,,,,
-10,"Jantetelco-cuautla",,,,,,,,,,,,,,,,,"pase",,,,,,
-11,"PUEBLA-ACATZINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-12,"PUEBLA-Amozoc",,,,,,,,,,,,,,,,,"pase",,,,,,
-13,"Puebla-ent. Amozoc III",,,,,,,,,,,,,,,,,"http://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=192",,,,,,
-14,"CUAPIAXTLA-CUACNOPALAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-15,"el seco-cuacnopalan",,,,,,,,,,,,,,,,,"pase",,,,,,
-16,"Cuapiaxtla-el seco",,,,,,,,,,,,,,,,,"pase",,,,,,
-17,"ACATZINGO-CD. MENDOZA",,,,,,,,,,,,,,,,,"pase",,,,,,
-18,"ACATZINGO-esperanza",,,,,,,,,,,,,,,,,"pase",,,,,,
-19,"Esperanza-cd mendoza",,,,,,,,,,,,,,,,,"pase",,,,,,
-20,"CORDOBA-la tinaja",,,,,,,,,,,,,,,,,"pase",,,,,,
-21,"Cuitlahuac-la tinaja",,,,,,,,,,,,,,,,,"pase",,,,,,
-22,"Cordoba-cuitlahuac",,,,,,,,,,,,,,,,,"pase",,,,,,
-23,"la tinaja-veracruz",,,,,,,,,,,,,,,,,"pase",,,,,,
-24,"la tinaja-paso del toro",,,,,,,,,,,,,,,,,"pase",,,,,,
-25,"paso del toro-veracruz",,,,,,,,,,,,,,,,,"pase",,,,,,
-26,"Cuacnopalan-tehuacán",,,,,,,,,,,,,,,,,"pase",,,,,,
-27,"Tehuacán-miahuatlán",,,,,,,,,,,,,,,,,"pase",,,,,,
-28,"Miahuatlán-nochixtlán",,,,,,,,,,,,,,,,,"pase",,,,,,
-29,"Miahuatlán-coixtlahuaca",,,,,,,,,,,,,,,,,"pase",,,,,,
-30,"Nochixtlán-oaxaca",,,,,,,,,,,,,,,,,"pase",,,,,,
-31,"Nochixtlán-huitzo",,,,,,,,,,,,,,,,,"pase",,,,,,
-32,"Huitzo-oaxaca",,,,,,,,,,,,,,,,,"pase",,,,,,
-33,"BARRANCA LARGA-VENTANILLA",,,,,,,,,,,,,,,,,"pase",,,,,,
-34,"BARRANCA LARGA-VENTANILLA",,,,,,,,,,,,,,,,,"pase",,,,,,
-35,"la tinaja-isla",,,,,,,,,,,,,,,,,"pase",,,,,,
-36,"la tinaja-cosamaloapan",,,,,,,,,,,,,,,,,"pase",,,,,,
-37,"Cosamaloapan-isla",,,,,,,,,,,,,,,,,"pase",,,,,,
-38,"Isla-cosoleacaque",,,,,,,,,,,,,,,,,"pase",,,,,,
-39,"Isla-acayucan",,,,,,,,,,,,,,,,,"pase",,,,,,
-40,"Acayucan-cosoleacaque",,,,,,,,,,,,,,,,,"pase",,,,,,
-41,"TÚNEL COATZACOALCOS",,,,,,,,,,,,,,,,,"pase",,,,,,
-42,"MITLA-TEHUANTEPEC II",,,,,,,,,,,,,,,,,"pase",,,,,,
-43,"Mitla-lachixitla",,,,,,,,,,,,,,,,,"pase",,,,,,
-44,"LACHIXILA-ENT. TEHUANTEPEC II",,,,,,,,,,,,,,,,,"pase",,,,,,
-45,"salina cruz-tehuantepec",,,,,,,,,,,,,,,,,"pase",,,,,,
-46,"Tehuantepec-la ventosa",,,,,,,,,,,,,,,,,"pase",,,,,,
-47,"Tehuantepec-ixtepec",,,,,,,,,,,,,,,,,"pase",,,,,,
-48,"Ixtepec-la ventosa",,,,,,,,,,,,,,,,,"http://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=180",,,,,,
-49,"PUENTE NACIONAL ALVARADO",,,,,,,,,,,,,,,,,"pase",,,,,,
-50,"PUENTE NACIONAL TLACOTALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-51,"PUENTE NACIONAL CARACOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-52,"PUENTE NACIONAL PAPALOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-53,"PUENTE NACIONAL DOVALI",,,,,,,,,,,,,,,,,"pase",,,,,,
-54,"Amozoc-ent. Ixtenco",,,,,,,,,,,,,,,,,"pase",,,,,,
-55,"ent. Ixtenco-ent oriental",,,,,,,,,,,,,,,,,"pase",,,,,,
-56,"ent. Ixtenco-cuapiaxtla",,,,,,,,,,,,,,,,,"pase",,,,,,
-57,"ent. Cuapiaxtla-ent orientel",,,,,,,,,,,,,,,,,"pase",,,,,,
-58,"ent. Oriental-perote II",,,,,,,,,,,,,,,,,"pase",,,,,,
-59,"ent. Oriental-ent. Cantona",,,,,,,,,,,,,,,,,"pase",,,,,,
-60,"ent. Cantona-ent perote II",,,,,,,,,,,,,,,,,"pase",,,,,,
-61,"libramiento de perote",,,,,,,,,,,,,,,,,"pase",,,,,,
-62,"ent. Ixtenco- ent. Audi",,,,,,,,,,,,,,,,,"pase",,,,,,
-63,"AMOZOC-PEROTE (AUDI CUAPIAXTLA A1 Y A2)",,,,,,,,,,,,,,,,,"pase",,,,,,
-64,"AMOZOC-PEROTE (AUDI CUAPIAXTLA)",,,,,,,,,,,,,,,,,"pase",,,,,,
-65,"PEROTE-BANDERILLA",,,,,,,,,,,,,,,,,"pase",,,,,,
-66,"LIBRAMIENTO XALAPA",,,,,,,,,,,,,,,,,"pase",,,,,,
-67,"CARDEL-VERACRUZ",,,,,,,,,,,,,,,,,"pase",,,,,,
-68,"SAN JULIÁN-VERACRUZ",,,,,,,,,,,,,,,,,"pase",,,,,,
-69,"LIBRAMIENTO PLAN DEL RIO",,,,,,,,,,,,,,,,,"pase",,,,,,
-70,"PUENTE NACIONAL NAUTLA",,,,,,,,,,,,,,,,,"pase",,,,,,
-71,"las chopas-nuevo sacrificio",,,,,,,,,,,,,,,,,"pase",,,,,,
-72,"las chopas-las chopas II",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=35",,,,,,
-73,"las chopas II-nuevo sacrificio",,,,,,,,,,,,,,,,,"pase",,,,,,
-74,"nuevo sacrificio-raudales",,,,,,,,,,,,,,,,,"pase",,,,,,
-75,"nuevo sacrificio-malpasito",,,,,,,,,,,,,,,,,"pase",,,,,,
-76,"Malpasito-raudales",,,,,,,,,,,,,,,,,"pase",,,,,,
-77,"Raudales-ocozocuautla",,,,,,,,,,,,,,,,,"pase",,,,,,
-78,"TUXTLA GUTIERREZ-SAN CRISTOBAL DE LAS C",,,,,,,,,,,,,,,,,"pase",,,,,,
-79,"Arriaga-tierra y libertad",,,,,,,,,,,,,,,,,"pase",,,,,,
-80,"tierra y libertad-jiquipilas",,,,,,,,,,,,,,,,,"pase",,,,,,
-81,"Jiquipilas-montes azules",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=209",,,,,,
-82,"montes azules-ocozocoautla",,,,,,,,,,,,,,,,,"pase",,,,,,
-83,"AGUA DULCE-CARDENAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-84,"agua dulce-magallanes",,,,,,,,,,,,,,,,,"pase",,,,,,
-85,"Magallanes-cardenas",,,,,,,,,,,,,,,,,"pase",,,,,,
-86,"loma de caballo-frontera",,,,,,,,,,,,,,,,,"pase",,,,,,
-87,"loma de caballo-nacajuca",,,,,,,,,,,,,,,,,"pase",,,,,,
-88,"Nacajuca-frontera",,,,,,,,,,,,,,,,,"pase",,,,,,
-89,"PUENTE NACIONAL GRIJALVA",,,,,,,,,,,,,,,,,"pase",,,,,,
-90,"PUENTE NACIONAL USUMACINTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-91,"puente el zacatal",,,,,,,,,,,,,,,,,"pase",,,,,,
-92,"CHAMPOTON-CAMPECHE",,,,,,,,,,,,,,,,,"pase",,,,,,
-93,"Seybaplaya-champeche",,,,,,,,,,,,,,,,,"pase",,,,,,
-94,"Champoton-seybaplaya",,,,,,,,,,,,,,,,,"pase",,,,,,
-95,"CTO. EXT. MEXIQUENSE -T0 JOROBAS",,,,,,,,,,,,,,,,,"https://www.circuitoexterior.mx/rutas-y-tarifas/",,,,,,
-96,"T1 TULTEPEC Origen entronque Lechería-Texcoco",,,,,,,,,,,,,,,,,"pase",,,,,,
-97,"T2 CONMEX Origen entronque Hank González",,,,,,,,,,,,,,,,,"pase",,,,,,
-98,"CTO. EXT. MEXIQUENSE -T3 NABOR CARRILLO (P",,,,,,,,,,,,,,,,,"pase",,,,,,
-99,"CTO. EXT. MEXIQUENSE -T3 NABOR CARRILLO (B",,,,,,,,,,,,,,,,,"pase",,,,,,
-100,"CTO. EXT. MEXIQUENSE -T4 CHALCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-101,"CTO. EXT. MEXIQUENSE A-1A - A-1B HUEHUETO",,,,,,,,,,,,,,,,,"pase",,,,,,
-102,"CTO. EXT. MEXIQUENSE   A-2 / A-5 HANK GLEZ.",,,,,,,,,,,,,,,,,"pase",,,,,,
-103,"CTO. EXT. MEXIQUENSE  A-6, A-7 PERIFÉRICO",,,,,,,,,,,,,,,,,"pase",,,,,,
-104,"CTO. EXT. MEXIQUENSE  A-8 (PICHARDO)",,,,,,,,,,,,,,,,,"pase",,,,,,
-105,"CTO. EXT. MEXIQUENSE  A-9 CTM",,,,,,,,,,,,,,,,,"pase",,,,,,
-106,"T1 JALTENCO Lechería-Texcoco",,,,,,,,,,,,,,,,,"pase",,,,,,
-107,"CTO. EXT. MEXIQUENSE  A-3 A PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-108,"CTO. EXT. MEXIQUENSE  A-4 PACHUCA",,,,,,,,,,,,,,,,,"https://www.circuitoexterior.mx/rutas-y-tarifas/",,,,,,
-109,"CTO. EXT. MEXIQUENSE  A-21 - A-22 B. XOCHIAC",,,,,,,,,,,,,,,,,"pase",,,,,,
-110,"CTO. EXT. MEXIQUENSE  T-7 - TEXCOCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-111,"CTO. EXT. MEXIQUENSE  A-27 SAN BUENA VENT",,,,,,,,,,,,,,,,,"pase",,,,,,
-112,"CTO. EXT. MEXIQUENSE A-28 SAN BUENA VENT",,,,,,,,,,,,,,,,,"pase",,,,,,
-113,"CTO. EXT. MEXIQUENSE  A-31 - A-32 ENT. TULTE",,,,,,,,,,,,,,,,,"pase",,,,,,
-114,"CTO. EXT. MEXIQUENSE A-34 - A-36 V. MEXIQUE",,,,,,,,,,,,,,,,,"pase",,,,,,
-115,"CTO. EXT. MEXIQUENSE  A-33 Y A-35 (AUXILIAR",,,,,,,,,,,,,,,,,"pase",,,,,,
-116,"CTO. EXT. MEXIQUENSE  T-5 TULTITLÁN",,,,,,,,,,,,,,,,,"pase",,,,,,
-117,"CTO. EXT. MEXIQUENSE  T6 CUAUTITLÁN-(SAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-118,"CTO. EXT. MEXIQUENSE  AIFA T-5 D.S.I.",,,,,,,,,,,,,,,,,"pase",,,,,,
-119,"CTO. EXT. MEXIQUENSE  AIFA A-35 D.S.I.",,,,,,,,,,,,,,,,,"pase",,,,,,
-120,"indios verdes-san cristobal ecatepec",,,,,,,,,,,,,,,,,"pase",,,,,,
-121,"Mexico-lecheria",,,,,,,,,,,,,,,,,"pase",,,,,,
-122,"MÉXICO-PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-123,"indios verdez-tizayuca",,,,,,,,,,,,,,,,,"pase",,,,,,
-124,"MÉXICO-PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-125,"ECATEPEC-PIRÁMIDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-126,"Ecatepec-tepexpan",,,,,,,,,,,,,,,,,"pase",,,,,,
-127,"Tepexpan-san martín de las pirámides",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia",,,,,,
-128,"PIRÁMIDES-TEXCOCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-129,"PIRÁMIDES-TEXCOCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-130,"PIRÁMIDES-TEXCOCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-131,"PIRÁMIDES-TEXCOCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-132,"PEÑON-TEXCOCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-133,"PEÑON-TEXCOCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-134,"Ent. Circuito exterior mexiquense",,,,,,,,,,,,,,,,,"pase",,,,,,
-135,"Tejocotal-tuxpan",,,,,,,,,,,,,,,,,"pase",,,,,,
-136,"LIBRAMIENTO TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-137,"Tulancingo-venta grande",,,,,,,,,,,,,,,,,"pase",,,,,,
-138,"Tejocotal-nuevo necaxa",,,,,,,,,,,,,,,,,"pase",,,,,,
-139,"avila camacho-venustiano carranza",,,,,,,,,,,,,,,,,"pase",,,,,,
-140,"venustiano carranza-tihuatlán",,,,,,,,,,,,,,,,,"pase",,,,,,
-141,"TIHUATLAN-TUXPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-142,"tihuatlan I-tihuatlan II",,,,,,,,,,,,,,,,,"pase",,,,,,
-143,"buenos aires-naranjos",,,,,,,,,,,,,,,,,"pase",,,,,,
-144,"buenos aires-ozuluama",,,,,,,,,,,,,,,,,"pase",,,,,,
-145,"Naranjos-ozuluama",,,,,,,,,,,,,,,,,"pase",,,,,,
-146,"los gil-buenos aires",,,,,,,,,,,,,,,,,"pase",,,,,,
-147,"TIHUATLAN-GUTIERREZ ZAMORA",,,,,,,,,,,,,,,,,"pase",,,,,,
-148,"TUXPAN-CARDEL",,,,,,,,,,,,,,,,,"pase",,,,,,
-149,"Nautla-gutierrez zamora",,,,,,,,,,,,,,,,,"pase",,,,,,
-150,"Nautla-tihuatlan",,,,,,,,,,,,,,,,,"pase",,,,,,
-151,"vega de alatorre-nautla",,,,,,,,,,,,,,,,,"pase",,,,,,
-152,"laguna verde-nautla",,,,,,,,,,,,,,,,,"pase",,,,,,
-153,"laguna verde-vega de alatorre",,,,,,,,,,,,,,,,,"pase",,,,,,
-154,"PUENTE NACIONAL TECOLUTLA",,,,,,,,,,,,,,,,,"pase",,,,,,
-155,"LIBRAMIENTO PONIENTE DE TAMPICO",,,,,,,,,,,,,,,,,"pase",,,,,,
-156,"boulevard loma real-altamira",,,,,,,,,,,,,,,,,"pase",,,,,,
-157,"ciudad valles-boulevard loma real",,,,,,,,,,,,,,,,,"pase",,,,,,
-158,"puente tampico",,,,,,,,,,,,,,,,,"pase",,,,,,
-159,"puente pánuco",,,,,,,,,,,,,,,,,"pase",,,,,,
-160,"Mexico-tepeji del rio",,,,,,,,,,,,,,,,,"pase",,,,,,
-161,"Jorobas-tepeji del rio",,,,,,,,,,,,,,,,,"pase",,,,,,
-162,"tepeji del rio-palmillas",,,,,,,,,,,,,,,,,"pase",,,,,,
-163,"tepeji del rio-palmillas",,,,,,,,,,,,,,,,,"pase",,,,,,
-164,"tepeji del rio-polotitlan",,,,,,,,,,,,,,,,,"pase",,,,,,
-165,"Queretaro-celaya",,,,,,,,,,,,,,,,,"pase",,,,,,
-166,"QUERETARO-IRAPUATO",,,,,,,,,,,,,,,,,"pase",,,,,,
-167,"Queretaro-ent. Libramiento surponiente de queretaro",,,,,,,,,,,,,,,,,"pase",,,,,,
-168,"LIBRAMIENTO DE CELAYA",,,,,,,,,,,,,,,,,"pase",,,,,,
-169,"LIBRAMIENTO DE CELAYA",,,,,,,,,,,,,,,,,"pase",,,,,,
-170,"LIBRAMIENTO DE CELAYA",,,,,,,,,,,,,,,,,"pase",,,,,,
-171,"Celaya-ent. Villagran",,,,,,,,,,,,,,,,,"pase",,,,,,
-172,"Celaya-cerro gordo",,,,,,,,,,,,,,,,,"pase",,,,,,
-173,"cerro gordo-irapuato",,,,,,,,,,,,,,,,,"pase",,,,,,
-174,"cerro gordo-salamanca",,,,,,,,,,,,,,,,,"pase",,,,,,
-175,"Celaya-irapuato",,,,,,,,,,,,,,,,,"pase",,,,,,
-176,"Celaya-salamanca",,,,,,,,,,,,,,,,,"pase",,,,,,
-177,"cerro gordo-ent la garrida",,,,,,,,,,,,,,,,,"pase",,,,,,
-178,"entronque itesi-san cristobal",,,,,,,,,,,,,,,,,"http://libramientoirapuato.mx/tarifas.html",,,,,,
-179,"san cristobal-entronque carretera 90",,,,,,,,,,,,,,,,,"http://libramientoirapuato.mx/tarifas.html",,,,,,
-180,"entronque itesi-arandas",,,,,,,,,,,,,,,,,"http://libramientoirapuato.mx/tarifas.html",,,,,,
-181,"Arandas-san cristobal",,,,,,,,,,,,,,,,,"http://libramientoirapuato.mx/tarifas.html",,,,,,
-182,"Salamanca-irapuato",34,69,34,158,158,158,158,158,158,216,216,288,288,288,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx",,,,,,
-183,"Irapuato-leon",52,105,52,241,241,241,241,241,241,329,329,439,439,439,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx",,,,,,
-184,"Irapuato-silao (romita-irapuato)",25,50,25,116,116,116,116,116,116,158,158,211,211,211,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx",,,,,,
-185,"Silao-leon (romita-leon)",27,54,27,124,124,124,124,124,124,170,170,227,227,227,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx",,,,,,
-186,"eje metropolitano-ent los rodrigiez (silao-leon)",15,31,15,72,72,72,72,72,72,98,98,131,131,131,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx",,,,,,
-187,"GUANAJUATO-SILAO",,,,,,,,,,,,,,,,,"pase",,,,,,
-188,"Leon-lagos de moreno",,,,,,,,,,,,,,,,,"pase",,,,,,
-189,"Leon-las joyas",,,,,,,,,,,,,,,,,"pase",,,,,,
-190,"Leon-san francisco del rincon",,,,,,,,,,,,,,,,,"pase",,,,,,
-191,"Leon-plande ayala",,,,,,,,,,,,,,,,,"pase",,,,,,
-192,"union de san antonio-lagos de moreno",,,,,,,,,,,,,,,,,"pase",,,,,,
-193,"Leon-ent central de abastos",,,,,,,,,,,,,,,,,"pase",,,,,,
-194,"Leon-ent aut salamanca",,,,,,,,,,,,,,,,,"pase",,,,,,
-195,"ent. Lagos de moreno-aguascalientes",,,,,,,,,,,,,,,,,"pase",,,,,,
-196,"encarnacion de diaz-aguascalentes",,,,,,,,,,,,,,,,,"pase",,,,,,
-197,"Ent. Montoro-Ent. La Escondida",,,,,,,,,,,,,,,,,"pase",,,,,,
-198,"Ent. Montoro-Ent. El Chichimeco",,,,,,,,,,,,,,,,,"pase",,,,,,
-199,"Ent. El Chichimeco-Ent. La Escondida",,,,,,,,,,,,,,,,,"pase",,,,,,
-200,"CD. CUAUHTEMOC-OSIRIS",,,,,,,,,,,,,,,,,"pase",,,,,,
-201,"ent. Arandas-el desperdicio",,,,,,,,,,,,,,,,,"pase",,,,,,
-202,"ent. Arandas-jalostotitlan",,,,,,,,,,,,,,,,,"pase",,,,,,
-203,"Jalostotitlan-el desperdicio",,,,,,,,,,,,,,,,,"pase",,,,,,
-204,"ent. Arandas-san miguel el alto",,,,,,,,,,,,,,,,,"pase",,,,,,
-205,"ent. San juan de los lagos-el desperdicio",,,,,,,,,,,,,,,,,"pase",,,,,,
-206,"ZAPOTLANEJO-LAGOS DE MORENO",,,,,,,,,,,,,,,,,"pase",,,,,,
-207,"ZAPOTLANEJO-LAGOS DE MORENO",,,,,,,,,,,,,,,,,"pase",,,,,,
-208,"ZAPOTLANEJO-LAGOS DE MORENO",,,,,,,,,,,,,,,,,"pase",,,,,,
-209,"Zapotlanejo-ent. Arandas",,,,,,,,,,,,,,,,,"pase",,,,,,
-210,"Guadalajara-acatic",75,152,83,258,258,258,249,249,249,462,462,588,588,588,116,,"pase",,,,,,
-211,"ent. Acatic-zapotlanejo",,,,,,,,,,,,,,,,,"pase",,,,,,
-212,"Zapotlanejo-tepatitlan",,,,,,,,,,,,,,,,,"pase",,,,,,
-213,"ZAPOTLANEJO-LAGOS DE MORENO",,,,,,,,,,,,,,,,,"pase",,,,,,
-214,"ZAPOTLANEJO-LAGOS DE MORENO",,,,,,,,,,,,,,,,,"pase",,,,,,
-215,"Tapatitlan-ent. Arandas",,,,,,,,,,,,,,,,,"pase",,,,,,
-216,"lagos de moreno-villa de arriaga",,,,,,,,,,,,,,,,,"pase",,,,,,
-217,"VENTURA-EL PEYOTE",,,,,,,,,,,,,,,,,"pase",,,,,,
-218,"LIBRAMIENTO ARCO NORTE SAN LUIS POTOS",,,,,,,,,,,,,,,,,"pase",,,,,,
-219,"LIBRAMIENTO PONIENTE SAN LUIS POTOSI",,,,,,,,,,,,,,,,,"pase",,,,,,
-220,"Horizontes-guadalajara",,,,,,,,,,,,,,,,,"pase",,,,,,
-221,"Horizontes-zacatecas",,,,,,,,,,,,,,,,,"pase",,,,,,
-222,"LIBRAMIENTO ORIENTE SAN LUIS POTOSI",,,,,,,,,,,,,,,,,"pase",,,,,,
-223,"Rioverde-la pila",,,,,,,,,,,,,,,,,"pase",,,,,,
-224,"LIBRAMIENTO NORESTE QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-225,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-226,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-227,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-228,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-229,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-230,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-231,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-232,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-233,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-234,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-235,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-236,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-237,"SAN LUIS POTOSÍ-RIOVERDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-238,"libramiento cd. Valles-tamuin",,,,,,,,,,,,,,,,,"pase",,,,,,
-239,"ent. La calera-ent. San juan",,,,,,,,,,,,,,,,,"pase",,,,,,
-240,"ent. La pitahaya-ent. La calera",,,,,,,,,,,,,,,,,"pase",,,,,,
-241,"Mexico-santa fe",,,,,,,,,,,,,,,,,"pase",,,,,,
-242,"MÉXICO-LA MARQUESA",,,,,,,,,,,,,,,,,"pase",,,,,,
-243,"Mexico-contadero",,,,,,,,,,,,,,,,,"pase",,,,,,
-244,"Mexico-la venta",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=55",,,,,,
-245,"Contadero-la marquesa",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=55",,,,,,
-246,"la venta-la marquesa",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=55",,,,,,
-247,"LA MARQUESA-LERMA",,,,,,,,,,,,,,,,,"pase",,,,,,
-248,"TENANGO - IXTAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-249,"TENANGO - IXTAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-250,"TENANGO - IXTAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-251,"TENANGO - IXTAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-252,"LERMA-SANTIAGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-253,"LERMA-SANTIAGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-254,"LERMA-SANTIAGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-255,"LERMA-SANTIAGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-256,"Lerma-atlacomulco",,,,,,,,,,,,,,,,,"pase",,,,,,
-257,"Xonacatlan-atlacomulco",,,,,,,,,,,,,,,,,"pase",,,,,,
-258,"Lerma-xonacatlan",,,,,,,,,,,,,,,,,"pase",,,,,,
-259,"TOLUCA-ZITACUARO RAMAL A VALLE DE BRA",,,,,,,,,,,,,,,,,"pase",,,,,,
-260,"TOLUCA-ZITACUARO RAMAL A VALLE DE BRA",,,,,,,,,,,,,,,,,"pase",,,,,,
-261,"TOLUCA-ZITACUARO RAMAL A VALLE DE BRA",,,,,,,,,,,,,,,,,"pase",,,,,,
-262,"TOLUCA-ZITACUARO RAMAL A VALLE DE BRA",,,,,,,,,,,,,,,,,"pase",,,,,,
-263,"TOLUCA-ZITACUARO RAMAL A VALLE DE BRA",,,,,,,,,,,,,,,,,"pase",,,,,,
-264,"TOLUCA-ZITACUARO RAMAL A VALLE DE BRA",,,,,,,,,,,,,,,,,"pase",,,,,,
-265,"TOLUCA-ZITACUARO RAMAL A VALLE DE BRA",,,,,,,,,,,,,,,,,"pase",,,,,,
-266,"TOLUCA-ZITACUARO RAMAL A VALLE DE BRA",,,,,,,,,,,,,,,,,"pase",,,,,,
-267,"ZITACUARO-LENGUA DE VACA",,,,,,,,,,,,,,,,,"pase",,,,,,
-268,"TOLUCA-ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-269,"TOLUCA-ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-270,"Atlacomulco-venta de bravo",,,,,,,,,,,,,,,,,"pase",,,,,,
-271,"venta de bravo-maravatio",,,,,,,,,,,,,,,,,"pase",,,,,,
-272,"Maravatio-morelia",,,,,,,,,,,,,,,,,"pase",,,,,,
-273,"Zinapecuaro-morelia",,,,,,,,,,,,,,,,,"pase",,,,,,
-274,"Maravatio-zinapecuaro",,,,,,,,,,,,,,,,,"pase",,,,,,
-275,"Maravatio-jerahuaro",,,,,,,,,,,,,,,,,"pase",,,,,,
-276,"Morelia-copandaro",,,,,,,,,,,,,,,,,"pase",,,,,,
-277,"Morelia-churintzio",,,,,,,,,,,,,,,,,"pase",,,,,,
-278,"Morelia-panindicuaro",,,,,,,,,,,,,,,,,"pase",,,,,,
-279,"Morelia-huaniqueo",,,,,,,,,,,,,,,,,"pase",,,,,,
-280,"Panindicuaro-churintzio",,,,,,,,,,,,,,,,,"pase",,,,,,
-281,"Churintzio-la barca",,,,,,,,,,,,,,,,,"pase",,,,,,
-282,"MARAVATIO-ZAPOTLANEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-283,"vista hermosa-la barca",,,,,,,,,,,,,,,,,"pase",,,,,,
-284,"Churintzio-ecuandureo",,,,,,,,,,,,,,,,,"pase",,,,,,
-285,"MARAVATIO-ZAPOTLANEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-286,"MARAVATIO-ZAPOTLANEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-287,"MARAVATIO-ZAPOTLANEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-288,"MARAVATIO-ZAPOTLANEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-289,"la barca-zapotlanejo",,,,,,,,,,,,,,,,,"pase",,,,,,
-290,"MARAVATIO-ZAPOTLANEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-291,"MARAVATIO-ZAPOTLANEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-292,"Ocotlan-zapotlanejo",,,,,,,,,,,,,,,,,"pase",,,,,,
-293,"MARAVATIO-ZAPOTLANEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-294,"MARAVATIO-ZAPOTLANEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-295,"zapotlanejo del rey-zapotlanejo",,,,,,,,,,,,,,,,,"pase",,,,,,
-296,"la barca-ocotlan",,,,,,,,,,,,,,,,,"pase",,,,,,
-297,"MARAVATIO-ZAPOTLANEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-298,"ECUANDUREO-LA BARCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-299,"PUENTE NACIONAL LA PIEDAD",,,,,,,,,,,,,,,,,"pase",,,,,,
-300,"laguna larga-patti II",,,,,,,,,,,,,,,,,"pase",,,,,,
-301,"Calera-patti II",,,,,,,,,,,,,,,,,"pase",,,,,,
-302,"laguna larga-calera",,,,,,,,,,,,,,,,,"pase",,,,,,
-303,"MORELIA-AEROPUERTO",,,,,,,,,,,,,,,,,"pase",,,,,,
-304,"MORELIA-AEROPUERTO",,,,,,,,,,,,,,,,,"pase",,,,,,
-305,"Morelia-copandaro (capula-patzcuaro)",,,,,,,,,,,,,,,,,"pase",,,,,,
-306,"Quiroga-patzcuaro (patzcuaro-copandro)",,,,,,,,,,,,,,,,,"pase",,,,,,
-307,"PATZCUARO-URUAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-308,"Zirahuen-uruapan",,,,,,,,,,,,,,,,,"pase",,,,,,
-309,"Zurumucapio-uruapan",,,,,,,,,,,,,,,,,"pase",,,,,,
-310,"ent. Zirimicuaro-ent. Cajones",,,,,,,,,,,,,,,,,"pase",,,,,,
-311,"Taretan-ent. Cajones",,,,,,,,,,,,,,,,,"pase",,,,,,
-312,"ent. Zirimicuaro-taretan",,,,,,,,,,,,,,,,,"pase",,,,,,
-313,"ent. Cajones-ent. Cuatro caminos",,,,,,,,,,,,,,,,,"pase",,,,,,
-314,"ent. Santa casilda-ent. Cuatro caminos",,,,,,,,,,,,,,,,,"pase",,,,,,
-315,"ent. Cajones-ent. Santa casilda",,,,,,,,,,,,,,,,,"pase",,,,,,
-316,"ent. Nueva italia-ent. Las cañas",,,,,,,,,,,,,,,,,"pase",,,,,,
-317,"ent. Las cañas-lazaro cardenas",,,,,,,,,,,,,,,,,"pase",,,,,,
-318,"ent. Las cañas-ent. Feliciano",,,,,,,,,,,,,,,,,"pase",,,,,,
-319,"ent. Feliciano-lazaro cardenas",,,,,,,,,,,,,,,,,"pase",,,,,,
-320,"MÉXICO-CUERNAVACA",,,,,,,,,,,,,,,,,"pase",,,,,,
-321,"tres marias-cuernavaca",,,,,,,,,,,,,,,,,"pase",,,,,,
-322,"La Pera A - Tepoztlán A",,,,,,,,,,,,,,,,,"pase",,,,,,
-323,"Cuautla-la pera",,,,,,,,,,,,,,,,,"pase",,,,,,
-324,"La Pera A - Oaxtepec A",,,,,,,,,,,,,,,,,"pase",,,,,,
-325,"Cuautla B - Tepoztlán B",,,,,,,,,,,,,,,,,"pase",,,,,,
-326,"La Pera A - Oacalco A",,,,,,,,,,,,,,,,,"pase",,,,,,
-327,"Oaxtepec B - Tepoztlán B",,,,,,,,,,,,,,,,,"pase",,,,,,
-328,"Oacalco B - Tepoztlán B",,,,,,,,,,,,,,,,,"pase",,,,,,
-329,"Tepoztlán B - La Pera B",,,,,,,,,,,,,,,,,"pase",,,,,,
-330,"Tepoztlán A - Oacalco A",,,,,,,,,,,,,,,,,"pase",,,,,,
-331,"Oacalco A - Cuautla A",,,,,,,,,,,,,,,,,"pase",,,,,,
-332,"Oacalco A - Oaxtepec A",,,,,,,,,,,,,,,,,"pase",,,,,,
-333,"Oacalco B - La Pera B",,,,,,,,,,,,,,,,,"pase",,,,,,
-334,"la pera-cuautla",,,,,,,,,,,,,,,,,"pase",,,,,,
-335,"Oaxtepec B - La Pera B",,,,,,,,,,,,,,,,,"pase",,,,,,
-336,"Tepoztlán A - Cuautla A",,,,,,,,,,,,,,,,,"pase",,,,,,
-337,"Tepoztlán A - Oaxtepec A",,,,,,,,,,,,,,,,,"pase",,,,,,
-338,"Cuautla B - Oacalco B",,,,,,,,,,,,,,,,,"pase",,,,,,
-339,"Oaxtepec B - Oacalco B",,,,,,,,,,,,,,,,,"pase",,,,,,
-340,"Cuernavaca-central de abastos",,,,,,,,,,,,,,,,,"pase",,,,,,
-341,"Cuernavaca-aeropuerto",,,,,,,,,,,,,,,,,"pase",,,,,,
-342,"Cuernavaca-xochitepec",,,,,,,,,,,,,,,,,"pase",,,,,,
-343,"Cuernavaca-puente de ixtla",,,,,,,,,,,,,,,,,"pase",,,,,,
-344,"Cuernavaca-alpuyeca",,,,,,,,,,,,,,,,,"pase",,,,,,
-345,"puente de ixtla-chilpancingo",,,,,,,,,,,,,,,,,"pase",,,,,,
-346,"paso morelos-chilpancingo",,,,,,,,,,,,,,,,,"pase",,,,,,
-347,"puente de ixtla-paso morelos",,,,,,,,,,,,,,,,,"pase",,,,,,
-348,"Chilpancingo-tierra colorada",,,,,,,,,,,,,,,,,"pase",,,,,,
-349,"tierra colorada-acapulco",,,,,,,,,,,,,,,,,"pase",,,,,,
-350,"LIBRAMIENTO PONIENTE DE ACAPULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-351,"ZACAPALCO-RANCHO VIEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-352,"RANCHO VIEJO-TAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-353,"PUENTE DE IXTLA-IGUALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-354,"MAXITUNEL ACAPULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-355,"MACROTUNEL ACAPULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-356,"LIBRAMIENTO TECPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-357,"ZAPOTLANEJO-GUADALAJARA",,,,,,,,,,,,,,,,,"pase",,,,,,
-358,"ZAPOTLANEJO-GUADALAJARA",,,,,,,,,,,,,,,,,"pase",,,,,,
-359,"ZAPOTLANEJO-GUADALAJARA",,,,,,,,,,,,,,,,,"pase",,,,,,
-360,"ZAPOTLANEJO-GUADALAJARA",,,,,,,,,,,,,,,,,"pase",,,,,,
-361,"ZAPOTLANEJO-GUADALAJARA",,,,,,,,,,,,,,,,,"pase",,,,,,
-362,"ZAPOTLANEJO-GUADALAJARA",,,,,,,,,,,,,,,,,"pase",,,,,,
-363,"Guadalajara-zapotlanejo",,,,,,,,,,,,,,,,,"pase",,,,,,
-364,"ZAPOTLANEJO-GUADALAJARA",,,,,,,,,,,,,,,,,"pase",,,,,,
-365,"el vado-guadalajara",,,,,,,,,,,,,,,,,"pase",,,,,,
-366,"Cortijo-guadalajara",,,,,,,,,,,,,,,,,"pase",,,,,,
-367,"Periferico-guadalajara",,,,,,,,,,,,,,,,,"pase",,,,,,
-368,"arroyo de enmedio-guadalajara",,,,,,,,,,,,,,,,,"pase",,,,,,
-369,"Ent. Zapotlanejo-Guadalajara a Chapala (LA LAJA)",,,,,,,,,,,,,,,,,"pase",,,,,,
-370,"Aut México-Guadalajara a Zapotlanejo (Remota La Laja)",,,,,,,,,,,,,,,,,"pase",,,,,,
-371,"Chapala - Santa Cecilia",,,,,,,,,,,,,,,,,"pase",,,,,,
-372,"Santa Cecilia (TRAMO SANTA CECILIA-MAGDALENA) ",,,,,,,,,,,,,,,,,"pase",,,,,,
-373,"LIBRAMIENTO SUR DE GUADALAJARA",,,,,,,,,,,,,,,,,"pase",,,,,,
-374,"LIBRAMIENTO SUR DE GUADALAJARA",,,,,,,,,,,,,,,,,"pase",,,,,,
-375,"Acatlan-atoyac",,,,,,,,,,,,,,,,,"pase",,,,,,
-376,"Atoyac-cd. Guzman",,,,,,,,,,,,,,,,,"pase",,,,,,
-377,"Sayula-cd. Guzman",,,,,,,,,,,,,,,,,"pase",,,,,,
-378,"cd. guzman-el trapiche",,,,,,,,,,,,,,,,,"pase",,,,,,
-379,"ARMERÍA-MANZANILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-380,"ent. Ameca-magdalena",,,,,,,,,,,,,,,,,"pase",,,,,,
-381,"Tequila-magdalena",,,,,,,,,,,,,,,,,"pase",,,,,,
-382,"ixtlan del rio-santa maria del oro",,,,,,,,,,,,,,,,,"pase",,,,,,
-383,"Jala-tepic",,,,,,,,,,,,,,,,,"pase",,,,,,
-384,"santa maria del oro-tepic",,,,,,,,,,,,,,,,,"pase",,,,,,
-385,"Jala-santa maría del oro",,,,,,,,,,,,,,,,,"pase",,,,,,
-386,"LIBRAMIENTO TEPIC",,,,,,,,,,,,,,,,,"pase",,,,,,
-387,"TEPIC-SAN BLAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-388,"Tepic-mecatan",,,,,,,,,,,,,,,,,"pase",,,,,,
-389,"CHAPALILLA-COMPOSTELA",,,,,,,,,,,,,,,,,"pase",,,,,,
-390,"Jala-las varas",,,,,,,,,,,,,,,,,"pase",,,,,,
-391,"JALA-COMPOSTELA",,,,,,,,,,,,,,,,,"pase",,,,,,
-392,"JALA-COMPOSTELA",,,,,,,,,,,,,,,,,"pase",,,,,,
-393,"Compostela-las varas",,,,,,,,,,,,,,,,,"pase",,,,,,
-394,"TEPIC-MAZATLÁN",,,,,,,,,,,,,,,,,"pase",,,,,,
-395,"Tepic-ent. San blas",,,,,,,,,,,,,,,,,"pase",,,,,,
-396,"ent. San blas-estacion yago",,,,,,,,,,,,,,,,,"pase",,,,,,
-397,"Ent. san blas-rosamorada",,,,,,,,,,,,,,,,,"pase",,,,,,
-398,"estacion yago-ruiz",,,,,,,,,,,,,,,,,"pase",,,,,,
-399,"Rosamorada-escuinapa",,,,,,,,,,,,,,,,,"pase",,,,,,
-400,"Rosamorada-acaponeta",,,,,,,,,,,,,,,,,"pase",,,,,,
-401,"Escuinapa-villa union",,,,,,,,,,,,,,,,,"pase",,,,,,
-402,"Escuinapa-rosario",,,,,,,,,,,,,,,,,"pase",,,,,,
-403,"LIBRAMIENTO MAZATLÁN",,,,,,,,,,,,,,,,,"pase",,,,,,
-404,"Mazatlan-aeropuerto",,,,,,,,,,,,,,,,,"pase",,,,,,
-405,"Vainillo-aeropuerto",,,,,,,,,,,,,,,,,"pase",,,,,,
-406,"MAZATLÁN-CULIACAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-407,"MAZATLÁN-CULIACAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-408,"MAZATLÁN-CULIACAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-409,"ent. La cruz-quila",,,,,,,,,,,,,,,,,"pase",,,,,,
-410,"Quila-costa rica",,,,,,,,,,,,,,,,,"pase",,,,,,
-411,"LIBRAMIENTO CULIACAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-412,"PUENTE NACIONAL CULIACAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-413,"PUENTE NACIONAL SINALOA",,,,,,,,,,,,,,,,,"pase",,,,,,
-414,"LIBRAMIENTO CIUDAD OBREGON",,,,,,,,,,,,,,,,,"pase",,,,,,
-415,"LIBRAMIENTO CIUDAD OBREGON",,,,,,,,,,,,,,,,,"pase",,,,,,
-416,"estacion don-navojoa",,,,,,,,,,,,,,,,,"pase",,,,,,
-417,"Navojoa-cd. Obregon",,,,,,,,,,,,,,,,,"pase",,,,,,
-418,"cd. obregon-guaymas",,,,,,,,,,,,,,,,,"pase",,,,,,
-419,"libramiento guaymas",,,,,,,,,,,,,,,,,"pase",,,,,,
-420,"Hermosillo-magdalena de kino",,,,,,,,,,,,,,,,,"pase",,,,,,
-421,"libramiento de magdalena de kino",,,,,,,,,,,,,,,,,"pase",,,,,,
-422,"LIBRAMIENTO HERMOSILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-423,"LIBRAMIENTO HERMOSILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-424,"LIBRAMIENTO HERMOSILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-425,"santa lucia-villa union",,,,,,,,,,,,,,,,,"pase",,,,,,
-426,"santa lucia-concordia",,,,,,,,,,,,,,,,,"pase",,,,,,
-427,"Concordia-villa union",,,,,,,,,,,,,,,,,"pase",,,,,,
-428,"Piloncillo-santa lucia",,,,,,,,,,,,,,,,,"pase",,,,,,
-429,"ent. Otinapa-piloncillo",,,,,,,,,,,,,,,,,"pase",,,,,,
-430,"libramiento de durango-ent. Otinapa",,,,,,,,,,,,,,,,,"pase",,,,,,
-431,"Durango-guadalupe victoria",,,,,,,,,,,,,,,,,"pase",,,,,,
-432,"guadalupe victoria-yerbanis",,,,,,,,,,,,,,,,,"pase",,,,,,
-433,"Yerbanis-pedriceña",,,,,,,,,,,,,,,,,"pase",,,,,,
-434,"Yerbanis-cuencame",,,,,,,,,,,,,,,,,"pase",,,,,,
-435,"Cuencame-pedriceña",,,,,,,,,,,,,,,,,"pase",,,,,,
-436,"Pedriceña-gomez palacio",,,,,,,,,,,,,,,,,"pase",,,,,,
-437,"Pedriceña-leon guzman",,,,,,,,,,,,,,,,,"pase",,,,,,
-438,"leon guzman-gomez palacio",,,,,,,,,,,,,,,,,"pase",,,,,,
-439,"LIBRAMIENTO NORTE DE LA LAGUNA",,,,,,,,,,,,,,,,,"pase",,,,,,
-440,"san pedro-matamoros",,,,,,,,,,,,,,,,,"pase",,,,,,
-441,"Vergel-san pedro",,,,,,,,,,,,,,,,,"pase",,,,,,
-442,"Matamoros-la cuchilla",,,,,,,,,,,,,,,,,"pase",,,,,,
-443,"loma bonita-puebla",,,,,,,,,,,,,,,,,"pase",,,,,,
-444,"gomez palacio-estacion banderas",,,,,,,,,,,,,,,,,"pase",,,,,,
-445,"estacion banderas-corralitos",,,,,,,,,,,,,,,,,"pase",,,,,,
-446,"Sacramento-aldama",,,,,,,,,,,,,,,,,"pase",,,,,,
-447,"Aldama-jimenez",,,,,,,,,,,,,,,,,"pase",,,,,,
-448,"Zacatecas-monclova",,,,,,,,,,,,,,,,,"pase",,,,,,
-449,"Zacatecas-torreon",,,,,,,,,,,,,,,,,"pase",,,,,,
-450,"Torreon-monclova",,,,,,,,,,,,,,,,,"pase",,,,,,
-451,"Monclova-ojo caliente 2",,,,,,,,,,,,,,,,,"pase",,,,,,
-452,"Monclova-ojo caliente 1",,,,,,,,,,,,,,,,,"pase",,,,,,
-453,"ojo caliente 1-ojo caliente 2",,,,,,,,,,,,,,,,,"pase",,,,,,
-454,"ojo caliente 2-morones prieto",,,,,,,,,,,,,,,,,"pase",,,,,,
-455,"ojo caliente 2-periferico",,,,,,,,,,,,,,,,,"pase",,,,,,
-456,"Periferico-morones prieto",,,,,,,,,,,,,,,,,"pase",,,,,,
-457,"el jonuco-periferico",,,,,,,,,,,,,,,,,"https://operadoravial.com/tarifas/",,,,,,
-458,"el jonuco-morones prieto",,,,,,,,,,,,,,,,,"https://operadoravial.com/tarifas/",,,,,,
-459,"LIBRAMIENTO ORIENTE DE SALTILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-460,"puerto mexico-ent. La carbonera",,,,,,,,,,,,,,,,,"pase",,,,,,
-461,"puerto mexico-huachichil",,,,,,,,,,,,,,,,,"pase",,,,,,
-462,"LIBRAMIENTO MATEHUALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-463,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,,,,,,,,,,,,,"pase",,,,,,
-464,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,,,,,,,,,,,,,"pase",,,,,,
-465,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,,,,,,,,,,,,,"pase",,,,,,
-466,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,,,,,,,,,,,,,"pase",,,,,,
-467,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,,,,,,,,,,,,,"pase",,,,,,
-468,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,,,,,,,,,,,,,"pase",,,,,,
-469,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,,,,,,,,,,,,,"pase",,,,,,
-470,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,,,,,,,,,,,,,"pase",,,,,,
-471,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,,,,,,,,,,,,,"pase",,,,,,
-472,"PERIFÉRICO DEL ÁREA METROPOLITANA DE Monterrey",,,,,,,,,,,,,,,,,"pase",,,,,,
-473,"MONTERREY-CADEREYTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-474,"MONTERREY-CADEREYTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-475,"MONTERREY-CADEREYTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-476,"PUENTE CADEREYTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-477,"AGUJITA-ALLENDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-478,"PUENTE ACUÑA",,,,,,,,,,,,,,,,,"pase",,,,5,,
-479,"Monterrey-la gloria",,,,,,,,,,,,,,,,,"pase",,,,,,
-480,"Monterrey-agua leguas",,,,,,,,,,,,,,,,,"pase",,,,,,
-481,"Monterrey-sabinas",,,,,,,,,,,,,,,,,"pase",,,,,,
-482,"Sabinas-la gloria",,,,,,,,,,,,,,,,,"pase",,,,,,
-483,"MONTERREY-NUEVO LAREDO (LA GLORIA-SAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-484,"agua leguas-paras",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=5",,,,,,
-485,"agua leguas-sabinas",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=5",,,,,,
-486,"Cadereyta-la sierrita",,,,,,,,,,,,,,,,,"pase",,,,,,
-487,"general bravo-la sierrita",,,,,,,,,,,,,,,,,"pase",,,,,,
-488,"los herrera-la sierrita",,,,,,,,,,,,,,,,,"pase",,,,,,
-489,"Cadereyta-los herreras",,,,,,,,,,,,,,,,,"pase",,,,,,
-490,"los ramones-la sierrita",,,,,,,,,,,,,,,,,"pase",,,,,,
-491,"Cadereyta-los ramones",,,,,,,,,,,,,,,,,"pase",,,,,,
-492,"Cadereyta-general bravo",,,,,,,,,,,,,,,,,"pase",,,,,,
-493,"los herrera-general bravo",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=5",,,,,,
-494,"los ramones-los herrera",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=5",,,,,,
-495,"los ramones-general bravo",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=5",,,,,,
-496,"ent. Caderayta-reynosa-ent. San fernando",,,,,,,,,,,,,,,,,"pase",,,,,,
-497,"ent. San fernando- ent. p.i reynosa-pharr",,,,,,,,,,,,,,,,,"pase",,,,,,
-498,"ent. San fernando- ent. Anzalduas",,,,,,,,,,,,,,,,,"pase",,,,,,
-500,"PTE. INTERNACIONAL NUEVO AMANECER",,,,,,,,,,,,,,,,,"pase",,,,,,
-501,"PUENTE INTERNACIONAL LOS TOMATES",,,,,,,,,,,,,,,,,"pase",,,,,,
-502,"REYNOSA-MATAMOROS",,,,,,,,,,,,,,,,,"pase",,,,,,
-503,"Reynosa-nuevo progreso",,,,,,,,,,,,,,,,,"pase",,,,,,
-504,"nuevo progreso-matamoros",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=5",,,,,,
-505,"PUENTE JUAREZ LINCOLN",,,,,,,,,,,,,,,,,"pase",,,,5,,
-506,"PUENTE MIGUEL ALEMAN",,,,,,,,,,,,,,,,,"pase",,,,5,,
-507,"PUENTE SAN JUAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-508,"PUENTE CAMARGO",,,,,,,,,,,,,,,,,"pase",,,,5,,
-509,"PUENTE REYNOSA",,,,,,,,,,,,,,,,,"pase",,,,5,,
-510,"PUENTE LAS FLORES",,,,,,,,,,,,,,,,,"pase",,,,5,,
-511,"PUENTE INTERNACIONAL OJINAGA",,,,,,,,,,,,,,,,,"pase",,,,5,,
-512,"PUENTE MATAMOROS",,,,,,,,,,,,,,,,,"pase",,,,5,,
-513,"PUENTE PIEDRAS NEGRAS",,,,,,,,,,,,,,,,,"pase",,,,5,,
-514,"puente piedras negras II",,,,,,,,,,,,,,,,,"http://pipnii.hoatsa.com.mx/tarifas.html",,,,5,,
-515,"LIBRAMIENTO MEXICALI",,,,,,,,,,,,,,,,,"pase",,,,,,
-516,"entronque cuernavaca-entronque san felipe",,,,,,,,,,,,,,,,,"pase",,,,,,
-517,"Rumorosa-el hongo",,,,,,,,,,,,,,,,,"pase",,,,,,
-518,"LA RUMOROSA-TECATE",,,,,,,,,,,,,,,,,"pase",,,,,,
-519,"el hongo-tecate",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=114",,,,,,
-520,"la mision-rosarito",,,,,,,,,,,,,,,,,"pase",,,,,,
-521,"Rosarito-tijuana",,,,,,,,,,,,,,,,,"pase",,,,,,
-522,"la mision-corredor 2000",,,,,,,,,,,,,,,,,"pase",,,,,,
-523,"Ensenada-la mision",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=118",,,,,,
-524,"ATLACOMULCO - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-525,"ATLACOMULCO - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-526,"ATLACOMULCO - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-527,"ATLACOMULCO - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-528,"ATLACOMULCO - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-529,"ATLACOMULCO - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-530,"ATLACOMULCO - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-531,"ATLACOMULCO - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-532,"ATLACOMULCO - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-533,"ATLACOMULCO - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-534,"ATLACOMULCO - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-535,"ATLACOMULCO - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-536,"ATLACOMULCO - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-537,"ATLACOMULCO - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-538,"ACAMBAY - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-539,"ACAMBAY - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-540,"ACAMBAY - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-541,"ACAMBAY - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-542,"ACAMBAY - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-543,"ACAMBAY - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-544,"ACAMBAY - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-545,"ACAMBAY - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-546,"ACAMBAY - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-547,"ACAMBAY - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-548,"ACAMBAY - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-549,"ACAMBAY - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-550,"ACAMBAY - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-551,"ACAMBAY - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-552,"JILOTEPEC - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-553,"JILOTEPEC - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-554,"JILOTEPEC - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-555,"JILOTEPEC - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-556,"JILOTEPEC - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-557,"JILOTEPEC - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-558,"JILOTEPEC - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-559,"JILOTEPEC - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-560,"JILOTEPEC - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-561,"JILOTEPEC - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-562,"JILOTEPEC - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-563,"JILOTEPEC - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-564,"JILOTEPEC - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-565,"JILOTEPEC - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-566,"LIVERPOOL -SIN ENTRADA",,,,,,,,,,,,,,,,,"pase",,,,,,
-567,"LIVERPOOL - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-568,"LIVERPOOL - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-569,"QUERETARO - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-570,"QUERETARO - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-571,"QUERETARO - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-572,"QUERETARO - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-573,"QUERETARO - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-574,"QUERETARO - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-575,"QUERETARO - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-576,"QUERETARO - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-577,"AUT(MEXICO - QUERETARO) - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-578,"QUERETARO - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-579,"QUERETARO - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-580,"QUERETARO - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-581,"QUERETARO - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-582,"QUERETARO - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-583,"QUERETARO - LIVERPOOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-584,"TULA II - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-585,"TULA II - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-586,"TULA II - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-587,"TULA II - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-588,"TULA II - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-589,"TULA II - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-590,"TULA II - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-591,"TULA II - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-592,"TULA II - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-593,"TULA II - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-594,"TULA II - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-595,"TULA II - LIVERPOOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-596,"TULA II - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-597,"TULA II - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-598,"TULA II - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-599,"TULA I - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-600,"TULA I - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-601,"TULA I - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-602,"TULA I - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-603,"TULA I - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-604,"TULA I - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-605,"TULA I - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-606,"TULA I - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-607,"TULA I - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-608,"TULA I - LIVERPOOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-609,"TULA I - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-610,"TULA I - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-611,"TULA I - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-612,"TULA I - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-613,"TULA I - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-614,"ATITALAQUIA - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-615,"ATITALAQUIA - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-616,"ATITALAQUIA - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-617,"ATITALAQUIA - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-618,"ATITALAQUIA - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-619,"ATITALAQUIA - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-620,"ATITALAQUIA - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-621,"ATITALAQUIA - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-622,"ATITALAQUIA - LIVERPOOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-623,"ATITALAQUIA - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-624,"ATITALAQUIA - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-625,"ATITALAQUIA - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-626,"ATITALAQUIA - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-627,"ATITALAQUIA - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-628,"ATITALAQUIA - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-629,"AJOLOAPAN - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-630,"AJOLOAPAN - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-631,"AJOLOAPAN - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-632,"AJOLOAPAN - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-633,"AJOLOAPAN - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-634,"AJOLOAPAN - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-635,"AJOLOAPAN - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-636,"AJOLOAPAN - LIVERPOOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-637,"AJOLOAPAN - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-638,"AJOLOAPAN - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-639,"AJOLOAPAN - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-640,"AJOLOAPAN - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-641,"AJOLOAPAN - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-642,"AJOLOAPAN - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-643,"AJOLOAPAN - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-644,"PACHUCA - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-645,"PACHUCA - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-646,"PACHUCA - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-647,"PACHUCA - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-648,"PACHUCA - LIVERPOOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-649,"PACHUCA - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-650,"PACHUCA - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-651,"PACHUCA - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-652,"PACHUCA - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-653,"PACHUCA - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-654,"PACHUCA - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-655,"PACHUCA - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-656,"PACHUCA- APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-657,"PACHUCA - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-658,"PACHUCA - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-659,"TULANCINGO-ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-660,"TULANCINGO - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-661,"TULANCINGO - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-662,"TULANCINGO - LIVERPOOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-663,"TULANCINGO - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-664,"TULANCINGO - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-665,"TULANCINGO - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-666,"TULANCINGO - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-667,"TULANCINGO - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-668,"TULANCINGO - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-669,"TULANCINGO - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-670,"TULANCINGO - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-671,"TULANCINGO - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-672,"TULANCINGO - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-673,"TULANCINGO - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-674,"SAHAGUN - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-675,"SAHAGUN - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-676,"SAHAGUN - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-677,"SAHAGUN - LIVERPOOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-678,"SAHAGUN - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-679,"SAHAGUN - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-680,"SAHAGUN - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-681,"SAHAGUN - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-682,"SAHAGUN - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-683,"SAHAGUN - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-684,"SAHAGUN - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-685,"SAHAGUN - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-686,"SAHAGUN - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-687,"SAHAGUN - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-688,"SAHAGUN - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-689,"CALPULALPAN-ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-690,"CALPULALPAN - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-691,"CALPULALPAN - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-692,"CALPULALPAN - LIVERPOOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-693,"CALPULALPAN - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-694,"CALPULALPAN - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-695,"CALPULALPAN - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-696,"CALPULALPAN - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-697,"CALPULALPAN - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-698,"CALPULALPAN - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-699,"CALPULALPAN - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-700,"CALPULALPAN - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-701,"CALPULALPAN - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-702,"CALPULALPAN - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-703,"CALPULALPAN - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-704,"SANCTORUM - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-705,"SANCTORUM - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-706,"SANCTORUM - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-707,"SANCTORUM - LIVERPOOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-708,"SANCTORUM - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-709,"SANCTORUM - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-710,"SANCTORUM - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-711,"SANCTORUM - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-712,"SANCTORUM - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-713,"SANCTORUM - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-714,"SANCTORUM - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-715,"SANCTORUM - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-716,"SANCTORUM - SN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-717,"SANCTORUM - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-718,"SANCTORUM - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-719,"SN MARTIN TEXMELUCAN - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-720,"SN MARTIN TEXMELUCAN - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-721,"SN MARTIN TEXMELUCAN - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-722,"SN MARTIN TEXMELUCAN - LIVERPOOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-723,"SN MARTIN TEXMELUCAN - QUERETARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-724,"SN MARTIN TEXMELUCAN - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-725,"SN MARTIN TEXMELUCAN - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-726,"SN MARTIN TEXMELUCAN - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-727,"SN MARTIN TEXMELUCAN - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-728,"SAN MARTIN TEXMELUCAN - APAXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-729,"SN MARTIN TEXMELUCAN - PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-730,"SN MARTIN TEXMELUCAN - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-731,"SN MARTIN TEXMELUCAN - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-732,"SN MARTIN TEXMELUCAN - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-733,"SN MARTIN TEXMELUCAN - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-734,"SN MARTIN TEXMELUCAN (ABIERTO)",,,,,,,,,,,,,,,,,"pase",,,,,,
-735,"APAXCO - SAN MARTIN TEXMELUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-736,"APAXCO - SANCTORUM",,,,,,,,,,,,,,,,,"pase",,,,,,
-737,"APAXCO - ATLACOMULCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-738,"APAXCO - ACAMBAY",,,,,,,,,,,,,,,,,"pase",,,,,,
-739,"APAXCO - CALPULALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-740,"APAXCO - SAHAGUN",,,,,,,,,,,,,,,,,"pase",,,,,,
-741,"APAXCO - TULANCINGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-742,"APAXCO - JILOTEPEC",,,,,,,,,,,,,,,,,"pase",,,,,,
-743,"APAXCO - LIVERPOOL",,,,,,,,,,,,,,,,,"pase",,,,,,
-744,"APAXCO - AUT(MEXICO - QUERETARO)",,,,,,,,,,,,,,,,,"pase",,,,,,
-745,"APAXCO - AUT (MEXICO - PACHUCA)",,,,,,,,,,,,,,,,,"pase",,,,,,
-746,"APAXCO - TULA II",,,,,,,,,,,,,,,,,"pase",,,,,,
-747,"APAXCO - TULA I",,,,,,,,,,,,,,,,,"pase",,,,,,
-748,"APAXCO - AJOLOAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-749,"APAXCO - ATITALAQUIA",,,,,,,,,,,,,,,,,"pase",,,,,,
-750,"TIJUANA-TECAT Y -LIB. DE TECATE",,,,,,,,,,,,,,,,,"pase",,,,,,
-751,"ENT.  PASO DEL AGUILA-TIJUANA",,,,,,,,,,,,,,,,,"pase",,,,,,
-752,"ENT. SANDOVAL - ENT. PASO DEL AGUILA",,,,,,,,,,,,,,,,,"pase",,,,,,
-753,"LIBRAMIENTO DE TECATE",,,,,,,,,,,,,,,,,"pase",,,,,,
-754,"PLANTA DART-VALLE REDONDO TIJUANA",,,,,,,,,,,,,,,,,"pase",,,,,,
-755,"ent. Esperanza-ent sandoval",,,,,,,,,,,,,,,,,"pase",,,,,,
-756,"CERRILLO - SAN NICOLAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-757,"CERRILLO - AYOTUXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-758,"CERRILLO - CHAMAPA AUTOVAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-759,"SAN NICOLAS - AYOTUXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-760,"SAN NICOLAS - CHAMAPA AUTOVAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-761,"SAN NICOLAS - CERRILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-762,"AYOTUXCO - CHAMAPA AUTOVAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-763,"AYOTUXCO - SAN NICOLAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-764,"AYOTUXCO - CERRILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-765,"CHAMAPA AUTOVAN - AYOTUXCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-766,"CHAMAPA AUTOVAN - SAN NICOLAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-767,"CHAMAPA AUTOVAN - CERRILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-768,"AEROPUERTO LOS CABOS-SN. JOSE DEL CABO",,,,,,,,,,,,,,,,,"pase",,,,,,
-769,"AEROPUERTO LOS CABOS-CABO SAN LUCAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-770,"SAN JOSE DEL CABO-CABO SAN LUCAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-771,"SAN JOSE DEL CABO-EL MANGLE",,,,,,,,,,,,,,,,,"pase",,,,,,
-772,"CABO SAN LUCAS-EL MANGLE",,,,,,,,,,,,,,,,,"pase",,,,,,
-773,"SAN JOSÉ DEL CABO-CABO REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-774,"AEROPUERTO LOS CABOS-CABO REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-775,"AEROPUERTO LOS CABOS-EL MANGLE",,,,,,,,,,,,,,,,,"pase",,,,,,
-776,"EL MANGLE-CABO REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-777,"CABO REAL-CABO SAN LUCAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-778,"AEROP. LOS CABOS RETORNO",,,,,,,,,,,,,,,,,"pase",,,,,,
-779,"EL MANGLE RETORNO",,,,,,,,,,,,,,,,,"pase",,,,,,
-780,"CABO SAN LUCAS RETORNO",,,,,,,,,,,,,,,,,"pase",,,,,,
-781,"SAN JOSE DEL CABO RETORNO",,,,,,,,,,,,,,,,,"pase",,,,,,
-782,"RAYÓN-VICENTE GUERRERO",,,,,,,,,,,,,,,,,"pase",,,,,,
-783,"VICENTE GUERRERO-LA PITAHAYA",,,,,,,,,,,,,,,,,"pase",,,,,,
-784,"VICENTE GUERRERO-TAMBACA",,,,,,,,,,,,,,,,,"pase",,,,,,
-785,"VICENTE GUERRERO-TAMASOPO",,,,,,,,,,,,,,,,,"pase",,,,,,
-786,"TAMASOPO-LA PITAHAYA",,,,,,,,,,,,,,,,,"pase",,,,,,
-787,"TAMASOPO-TAMBACA",,,,,,,,,,,,,,,,,"pase",,,,,,
-788,"TAMBACA-LA PITAHAYA",,,,,,,,,,,,,,,,,"pase",,,,,,
-789,"PERIFÉRICO - CUAUHTÉMOC",,,,,,,,,,,,,,,,,"pase",,,,,,
-790,"CUAUHTÉMOC - SANTA ANA",,,,,,,,,,,,,,,,,"pase",,,,,,
-791,"SANTA ANA - CUAUHTÉMOC",,,,,,,,,,,,,,,,,"pase",,,,,,
-792,"CUAUHTÉMOC - PERIFÉRICO",,,,,,,,,,,,,,,,,"pase",,,,,,
-793,"PERIFÉRICO - CARMEN SERDÁN",,,,,,,,,,,,,,,,,"pase",,,,,,
-794,"CUAUHTÉMOC - HERMANOS SERDÁN",,,,,,,,,,,,,,,,,"pase",,,,,,
-795,"HERMANOS SERDÁN - CUAUHTÉMOC",,,,,,,,,,,,,,,,,"pase",,,,,,
-796,"HERMANOS SERDÁN - CARMEN SERDÁN",,,,,,,,,,,,,,,,,"pase",,,,,,
-797,"CARMEN SERDÁN - PERIFÉRICO",,,,,,,,,,,,,,,,,"pase",,,,,,
-798,"CARMEN SERDÁN - HERMANOS SERDÁN",,,,,,,,,,,,,,,,,"pase",,,,,,
-799,"APASEO EL GRANDE - PALMILLAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-800,"QUERÉTARO - PALMILLAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-801,"APASEO EL ALTO - PALMILLAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-802,"CORONEO-PALMILLAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-803,"HUIMILPAN - PALMILLAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-804,"AMEALCO - PALMILLAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-805,"PALMILLAS - APASEO EL GRANDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-806,"AMEALCO I - APASEO EL GRANDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-807,"HUIMILPAN - APASEO EL GRANDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-808,"CORONEO-APASEO EL GRANDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-809,"APASEO EL ALTO - APASEO EL GRANDE",,,,,,,,,,,,,,,,,"pase",,,,,,
-810,"PALMILLAS - APASEO EL ALTO",,,,,,,,,,,,,,,,,"pase",,,,,,
-811,"AMEALCO I - APASEO EL ALTO",,,,,,,,,,,,,,,,,"pase",,,,,,
-812,"HUIMILPAN - APASEO EL ALTO",,,,,,,,,,,,,,,,,"pase",,,,,,
-813,"APASEO EL GRANDE - APASEO EL ALTO",,,,,,,,,,,,,,,,,"pase",,,,,,
-814,"CORONEO- APASEO EL ALTO",,,,,,,,,,,,,,,,,"pase",,,,,,
-815,"QUERETARO - APASEO EL ALTO",,,,,,,,,,,,,,,,,"pase",,,,,,
-816,"PALMILLAS - CORONEO",,,,,,,,,,,,,,,,,"pase",,,,,,
-817,"APASEO GDE - CORONEO",,,,,,,,,,,,,,,,,"pase",,,,,,
-818,"AMEALCO I - CORONEO",,,,,,,,,,,,,,,,,"pase",,,,,,
-819,"QUERÉTARO - CORONEO",,,,,,,,,,,,,,,,,"pase",,,,,,
-820,"APASEO EL ALTO - CORONEO",,,,,,,,,,,,,,,,,"pase",,,,,,
-821,"HUIMILPAN - CORONEO",,,,,,,,,,,,,,,,,"pase",,,,,,
-822,"APASEO EL GRANDE - HUIMILPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-823,"AMEALCO I - HUIMILPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-824,"QUERETARO - HUIMILPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-825,"PALMILLAS - HUIMILPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-826,"APASEO EL ALTO - HUIMILPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-827,"CORONEO-HUIMILPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-828,"APASEO EL GRANDE - AMEALCO I",,,,,,,,,,,,,,,,,"pase",,,,,,
-829,"QUERETARO - AMEALCO I",,,,,,,,,,,,,,,,,"pase",,,,,,
-830,"APASEO EL ALTO - AMEALCO I",,,,,,,,,,,,,,,,,"pase",,,,,,
-831,"CORONEO - AMEALCO",,,,,,,,,,,,,,,,,"pase",,,,,,
-832,"HUIMILPAN - AMEALCO I",,,,,,,,,,,,,,,,,"pase",,,,,,
-833,"PALMILLAS - AMEALCO I",,,,,,,,,,,,,,,,,"pase",,,,,,
-834,"MÉXICO PACHUCA-PUENTE DE VIGAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-835,"PUENTE DE VIGAS- CIEN METROS",,,,,,,,,,,,,,,,,"pase",,,,,,
-836,"PUENTE DE VIGAS-CALZ. VALLEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-837,"MÉXICO PACHUCA-CEYLAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-838,"CEYLAN-CIEN METROS",,,,,,,,,,,,,,,,,"pase",,,,,,
-839,"CALZ. VALLEJO-CIEN METROS",,,,,,,,,,,,,,,,,"pase",,,,,,
-840,"MÉXICO PACHUCA- CALZ. VALLEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-841,"CIEN METROS- MÉXICO PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-842,"PUENTE DE VIGAS- MÉXICO PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-843,"CALZADA VALLEJO-MÉXICO PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-844,"CEYLAN - MÉXICO PACHUCA",,,,,,,,,,,,,,,,,"pase",,,,,,
-845,"MÉXICO PACHUCA-ENT. GRAN CANAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-846,"Ent. Gran canal-Mexico-pachuca",,,,,,,,,,,,,,,,,"pase",,,,,,
-847,"ENT. INDIOS VERDES- ENT. GRAN CANAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-848,"LOGISTIK - SAN FELIPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-849,"LOGISTIK - SAN LUIS POTOSÍ",,,,,,,,,,,,,,,,,"pase",,,,,,
-850,"LOGISTIK - VILLA DE ARRIAGA",,,,,,,,,,,,,,,,,"pase",,,,,,
-851,"LOGISTIK - WTC",,,,,,,,,,,,,,,,,"pase",,,,,,
-852,"RAMAL CALDERON-SAN FELIPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-853,"SAN FELIPE - LOGISTIK",,,,,,,,,,,,,,,,,"pase",,,,,,
-854,"SAN FELIPE - SAN LUIS POTOSÍ",,,,,,,,,,,,,,,,,"pase",,,,,,
-855,"SAN FELIPE - VILLA DE ARRIAGA",,,,,,,,,,,,,,,,,"pase",,,,,,
-856,"SAN FELIPE - WTC",,,,,,,,,,,,,,,,,"pase",,,,,,
-857,"SAN LUIS POTOSÍ - LOGISTIK",,,,,,,,,,,,,,,,,"pase",,,,,,
-858,"SAN LUIS POTOSÍ - SAN FELIPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-859,"SAN LUIS POTOSÍ - VILLA DE ARRIAGA",,,,,,,,,,,,,,,,,"pase",,,,,,
-860,"SAN LUIS POTOSÍ - WTC",,,,,,,,,,,,,,,,,"pase",,,,,,
-861,"VILLA DE ARRIAGA - LOGISTIK",,,,,,,,,,,,,,,,,"pase",,,,,,
-862,"VILLA DE ARRIAGA - SAN FELIPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-863,"VILLA DE ARRIAGA - SAN LUIS POTOSÍ",,,,,,,,,,,,,,,,,"pase",,,,,,
-864,"VILLA DE ARRIAGA - WTC",,,,,,,,,,,,,,,,,"pase",,,,,,
-865,"VILLA DE REYES - LOGISTIK",,,,,,,,,,,,,,,,,"pase",,,,,,
-866,"SAN LUIS POTOSÍ - VILLA DE REYES",,,,,,,,,,,,,,,,,"pase",,,,,,
-867,"WTC - LOGISTIK",,,,,,,,,,,,,,,,,"pase",,,,,,
-868,"WTC - SAN FELIPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-869,"WTC - SAN LUIS POTOSÍ",,,,,,,,,,,,,,,,,"pase",,,,,,
-870,"WTC - VILLA DE ARRIAGA",,,,,,,,,,,,,,,,,"pase",,,,,,
-871,"KANTUNIL - VALLADOLID",,,,,,,,,,,,,,,,,"pase",,,,,,
-872,"VALLADOLID - KANTUNIL",,,,,,,,,,,,,,,,,"pase",,,,,,
-873,"KANTUNIL - PISTÉ",,,,,,,,,,,,,,,,,"pase",,,,,,
-874,"PISTÉ - KANTUNIL",,,,,,,,,,,,,,,,,"pase",,,,,,
-875,"PISTÉ - VALLADOLID",,,,,,,,,,,,,,,,,"pase",,,,,,
-876,"VALLADOLID - PISTÉ",,,,,,,,,,,,,,,,,"pase",,,,,,
-877,"COMP. PISTE-KANTUNIL",,,,,,,,,,,,,,,,,"pase",,,,,,
-878,"CANCÚN - VALLADOLID",,,,,,,,,,,,,,,,,"pase",,,,,,
-879,"VALLADOLID - CANCÚN",,,,,,,,,,,,,,,,,"pase",,,,,,
-880,"VALLADOLID - PLAYA DEL CARMEN",,,,,,,,,,,,,,,,,"pase",,,,,,
-881,"PLAYA DEL CARMEN - VALLADOLID",,,,,,,,,,,,,,,,,"pase",,,,,,
-882,"CANCÚN - PLAYA DEL CARMEN",,,,,,,,,,,,,,,,,"pase",,,,,,
-883,"PLAYA DEL CARMEN - CANCÚN",,,,,,,,,,,,,,,,,"pase",,,,,,
-884,"CEDRAL - VALLADOLID",,,,,,,,,,,,,,,,,"pase",,,,,,
-885,"VALLADOLID - CEDRAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-886,"CEDRAL - CANCÚN",,,,,,,,,,,,,,,,,"pase",,,,,,
-887,"CANCÚN - CEDRAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-888,"CEDRAL - PLAYA DEL CARMEN",,,,,,,,,,,,,,,,,"pase",,,,,,
-889,"PLAYA DEL CARMEN - CEDRAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-890,"CEDRAL - TINTAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-891,"LA VENTA - ATIZAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-892,"INTERLOMAS - ATIZAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-893,"BOSQUE REAL - ATIZAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-894,"HUIXQUILUCAN - ATIZAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-895,"CHAMAPA CAPUFE - ATIZAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-896,"SAN MIGUEL - ATIZAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-897,"LOMAS VERDES - ATIZAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-898,"NOPALA - ATIZAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-899,"CUAUTITLAN - ATIZAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-900,"LAGO DE GUADALUPE - ATIZAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-901,"MADIN - ATIZAPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-902,"LA VENTA - CUAUTITLAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-903,"INTERLOMAS - CUAUTITLAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-904,"SAN MIGUEL - CUAUTITLAN (RETORNO)",,,,,,,,,,,,,,,,,"pase",,,,,,
-905,"BOSQUE REAL - CUAUTITLAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-906,"HUIXQUILUCAN - CUAUTITLAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-907,"CHAMAPA CAPUFE - CUAUTITLAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-908,"RETORNO CUAUTITLAN (Lecheria)",,,,,,,,,,,,,,,,,"pase",,,,,,
-909,"LOMAS VERDES - CUAUTITLAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-910,"NOPALA - CUAUTITLAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-911,"MADIN - CUAUTITLAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-912,"ATIZAPAN - CUAUTITLAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-913,"LAGO DE GUADALUPE - CUAUTITLAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-914,"LA VENTA - LAGO DE GUADALUPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-915,"INTERLOMAS - LAGO DE GUADALUPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-916,"BOSQUE REAL - LAGO DE GUADALUPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-917,"HUIXQUILUCAN - LAGO DE GUADALUPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-918,"RETORNO LAGO DE GUADALUPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-919,"CUAUTITLAN - LAGO DE GUADALUPE (RETORNO)",,,,,,,,,,,,,,,,,"pase",,,,,,
-920,"CHAMAPA CAPUFE - LAGO DE GUADALUPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-921,"NOPALA - LAGO DE GUADALUPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-922,"LOMAS VERDES - LAGO DE GUADALUPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-923,"SAN MIGUEL - LAGO DE GUADALUPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-924,"MADIN - LAGO DE GUADALUPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-925,"ATIZAPAN - LAGO DE GUADALUPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-926,"CUAUTITLAN - LAGO DE GUADALUPE",,,,,,,,,,,,,,,,,"pase",,,,,,
-927,"LA VENTA - SAN MIGUEL",,,,,,,,,,,,,,,,,"pase",,,,,,
-928,"INTERLOMAS - SAN MIGUEL",,,,,,,,,,,,,,,,,"pase",,,,,,
-929,"BOSQUE REAL - SAN MIGUEL",,,,,,,,,,,,,,,,,"pase",,,,,,
-930,"HUIXQUILUCAN - SAN MIGUEL",,,,,,,,,,,,,,,,,"pase",,,,,,
-931,"CHAMAPA CAPUFE - SAN MIGUEL",,,,,,,,,,,,,,,,,"pase",,,,,,
-932,"LOMAS VERDES - SAN MIGUEL",,,,,,,,,,,,,,,,,"pase",,,,,,
-933,"NOPALA - SAN MIGUEL",,,,,,,,,,,,,,,,,"pase",,,,,,
-934,"MADIN - SAN MIGUEL",,,,,,,,,,,,,,,,,"pase",,,,,,
-935,"ATIZAPAN - SAN MIGUEL",,,,,,,,,,,,,,,,,"pase",,,,,,
-936,"LAGO DE GUADALUPE - SAN MIGUEL",,,,,,,,,,,,,,,,,"pase",,,,,,
-937,"CUAUTITLAN - SAN MIGUEL",,,,,,,,,,,,,,,,,"pase",,,,,,
-938,"LA VENTA - MADIN",,,,,,,,,,,,,,,,,"pase",,,,,,
-939,"INTERLOMAS - MADIN",,,,,,,,,,,,,,,,,"pase",,,,,,
-940,"BOSQUE REAL - MADIN",,,,,,,,,,,,,,,,,"pase",,,,,,
-941,"HUIXQUILUCAN - MADIN",,,,,,,,,,,,,,,,,"pase",,,,,,
-942,"SAN MIGUEL - MADIN",,,,,,,,,,,,,,,,,"pase",,,,,,
-943,"CHAMAPA CAPUFE - MADIN",,,,,,,,,,,,,,,,,"pase",,,,,,
-944,"CUAUTITLAN - MADIN",,,,,,,,,,,,,,,,,"pase",,,,,,
-945,"LAGO DE GUADALUPE - MADIN",,,,,,,,,,,,,,,,,"pase",,,,,,
-946,"NOPALA - MADIN",,,,,,,,,,,,,,,,,"pase",,,,,,
-947,"LOMAS VERDES - MADIN",,,,,,,,,,,,,,,,,"pase",,,,,,
-948,"ATIZAPAN - MADIN",,,,,,,,,,,,,,,,,"pase",,,,,,
-949,"LA VENTA - LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-950,"INTERLOMAS - LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-951,"SAN MIGUEL - LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-952,"BOSQUE REAL - LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-953,"HUIXQUILUCAN - LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-954,"CUAUTITLAN - LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-955,"LAGO DE GUADALUPE - LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-956,"CHAMAPA CAPUFE - LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-957,"ATIZAPAN - LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-958,"NOPALA - LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-959,"MADIN - LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-960,"LA VENTA - NOPALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-961,"SAN MIGUEL - NOPALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-962,"INTERLOMAS - NOPALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-963,"CUAUTITLAN - NOPALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-964,"LAGO DE GUADALUPE - NOPALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-965,"BOSQUE REAL - NOPALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-966,"HUIXQUILUCAN - NOPALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-967,"ATIZAPAN - NOPALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-968,"LOMAS VERDES - NOPALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-969,"MADIN - NOPALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-970,"CHAMAPA CAPUFE - NOPALA",,,,,,,,,,,,,,,,,"pase",,,,,,
-971,"SAN MIGUEL - CIPRESES",,,,,,,,,,,,,,,,,"pase",,,,,,
-972,"CUAUTITLAN - CIPRESES",,,,,,,,,,,,,,,,,"pase",,,,,,
-973,"LAGO DE GUADALUPE - CIPRESES",,,,,,,,,,,,,,,,,"pase",,,,,,
-974,"ATIZAPAN - CIPRESES",,,,,,,,,,,,,,,,,"pase",,,,,,
-975,"LOMAS VERDES - CIPRESES",,,,,,,,,,,,,,,,,"pase",,,,,,
-976,"MADIN - CIPRESES",,,,,,,,,,,,,,,,,"pase",,,,,,
-977,"NOPALA - CIPRESES",,,,,,,,,,,,,,,,,"pase",,,,,,
-978,"SAN MIGUEL - CHAMAPA CAPUFE",,,,,,,,,,,,,,,,,"pase",,,,,,
-979,"CUAUTITLAN - CHAMAPA CAPUFE",,,,,,,,,,,,,,,,,"pase",,,,,,
-980,"LAGO DE GUADALUPE - CHAMAPA CAPUFE",,,,,,,,,,,,,,,,,"pase",,,,,,
-981,"ATIZAPAN - CHAMAPA CAPUFE",,,,,,,,,,,,,,,,,"pase",,,,,,
-982,"LOMAS VERDES - CHAMAPA CAPUFE",,,,,,,,,,,,,,,,,"pase",,,,,,
-983,"MADIN - CHAMAPA CAPUFE",,,,,,,,,,,,,,,,,"pase",,,,,,
-984,"NOPALA - CHAMAPA CAPUFE",,,,,,,,,,,,,,,,,"pase",,,,,,
-985,"CIPRESES - CHAMAPA CAPUFE",,,,,,,,,,,,,,,,,"pase",,,,,,
-986,"LA VENTA - CHAMAPA INBURSA",,,,,,,,,,,,,,,,,"pase",,,,,,
-987,"INTERLOMAS - CHAMAPA INBURSA",,,,,,,,,,,,,,,,,"pase",,,,,,
-988,"BOSQUE REAL - CHAMAPA INBURSA",,,,,,,,,,,,,,,,,"pase",,,,,,
-989,"HUIXQUILUCAN - CHAMAPA INBURSA",,,,,,,,,,,,,,,,,"pase",,,,,,
-990,"SAN MIGUEL - BOSQUE REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-991,"CUAUTITLAN - BOSQUE REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-992,"LAGO DE GUADALUPE - BOSQUE REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-993,"LA VENTA - BOSQUE REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-994,"ATIZAPAN - BOSQUE REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-995,"LOMAS VERDES - BOSQUE REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-996,"MADIN - BOSQUE REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-997,"NOPALA - BOSQUE REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-998,"CIPRESES - BOSQUE REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-999,"CHAMAPA INBURSA - BOSQUE REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-1000,"INTERLOMAS - BOSQUE REAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-1001,"SAN MIGUEL - HUIXQUILUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1002,"CUAUTITLAN - HUIXQUILUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1003,"LAGO DE GUADALUPE - HUIXQUILUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1004,"LA VENTA - HUIXQUILUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1005,"ATIZAPAN - HUIXQUILUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1006,"LOMAS VERDES - HUIXQUILUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1007,"MADIN - HUIXQUILUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1008,"NOPALA - HUIXQUILUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1009,"CIPRESES - HUIXQUILUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1010,"CHAMAPA INBURSA - HUIXQUILUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1011,"INTERLOMAS - HUIXQUILUCAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1012,"SAN MIGUEL - INTERLOMAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1013,"CUAUTITLAN - INTERLOMAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1014,"LAGO DE GUADALUPE - INTERLOMAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1015,"ATIZAPAN - INTERLOMAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1016,"LOMAS VERDES - INTERLOMAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1017,"MADIN - INTERLOMAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1018,"NOPALA - INTERLOMAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1019,"CIPRESES - INTERLOMAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1020,"LA VENTA - INTERLOMAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1021,"CHAMAPA INBURSA - INTERLOMAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1022,"BOSQUE REAL - INTERLOMAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1023,"HUIXQUILUCAN - INTERLOMAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1024,"SAN MIGUEL - LA VENTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1025,"CUAUTITLAN - LA VENTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1026,"LAGO DE GUADALUPE - LA VENTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1027,"ATIZAPAN - LA VENTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1028,"LOMAS VERDES - LA VENTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1029,"MADIN - LA VENTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1030,"NOPALA - LA VENTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1031,"CIPRESES - LA VENTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1032,"CHAMAPA INBURSA - LA VENTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1033,"BOSQUE REAL - LA VENTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1034,"HUIXQUILUCAN - LA VENTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1035,"INTERLOMAS - LA VENTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1036,"ENT. CAPOMO - ENT. PEÑITA - AEROPUERTO + RAMAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-1037,"RAMAL 692 + ENT. PEÑITA - ENT. AEROPUERTO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1038,"ENT. CAPOMO - ENT. PEÑITA - BUCERIAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1039,"RAMAL 692  + ENT. PEÑITA - BUCERIAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1040,"ENT. CAPOMO - ENT. PEÑITA -FLORIDA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1041,"ENT. CAPOMO - ENT. PEÑITA -FLORIDA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1042,"RAMAL 692 + ENT. PEÑITA - FLORIDA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1043,"ENT. CAPOMO - ENT. PEÑITA+RAMAL 692",,,,,,,,,,,,,,,,,"pase",,,,,,
-1044,"ENT. PEÑITA+RAMAL 692 - ENT. CAPOMO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1045,"RAMAL + ENT AEROPUERTO - ENT. PEÑITA - CAPOMO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1046,"RAMAL + ENT AEROPUERTO - ENT. PEÑITA+RAMAL 692",,,,,,,,,,,,,,,,,"pase",,,,,,
-1047,"RAMAL + ENT AEROPUERTO - FLORIDA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1048,"RAMAL + ENT AEROPUERTO - BUCERIAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1049,"FLORIDA - ENT. AEROPUERTO + RAMAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-1050,"FLORIDA - BUCERIAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1051,"FLORIDA -  ENT. PEÑITA - CAPOMO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1052,"FLORIDA - ENT. PEÑITA + RAMAL 692",,,,,,,,,,,,,,,,,"pase",,,,,,
-1053,"FLORIDA - ENT. PEÑITA + RAMAL 692",,,,,,,,,,,,,,,,,"pase",,,,,,
-1054,"BUCERIAS - ENT. PEÑITA + CAPOMO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1055,"BUCERIAS - ENT. PEÑITA + RAMAL 692",,,,,,,,,,,,,,,,,"pase",,,,,,
-1056,"BUCERIAS - FLORIDA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1057,"BUCERIAS - ENT. AEROPUERTO + RAMAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-1058,"COPANDARO- CUITZEO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1059,"COPANDARO-LA CINTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1060,"URIANGATO- COPANDARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1061,"VALLE DE SANTIAGO- COPANDARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1062,"VALTIERRILLA- COPANDARO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1063,"URIANGATO-LA CINTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1064,"VALLE DE SANTIAGO-LA CINTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1065,"VALTIERRILLA-LA CINTA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1066,"COPANDARO- URIANGATO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1067,"LA CINTA-URIANGATO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1068,"VALLE DE SANTIAGO- URIANGATO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1069,"VALTIERRILLA- URIANGATO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1070,"COPANDARO-VALLE DE SANTIAGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1071,"LA CINTA-VALLE DE SANTIAGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1072,"URIANGATO-VALLE DE SANTIAGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1073,"VALTIERRILLA-VALLE DE SANTIAGO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1074,"COPANDARO- VALTIERRILLA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1075,"LA CINTA- VALTIERRILLA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1076,"URIANGATO- VALTIERRILLA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1077,"VALLE DE SANTIAGO- VALTIERRILLA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1078,"Valtierrilla-ent. Cerro gordo",,,,,,,,,,,,,,,,,"pase",,,,,,
-1079,"SAN JERÓNIMO - PICACHO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1080,"SAN JERÓNIMO - STA. TERESA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1081,"SAN JERÓNIMO - ESTADIO AZTECA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1082,"SAN JERÓNIMO - VIADUCTO TLALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1083,"SAN JERÓNIMO - TEPEPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1084,"SAN JERÓNIMO - ENTRADA SUPERVIA PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1085,"SAN JERÓNIMO - CAMINERO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1086,"SAN JERÓNIMO - CAMINERO BIS (INTERCONEXIÓN VET)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1087,"BLVD DE LA LUZ - PICACHO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1088,"BLVD. DE LA LUZ  - STA. TERESA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1089,"BLVD. DE LA LUZ  - ESTADIO AZTECA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1090,"BLVD. DE LA LUZ  - VIADUCTO TLALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1091,"BLVD. DE LA LUZ - TEPEPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1092,"BLVD. DE LA LUZ  - ENTRADA SUPERVIA PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1093,"BLVD. DE LA LUZ  - CAMINERO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1094,"BLVD. DE LA LUZ  - CAMINERO BIS (INTERCONEXIÓN VET)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1095,"L. CABRERA - PICACHO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1096,"L. CABRERA - STA. TERESA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1097,"L. CABRERA - ESTADIO AZTECA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1098,"L. CABRERA - VIADUCTO TLALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1099,"L. CABRERA - TEPEPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1100,"L. CABRERA - CAMINERO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1101,"L. CABRERA - CAMINERO BIS (INTERCONEXIÓN VET)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1102,"CUICUILCO - ESTADIO AZTECA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1103,"CUICUILCO - VIADUCTO TLALPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1104,"CUICUILCO - TEPEPAN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1105,"CUICUILCO - CAMINERO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1106,"CUICUILCO - CAMINERO BIS (INTERCONEXIÓN VET)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1107,"TEPEPAN - PEDREGAL DEL SUR",,,,,,,,,,,,,,,,,"pase",,,,,,
-1108,"TEPEPAN - LUIS CABRERA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1109,"TEPEPAN - BLVD. DE LA LUZ",,,,,,,,,,,,,,,,,"pase",,,,,,
-1110,"TEPEPAN - SAN JERÓNIMO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1111,"VIADUCTO TLALPAN - PEDREGAL DEL SUR",,,,,,,,,,,,,,,,,"pase",,,,,,
-1112,"VIADUCTO TLALPAN - LUIS CABRERA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1113,"VIADUCTO TLALPAN - BLVD. DE LA LUZ",,,,,,,,,,,,,,,,,"pase",,,,,,
-1114,"VIADUCTO TLALPAN - SAN JERÓNIMO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1115,"CAMINERO - PEDREGAL DEL SUR",,,,,,,,,,,,,,,,,"pase",,,,,,
-1116,"CAMINERO - LUIS CABRERA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1117,"CAMINERO  - BLVD. DE LA LUZ",,,,,,,,,,,,,,,,,"pase",,,,,,
-1118,"CAMINERO - SAN JERÓNIMO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1119,"ESTADIO AZTECA - PEDREGAL DEL SUR",,,,,,,,,,,,,,,,,"pase",,,,,,
-1120,"ESTADIO AZTECA - LUIS CABRERA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1121,"ESTADIO AZTECA - BLVD. DE LA LUZ",,,,,,,,,,,,,,,,,"pase",,,,,,
-1122,"ESTADIO AZTECA - SAN JERÓNIMO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1123,"MONTAÑA - LUIS CABRERA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1124,"MONTAÑA - BLVD. DE LA LUZ",,,,,,,,,,,,,,,,,"pase",,,,,,
-1125,"MONTAÑA - SAN JERÓNIMO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1126,"P. PEDREGAL - LUIS CABRERA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1127,"P. PEDREGAL - BLVD. DE LA LUZ",,,,,,,,,,,,,,,,,"pase",,,,,,
-1128,"P. PEDREGAL - SAN JERÓNIMO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1129,"CAMINERO BIS (INTERCONEXIÓN VET) - SAN JERÓNIMO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1130,"CAMINERO BIS (INTERCONEXIÓN VET) - BLVD DE LA LUZ",,,,,,,,,,,,,,,,,"pase",,,,,,
-1131,"CAMINERO BIS (INTERCONEXIÓN VET)- LUIS CABRERA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1132,"CAMINERO BIS (INTERCONEXIÓN VET) - PEDREGAL DEL S.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1133,"AUSUR BANOBRAS (VIADUCTO ELEVADO DE TLALPAN)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1134,"POETAS -AGUILAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1135,"POETAS -TORRES",,,,,,,,,,,,,,,,,"pase",,,,,,
-1136,"POETAS LUIS CABRERA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1137,"POETAS-VELC",,,,,,,,,,,,,,,,,"pase",,,,,,
-1138,"CENTENARIO-AGUILAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1139,"CENTENARIO-LAS TORRES",,,,,,,,,,,,,,,,,"pase",,,,,,
-1140,"CENTENARIO- LUIS CABRERA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1141,"CENTENARIO-VELC",,,,,,,,,,,,,,,,,"pase",,,,,,
-1142,"AGUILAS SUR-TORRES",,,,,,,,,,,,,,,,,"pase",,,,,,
-1143,"AGUILAS SUR-LUIS CABRERA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1144,"AGUILAS SUR-VELC",,,,,,,,,,,,,,,,,"pase",,,,,,
-1145,"TORRES SUR-LUIS CABRERA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1146,"TORRES SUR-VELC",,,,,,,,,,,,,,,,,"pase",,,,,,
-1147,"VIADUCTO ELEVADO LUIS CABRERA (VELC)- DISTRIBUIDOR 
-VIAL",,,,,,,,,,,,,,,,,"pase",,,,,,
-1148,"VELC -LUIS CABRERA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1149,"VELC-TORRES",,,,,,,,,,,,,,,,,"pase",,,,,,
-1150,"VELC-ÁGUILAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1151,"VELC-POETAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1152,"LUIS CABRERA-TORRES",,,,,,,,,,,,,,,,,"pase",,,,,,
-1153,"LUIS CABRERA-AGUILAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1154,"LUIS CABRERA-POETAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1155,"TORRES-AGUILAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1156,"TORRES-POETAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1157,"AGUILAS-POETAS",,,,,,,,,,,,,,,,,"pase",,,,,,
-1158,"TEPALCAPA-VALLEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1159,"TEPALCAPA-CIRCUNVALACIÓN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1160,"TEPALCAPA-1° DE MAYO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1161,"TEPALCAPA-SAN JOAQUÍN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1162,"TEPALCAPA-ENT. AUT. URBANA NTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1163,"LÓPEZ PORTILLO (PERINORTE)-VALLEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1164,"LÓPEZ PORTILLO (PERINORTE)-CIRCUNVALACIÓN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1165,"LÓPEZ PORTILLO (PERINORTE)-1° DE MAYO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1166,"LÓPEZ PORTILLO (PERINORTE)-SAN JOAQUÍN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1167,"LÓPEZ PORTILLO (PERINORTE)-ENT. AUT. URBANA NTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1168,"LECHERÍA-VALLEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1169,"LECHERÍA-CIRCUNVALACIÓN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1170,"LECHERÍA-1° DE MAYO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1171,"LECHERÍA-SAN JOAQUÍN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1172,"LECHERÍA-ENT. AUT. URBANA NTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1173,"LAGO DE GUADALUPE-VALLEJO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1174,"LAGO DE GUADALUPE-CIRCUNVALACIÓN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1175,"LAGO DE GUADALUPE-1° DE MAYO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1176,"LAGO DE GUADALUPE-SAN JOAQUÍN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1177,"LAGO DE GUADALUPE-ENT. AUT. URBANA NTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1178,"VALLE DORADO-CIRCUNVALACIÓN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1179,"VALLE DORADO-1° DE MAYO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1180,"VALLE DORADO-SAN JOAQUÍN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1181,"VALLE DORADO-ENT. AUT. URBANA NTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1182,"SANTA MÓNICA-CIRCUNVALACIÓN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1183,"SANTA MÓNICA-1° DE MAYO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1184,"SANTA MÓNICA-SAN JOAQUÍN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1185,"SANTA MÓNICA-ENT. AUT. URBANA NTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1186,"NAUCALLI-1° DE MAYO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1187,"NAUCALLI-SAN JOAQUÍN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1188,"NAUCALLI-ENT. AUT. URBANA NTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1189,"LOMAS VERDES-1° DE MAYO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1190,"LOMAS VERDES-SAN JOAQUÍN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1191,"LOMAS VERDES-ENT. AUT. URBANA NTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1192,"GUSTAVO BAZ-1° DE MAYO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1193,"GUSTAVO BAZ-SAN JOAQUÍN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1194,"GUSTAVO BAZ-ENT. AUT. URBANA NTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1195,"1° DE MAYO-SAN JOAQUÍN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1196,"1° DE MAYO-ENT. AUT. URBANA NTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1197,"ENT. AUT. URBANA NTE.-G.BAZ",,,,,,,,,,,,,,,,,"pase",,,,,,
-1198,"ENT. AUT. URBANA NTE.-LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-1199,"ENT. AUT. URBANA NTE.-CIRCUNVALACIÓN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1200,"ENT. AUT. URBANA NTE.-SANTA MÓNICA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1201,"ENT. AUT. URBANA NTE.-VALLE DORADO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1202,"ENT. AUT. URBANA NTE.-L GPE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1203,"ENT. AUT. URBANA NTE.-LECHERÍA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1204,"ENT. AUT. URBANA NTE.-LÓPEZ PORTILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1205,"ENT. AUT. URBANA NTE.-TEPALCAPA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1206,"TOREO-G.BAZ",,,,,,,,,,,,,,,,,"pase",,,,,,
-1207,"TOREO-LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-1208,"TOREO-CIRCUNVALACIÓN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1209,"TOREO-SANTA MÓNICA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1210,"TOREO-VALLE DORADO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1211,"TOREO-L GPE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1212,"TOREO-LECHERÍA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1213,"TOREO-LÓPEZ PORTILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1214,"TOREO-TEPALCAPA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1215,"RIO SAN JOAQUÍN-G.BAZ",,,,,,,,,,,,,,,,,"pase",,,,,,
-1216,"RIO SAN JOAQUÍN-LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-1217,"RIO SAN JOAQUÍN-CIRCUNVALACIÓN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1218,"RIO SAN JOAQUÍN-SANTA MÓNICA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1219,"RIO SAN JOAQUÍN-VALLE DORADO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1220,"RIO SAN JOAQUÍN-L GPE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1221,"RIO SAN JOAQUÍN-LECHERÍA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1222,"RIO SAN JOAQUÍN-LÓPEZ PORTILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1223,"RIO SAN JOAQUÍN-TEPALCAPA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1224,"GUSTAVO BAZ-LOMAS VERDES",,,,,,,,,,,,,,,,,"pase",,,,,,
-1225,"GUSTAVO BAZ-CIRCUNVALACIÓN",,,,,,,,,,,,,,,,,"pase",,,,,,
-1226,"GUSTAVO BAZ-SANTA MÓNICA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1227,"GUSTAVO BAZ-VALLE DORADO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1228,"GUSTAVO BAZ-L GPE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1229,"GUSTAVO BAZ-LECHERÍA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1230,"GUSTAVO BAZ-LÓPEZ PORTILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1231,"GUSTAVO BAZ-TEPALCAPA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1232,"CIRCUNVALACIÓN-SANTA MÓNICA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1233,"CIRCUNVALACIÓN-VALLE DORADO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1234,"CIRCUNVALACIÓN-L GPE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1235,"CIRCUNVALACIÓN-LECHERÍA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1236,"CIRCUNVALACIÓN-LÓPEZ PORTILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1237,"CIRCUNVALACIÓN-TEPALCAPA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1238,"VALLEJO/VALLEJO-L GPE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1239,"VALLEJO/VALLEJO-LECHERÍA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1240,"VALLEJO/ VALLEJO-LÓPEZ PORTILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1241,"VALLEJO/ VALLEJO-TEPALCAPA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1242,"VALLEJO /PERIFÉRICO-L GPE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1243,"VALLEJO /PERIFÉRICO-LECHERÍA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1244,"VALLEJO /PERIFÉRICO-LÓPEZ PORTILLO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1245,"VALLEJO /PERIFÉRICO-TEPALCAPA",,,,,,,,,,,,,,,,,"pase",,,,,,
-1246,"VEB PTE.-CDI PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1247,"VEB PTE.-EJERCITO NACIONAL PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1248,"VEB PTE.-PALMAS PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1249,"VEB PTE.-REFORMA CENTRO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1250,"VEB PTE.-PARQUE PELVOUX",,,,,,,,,,,,,,,,,"pase",,,,,,
-1251,"VEB PTE.-CONSTITUYENTES PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1252,"VEB PTE.-MINERIA PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1253,"VEB PTE.-SAN ANTONIO PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1254,"CDI PTE.-EJERCITO NACIONAL PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1255,"CDI PTE.-PALMAS PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1256,"CDI PTE.-REFORMA CENTRO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1257,"CDI PTE.-PARQUE PELVOUX",,,,,,,,,,,,,,,,,"pase",,,,,,
-1258,"CDI PTE.-CONSTITUYENTES PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1259,"CDI PTE.-MINERIA PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1260,"CDI PTE.-SAN ANTONIO PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1261,"CONSCRIPTO PTE.-EJERCITO NACIONAL PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1262,"CONSCRIPTO PTE.-PALMAS PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1263,"CONSCRIPTO PTE.-REFORMA CENTRO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1264,"CONSCRIPTO PTE.-PARQUE PELVOUX",,,,,,,,,,,,,,,,,"pase",,,,,,
-1265,"CONSCRIPTO PTE.-CONSTITUYENTES PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1266,"CONSCRIPTO PTE.-MINERIA PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1267,"CONSCRIPTO PTE.-SAN ANTONIO PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1268,"EJÉRCITO NACIONAL PTE.-PALMAS PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1269,"EJÉRCITO NACIONAL PTE.-REFORMA CENTRO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1270,"EJÉRCITO NACIONAL PTE.-PARQUE PELVOUX",,,,,,,,,,,,,,,,,"pase",,,,,,
-1271,"EJÉRCITO NACIONAL PTE.-CONSTITUYENTES PTE",,,,,,,,,,,,,,,,,"pase",,,,,,
-1272,"EJÉRCITO NACIONAL PTE.-MINERIA PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1273,"EJÉRCITO NACIONAL PTE.-SAN ANTONIO PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1274,"PALMAS PTE.-REFORMA CENTRO",,,,,,,,,,,,,,,,,"pase",,,,,,
-1275,"PALMAS PTE.-PARQUE PELVOUX",,,,,,,,,,,,,,,,,"pase",,,,,,
-1276,"PALMAS PTE.-CONSTITUYENTES PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1277,"PALMAS PTE.-MINERIA PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1278,"PALMAS PTE.-SAN ANTONIO PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1279,"ROSARIO CASTELLANOS-CONSTITUYENTES PTE",,,,,,,,,,,,,,,,,"pase",,,,,,
-1280,"ROSARIO CASTELLANOS-MINERIA PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1281,"ROSARIO CASTELLANOS-SAN ANTONIO PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1282,"ALENCASTRE PTE.-CONSTITUYENTES PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1283,"ALENCASTRE PTE.-MINERIA PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1284,"ALENCASTRE PTE.-SAN ANTONIO PTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1285,"SAN ANTONIO OTE.-ALENCASTRE OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1286,"SAN ANTONIO OTE.-CHAPULTEPEC / REFORMA OTE",,,,,,,,,,,,,,,,,"pase",,,,,,
-1287,"SAN ANTONIO OTE.-CONSCRIPTO OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1288,"SAN ANTONIO OTE.-CDI OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1289,"SAN ANTONIO OTE.-VEB OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1290,"SOSTENES ROCHA OTE.-ALENCASTRE OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1291,"SOSTENES ROCHA OTE.-CHAPULTEPEC/REFORMA OTE",,,,,,,,,,,,,,,,,"pase",,,,,,
-1292,"SOSTENES ROCHA OTE.-CONSCRIPTO OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1293,"SOSTENES ROCHA OTE.-CDI OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1294,"SOSTENES ROCHA OTE.-VEB OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1295,"CONSTITUYENTES OTE.-ALENCASTRE OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1296,"CONSTITUYENTES OTE.-CHAPULTEPEC / REFORMA OTE",,,,,,,,,,,,,,,,,"pase",,,,,,
-1297,"CONSTITUYENTES OTE.-CONSCRIPTO OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1298,"CONSTITUYENTES OTE.-CDI OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1299,"CONSTITUYENTES OTE.-VEB OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1300,"PARQUE MARTE OTE.-CONSCRIPTO OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1301,"PARQUE MARTE OTE.-CDI OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1302,"PARQUE MARTE OTE.-VEB OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1303,"EJÉRCITO NACIONAL OTE.-CONSCRIPTO OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1304,"EJÉRCITO NACIONAL OTE.-CDI OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1305,"EJÉRCITO NACIONAL OTE.-VEB OTE.",,,,,,,,,,,,,,,,,"pase",,,,,,
-1306,"RÍO DE LOS REMEDIOS (TSN) - ALFREDO DEL MAZO (A)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1307,"RIO DE LOS REMEDIOS (TSN) - CIRCUNVALACIÓN (A)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1308,"RIO DE LOS REMEDIOS (TSN) - CIRCUITO EXTERIOR M. (B)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1309,"RÍO DE LOS REMEDIOS (TSN) - JARDINES DE MORELOS (B)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1310,"RÍO DE LOS REMEDIOS (D/E) - ALFREDO DEL MAZO (A)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1311,"RIO DE LOS REMEDIOS (D/E) - CIRCUNVALACIÓN (A)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1312,"RIO DE LOS REMEDIOS (D/E) - CIRCUITO EXTERIOR M. (B)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1313,"RÍO DE LOS REMEDIOS (D/E) - JARDINES DE MORELOS (B)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1314,"ALFREDO DEL MAZO (E) - CIRCUNVALACIÓN (A)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1315,"ALFREDO DEL MAZO (E) - CIRCUITO EXTERIOR M. (B)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1316,"ALFREDO DEL MAZO (E) - JARDINES DE MORELOS (B)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1317,"CIRCUNVALACIÓN SUR(E) - CIRCUITO EXTERIOR M. (B)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1318,"CIRCUNVALACIÓN SUR (E) - JARDINES DE MORELOS (B)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1319,"VENTA DE CARPIO - CIRCUNVALACIÓN (C)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1320,"VENTA DE CARPIO - ALFREDO DEL MAZO (C)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1321,"VENTA DE CARPIO - RÍO DE LOS REMEDIOS (TSN)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1322,"VENTA DE CARPIO - RÍO DE LOS REMEDIOS (A)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1323,"JARDINES DE MORELOS (A) - CIRCUNVALACIÓN (C)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1324,"JARDINES DE MORELOS (A) - ALFREDO DEL MAZO (C)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1325,"JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (TNS)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1326,"JARDINES DE MORELOS (A) - RÍO DE LOS REMEDIOS (A)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1327,"CIRCUITO EXTERIOR M.  (A) - CIRCUNVALACIÓN (C)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1328,"CIRCUITO EXTERIOR M. (A) - ALFREDO DEL MAZO (C)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1329,"CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (TNS)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1330,"CIRCUITO EXTERIOR M. (A) - RÍO DE LOS REMEDIOS (A)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1331,"CIRCUNVALACIÓN SUR (D) - ALFREDO DEL MAZO (C)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1332,"CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (TNS)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1333,"CIRCUNVALACIÓN SUR (D) - RÍO DE LOS REMEDIOS (A)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1334,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (TNS)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1335,"ALFREDO DEL MAZO (D) - RÍO DE LOS REMEDIOS (A)",,,,,,,,,,,,,,,,,"pase",,,,,,
-1336,"Atlixco-jantetelco",112,"$220.00","$340.00","$452.00","$678.00","$678.00","$452.00","$678.00","$678.00","$1130.00","$1356.00","$1356.00","$1356.00","$1356.00",454,,"viapass",,,,,,
-1337,"Puebla-atlixco",30,60,"$71.00",138,"$138.00","$138.00","$138.00","$138.00","$138.00","$309.00","$309.00","$309.00","$309.00","$309.00",82,,"viapass",,,,,,
-1338,"Mexicalli-rio colorado",,,,,,,,,,,,,,,,,"https://puentecolorado.sonora.gob.mx/tarifas",,,,,,
-1339,"san martin-huejotzingo",26,51,"$77.00",112,"$112.00","$112.00","$112.00","$112.00","$112.00","$177.00","$177.00","$234.00","$234.00","$234.00",103,,"viapass",,,,,,
-1340,"Apizaco-huahuchinango",53,105,"$139.00",112,"$207.00","$207.00","$112.00","$207.00","$207.00","$406.00","$406.00","$406.00","$406.00","$406.00",173,,"viapass",,,,,,
-1341,"Apizaco-chignahuapan",92,184,"$235.00",223,"$409.00","$409.00","$223.00","$409.00","$409.00","$808.00","$808.00","$808.00","$808.00","$808.00",286,,"viapass",,,,,,
-1342,"santa ana-altar",66,133,"$199.00",210,"$210.00","$210.00","$210.00","$210.00","$210.00","$317.00","$317.00","$384.00","$384.00","$384.00",265,,"viapass",,,,,,
-1343,"Sueco-villa ahumada",,,,,,,,,,,,,,,,,"https://carreteras.chihuahua.gob.mx/tarifas#villa_ahumada",,,,,,
-1344,"Delicias-conchos",,,,,,,,,,,,,,,,,"https://carreteras.chihuahua.gob.mx/tarifas#saucillo",,,,,,
-1345,"Conchos-camargo",,,,,,,,,,,,,,,,,"https://carreteras.chihuahua.gob.mx/tarifas#camargo",,,,,,
-1346,"Camargo-jimenez",,,,,,,,,,,,,,,,,"https://carreteras.chihuahua.gob.mx/tarifas#jimenez",,,,,,
-1347,"chihuahua-sacramento",,,,,,,,,,,,,,,,,"https://carreteras.chihuahua.gob.mx/tarifas#sacramento",,,,,,
-1348,"flores magon-ojo laguna",,,,,,,,,,,,,,,,,"https://carreteras.chihuahua.gob.mx/tarifas#ojo_laguna",,,,,,
-1349,"Cuahutémoc-santa isabel",,,,,,,,,,,,,,,,,"https://carreteras.chihuahua.gob.mx/tarifas#cuahutemoc",,,,,,
-1350,"Jimenez-savalza",,,,,,,,,,,,,,,,,"https://carreteras.chihuahua.gob.mx/tarifas#salvaza",,,,,,
-1351,"flores magón-galeana",,,,,,,,,,,,,,,,,"https://carreteras.chihuahua.gob.mx/tarifas#galeana",,,,,,
-1352,"libramiento de samalayuca-san jeronimo",,,,,,,,,,,,,,,,,"https://carreteras.chihuahua.gob.mx/tarifas#jeronimo",,,,,,
-1353,"Chihuahua-ojinaga",,,,,,,,,,,,,,,,,"https://carreteras.chihuahua.gob.mx/tarifas#ojinaga",,,,,,
-1354,"Puebla-tlaxcala",37,74,"$111.00",149,"$149.00","$149.00","$149.00","$149.00","$149.00","$223.00","$223.00","$223.00","$223.00","$223.00",148,,"viapass",,,,,,
-1355,"libramiento de nogales",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=39",,,,,,
-1356,"san luis rio colorado II",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=210",,,,,,
-1357,"san luis rio colorado-doctor",,,,,,,,,,,,,,,,,"imt",,,,,,
-1358,"puente colombia",,,,,,,,,,,,,,,,,"https://www.puentecolombia.mx/preguntas-frecuentes-puente-colombia/",,,,,,
-1359,"puente de anzalduas",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=213",,,,,,
-1360,"puente coatzacoalcos",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=69",,,,,,
-1361,"puente ignacio chácez",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=75",,,,,,
-1362,"libramiento de ciudad juárez",,,,,,,,,,,,,,,,,"https://autopistasdecuota.com/ruta/chihuahua",,,,,,
-1363,"puente guadalupe tornillo",,,,,,,,,,,,,,,,,"https://www.puentesfronterizos.gob.mx/puente-internacional-guadalupe-tornillo.php",,,,9,,
-1364,"puente lerdo-stanton",,,,,,,,,,,,,,,,,"https://reportesdepuentes.com.mx/lerdo-stanton/",,,,10,10,
-1365,"puente josé lópez portillo",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=214",,,,,,
-1366,"puente la unidad-eugenio echeverria castellot",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=198",,,,,,
-1367,"puente laredo I",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=80",,,,5,,
-1368,"puente libre comercio",,,,,,,,,,,,,,,,,"https://copaoperacion.com/lucio-blanco/",,,,,,
-1369,"puente nuevo laredo iii",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=86",,,,,,
-1370,"puente paso del norte",,,,,,,,,,,,,,,,,"https://www.puentesfronterizos.gob.mx/puente-internacional-paso-del-norte.php",,,,6,,
-1371,"puente refinería lázaro cárdenas",,,,,,,,,,,,,,,,,"capufe",,,,,,
-1372,"puente reynosa-phar",,,,,,,,,,,,,,,,,"https://autopistasdecuota.com/ruta/nuevo-leon-tamaulipas",,,,,,
-1373,"puente rio bravo-donna",,,,,,,,,,,,,,,,,"https://copaoperacion.com/rio-bravo/",,,,4,,
-1374,"puente rodolfo robles",,,,,,,,,,,,,,,,,"capufe",,,,,,
-1375,"puente san miguel",,,,,,,,,,,,,,,,,"https://orler.com.mx/",,,,,,
-1376,"puente suchiate ii",,,,,,,,,,,,,,,,,"capufe",,,,,,
-1377,"puente zaragoza-ysleta",,,,,,,,,,,,,,,,,"https://www.puentesfronterizos.gob.mx/puente-internacional-zaragoza-ysleta.php",,,,9,,
-1378,"cd. mendoza-córdoba",,,,,,,,,,,,,,,,,"capufe",,,,,,
-1379,"cd. mendoza-fortin",,,,,,,,,,,,,,,,,"capufe",,,,,,
-1380,"Tintal-playa del carmen",,,,,,,,,,,,,,,,,"http://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=240",,,,,,
-1381,"ent. Acolman-ent. Tequisistlan",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=243",,,,,,
-1382,"ent. Tequisistlan-ent. Nabor carrillo",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=243",,,,,,
-1383,"puente el prieto",,,,,,,,,,,,,,,,,"tollbooth",,,,,,
-1384,"centinela-rumorosa",,,,,,,,,,,,,,,,,"https://www.bajacalifornia.gob.mx/fiarum/",,,,,,
-1385,"libramiento de chilpancingo",,,,,,,,,,,,,,,,,"tollbooth",,,,,,
-1386,"libramiento fresnillo",,,,,,,,,,,,,,,,,"https://profrezac.com/",,,,,,
-1387,"libramiento calera-enrique estrada",,,,,,,,,,,,,,,,,"https://profrezac.com/",,,,,,
-1388,"libramiento noreste de zacatecas",33,66,33,130,130,130,130,173,173,260,260,309,309,360,65,360,"https://profrezac.com/",,,,,,
-1389,"libramiento felipe carrillo puerto",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=245",,,,,,
-1390,"ent. Chetumal-ent. Merida",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=245",,,,,,
-1391,"ent. Chetumal-ent. Felipe carrillo puerto",,,,,,,,,,,,,,,,,"https://app.sct.gob.mx/sibuac_internet/ControllerUI?action=cmdDatosOperRepDet&idVia=245",,,,,,
-1392,"autopista benito juárez",,,,,,,,,,,,,,,,,"https://orler.com.mx/",,,,,,
-1393,"T2 CONMEX Origen entronque Lechería-Texcoco",,,,,,,,,,,,,,,,,"https://www.circuitoexterior.mx/rutas-y-tarifas/",,,,,,
-1394,"T1 JALTENCO Origen entronque Hank González",,,,,,,,,,,,,,,,,"https://www.circuitoexterior.mx/rutas-y-tarifas/",,,,,,
-1395,"T1 Tultepec Origen entronque Hank González",,,,,,,,,,,,,,,,,"https://www.circuitoexterior.mx/rutas-y-tarifas/",,,,,,
-1396,"A-12 entronque santa inés",,,,,,,,,,,,,,,,,"https://www.circuitoexterior.mx/rutas-y-tarifas/",,,,,,
-1397,"A-32 bis",,,,,,,,,,,,,,,,,"https://www.circuitoexterior.mx/rutas-y-tarifas/",,,,,,
-1398,"tuxtla gutierrez-san pedro",,,,,,,,,,,,,,,,,"tollbooth",,,,,,
-1399,"san luis potosi-villa juarez",,,,,,,,,,,,,,,,,"https://autopistasdecuota.com/ruta/san-luis-potosi",,,,,,
-1400,"villa juarez-rio verde",,,,,,,,,,,,,,,,,"https://autopistasdecuota.com/ruta/san-luis-potosi",,,,,,
-1401,"malinalco",,,,,,,,,,,,,,,,,"tollbooth",,,,,,
-1402,"calz. Vallejo-ceylan",,,,,,,,,,,,,,,,,"tollbooth",,,,,,
-1403,"autopista metlapil (viaducto punta diamante)-pinotepa",,,,,,,,,,,,,,,,,"tollbooth",,,,,,
-1404,"autopista metlapil (viaducto punta diamante)-la venta",,,,,,,,,,,,,,,,,"tollbooth",,,,,,
-1405,"virreyes-teziutlan",53,106,"$124.00",183,"$248.00","$248.00","$183.00","$248.00","$248.00","$478.00","$478.00","$478.00","$478.00","$478.00",142,,"viapass",,,,,,
-1406,"Virreyes-zaragoza",18,36,"$43.00",31,"$43.00","$43.00","$31.00","$43.00","$43.00","$82.00","$82.00","$82.00","$82.00","$82.00",50,,"viapass",,,,,,
-1407,"Atempan-teziutlan",30,59,"$65.00",62,"$103.00","$103.00","$62.00","$103.00","$103.00","$174.00","$174.00","$174.00","$174.00","$174.00",74,,"viapass",,,,,,
-1408,"Atempan-virreyes",40,79,"$93.00",112,"$170.00","$170.00","$112.00","$170.00","$170.00","$299.00","$299.00","$299.00","$299.00","$299.00",107,,"viapass",,,,,,
-1409,"virreyes-teziutlan",53,106,"$124.00",183,"$248.00","$248.00","$183.00","$248.00","$248.00","$478.00","$478.00","$478.00","$478.00","$478.00",142,,"viapass",,,,,,
-1410,"cerritos-ent. tula",,,,,,,,,,,,,,,,,"https://gipsaslp.com.mx/tarifas/",,,,,,
-1411,"zapotlan del rey-guadalajara",76,153,83,264,264,264,254,254,254,432,432,551,551,551,116,,"https://redviacorta.mx/es/tarifas",,,,,,47
-1412,"Guadalajara-zapotlanejo del rey",76,152,78,290,290,290,280,280,280,394,394,470,470,470,128,,"https://redviacorta.mx/es/tarifas",,,,,,29
-1413,"la sauceda-zapotlanejo",17,35,18,66,66,66,65,65,65,89,89,107,107,107,33,,"https://redviacorta.mx/es/tarifas",,,,,,
-1414,"la barca-san francisco de rivas",5,11,3,21,21,21,20,20,20,26,26,32,32,32,5,,"https://redviacorta.mx/es/tarifas",,,,,,
-1415,"Guadalajara-acatic",74,150,78,278,278,278,270,270,270,454,454,544,544,544,128,,"https://redviacorta.mx/es/tarifas",,,,,,28
-1416,"Ent. Libramiento calera-enrique estrada",,,,,,,,,,,,,,,,,"imt",,,,,,
-1417,"Ent. Libramiento calera-enrique estrada",,,,,,,,,,,,,,,,,"imt",,,,,,
-1418,"5 Sur Leyes de Reforma A",,,,,,,,,,,,,,,,,"imt",,,,,,
-1419,"4 Oriente Río Churubusco A",,,,,,,,,,,,,,,,,"imt",,,,,,
-1420,"La Nueva Viga",,,,,,,,,,,,,,,,,"imt",,,,,,
-1421,"6 Sur Luis Méndez A",,,,,,,,,,,,,,,,,"imt",,,,,,
-1422,"6 Sur Luis Méndez B",,,,,,,,,,,,,,,,,"imt",,,,,,
-1423,"CHAMAPA INBURSA – CUAUTITLAN",,,,,,,,,,,,,,,,,"imt",,,,,,
-1424,"CHAMAPA INBURSA – LOMAS VERDES",,,,,,,,,,,,,,,,,"imt",,,,,,
-1425,"LA VENTA – NOPALA",,,,,,,,,,,,,,,,,"imt",,,,,,
-1426,"APASEO EL GRANDE – ATLACOMULCO",,,,,,,,,,,,,,,,,"imt",,,,,,
-1427,"La Cinta - Ent. Cerro Gordo",,,,,,,,,,,,,,,,,,,,,,,
-1428,"CHAMAPA CAPUFE – HUIXQUILUCAN",,,,,,,,,,,,,,,,,"imt",,,,,,
-1429,"CHAMAPA CAPUFE – INTERLOMAS",,,,,,,,,,,,,,,,,"imt",,,,,,
-1430,"VILLA DE REYES - WTC",,,,,,,,,,,,,,,,,,,,,,,
-1431,"VILLA DE REYES - VILLA DE ARRIAGA",,,,,,,,,,,,,,,,,,,,,,,
-1432,"VILLA DE ARRIAGA - VILLA DE REYES",,,,,,,,,,,,,,,,,,,,,,,
-1433,"WTC - VILLA DE REYES",,,,,,,,,,,,,,,,,,,,,,,
-1434,"LOGISTIK - VILLA DE REYES",,,,,,,,,,,,,,,,,,,,,,,
-1435,"VILLA DE REYES - SAN LUIS POTOSÍ",,,,,,,,,,,,,,,,,,,,,,,
-1436,"CEYLAN -CALZ. VALLEJO",,,,,,,,,,,,,,,,,,,,,,,
-1437,"LA PEÑITA",,,,,,,,,,,,,,,,,,,,,,,
-1438,"OCOTLAN",,,,,,,,,,,,,,,,,,,,,,,
-1439,"OCOTLAN",,,,,,,,,,,,,,,,,,,,,,,
-1440,"HUEJOTZINGO",,,,,,,,,,,,,,,,,,,,,,,
-1441,"JIQUIPILAS",,,,,,,,,,,,,,,,,,,,,,,
-1442,"LA HINCADA",,,,,,,,,,,,,,,,,,,,,,,
-1443,"JILOTEPEC - SIN SALIDA",,,,,,,,,,,,,,,,,,,,,,,
-1444,"CALZ. VALLEJO-MÉXICO PACHUCA",,,,,,,,,,,,,,,,,,,,,,,
-1445,"CERRITOS",,,,,,,,,,,,,,,,,,,,,,,
-1446,"CERRITOS",,,,,,,,,,,,,,,,,,,,,,,
-1447,"CERRITOS",,,,,,,,,,,,,,,,,,,,,,,
-1448,"LA PEÑITA",,,,,,,,,,,,,,,,,,,,,,,
-1449,"LIB. SUR PTE. QRO.",,,,,,,,,,,,,,,,,,,,,,,
-1450,"LOGISTIK-VILLA DE REYES",,,,,,,,,,,,,,,,,,,,,,,
-1451,"SAN FELIPE-VILLA DE REYES",,,,,,,,,,,,,,,,,,,,,,,
-1452,"VILLA DE REYES-SAN FELIPE",,,,,,,,,,,,,,,,,,,,,,,
-1453,"Zaragoza-virreyes",18,36,"$43.00",31,"$43.00","$43.00","$31.00","$43.00","$43.00","$82.00","$82.00","$82.00","$82.00","$82.00",50,,"viapass",,,,,,
-1454,"Celaya-cerro gordo",,,,,,,,,,,,,,,,,"imt",,,,,,
-1455,"Xochitepec-alpuyeca",,,,,,,,,,,,,,,,,"capufe",,,,,,
-1456,"Puebla-zacatelco",,,,,,,,,,,,,,,,,"imt",,,,,,
-1457,"Zacatelco-puebla",,,,,,,,,,,,,,,,,"imt",,,,,,
-1458,"libramiento noreste zacatecas (ent. Saltillo)",,,,,,,,,,,,,,,,,"imt",,,,,,
-1459,"Tlaxcala-san martin texmelucan (arco norte)",,,,,,,,,,,,,,,,,"imt",,,,,,
-1460,,15,31,15,72,72,72,72,72,72,98,98,131,131,131,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx",,,,,,
-1461,,38,77,38,177,177,177,177,177,177,242,242,322,322,322,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx",,,,,,
-1462,,10,21,10,48,48,48,48,48,48,66,66,88,88,88,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx",,,,,,
-1463,,38,75,38,190,190,190,200,200,200,411,411,517,517,517,100,,"https://www.viapass.com.mx/Portal_web/tarifas",,,,,,
-1464,,7.5,15,,31,31,31,243,243,243,431,431,670,670,670,,,,,,,,,
+"stretch_id","motorbike","car","car_axle","bus_2_axle","bus_3_axle","bus_4_axle","truck_2_axle","truck_3_axle","truck_4_axle","truck_5_axle","truck_6_axle","truck_7_axle","truck_8_axle","truck_9_axle","truck_10_axle","load_axle","motorbike_axle","car_rush_hour","car_rush_hour_2","car_evening_hour","car_evening_hour_2","car_morning_night_hour","pedestrian","bicycle","residente","toll_ref"
+1,13,26,13,52,52,52,50,50,81,81,127,127,127,127,,25,,,,,,,,,,"tarifas_capufe.csv"
+2,13,26,13,52,52,52,50,50,81,81,127,127,127,127,,25,,,,,,,,,,"tarifas_capufe.csv"
+3,86,173,87,350,350,350,335,335,688,688,943,943,943,943,,168,,,,,,,,,,"tarifas_capufe.csv"
+4,26,53,27,137,137,137,129,129,261,261,366,366,366,366,,65,,,,,,,,,,"tarifas_capufe.csv"
+5,15,30,15,53,53,53,52,52,82,82,128,128,128,128,,26,,,,,,,,,,"tarifas_capufe.csv"
+6,33,66,33,110,110,110,110,110,110,150,150,210,210,210,,55,,,,,,,,,,"tarifas_capufe.csv"
+7,50,100,,194,194,194,194,230,230,353,353,472,472,472,,,,,,,,,,,,"tarifas_viapass.csv"
+8,122,244,,513,513,513,513,513,513,837,837,1024,1024,1024,,,,,,,,,,,,"tarifas_viapass.csv"
+9,65,130,,274,274,274,274,274,274,447,447,545,545,545,,,,,,,,,,,,"tarifas_viapass.csv"
+10,57,114,,239,239,239,239,239,239,392,392,478,478,478,,,,,,,,,,,,"tarifas_viapass.csv"
+11,47,94,47,196,196,196,187,187,360,360,480,480,480,480,,94,,,,,,,,,,"tarifas_capufe.csv"
+12,24,48,24,99,99,99,95,95,180,180,252,252,252,252,,48,,,,,,,,,,"tarifas_capufe.csv"
+13,8,16,8,37,37,37,36,36,64,64,82,82,82,82,,18,,,,,,,,,,"tarifas_capufe.csv"
+14,78,155,78,309,309,309,309,309,309,559,559,887,887,887,,,,,,,,,,,,"tarifas_autopistacuapiaxtlacuacnopalan.csv"
+15,48,97,48,193,193,193,193,193,193,348,348,553,553,553,,,,,,,,,,,,"tarifas_autopistacuapiaxtlacuacnopalan.csv"
+16,29,59,29,117,117,117,117,117,117,211,211,335,335,335,,,,,,,,,,,,"tarifas_autopistacuapiaxtlacuacnopalan.csv"
+17,89,178,89,409,409,409,386,386,745,745,1085,1085,1085,1085,,193,,,,,,,,,,"tarifas_capufe.csv"
+18,47,94,47,204,204,204,202,202,372,372,543,543,543,543,,101,,,,,,,,,,"tarifas_capufe.csv"
+19,47,94,47,204,204,204,202,202,372,372,543,543,543,543,,101,,,,,,,,,,"tarifas_capufe.csv"
+20,73,146,73,208,208,208,195,195,195,278,278,292,292,292,,98,,,,,,,,,,"tarifas_capufe.csv"
+21,50,100,50,144,144,144,132,132,132,184,184,181,181,181,,66,,,,,,,,,,"tarifas_capufe.csv"
+22,25,51,26,64,64,64,62,62,62,93,93,90,90,90,,31,,,,,,,,,,"tarifas_capufe.csv"
+23,68,136,68,226,226,226,223,223,223,288,288,336,336,336,,112,,,,,,,,,,"tarifas_capufe.csv"
+24,55,111,56,183,183,183,181,181,181,243,243,277,277,277,,91,,,,,,,,,,"tarifas_capufe.csv"
+25,10,21,11,43,43,43,39,39,39,47,47,53,53,53,,20,,,,,,,,,,"tarifas_capufe.csv"
+26,29,58,29,138,138,138,136,136,170,170,266,266,266,266,,68,,,,,,,,,,"tarifas_capufe.csv"
+27,21,42,21,71,71,71,70,70,99,99,146,146,146,146,,35,,,,,,,,,,"tarifas_capufe.csv"
+28,49,99,50,218,218,218,217,217,264,264,368,368,368,368,,109,,,,,,,,,,"tarifas_capufe.csv"
+29,24,48,24,111,111,111,106,106,127,127,183,183,183,183,,53,,,,,,,,,,"tarifas_capufe.csv"
+30,57,114,57,275,275,275,274,274,319,319,497,497,497,497,,137,,,,,,,,,,"tarifas_capufe.csv"
+31,49,98,49,204,204,204,208,208,264,264,330,330,330,330,,104,,,,,,,,,,"tarifas_capufe.csv"
+32,19,38,19,65,65,65,64,64,93,93,129,129,129,129,,32,,,,,,,,,,"tarifas_capufe.csv"
+33,122,245,123,490,490,490,490,490,490,734,734,1102,1102,1102,,245,,,,,,,,,,"tarifas_capufe.csv"
+34,122,245,123,490,490,490,490,490,490,734,734,1102,1102,1102,,245,,,,,,,,,,"tarifas_capufe.csv"
+35,145,290,145,457,457,457,381,381,381,561,561,647,647,647,,191,,,,,,,,,,"tarifas_capufe.csv"
+36,120,240,120,360,360,360,362,362,362,454,454,453,453,453,,181,,,,,,,,,,"tarifas_capufe.csv"
+37,24,49,25,99,99,99,95,95,95,106,106,101,101,101,,48,,,,,,,,,,"tarifas_capufe.csv"
+38,135,270,135,413,413,413,351,351,351,543,543,596,596,596,,176,,,,,,,,,,"tarifas_capufe.csv"
+39,87,175,88,252,252,252,246,246,246,319,319,306,306,306,,123,,,,,,,,,,"tarifas_capufe.csv"
+40,50,100,50,162,162,162,161,161,161,225,225,197,197,197,,81,,,,,,,,,,"tarifas_capufe.csv"
+41,25,51,25,90,90,90,90,90,182,182,264,264,264,264,,45,,,,,,,,,,"tarifas_tunelcoatzacoalcos.csv"
+42,83,166,279,452,452,452,475,475,475,748,748,889,889,889,,238,,,,,,,,,,"tarifas_autopistamitlatehuantepec.csv"
+43,75,151,256,420,420,420,442,442,442,696,696,827,827,827,,221,,,,,,,,,,"tarifas_autopistamitlatehuantepec.csv"
+44,70,141,216,301,301,301,316,316,316,499,499,592,592,592,,158,,,,,,,,,,"tarifas_autopistamitlatehuantepec.csv"
+45,24,49,25,103,103,103,99,99,143,143,179,179,179,179,,50,,,,,,,,,,"tarifas_capufe.csv"
+46,50,100,50,196,196,196,194,194,281,281,360,360,360,360,,97,,,,,,,,,,"tarifas_capufe.csv"
+47,25,50,25,103,103,103,99,99,144,144,180,180,180,180,,50,,,,,,,,,,"tarifas_capufe.csv"
+48,24,49,25,103,103,103,99,99,144,144,161,161,161,161,,50,,,,,,,,,,"tarifas_capufe.csv"
+49,13,26,13,47,47,47,47,47,100,100,146,146,146,146,,24,,,,,,,,,,"tarifas_capufe.csv"
+50,13,26,13,47,47,47,47,47,100,100,146,146,146,146,,24,,,,,,,,,,"tarifas_capufe.csv"
+51,13,26,13,47,47,47,47,47,100,100,146,146,146,146,,24,,,,,,,,,,"tarifas_capufe.csv"
+52,13,26,13,47,47,47,47,47,100,100,146,146,146,146,,24,,,,,,,,,,"tarifas_capufe.csv"
+53,11,22,11,40,40,40,40,40,70,70,108,108,108,108,,20,,,,,,,,,,"tarifas_capufe.csv"
+54,55,112,168,172,176,180,171,175,204,241,258,327,327,327,,84,,,,,,,,,,"tarifas_ganamexico.csv"
+56,28,56,83,66,70,76,66,70,76,86,86,130,130,130,,34,,,,,,,,,,"tarifas_ganamexico.csv"
+56,64,128,193,209,214,224,209,214,224,274,274,383,383,383,,106,,,,,,,,,,"tarifas_ganamexico.csv"
+57,36,72,110,143,144,148,143,144,148,188,188,253,253,253,,72,,,,,,,,,,"tarifas_ganamexico.csv"
+58,103,207,310,308,313,320,308,313,320,401,401,569,569,569,,155,,,,,,,,,,"tarifas_ganamexico.csv"
+59,33,66,99,107,111,116,107,111,116,153,153,208,208,208,,54,,,,,,,,,,"tarifas_ganamexico.csv"
+60,70,141,211,201,202,205,201,202,205,248,248,361,361,361,,102,,,,,,,,,,"tarifas_ganamexico.csv"
+61,37,75,112,96,98,105,96,98,105,140,140,175,175,175,,47,,,,,,,,,,"tarifas_ganamexico.csv"
+62,18,37,55,46,48,51,46,48,51,59,59,95,95,95,,21,,,,,,,,,,"tarifas_ganamexico.csv"
+65,103,206,103,252,252,252,257,257,257,347,481,682,682,682,,,,,,,,,,,,"tarifas_copexa.csv"
+66,103,206,103,243,243,243,391,391,391,496,634,692,692,692,,,,,,,,,,,,"tarifas_copexa.csv"
+67,43,85,43,,,,130,130,130,314,314,450,450,450,,,,,,,,,,,,"tarifas_caseta.csv"
+68,14,28,12,,,,64,64,64,124,124,149,149,149,,,,,,,,,,,,"tarifas_caseta.csv"
+70,13,26,13,47,47,47,47,47,100,100,146,146,146,146,,24,,,,,,,,,,"tarifas_capufe.csv"
+71,52,105,53,197,197,197,167,167,167,264,264,361,361,361,,84,,,,,,,,,,"tarifas_capufe.csv"
+72,17,35,18,50,50,50,50,50,50,64,64,68,68,68,,25,,,,,,,,,,"tarifas_capufe.csv"
+73,37,74,37,152,152,152,147,147,147,201,201,237,237,237,,74,,,,,,,,,,"tarifas_capufe.csv"
+74,53,106,53,197,197,197,168,168,168,264,264,362,362,362,,84,,,,,,,,,,"tarifas_capufe.csv"
+75,29,58,29,106,106,106,105,105,105,141,141,161,161,161,,53,,,,,,,,,,"tarifas_capufe.csv"
+76,24,48,24,99,99,99,95,95,95,125,125,155,155,155,,48,,,,,,,,,,"tarifas_capufe.csv"
+77,53,106,53,198,198,198,168,168,168,264,264,362,362,362,,84,,,,,,,,,,"tarifas_capufe.csv"
+78,52,105,53,215,,215,194,194,194,294,294,420,420,420,,97,,,,,,,,,,"tarifas_casmexico_fix.csv"
+78,52,105,,215,215,215,194,194,194,294,294,420,420,420,,,,,,,,,,,,"tarifas_viapass.csv"
+79,35,70,35,131,,131,100,100,100,173,173,236,236,236,,49,,,,,,,,,,"tarifas_casmexico_fix.csv"
+79,35,70,,131,131,131,100,100,100,173,173,236,236,236,,,,,,,,,,,,"tarifas_viapass.csv"
+80,58,116,58,231,,231,194,194,194,331,331,457,457,457,,97,,,,,,,,,,"tarifas_casmexico_fix.csv"
+81,16,32,16,74,,74,47,47,47,95,95,116,116,116,,23,,,,,,,,,,"tarifas_casmexico_fix.csv"
+82,37,75,37,142,,142,110,110,110,184,184,247,247,247,,55,,,,,,,,,,"tarifas_casmexico_fix.csv"
+82,37,75,,142,142,142,110,110,110,184,184,247,247,247,,,,,,,,,,,,"tarifas_viapass.csv"
+83,53,106,53,210,210,210,176,176,176,287,287,358,358,358,,88,,,,,,,,,,"tarifas_capufe.csv"
+84,24,49,25,107,107,107,106,106,106,146,146,155,155,155,,53,,,,,,,,,,"tarifas_capufe.csv"
+85,25,51,26,107,107,107,106,106,106,146,146,155,155,155,,53,,,,,,,,,,"tarifas_capufe.csv"
+86,38,77,39,176,176,176,197,197,197,230,230,230,230,230,,99,,,,,,,,,,"tarifas_capufe.csv"
+87,21,42,21,98,98,98,105,105,105,124,124,124,124,124,,53,,,,,,,,,,"tarifas_capufe.csv"
+88,18,37,19,79,79,79,93,93,93,106,106,106,106,106,,47,,,,,,,,,,"tarifas_capufe.csv"
+89,13,26,13,47,47,47,47,47,100,100,146,146,146,146,,24,,,,,,,,,,"tarifas_capufe.csv"
+90,13,26,13,47,47,47,47,47,100,100,146,146,146,146,,24,,,,,,,,,,"tarifas_capufe.csv"
+92,49,99,50,163,163,163,161,161,161,277,277,335,335,335,,81,,,,,,,,,,"tarifas_capufe.csv"
+93,30,61,31,111,111,111,106,106,106,181,181,197,197,197,,53,,,,,,,,,,"tarifas_capufe.csv"
+94,21,42,21,52,52,52,50,50,50,99,99,101,101,101,,25,,,,,,,,,,"tarifas_capufe.csv"
+95,84,168,90,356,356,356,355,355,493,642,763,935,935,935,,70,,,,,,,,,,"tarifas_circuitoexterior.csv"
+96,58,117,66,268,268,268,268,268,268,454,454,668,668,668,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+97,41,83,47,191,191,191,191,191,191,322,322,475,475,475,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+98,26,52,29,120,120,120,120,120,120,202,202,298,298,298,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+99,18,37,21,84,84,84,84,84,84,141,141,208,208,208,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+100,60,121,68,276,276,276,276,276,276,466,466,687,687,687,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+101,45,91,51,208,208,208,208,208,208,351,351,517,517,517,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+102,11,22,12,50,50,50,50,50,50,84,84,124,124,124,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+103,14,28,16,64,64,64,64,64,64,109,109,160,160,160,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+104,13,27,15,,,,,,,,,,,,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+105,6,12,7,,,,,,,,,,,,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+106,30,61,34,139,139,139,139,139,139,234,234,345,345,345,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+106,25,51,29,117,117,117,117,117,117,197,197,291,291,291,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+108,7,14,8,33,33,33,33,33,46,59,69,85,85,85,,7,,,,,,,,,,"tarifas_circuitoexterior.csv"
+109,17,35,19,79,79,79,79,79,79,133,133,197,197,197,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+111,56,112,63,257,257,257,257,257,257,434,434,640,640,640,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+112,3,7,7,28,28,28,28,28,28,48,48,71,71,71,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+113,49,98,55,223,223,223,223,223,223,377,377,556,556,556,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+114,13,26,14,59,59,59,59,59,59,99,99,146,146,146,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+114,13,26,14,59,59,59,59,59,59,99,99,146,146,146,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+115,8,17,10,40,40,40,40,40,40,67,67,99,99,99,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+115,8,17,10,40,40,40,40,40,40,67,67,99,99,99,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+116,21,43,24,98,98,98,98,98,98,166,166,245,245,245,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+117,15,31,17,71,71,71,71,71,71,120,120,176,176,176,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+120,14,29,15,52,52,52,52,52,106,106,146,146,146,146,,26,,,,,,,,,,"tarifas_autopistagolfocentro.csv"
+121,18,37,19,66,66,66,66,66,137,137,182,182,182,182,,33,,,,,,,,,,"tarifas_autopistagolfocentro.csv"
+122,22,45,24,85,85,85,85,85,156,169,214,230,230,230,,33,,,,,,,,,,"tarifas_autopistagolfocentro.csv"
+123,36,72,36,150,150,150,150,150,303,303,458,458,458,458,,75,,,,,,,,,18,"tarifas_autopistagolfocentro.csv"
+124,21,42,21,88,88,88,88,88,181,181,273,273,273,273,,44,,,,,,,,,,"tarifas_autopistagolfocentro.csv"
+125,58,116,,221,325,437,221,325,437,543,658,764,874,981,,,,,,,,,,,,"tarifas_viapass.csv"
+126,22,45,,80,124,161,80,124,161,204,244,282,325,368,,,,,,,,,,,,"tarifas_viapass.csv"
+127,22,45,,80,124,161,80,124,161,204,244,282,325,368,,,,,,,,,,,,"tarifas_viapass.csv"
+128,11,23,,43,66,88,43,66,88,110,133,153,175,198,,,,,,,,,,,,"tarifas_viapass.csv"
+129,55,110,,217,280,345,217,280,345,455,524,631,692,755,,,,,,,,,,,,"tarifas_viapass.csv"
+130,24,47,,85,148,213,85,148,213,253,322,365,426,489,,,,,,,,,,,,"tarifas_viapass.csv"
+131,13,26,,43,106,171,43,106,171,187,256,279,340,403,,,,,,,,,,,,"tarifas_viapass.csv"
+132,31,63,,132,132,132,132,132,132,202,202,266,266,266,,,,,,,,,,,,"tarifas_viapass.csv"
+132,31,63,,132,132,132,132,132,132,202,202,266,266,266,,,,,,,,,,,,"tarifas_viapass.csv"
+134,23,47,,103,103,103,103,103,103,153,153,203,203,203,,,,,,,,,,,,"tarifas_viapass.csv"
+135,58,116,58,178,178,178,178,178,212,212,287,287,287,287,,89,,,,,,,,,,"tarifas_autopistagolfocentro.csv"
+136,39,78,39,114,114,114,114,114,136,136,179,179,179,179,,57,,,,,,,,,,"tarifas_autopistagolfocentro.csv"
+137,20,40,20,56,56,56,56,56,71,71,88,88,88,88,,28,,,,,,,,,,"tarifas_autopistagolfocentro.csv"
+138,20,40,20,56,56,56,56,56,65,65,88,88,88,88,,28,,,,,,,,,,"tarifas_autopistagolfocentro.csv"
+139,49,99,60,209,209,,326,326,,621,621,743,743,,,157,,,,,,,,,,"tarifas_auneti.csv"
+140,49,99,60,209,209,,326,326,,621,621,743,743,,,157,,,,,,,,,,"tarifas_auneti.csv"
+141,29,58,30,138,138,138,138,138,273,273,403,403,403,403,,69,,,,,,,,,,"tarifas_autopistagolfocentro.csv"
+142,3,6,3,16,16,16,16,16,33,33,47,47,47,47,,8,,,,,,,,,,"tarifas_autopistagolfocentro.csv"
+143,89,179,89,414,414,414,414,414,619,619,714,714,714,714,,205,,,,,,,,,,"tarifas_autopistatuxpantampico.csv"
+144,187,376,187,870,870,870,870,870,1303,1303,1501,1501,1501,1501,,433,,,,,,,,,,"tarifas_autopistatuxpantampico.csv"
+145,98,197,98,456,456,456,456,456,684,684,787,787,787,787,,228,,,,,,,,,,"tarifas_autopistatuxpantampico.csv"
+146,23,46,23,106,106,106,106,106,159,159,181,181,181,181,,53,,,,,,,,,,"tarifas_autopistatuxpantampico.csv"
+147,7,15,8,39,39,39,37,37,37,53,53,67,67,67,,19,,,,,,,,,,"tarifas_capufe.csv"
+147,30,60,30,126,126,126,107,107,107,182,182,241,241,241,,54,,,,,,,,,,"tarifas_capufe.csv"
+148,22,45,23,88,88,88,84,84,84,135,135,182,182,182,,42,,,,,,,,,,"tarifas_capufe.csv"
+149,100,200,101,464,464,464,464,464,464,695,695,801,801,801,,232,,,,,,,,,,"tarifas_autopistacardelpozarica.csv"
+150,130,260,131,590,590,590,571,571,571,877,877,1042,1042,1042,,286,,,,,,,,,,"tarifas_autopistacardelpozarica.csv"
+151,64,128,64,295,295,295,295,295,295,442,442,509,509,509,,141,,,,,,,,,,"tarifas_autopistacardelpozarica.csv"
+152,160,320,160,732,732,732,732,732,732,1097,1097,1265,1265,1265,,365,,,,,,,,,,"tarifas_autopistacardelpozarica.csv"
+153,96,192,96,437,437,437,437,437,437,655,655,757,757,757,,219,,,,,,,,,,"tarifas_autopistacardelpozarica.csv"
+154,13,26,13,45,45,45,45,45,96,96,146,146,146,146,,,,,,,,,,,,"tarifas_capufe.csv"
+155,19,39,20,81,81,81,70,70,70,127,127,155,155,155,,35,,,,,,,,,,"tarifas_capufe.csv"
+156,9,19,10,44,44,44,43,43,43,64,64,77,77,77,,22,,,,,,,,,,"tarifas_capufe.csv"
+157,9,18,9,43,43,43,39,39,39,64,64,75,75,75,,20,,,,,,,,,,"tarifas_capufe.csv"
+158,18,38,19,82,82,82,82,82,151,151,210,210,210,210,,41,,,,,,,,,,"tarifas_capufe.csv"
+159,12,24,12,44,44,44,44,44,89,89,122,122,122,122,,23,,,,,,,,,,"tarifas_capufe.csv"
+160,56,113,57,269,269,269,257,257,517,517,743,743,743,743,,129,,,,,,,,,,"tarifas_capufe.csv"
+161,37,74,37,141,141,141,140,140,278,278,399,399,399,399,,70,,,,,,,,,,"tarifas_capufe.csv"
+162,56,113,57,251,251,251,240,240,482,482,703,703,703,703,,120,,,,,,,,,,"tarifas_capufe.csv"
+163,56,113,57,251,251,251,240,240,482,482,703,703,703,703,,120,,,,,,,,,,"tarifas_capufe.csv"
+164,51,103,52,216,216,216,210,210,415,415,583,583,583,583,,105,,,,,,,,,,"tarifas_capufe.csv"
+165,53,107,54,225,225,225,216,216,425,425,596,596,596,596,,108,,,,,,,,,,"tarifas_capufe.csv"
+166,50,100,50,196,196,196,195,195,378,378,533,533,533,533,,98,,,,,,,,,,"tarifas_capufe.csv"
+167,7,15,8,15,15,15,15,15,15,15,15,15,15,15,,8,,,,,,,,,,"tarifas_capufe.csv"
+168,29,29,15,59,59,59,65,65,65,102,102,155,155,155,,32,,,,,,,,,,"tarifas_libramientocelaya.csv"
+169,23,23,12,47,47,47,51,51,51,81,81,123,123,123,,25,,,,,,,,,,"tarifas_libramientocelaya.csv"
+170,36,36,18,72,72,72,78,78,78,135,135,195,195,195,,39,,,,,,,,,,"tarifas_libramientocelaya.csv"
+171,21,42,21,81,81,81,79,79,157,157,225,225,225,225,,40,,,,,,,,,,"tarifas_capufe.csv"
+172,30,61,31,132,132,132,134,134,232,232,342,342,342,342,,67,,,,,,,,,,"tarifas_capufe.csv"
+173,26,53,27,112,112,112,111,111,196,196,301,301,301,301,,56,,,,,,,,,,"tarifas_capufe.csv"
+174,7,15,8,44,44,44,43,43,104,104,119,119,119,119,,22,,,,,,,,,,"tarifas_capufe.csv"
+175,53,106,53,240,240,240,231,231,426,426,626,626,626,626,,116,,,,,,,,,,"tarifas_capufe.csv"
+176,36,73,37,173,173,173,170,170,330,330,445,445,445,445,,85,,,,,,,,,,"tarifas_capufe.csv"
+177,19,38,19,81,81,81,79,79,127,127,187,187,187,187,,40,,,,,,,,,,"tarifas_capufe.csv"
+178,31,62,30,122,,122,122,,122,182,182,246,,246,,,,,,,,,,,,"tarifas_libramientoirapuato.csv"
+179,15,31,16,62,,62,62,,62,95,95,124,,124,,,,,,,,,,,,"tarifas_libramientoirapuato.csv"
+180,9,18,8,41,,41,41,,41,55,55,75,,75,,,,,,,,,,,,"tarifas_libramientoirapuato.csv"
+181,21,43,21,86,,86,86,,86,125,125,174,,174,,,,,,,,,,,,"tarifas_libramientoirapuato.csv"
+182,34,69,34,158,158,158,158,158,158,216,216,288,288,288,,,,,,,,,,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx"
+183,52,105,52,241,241,241,241,241,241,329,329,439,439,439,,,,,,,,,,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx"
+184,25,50,25,116,116,116,116,116,116,158,158,211,211,211,,,,,,,,,,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx"
+185,27,54,27,124,124,124,124,124,124,170,170,227,227,227,,,,,,,,,,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx"
+186,15,31,15,72,72,72,72,72,72,98,98,131,131,131,,,,,,,,,,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx"
+187,23,38,7,69,69,69,69,69,116,116,183,183,183,183,,23,,,,,,,,,24.4,"tarifas_cvi.csv"
+188,92,185,99,343,343,343,339,339,339,478,478,568,568,568,,157,,,,,,,,,,"tarifas_redviacorta.csv"
+189,35,71,37,129,129,129,126,126,126,183,183,216,216,216,,59,,,,,,,,,,"tarifas_redviacorta.csv"
+190,30,60,32,106,106,106,102,102,102,153,153,189,189,189,,45,,,,,,,,,,"tarifas_redviacorta.csv"
+191,24,48,26,88,88,88,88,88,88,124,124,146,146,146,,41,,,,,,,,,,"tarifas_redviacorta.csv"
+192,24,49,20,87,87,87,83,83,83,122,122,148,148,148,,37,,,,,,,,,,"tarifas_redviacorta.csv"
+193,19,38,17,68,68,68,67,67,67,98,98,121,121,121,,34,,,,,,,,,,"tarifas_redviacorta.csv"
+194,10,21,8,40,40,40,39,39,39,56,56,65,65,65,,17,,,,,,,,,,"tarifas_redviacorta.csv"
+195,87,175,95,354,354,354,339,339,339,486,486,575,575,575,,168,,,,,,,,,,"tarifas_redviacorta.csv"
+196,37,74,39,159,159,159,148,148,148,208,208,238,238,238,,71,,,,,,,,,,"tarifas_redviacorta.csv"
+197,42,83,,167,167,167,167,167,167,250,250,334,334,334,,,,,,,,,,,,"tarifas_viapass.csv"
+197,39,77,39,155,,,,155,155,232,232,310,310,310,,,,,,,,,,,,"tarifas_operadoradelasultana_fix.csv"
+198,23,46,,91,91,91,91,91,91,137,137,182,182,182,,,,,,,,,,,,"tarifas_viapass.csv"
+198,21,42,21,85,,,,85,85,127,127,169,169,169,,,,,,,,,,,,"tarifas_operadoradelasultana_fix.csv"
+199,18,35,18,70,,,,70,70,105,105,141,141,141,,,,,,,,,,,,"tarifas_operadoradelasultana_fix.csv"
+199,19,38,,76,76,76,76,76,76,114,114,152,152,152,,,,,,,,,,,,"tarifas_viapass.csv"
+200,23,44,23,64,64,64,64,64,89,89,115,115,115,115,,32,,,,,,,,,,"tarifas_capufe.csv"
+201,105,210,115,394,394,394,383,383,383,584,584,780,780,780,,185,,,,,,,,,,"tarifas_redviacorta.csv"
+202,61,122,70,223,223,223,212,212,212,360,360,458,458,458,,98,,,,,,,,,,"tarifas_redviacorta.csv"
+203,44,88,46,171,171,171,171,171,171,225,225,322,322,322,,87,,,,,,,,,,"tarifas_redviacorta.csv"
+204,36,73,39,131,131,131,128,128,128,203,203,257,257,257,,59,,,,,,,,,,"tarifas_redviacorta.csv"
+205,17,35,24,65,65,65,61,61,61,98,98,114,114,114,,34,,,,,,,,,,"tarifas_redviacorta.csv"
+206,127,256,139,445,445,445,428,428,428,742,742,938,938,938,,200,,,,,,,,,,"tarifas_redviacorta.csv"
+207,104,209,118,371,371,371,354,354,354,647,647,818,818,818,,164,,,,,,,,,,"tarifas_redviacorta.csv"
+210,75,152,83,276,276,276,266,266,266,494,494,629,629,629,,124,,,,,,,,,,"tarifas_redviacorta.csv"
+215,23,46,22,75,75,75,75,75,75,95,95,120,120,120,,36,,,,,,,,,,"tarifas_redviacorta.csv"
+216,73,146,73,309,309,309,299,299,299,442,442,617,617,617,,150,,,,,,,,,,"tarifas_capufe.csv"
+217,55,110,55,186,186,,186,186,186,299,299,466,466,466,,,,,,,,,,,,"tarifas_libramientoslp.csv"
+218,54,109,55,212,212,212,212,212,212,328,328,509,509,509,,,,,,,,,,,,"tarifas_libramientoslp.csv"
+219,42,85,43,147,147,,147,147,147,238,238,369,369,369,,,,,,,,,,,,"tarifas_libramientoslp.csv"
+220,29,59,29,101,101,,101,101,101,164,164,251,251,251,,,,,,,,,,,,"tarifas_libramientoslp.csv"
+221,14,29,15,50,50,,50,50,50,81,81,125,125,125,,,,,,,,,,,,"tarifas_libramientoslp.csv"
+222,55,110,55,186,186,,186,186,186,299,299,466,466,466,,,,,,,,,,,,"tarifas_libramientoslp.csv"
+223,17,35,17,58,58,,58,58,58,92,92,145,145,145,,,,,,,,,,,,"tarifas_libramientoslp.csv"
+224,32,65,33,118,118,118,112,112,112,121,121,166,166,166,,56,,,,,,,,,,"tarifas_capufe.csv"
+224,32,65,33,118,118,118,112,112,112,121,121,166,166,166,,56,,,,,,,,,,"tarifas_capufe.csv"
+225,102,203,,348,348,348,348,447,447,447,447,794,794,794,,70,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+226,76,151,,260,260,260,260,335,335,335,335,597,597,597,,70,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+228,69,138,,236,236,236,236,299,299,296,296,541,541,541,,70,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+229,33,65,,112,112,112,112,147,147,147,147,254,254,254,,70,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+230,30,59,,107,107,107,107,137,137,137,137,242,242,242,,70,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+234,76,151,,260,260,260,260,335,335,335,335,597,597,597,,70,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+235,27,53,,87,87,87,87,110,110,110,110,199,199,199,,70,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+238,64,128,64,242,242,242,242,242,242,375,375,457,457,457,,121,,,,,,,,,,"tarifas_capufe.csv"
+238,64,128,64,242,242,242,242,242,242,375,375,457,457,457,,121,,,,,,,,,,"tarifas_capufe.csv"
+239,37,74,37,141,141,141,141,141,141,221,221,267,267,267,,71,,,,,,,,,,"tarifas_capufe.csv"
+240,26,52,26,101,101,101,101,101,101,154,154,190,190,190,,51,,,,,,,,,,"tarifas_capufe.csv"
+241,6,12,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viapass.csv"
+242,58,116,,244,244,244,244,244,244,367,367,487,487,487,,,,,,,,,,,,"tarifas_viapass.csv"
+243,29,58,,122,122,122,122,122,122,183,183,244,244,244,,,,,,,,,,,,"tarifas_viapass.csv"
+244,29,58,,122,122,122,122,122,122,183,183,244,244,244,,,,,,,,,,,,"tarifas_viapass.csv"
+245,29,58,,122,122,122,122,122,122,183,183,244,244,244,,,,,,,,,,,,"tarifas_viapass.csv"
+246,29,58,,122,122,122,122,122,122,183,183,244,244,244,,,,,,,,,,,,"tarifas_viapass.csv"
+247,37,75,,158,158,158,158,158,158,237,237,315,315,315,,,,,,,,,,,,"tarifas_viapass.csv"
+248,38,76,,98,143,203,98,143,203,368,394,320,368,394,,,,,,,,,,,,"tarifas_viapass.csv"
+249,18,37,,48,74,104,48,74,104,122,144,163,189,201,,,,,,,,,,,,"tarifas_viapass.csv"
+250,22,45,,67,99,136,67,99,136,173,217,257,289,333,,,,,,,,,,,,"tarifas_viapass.csv"
+251,18,37,,54,78,108,54,78,108,139,175,205,233,265,,,,,,,,,,,,"tarifas_viapass.csv"
+252,27,54,27,107,161,215,107,,,215,215,215,215,215,,,,,,,,,,,,"tarifas_autopista_lerma_tenango.csv"
+253,23,47,23,94,141,188,94,,,188,188,188,188,188,,,,,,,,,,,,"tarifas_autopista_lerma_tenango.csv"
+256,55,111,166,222,222,,222,222,445,445,445,445,445,445,,,,,,,,,,,,"tarifas_libramientotoluca.csv"
+257,35,70,105,139,139,,139,139,279,279,279,279,279,279,,,,,,,,,,,,"tarifas_libramientotoluca.csv"
+258,21,42,63,83,83,,83,83,166,166,166,166,166,166,,,,,,,,,,,,"tarifas_libramientotoluca.csv"
+258,21,42,63,83,83,,83,83,166,166,166,166,166,166,,,,,,,,,,,,"tarifas_libramientotoluca.csv"
+259,88,177,88,355,355,355,355,355,355,532,532,710,710,710,,,,,,,,,,,,"tarifas_autopistasdecuota_edomex.csv"
+260,65,131,65,262,262,262,262,262,262,393,393,523,523,523,,,,,,,,,,,,"tarifas_autopistasdecuota_edomex.csv"
+261,23,47,23,93,93,93,93,93,93,140,140,186,186,186,,,,,,,,,,,,"tarifas_autopistasdecuota_edomex.csv"
+262,66,133,66,265,265,265,265,265,265,398,398,530,530,530,,,,,,,,,,,,"tarifas_autopistasdecuota_edomex.csv"
+264,54,108,54,216,216,216,216,216,216,325,325,433,433,433,,,,,,,,,,,,"tarifas_autopistasdecuota_edomex.csv"
+265,12,24,12,49,49,49,49,49,49,73,73,98,98,98,,,,,,,,,,,,"tarifas_autopistasdecuota_edomex.csv"
+266,33,66,33,132,132,132,132,132,132,198,198,264,264,264,,,,,,,,,,,,"tarifas_autopistasdecuota_edomex.csv"
+270,34,69,35,148,148,148,148,148,148,227,227,288,288,288,,74,,,,,,,,,,"tarifas_autopistaatlacomulcomaravatio.csv"
+271,34,69,35,148,148,148,148,148,148,227,227,288,288,288,,74,,,,,,,,,,"tarifas_autopistaatlacomulcomaravatio.csv"
+272,100,200,102,425,425,425,409,409,409,554,554,660,660,660,,189,,,,,,,,,,"tarifas_redviacorta.csv"
+273,52,104,52,213,213,213,207,207,207,280,280,332,332,332,,96,,,,,,,,,,"tarifas_redviacorta.csv"
+274,48,97,51,212,212,212,202,202,202,273,273,328,328,328,,93,,,,,,,,,,"tarifas_redviacorta.csv"
+275,28,57,31,123,123,123,113,113,113,159,159,194,194,194,,55,,,,,,,,,,"tarifas_redviacorta.csv"
+276,9,19,8,40,40,40,39,39,39,55,55,64,64,64,,17,,,,,,,,,,"tarifas_redviacorta.csv"
+277,130,261,138,551,551,551,539,539,539,776,776,904,904,904,,248,,,,,,,,,,"tarifas_redviacorta.csv"
+278,84,169,90,353,353,353,346,346,346,492,492,566,566,566,,157,,,,,,,,,,"tarifas_redviacorta.csv"
+279,50,101,55,213,213,213,209,209,209,288,288,321,321,321,,97,,,,,,,,,,"tarifas_redviacorta.csv"
+280,45,91,49,199,199,199,194,194,194,284,284,339,339,339,,91,,,,,,,,,,"tarifas_redviacorta.csv"
+281,70,140,75,290,290,290,286,286,286,409,409,486,486,486,,132,,,,,,,,,,"tarifas_redviacorta.csv"
+282,40,80,49,189,189,189,186,186,186,266,266,318,318,318,,87,,,,,,,,,,"tarifas_redviacorta.csv"
+283,20,40,17,71,71,71,68,68,68,96,96,111,111,111,,35,,,,,,,,,,"tarifas_redviacorta.csv"
+284,13,27,17,67,67,67,65,65,65,93,93,120,120,120,,32,,,,,,,,,,"tarifas_redviacorta.csv"
+285,137,275,149,527,527,527,511,511,511,784,784,977,977,977,,240,,,,,,,,,,"tarifas_redviacorta.csv"
+287,102,206,111,390,390,390,373,373,373,609,609,778,778,778,,176,,,,,,,,,,"tarifas_redviacorta.csv"
+296,35,70,37,138,138,138,138,138,138,173,173,199,199,199,,64,,,,,,,,,,"tarifas_redviacorta.csv"
+298,40,80,49,189,189,189,186,186,186,266,266,318,318,318,,87,,,,,,,,,,"tarifas_redviacorta.csv"
+299,8,15,8,23,23,23,23,23,35,35,54,54,54,54,,12,,,,,,,,,,"tarifas_capufe.csv"
+301,26,52,,106,106,106,101,101,101,170,170,234,234,234,,,,,,,,,,,,"tarifas_viapass.csv"
+303,42,85,,168,168,168,168,168,168,253,253,336,336,336,,,,,,,,,,,,"tarifas_viapass.csv"
+304,13,25,,51,51,51,51,51,51,76,76,102,102,102,,,,,,,,,,,,"tarifas_viapass.csv"
+305,46,92,,231,231,231,232,232,232,348,348,465,465,465,,,,,,,,,,,,"tarifas_viapass.csv"
+305,46,92,,231,231,231,232,232,232,348,348,465,465,465,,,,,,,,,,,,"tarifas_viapass.csv"
+305,46,92,,231,231,231,255,255,255,418,418,559,559,559,,,,,,,,,,,,"tarifas_autopistasmichoacan.csv"
+306,39,79,,198,198,198,199,199,199,298,298,397,397,397,,,,,,,,,,,,"tarifas_viapass.csv"
+306,39,79,,198,198,198,219,219,219,358,358,477,477,477,,,,,,,,,,,,"tarifas_autopistasmichoacan.csv"
+307,63,126,,309,309,309,297,297,297,451,451,622,622,622,,,,,,,,,,,,"tarifas_viapass.csv"
+307,63,126,,309,309,309,328,328,328,542,542,747,747,747,,,,,,,,,,,,"tarifas_autopistasmichoacan.csv"
+308,37,74,,203,203,203,196,196,196,281,281,388,388,388,,,,,,,,,,,,"tarifas_viapass.csv"
+309,25,50,,73,73,73,72,72,72,114,114,154,154,154,,,,,,,,,,,,"tarifas_viapass.csv"
+310,40,81,,160,160,160,156,156,156,246,246,326,326,326,,,,,,,,,,,,"tarifas_viapass.csv"
+310,40,81,,160,160,160,180,180,180,295,295,392,392,392,,,,,,,,,,,,"tarifas_autopistasmichoacan.csv"
+311,31,62,,126,126,126,124,124,124,174,174,247,247,247,,,,,,,,,,,,"tarifas_viapass.csv"
+312,9,19,,32,32,32,31,31,31,73,73,83,83,83,,,,,,,,,,,,"tarifas_viapass.csv"
+313,40,81,,163,163,163,182,182,182,295,295,391,391,391,,,,,,,,,,,,"tarifas_autopistasmichoacan.csv"
+314,30,60,,126,126,126,124,124,124,174,174,246,246,246,,,,,,,,,,,,"tarifas_viapass.csv"
+315,11,22,,35,35,35,33,33,33,73,73,82,82,82,,,,,,,,,,,,"tarifas_viapass.csv"
+316,74,149,,313,313,313,311,311,311,464,464,618,618,618,,,,,,,,,,,,"tarifas_viapass.csv"
+316,74,149,,313,313,313,342,342,342,604,604,803,803,803,,,,,,,,,,,,"tarifas_autopistasmichoacan.csv"
+317,110,221,,469,469,469,464,464,464,695,695,926,926,926,,,,,,,,,,,,"tarifas_viapass.csv"
+318,74,149,,313,313,313,311,311,311,464,464,618,618,618,,,,,,,,,,,,"tarifas_viapass.csv"
+318,74,149,,313,313,313,342,342,342,604,604,803,803,803,,,,,,,,,,,,"tarifas_autopistasmichoacan.csv"
+319,37,74,,159,159,159,157,157,157,234,234,310,310,310,,,,,,,,,,,,"tarifas_viapass.csv"
+320,78,156,78,301,301,301,299,299,299,512,512,748,748,748,,150,,,,,,,,,,"tarifas_capufe.csv"
+321,28,56,28,132,132,132,128,128,128,252,252,365,365,365,,64,,,,,,,,,,"tarifas_capufe.csv"
+322,10,20,10,39,39,39,39,39,39,62,62,93,93,93,,20,,,,,,,,,,"tarifas_capufe.csv"
+323,43,86,43,159,159,159,156,156,156,254,254,374,374,374,,78,,,,,,,,,,"tarifas_capufe.csv"
+324,33,66,33,122,122,122,119,119,119,195,195,289,289,289,,60,,,,,,,,,,"tarifas_capufe.csv"
+325,32,64,32,118,118,118,116,116,116,191,191,282,282,282,,58,,,,,,,,,,"tarifas_capufe.csv"
+326,26,53,27,100,100,100,98,98,98,159,159,234,234,234,,49,,,,,,,,,,"tarifas_capufe.csv"
+327,23,46,23,82,82,82,80,80,80,134,134,196,196,196,,40,,,,,,,,,,"tarifas_capufe.csv"
+328,16,33,17,60,60,60,58,58,58,98,98,140,140,140,,29,,,,,,,,,,"tarifas_capufe.csv"
+329,10,20,10,39,39,39,39,39,39,62,62,93,93,93,,20,,,,,,,,,,"tarifas_capufe.csv"
+330,16,33,17,60,60,60,58,58,58,98,98,140,140,140,,29,,,,,,,,,,"tarifas_capufe.csv"
+331,16,33,17,59,59,59,58,58,58,95,95,140,140,140,,29,,,,,,,,,,"tarifas_capufe.csv"
+332,6,12,6,22,22,22,22,22,22,38,38,56,56,56,,11,,,,,,,,,,"tarifas_capufe.csv"
+333,26,53,27,100,100,100,98,98,98,159,159,234,234,234,,49,,,,,,,,,,"tarifas_capufe.csv"
+334,43,86,43,159,159,159,156,156,156,254,254,374,374,374,,78,,,,,,,,,,"tarifas_capufe.csv"
+335,33,66,33,122,122,122,119,119,119,195,195,289,289,289,,60,,,,,,,,,,"tarifas_capufe.csv"
+336,32,64,32,118,118,118,116,116,116,191,191,282,282,282,,58,,,,,,,,,,"tarifas_capufe.csv"
+337,23,46,23,82,82,82,80,80,80,134,134,196,196,196,,40,,,,,,,,,,"tarifas_capufe.csv"
+339,6,12,6,22,22,22,22,22,22,38,38,56,56,56,,11,,,,,,,,,,"tarifas_capufe.csv"
+340,5,10,5,16,16,16,15,15,15,23,23,32,32,32,,8,,,,,,,,,,"tarifas_capufe.csv"
+341,8,16,8,36,36,36,35,35,35,44,44,46,46,46,,18,,,,,,,,,,"tarifas_capufe.csv"
+342,16,33,17,44,44,44,43,43,43,49,49,53,53,53,,22,,,,,,,,,,"tarifas_capufe.csv"
+343,50,100,50,178,178,178,178,178,178,222,222,242,242,242,,89,,,,,,,,,,"tarifas_capufe.csv"
+344,34,68,34,124,124,124,122,122,122,153,153,172,172,172,,61,,,,,,,,,,"tarifas_capufe.csv"
+345,104,209,105,453,453,453,449,449,449,591,591,654,654,654,,225,,,,,,,,,,"tarifas_capufe.csv"
+346,63,126,63,267,267,267,269,269,269,358,358,363,363,363,,135,,,,,,,,,,"tarifas_capufe.csv"
+347,40,80,40,182,182,182,181,181,181,235,235,217,217,217,,91,,,,,,,,,,"tarifas_capufe.csv"
+348,95,190,95,262,262,262,262,262,262,345,345,386,386,386,,131,,,,,,,,,,"tarifas_capufe.csv"
+349,85,171,86,248,248,248,245,245,245,335,335,375,375,375,,123,,,,,,,,,,"tarifas_capufe.csv"
+350,29,58,29,97,97,97,97,97,97,126,126,141,141,141,,49,,,,,,,,,,"tarifas_capufe.csv"
+351,23,46,23,99,99,99,95,95,95,144,144,204,204,204,,48,,,,,,,,,,"tarifas_capufe.csv"
+352,9,19,10,39,39,39,37,37,62,62,77,77,77,77,,19,,,,,,,,,,"tarifas_capufe.csv"
+353,56,112,56,238,238,238,237,237,237,435,435,596,596,596,,119,,,,,,,,,,"tarifas_capufe.csv"
+355,43,85,128,85,85,,,,,,,,,,,,,,,,,,,,47,"tarifas_macrotunelacapulco.csv"
+363,38,77,44,127,127,127,122,122,122,251,251,338,338,338,,56,,,,,,,,,,"tarifas_redviacorta.csv"
+365,19,38,24,71,71,71,71,71,71,144,144,193,193,193,,35,,,,,,,,,,"tarifas_redviacorta.csv"
+366,13,27,16,44,44,44,44,44,44,93,93,122,122,122,,18,,,,,,,,,,"tarifas_redviacorta.csv"
+367,12,25,13,40,40,40,41,41,41,82,82,110,110,110,,17,,,,,,,,,,"tarifas_redviacorta.csv"
+368,9,18,6,27,27,27,27,27,27,57,57,75,75,75,,10,,,,,,,,,,"tarifas_redviacorta.csv"
+369,49,98,51,123,123,123,124,124,124,190,190,207,207,207,,61,,,,,,,,,,"tarifas_autopistaguadalajaratepic.csv"
+370,5,10,4,13,13,13,13,13,13,21,21,21,21,21,,5,,,,,,,,,,"tarifas_autopistaguadalajaratepic.csv"
+371,61,122,62,155,155,155,154,154,154,236,236,265,265,265,,76,,,,,,,,,,"tarifas_autopistaguadalajaratepic.csv"
+372,153,308,158,397,397,397,389,389,389,586,586,648,648,648,,197,,,,,,,,,,"tarifas_autopistaguadalajaratepic.csv"
+375,61,122,60,180,180,180,180,180,180,298,298,396,396,396,,89,,,,,,,,,,"tarifas_autopistaguadalajaracolima.csv"
+376,46,92,45,138,138,138,138,138,138,223,223,301,301,301,,67,,,,,,,,,,"tarifas_autopistaguadalajaracolima.csv"
+377,22,44,22,57,57,57,57,57,57,115,115,146,146,146,,30,,,,,,,,,,"tarifas_autopistaguadalajaracolima.csv"
+378,106,213,108,316,316,316,316,316,316,523,523,695,695,695,,159,,,,,,,,,,"tarifas_autopistaguadalajaracolima.csv"
+379,0,0,0,411,506,618,411,506,618,694,841,952,1050,1097,,,,,,,,,,,,"tarifas_viapass.csv"
+380,106,214,107,287,287,287,278,278,278,413,413,454,454,454,,140,,,,,,,,,,"tarifas_autopistaguadalajaratepic.csv"
+381,26,52,27,67,67,67,62,62,62,82,82,90,90,90,,34,,,,,,,,,,"tarifas_autopistaguadalajaratepic.csv"
+382,160,320,158,366,366,366,369,369,369,596,596,672,672,672,,185,,,,,,,,,,"tarifas_autopistaguadalajaratepic.csv"
+383,93,187,98,274,274,274,267,267,267,409,409,449,449,449,,130,,,,,,,,,,"tarifas_autopistaguadalajaratepic.csv"
+384,51,102,49,140,140,140,135,135,135,202,202,230,230,230,,67,,,,,,,,,,"tarifas_autopistaguadalajaratepic.csv"
+385,44,88,44,134,134,134,129,129,129,205,205,220,220,220,,66,,,,,,,,,,"tarifas_autopistaguadalajaratepic.csv"
+386,52,104,52,128,128,128,128,128,128,200,200,221,221,221,,64,,,,,,,,,,"tarifas_autopistaguadalajaratepic.csv"
+389,20,41,20,81,81,81,81,81,156,156,216,216,216,216,,41,,,,,,,,,,"tarifas_capufe.csv"
+390,107,214,107,272,272,272,272,272,510,510,705,705,705,705,,136,,,,,,,,,,"tarifas_autopistajalacompostela.csv"
+391,86,172,86,218,218,218,218,218,410,410,567,567,567,567,,109,,,,,,,,,,"tarifas_autopistajalacompostela.csv"
+393,54,109,55,136,136,136,136,136,258,258,358,358,358,358,,68,,,,,,,,,,"tarifas_autopistajalacompostela.csv"
+394,21,42,21,60,60,60,60,60,60,99,99,137,137,137,,28,,,,,,,,,,"tarifas_tepicmazatlan.csv"
+395,75,151,75,252,252,252,252,252,252,438,438,625,625,625,,125,,,,,,,,,,"tarifas_tepicmazatlan.csv"
+396,39,78,39,121,121,121,121,121,121,214,214,274,274,274,,61,,,,,,,,,,"tarifas_tepicmazatlan.csv"
+397,107,215,107,351,351,351,351,351,351,602,602,812,812,812,,173,,,,,,,,,,"tarifas_tepicmazatlan.csv"
+398,49,99,49,137,137,137,137,137,137,214,214,296,296,296,,70,,,,,,,,,,"tarifas_tepicmazatlan.csv"
+399,220,440,220,756,756,756,756,756,756,1272,1272,1742,1742,1742,,380,,,,,,,,,,"tarifas_tepicmazatlan.csv"
+400,110,220,110,378,378,378,378,378,378,636,636,871,871,871,,190,,,,,,,,,,"tarifas_tepicmazatlan.csv"
+401,125,251,125,428,428,428,428,428,428,647,647,789,789,789,,213,,,,,,,,,,"tarifas_tepicmazatlan.csv"
+402,63,126,63,214,214,214,214,214,214,323,323,395,395,395,,106,,,,,,,,,,"tarifas_tepicmazatlan.csv"
+412,13,26,13,47,47,47,47,47,100,100,146,146,146,146,,24,,,,,,,,,,"tarifas_capufe.csv"
+413,13,26,13,47,47,47,47,47,100,100,146,146,146,146,,24,,,,,,,,,,"tarifas_capufe.csv"
+414,52,105,53,176,176,176,172,172,172,256,256,296,296,296,,86,,,,,,,,,,"tarifas_capufe.csv"
+415,61,122,61,268,268,268,268,268,268,402,402,463,463,463,,134,,,,,,,,,,"tarifas_lico.csv"
+416,57,114,57,194,194,194,191,191,191,287,287,330,330,330,,96,,,,,,,,,,"tarifas_capufe.csv"
+417,57,114,57,194,194,194,191,191,191,287,287,330,330,330,,96,,,,,,,,,,"tarifas_capufe.csv"
+418,57,114,57,194,194,194,190,190,190,287,287,330,330,330,,95,,,,,,,,,,"tarifas_capufe.csv"
+419,24,48,24,106,106,106,107,107,107,157,157,187,187,187,,54,,,,,,,,,,"tarifas_capufe.csv"
+420,57,114,57,195,195,195,191,191,191,287,287,345,345,345,,96,,,,,,,,,,"tarifas_capufe.csv"
+421,19,38,19,64,64,64,64,64,64,99,99,127,127,127,,32,,,,,,,,,,"tarifas_capufe.csv"
+422,38,77,38,179,179,179,179,179,179,267,267,308,308,308,,89,,,,,,,,,,"tarifas_libramientohermosillo.csv"
+423,79,158,79,363,363,363,363,363,363,545,545,628,628,628,,182,,,,,,,,,,"tarifas_libramientohermosillo.csv"
+424,40,81,40,185,185,185,185,185,185,277,277,319,319,319,,92,,,,,,,,,,"tarifas_libramientohermosillo.csv"
+425,105,211,106,435,435,435,435,435,642,642,879,879,879,879,,218,,,,,,,,,,"tarifas_capufe.csv"
+426,79,158,79,329,329,329,329,329,477,477,641,641,641,641,,165,,,,,,,,,,"tarifas_capufe.csv"
+428,199,399,200,829,829,829,829,829,1219,1219,1670,1670,1670,1670,,415,,,,,,,,,,"tarifas_capufe.csv"
+429,63,126,63,262,262,262,262,262,387,387,528,528,528,528,,131,,,,,,,,,,"tarifas_capufe.csv"
+430,42,84,42,176,176,176,176,176,257,257,354,354,354,354,,88,,,,,,,,,,"tarifas_capufe.csv"
+431,76,153,76,262,262,262,262,341,341,500,500,665,665,665,,131,,,,,,,,,,"tarifas_autopistasdecuota_durango_coahuila.csv"
+432,88,176,88,301,301,301,301,392,392,574,574,765,765,765,,150,,,,,,,,,,"tarifas_autopistasdecuota_durango_coahuila.csv"
+434,54,109,55,171,171,171,171,235,235,336,336,396,396,396,,86,,,,,,,,,,"tarifas_autopistasdecuota_durango_coahuila.csv"
+435,35,70,35,109,109,109,109,145,145,205,205,293,293,293,,55,,,,,,,,,,"tarifas_autopistasdecuota_durango_coahuila.csv"
+437,87,174,87,311,311,311,311,400,400,584,584,764,764,764,,156,,,,,,,,,,"tarifas_autopistasdecuota_durango_coahuila.csv"
+438,32,64,32,114,114,114,114,145,145,217,217,277,277,277,,57,,,,,,,,,,"tarifas_autopistasdecuota_durango_coahuila.csv"
+440,36,73,36,125,125,125,125,162,162,237,237,317,317,317,,62,,,,,,,,,,"tarifas_autopistasdecuota_durango_coahuila.csv"
+441,27,54,28,93,93,93,93,121,121,178,178,236,236,236,,47,,,,,,,,,,"tarifas_autopistasdecuota_durango_coahuila.csv"
+442,50,100,50,183,183,183,159,159,159,233,233,264,264,264,,80,,,,,,,,,,"tarifas_capufe.csv"
+443,88,176,88,306,306,306,268,268,268,369,369,419,419,419,,134,,,,,,,,,,"tarifas_capufe.csv"
+444,80,161,81,244,244,244,215,215,215,362,362,416,416,416,,108,,,,,,,,,,"tarifas_capufe.csv"
+445,91,183,92,261,261,261,229,229,229,369,369,404,404,404,,115,,,,,,,,,,"tarifas_capufe.csv"
+446,23,46,23,81,81,81,81,81,81,135,135,166,166,166,,41,,,,,,,,,,"tarifas_capufe.csv"
+447,22,45,23,81,81,81,81,81,81,135,135,163,163,163,,41,,,,,,,,,,"tarifas_capufe.csv"
+448,40,80,40,146,146,146,156,156,156,278,278,288,288,288,,77,,,,,,,,,,"tarifas_operadoravial.csv"
+449,27,54,27,100,100,100,107,107,107,190,190,195,195,195,,53,,,,,,,,,,"tarifas_operadoravial.csv"
+450,13,26,13,46,46,46,49,49,49,88,88,93,93,93,,24,,,,,,,,,,"tarifas_operadoravial.csv"
+451,31,62,31,112,112,112,124,124,124,232,232,242,242,242,,62,,,,,,,,,,"tarifas_operadoravial.csv"
+452,16,33,16,63,63,63,70,70,70,135,135,140,140,140,,35,,,,,,,,,,"tarifas_operadoravial.csv"
+453,14,29,14,49,49,49,54,54,54,97,97,102,102,102,,27,,,,,,,,,,"tarifas_operadoravial.csv"
+454,75,150,75,282,282,282,309,309,309,559,559,583,583,583,,154,,,,,,,,,,"tarifas_operadoravial.csv"
+455,51,103,51,170,170,170,187,187,187,338,338,352,352,352,,93,,,,,,,,,,"tarifas_operadoravial.csv"
+456,23,47,23,112,112,112,122,122,122,221,221,231,231,231,,61,,,,,,,,,,"tarifas_operadoravial.csv"
+457,11,22,11,35,35,35,35,35,35,51,51,51,51,51,,17,,,,,,,,,,"tarifas_operadoravial.csv"
+458,29,58,29,97,97,97,97,97,97,141,141,141,141,141,,48,,,,,,,,,,"tarifas_operadoravial.csv"
+459,26,53,27,84,84,84,,,,,,,,,,,,,,,,,,,,"tarifas_capufe.csv"
+459,26,53,27,84,84,84,,,,,,,,,,,,,,,,,,,,"tarifas_capufe.csv"
+460,41,82,41,146,146,146,196,196,196,306,306,380,380,380,,98,,,,,,,,,,"tarifas_capufe.csv"
+461,31,62,31,99,99,99,178,178,178,240,240,303,303,303,,89,,,,,,,,,,"tarifas_capufe.csv"
+463,118,230,118,441,441,441,245,245,245,595,595,1430,1430,1430,,210,,,,,,,,,140,"tarifas_reanl.csv"
+464,73,139,71,277,277,277,156,156,156,364,364,867,867,867,,135,,,,,,,,,87,"tarifas_reanl.csv"
+466,38,69,38,133,133,133,75,75,75,176,176,412,412,412,,63,,,,,,,,,43,"tarifas_reanl.csv"
+467,27,47,27,79,79,79,47,47,47,113,113,266,266,266,,42,,,,,,,,,32,"tarifas_reanl.csv"
+468,93,181,94,348,348,348,227,227,227,556,556,1008,1008,1008,,151,,,,,,,,,145,"tarifas_reanl.csv"
+469,61,114,61,213,213,213,140,140,140,344,344,606,606,606,,94,,,,,,,,,92,"tarifas_reanl.csv"
+470,43,79,43,140,140,140,94,94,94,221,221,401,401,401,,70,,,,,,,,,66,"tarifas_reanl.csv"
+471,90,179,90,347,347,347,209,209,209,515,515,1080,1080,1080,,169,,,,,,,,,,"tarifas_reanl.csv"
+472,25,51,26,69,69,69,69,69,69,103,103,106,106,106,,,,,,,,,,,,"tarifas_autopistasdecuota.csv"
+473,45,87,,166,166,166,166,166,166,319,319,397,475,546,,87,,,,,,,,,,"tarifas_reanl.csv"
+474,45,87,45,181,181,181,105,105,105,238,238,560,560,560,,90,,,,,,,,,59,"tarifas_reanl.csv"
+474,46,88,,169,169,169,169,169,169,322,322,403,482,559,,88,,,,,,,,,,"tarifas_reanl.csv"
+475,37,63,,124,124,124,124,124,124,244,244,298,355,416,,64,,,,,,,,,,"tarifas_reanl.csv"
+476,8,15,8,20,20,20,20,20,28,28,37,37,37,37,,11,,,,,,,,,,"tarifas_capufe.csv"
+477,72,145,,196,196,196,196,196,196,266,266,302,302,302,,,,,,,,,,,,"tarifas_viapass.csv"
+479,173,347,174,484,484,484,482,482,482,658,658,775,775,775,,241,174,,,,,,,,,"tarifas_mronoreste.csv"
+480,71,142,71,197,197,197,196,196,196,244,244,281,281,281,,98,71,,,,,,,,,"tarifas_mronoreste.csv"
+481,99,199,100,269,269,269,267,267,267,360,360,410,410,410,,134,100,,,,,,,,,"tarifas_mronoreste.csv"
+482,76,152,76,219,219,219,218,218,218,303,303,344,344,344,,109,76,,,,,,,,,"tarifas_mronoreste.csv"
+483,152,304,152,405,405,405,403,403,403,550,550,630,630,630,,,,,,,,,,,,"tarifas_autopistasdecuota.csv"
+484,23,46,24,58,58,58,58,58,58,99,99,109,109,109,,,,,,,,,,,,"tarifas_autopistasdecuota.csv"
+485,26,52,26,69,69,69,69,69,69,118,118,129,129,129,,35,26,,,,,,,,,"tarifas_mronoreste.csv"
+486,180,361,181,481,481,481,468,468,468,700,700,776,776,776,,234,181,,,,,,,,,"tarifas_mronoreste.csv"
+487,80,161,81,220,220,220,217,217,217,330,330,344,344,344,,109,81,,,,,,,,,"tarifas_mronoreste.csv"
+489,76,152,76,202,202,202,195,195,195,281,281,337,337,337,,98,76,,,,,,,,,"tarifas_mronoreste.csv"
+489,76,152,76,202,202,202,195,195,195,281,281,337,337,337,,98,76,,,,,,,,,"tarifas_mronoreste.csv"
+490,132,265,133,358,358,358,349,349,349,543,543,581,581,581,,175,133,,,,,,,,,"tarifas_mronoreste.csv"
+491,49,98,49,129,129,129,126,126,126,159,159,196,196,196,,63,49,,,,,,,,,"tarifas_mronoreste.csv"
+491,49,98,49,129,129,129,126,126,126,159,159,196,196,196,,63,49,,,,,,,,,"tarifas_mronoreste.csv"
+492,100,201,101,266,266,266,254,254,254,372,372,432,432,432,,127,101,,,,,,,,,"tarifas_mronoreste.csv"
+493,20,42,22,53,53,53,52,52,52,73,73,85,85,85,,,,,,,,,,,,"tarifas_autopistasdecuota.csv"
+494,25,50,25,65,65,65,61,61,61,106,106,118,118,118,,,,,,,,,,,,"tarifas_autopistasdecuota.csv"
+495,53,106,53,138,138,138,132,132,132,217,217,236,236,236,,66,53,,,,,,,,,"tarifas_mronoreste.csv"
+496,29,58,29,81,81,81,81,81,81,123,123,126,126,126,,41,29,,,,,,,,,"tarifas_mronoreste.csv"
+497,14,29,15,37,37,37,37,37,37,59,59,63,63,63,,,,,,,,,,,,"tarifas_autopistasdecuota.csv"
+498,17,35,18,45,45,45,45,45,45,70,70,70,70,70,,23,17,,,,,,,,,"tarifas_mronoreste.csv"
+500,24,48,24,106,106,106,104,104,104,215,215,342,342,342,,52,24,,,,,,,,,"tarifas_mronoreste.csv"
+501,24,48,24,106,106,106,104,104,104,215,215,342,342,342,,52,24,,,,,,,,,"tarifas_mronoreste.csv"
+502,53,106,53,198,198,198,198,198,198,293,293,381,381,381,,99,53,,,,,,,,,"tarifas_mronoreste.csv"
+503,26,53,27,103,103,103,99,99,99,149,149,189,189,189,,50,27,,,,,,,,,"tarifas_mronoreste.csv"
+504,20,42,22,85,85,85,81,81,81,124,124,158,158,158,,,,,,,,,,,,"tarifas_autopistasdecuota.csv"
+507,9,17,9,33,33,33,33,33,53,53,75,75,75,75,,17,,,,,,,,,,"tarifas_capufe.csv"
+514,18,53,36,70,70,70,70,70,70,151,151,250,250,250,286,,,,,,,,5,,,"tarifas_hoatsa.csv"
+518,54,108,54,202,202,202,202,202,362,362,522,522,522,522,,101,,,,,,,,,,"tarifas_capufe.csv"
+519,24,49,25,110,110,110,111,111,182,182,256,256,256,256,,56,,,,,,,,,,"tarifas_capufe.csv"
+520,25,50,25,109,109,109,109,109,131,131,152,152,152,152,,55,,,,,,,,,,"tarifas_capufe.csv"
+521,24,49,25,110,110,110,110,110,132,132,152,152,152,152,,55,,,,,,,,,,"tarifas_capufe.csv"
+522,22,45,23,94,94,94,94,94,113,113,130,130,130,130,,47,,,,,,,,,,"tarifas_capufe.csv"
+523,26,53,27,114,114,114,110,110,136,136,160,160,160,160,,55,,,,,,,,,,"tarifas_capufe.csv"
+524,316,633,323,1218,1218,,1218,1218,1218,1870,1870,2799,2799,2799,,613,,,,,,,,,,"tarifas_arconorte.csv"
+525,258,516,264,1021,1021,,1021,1021,1021,1564,1564,2372,2372,2372,,513,,,,,,,,,,"tarifas_arconorte.csv"
+526,233,466,239,946,946,,946,946,946,1438,1438,2205,2205,2205,,475,,,,,,,,,,"tarifas_arconorte.csv"
+527,214,428,219,848,848,,848,848,848,1298,1298,2003,2003,2003,,426,,,,,,,,,,"tarifas_arconorte.csv"
+528,194,389,199,790,790,,790,790,790,1200,1200,1848,1848,1848,,397,,,,,,,,,,"tarifas_arconorte.csv"
+529,163,327,168,664,664,,664,664,664,1010,1010,1570,1570,1570,,334,,,,,,,,,,"tarifas_arconorte.csv"
+530,133,266,136,554,554,,554,554,554,860,860,1333,1333,1333,,278,,,,,,,,,,"tarifas_arconorte.csv"
+531,124,249,128,496,496,,496,496,496,779,779,1200,1200,1200,,250,,,,,,,,,,"tarifas_arconorte.csv"
+532,116,233,118,433,433,,433,433,433,692,692,1056,1056,1056,,217,,,,,,,,,,"tarifas_arconorte.csv"
+533,108,217,110,410,410,,410,410,410,618,618,970,970,970,,206,,,,,,,,,,"tarifas_arconorte.csv"
+534,91,183,93,347,347,,347,347,347,536,536,848,848,848,,173,,,,,,,,,,"tarifas_arconorte.csv"
+535,66,133,68,242,242,,242,242,242,382,382,618,618,618,,121,,,,,,,,,,"tarifas_arconorte.csv"
+536,58,116,59,208,208,,208,208,208,300,300,508,508,508,,104,,,,,,,,,,"tarifas_arconorte.csv"
+537,17,34,17,58,58,,58,58,58,98,98,168,168,168,,28,,,,,,,,,,"tarifas_arconorte.csv"
+538,299,599,306,1160,1160,,1160,1160,1160,1772,1772,2632,2632,2632,,584,,,,,,,,,,"tarifas_arconorte.csv"
+539,241,483,247,964,964,,964,964,964,1466,1466,2205,2205,2205,,485,,,,,,,,,,"tarifas_arconorte.csv"
+540,216,433,222,889,889,,889,889,889,1340,1340,2037,2037,2037,,447,,,,,,,,,,"tarifas_arconorte.csv"
+541,197,394,202,790,790,,790,790,790,1200,1200,1836,1836,1836,,397,,,,,,,,,,"tarifas_arconorte.csv"
+542,177,355,182,734,734,,734,734,734,1102,1102,1680,1680,1680,,368,,,,,,,,,,"tarifas_arconorte.csv"
+543,147,294,151,606,606,,606,606,606,912,912,1403,1403,1403,,305,,,,,,,,,,"tarifas_arconorte.csv"
+544,116,233,119,496,496,,496,496,496,762,762,1166,1166,1166,,250,,,,,,,,,,"tarifas_arconorte.csv"
+545,108,217,111,438,438,,438,438,438,681,681,1033,1033,1033,,220,,,,,,,,,,"tarifas_arconorte.csv"
+546,100,200,102,375,375,,375,375,375,594,594,889,889,889,,189,,,,,,,,,,"tarifas_arconorte.csv"
+547,91,183,93,352,352,,352,352,352,520,520,802,802,802,,177,,,,,,,,,,"tarifas_arconorte.csv"
+548,75,150,77,289,289,,289,289,289,438,438,681,681,681,,144,,,,,,,,,,"tarifas_arconorte.csv"
+549,50,100,51,184,184,,184,184,184,282,282,450,450,450,,93,,,,,,,,,,"tarifas_arconorte.csv"
+550,41,83,42,150,150,,150,150,150,202,202,340,340,340,,75,,,,,,,,,,"tarifas_arconorte.csv"
+551,17,34,17,58,58,,58,58,58,98,98,168,168,168,,28,,,,,,,,,,"tarifas_arconorte.csv"
+552,258,516,264,1010,1010,,1010,1010,1010,1570,1570,2291,2291,2291,,509,,,,,,,,,,"tarifas_arconorte.csv"
+553,199,399,205,814,814,,814,814,814,1264,1264,1864,1864,1864,,410,,,,,,,,,,"tarifas_arconorte.csv"
+554,175,350,180,739,739,,739,739,739,1137,1137,1697,1697,1697,,372,,,,,,,,,,"tarifas_arconorte.csv"
+555,155,311,160,641,641,,641,641,641,998,998,1495,1495,1495,,322,,,,,,,,,,"tarifas_arconorte.csv"
+556,135,271,139,583,583,,583,583,583,900,900,1340,1340,1340,,293,,,,,,,,,,"tarifas_arconorte.csv"
+557,105,211,109,456,456,,456,456,456,710,710,1062,1062,1062,,230,,,,,,,,,,"tarifas_arconorte.csv"
+558,75,150,78,347,347,,347,347,347,560,560,825,825,825,,174,,,,,,,,,,"tarifas_arconorte.csv"
+559,66,133,69,289,289,,289,289,289,480,480,692,692,692,,145,,,,,,,,,,"tarifas_arconorte.csv"
+560,58,116,60,226,226,,226,226,226,392,392,548,548,548,,113,,,,,,,,,,"tarifas_arconorte.csv"
+561,58,116,59,208,208,,208,208,208,300,300,508,508,508,,104,,,,,,,,,,"tarifas_arconorte.csv"
+562,50,100,51,202,202,,202,202,202,317,317,462,462,462,,101,,,,,,,,,,"tarifas_arconorte.csv"
+563,41,83,42,150,150,,150,150,150,202,202,340,340,340,,75,,,,,,,,,,"tarifas_arconorte.csv"
+564,33,67,35,138,138,,138,138,138,237,237,340,340,340,,70,,,,,,,,,,"tarifas_arconorte.csv"
+565,8,17,8,35,35,,35,35,35,81,81,110,110,110,,17,,,,,,,,,,"tarifas_arconorte.csv"
+569,250,500,256,976,976,,976,976,976,1489,1489,2182,2182,2182,,492,,,,,,,,,,"tarifas_arconorte.csv"
+570,191,383,196,779,779,,779,779,779,1184,1184,1755,1755,1755,,392,,,,,,,,,,"tarifas_arconorte.csv"
+571,166,333,171,704,704,,704,704,704,1056,1056,1587,1587,1587,,354,,,,,,,,,,"tarifas_arconorte.csv"
+572,147,294,151,606,606,,606,606,606,918,918,1385,1385,1385,,305,,,,,,,,,,"tarifas_arconorte.csv"
+573,128,256,131,548,548,,548,548,548,820,820,1230,1230,1230,,276,,,,,,,,,,"tarifas_arconorte.csv"
+574,97,194,100,422,422,,422,422,422,629,629,953,953,953,,213,,,,,,,,,,"tarifas_arconorte.csv"
+575,66,133,69,312,312,,312,312,312,480,480,716,716,716,,157,,,,,,,,,,"tarifas_arconorte.csv"
+576,66,133,68,242,242,,242,242,242,382,382,618,618,618,,121,,,,,,,,,,"tarifas_arconorte.csv"
+577,58,116,60,254,254,,254,254,254,398,398,583,583,583,,120,,,,,,,,,,"tarifas_arconorte.csv"
+578,50,100,51,184,184,,184,184,184,282,282,450,450,450,,93,,,,,,,,,,"tarifas_arconorte.csv"
+579,50,100,51,191,191,,191,191,191,312,312,438,438,438,,96,,,,,,,,,,"tarifas_arconorte.csv"
+580,41,83,42,168,168,,168,168,168,237,237,352,352,352,,84,,,,,,,,,,"tarifas_arconorte.csv"
+581,25,50,25,104,104,,104,104,104,156,156,231,231,231,,52,,,,,,,,,,"tarifas_arconorte.csv"
+582,8,17,8,35,35,,35,35,35,81,81,110,110,110,,17,,,,,,,,,,"tarifas_arconorte.csv"
+584,225,450,230,872,872,,872,872,872,1333,1333,1951,1951,1951,,440,,,,,,,,,,"tarifas_arconorte.csv"
+585,166,333,171,676,676,,676,676,676,1028,1028,1524,1524,1524,,340,,,,,,,,,,"tarifas_arconorte.csv"
+586,141,283,146,601,601,,601,601,601,900,900,1356,1356,1356,,302,,,,,,,,,,"tarifas_arconorte.csv"
+587,122,244,126,502,502,,502,502,502,762,762,1154,1154,1154,,253,,,,,,,,,,"tarifas_arconorte.csv"
+588,102,205,106,445,445,,445,445,445,664,664,998,998,998,,223,,,,,,,,,,"tarifas_arconorte.csv"
+589,91,183,93,347,347,,347,347,347,536,536,848,848,848,,173,,,,,,,,,,"tarifas_arconorte.csv"
+590,75,150,77,289,289,,289,289,289,438,438,681,681,681,,144,,,,,,,,,,"tarifas_arconorte.csv"
+591,72,145,74,317,317,,317,317,317,473,473,722,722,722,,160,,,,,,,,,,"tarifas_arconorte.csv"
+592,41,83,43,208,208,,208,208,208,324,324,485,485,485,,105,,,,,,,,,,"tarifas_arconorte.csv"
+593,33,67,35,150,150,,150,150,150,242,242,352,352,352,,76,,,,,,,,,,"tarifas_arconorte.csv"
+594,33,67,35,138,138,,138,138,138,237,237,340,340,340,,70,,,,,,,,,,"tarifas_arconorte.csv"
+596,25,50,25,86,86,,86,86,86,156,156,208,208,208,,44,,,,,,,,,,"tarifas_arconorte.csv"
+597,25,50,25,104,104,,104,104,104,156,156,231,231,231,,52,,,,,,,,,,"tarifas_arconorte.csv"
+598,17,34,17,63,63,,63,63,63,81,81,121,121,121,,33,,,,,,,,,,"tarifas_arconorte.csv"
+599,208,416,213,808,808,,808,808,808,1252,1252,1830,1830,1830,,408,,,,,,,,,,"tarifas_arconorte.csv"
+600,150,300,154,611,611,,611,611,611,946,946,1403,1403,1403,,308,,,,,,,,,,"tarifas_arconorte.csv"
+601,124,249,129,536,536,,536,536,536,820,820,1235,1235,1235,,270,,,,,,,,,,"tarifas_arconorte.csv"
+602,108,217,110,410,410,,410,410,410,618,618,970,970,970,,206,,,,,,,,,,"tarifas_arconorte.csv"
+603,105,211,109,438,438,,438,438,438,681,681,1033,1033,1033,,220,,,,,,,,,,"tarifas_arconorte.csv"
+604,91,183,93,352,352,,352,352,352,520,520,802,802,802,,177,,,,,,,,,,"tarifas_arconorte.csv"
+605,86,172,89,382,382,,382,382,382,583,583,877,877,877,,192,,,,,,,,,,"tarifas_arconorte.csv"
+606,55,111,58,254,254,,254,254,254,392,392,601,601,601,,129,,,,,,,,,,"tarifas_arconorte.csv"
+607,50,100,51,202,202,,202,202,202,317,317,462,462,462,,101,,,,,,,,,,"tarifas_arconorte.csv"
+609,41,83,42,168,168,,168,168,168,237,237,352,352,352,,84,,,,,,,,,,"tarifas_arconorte.csv"
+610,25,50,26,144,144,,144,144,144,242,242,364,364,364,,73,,,,,,,,,,"tarifas_arconorte.csv"
+611,17,34,18,86,86,,86,86,86,161,161,231,231,231,,44,,,,,,,,,,"tarifas_arconorte.csv"
+612,17,34,17,63,63,,63,63,63,81,81,121,121,121,,33,,,,,,,,,,"tarifas_arconorte.csv"
+613,8,17,8,23,23,,23,23,23,75,75,86,86,86,,12,,,,,,,,,,"tarifas_arconorte.csv"
+614,199,399,204,785,785,,785,785,785,1177,1177,1743,1743,1743,,396,,,,,,,,,,"tarifas_arconorte.csv"
+615,141,283,146,589,589,,589,589,589,872,872,1316,1316,1316,,296,,,,,,,,,,"tarifas_arconorte.csv"
+616,116,233,118,433,433,,433,433,433,692,692,1056,1056,1056,,217,,,,,,,,,,"tarifas_arconorte.csv"
+617,116,233,119,513,513,,513,513,513,744,744,1149,1149,1149,,258,,,,,,,,,,"tarifas_arconorte.csv"
+618,100,200,102,375,375,,375,375,375,594,594,889,889,889,,189,,,,,,,,,,"tarifas_arconorte.csv"
+619,97,194,100,415,415,,415,415,415,606,606,946,946,946,,209,,,,,,,,,,"tarifas_arconorte.csv"
+620,77,155,80,358,358,,358,358,358,508,508,790,790,790,,180,,,,,,,,,,"tarifas_arconorte.csv"
+621,58,116,60,226,226,,226,226,226,392,392,548,548,548,,113,,,,,,,,,,"tarifas_arconorte.csv"
+623,50,100,51,191,191,,191,191,191,312,312,438,438,438,,96,,,,,,,,,,"tarifas_arconorte.csv"
+624,47,94,49,231,231,,231,231,231,317,317,513,513,513,,117,,,,,,,,,,"tarifas_arconorte.csv"
+625,25,50,25,86,86,,86,86,86,156,156,208,208,208,,44,,,,,,,,,,"tarifas_arconorte.csv"
+626,17,34,18,121,121,,121,121,121,168,168,277,277,277,,61,,,,,,,,,,"tarifas_arconorte.csv"
+627,8,17,8,63,63,,63,63,63,86,86,144,144,144,,33,,,,,,,,,,"tarifas_arconorte.csv"
+628,8,17,8,23,23,,23,23,23,75,75,86,86,86,,12,,,,,,,,,,"tarifas_arconorte.csv"
+629,183,367,187,664,664,,664,664,664,1010,1010,1466,1466,1466,,335,,,,,,,,,,"tarifas_arconorte.csv"
+630,133,266,136,554,554,,554,554,554,860,860,1333,1333,1333,,278,,,,,,,,,,"tarifas_arconorte.csv"
+631,124,249,128,468,468,,468,468,468,704,704,1039,1039,1039,,235,,,,,,,,,,"tarifas_arconorte.csv"
+632,116,233,119,496,496,,496,496,496,762,762,1166,1166,1166,,250,,,,,,,,,,"tarifas_arconorte.csv"
+633,100,200,102,392,392,,392,392,392,578,578,872,872,872,,197,,,,,,,,,,"tarifas_arconorte.csv"
+634,80,161,82,294,294,,294,294,294,438,438,669,669,669,,148,,,,,,,,,,"tarifas_arconorte.csv"
+635,75,150,78,347,347,,347,347,347,560,560,825,825,825,,174,,,,,,,,,,"tarifas_arconorte.csv"
+637,66,133,69,312,312,,312,312,312,480,480,716,716,716,,157,,,,,,,,,,"tarifas_arconorte.csv"
+638,61,123,62,237,237,,237,237,237,340,340,513,513,513,,119,,,,,,,,,,"tarifas_arconorte.csv"
+639,41,83,43,208,208,,208,208,208,324,324,485,485,485,,105,,,,,,,,,,"tarifas_arconorte.csv"
+640,30,61,31,110,110,,110,110,110,150,150,237,237,237,,56,,,,,,,,,,"tarifas_arconorte.csv"
+641,25,50,26,144,144,,144,144,144,242,242,364,364,364,,73,,,,,,,,,,"tarifas_arconorte.csv"
+642,17,34,18,121,121,,121,121,121,168,168,277,277,277,,61,,,,,,,,,,"tarifas_arconorte.csv"
+643,8,17,8,58,58,,58,58,58,81,81,133,133,133,,28,,,,,,,,,,"tarifas_arconorte.csv"
+644,163,327,168,664,664,,664,664,664,1010,1010,1570,1570,1570,,334,,,,,,,,,,"tarifas_arconorte.csv"
+645,152,305,155,554,554,,554,554,554,860,860,1230,1230,1230,,279,,,,,,,,,,"tarifas_arconorte.csv"
+646,147,294,151,606,606,,606,606,606,912,912,1403,1403,1403,,305,,,,,,,,,,"tarifas_arconorte.csv"
+647,105,211,109,456,456,,456,456,456,710,710,1062,1062,1062,,230,,,,,,,,,,"tarifas_arconorte.csv"
+649,97,194,100,422,422,,422,422,422,629,629,953,953,953,,213,,,,,,,,,,"tarifas_arconorte.csv"
+650,94,189,96,358,358,,358,358,358,554,554,802,802,802,,180,,,,,,,,,,"tarifas_arconorte.csv"
+651,72,145,74,317,317,,317,317,317,473,473,722,722,722,,160,,,,,,,,,,"tarifas_arconorte.csv"
+652,69,138,71,282,282,,282,282,282,427,427,635,635,635,,142,,,,,,,,,,"tarifas_arconorte.csv"
+653,55,111,58,254,254,,254,254,254,392,392,601,601,601,,129,,,,,,,,,,"tarifas_arconorte.csv"
+654,50,100,51,184,184,,184,184,184,289,289,433,433,433,,93,,,,,,,,,,"tarifas_arconorte.csv"
+655,47,94,49,231,231,,231,231,231,317,317,513,513,513,,117,,,,,,,,,,"tarifas_arconorte.csv"
+656,39,78,40,168,168,,168,168,168,231,231,370,370,370,,84,,,,,,,,,,"tarifas_arconorte.csv"
+657,30,61,31,110,110,,110,110,110,150,150,237,237,237,,56,,,,,,,,,,"tarifas_arconorte.csv"
+658,30,61,31,128,128,,128,128,128,191,191,277,277,277,,63,,,,,,,,,,"tarifas_arconorte.csv"
+659,194,389,199,790,790,,790,790,790,1200,1200,1848,1848,1848,,397,,,,,,,,,,"tarifas_arconorte.csv"
+660,177,355,182,734,734,,734,734,734,1102,1102,1680,1680,1680,,368,,,,,,,,,,"tarifas_arconorte.csv"
+661,135,271,139,583,583,,583,583,583,900,900,1340,1340,1340,,293,,,,,,,,,,"tarifas_arconorte.csv"
+663,128,256,131,548,548,,548,548,548,820,820,1230,1230,1230,,276,,,,,,,,,,"tarifas_arconorte.csv"
+664,122,244,125,427,427,,427,427,427,669,669,953,953,953,,216,,,,,,,,,,"tarifas_arconorte.csv"
+665,102,205,106,445,445,,445,445,445,664,664,998,998,998,,223,,,,,,,,,,"tarifas_arconorte.csv"
+666,86,172,89,382,382,,382,382,382,583,583,877,877,877,,192,,,,,,,,,,"tarifas_arconorte.csv"
+667,77,155,80,358,358,,358,358,358,508,508,790,790,790,,180,,,,,,,,,,"tarifas_arconorte.csv"
+668,69,138,71,294,294,,294,294,294,422,422,646,646,646,,148,,,,,,,,,,"tarifas_arconorte.csv"
+669,64,128,65,231,231,,231,231,231,364,364,525,525,525,,117,,,,,,,,,,"tarifas_arconorte.csv"
+670,61,123,62,237,237,,237,237,237,340,340,513,513,513,,119,,,,,,,,,,"tarifas_arconorte.csv"
+671,39,78,40,156,156,,156,156,156,237,237,358,358,358,,78,,,,,,,,,,"tarifas_arconorte.csv"
+672,30,61,31,128,128,,128,128,128,191,191,277,277,277,,63,,,,,,,,,,"tarifas_arconorte.csv"
+673,19,39,20,58,58,,58,58,58,98,98,156,156,156,,28,,,,,,,,,,"tarifas_arconorte.csv"
+674,214,428,219,848,848,,848,848,848,1298,1298,2003,2003,2003,,426,,,,,,,,,,"tarifas_arconorte.csv"
+675,197,394,202,790,790,,790,790,790,1200,1200,1836,1836,1836,,397,,,,,,,,,,"tarifas_arconorte.csv"
+676,155,311,160,641,641,,641,641,641,998,998,1495,1495,1495,,322,,,,,,,,,,"tarifas_arconorte.csv"
+678,147,294,151,606,606,,606,606,606,918,918,1385,1385,1385,,305,,,,,,,,,,"tarifas_arconorte.csv"
+679,122,244,126,502,502,,502,502,502,762,762,1154,1154,1154,,253,,,,,,,,,,"tarifas_arconorte.csv"
+680,105,211,109,438,438,,438,438,438,681,681,1033,1033,1033,,220,,,,,,,,,,"tarifas_arconorte.csv"
+682,97,194,100,415,415,,415,415,415,606,606,946,946,946,,209,,,,,,,,,,"tarifas_arconorte.csv"
+683,88,177,91,352,352,,352,352,352,520,520,802,802,802,,177,,,,,,,,,,"tarifas_arconorte.csv"
+684,80,161,82,294,294,,294,294,294,438,438,669,669,669,,148,,,,,,,,,,"tarifas_arconorte.csv"
+685,50,100,51,184,184,,184,184,184,289,289,433,433,433,,93,,,,,,,,,,"tarifas_arconorte.csv"
+686,44,89,45,173,173,,173,173,173,266,266,370,370,370,,87,,,,,,,,,,"tarifas_arconorte.csv"
+687,19,39,20,98,98,,98,98,98,138,138,202,202,202,,50,,,,,,,,,,"tarifas_arconorte.csv"
+688,19,39,20,58,58,,58,58,58,98,98,156,156,156,,28,,,,,,,,,,"tarifas_arconorte.csv"
+689,233,466,239,946,946,,946,946,946,1438,1438,2205,2205,2205,,475,,,,,,,,,,"tarifas_arconorte.csv"
+690,216,433,222,889,889,,889,889,889,1340,1340,2037,2037,2037,,447,,,,,,,,,,"tarifas_arconorte.csv"
+691,175,350,180,739,739,,739,739,739,1137,1137,1697,1697,1697,,372,,,,,,,,,,"tarifas_arconorte.csv"
+693,166,333,171,704,704,,704,704,704,1056,1056,1587,1587,1587,,354,,,,,,,,,,"tarifas_arconorte.csv"
+694,141,283,146,601,601,,601,601,601,900,900,1356,1356,1356,,302,,,,,,,,,,"tarifas_arconorte.csv"
+695,124,249,129,536,536,,536,536,536,820,820,1235,1235,1235,,270,,,,,,,,,,"tarifas_arconorte.csv"
+696,116,233,119,513,513,,513,513,513,744,744,1149,1149,1149,,258,,,,,,,,,,"tarifas_arconorte.csv"
+697,108,217,111,450,450,,450,450,450,658,658,1004,1004,1004,,227,,,,,,,,,,"tarifas_arconorte.csv"
+698,100,200,102,392,392,,392,392,392,578,578,872,872,872,,197,,,,,,,,,,"tarifas_arconorte.csv"
+699,83,167,84,271,271,,271,271,271,433,433,594,594,594,,137,,,,,,,,,,"tarifas_arconorte.csv"
+700,69,138,71,282,282,,282,282,282,427,427,635,635,635,,142,,,,,,,,,,"tarifas_arconorte.csv"
+701,39,78,40,156,156,,156,156,156,237,237,358,358,358,,78,,,,,,,,,,"tarifas_arconorte.csv"
+702,25,50,25,75,75,,75,75,75,128,128,168,168,168,,38,,,,,,,,,,"tarifas_arconorte.csv"
+703,19,39,20,98,98,,98,98,98,138,138,202,202,202,,50,,,,,,,,,,"tarifas_arconorte.csv"
+704,258,516,264,1021,1021,,1021,1021,1021,1564,1564,2372,2372,2372,,513,,,,,,,,,,"tarifas_arconorte.csv"
+705,241,483,247,964,964,,964,964,964,1466,1466,2205,2205,2205,,485,,,,,,,,,,"tarifas_arconorte.csv"
+706,199,399,205,814,814,,814,814,814,1264,1264,1864,1864,1864,,410,,,,,,,,,,"tarifas_arconorte.csv"
+708,191,383,196,779,779,,779,779,779,1184,1184,1755,1755,1755,,392,,,,,,,,,,"tarifas_arconorte.csv"
+709,166,333,171,676,676,,676,676,676,1028,1028,1524,1524,1524,,340,,,,,,,,,,"tarifas_arconorte.csv"
+710,150,300,154,611,611,,611,611,611,946,946,1403,1403,1403,,308,,,,,,,,,,"tarifas_arconorte.csv"
+711,141,283,146,589,589,,589,589,589,872,872,1316,1316,1316,,296,,,,,,,,,,"tarifas_arconorte.csv"
+712,133,266,136,525,525,,525,525,525,785,785,1172,1172,1172,,265,,,,,,,,,,"tarifas_arconorte.csv"
+713,124,249,128,468,468,,468,468,468,704,704,1039,1039,1039,,235,,,,,,,,,,"tarifas_arconorte.csv"
+714,94,189,96,358,358,,358,358,358,554,554,802,802,802,,180,,,,,,,,,,"tarifas_arconorte.csv"
+715,64,128,65,231,231,,231,231,231,364,364,525,525,525,,117,,,,,,,,,,"tarifas_arconorte.csv"
+716,58,116,59,196,196,,196,196,196,306,306,427,427,427,,99,,,,,,,,,,"tarifas_arconorte.csv"
+717,44,89,45,173,173,,173,173,173,266,266,370,370,370,,87,,,,,,,,,,"tarifas_arconorte.csv"
+718,25,50,25,75,75,,75,75,75,128,128,168,168,168,,38,,,,,,,,,,"tarifas_arconorte.csv"
+719,316,633,323,1218,1218,,1218,1218,1218,1870,1870,2799,2799,2799,,613,,,,,,,,,,"tarifas_arconorte.csv"
+720,299,599,306,1160,1160,,1160,1160,1160,1772,1772,2632,2632,2632,,584,,,,,,,,,,"tarifas_arconorte.csv"
+721,258,516,264,1010,1010,,1010,1010,1010,1570,1570,2291,2291,2291,,509,,,,,,,,,,"tarifas_arconorte.csv"
+723,250,500,256,976,976,,976,976,976,1489,1489,2182,2182,2182,,492,,,,,,,,,,"tarifas_arconorte.csv"
+724,225,450,230,872,872,,872,872,872,1333,1333,1951,1951,1951,,440,,,,,,,,,,"tarifas_arconorte.csv"
+725,208,416,213,808,808,,808,808,808,1252,1252,1830,1830,1830,,408,,,,,,,,,,"tarifas_arconorte.csv"
+726,199,399,204,785,785,,785,785,785,1177,1177,1743,1743,1743,,396,,,,,,,,,,"tarifas_arconorte.csv"
+727,183,367,187,664,664,,664,664,664,1010,1010,1466,1466,1466,,335,,,,,,,,,,"tarifas_arconorte.csv"
+728,191,383,195,722,722,,722,722,722,1091,1091,1599,1599,1599,,364,,,,,,,,,,"tarifas_arconorte.csv"
+729,152,305,155,554,554,,554,554,554,860,860,1230,1230,1230,,279,,,,,,,,,,"tarifas_arconorte.csv"
+730,122,244,125,427,427,,427,427,427,669,669,953,953,953,,216,,,,,,,,,,"tarifas_arconorte.csv"
+731,102,205,105,370,370,,370,370,370,571,571,797,797,797,,187,,,,,,,,,,"tarifas_arconorte.csv"
+732,83,167,84,271,271,,271,271,271,433,433,594,594,594,,137,,,,,,,,,,"tarifas_arconorte.csv"
+733,58,116,59,196,196,,196,196,196,306,306,427,427,427,,99,,,,,,,,,,"tarifas_arconorte.csv"
+735,191,383,195,722,722,,722,722,722,1091,1091,1599,1599,1599,,364,,,,,,,,,,"tarifas_arconorte.csv"
+736,133,266,136,525,525,,525,525,525,785,785,1172,1172,1172,,265,,,,,,,,,,"tarifas_arconorte.csv"
+737,124,249,128,496,496,,496,496,496,779,779,1200,1200,1200,,250,,,,,,,,,,"tarifas_arconorte.csv"
+738,108,217,111,438,438,,438,438,438,681,681,1033,1033,1033,,220,,,,,,,,,,"tarifas_arconorte.csv"
+739,108,217,111,450,450,,450,450,450,658,658,1004,1004,1004,,227,,,,,,,,,,"tarifas_arconorte.csv"
+740,88,177,91,352,352,,352,352,352,520,520,802,802,802,,177,,,,,,,,,,"tarifas_arconorte.csv"
+741,68,138,71,294,294,,294,294,294,422,422,646,646,646,,148,,,,,,,,,,"tarifas_arconorte.csv"
+742,66,133,69,289,289,,289,289,289,480,480,692,692,692,,145,,,,,,,,,,"tarifas_arconorte.csv"
+744,58,116,60,254,254,,254,254,254,398,398,583,583,583,,129,,,,,,,,,,"tarifas_arconorte.csv"
+745,39,78,40,168,168,,168,168,168,231,231,370,370,370,,84,,,,,,,,,,"tarifas_arconorte.csv"
+746,33,67,35,150,150,,150,150,150,242,242,352,352,352,,76,,,,,,,,,,"tarifas_arconorte.csv"
+747,17,34,18,86,86,,86,86,86,161,161,231,231,231,,44,,,,,,,,,,"tarifas_arconorte.csv"
+748,8,17,8,58,58,,58,58,58,81,81,133,133,133,,28,,,,,,,,,,"tarifas_arconorte.csv"
+749,8,17,8,63,63,,63,63,63,86,86,144,144,144,,33,,,,,,,,,,"tarifas_arconorte.csv"
+750,84,168,84,260,260,260,260,338,338,485,485,621,,621,,130,,,,,,,,,,"tarifas_tijuanatecate.csv"
+751,48,97,49,151,151,151,151,196,196,281,281,360,,360,,76,,,,,,,,,,"tarifas_tijuanatecate.csv"
+752,35,70,36,110,110,110,110,142,142,203,203,260,,260,,55,,,,,,,,,,"tarifas_tijuanatecate.csv"
+753,30,61,30,91,91,91,91,117,117,165,165,213,,213,,45,,,,,,,,,,"tarifas_tijuanatecate.csv"
+754,28,57,29,88,88,88,88,114,114,164,164,210,,210,,44,,,,,,,,,,"tarifas_tijuanatecate.csv"
+755,11,23,10,32,32,32,32,45,45,64,64,75,,75,,16,,,,,,,,,,"tarifas_tijuanatecate.csv"
+768,25,51,26,114,114,114,113,113,180,180,180,180,180,180,,57,,,,,,,,,,"tarifas_capufe.csv"
+769,59,118,59,252,252,252,248,248,399,399,399,399,399,399,,124,,,,,,,,,,"tarifas_capufe.csv"
+770,46,93,47,193,193,193,191,191,306,306,306,306,306,306,,96,,,,,,,,,,"tarifas_capufe.csv"
+771,49,99,50,213,213,213,208,208,334,334,334,334,334,334,,104,,,,,,,,,,"tarifas_capufe.csv"
+772,26,53,27,116,116,116,115,115,183,183,183,183,183,183,,58,,,,,,,,,,"tarifas_capufe.csv"
+773,30,60,30,125,125,125,122,122,196,196,196,196,196,196,,61,,,,,,,,,,"tarifas_capufe.csv"
+774,43,86,43,183,183,183,180,180,290,290,290,290,290,290,,90,,,,,,,,,,"tarifas_capufe.csv"
+775,63,126,63,270,270,270,264,264,424,424,424,424,424,424,,132,,,,,,,,,,"tarifas_capufe.csv"
+776,38,76,38,167,167,167,164,164,263,263,263,263,263,263,,82,,,,,,,,,,"tarifas_capufe.csv"
+777,34,69,35,150,150,150,147,147,236,236,236,236,236,236,,74,,,,,,,,,,"tarifas_capufe.csv"
+778,63,126,63,270,270,270,264,264,424,424,424,424,424,424,,132,,,,,,,,,,"tarifas_capufe.csv"
+779,63,126,63,270,270,270,264,264,424,424,424,424,424,424,,132,,,,,,,,,,"tarifas_capufe.csv"
+780,59,118,59,252,252,252,248,248,399,399,399,399,399,399,,124,,,,,,,,,,"tarifas_capufe.csv"
+781,49,99,50,213,213,213,208,208,334,334,334,334,334,334,,104,,,,,,,,,,"tarifas_capufe.csv"
+789,44,89,44,222,222,222,222,222,222,355,355,400,400,400,,111,,,,,,,,,,"tarifas_clepsa.csv"
+795,25,51,25,127,127,127,127,127,127,203,203,229,229,229,,64,,,,,,,,,,"tarifas_clepsa.csv"
+796,13,25,13,63,63,63,63,63,63,101,101,114,114,114,,32,,,,,,,,,,"tarifas_clepsa.csv"
+797,29,59,29,148,148,148,148,148,148,236,236,266,266,266,,74,,,,,,,,,,"tarifas_clepsa.csv"
+848,41,82,,141,141,141,141,141,141,150,150,150,150,150,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+848,48,96,,163,163,163,163,163,163,174,174,174,174,174,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+850,86,172,,303,303,303,303,303,303,328,328,328,328,328,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+851,7,14,,26,26,26,26,26,26,28,28,28,28,28,,8,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+851,9,17,,31,31,31,31,31,31,34,34,34,34,34,,9,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+854,53,106,,194,194,194,194,194,194,213,213,213,213,213,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+857,6,11,,22,22,22,22,22,22,25,25,25,25,25,,6,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+862,62,124,,226,226,226,226,226,226,249,249,249,249,249,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+868,34,67,,114,114,114,114,114,114,122,122,122,122,122,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+869,14,28,,57,57,57,57,57,57,60,60,60,60,60,,15,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+870,79,157,,279,279,279,279,279,279,300,300,300,300,300,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+891,79,157,235,287,380,455,285,378,453,644,708,898,991,1043,1178,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+892,50,100,150,178,222,258,176,220,256,369,399,512,556,580,665,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+893,38,75,112,131,154,172,129,152,170,250,265,344,367,379,442,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+894,38,75,112,131,154,172,129,152,170,250,265,344,367,379,442,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+895,24,48,24,80,80,80,78,78,78,121,121,163,163,163,,39,,,,,,,,,,"tarifas_capufe.csv"
+897,18,36,18,56,56,56,52,52,52,81,81,105,105,105,,26,,,,,,,,,,"tarifas_capufe.csv"
+898,18,36,18,50,50,50,52,52,52,76,76,111,111,111,,26,,,,,,,,,,"tarifas_capufe.csv"
+901,4,8,4,19,19,19,15,15,15,32,32,36,36,36,,8,,,,,,,,,,"tarifas_capufe.csv"
+902,89,178,267,334,427,502,326,419,494,706,770,963,1056,1108,1264,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+903,60,121,182,225,269,305,217,261,297,431,461,577,621,645,751,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+905,48,96,144,178,201,219,170,193,211,312,327,409,432,444,528,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+906,48,96,144,178,201,219,170,193,211,312,327,409,432,444,528,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+908,34,69,35,127,127,127,119,119,119,183,183,227,227,227,,60,,,,,,,,,,"tarifas_capufe.csv"
+909,30,61,31,111,111,111,107,107,107,155,155,202,202,202,,54,,,,,,,,,,"tarifas_capufe.csv"
+910,30,60,30,99,99,99,105,105,105,149,149,194,194,194,,53,,,,,,,,,,"tarifas_capufe.csv"
+911,18,36,18,64,64,64,64,64,64,100,100,125,125,125,,32,,,,,,,,,,"tarifas_capufe.csv"
+912,10,21,11,45,45,45,44,44,44,65,65,83,83,83,,22,,,,,,,,,,"tarifas_capufe.csv"
+913,4,8,4,19,19,19,15,15,15,37,37,45,45,45,,8,,,,,,,,,,"tarifas_capufe.csv"
+914,85,170,255,313,406,481,313,406,481,676,740,931,1024,1076,1225,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+915,56,113,170,204,248,284,204,248,284,401,431,545,589,613,712,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+916,44,88,132,157,180,198,157,180,198,282,297,377,400,412,489,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+917,44,88,132,157,180,198,157,180,198,282,297,377,400,412,489,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+920,30,61,31,106,106,106,106,106,106,153,153,196,196,196,,53,,,,,,,,,,"tarifas_capufe.csv"
+921,23,46,23,76,76,76,78,78,78,111,111,149,149,149,,39,,,,,,,,,,"tarifas_capufe.csv"
+922,22,44,22,78,78,78,76,76,76,113,113,150,150,150,,38,,,,,,,,,,"tarifas_capufe.csv"
+924,11,22,11,45,45,45,46,46,46,64,64,79,79,79,,23,,,,,,,,,,"tarifas_capufe.csv"
+925,4,9,5,23,23,23,27,27,27,34,34,39,39,39,,14,,,,,,,,,,"tarifas_capufe.csv"
+927,86,172,258,318,411,486,314,407,482,679,743,937,1030,1082,1232,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+928,57,115,173,209,253,289,205,249,285,404,434,551,595,619,714,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+929,45,90,135,162,185,203,158,181,199,285,300,383,406,418,496,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+930,45,90,135,162,185,203,158,181,199,285,300,383,406,418,496,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+931,31,63,32,111,111,111,107,107,107,156,156,202,202,202,,54,,,,,,,,,,"tarifas_capufe.csv"
+932,24,49,25,90,90,90,84,84,84,126,126,172,172,172,,42,,,,,,,,,,"tarifas_capufe.csv"
+933,24,49,25,80,80,80,84,84,84,117,117,159,159,159,,42,,,,,,,,,,"tarifas_capufe.csv"
+934,12,25,13,47,47,47,47,47,47,67,67,90,90,90,,24,,,,,,,,,,"tarifas_capufe.csv"
+935,6,13,7,27,27,27,33,33,33,39,39,49,49,49,,17,,,,,,,,,,"tarifas_capufe.csv"
+936,1,3,2,7,7,7,7,7,7,11,11,14,14,14,,4,,,,,,,,,,"tarifas_capufe.csv"
+938,73,145,217,266,359,434,263,356,431,604,668,852,945,997,1121,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+939,44,88,132,157,201,237,154,198,234,329,359,466,510,534,608,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+940,32,63,94,110,133,151,107,130,148,210,225,298,321,333,385,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+941,32,63,94,110,133,151,107,130,148,210,225,298,321,333,385,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+943,18,36,18,59,59,59,56,56,56,81,81,117,117,117,,28,,,,,,,,,,"tarifas_capufe.csv"
+946,10,21,11,34,34,34,37,37,37,45,45,64,64,64,,19,,,,,,,,,,"tarifas_capufe.csv"
+949,76,151,226,278,371,446,277,370,445,629,693,876,969,1021,1152,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+950,47,94,141,169,213,249,168,212,248,354,384,490,534,558,639,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+952,35,69,103,122,145,163,121,144,162,235,250,322,345,357,416,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+953,35,69,103,122,145,163,121,144,162,235,250,322,345,357,416,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+960,61,122,183,234,327,402,229,322,397,562,626,785,878,930,1037,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+962,32,65,98,125,169,205,120,164,200,287,317,399,443,467,524,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+965,20,40,60,78,101,119,73,96,114,168,183,231,254,266,301,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+966,20,40,60,78,101,119,73,96,114,168,183,231,254,266,301,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+968,10,21,11,44,44,44,43,43,43,60,60,68,68,68,,22,,,,,,,,,,"tarifas_capufe.csv"
+970,6,13,7,27,27,27,22,22,22,39,39,50,50,50,,11,,,,,,,,,,"tarifas_capufe.csv"
+971,26,52,26,95,95,95,95,95,95,130,130,178,178,178,,48,,,,,,,,,,"tarifas_capufe.csv"
+972,31,62,31,114,114,114,113,113,113,166,166,218,218,218,,57,,,,,,,,,,"tarifas_capufe.csv"
+973,25,51,26,93,93,93,93,93,93,130,130,175,175,175,,47,,,,,,,,,,"tarifas_capufe.csv"
+974,21,42,21,66,66,66,64,64,64,100,100,129,129,129,,32,,,,,,,,,,"tarifas_capufe.csv"
+975,18,36,18,56,56,56,55,55,55,81,81,113,113,113,,28,,,,,,,,,,"tarifas_capufe.csv"
+976,13,26,13,48,48,48,46,46,46,65,65,90,90,90,,23,,,,,,,,,,"tarifas_capufe.csv"
+977,2,5,3,15,15,15,11,11,11,21,21,25,25,25,,6,,,,,,,,,,"tarifas_capufe.csv"
+982,21,42,21,71,71,71,70,70,70,106,106,141,141,141,,35,,,,,,,,,,"tarifas_capufe.csv"
+985,3,6,3,11,11,11,11,11,11,16,16,23,23,23,,6,,,,,,,,,,"tarifas_capufe.csv"
+986,55,109,163,207,300,375,207,300,375,523,587,735,828,880,976,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+987,26,52,78,98,142,178,98,142,178,248,278,349,393,417,463,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+988,14,27,40,51,74,92,51,74,92,129,144,181,204,216,240,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+989,14,27,40,51,74,92,51,74,92,129,144,181,204,216,240,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+993,41,82,123,156,226,283,156,226,283,394,443,554,624,664,736,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+998,17,33,49,62,85,103,62,85,103,145,160,204,227,239,269,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+999,14,27,40,51,74,92,51,74,92,129,144,181,204,216,240,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1000,12,25,38,47,68,86,47,68,86,119,134,168,189,201,223,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1004,41,82,123,156,226,283,156,226,283,394,443,554,624,664,736,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1009,17,33,49,62,85,103,62,85,103,145,160,204,227,239,269,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1010,14,27,40,51,74,92,51,74,92,129,144,181,204,216,240,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1011,12,25,38,47,68,86,47,68,86,119,134,168,189,201,223,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1019,29,58,87,109,153,189,109,153,189,264,294,372,416,440,492,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1020,29,57,85,109,158,197,109,158,197,275,309,386,435,463,513,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1022,12,25,38,47,68,86,47,68,86,119,134,168,189,201,223,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1023,12,25,38,47,68,86,47,68,86,119,134,168,189,201,223,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1031,58,115,172,218,311,386,218,311,386,539,603,758,851,903,1005,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1032,55,109,163,207,300,375,207,300,375,523,587,735,828,880,976,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1033,41,82,123,156,226,283,156,226,283,394,443,554,624,664,736,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1034,41,82,123,156,226,283,156,226,283,394,443,554,624,664,736,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1035,29,57,85,109,158,197,109,158,197,275,309,386,435,463,513,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1036,347,695,346,1383,1383,1383,1452,1452,1452,2038,2038,2603,2603,2603,,727,,,,,,,,,,"tarifas_lasvaras.csv"
+1038,219,439,220,866,866,866,909,909,909,1150,1150,1537,1537,1537,,455,,,,,,,,,,"tarifas_lasvaras.csv"
+1039,188,376,187,740,740,740,777,777,777,983,983,1313,1313,1313,,389,,,,,,,,,,"tarifas_lasvaras.csv"
+1040,94,189,94,372,372,372,391,391,391,494,494,660,660,660,,196,,,,,,,,,,"tarifas_lasvaras.csv"
+1043,37,74,37,145,145,145,153,153,153,193,193,258,258,258,,77,,,,,,,,,,"tarifas_lasvaras.csv"
+1046,315,631,314,1256,1256,1256,1319,1319,1319,1871,1871,2379,2379,2379,,660,,,,,,,,,,"tarifas_lasvaras.csv"
+1049,252,505,252,1011,1011,1011,1061,1061,1061,1543,1543,1943,1943,1943,,531,,,,,,,,,,"tarifas_lasvaras.csv"
+1050,125,250,126,494,494,494,518,518,518,656,656,877,877,877,,259,,,,,,,,,,"tarifas_lasvaras.csv"
+1052,63,126,62,246,246,246,258,258,258,327,327,436,436,436,,129,,,,,,,,,,"tarifas_lasvaras.csv"
+1057,127,255,127,517,517,517,543,543,543,888,888,1067,1067,1067,,272,,,,,,,,,,"tarifas_lasvaras.csv"
+1058,14,29,14,71,71,71,71,71,71,100,100,105,105,105,,29,,,,,,,,,,"tarifas_camssa.csv"
+1059,44,89,44,210,210,210,210,210,210,305,305,315,315,315,,89,,,,,,,,,,"tarifas_camssa.csv"
+1067,18,37,18,84,84,84,84,84,84,131,131,152,152,152,,37,,,,,,,,,,"tarifas_camssa.csv"
+1072,50,100,50,215,215,215,215,215,215,284,284,315,315,315,,100,,,,,,,,,,"tarifas_camssa.csv"
+1077,37,74,37,194,194,194,194,194,194,273,273,310,310,310,,74,,,,,,,,,,"tarifas_camssa.csv"
+1078,12,24,12,50,50,50,50,50,50,58,58,71,71,71,,24,,,,,,,,,,"tarifas_camssa.csv"
+1079,,10.55,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1080,,17.06,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1081,,29.72,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1082,,38.84,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1083,,38.77,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1084,,5.02,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1085,,42.62,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1086,,44.51,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1087,,7.75,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1088,,14.26,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1089,,26.92,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1090,,36.04,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1091,,35.82,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1092,,2.13,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1093,,39.82,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1094,,41.71,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1095,,5.14,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1096,,11.65,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1097,,24.31,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1098,,33.43,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1099,,33.36,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1100,,37.21,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1101,,39.11,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1102,,4.2,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1103,,13.33,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1104,,13.25,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1105,,17.1,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1106,,19,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1107,,13.03,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1108,,33.49,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1109,,36.32,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1110,,38.95,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1111,,12.47,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1112,,32.94,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1113,,35.76,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1114,,38.4,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1115,,16.17,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1116,,36.64,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1117,,39.46,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1118,,42.1,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1119,,3.54,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1120,,24,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1121,,26.83,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1122,,29.46,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1123,,11.5,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1124,,14.23,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1125,,17.39,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1126,,7.45,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1127,,10.27,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1128,,12.91,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1129,,42.88,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1130,,40.24,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1131,,37.42,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1132,,16.95,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_ausur.csv"
+1134,,74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1135,,74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1136,,74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1137,,99,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1142,,74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1143,,74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1144,,99,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1145,,74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1146,,99,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1147,,25,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1148,,25,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1149,,99,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1150,,99,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1151,,99,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1152,,74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1153,,74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1154,,74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1155,,74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1156,,74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1157,,74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_supervia.csv"
+1158,,47.8,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1159,,90.58,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1160,,130.37,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1161,,137.59,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1162,,139.57,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1163,,31.94,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1164,,74.72,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1165,,114.51,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1166,,121.72,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1167,,123.7,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1168,,23.85,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1169,,66.63,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1170,,106.42,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1171,,113.63,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1172,,115.61,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1173,,7.5,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1174,,50.28,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1175,,90.07,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1176,,97.28,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1177,,99.26,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1178,,32.08,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1179,,71.87,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1180,,79.08,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1181,,81.06,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1182,,14.74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1183,,54.52,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1184,,61.74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1185,,63.72,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1186,,21.37,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1187,,28.59,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1188,,30.56,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1189,,22.22,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1190,,29.43,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1191,,31.41,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1192,,13.05,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1193,,17.84,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1194,,22.46,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1195,,8.19,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1196,,11.54,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1197,,24.57,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1198,,30.38,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1199,,55.63,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1200,,64.54,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1201,,81.87,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1202,,100.2,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1203,,116.43,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1204,,124.52,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1205,,140.13,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1206,,24.27,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1207,,30.09,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1208,,54.94,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1209,,64.25,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1210,,81.59,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1211,,99.91,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1212,,116.14,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1213,,124.23,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1214,,139.84,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1215,,23.18,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1216,,29,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1217,,53.81,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1218,,63.16,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1219,,80.49,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1220,,98.81,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1221,,115.05,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1222,,123.14,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1223,,138.74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1224,,8.81,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1225,,27.97,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1226,,39.02,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1227,,56.36,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1228,,74.68,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1229,,90.91,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1230,,99.01,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1231,,114.62,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1232,,16,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1233,,33.34,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1234,,51.66,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1235,,67.89,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1236,,75.98,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1237,,91.59,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1238,,7.62,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1239,,23.85,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1240,,31.94,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1241,,47.55,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1242,,7.5,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1243,,23.74,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1244,,31.82,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1245,,47.43,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_viaductobicentenario.csv"
+1246,,3.04,,,,,,,,,,,,,,,,4.69,,,,,,,,"tarifas_aunorte.csv"
+1247,,10.19,,,,,,,,,,,,,,,,15.72,,,,,,,,"tarifas_aunorte.csv"
+1247,,13.8,,,,,,,,,,,,,,,,21.28,,,,,,,,"tarifas_aunorte.csv"
+1248,,20.97,,,,,,,,,,,,,,,,32.34,,,,,,,,"tarifas_aunorte.csv"
+1248,,24.57,,,,,,,,,,,,,,,,37.9,,,,,,,,"tarifas_aunorte.csv"
+1249,,28.47,,,,,,,,,,,,,,,,43.91,,,,,,,,"tarifas_aunorte.csv"
+1249,,32.03,,,,,,,,,,,,,,,,49.42,,,,,,,,"tarifas_aunorte.csv"
+1250,,27.89,,,,,,,,,,,,,,,,43.03,,,,,,,,"tarifas_aunorte.csv"
+1250,,31.46,,,,,,,,,,,,,,,,48.54,,,,,,,,"tarifas_aunorte.csv"
+1251,,49.76,,,,,,,,,,,,,,,,76.77,,,,,,,,"tarifas_aunorte.csv"
+1251,,46.19,,,,,,,,,,,,,,,,71.26,,,,,,,,"tarifas_aunorte.csv"
+1252,,58.26,,,,,,,,,,,,,,,,89.89,,,,,,,,"tarifas_aunorte.csv"
+1253,,84.95,,,,,,,,,,,,,,,,131.06,,,,,,,,"tarifas_aunorte.csv"
+1256,,30.58,,,,,,,,,,,,,,,,47.17,,,,,,,,"tarifas_aunorte.csv"
+1259,,54.7,,,,,,,,,,,,,,,,84.38,,,,,,,,"tarifas_aunorte.csv"
+1260,102,205,105,370,370,,370,370,370,571,571,797,797,797,,187,,,,,,,,,,"tarifas_arconorte.csv"
+1260,,81.38,,,,,,,,,,,,,,,,125.54,,,,,,,,"tarifas_aunorte.csv"
+1261,,7.2,,,,,,,,,,,,,,,,11.1,,,,,,,,"tarifas_aunorte.csv"
+1262,,17.94,,,,,,,,,,,,,,,,27.68,,,,,,,,"tarifas_aunorte.csv"
+1263,,25.43,,,,,,,,,,,,,,,,39.24,,,,,,,,"tarifas_aunorte.csv"
+1264,,24.87,,,,,,,,,,,,,,,,38.37,,,,,,,,"tarifas_aunorte.csv"
+1265,,43.16,,,,,,,,,,,,,,,,66.59,,,,,,,,"tarifas_aunorte.csv"
+1266,,51.67,,,,,,,,,,,,,,,,79.71,,,,,,,,"tarifas_aunorte.csv"
+1267,,78.36,,,,,,,,,,,,,,,,120.88,,,,,,,,"tarifas_aunorte.csv"
+1268,,8.54,,,,,,,,,,,,,,,,13.17,,,,,,,,"tarifas_aunorte.csv"
+1269,,16.03,,,,,,,,,,,,,,,,24.73,,,,,,,,"tarifas_aunorte.csv"
+1270,,15.47,,,,,,,,,,,,,,,,23.86,,,,,,,,"tarifas_aunorte.csv"
+1271,,33.76,,,,,,,,,,,,,,,,52.08,,,,,,,,"tarifas_aunorte.csv"
+1272,,42.26,,,,,,,,,,,,,,,,65.2,,,,,,,,"tarifas_aunorte.csv"
+1273,,68.95,,,,,,,,,,,,,,,,106.37,,,,,,,,"tarifas_aunorte.csv"
+1274,,8.92,,,,,,,,,,,,,,,,13.76,,,,,,,,"tarifas_aunorte.csv"
+1275,,8.35,,,,,,,,,,,,,,,,12.88,,,,,,,,"tarifas_aunorte.csv"
+1276,,26.65,,,,,,,,,,,,,,,,41.11,,,,,,,,"tarifas_aunorte.csv"
+1277,,35.15,,,,,,,,,,,,,,,,54.23,,,,,,,,"tarifas_aunorte.csv"
+1278,,61.84,,,,,,,,,,,,,,,,95.4,,,,,,,,"tarifas_aunorte.csv"
+1279,,15.7,,,,,,,,,,,,,,,,24.22,,,,,,,,"tarifas_aunorte.csv"
+1280,,24.2,,,,,,,,,,,,,,,,37.34,,,,,,,,"tarifas_aunorte.csv"
+1281,,50.89,,,,,,,,,,,,,,,,78.5,,,,,,,,"tarifas_aunorte.csv"
+1282,,6.32,,,,,,,,,,,,,,,,9.75,,,,,,,,"tarifas_aunorte.csv"
+1283,,15.21,,,,,,,,,,,,,,,,23.46,,,,,,,,"tarifas_aunorte.csv"
+1284,,41.51,,,,,,,,,,,,,,,,64.03,,,,,,,,"tarifas_aunorte.csv"
+1285,,36.38,,,,,,,,,,,,,,,,56.13,,,,,,,,"tarifas_aunorte.csv"
+1286,,42.33,,,,,,,,,,,,,,,,65.3,,,,,,,,"tarifas_aunorte.csv"
+1287,,76.26,,,,,,,,,,,,,,,,117.65,,,,,,,,"tarifas_aunorte.csv"
+1289,,79.45,,,,,,,,,,,,,,,,122.56,,,,,,,,"tarifas_aunorte.csv"
+1289,,76.54,,,,,,,,,,,,,,,,118.08,,,,,,,,"tarifas_aunorte.csv"
+1290,,13.07,,,,,,,,,,,,,,,,20.16,,,,,,,,"tarifas_aunorte.csv"
+1291,,18.97,,,,,,,,,,,,,,,,29.27,,,,,,,,"tarifas_aunorte.csv"
+1292,,28.89,,,,,,,,,,,,,,,,44.57,,,,,,,,"tarifas_aunorte.csv"
+1292,,52.9,,,,,,,,,,,,,,,,81.6,,,,,,,,"tarifas_aunorte.csv"
+1293,,53.17,,,,,,,,,,,,,,,,82.03,,,,,,,,"tarifas_aunorte.csv"
+1294,,56.09,,,,,,,,,,,,,,,,86.53,,,,,,,,"tarifas_aunorte.csv"
+1295,,9.5,,,,,,,,,,,,,,,,14.66,,,,,,,,"tarifas_aunorte.csv"
+1296,,15.37,,,,,,,,,,,,,,,,23.71,,,,,,,,"tarifas_aunorte.csv"
+1297,,49.29,,,,,,,,,,,,,,,,76.05,,,,,,,,"tarifas_aunorte.csv"
+1298,,49.58,,,,,,,,,,,,,,,,76.49,,,,,,,,"tarifas_aunorte.csv"
+1299,,52.49,,,,,,,,,,,,,,,,80.97,,,,,,,,"tarifas_aunorte.csv"
+1300,,33.54,,,,,,,,,,,,,,,,51.74,,,,,,,,"tarifas_aunorte.csv"
+1303,,11.24,,,,,,,,,,,,,,,,17.34,,,,,,,,"tarifas_aunorte.csv"
+1305,,14.51,,,,,,,,,,,,,,,,22.39,,,,,,,,"tarifas_aunorte.csv"
+1305,,11.47,,,,,,,,,,,,,,,,17.7,,,,,,,,"tarifas_aunorte.csv"
+1336,112,220,,452,678,678,452,678,678,1130,1356,1356,1356,1356,,,,,,,,,,,,"tarifas_viapass.csv"
+1337,30,60,,138,138,138,138,138,138,309,309,309,309,309,,,,,,,,,,,,"tarifas_viapass.csv"
+1338,7,15,24,30,30,30,30,30,30,69,69,111,111,111,,,,,,,,,,,,"tarifas_puentecolorado.csv"
+1339,26,51,,112,112,112,112,112,112,177,177,234,234,234,,,,,,,,,,,,"tarifas_viapass.csv"
+1340,92,184,,223,409,409,223,409,409,808,808,808,808,808,,,,,,,,,,,,"tarifas_viapass.csv"
+1341,53,105,,112,207,207,112,207,207,406,406,406,406,406,,,,,,,,,,,,"tarifas_viapass.csv"
+1342,69,139,,230,230,230,230,230,230,347,347,421,421,421,,,,,,,,,,,,"tarifas_viapass.csv"
+1343,123,246,,411,538,,411,580,795,1028,1154,1279,1446,1555,,,,,,,,,,,,"tarifas_carreteras.csv"
+1344,46,93,,120,212,,141,209,264,347,421,427,487,597,,,,,,,,,,,,"tarifas_carreteras.csv"
+1345,46,93,,120,212,,141,209,264,347,421,427,487,597,,,,,,,,,,,,"tarifas_carreteras.csv"
+1346,63,126,,209,322,,209,294,385,504,600,631,729,880,,,,,,,,,,,,"tarifas_carreteras.csv"
+1347,50,100,,150,220,,150,215,275,360,440,445,510,620,,,,,,,,,,,,"tarifas_carreteras.csv"
+1348,65,130,,250,300,,245,285,370,454,525,555,595,770,,,,,,,,,,,,"tarifas_carreteras.csv"
+1349,75,155,,270,345,,250,330,405,525,575,620,665,745,,,,,,,,,,,,"tarifas_carreteras.csv"
+1350,50,100,,175,240,,175,230,275,355,410,435,475,580,,,,,,,,,,,,"tarifas_carreteras.csv"
+1351,80,160,,250,340,,250,310,390,470,525,560,610,775,,,,,,,,,,,,"tarifas_carreteras.csv"
+1352,50,100,,245,305,,245,305,365,495,550,595,640,770,,,,,,,,,,,,"tarifas_carreteras.csv"
+1353,80,160,,360,435,,360,435,520,685,745,785,855,930,,,,,,,,,,,,"tarifas_carreteras.csv"
+1354,37,74,,149,149,149,149,149,149,223,223,223,223,223,,,,,,,,,,,,"tarifas_viapass.csv"
+1358,15,30,16,65,65,,65,65,144,144,216,216,216,216,,45,,,,,,,,,,"tarifas_puentecolombia.csv"
+1362,51,102,,175,175,175,175,223,223,223,223,398,398,398,,70,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+1362,50,100,50,169,169,169,169,221,221,324,324,432,432,432,,85,,,,,,,,,,"tarifas_autopistasdecuota_chihuahua.csv"
+1363,21,41,24,134,134,134,,,,,,,,,,67,,,,,,,10,,,"tarifas_puentesfronterizos.csv"
+1368,34,69,33,140,140,140,140,140,282,282,453,453,453,453,,71,,,,,,,,,,"tarifas_copaoperacion_lucio_blanco.csv"
+1370,21,41,20,74,74,74,,,,,,,,,,74,,,,,,,6,,,"tarifas_puentesfronterizos.csv"
+1371,11,22,11,40,40,40,40,40,70,70,108,108,108,108,,20,,,,,,,,,,"tarifas_capufe.csv"
+1373,34,69,35,,,,,,,,,,,,,,,,,,,,4,,,"tarifas_copaoperacion.csv"
+1375,51,102,51,164,178,178,,,,257,257,327,327,327,,87,,,,,,,,,,"tarifas_orler.csv"
+1377,21,41,25,134,134,134,,,,,,,,,,134,,,,,,,10,,,"tarifas_puentesfronterizos.csv"
+1378,21,43,22,112,112,112,93,93,180,180,241,241,241,241,,47,,,,,,,,,,"tarifas_capufe.csv"
+1380,57,114,57,252,252,252,251,251,251,407,407,506,506,506,,126,,,,,,,,,,"tarifas_capufe.csv"
+1383,20,20,,52,52,130,52,52,130,130,163,163,163,202,,,,,,,,,,,,"tarifas_viapass.csv"
+1386,25,50,22,104,104,104,,,140,140,170,210,210,210,,26,,,,,,,,,,"tarifas_profrezac.csv"
+1387,15,30,11,46,46,46,71,71,121,121,140,169,169,169,,29,,,,,,,,,,"tarifas_profrezac.csv"
+1388,33,66,33,130,130,130,130,173,173,260,260,309,309,360,360,65,,,,,,,,,,"tarifas_profrezac.csv"
+1392,47,97,,141,192,281,,,,331,401,481,560,645,,79,,,,,,,,,,"tarifas_orler.csv"
+1393,52,105,59,241,241,241,241,241,241,407,407,600,600,600,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1394,41,82,46,189,189,189,189,189,189,319,319,470,470,470,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1395,69,139,78,318,318,318,318,318,318,538,538,793,793,793,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1396,28,58,32,130,130,130,131,131,131,220,220,324,324,324,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1398,74,148,,305,305,305,241,241,241,426,426,573,573,573,,,,,,,,,,,,"tarifas_viapass.csv"
+1399,51,101,,176,176,176,176,224,224,224,224,395,395,395,,70,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+1401,20,40,20,81,121,161,81,,,161,161,161,161,161,,,,,,,,,,,,"tarifas_autopista_lerma_tenango.csv"
+1405,53,106,,183,248,248,183,248,248,478,478,478,478,478,,,,,,,,,,,,"tarifas_viapass.csv"
+1406,18,36,,31,43,43,31,43,43,82,82,82,82,82,,,,,,,,,,,,"tarifas_viapass.csv"
+1407,30,59,,62,103,103,62,103,103,174,174,174,174,174,,,,,,,,,,,,"tarifas_viapass.csv"
+1408,40,79,,112,170,170,112,170,170,299,299,299,299,299,,,,,,,,,,,,"tarifas_viapass.csv"
+1409,53,106,,183,248,248,183,248,248,478,478,478,478,478,,,,,,,,,,,,"tarifas_viapass.csv"
+1410,44,87,44,251,251,,,,314,314,314,469,469,469,,,,,,,,,,,,"tarifas_gipsaslp.csv"
+1411,76,153,83,282,282,282,272,272,272,462,462,589,589,589,,124,,,,,,,,,,"tarifas_redviacorta.csv"
+1412,76,152,78,310,310,310,300,300,300,422,422,502,502,502,,136,,,,,,,,,,"tarifas_redviacorta.csv"
+1413,17,35,18,71,71,71,70,70,70,95,95,114,114,114,,35,,,,,,,,,,"tarifas_redviacorta.csv"
+1414,5,11,3,22,22,22,21,21,21,28,28,34,34,34,,5,,,,,,,,,,"tarifas_redviacorta.csv"
+1415,75,152,83,276,276,276,266,266,266,494,494,629,629,629,,124,,,,,,,,,,"tarifas_redviacorta.csv"
+1423,34,69,35,127,127,127,119,119,119,183,183,228,228,228,,60,,,,,,,,,,"tarifas_capufe.csv"
+1429,26,52,78,98,142,178,98,142,178,248,278,349,393,417,463,,,,,,,,,,,"tarifas_chamapalaventa.csv"
+1433,23,46,,81,81,81,81,81,81,87,87,87,87,87,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+1435,40,79,,130,130,130,130,130,130,138,138,138,138,138,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+1450,31,61,,108,108,108,108,108,108,115,115,115,115,115,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+1453,18,36,,31,43,43,31,43,43,82,82,82,82,82,,,,,,,,,,,,"tarifas_viapass.csv"
+1455,4,9,5,20,20,20,16,16,16,23,23,32,32,32,,8,,,,,,,,,,"tarifas_capufe.csv"
+1460,15,31,15,72,72,72,72,72,72,98,98,131,131,131,,,,,,,,,,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx"
+1461,38,77,38,177,177,177,177,177,177,242,242,322,322,322,,,,,,,,,,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx"
+1462,10,21,10,48,48,48,48,48,48,66,66,88,88,88,,,,,,,,,,,,"https://www.gmautopista.com/Paginas/Tarifas.aspx"
+1463,38,75,,190,190,190,200,200,200,411,411,517,517,517,,,,,,,,,,,,"tarifas_viapass.csv"
+1464,7.5,15,,31,31,31,243,243,243,431,431,670,670,670,,,,,,,,,,,,"pase"
+1465,16,32,16,43,43,43,41,41,41,50,50,53,53,53,,21,,,,,,,,,,"tarifas_capufe.csv"
+1466,24,49,25,99,99,99,99,99,193,193,269,269,269,269,,50,,,,,,,,,,"tarifas_capufe.csv"
+1467,24,49,25,99,99,99,99,99,193,193,269,269,269,269,,50,,,,,,,,,,"tarifas_capufe.csv"
+1468,,44,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1469,,121,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1470,,94,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1471,,121,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1472,,146,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1473,,203,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1474,,34,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1475,,80,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1476,,56,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+1477,,80,,,,,,,,,,,,,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+,3,6,3,14,14,14,14,14,14,34,34,41,41,41,,7,,,,,,,,,,"tarifas_capufe.csv"
+,20,40,,71,71,71,71,71,71,117,117,140,140,140,,,,,,,,,,,,"tarifas_viapass.csv"
+,28,57,32,130,130,130,130,130,130,219,219,323,323,323,,,,,,,,,,,,"tarifas_circuitoexterior.csv"
+,92,184,,326,326,326,326,326,326,350,350,350,350,350,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+,19,38,,61,61,61,61,61,61,72,72,72,72,72,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
+,54,107,,191,191,191,191,191,191,207,207,207,207,207,,89,,,,,,,,,,"tarifas_autopistasdecuota_sanluis.csv"
