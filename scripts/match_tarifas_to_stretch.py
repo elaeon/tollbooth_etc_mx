@@ -19,6 +19,17 @@ OUTPUT_FILE = Path("data/tarifas_with_stretch_id.csv")
 THRESHOLD = 0.65
 
 # Abreviaturas comunes en stretch_name y tramo
+# Equivalencias semánticas: texto de tarifas → nombre canónico en toll_ref
+# (aplicadas después de normalize(), antes de expand_abbrevs())
+# Ordenadas de más larga a más corta para evitar reemplazos parciales.
+TERM_ALIASES: dict[str, str] = {
+    "tramo 0 norte sur": "ent aut urbana nte",   # VB: tramo 0 (norte-sur) = conexión AUNORTE
+    "tramo 0 sur norte": "ent aut urbana nte",   # VB: sentido inverso
+    "ent mexico puebla": "sanctorum",             # Arco Norte: caseta en la jcn Méx-Puebla
+    "ent mex puebla": "sanctorum",               # variante abreviada "méx."
+    "tramo 0": "ent aut urbana nte",             # fallback para "tramo 0" sin dirección
+}
+
 ABBREVS = {
     "ent": "entronque",
     "lib": "libramiento",
@@ -68,7 +79,10 @@ def normalize(s: str) -> str:
     s = _WS.sub(" ", s).strip()
     s = _SUFIX_NOISE.sub("", s).strip()
     s = re.sub(r"\b([a-z]) ([0-9][a-z0-9]*)\b", r"\1\2", s)
-    return s
+    for alias, replacement in TERM_ALIASES.items():
+        if alias in s:
+            s = s.replace(alias, replacement)
+    return _WS.sub(" ", s).strip()
 
 
 def expand_abbrevs(s: str) -> str:
