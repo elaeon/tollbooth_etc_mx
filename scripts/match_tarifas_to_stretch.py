@@ -98,17 +98,20 @@ def load_targets(year) -> tuple[list[dict], dict[str, list[dict]]]:
         for r in csv.DictReader(f):
             stretch_name = r["stretch_name"]
             tollbooth_name = r.get("tollbooth_name", "").strip()
+            toll_ref = r.get("toll_ref", "").strip()
             target_text = expand_abbrevs(normalize(stretch_name))
             target_text_alt = expand_abbrevs(normalize(tollbooth_name)) if tollbooth_name else ""
+            target_combined = (target_text + " " + target_text_alt).strip() if target_text_alt else ""
+            toll_ref_norm = expand_abbrevs(normalize(toll_ref.replace("tarifas_", "").replace(".csv", ""))) if toll_ref else ""
             t: dict = {
                 "stretch_id": r["stretch_id"],
                 "stretch_name": stretch_name,
                 "target_text": target_text,
                 "target_text_alt": target_text_alt,
-                "target_tokens": tokenize(target_text) | tokenize(target_text_alt),
+                "target_combined": target_combined,
+                "target_tokens": tokenize(target_text) | tokenize(target_text_alt) | tokenize(toll_ref_norm),
             }
             targets.append(t)
-            toll_ref = r.get("toll_ref", "").strip()
             if toll_ref:
                 by_file[toll_ref].append(t)
     return targets, by_file
@@ -116,18 +119,27 @@ def load_targets(year) -> tuple[list[dict], dict[str, list[dict]]]:
 
 def _score_pool(
     search: str,
+    search_rev: str,
     search_tokens: set[str],
     pool: list[dict],
     scorer: Callable[[str, str], float],
 ) -> tuple[dict | None, float]:
     best: dict | None = None
     best_score = 0.0
+    try_rev = search_rev != search
     for t in pool:
         if not (search_tokens & t["target_tokens"]):
             continue
         s1 = scorer(search, t["target_text"]) / 100
         s2 = fuzz.ratio(search, t["target_text_alt"]) / 100 if t["target_text_alt"] else 0.0
         score = max(s1, s2)
+        if try_rev:
+            r1 = scorer(search_rev, t["target_text"]) / 100 * 0.98
+            r2 = fuzz.ratio(search_rev, t["target_text_alt"]) / 100 * 0.98 if t["target_text_alt"] else 0.0
+            score = max(score, r1, r2)
+        if t["target_combined"]:
+            s_comb = fuzz.token_set_ratio(search, t["target_combined"]) / 100 * 0.95
+            score = max(score, s_comb)
         if scorer is fuzz.ratio and score < THRESHOLD:
             s_tsr = fuzz.token_set_ratio(search, t["target_text"]) / 100 * 0.9
             score = max(score, s_tsr)
@@ -148,9 +160,10 @@ def best_match(
     intenta fallback contra todos los targets."""
     if not search:
         return None, 0.0
-    best, score = _score_pool(search, search_tokens, candidates, scorer)
+    search_rev = " ".join(reversed(search.split()))
+    best, score = _score_pool(search, search_rev, search_tokens, candidates, scorer)
     if score < THRESHOLD and candidates is not targets_all:
-        best_fb, score_fb = _score_pool(search, search_tokens, targets_all, scorer)
+        best_fb, score_fb = _score_pool(search, search_rev, search_tokens, targets_all, scorer)
         if score_fb > score:
             return best_fb, score_fb
     return best, score
