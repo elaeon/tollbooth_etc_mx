@@ -1,7 +1,8 @@
-"""Asigna stretch_id a cada fila de data/tarifas_columnar.csv mediante matching difuso
+"""Asigna stretch_id a cada fila de un CSV de tarifas mediante matching difuso
 contra reports/toll_ref_{year}.csv."""
 from __future__ import annotations
 
+import argparse
 import csv
 import re
 import sys
@@ -12,10 +13,8 @@ from typing import Callable
 
 from rapidfuzz import fuzz
 
-YEAR = 2026
-TOLL_REF_FILE = Path(f"reports/toll_ref_{YEAR}.csv")
-TARIFAS_FILE = Path("data/tarifas_columnar.csv")
-OUTPUT_FILE = Path("data/tarifas_with_stretch_id.csv")
+DEFAULT_INPUT = Path("data/tarifas_columnar.csv")
+DEFAULT_OUTPUT = Path("data/tarifas_with_stretch_id.csv")
 THRESHOLD = 0.65
 
 # Abreviaturas comunes en stretch_name y tramo
@@ -23,11 +22,13 @@ THRESHOLD = 0.65
 # (aplicadas después de normalize(), antes de expand_abbrevs())
 # Ordenadas de más larga a más corta para evitar reemplazos parciales.
 TERM_ALIASES: dict[str, str] = {
-    "tramo 0 norte sur": "ent aut urbana nte",   # VB: tramo 0 (norte-sur) = conexión AUNORTE
-    "tramo 0 sur norte": "ent aut urbana nte",   # VB: sentido inverso
-    "ent mexico puebla": "san martin texmelucan",             # Arco Norte: caseta en la jcn Méx-Puebla
-    "ent mex puebla": "san martin texmelucan",               # variante abreviada "méx."
-    "tramo 0": "ent aut urbana nte",             # fallback para "tramo 0" sin dirección
+    "tramo 0 norte sur": "ent aut urbana nte",
+    "tramo 0 sur norte": "ent aut urbana nte",
+    "ent mexico puebla": "san martin texmelucan",
+    "ent mex puebla": "san martin texmelucan",
+    "tramo 0": "ent aut urbana nte",
+    "viaducto mineria observatorio": "mineria",
+    "peri centro": "",
 }
 
 ABBREVS = {
@@ -46,6 +47,9 @@ ABBREVS = {
     "gral": "general",
     "nte": "norte",
     "ote": "oriente",
+    "pte": "poniente",
+    "veb": "entrada viaducto bicentenario",
+    "vb": "viaducto bicentenario",
 }
 
 _PREFIX_NOISE = re.compile(
@@ -57,15 +61,7 @@ _NON_WORD = re.compile(r"[^\w\s]+")
 _WS = re.compile(r"\s+")
 _TOKEN = re.compile(r"[a-z0-9]+")
 _SUFIX_NOISE = re.compile(r"tarifas\s+con\s+iva")
-_COL_ORDER = [
-    "stretch_id", "motorbike", "car", "car_axle",
-    "bus_2_axle", "bus_3_axle", "bus_4_axle", "truck_2_axle",
-    "truck_3_axle", "truck_4_axle", "truck_5_axle", "truck_6_axle",
-    "truck_7_axle", "truck_8_axle", "truck_9_axle", "truck_10_axle",
-    "load_axle", "motorbike_axle", "car_rush_hour", "car_evening_hour",
-    "pedestrian", "residente",
-    "autopista", "tramo", "stretch_name", "match_score", "filename"
-]
+_EXTRA_COLS = ["stretch_id", "stretch_name", "match_score"]
 
 
 def normalize(s: str) -> str:
@@ -74,6 +70,7 @@ def normalize(s: str) -> str:
     s = s.lower()
     s = s.replace("_", " ")
     s = _DASH_VARIANTS.sub(" ", s)
+    s = _PREFIX_NOISE.sub("", s).strip()
     s = _PREFIX_NOISE.sub("", s).strip()
     s = _NON_WORD.sub(" ", s)
     s = _WS.sub(" ", s).strip()
@@ -93,10 +90,11 @@ def tokenize(s: str) -> set[str]:
     return set(_TOKEN.findall(s))
 
 
-def load_targets() -> tuple[list[dict], dict[str, list[dict]]]:
+def load_targets(year) -> tuple[list[dict], dict[str, list[dict]]]:
     targets: list[dict] = []
     by_file: dict[str, list[dict]] = defaultdict(list)
-    with TOLL_REF_FILE.open(encoding="utf-8") as f:
+    ref_file = Path(f"reports/toll_ref_{year}.csv")
+    with ref_file.open(encoding="utf-8") as f:
         for r in csv.DictReader(f):
             stretch_name = r["stretch_name"]
             tollbooth_name = r.get("tollbooth_name", "").strip()
@@ -128,10 +126,11 @@ def _score_pool(
         if not (search_tokens & t["target_tokens"]):
             continue
         s1 = scorer(search, t["target_text"]) / 100
-        # Only use tollbooth_name alt for fuzz.ratio (direction-sensitive); token_set_ratio
-        # would score 1.0 against any superset of a short tollbooth name (false positive).
-        s2 = fuzz.ratio(search, t["target_text_alt"]) / 100 if (t["target_text_alt"] and scorer is fuzz.ratio) else 0.0
+        s2 = fuzz.ratio(search, t["target_text_alt"]) / 100 if t["target_text_alt"] else 0.0
         score = max(s1, s2)
+        if scorer is fuzz.ratio and score < THRESHOLD:
+            s_tsr = fuzz.token_set_ratio(search, t["target_text"]) / 100 * 0.9
+            score = max(score, s_tsr)
         if score > best_score:
             best_score = score
             best = t
@@ -157,16 +156,33 @@ def best_match(
     return best, score
 
 
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(description="Match tarifas CSV rows to stretch_id.")
+    p.add_argument("input", nargs="?", type=Path, default=DEFAULT_INPUT,
+                    help="CSV de entrada con columnas autopista, tramo, filename")
+    p.add_argument("-o", "--output", type=Path, default=DEFAULT_OUTPUT)
+    p.add_argument("-y", "--year", type=int, default=2026)
+    return p.parse_args()
+
+
 def main() -> int:
-    targets, by_file = load_targets()
+    args = parse_args()
+    input_file: Path = args.input
+    output_file: Path = args.output
+    year: int = args.year
+
+    targets, by_file = load_targets(year)
     print(f"loaded {len(targets)} stretches ({len(by_file)} grupos por filename)")
 
-    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    output_file.parent.mkdir(parents=True, exist_ok=True)
     rows_out: list[dict] = []
+    input_fieldnames: list[str] = []
     below = 0
 
-    with TARIFAS_FILE.open(encoding="utf-8", newline="") as fin:
-        for row in csv.DictReader(fin):
+    with input_file.open(encoding="utf-8", newline="") as fin:
+        reader = csv.DictReader(fin)
+        input_fieldnames = list(reader.fieldnames or [])
+        for row in reader:
             tramo = row.get("tramo", "").strip()
             autopista = row.get("autopista", "").strip()
             filename = row.get("filename", "")
@@ -222,12 +238,13 @@ def main() -> int:
     total = len(rows_out)
     rows_out.sort(key=lambda r: (r["stretch_id"] is None, r["stretch_id"] or 0))
 
-    with OUTPUT_FILE.open("w", encoding="utf-8", newline="") as fout:
-        writer = csv.DictWriter(fout, fieldnames=_COL_ORDER, extrasaction="ignore")
+    col_order = _EXTRA_COLS + [c for c in input_fieldnames if c not in _EXTRA_COLS]
+    with output_file.open("w", encoding="utf-8", newline="") as fout:
+        writer = csv.DictWriter(fout, fieldnames=col_order, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows_out)
     print(
-        f"escritas {total} filas en {OUTPUT_FILE} "
+        f"escritas {total} filas en {output_file} "
         f"({below} bajo umbral {THRESHOLD}, {dedup} duplicados resueltos)"
     )
     return 0
