@@ -29,21 +29,30 @@ class DataPipeline:
         model_dict = self._get_model(model_name, year)
         print(f'Scan file: {model_dict["start"].csv}')
         schema = model_dict["start"].schema
-        ldf = pl.scan_csv(model_dict["start"].csv, infer_schema_length=10000)
+        lf = pl.scan_csv(model_dict["start"].csv, infer_schema_length=10000)
         if date_columns is not None:
             pl_date_exp = []
             for date_column, date_format in date_columns.items():
                 pl_date_exp.append(pl.col(date_column).str.strip_chars())
-            ldf = ldf.with_columns(pl_date_exp)
+            lf = lf.with_columns(pl_date_exp)
 
             pl_date_exp = []
             for date_column, date_format in date_columns.items():
                 pl_date_exp.append(pl.col(date_column).str.to_date(date_format))
-            ldf = ldf.with_columns(pl_date_exp)
+            lf = lf.with_columns(pl_date_exp)
         
-        ldf = ldf.pipe(self._simple_stg, model=model_dict["start"], normalize=normalize)
-        ldf = ldf.cast(schema)
-        return ldf, model_dict["end"]
+        lf = lf.pipe(self._simple_stg, model=model_dict["start"], normalize=normalize)
+        data_schema = lf.collect_schema()
+        data_columns = set(data_schema.keys())
+        model_columns = set(schema.keys())
+        null_columns = model_columns.difference(data_columns)
+        if len(null_columns) > 0:
+            print("Warn: ", null_columns, f"does not exist in file {model_dict["start"].csv}")
+        lf = lf.with_columns(
+            [pl.lit(None).alias(col) for col in null_columns]
+        )
+        lf = lf.cast(schema)
+        return lf, model_dict["end"]
 
     def simple_raw_stg(self, model_name: str, year: int, file_path: str, old_fields: list, 
                        date_columns: dict | None = None, filter_exp: pl.Expr | None = None, 
