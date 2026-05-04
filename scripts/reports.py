@@ -220,9 +220,9 @@ def tdpa_vta_growth_rate(from_year, to_year, vehicle_type):
     return df_sts
 
 
-def growth_rate_report(from_year: int, to_year: int, vehicle_type):
+def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_sts: int):
     ldf_toll = inflation_growth_rate(from_year, to_year, vehicle_type)
-    ldf_sts = tdpa_vta_growth_rate(from_year, to_year=to_year-1, vehicle_type=vehicle_type)
+    ldf_sts = tdpa_vta_growth_rate(from_year, to_year=to_year_sts, vehicle_type=vehicle_type)
 
     toll_col_names = ldf_toll.collect_schema().names()
     sts_col_names = ldf_sts.collect_schema().names()[1:]
@@ -312,7 +312,7 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type):
     ).select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
 
     ldf_sts_name = (
-        pl.scan_parquet(DataModel(to_year - 1, DataStage.prd).tb_sts.parquet)
+        pl.scan_parquet(DataModel(to_year_sts, DataStage.prd).tb_sts.parquet)
         .select("tollbooth_id", "stretch_name")
         .rename({"stretch_name": "stretch_way"})
         .join(ldf_sts, on="tollbooth_id")
@@ -1174,6 +1174,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--from-year", required=False, type=int)
     parser.add_argument("--to-year", required=True, type=int)
+    parser.add_argument("--to-year-sts", required=False, type=int)
     parser.add_argument("--growth-rate", required=False, choices=tuple(_VEHICLE_TYPE_DICT))
     parser.add_argument("--tb-update-date", required=False, action="store_true")
     parser.add_argument("--tb-names", required=False, action="store_true")
@@ -1197,7 +1198,11 @@ if __name__ == "__main__":
             from_year = args.from_year
         else:
             from_year = 2021
-        growth_rate_report(from_year=from_year, to_year=args.to_year, vehicle_type=args.growth_rate)
+        if args.to_year_sts is None:
+            to_year_sts = args.to_year
+        else:
+            to_year_sts = args.to_year_sts
+        growth_rate_report(from_year=from_year, to_year=args.to_year, vehicle_type=args.growth_rate, to_year_sts=to_year_sts)
     elif args.tb_update_date:
         toll_update_date_report(from_year=2024, to_year=2025)
     elif args.tb_names:
