@@ -232,7 +232,7 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_
        "parent_tb_manage", "stretch_length_km", "stretch_manage", "road_name",
        "start_contract_date", "end_contract_date", "operation_date", "bond_issuance_date",
        "farac", "bond_issuance_date", "km_cost", "operation_contract_days", 
-       "end_start_contract_days", "gate_to"
+       "end_start_contract_days", "gate_to", "fonadin", "project_mx"
     ] + toll_col_names + sts_col_names
     output_cols_dict = dict((k, None) for k in output_cols)
 
@@ -257,13 +257,17 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_
         .select(
             "road_id", "road_name", "operation_date",
             "start_contract_date", "end_contract_date",
-            "bond_issuance_date", "farac"
+            "bond_issuance_date", "farac", "fonadin_ref",
+            "project_mx_id"
         )
     )
     ldf_road = ldf_road.with_columns(
         ((pl.col("operation_date") - pl.col("start_contract_date")).dt.total_days()).alias("operation_contract_days"),
-        ((pl.col("end_contract_date") - pl.col("start_contract_date")).dt.total_days()).alias("end_start_contract_days")
+        ((pl.col("end_contract_date") - pl.col("start_contract_date")).dt.total_days()).alias("end_start_contract_days"),
+        (pl.when(pl.col("fonadin_ref").is_null()).then(0).otherwise(1)).alias("fonadin"),
+        (pl.when(pl.col("project_mx_id").is_null()).then(0).otherwise(1)).alias("project_mx")
     )
+    ldf_road = ldf_road.select(pl.exclude("fonadin_ref"))
 
     df_inflation = (
         pl.read_parquet(data_model.inflation.parquet)
