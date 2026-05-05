@@ -2,6 +2,22 @@
 
 Welcome! Whether you're improving data quality, reporting issues, or enhancing the analysis, your help makes this project better.
 
+## Dataset summary
+
+| Indicador | Registros |
+|---|---:|
+| Estados | 32 |
+| Carreteras de cuota | 244 |
+| Estaciones de conteo TDPA | 860 |
+| Operadoras de plazas de cobro | 110 |
+| Plazas de cobro | 1,367 |
+| Reportes de analisis de datos | 16 |
+| Segmentos con TDPA | 856 / 1,461 |
+| Segmentos vinculadas a plazas | 1,188 |
+| Segmentos con distancias | 799 |
+| Segmentos de cuota | 1,463 |
+| Segmentos de cuota con tarifa | 1,437 |
+
 ### How to Contribute
 
 #### **Data Contributions**
