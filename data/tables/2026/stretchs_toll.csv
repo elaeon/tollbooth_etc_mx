@@ -1,4 +1,4 @@
-"stretch_id","motorbike","car","car_axle","bus_2_axle","bus_3_axle","bus_4_axle","truck_2_axle","truck_3_axle","truck_4_axle","truck_5_axle","truck_6_axle","truck_7_axle","truck_8_axle","truck_9_axle","truck_10_axle","load_axle","motorbike_axle","car_rush_hour","car_rush_hour_2","car_evening_hour","car_evening_hour_2","car_morning_night_hour","pedestrian","bicycle","residente","toll_ref"
+"stretch_id","motorbike","car","car_axle","bus_2_axle","bus_3_axle","bus_4_axle","truck_2_axle","truck_3_axle","truck_4_axle","truck_5_axle","truck_6_axle","truck_7_axle","truck_8_axle","truck_9_axle","truck_10_axle","load_axle","motorbike_axle","car_rush_hour","car_evening_hour","car_rush_hour_2","car_evening_hour_2","car_morning_night_hour","pedestrian","bicycle","residente","toll_ref"
 1,13,26,13,52,52,52,50,50,81,81,127,127,127,127,,25,,,,,,,,,,"tarifas_capufe.csv"
 2,13,26,13,52,52,52,50,50,81,81,127,127,127,127,,25,,,,,,,,,,"tarifas_capufe.csv"
 3,86,173,87,350,350,350,335,335,688,688,943,943,943,943,,168,,,,,,,,,,"tarifas_capufe.csv"
