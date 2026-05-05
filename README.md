@@ -54,9 +54,17 @@ Open an [issue](../../issues) to ask questions or suggest improvements.
 
 ## Citing
 
-If your publication uses data or analysis from this repository, please take a moment to cite it.
+If your publication uses reports or data from this repository, please take a moment to cite it.
 
-You can download the results on [Zenodo](https://zenodo.org/records/18682704)
+You can download the full report on [Zenodo](https://zenodo.org/records/18682704)
+
+---
+
+## Credits
+
+**Original Data Sources:**
+See [resources.csv](https://github.com/elaeon/tollbooth_etc_mx/blob/main/resources.csv)
+
 
 ## Data & Report Access
 
