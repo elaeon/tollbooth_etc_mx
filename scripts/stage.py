@@ -249,11 +249,19 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
     elif option_selected == "inflation":
         data_model = DataModel(year, DataStage.stg)
         file_path = f"./raw_data/inegi/monthly_inflation.csv"
-        df = pl.read_csv(file_path).transpose(include_header=True).rename({"column": "year", "column_0": "value"})
-        df = df.filter(pl.col("year").str.contains("/12"))
-        df = df.with_columns(
-            pl.col("year").str.replace(r"\/12", "")
-        ).cast(data_model.inflation.schema)
+        # df = pl.read_csv(file_path).transpose(include_header=True).rename({"column": "year", "column_0": "value"})
+        df = pl.read_csv(file_path)
+        df = (
+                df
+                .with_columns(
+                    pl.col("year").str.split("/").list.to_struct(fields=["year", "month"])
+                )
+                .unnest("year")
+                .sort("year", "month")
+                .group_by("year", maintain_order=True)
+                .last()
+        )
+        df = df.cast(data_model.inflation.schema)
         df.write_parquet(data_model.inflation.parquet)
         return
     elif option_selected == "manager_revenue":

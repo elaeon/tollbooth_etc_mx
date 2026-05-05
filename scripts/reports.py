@@ -45,9 +45,26 @@ def inflation_growth_rate(from_year, to_year, vehicle_type):
 
     for year in years:
         filepath = DataModel(year, DataStage.stg).stretchs_toll.parquet
-        df_strech_toll_dict[year] = pl.scan_parquet(filepath).select(
-            ["stretch_id"] + _VEHICLE_TYPE_DICT[vehicle_type]
-        )
+        vehicle_cols = ["stretch_id"] + _VEHICLE_TYPE_DICT[vehicle_type]
+        df_strech_toll_dict[year] = pl.scan_parquet(filepath)
+        
+        if vehicle_type == "car":
+            df_strech_toll_dict[year] = df_strech_toll_dict[year].select(
+                vehicle_cols + ["car_rush_hour"]
+            )
+            car_cols = _VEHICLE_TYPE_DICT[vehicle_type]
+            df_strech_toll_dict[year] = (
+                df_strech_toll_dict[year]
+                .with_columns(
+                    pl.when(pl.col("car_rush_hour").is_not_null()).then(pl.col("car_rush_hour")).otherwise(pl.col(car_cols[0]))
+                )
+                .select(pl.exclude(car_cols[0]))
+                .rename({"car_rush_hour": car_cols[0]})
+            )
+        else:
+            df_strech_toll_dict[year] = df_strech_toll_dict[year].select(
+                vehicle_cols
+            )
         df_strech_toll_dict[year] = df_strech_toll_dict[year].fill_null(0)
         df_strech_toll_dict[year] = df_strech_toll_dict[year].with_columns(
             pl.sum_horizontal(
@@ -116,16 +133,16 @@ def cum_growth_rate(range_keys, prefix_col: str, result_prefix_col: str, growth_
     start = range_keys[0]
     for _, end_year in zip(range_keys[1:], range_keys[2:]):
         result_col_name = f"{result_prefix_col}_cum_growth_rate_{start}_{end_year}"
-        growth_rate_exp.append(
-            (
-                pl.when(pl.col(f"{prefix_col}_{start}") != 0)
-                .then(
-                    ((pl.col(f"{prefix_col}_{end_year}") / pl.col(f"{prefix_col}_{start}") - 1) * 100).round(2)
-                )
-                .otherwise(None)
-                .alias(result_col_name)
-            )
-        )
+        candidates = [y for y in range_keys if y < end_year]
+        expr = None
+        for candidate_start in candidates:
+            cum_expr = ((pl.col(f"{prefix_col}_{end_year}") / pl.col(f"{prefix_col}_{candidate_start}") - 1) * 100).round(2)
+            cond = pl.col(f"{prefix_col}_{candidate_start}") != 0
+            if expr is None:
+                expr = pl.when(cond).then(cum_expr)
+            else:
+                expr = expr.when(cond).then(cum_expr)
+        growth_rate_exp.append(expr.otherwise(None).alias(result_col_name))
         growth_rate_columns.append(result_col_name)
 
 
@@ -134,15 +151,18 @@ def cagr_growth_rate(range_keys, prefix_col: str, result_prefix_col: str, growth
     end = range_keys[-1]
     result_col_name = f"{result_prefix_col}_cagr_growth_rate_{start}_{end}"
     growth_rate_columns.append(result_col_name)
-    num_of_years = end - start
-    cagr_inflation_rate_exp = (
-        pl.when(pl.col(f"{prefix_col}_{start}") != 0)
-        .then(
-            (((pl.col(f"{prefix_col}_{end}") / pl.col(f"{prefix_col}_{start}")).pow(1/num_of_years) - 1) * 100).round(2)
-        )
-        .otherwise(None)
-        .alias(result_col_name)
-    )
+
+    candidates = list(range_keys[:-1])
+    expr = None
+    for candidate_start in candidates:
+        num_of_years = end - candidate_start
+        cagr_expr = (((pl.col(f"{prefix_col}_{end}") / pl.col(f"{prefix_col}_{candidate_start}")).pow(1/num_of_years) - 1) * 100).round(2)
+        cond = pl.col(f"{prefix_col}_{candidate_start}") != 0
+        if expr is None:
+            expr = pl.when(cond).then(cagr_expr)
+        else:
+            expr = expr.when(cond).then(cagr_expr)
+    cagr_inflation_rate_exp = expr.otherwise(None).alias(result_col_name)
     growth_rate_exp.append(cagr_inflation_rate_exp)
 
 
