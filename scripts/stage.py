@@ -11,6 +11,7 @@ from tb_map_editor.data_files import DataModel, DataStage
 from tb_map_editor.pipeline import DataPipeline
 
 
+# dv_cleaner.main(year, from_year, to_page)
 def sts_ids(year: int, start_year: int):
     hex_resolution = 10
 
@@ -41,21 +42,21 @@ def sts_ids(year: int, start_year: int):
     if to_year is None:
         data_model_from = DataModel(from_year, DataStage.stg)
         ldf_tb_sts_from = pl.scan_parquet(
-            data_model_from.tb_sts.parquet
+            data_model_from.tb_sts_no_id.parquet
         )
         ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
             h3_cell=plh3.latlng_to_cell("lat", "lng", hex_resolution)
         )
         ldf_all = _split_dup_and_add_id(ldf_tb_sts_from, start_index=1)
     else:
-        data_model_from = DataModel(from_year, DataStage.prd)
+        data_model_from = DataModel(from_year, DataStage.stg)
         ldf_tb_sts_from = pl.scan_parquet(
             data_model_from.tb_sts.parquet,
         )
         columns = ldf_tb_sts_from.collect_schema().names()
         data_model_to = DataModel(to_year, DataStage.stg)
         ldf_tb_sts_to_base = pl.scan_parquet(
-            data_model_to.tb_sts.parquet, 
+            data_model_to.tb_sts_no_id.parquet, 
         )
 
         ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
@@ -125,7 +126,7 @@ def sts_ids(year: int, start_year: int):
         )
         ldf_all = ldf_all.sort("tollbooth_id")
 
-    ldf_all.sink_parquet(DataModel(year, DataStage.prd).tb_sts.parquet)
+    ldf_all.sink_parquet(DataModel(year, DataStage.stg).tb_sts.parquet)
 
 
 def get_parent_manage() -> pl.DataFrame:
@@ -150,25 +151,10 @@ def get_parent_manage() -> pl.DataFrame:
     return df
 
 
-def stg_to_prod(year:int, option_selected: str):
-    if option_selected == "tb_sts":
-        sts_ids(year, start_year=2018)
-
-
-def _opts_map(options, models):
-    catalogs = {}
-    for option, model in zip(options, models):
-        catalogs[option] = model
-    return catalogs
-
-
-def pub_to_stg(year: int, option_selected: str, normalize: bool, options: tuple):
+def pub_to_stg(year: int, model_name: str, normalize: bool):
     pipeline = DataPipeline()
-    
-    models = ["tollbooths", "stretchs", "stretchs_toll", "roads", "tb_stretch_id", "osm_tb_distance"]
-    catalogs = _opts_map(options, models)
 
-    if option_selected == "road":
+    if model_name == "road":
         date_format = "%d-%m-%Y"
         date_columns = {
             "operation_date": date_format,
@@ -178,24 +164,24 @@ def pub_to_stg(year: int, option_selected: str, normalize: bool, options: tuple)
     else:
         date_columns = None
     
-    ldf, data_model = pipeline.simple_pub_stg(catalogs[option_selected], year, normalize, date_columns=date_columns)
-    if option_selected == "tb":
+    lf, data_model = pipeline.simple_pub_stg(model_name, year, normalize, date_columns=date_columns)
+    if model_name == "tollbooth":
         df_parent_manage = get_parent_manage()
-        ldf = ldf.collect().join(df_parent_manage, left_on="manage", right_on="short_name", how="left")
-        ldf.write_parquet(data_model.parquet)
-    elif option_selected == "osm_tb_distance":
-        ldf = ldf.filter(pl.col("distance") == pl.col("distance").max().over("stretch_id"))
-        ldf = ldf.with_columns(pl.col("distance").round(2))
-        ldf.sink_parquet(data_model.parquet)
-    elif option_selected == "stretch":
-        ldf_osm_tb_distance = (
+        lf = lf.collect().join(df_parent_manage, left_on="manage", right_on="short_name", how="left")
+        lf.write_parquet(data_model.parquet)
+    elif model_name == "osm_tb_distance":
+        lf = lf.filter(pl.col("distance") == pl.col("distance").max().over("stretch_id"))
+        lf = lf.with_columns(pl.col("distance").round(2))
+        lf.sink_parquet(data_model.parquet)
+    elif model_name == "stretch":
+        lf_osm_tb_distance = (
             pl.scan_parquet(DataModel(year, DataStage.stg).osm_tb_distance.parquet)
             .select("stretch_id", "distance")
             .rename({"distance": "stretch_length_km"})
         )
-        ldf = (
-            ldf
-            .join(ldf_osm_tb_distance, on="stretch_id", how="left")
+        lf = (
+            lf
+            .join(lf_osm_tb_distance, on="stretch_id", how="left")
             .with_columns(
                stretch_length_km=(
                    pl.when(pl.col("stretch_length_km_right").is_null())
@@ -204,25 +190,23 @@ def pub_to_stg(year: int, option_selected: str, normalize: bool, options: tuple)
                )
             )
         )
-        ldf = ldf.select(data_model.model.dict_schema().keys())
-        ldf.sink_parquet(data_model.parquet)
+        lf = lf.select(data_model.model.dict_schema().keys())
+        lf.sink_parquet(data_model.parquet)
     else:
-        ldf.sink_parquet(data_model.parquet)
-    print(f'Sink file: {data_model.parquet}')
+        lf.sink_parquet(data_model.parquet)
+    return lf
 
 
-def raw_to_stg(year: int, option_selected: str, normalize: bool):
+def raw_to_stg(year: int, model_name: str, normalize: bool):
     pipeline = DataPipeline()
     
-    models = ["tb_imt", "tb_toll_imt", "manager_revenue"]
-    options = ["tb_imt", "tb_toll_imt", "manager_revenue"]
     date_columns = None
     filter_expr = None
     extra_expr = None
     extra_pipe = None
 
-    if option_selected == "tb_imt":
-        file_path = f"./tmp_data/plazas_{year}.csv"
+    if model_name == "tb_imt":
+        file_path = f"./raw_data/toll_data/imt/plazas_{year}.csv"
         old_fields = [
             "ID_PLAZA", "ADMINISTRA", "NOMBRE", "SECCION", "SUBSECCION", "MODALIDAD",
             "FUNCIONAL", "FECHA_ACT", "CALIREPR", "ycoord", "xcoord"
@@ -230,8 +214,8 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
         date_format = "%Y-%m-%d %H:%M:%S"
         date_columns = {"FECHA_ACT": date_format}
     
-    elif option_selected == "tb_toll_imt":
-        file_path = f"./tmp_data/tarifas_imt_{year}.csv"
+    elif model_name == "tb_toll_imt":
+        file_path = f"./raw_data/toll_data/imt/tarifas_imt_{year}.csv"
         old_fields = [
             "ID_PLAZA", "ID_PLAZA_E", "NOMBRE_SAL", "NOMBRE_ENT",
             "T_MOTO", "T_AUTO", "T_EJE_LIG", "T_AUTOBUS2",
@@ -239,20 +223,20 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
             "T_CAMION4", "T_CAMION5", "T_CAMION6", "T_CAMION7",
             "T_CAMION8", "T_CAMION9", "T_EJE_PES", "FECHA_ACT"
         ]
-        if year == 2025:
-           date_format = "%Y-%m-%d %H:%M:%S"
-        elif year in [2020, 2021, 2022, 2023, 2024]:
-            date_format = "%Y-%m-%d"
 
+        if year in [2020, 2021, 2022, 2023, 2024]:
+            date_format = "%Y-%m-%d"
+        else:
+            date_format = "%Y-%m-%d %H:%M:%S"
+        
         date_columns = {"FECHA_ACT": date_format}
         filter_expr = (pl.col("FECHA_ACT") < date(year + 1, 1, 1))
-    elif option_selected == "inflation":
+    elif model_name == "inflation":
         data_model = DataModel(year, DataStage.stg)
         file_path = f"./raw_data/inegi/monthly_inflation.csv"
-        # df = pl.read_csv(file_path).transpose(include_header=True).rename({"column": "year", "column_0": "value"})
-        df = pl.read_csv(file_path)
-        df = (
-                df
+        lf = pl.scan_csv(file_path)
+        lf = (
+                lf
                 .with_columns(
                     pl.col("year").str.split("/").list.to_struct(fields=["year", "month"])
                 )
@@ -261,10 +245,10 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
                 .group_by("year", maintain_order=True)
                 .last()
         )
-        df = df.cast(data_model.inflation.schema)
-        df.write_parquet(data_model.inflation.parquet)
+        lf = lf.cast(data_model.inflation.schema)
+        lf.sink_parquet(data_model.inflation.parquet)
         return
-    elif option_selected == "manager_revenue":
+    elif model_name == "manager_revenue":
         data_model = DataModel(year, DataStage.stg)
         file_path = f"./raw_data/capufe/capufe_ingresos_{year}.csv"
         numeric_cols = data_model.manager_revenue.model.numeric_cols()
@@ -285,10 +269,13 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
             )
             return lf
         extra_pipe = extra_pipe_fn
+    else:
+        file_path = ""
+        old_fields = []
+        numeric_cols = []
     
-    catalogs = _opts_map(options, models)
     lf, model_dict = pipeline.simple_raw_stg(
-        catalogs[option_selected], 
+        model_name, 
         year, 
         file_path, 
         old_fields, 
@@ -297,30 +284,8 @@ def raw_to_stg(year: int, option_selected: str, normalize: bool):
         normalize=normalize,
         extra_expr=extra_expr
     )
-    print(lf.select(numeric_cols).with_columns(pl.sum_horizontal(pl.all()).alias("total")).select("total").sum().collect())
+    #print(lf.select(numeric_cols).with_columns(pl.sum_horizontal(pl.all()).alias("total")).select("total").sum().collect())
     if extra_pipe is not None:
         lf = lf.pipe(extra_pipe)
     lf.sink_parquet(model_dict["end"].parquet)
-
-
-if __name__ == "__main__":
-    choices = ("tb", "stretch", "stretch_toll", "road", "tb_stretch_id", "osm_tb_distance")
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--year", required=True, type=int)
-    parser.add_argument(
-        "--pub-to-stg", 
-        help="generate parquet file", 
-        required=False, type=str, 
-        choices=choices
-    )
-    parser.add_argument("--stg-to-prod", required=False, type=str)
-    parser.add_argument("--raw-to-stg", required=False, type=str, choices=("tb_imt", "tb_toll_imt", "inflation", "manager_revenue"))
-    parser.add_argument("--normalize", required=False, action="store_true")
-
-    args = parser.parse_args()
-    if args.stg_to_prod:
-        stg_to_prod(args.year, args.stg_to_prod)
-    elif args.pub_to_stg:
-        pub_to_stg(args.year, args.pub_to_stg, args.normalize, options=choices)
-    elif args.raw_to_stg:
-        raw_to_stg(args.year, args.raw_to_stg, args.normalize)
+    return lf

@@ -18,8 +18,10 @@ def _no_tb(ldf_neighbour, ldf, scope: str, threshold: float = 0.1):
     return ldf_no_map
 
 
+# tollbooth_cluster.tollbooth_neighbours(year)
+# sts_ids(year, start_year)
 def sts_no_tb(base_year: int, move_year: int):
-    data_model_prev_year = DataModel(base_year, DataStage.prd)
+    data_model_prev_year = DataModel(base_year, DataStage.stg)
     data_model = DataModel(move_year, DataStage.stg)
 
     ldf_neighbour = pl.scan_parquet(data_model.tb_neighbour.parquet)
@@ -33,6 +35,8 @@ def sts_no_tb(base_year: int, move_year: int):
     ).sink_csv(f"./tmp_data/{base_year}/sts_no_tb.csv")
 
 
+# tollbooth_cluster.tollbooth_neighbours(year)
+# stage.raw_to_stg(year, model_name="tb_imt")
 def imt_no_tb(base_year: int, move_year: int):
     data_model_prev_year = DataModel(base_year, DataStage.stg)
 
@@ -47,6 +51,7 @@ def imt_no_tb(base_year: int, move_year: int):
     ).sink_csv(f"./tmp_data/{base_year}/imt_no_tb.csv")
 
 
+#legacy: first step to build tb_stretch_id
 def tb_stretch_id_imt(base_year: int, move_year: int):
     """
     Legacy method to get mapped stretch_id and tollbooths.
@@ -112,9 +117,14 @@ def tb_stretch_id_imt(base_year: int, move_year: int):
     ldf_tb_stretch_id.sink_parquet(data_model_move_year.tb_stretch_id.parquet)
 
 
+# sts_ids(year, start_year)
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs")
+# stage.pub_to_stg(year, model_name="tb_stretch_id")
+# tollbooth_cluster.tollbooth_neighbours(year)
 def tb_stretch_id_sts(base_year: int, move_year: int):
     data_model_base = DataModel(base_year, DataStage.stg)
-    data_model_sts = DataModel(move_year, DataStage.prd)
+    data_model_sts = DataModel(move_year, DataStage.stg)
     data_model_pub = DataModel(base_year, DataStage.pub)
     
     ldf_tb_sts = (
@@ -192,6 +202,8 @@ def tb_stretch_id_sts(base_year: int, move_year: int):
     ldf_tb_stretch_sts.sink_parquet(data_model_base.tb_sts_stretch_id.parquet)
 
 
+# stage.raw_to_stg(year, model_name="tb_toll_imt")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs_toll")
 def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
     data_model = DataModel(move_year, DataStage.stg)
     df_tb_imt = pl.read_parquet(data_model.tb_toll_imt.parquet)
@@ -261,6 +273,8 @@ def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
     print(pl.concat([df_tb_imt[best_i], best_rows.select("eucli")], how="horizontal"))
 
 
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
+# tollbooth_cluster.tollbooth_neighbours(year)
 def map_tb_id(year: int):
     data_model = DataModel(year, DataStage.stg)
 
@@ -317,6 +331,11 @@ def map_tb_id(year: int):
     print(f"Saved result in {data_model.map_tb_id.parquet}")
 
 
+# tollbooth_cluster.tollbooth_neighbours(year)
+# stage.raw_to_stg(year, model_name="tb_imt")
+# stage.raw_to_stg(year, model_name="tb_toll_imt")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs_toll")
 def tb_imt_stretch_id_rel(year: int):
     """
     Mapping tool to get stretch_id and imt tollbooth
@@ -430,6 +449,9 @@ def tb_imt_stretch_id_rel(year: int):
     ldf_stretch_toll.sink_parquet(data_model.tb_imt_stretch_id.parquet)
 
 
+# tb_imt_stretch_id_rel(year)
+# stage.raw_to_stg(year, model_name="tb_toll_imt")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs_toll")
 def fill_toll_from_year(year: int, origin_year: int):
     data_model = DataModel(year, DataStage.stg)
     data_model_origin = DataModel(origin_year, DataStage.stg)

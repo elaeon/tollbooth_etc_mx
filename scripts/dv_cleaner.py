@@ -158,7 +158,7 @@ def main(year, from_page, to_page):
         del schema["tollbooth_id"]
         df_all = df_all.with_columns(pl_exp)
         df_all = df_all.cast(schema, strict=True)
-        df_all.write_parquet(data_path.tb_sts.parquet)
+        df_all.write_parquet(data_path.tb_sts_no_id.parquet)
 
 
 if __name__ == "__main__":

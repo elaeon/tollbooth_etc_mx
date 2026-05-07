@@ -22,25 +22,25 @@ def build_path(filename, attr:dict, folder: str) -> str:
 class DataStage:
     raw: str = "data/raw/"
     stg: str = "data/staging/"
-    prd: str = "data/production/"
+    tst: str = "data/test/"
     pub: str = "data/tables/"
 
 
 @dataclass
 class PathModel:
-    def __init__(self, filename: str, model: TbModel, attr: dict, folder: str):
+    def __init__(self, filename: str, model: TbModel, attr: dict, stage: str):
         self.filename: str = filename
         self.model: TbModel = model
         self.attr: dict = attr
-        self.folder: str = folder
+        self.stage: str = stage
 
     @property
     def csv(self) -> str:
-        return build_path(f"{self.filename}.csv", self.attr, folder=self.folder)
+        return build_path(f"{self.filename}.csv", self.attr, folder=self.stage)
     
     @property
     def parquet(self) -> str:
-        return build_path(f"{self.filename}.parquet", self.attr, folder=self.folder)
+        return build_path(f"{self.filename}.parquet", self.attr, folder=self.stage)
 
     @property
     def schema(self) -> dict:
@@ -52,28 +52,32 @@ class PathModel:
 
 
 class DataModel:
-    def __init__(self, year: int, stage: DataStage):
+    def __init__(self, year: int, stage: str):
         self.attr = {"year": year}
-        self.stage = stage
+        self.stage: str = stage
     
     @property
-    def tollbooths(self) -> PathModel:
+    def tollbooth(self) -> PathModel:
         return PathModel("tollbooths", model.Tollbooth, self.attr, self.stage)
     
     @property
-    def stretchs(self) -> PathModel:
+    def stretch(self) -> PathModel:
         return PathModel("stretchs", model.Stretch, self.attr, self.stage)
     
     @property
-    def roads(self) -> PathModel:
+    def road(self) -> PathModel:
         return PathModel("roads", model.Road, self.attr, self.stage)
 
+    @property
+    def tb_sts_no_id(self) -> PathModel:
+        return PathModel("tb_sts_no_id", model.TbSts, self.attr, self.stage)
+    
     @property
     def tb_sts(self) -> PathModel:
         return PathModel("tb_sts", model.TbSts, self.attr, self.stage)
     
     @property
-    def stretchs_toll(self) -> PathModel:
+    def stretch_toll(self) -> PathModel:
         return PathModel("stretchs_toll", model.StretchToll, self.attr, self.stage)
 
     @property
