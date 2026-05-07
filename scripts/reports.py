@@ -44,7 +44,7 @@ def inflation_growth_rate(from_year, to_year, vehicle_type):
     df_strech_toll_dict = {}
 
     for year in years:
-        filepath = DataModel(year, DataStage.stg).stretchs_toll.parquet
+        filepath = DataModel(year, DataStage.stg).stretch_toll.parquet
         vehicle_cols = ["stretch_id"] + _VEHICLE_TYPE_DICT[vehicle_type]
         df_strech_toll_dict[year] = pl.scan_parquet(filepath)
         
@@ -267,12 +267,12 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_
     data_model = DataModel(to_year, DataStage.stg)
 
     ldf_strechs = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .rename({"manage": "stretch_manage"})
         .select("stretch_id", "stretch_name", "stretch_length_km", "road_id", "stretch_manage")
     )
     ldf_tollbooths = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "tollbooth_name", "state", "manage", "parent_manage", "gate_to")
         .rename({"manage": "tb_manage", "parent_manage": "parent_tb_manage"})
     )
@@ -281,7 +281,7 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_
         .select("stretch_id", "tollbooth_id_out")
     )
     ldf_road = (
-        pl.scan_parquet(data_model.roads.parquet)
+        pl.scan_parquet(data_model.road.parquet)
         .select(
             "road_id", "road_name", "operation_date",
             "start_contract_date", "end_contract_date",
@@ -394,7 +394,7 @@ def toll_update_date_report(from_year: int, to_year: int):
 
     data_model = DataModel(to_year, DataStage.stg)
     ldf_tb = pl.scan_parquet(
-            data_model.tollbooths.parquet
+            data_model.tollbooth.parquet
         ).select("tollbooth_id", "manage")
     ldf_neighbour = pl.scan_parquet(
         data_model.tb_neighbour.parquet
@@ -451,7 +451,7 @@ def tollbooth_names_report(year: int):
     data_model_sts = DataModel(year - 1, DataStage.stg)
 
     ldf_tb = pl.scan_parquet(
-        data_model.tollbooths.parquet
+        data_model.tollbooth.parquet
     ).select("tollbooth_id", "tollbooth_name")
     ldf_tb_imt = pl.scan_parquet(
         data_model.tb_imt.parquet
@@ -480,7 +480,7 @@ def stretch_names_report(year: int):
     data_model_sts = DataModel(year - 1, DataStage.stg)
 
     ldf_stretch = pl.scan_parquet(
-        data_model.stretchs.parquet
+        data_model.stretch.parquet
     ).select("stretch_id", "stretch_name")
     ldf_tb_sts = pl.scan_parquet(
         data_model_sts.tb_sts.parquet
@@ -507,10 +507,10 @@ def tollbooth_stretch_rel(year: int):
         data_model.tb_stretch_id.parquet
     )
     ldf_stretch = pl.scan_parquet(
-        data_model.stretchs.parquet
+        data_model.stretch.parquet
     ).select("stretch_id", "stretch_name")
     ldf_tollbooth = pl.scan_parquet(
-        data_model.tollbooths.parquet
+        data_model.tollbooth.parquet
     ).select("tollbooth_id", "tollbooth_name")
     ldf_tb_stretch_id = ldf_stretch.join(
         ldf_tb_stretch_id, on="stretch_id", how="left"
@@ -541,7 +541,7 @@ def tollbooth_without_stretch(year: int):
         data_model.tb_stretch_id.parquet
     )
     ldf_tollbooth = pl.scan_parquet(
-        data_model.tollbooths.parquet
+        data_model.tollbooth.parquet
     ).select("tollbooth_id", "tollbooth_name", "state")
     ldf_map_tb_id = pl.scan_parquet(
         data_model.map_tb_id.parquet
@@ -606,7 +606,7 @@ def toll_ref(year: int):
     data_model_pub = DataModel(year, DataStage.pub)
     lf_stretch_id = pl.scan_parquet(data_model_pub.tb_stretch_id.parquet)
     lf_tb = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "manage", "tollbooth_name")
     )
     lf_operator = (
@@ -614,10 +614,10 @@ def toll_ref(year: int):
         .select("short_name", "toll_ref")
     )
     lf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "stretch_name")
     )
-    lf_toll = pl.scan_parquet(data_model.stretchs_toll.parquet)
+    lf_toll = pl.scan_parquet(data_model.stretch_toll.parquet)
     lf_toll = (
         lf_stretch
         .join(lf_toll, on="stretch_id", how="left")
@@ -652,7 +652,7 @@ def tollbooth_stretch_manage(year: int):
         .rename({"manage": "manage_imt"})
     )
     ldf_tb = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "manage")
     )
     ldf_map_tb = (
@@ -663,7 +663,7 @@ def tollbooth_stretch_manage(year: int):
         pl.scan_parquet(data_model.tb_stretch_id.parquet)
     )
     ldf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "manage")
         .rename({"manage": "stretch_manage"})
     )
@@ -689,7 +689,7 @@ def stretch_sts(year: int):
     data_model_sts = DataModel(year - 1, DataStage.stg)
 
     lf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "stretch_name")
     )
     lf_sts = (
@@ -702,7 +702,7 @@ def stretch_sts(year: int):
         .select("stretch_id", "tollbooth_sts_id", "tollbooth_id")
     )
     lf_tollbooth = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "tollbooth_name")
     )
     lf_sts = (
@@ -753,11 +753,11 @@ def tb_imt_stretch_id(year: int):
         )
     )
     ldf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "stretch_name")
     )
     ldf_tollbooth = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "tollbooth_name")
     )
     ldf_tb_imt = (
@@ -773,7 +773,7 @@ def tb_imt_stretch_id(year: int):
         .select("tollbooth_id", "tollbooth_imt_id")
     )
     ldf_stretch_toll = (
-        pl.scan_parquet(data_model.stretchs_toll.parquet)
+        pl.scan_parquet(data_model.stretch_toll.parquet)
     )
 
     ldf_toll_imt = (
@@ -839,7 +839,7 @@ def stretch_length(year:int):
     
     ldf_osm_distance = pl.scan_parquet(data_model.osm_tb_distance.parquet)
     ldf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "stretch_name", "stretch_length_km")
         .join(
             ldf_osm_distance,
@@ -858,15 +858,15 @@ def road_manage_length(year: int):
     data_model = DataModel(year, DataStage.stg)
 
     lf_road = (
-        pl.scan_parquet(data_model.roads.parquet)
+        pl.scan_parquet(data_model.road.parquet)
         .select("road_id", "road_name", "road_length_km", "end_contract_date")
     )
     lf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "stretch_length_km", "road_id")
     )
     lf_tollbooth = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "manage", "parent_manage")
     )
     lf_tb_stretch_id = (
@@ -916,16 +916,16 @@ def manage_data(from_year: int, to_year: int):
     data_model = DataModel(to_year, DataStage.stg)
 
     lf_road = (
-        pl.scan_parquet(data_model.roads.parquet)
+        pl.scan_parquet(data_model.road.parquet)
         .select("road_id", "road_length_km", "bond_code")
     )
     lf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "road_id", "manage", "stretch_length_km")
         .rename({"manage": "stretch_manage"})
     )
     lf_tollbooth = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "tollbooth_name", "parent_manage", "state", "gate_to", "status")
     )
     lf_tb_stretch_id = (

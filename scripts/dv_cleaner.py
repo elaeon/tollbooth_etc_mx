@@ -152,9 +152,9 @@ def main(year, from_page, to_page):
                     break
         
         df_all = pl.concat(all_df)
-        pl_exp = data_path.tb_sts.model.str_normalize()
+        pl_exp = data_path.tb_sts_no_id.model.str_normalize()
         pl_exp.append(pl.lit("open").alias("status"))
-        schema = data_path.tb_sts.model.dict_schema()
+        schema = data_path.tb_sts_no_id.model.dict_schema()
         del schema["tollbooth_id"]
         df_all = df_all.with_columns(pl_exp)
         df_all = df_all.cast(schema, strict=True)
