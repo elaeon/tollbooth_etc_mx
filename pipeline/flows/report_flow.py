@@ -1,3 +1,4 @@
+from typing import Any, Callable
 from prefect import flow
 
 from pipeline.tasks.report_tasks import (
@@ -8,6 +9,15 @@ from pipeline.tasks.report_tasks import (
 )
 
 _VEHICLE_TYPES = ["bike", "car", "bus", "ltruck", "htruck", "utruck"]
+
+# Single source of truth for report step names and their standalone callables.
+# Imported by run.py for --tasks dispatch.
+REPORT_TASKS: dict[str, Callable[[int, int], Any]] = {
+    "growth_rate":      lambda f, t: [task_growth_rate_report(f, t, vt, t) for vt in _VEHICLE_TYPES],
+    "toll_update_date": lambda f, t: task_toll_update_date_report(f, t),
+    "manage_data":      lambda f, t: task_manage_data(f, t),
+    "revenue":          lambda f, t: task_revenue(f, t),
+}
 
 _STEP_TO_GROUP: dict[str, int] = {
     step: i
@@ -38,4 +48,4 @@ def report_flow(from_year: int, to_year: int, to_year_sts: int | None = None, fr
 
     # Group 1: manage_data (depends on growth_rate CSVs)
     if start <= 1:
-        task_manage_data.submit(from_year, to_year, wait_for=growth_futures)
+        task_manage_data.submit(from_year, to_year, wait_for=growth_futures) # type: ignore

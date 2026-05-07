@@ -28,9 +28,9 @@ class DataStage:
 
 @dataclass
 class PathModel:
-    def __init__(self, filename: str, model: TbModel, attr: dict, stage: str):
+    def __init__(self, filename: str, model: type[TbModel], attr: dict, stage: str):
         self.filename: str = filename
-        self.model: TbModel = model
+        self.model: type[TbModel] = model
         self.attr: dict = attr
         self.stage: str = stage
 

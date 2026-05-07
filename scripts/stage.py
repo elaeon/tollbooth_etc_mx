@@ -4,14 +4,12 @@ sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
 import polars as pl
 import polars_h3 as plh3
 import polars_ds as plds
-import argparse
 
 from datetime import date
 from tb_map_editor.data_files import DataModel, DataStage
 from tb_map_editor.pipeline import DataPipeline
 
 
-# dv_cleaner.main(year, from_year, to_page)
 def sts_ids(year: int, start_year: int):
     hex_resolution = 10
 
@@ -284,7 +282,7 @@ def raw_to_stg(year: int, model_name: str, normalize: bool):
         normalize=normalize,
         extra_expr=extra_expr
     )
-    #print(lf.select(numeric_cols).with_columns(pl.sum_horizontal(pl.all()).alias("total")).select("total").sum().collect())
+
     if extra_pipe is not None:
         lf = lf.pipe(extra_pipe)
     lf.sink_parquet(model_dict["end"].parquet)
