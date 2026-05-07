@@ -1,17 +1,18 @@
 from prefect import task
 
+from tb_map_editor.data_files import PathModel
 import scripts.stage as stage
 import scripts.dv_cleaner as dv_cleaner
 
 
 @task(name="pub-to-stg")
-def task_pub_to_stg(year: int, model_name: str, normalize: bool = False):
-    return stage.pub_to_stg(year, model_name, normalize)
+def task_pub_to_stg(pub: PathModel, stg: PathModel, normalize: bool = False):
+    return stage.pub_to_stg(pub, stg, normalize)
 
 
 @task(name="raw-to-stg")
-def task_raw_to_stg(year: int, model_name: str, normalize: bool = False):
-    return stage.raw_to_stg(year, model_name, normalize)
+def task_raw_to_stg(pub: PathModel, stg: PathModel, normalize: bool = False):
+    return stage.raw_to_stg(pub, stg, normalize)
 
 
 @task(name="dv-cleaner")

@@ -28,11 +28,12 @@ class DataStage:
 
 @dataclass
 class PathModel:
-    def __init__(self, filename: str, model: type[TbModel], attr: dict, stage: str):
+    def __init__(self, filename: str, model: type[TbModel], attr: dict, stage: str, name: str | None = None):
         self.filename: str = filename
         self.model: type[TbModel] = model
         self.attr: dict = attr
         self.stage: str = stage
+        self.name: str | None = name
 
     @property
     def csv(self) -> str:
@@ -58,31 +59,31 @@ class DataModel:
     
     @property
     def tollbooth(self) -> PathModel:
-        return PathModel("tollbooths", model.Tollbooth, self.attr, self.stage)
+        return PathModel("tollbooths", model.Tollbooth, self.attr, self.stage, name="pub_tb")
     
     @property
     def stretch(self) -> PathModel:
-        return PathModel("stretchs", model.Stretch, self.attr, self.stage)
+        return PathModel("stretchs", model.Stretch, self.attr, self.stage, name="pub_stretch")
     
     @property
     def road(self) -> PathModel:
-        return PathModel("roads", model.Road, self.attr, self.stage)
+        return PathModel("roads", model.Road, self.attr, self.stage, name="pub_road")
 
     @property
     def tb_sts_no_id(self) -> PathModel:
-        return PathModel("tb_sts_no_id", model.TbSts, self.attr, self.stage)
+        return PathModel("tb_sts_no_id", model.TbSts, self.attr, self.stage, name="dv_cleaner")
     
     @property
     def tb_sts(self) -> PathModel:
-        return PathModel("tb_sts", model.TbSts, self.attr, self.stage)
+        return PathModel("tb_sts", model.TbSts, self.attr, self.stage, name="tb_sts")
     
     @property
     def stretch_toll(self) -> PathModel:
-        return PathModel("stretchs_toll", model.StretchToll, self.attr, self.stage)
+        return PathModel("stretchs_toll", model.StretchToll, self.attr, self.stage, name="pub_stretch_toll")
 
     @property
     def tb_stretch_id(self) -> PathModel:
-        return PathModel("tb_stretch_id", model.TbStretchId, self.attr, self.stage)
+        return PathModel("tb_stretch_id", model.TbStretchId, self.attr, self.stage, name="pub_tb_stretch_id")
     
     @property
     def tb_stretch_id_patch(self) -> PathModel:
@@ -94,40 +95,36 @@ class DataModel:
     
     @property
     def tb_sts_stretch_id(self) -> PathModel:
-        return PathModel("tb_sts_stretch_id", model.TbStsStretchId, self.attr, self.stage)
+        return PathModel("tb_sts_stretch_id", model.TbStsStretchId, self.attr, self.stage, name="sts_stretch_id")
     
     @property
     def tb_imt(self) -> PathModel:
-        return PathModel("tb_imt", model.TbImt, self.attr, self.stage)
-    
-    @property
-    def tb_imt_delta(self) -> PathModel:
-        return PathModel("tb_imt_delta", model.TbImt, self.attr, self.stage)
+        return PathModel("tb_imt", model.TbImt, self.attr, self.stage, name="raw_tb_imt")
 
     @property
     def tb_toll_imt(self) -> PathModel:
-        return PathModel("tb_toll_imt", model.TbTollImt, self.attr, self.stage)
+        return PathModel("tb_toll_imt", model.TbTollImt, self.attr, self.stage, name="raw_tb_toll_imt")
 
     @property
     def tb_neighbour(self) -> PathModel:
-        return PathModel("tb_neighbour", model.TbNeighbour, self.attr, self.stage)
+        return PathModel("tb_neighbour", model.TbNeighbour, self.attr, self.stage, name="neighbours")
 
     @property
     def map_tb_id(self) -> PathModel:
-        return PathModel("map_tb_id", model.MapTbId, self.attr, self.stage)
+        return PathModel("map_tb_id", model.MapTbId, self.attr, self.stage, name="map_tb_id")
 
     @property
     def inflation(self) -> PathModel:
-        return PathModel("inflation", model.Inflation, self.attr, self.stage)
+        return PathModel("inflation", model.Inflation, self.attr, self.stage, name="raw_inflation")
 
     @property
     def tb_imt_stretch_id(self) -> PathModel:
-        return PathModel("tb_imt_stretch_id", model.TbImtStretchId, self.attr, self.stage)
+        return PathModel("tb_imt_stretch_id", model.TbImtStretchId, self.attr, self.stage, name="imt_stretch_id")
 
     @property
     def osm_tb_distance(self) -> PathModel:
-        return PathModel("osm_tb_distance", model.OsmTbDistance, self.attr, self.stage)
+        return PathModel("osm_tb_distance", model.OsmTbDistance, self.attr, self.stage, name="pub_osm")
 
     @property
     def manager_revenue(self) -> PathModel:
-        return PathModel("manager_revenue", model.ManagerRevenue, self.attr, self.stage)
+        return PathModel("manager_revenue", model.ManagerRevenue, self.attr, self.stage, name="raw_manager_revenue")

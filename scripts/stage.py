@@ -6,7 +6,8 @@ import polars_h3 as plh3
 import polars_ds as plds
 
 from datetime import date
-from tb_map_editor.data_files import DataModel, DataStage
+from tb_map_editor import model as tb_model
+from tb_map_editor.data_files import DataModel, DataStage, PathModel
 from tb_map_editor.pipeline import DataPipeline
 
 
@@ -21,7 +22,7 @@ def sts_ids(year: int, start_year: int):
         to_year = year
     else:
         raise Exception("year should not be less than 2018")
-    
+
     key = ["h3_cell", "tollbooth_name", "stretch_name"]
     def _split_dup_and_add_id(ldf_tb_sts_from: pl.LazyFrame, start_index: int) -> pl.LazyFrame:
         ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
@@ -35,7 +36,7 @@ def sts_ids(year: int, start_year: int):
             "tollbooth_id", start_index
         ).select(pl.exclude("rank", "h3_cell"))
         return ldf_tb_sts_from
-        
+
 
     if to_year is None:
         data_model_from = DataModel(from_year, DataStage.stg)
@@ -54,7 +55,7 @@ def sts_ids(year: int, start_year: int):
         columns = ldf_tb_sts_from.collect_schema().names()
         data_model_to = DataModel(to_year, DataStage.stg)
         ldf_tb_sts_to_base = pl.scan_parquet(
-            data_model_to.tb_sts_no_id.parquet, 
+            data_model_to.tb_sts_no_id.parquet,
         )
 
         ldf_tb_sts_from = ldf_tb_sts_from.with_columns(
@@ -97,7 +98,7 @@ def sts_ids(year: int, start_year: int):
             on="index",
             how="anti"
         )
-        
+
         columns[columns.index("index")] = "index_right"
         ldf_tb_sts_from_to_del = ldf_tb_sts_from.join(
             ldf_tb_sts_to.select(columns).filter(pl.col("status")=="open"),
@@ -140,19 +141,19 @@ def get_parent_manage() -> pl.DataFrame:
         else:
             df = df.select("parent", "short_name")
             break
-    
+
     df = df.with_columns(
         pl.when(pl.col("parent").is_null()).then(pl.col("short_name")).otherwise("parent").alias("parent")
     ).unique()
-    
+
     df = df.rename({"parent": "parent_manage"})
     return df
 
 
-def pub_to_stg(year: int, model_name: str, normalize: bool):
+def pub_to_stg(pub: PathModel, stg: PathModel, normalize: bool):
     pipeline = DataPipeline()
 
-    if model_name == "road":
+    if stg.model == tb_model.Road:
         date_format = "%d-%m-%Y"
         date_columns = {
             "operation_date": date_format,
@@ -161,19 +162,20 @@ def pub_to_stg(year: int, model_name: str, normalize: bool):
         }
     else:
         date_columns = None
-    
-    lf, data_model = pipeline.simple_pub_stg(model_name, year, normalize, date_columns=date_columns)
-    if model_name == "tollbooth":
+
+    lf = pipeline.simple_pub_stg(pub, normalize, date_columns=date_columns)
+
+    if stg.model == tb_model.Tollbooth:
         df_parent_manage = get_parent_manage()
         lf = lf.collect().join(df_parent_manage, left_on="manage", right_on="short_name", how="left")
-        lf.write_parquet(data_model.parquet)
-    elif model_name == "osm_tb_distance":
+        lf.write_parquet(stg.parquet)
+    elif stg.model == tb_model.OsmTbDistance:
         lf = lf.filter(pl.col("distance") == pl.col("distance").max().over("stretch_id"))
         lf = lf.with_columns(pl.col("distance").round(2))
-        lf.sink_parquet(data_model.parquet)
-    elif model_name == "stretch":
+        lf.sink_parquet(stg.parquet)
+    elif stg.model == tb_model.Stretch:
         lf_osm_tb_distance = (
-            pl.scan_parquet(DataModel(year, DataStage.stg).osm_tb_distance.parquet)
+            pl.scan_parquet(DataModel(stg.attr["year"], DataStage.stg).osm_tb_distance.parquet)
             .select("stretch_id", "distance")
             .rename({"distance": "stretch_length_km"})
         )
@@ -188,31 +190,31 @@ def pub_to_stg(year: int, model_name: str, normalize: bool):
                )
             )
         )
-        lf = lf.select(data_model.model.dict_schema().keys())
-        lf.sink_parquet(data_model.parquet)
+        lf = lf.select(stg.model.dict_schema().keys())
+        lf.sink_parquet(stg.parquet)
     else:
-        lf.sink_parquet(data_model.parquet)
+        lf.sink_parquet(stg.parquet)
     return lf
 
 
-def raw_to_stg(year: int, model_name: str, normalize: bool):
+def raw_to_stg(pub: PathModel, stg: PathModel, normalize: bool):
     pipeline = DataPipeline()
-    
+    year = stg.attr["year"]
+
     date_columns = None
     filter_expr = None
     extra_expr = None
     extra_pipe = None
 
-    if model_name == "tb_imt":
+    if stg.model == tb_model.TbImt:
         file_path = f"./raw_data/toll_data/imt/plazas_{year}.csv"
         old_fields = [
             "ID_PLAZA", "ADMINISTRA", "NOMBRE", "SECCION", "SUBSECCION", "MODALIDAD",
             "FUNCIONAL", "FECHA_ACT", "CALIREPR", "ycoord", "xcoord"
         ]
-        date_format = "%Y-%m-%d %H:%M:%S"
-        date_columns = {"FECHA_ACT": date_format}
-    
-    elif model_name == "tb_toll_imt":
+        date_columns = {"FECHA_ACT": "%Y-%m-%d %H:%M:%S"}
+
+    elif stg.model == tb_model.TbTollImt:
         file_path = f"./raw_data/toll_data/imt/tarifas_imt_{year}.csv"
         old_fields = [
             "ID_PLAZA", "ID_PLAZA_E", "NOMBRE_SAL", "NOMBRE_ENT",
@@ -221,40 +223,34 @@ def raw_to_stg(year: int, model_name: str, normalize: bool):
             "T_CAMION4", "T_CAMION5", "T_CAMION6", "T_CAMION7",
             "T_CAMION8", "T_CAMION9", "T_EJE_PES", "FECHA_ACT"
         ]
-
-        if year in [2020, 2021, 2022, 2023, 2024]:
-            date_format = "%Y-%m-%d"
-        else:
-            date_format = "%Y-%m-%d %H:%M:%S"
-        
+        date_format = "%Y-%m-%d" if year in [2020, 2021, 2022, 2023, 2024] else "%Y-%m-%d %H:%M:%S"
         date_columns = {"FECHA_ACT": date_format}
-        filter_expr = (pl.col("FECHA_ACT") < date(year + 1, 1, 1))
-    elif model_name == "inflation":
-        data_model = DataModel(year, DataStage.stg)
-        file_path = f"./raw_data/inegi/monthly_inflation.csv"
-        lf = pl.scan_csv(file_path)
+        filter_expr = pl.col("FECHA_ACT") < date(year + 1, 1, 1)
+
+    elif stg.model == tb_model.Inflation:
+        lf = pl.scan_csv("./raw_data/inegi/monthly_inflation.csv")
         lf = (
-                lf
-                .with_columns(
-                    pl.col("year").str.split("/").list.to_struct(fields=["year", "month"])
-                )
-                .unnest("year")
-                .sort("year", "month")
-                .group_by("year", maintain_order=True)
-                .last()
+            lf
+            .with_columns(
+                pl.col("year").str.split("/").list.to_struct(fields=["year", "month"])
+            )
+            .unnest("year")
+            .sort("year", "month")
+            .group_by("year", maintain_order=True)
+            .last()
         )
-        lf = lf.cast(data_model.inflation.schema)
-        lf.sink_parquet(data_model.inflation.parquet)
+        lf = lf.cast(stg.schema)
+        lf.sink_parquet(stg.parquet)
         return
-    elif model_name == "manager_revenue":
-        data_model = DataModel(year, DataStage.stg)
+
+    elif stg.model == tb_model.ManagerRevenue:
         file_path = f"./raw_data/capufe/capufe_ingresos_{year}.csv"
-        numeric_cols = data_model.manager_revenue.model.numeric_cols()
+        numeric_cols = stg.model.numeric_cols()
         extra_expr = [pl.col(numeric_cols).str.replace("-", "0"), pl.lit("capufe").alias("manager")]
         old_fields = [
             "Tramo", "Enero", "Febrero", "Marzo",
             "Abril", "Mayo", "Junio", "Julio",
-            "Agosto", "Septiembre", "Octubre", "Noviembre", 
+            "Agosto", "Septiembre", "Octubre", "Noviembre",
             "Diciembre",
         ]
         def extra_pipe_fn(lf: pl.LazyFrame):
@@ -270,13 +266,11 @@ def raw_to_stg(year: int, model_name: str, normalize: bool):
     else:
         file_path = ""
         old_fields = []
-        numeric_cols = []
-    
-    lf, model_dict = pipeline.simple_raw_stg(
-        model_name, 
-        year, 
-        file_path, 
-        old_fields, 
+
+    lf = pipeline.simple_raw_stg(
+        pub,
+        file_path,
+        old_fields,
         date_columns=date_columns,
         filter_exp=filter_expr,
         normalize=normalize,
@@ -285,5 +279,5 @@ def raw_to_stg(year: int, model_name: str, normalize: bool):
 
     if extra_pipe is not None:
         lf = lf.pipe(extra_pipe)
-    lf.sink_parquet(model_dict["end"].parquet)
+    lf.sink_parquet(stg.parquet)
     return lf
