@@ -17,36 +17,36 @@ from pipeline.tasks.cluster_tasks import (
 )
 
 STAGING_TASKS: dict[str, Callable[[int], Any]] = {
-    "dv_cleaner":          lambda year: task_dv_cleaner(year),
-    "pub_tb":              lambda year: task_pub_to_stg(DataModel(year, DataStage.pub).tollbooth,       DataModel(year, DataStage.stg).tollbooth,       True),
-    "pub_stretch":         lambda year: task_pub_to_stg(DataModel(year, DataStage.pub).stretch,         DataModel(year, DataStage.stg).stretch,         True),
-    "pub_road":            lambda year: task_pub_to_stg(DataModel(year, DataStage.pub).road,            DataModel(year, DataStage.stg).road,            True),
-    "pub_stretch_toll":    lambda year: task_pub_to_stg(DataModel(year, DataStage.pub).stretch_toll,    DataModel(year, DataStage.stg).stretch_toll,    True),
-    "pub_tb_stretch_id":   lambda year: task_pub_to_stg(DataModel(year, DataStage.pub).tb_stretch_id,   DataModel(year, DataStage.stg).tb_stretch_id,   False),
-    "raw_tb_imt":          lambda year: task_raw_to_stg(DataModel(year, DataStage.pub).tb_imt,          DataModel(year, DataStage.stg).tb_imt,          True),
-    "raw_tb_toll_imt":     lambda year: task_raw_to_stg(DataModel(year, DataStage.pub).tb_toll_imt,     DataModel(year, DataStage.stg).tb_toll_imt,     True),
-    "raw_inflation":       lambda year: task_raw_to_stg(DataModel(year, DataStage.pub).inflation,       DataModel(year, DataStage.stg).inflation,       False),
-    "raw_manager_revenue": lambda year: task_raw_to_stg(DataModel(year, DataStage.pub).manager_revenue, DataModel(year, DataStage.stg).manager_revenue, True),
-    "neighbours":          lambda year: task_tollbooth_neighbours(year),
-    "map_tb_id":           lambda year: task_map_tb_id(year),
-    "tb_sts":              lambda year: task_tb_sts(year),
-    "imt_stretch_id":      lambda year: task_tb_imt_stretch_id_rel(year),
-    "sts_stretch_id":      lambda year: task_tb_stretch_id_sts(year, year),
-    "pub_osm":             lambda year: task_pub_to_stg(DataModel(year, DataStage.pub).osm_tb_distance, DataModel(year, DataStage.stg).osm_tb_distance, False),
+    DataModel.tb_sts_no_id.name:          lambda year: task_dv_cleaner(year),
+    DataModel.tollbooth.name:              lambda year: task_pub_to_stg(DataModel(year, DataStage.pub).tollbooth,       DataModel(year, DataStage.stg).tollbooth,       True),
+    DataModel.stretch.name:         lambda year: task_pub_to_stg(DataModel(year, DataStage.pub).stretch,         DataModel(year, DataStage.stg).stretch,         True),
+    DataModel.road.name:            lambda year: task_pub_to_stg(DataModel(year, DataStage.pub).road,            DataModel(year, DataStage.stg).road,            True),
+    DataModel.stretch_toll.name:    lambda year: task_pub_to_stg(DataModel(year, DataStage.pub).stretch_toll,    DataModel(year, DataStage.stg).stretch_toll,    True),
+    DataModel.tb_stretch_id.name:   lambda year: task_pub_to_stg(DataModel(year, DataStage.pub).tb_stretch_id,   DataModel(year, DataStage.stg).tb_stretch_id,   False),
+    DataModel.tb_imt.name:          lambda year: task_raw_to_stg(DataModel(year, DataStage.pub).tb_imt,          DataModel(year, DataStage.stg).tb_imt,          True),
+    DataModel.tb_toll_imt.name:     lambda year: task_raw_to_stg(DataModel(year, DataStage.pub).tb_toll_imt,     DataModel(year, DataStage.stg).tb_toll_imt,     True),
+    DataModel.inflation.name:       lambda year: task_raw_to_stg(DataModel(year, DataStage.pub).inflation,       DataModel(year, DataStage.stg).inflation,       False),
+    DataModel.manager_revenue.name: lambda year: task_raw_to_stg(DataModel(year, DataStage.pub).manager_revenue, DataModel(year, DataStage.stg).manager_revenue, True),
+    DataModel.tb_neighbour.name:          lambda year: task_tollbooth_neighbours(year),
+    DataModel.map_tb_id.name:           lambda year: task_map_tb_id(year),
+    DataModel.tb_sts.name:              lambda year: task_tb_sts(year),
+    DataModel.tb_imt_stretch_id.name:      lambda year: task_tb_imt_stretch_id_rel(year),
+    DataModel.tb_sts_stretch_id.name:      lambda year: task_tb_stretch_id_sts(year, year),
+    DataModel.osm_tb_distance.name:             lambda year: task_pub_to_stg(DataModel(year, DataStage.pub).osm_tb_distance, DataModel(year, DataStage.stg).osm_tb_distance, False),
 }
 
 _STEP_TO_GROUP: dict[str, int] = {
     step: i
     for i, group in enumerate([
-        ["dv_cleaner"],
+        [DataModel.tb_sts_no_id.name],
         [
-            "pub_tb", "pub_stretch", "pub_road", "pub_stretch_toll", "pub_tb_stretch_id",
-            "raw_tb_imt", "raw_tb_toll_imt", "raw_inflation", "raw_manager_revenue"
+            DataModel.tollbooth.name, DataModel.stretch.name, DataModel.road.name, DataModel.stretch_toll.name, DataModel.tb_stretch_id.name,
+            DataModel.tb_imt.name, DataModel.tb_toll_imt.name, DataModel.inflation.name, DataModel.manager_revenue.name
         ],
-        ["neighbours"],
-        ["map_tb_id", "tb_sts"],
-        ["imt_stretch_id", "sts_stretch_id"],
-        ["pub_osm"],
+        [DataModel.tb_neighbour.name],
+        [DataModel.map_tb_id.name, DataModel.tb_sts.name],
+        [DataModel.tb_imt_stretch_id.name, DataModel.tb_sts_stretch_id.name],
+        [DataModel.osm_tb_distance.name],
     ])
     for step in group
 }
