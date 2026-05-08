@@ -1,12 +1,9 @@
 import argparse
 import ast
 import os
-import sys
 from pathlib import Path
 
 import polars as pl
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 from src.data_files import DataModel, DataStage
 

@@ -16,9 +16,7 @@ Usage:
 """
 import argparse
 import os
-import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.environ.setdefault("PREFECT_LOGGING_TO_API_WHEN_MISSING_FLOW", "ignore")
 
 from src.pipeline.flows.report_flow import _STEP_TO_GROUP as _REPORT_STEPS

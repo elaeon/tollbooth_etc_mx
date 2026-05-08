@@ -1,10 +1,5 @@
-import os
-import sys
-from pathlib import Path
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
-
 from datetime import date
+from pathlib import Path
 
 import polars as pl
 import polars_ds as plds

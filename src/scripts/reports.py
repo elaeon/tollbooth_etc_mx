@@ -1,10 +1,6 @@
-import os
-import sys
-from pathlib import Path
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
-
 import argparse
+import os
+from pathlib import Path
 from collections import defaultdict
 
 import polars as pl
