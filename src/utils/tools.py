@@ -27,7 +27,7 @@ def find_closest_tb(ldf_neighbour):
         ldf_neighbour_closest = ldf_neighbour.filter(
             pl.col("distance") == pl.col("distance").min().over("tollbooth_id")
         )
-        # Step 2: Ensure each neighbour_id is matched to at most one tollbooth_id 
+        # Step 2: Ensure each neighbour_id is matched to at most one tollbooth_id
         #         (if multiple tollbooths have same closest neighbour, keep the one with smallest distance)
         ldf_neighbour_unique = ldf_neighbour_closest.filter(
             pl.col("distance") == pl.col("distance").min().over("neighbour_id")

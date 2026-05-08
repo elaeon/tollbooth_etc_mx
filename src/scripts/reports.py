@@ -1,13 +1,15 @@
-import os, sys
+import os
+import sys
 from pathlib import Path
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
-import polars as pl
 import argparse
 from collections import defaultdict
 
-from src.data_files import DataModel, DataStage
+import polars as pl
 
+from src.data_files import DataModel, DataStage
 
 _BIKE: list = ["motorbike"]
 _CAR: list = ["car"]
@@ -18,7 +20,7 @@ _LIGH_TRUCK: list = [
     "truck_2_axle", "truck_3_axle", "truck_4_axle",
 ]
 _HEAVY_TRUCK: list = [
-    "truck_5_axle", "truck_6_axle", "truck_7_axle", 
+    "truck_5_axle", "truck_6_axle", "truck_7_axle",
 ]
 _U_HEAVY_TRUCK: list = [
     "truck_8_axle", "truck_9_axle", "truck_10_axle"
@@ -48,7 +50,7 @@ def inflation_growth_rate(from_year, to_year, vehicle_type):
         filepath = DataModel(year, DataStage.stg).stretch_toll.parquet
         vehicle_cols = ["stretch_id"] + _VEHICLE_TYPE_DICT[vehicle_type]
         df_strech_toll_dict[year] = pl.scan_parquet(filepath)
-        
+
         if vehicle_type == "car":
             df_strech_toll_dict[year] = df_strech_toll_dict[year].select(
                 vehicle_cols + ["car_rush_hour"]
@@ -97,7 +99,7 @@ def join_range(start, end, dict_data, data_join_key: str):
     for key in range_keys[1:]:
         new_tb_ids = dict_data[key].select(data_join_key).join(df_ids, how="anti", on=data_join_key)
         df_ids = pl.concat([df_ids, new_tb_ids])
-        
+
     df_join_range = df_join_range.join(df_ids, on=data_join_key, how="full")
     df_join_range = df_join_range.with_columns(
         (pl.when(
@@ -118,14 +120,14 @@ def growth_rate(range_keys, prefix_col: str, result_prefix_col: str, growth_rate
     for start_year, end_year in zip(range_keys, range_keys[1:]):
         result_col_name = f"{result_prefix_col}_growth_rate_{end_year}"
         growth_rate_exp.append(
-            (
+
                 pl.when(pl.col(f"{prefix_col}_{start_year}") != 0)
                 .then(
                     ((pl.col(f"{prefix_col}_{end_year}") - pl.col(f"{prefix_col}_{start_year}")) * 100 / pl.col(f"{prefix_col}_{start_year}")).round(2)
                 )
                 .otherwise(None)
                 .alias(result_col_name)
-            )
+
         )
         growth_rate_columns.append(result_col_name)
 
@@ -217,7 +219,7 @@ def tdpa_vta_growth_rate(from_year, to_year, vehicle_type):
             {"tdpa": pl.Int32, "vta": pl.Int64}
         ).rename({"tdpa": f"tdpa_{year}", "vta": f"vta_{year}"})
 
-        if vehicle_type != "all":        
+        if vehicle_type != "all":
             df_tb_dict[year] = df_tb_dict[year].with_columns(
                 (pl.sum_horizontal(
                     vehicle_type_cols[vehicle_type]
@@ -228,7 +230,7 @@ def tdpa_vta_growth_rate(from_year, to_year, vehicle_type):
                 (pl.col("tdpa_vehicle_ratio") * pl.col(f"tdpa_{year}")).alias(f"tdpa_{year}"),
                 (pl.col("tdpa_vehicle_ratio") * pl.col(f"vta_{year}")).alias(f"vta_{year}"),
             )
-            
+
         df_tb_dict[year] = df_tb_dict[year].select(pl.exclude(["tdpa_vehicle_ratio"] + vehicle_type_cols[vehicle_type]))
 
     df_sts = join_range(from_year, to_year, df_tb_dict, data_join_key="tollbooth_id")
@@ -260,7 +262,7 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_
        "stretch_id", "stretch_name", "stretch_way", "tollbooth_name", "state", "tb_manage",
        "parent_tb_manage", "stretch_length_km", "stretch_manage", "road_name",
        "start_contract_date", "end_contract_date", "operation_date", "bond_issuance_date",
-       "farac", "bond_issuance_date", "km_cost", "operation_contract_days", 
+       "farac", "bond_issuance_date", "km_cost", "operation_contract_days",
        "end_start_contract_days", "gate_to", "fonadin", "project_mx"
     ] + toll_col_names + sts_col_names
     output_cols_dict = dict((k, None) for k in output_cols)
@@ -323,7 +325,7 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_
     df_inflation = df_inflation.pivot(index="index", on="year", values="value")
     df_inflation = df_inflation.select(pl.exclude("index"))
     ldf_inflation = pl.concat([df_inflation, df_inflation_mean], how="horizontal").lazy()
-    
+
     ldf_tb_stretch = ldf_tb_stretch_id.join(
         ldf_tollbooths, left_on="tollbooth_id_out", right_on="tollbooth_id", how="left"
     )
@@ -355,9 +357,9 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_
     ).select(pl.exclude("tollbooth_id_right"))
 
     ldf_toll_sts = ldf_toll.join(
-        ldf_tbsts_stretch_id, 
-        left_on=["stretch_id", "tollbooth_id_out"], 
-        right_on=["stretch_id", "tollbooth_id"], 
+        ldf_tbsts_stretch_id,
+        left_on=["stretch_id", "tollbooth_id_out"],
+        right_on=["stretch_id", "tollbooth_id"],
         how="left"
     )
     # Keep only groups where at least one row has non-null stretch_way for each stretch_id and tollbooth_name
@@ -377,8 +379,8 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_
     ldf_toll_sts = ldf_toll_sts.with_columns(
         pl.when(
             pl.col(f"toll_cagr_growth_rate_{from_year}_{to_year}").is_null()
-        ).then((pl.col(f"toll_growth_rate_{to_year}") - pl.col(f"inflation_{from_year}_{to_year}"))).otherwise(
-            (pl.col(f"toll_cagr_growth_rate_{from_year}_{to_year}") - pl.col(f"inflation_{from_year}_{to_year}"))
+        ).then(pl.col(f"toll_growth_rate_{to_year}") - pl.col(f"inflation_{from_year}_{to_year}")).otherwise(
+            pl.col(f"toll_cagr_growth_rate_{from_year}_{to_year}") - pl.col(f"inflation_{from_year}_{to_year}")
         ).round(2).alias("toll_inflation_diff")
     )
     ldf_toll_sts.sort("stretch_name").sink_csv(filepath)
@@ -407,7 +409,7 @@ def toll_update_date_report(from_year: int, to_year: int):
     ldf_neighbour_closest = ldf_neighbour_closest.filter(pl.col("distance") <= 0.1)
     ldf_neighbour_closest = ldf_neighbour_closest.select(pl.exclude("distance", "scope"))
     ldf_neighbour_closest = ldf_neighbour_closest.join(ldf_tb, on="tollbooth_id")
-    
+
     for year in years:
         data_model = DataModel(year, DataStage.stg)
         ldf_dict[year] = pl.scan_parquet(
@@ -568,7 +570,7 @@ def tollbooth_without_stretch(year: int):
     ldf_tb_no_stretch = ldf_tb_no_stretch.join(
         ldf_tb_imt, left_on="tollbooth_imt_id", right_on="tollbooth_id", how="left"
     )
-    
+
     filepath = os.path.join(output_filepath, f"tollbooth_wo_stretch{year}.csv")
     ldf_tb_no_stretch.sort("tollbooth_id").sink_csv(filepath)
     print(f"Saved result in {filepath}")
@@ -596,7 +598,7 @@ def mx_projects_report():
 
     print(ldf_mxpj.join(ldf_mxpj_old, on="id", how="anti").collect())
     print(ldf_mxpj_old.join(ldf_mxpj, on="id", how="anti").collect())
-    
+
 
 # stage.pub_to_stg(year, model_name="tb_stretch_id")
 # stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
@@ -646,7 +648,7 @@ def toll_ref(year: int):
 # # stage.pub_to_stg(year, model_name="tb_stretch_id")
 def tollbooth_stretch_manage(year: int):
     data_model = DataModel(year, DataStage.stg)
-    
+
     ldf_tb_imt = (
         pl.scan_parquet(data_model.tb_imt.parquet)
         .select("tollbooth_id", "manage")
@@ -810,10 +812,10 @@ def tb_imt_stretch_id(year: int):
         .join(ldf_tb_imt, left_on="tollbooth_imt_id_out", right_on="tollbooth_imt_id", how="left")
         .select(
             "stretch_id", "stretch_name",
-            "tollbooth_imt_id_in", "tollbooth_imt_name", 
+            "tollbooth_imt_id_in", "tollbooth_imt_name",
             "tollbooth_imt_id_out",	"tollbooth_imt_name_right",
-            "tollbooth_id_in", "tollbooth_name", 
-            "tollbooth_id_out", "tollbooth_name_right", 
+            "tollbooth_id_in", "tollbooth_name",
+            "tollbooth_id_out", "tollbooth_name_right",
         )
     )
     ldf_toll_imt = (
@@ -833,11 +835,11 @@ def tb_imt_stretch_id(year: int):
     ldf_toll_imt = ldf_toll_imt.sort("stretch_id")
     ldf_toll_imt.sink_csv(f"./reports/tb_imt_stretch_id_{year}.csv")
 
-# pub_to_stg(year, normalize=False, model_name="osm_tb_distance"), 
+# pub_to_stg(year, normalize=False, model_name="osm_tb_distance"),
 # pub_to_stg(year, normalize=True, model_name="stretchs")
 def stretch_length(year:int):
     data_model = DataModel(year, DataStage.stg)
-    
+
     ldf_osm_distance = pl.scan_parquet(data_model.osm_tb_distance.parquet)
     ldf_stretch = (
         pl.scan_parquet(data_model.stretch.parquet)
@@ -901,7 +903,7 @@ def road_manage_length(year: int):
         )
         .sort("road_id")
         .select(
-            "road_id", "road_name", "manage", "end_contract_date", 
+            "road_id", "road_name", "manage", "end_contract_date",
             "road_length_km", "stretch_length_km", "tollbooths"
         )
     )
@@ -1000,7 +1002,7 @@ def manage_data(from_year: int, to_year: int):
     lf_manage_length = (
         lf_tb_stretch
         .group_by("parent_manage").agg(pl.col("road_length_km").sum().round(2).alias("total_km"))
-        
+
     )
     lf_manage_roads = (
         lf_tb_stretch
@@ -1112,7 +1114,7 @@ def manage_data(from_year: int, to_year: int):
                     )
                     lf_manage = lf_manage.join(lf_toll_tdpa, on="parent_manage", how="left")
                     revenue_cols[year].append(f"revenue_from_{vehicle_type}_{year}")
-    
+
     for year in years:
         lf_manage = (
             lf_manage
@@ -1165,7 +1167,7 @@ def revenue(from_year: int, to_year: int):
             .select(pl.exclude("stretch_name_right"))
         )
         prev_year = prev_year - 1
-    
+
     lf_alias = pl.DataFrame({
         "name": [
             "acatzingo_ciudad_mendoza",
@@ -1190,8 +1192,8 @@ def revenue(from_year: int, to_year: int):
             "tecate_la_rumorosa"
         ]
     }).lazy()
-    
-    
+
+
     # Merge numeric rows by stretch_name using sum
     numeric_cols = [col for col in lf_base.collect_schema().names() if col != "stretch_name"]
     lf_base = (

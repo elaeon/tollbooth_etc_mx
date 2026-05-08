@@ -21,3 +21,4 @@ docs/
 parsers/
 raw_data/
 reports/
+src/static/*

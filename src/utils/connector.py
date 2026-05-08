@@ -1,11 +1,9 @@
-from sqlmodel import Session, create_engine, SQLModel
-from typing import Annotated
-from sqlmodel import Session
-from fastapi import Depends
-from pathlib import Path
-
 import os
+from pathlib import Path
+from typing import Annotated
 
+from fastapi import Depends
+from sqlmodel import Session, SQLModel, create_engine
 
 _db_dir = str(Path(__file__).resolve().parent.parent / "db")
 _sql_filename = "tb_map_editor.db"

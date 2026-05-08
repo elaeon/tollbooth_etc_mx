@@ -1,8 +1,8 @@
 import os
+
 from prefect import task
 
 import src.scripts.reports as reports
-
 
 # reports.py uses output_filepath only in __main__; patch it before calling.
 _OUTPUT_DIR = "reports/"

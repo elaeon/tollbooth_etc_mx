@@ -21,8 +21,10 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.environ.setdefault("PREFECT_LOGGING_TO_API_WHEN_MISSING_FLOW", "ignore")
 
-from src.pipeline.flows.staging_flow import staging_flow, staging_tasks, STAGING_TASK_NAMES, _STEP_TO_GROUP as _STAGING_STEPS
-from src.pipeline.flows.report_flow import report_flow, REPORT_TASKS, _STEP_TO_GROUP as _REPORT_STEPS
+from src.pipeline.flows.report_flow import _STEP_TO_GROUP as _REPORT_STEPS
+from src.pipeline.flows.report_flow import REPORT_TASKS, report_flow
+from src.pipeline.flows.staging_flow import _STEP_TO_GROUP as _STAGING_STEPS
+from src.pipeline.flows.staging_flow import STAGING_TASK_NAMES, staging_flow, staging_tasks
 
 _ALL_FLOW_STEPS = list(_STAGING_STEPS) + list(_REPORT_STEPS)
 _ALL_TASK_NAMES = STAGING_TASK_NAMES + list(REPORT_TASKS)

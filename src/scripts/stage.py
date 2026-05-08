@@ -1,12 +1,15 @@
-import os, sys
+import os
+import sys
 from pathlib import Path
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
-import polars as pl
-import polars_h3 as plh3
-import polars_ds as plds
-
 from datetime import date
+
+import polars as pl
+import polars_ds as plds
+import polars_h3 as plh3
+
 from src import model as tb_model
 from src.data_files import DataModel, DataStage, PathModel
 from src.data_pipeline import DataPipeline

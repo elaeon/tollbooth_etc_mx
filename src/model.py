@@ -1,10 +1,10 @@
-from sqlmodel import Field, SQLModel
-from pydantic_core import CoreSchema, core_schema
-from pydantic import GetCoreSchemaHandler
 from typing import Any, get_args
 
 import polars as pl
 import polars_ds as plds
+from pydantic import GetCoreSchemaHandler
+from pydantic_core import CoreSchema, core_schema
+from sqlmodel import Field, SQLModel
 
 
 def _str_normalize(func):
@@ -43,7 +43,7 @@ class UInt32(int):
     @staticmethod
     def polars_dtype():
         return pl.UInt32
-    
+
 
 class UInt64(int):
     @classmethod
@@ -79,7 +79,7 @@ class Float32(float):
     @staticmethod
     def polars_dtype():
         return pl.Float32
-    
+
 
 class Float64(float):
     @classmethod
@@ -151,7 +151,7 @@ class TbModel(SQLModel, Schema, table=False):
     @classmethod
     def name(cls):
         return cls.__name__.lower()
-    
+
     def get_not_null_fields(self) -> dict:
         fields_value = {}
         for field_name in self.dict_schema():
@@ -163,7 +163,7 @@ class TbModel(SQLModel, Schema, table=False):
     @classmethod
     def get_columns(cls, columns: list[str]) -> list:
         return [getattr(cls, column) for column in columns]
-    
+
     @staticmethod
     @_str_normalize
     def str_normalize() -> list[str]:
@@ -176,13 +176,14 @@ class TbModel(SQLModel, Schema, table=False):
         return cols
 
     @classmethod
-    def dict_schema(cls, ignore=[]) -> dict:
-        dict_schema = {
+    def dict_schema(cls, ignore: list | None = None) -> dict:
+        if ignore is None:
+            ignore = []
+        return {
             field_name: cls._get_polars_dtype(field_type)
             for field_name, field_type in cls.model_fields.items()
             if field_name not in ignore
         }
-        return dict_schema
 
 
 class Tollbooth(TbModel, table=True):
@@ -376,7 +377,7 @@ class TbImt(TbModel, table=True):
     def str_normalize() -> list[str]:
         fields = ["manage", "tollbooth_name", "area", "subarea", "type", "function", "calirepr"]
         return fields
-    
+
 
 class TbTollImt(TbModel, table=True):
     tollbooth_id_out: UInt16 = Field(foreign_key="tbimt.tollbooth_id", primary_key=True)
@@ -475,6 +476,5 @@ class ManagerRevenue(TbModel, table=True):
         return cols
 
     @classmethod
-    def dict_schema(cls, ignore=[]) -> dict:
-        schema = super().dict_schema(ignore=["id"])
-        return schema
+    def dict_schema(cls, ignore: list | None = None) -> dict:
+        return super().dict_schema(ignore=["id"])

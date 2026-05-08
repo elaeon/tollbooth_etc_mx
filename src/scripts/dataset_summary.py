@@ -10,7 +10,6 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath
 
 from src.data_files import DataModel, DataStage
 
-
 REPORTS_PY = os.path.join(os.path.dirname(__file__), "reports.py")
 OPERATORS_CSV = Path(DataStage.pub) / "area_operators_mx.csv"
 

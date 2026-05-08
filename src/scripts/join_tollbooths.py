@@ -1,9 +1,12 @@
-import os, sys
+import os
+import sys
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+
+import argparse
 
 import polars as pl
 import polars_ds as plds
-import argparse
 
 from src.data_files import DataModel, DataStage
 from src.utils.tools import find_closest_tb, join_tb_stretch_id_imt
@@ -42,7 +45,7 @@ def imt_no_tb(base_year: int, move_year: int):
 
     ldf_neighbour = pl.scan_parquet(data_model_prev_year.tb_neighbour.parquet)
     ldf_tb_imt = pl.scan_parquet(
-        data_model_prev_year.tb_imt.parquet, 
+        data_model_prev_year.tb_imt.parquet,
     ).select("tollbooth_id", "lat", "lng", "area", "subarea")
 
     ldf_imt_no_map = _no_tb(ldf_neighbour, ldf_tb_imt, "local-imt")
@@ -60,7 +63,7 @@ def tb_stretch_id_imt(base_year: int, move_year: int):
     data_model_base = DataModel(base_year, DataStage.stg)
     data_model_move_year = DataModel(move_year, DataStage.stg)
     data_model_pub = DataModel(base_year, DataStage.pub)
-    
+
     ldf_toll_imt = pl.scan_parquet(data_model_move_year.tb_toll_imt.parquet)
     ldf_stretch_toll = pl.scan_parquet(data_model_move_year.stretchs_toll.parquet)
     ldf_stretch = pl.scan_parquet(data_model_base.stretchs.parquet).select("stretch_id", "stretch_name")
@@ -126,7 +129,7 @@ def tb_stretch_id_sts(base_year: int, move_year: int):
     data_model_base = DataModel(base_year, DataStage.stg)
     data_model_sts = DataModel(move_year, DataStage.stg)
     data_model_pub = DataModel(base_year, DataStage.pub)
-    
+
     ldf_tb_sts = (
         pl.scan_parquet(data_model_sts.tb_sts.parquet)
         .select("tollbooth_id", "tollbooth_name", "stretch_name")
@@ -188,7 +191,7 @@ def tb_stretch_id_sts(base_year: int, move_year: int):
         ldf_tb_stretch_sts = ldf_tb_stretch_sts.update(
             ldf_tb_stretch_id_patch, on="tollbooth_sts_id", how="full"
         ).unique()
-    except FileNotFoundError as e:
+    except FileNotFoundError:
         print("Patch not found. Skip.")
     else:
         print("Applying patch.")
@@ -208,7 +211,7 @@ def find_similarity_toll(base_year: int, move_year: int, stretch_id: int):
     data_model = DataModel(move_year, DataStage.stg)
     df_tb_imt = pl.read_parquet(data_model.tb_toll_imt.parquet)
     df_tb_imt = df_tb_imt.select(
-        pl.exclude("tollbooth_id_a", "tollbooth_id_b", "info_year", "car_axle", 
+        pl.exclude("tollbooth_id_a", "tollbooth_id_b", "info_year", "car_axle",
                    "load_axle", "nombre_sal", "nombre_ent")
     )
     data_model_base = DataModel(base_year, DataStage.stg)
@@ -285,7 +288,7 @@ def map_tb_id(year: int):
     ldf_neighbour = pl.scan_parquet(
         data_model.tb_neighbour.parquet
     )
-    
+
     # --- IMT Mapping: ensure 1:1 relationship between tollbooth_id and neighbour_id ---
     ldf_neighbour_imt = (
         ldf_neighbour
@@ -316,7 +319,7 @@ def map_tb_id(year: int):
     closest_tb_sts = []
     for ldf in find_closest_tb(ldf_neighbour_sts):
         closest_tb_sts.append(ldf)
-    
+
     ldf_map_tb_sts = pl.concat(closest_tb_sts)
     ldf_map_tb_sts = (
         ldf_map_tb_sts
@@ -344,7 +347,7 @@ def tb_imt_stretch_id_rel(year: int):
     toll_columns = [
         "motorbike", "car", "car_axle",
         "bus_2_axle", "bus_3_axle", "bus_4_axle", "truck_2_axle",
-        "truck_3_axle", "truck_4_axle", "truck_5_axle", "truck_6_axle", 
+        "truck_3_axle", "truck_4_axle", "truck_5_axle", "truck_6_axle",
         "truck_7_axle", "truck_8_axle", "truck_9_axle", "load_axle"
     ]
     ldf_neighbour = (
@@ -408,16 +411,16 @@ def tb_imt_stretch_id_rel(year: int):
     ldf_stretch_toll = join_tb_stretch_id_imt(ldf_tb_imt_stretch_id, ldf_stretch_toll)
     ldf_stretch_toll = ldf_stretch_toll.select(
        "stretch_id", "tollbooth_id_in", "tollbooth_id_out",
-       "tollbooth_imt_id_in", "tollbooth_imt_id_out", 
+       "tollbooth_imt_id_in", "tollbooth_imt_id_out",
        "tollbooth_name_in", "tollbooth_name_out", "area", "subarea",
     )
     ldf_stretch_toll = ldf_stretch_toll.with_columns(
-        (
+
             pl.when(pl.col("tollbooth_name_out") != pl.col("tollbooth_name_in"))
             .then(pl.col("tollbooth_name_out") + "_" + pl.col("tollbooth_name_in"))
             .otherwise(pl.col("tollbooth_name_out"))
             .alias("tollbooth_name")
-        )
+
     )
     ldf_stretch_toll = ldf_stretch_toll.select(pl.exclude("tollbooth_name_in", "tollbooth_name_out"))
     ldf_stretch_toll = ldf_stretch_toll.join(ldf_stretch, on="stretch_id")
@@ -441,7 +444,7 @@ def tb_imt_stretch_id_rel(year: int):
     ldf_stretch_toll = (
         ldf_stretch_toll
         .select(
-            "stretch_id", "tollbooth_imt_id_in", "tollbooth_imt_id_out", 
+            "stretch_id", "tollbooth_imt_id_in", "tollbooth_imt_id_out",
             "tollbooth_id_in", "tollbooth_id_out"
         )
     )
@@ -478,7 +481,7 @@ def fill_toll_from_year(year: int, origin_year: int):
     ldf_tb_imt_stretch_id = (
         ldf_tb_imt_stretch_id
         .join(
-            ldf_imt_toll, 
+            ldf_imt_toll,
             left_on=["tollbooth_imt_id_out", "tollbooth_imt_id_in"],
             right_on=["tollbooth_id_out", "tollbooth_id_in"]
         )
@@ -533,4 +536,3 @@ if __name__ == "__main__":
         tb_imt_stretch_id_rel(args.year)
     elif args.fill_toll:
         fill_toll_from_year(args.year, args.fill_toll)
-    

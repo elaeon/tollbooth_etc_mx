@@ -1,22 +1,18 @@
-from fastapi import FastAPI, Request, Body, HTTPException
+import datetime
+import logging
+import sys
+from contextlib import asynccontextmanager
+from typing import Annotated, Any
+
+from fastapi import Body, FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from sqlmodel import join, not_, or_, select
 
-from sqlmodel import select, or_, join, not_
-
-from .model import Tollbooth, TbSts, TbImt, TbStretchId, Stretch, StretchToll, TbNeighbour, Road
-from contextlib import asynccontextmanager
+from .model import Stretch, StretchToll, TbImt, TbNeighbour, TbStretchId, TbSts, Tollbooth
 from .utils.connector import SessionDep, create_db_and_tables
 from .utils.query_parser import parse_query
-
-from typing import Annotated, Any
-import logging
-import sys
-import polars as pl
-import polars_h3 as plh3
-import datetime
-
 
 _log = logging.getLogger(__name__)
 _log.setLevel(logging.DEBUG)
@@ -158,7 +154,7 @@ def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
         db_tb = session.get(Tollbooth, tollbooth.tollbooth_id)
         if not db_tb:
             raise HTTPException(status_code=404, detail="Tollbooth not found")
-        tb_data = tollbooth.model_dump(exclude_unset=True) 
+        tb_data = tollbooth.model_dump(exclude_unset=True)
         db_tb.sqlmodel_update(tb_data)
         session.add(db_tb)
         session.commit()
@@ -173,7 +169,7 @@ def upsert_tollbooth(tollbooth: Tollbooth, session: SessionDep):
         except Exception as e:
             _log.debug(e)
             raise HTTPException(status_code=500)
-    
+
     return {"tollbooth_id": tollbooth.tollbooth_id, "info_year": tollbooth.info_year}
 
 
@@ -258,4 +254,4 @@ def tollbooth_neighbours(body: Annotated[Any, Body()], session: SessionDep, offs
     for tb in tollbooths:
         data.append(tb)
     return data
-    
+

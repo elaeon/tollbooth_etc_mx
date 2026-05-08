@@ -1,20 +1,22 @@
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
+
 from prefect import flow
 
 from src.data_files import DataModel, DataStage
-
-from src.pipeline.tasks.stage_tasks import (
-    task_pub_to_stg,
-    task_raw_to_stg,
-    task_dv_cleaner,
-    task_tb_sts,
-)
 from src.pipeline.tasks.cluster_tasks import (
-    task_tollbooth_neighbours,
     task_map_tb_id,
     task_tb_imt_stretch_id_rel,
     task_tb_stretch_id_sts,
+    task_tollbooth_neighbours,
 )
+from src.pipeline.tasks.stage_tasks import (
+    task_dv_cleaner,
+    task_pub_to_stg,
+    task_raw_to_stg,
+    task_tb_sts,
+)
+
 
 def staging_tasks(year: int) -> dict[str, Callable[[], Any]]:
     pub = DataModel(year, DataStage.pub)

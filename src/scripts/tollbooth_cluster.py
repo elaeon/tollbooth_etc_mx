@@ -1,17 +1,20 @@
-import os, sys
+import os
+import sys
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+
+import argparse
+import time
 
 import polars as pl
 import polars_h3 as plh3
-import argparse
 import requests
-import time
 
 from src.data_files import DataModel, DataStage
 
 
 def _tollbooth_neightbours(ldf: pl.LazyFrame, hex_resolution:int = 8):
-    
+
     ldf = ldf.with_columns(
         plh3.latlng_to_cell("lat", "lng", hex_resolution).alias("h3_cell"),
     )
@@ -28,7 +31,7 @@ def _tollbooth_neightbours(ldf: pl.LazyFrame, hex_resolution:int = 8):
     )
     ldf_neighbour = ldf_neighbour.select("tollbooth_id", "tollbooth_id_right", "distance", "scope").filter(pl.col("tollbooth_id") != pl.col("tollbooth_id_right")).unique()
     ldf_neighbour = ldf_neighbour.rename({"tollbooth_id_right": "neighbour_id"})
-    
+
     return ldf_neighbour
 
 # stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
@@ -85,7 +88,7 @@ def get_tollbooths_osm(year: int, country_name: str):
     response = requests.post("https://overpass-api.de/api/interpreter", data=query)
     print(response.text)
     data = response.json()
-    
+
     # Parse the results into a dataframe
     tollbooths = [
         {
@@ -96,7 +99,7 @@ def get_tollbooths_osm(year: int, country_name: str):
         }
         for elem in data.get("elements", [])
     ]
-    
+
     df = pl.DataFrame(tollbooths)
     df.write_csv("./tmp_data/osm_tb.csv")
 
@@ -166,7 +169,7 @@ def tb_distance(year: int):
         )
         df_distance.write_csv(f"./tmp_data/distance/tb_distance_{batch_num}.csv")
         return {}
-        
+
     fields = ["stretch_id", "tollbooth_id_in", "tollbooth_id_out"]
     batch_i = 1
     batch_size = 50
@@ -178,7 +181,7 @@ def tb_distance(year: int):
             distance_tb[key] = distance
             print(key, distance)
             time.sleep(1)
-    
+
             if len(distance_tb) % batch_size == 0:
                 distance_tb = save_batch(distance_tb, batch_i)
                 batch_i += 1
@@ -191,7 +194,7 @@ def tb_distance(year: int):
 def build_tb_distance_file(year: int):
     data_model = DataModel(year, DataStage.pub)
 
-    ldf_osm_distance = pl.scan_csv(f"./tmp_data/distance/*.csv")
+    ldf_osm_distance = pl.scan_csv("./tmp_data/distance/*.csv")
     ldf_osm_distance = ldf_osm_distance.sort("stretch_id")
     ldf_osm_distance.sink_csv(data_model.osm_tb_distance.csv)
 

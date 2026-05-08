@@ -8,8 +8,8 @@ import re
 import sys
 import unicodedata
 from collections import defaultdict
+from collections.abc import Callable
 from pathlib import Path
-from typing import Callable
 
 from rapidfuzz import fuzz
 

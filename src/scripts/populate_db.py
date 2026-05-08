@@ -1,15 +1,16 @@
-import os, sys
+import os
+import sys
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
+import argparse
 import logging
-import polars as pl
 import sqlite3
 
+import polars as pl
+
 from src.data_files import DataModel, DataStage
-from src.utils.connector import sqlite_url, create_db_and_tables
-
-import argparse
-
+from src.utils.connector import create_db_and_tables, sqlite_url
 
 _log = logging.getLogger(__name__)
 _log.setLevel(logging.DEBUG)
@@ -27,13 +28,13 @@ def insert_data_from_parquet(ldf, model_name: str):
             if_table_exists="append",
             engine="adbc"
         )
-        
+
     _log.info(f"saved data in {sqlite_url}")
 
 
 def insert_tb_from_data(data_model: DataModel):
     parquet_file = data_model.tollbooths.parquet
-    model_name = data_model.tollbooths.model.name()    
+    model_name = data_model.tollbooths.model.name()
     ldf_tb = pl.scan_parquet(parquet_file).select(pl.exclude("parent_manage"))
     insert_data_from_parquet(ldf_tb, model_name)
 
@@ -101,7 +102,7 @@ def insert_new_map_tb_imt_from_data(data_model: DataModel):
     ldf_map_tb_imt = pl.scan_parquet(data_model.map_tb_imt.parquet)
     model_name = data_model.map_tb_imt.model.name()
     insert_data_from_parquet(ldf_map_tb_imt, model_name)
-    
+
 
 def drop_table(option):
     table_parameter = "{table_parameter}"

@@ -218,7 +218,7 @@ def process_files(input_dir: Path, warn_unmappable: bool = True, warn_duplicate:
                     clasif_many = [re.sub("camiones", "", clasif), re.sub("autobuses", "", clasif)]
                 else:
                     clasif_many = [clasif]
-                
+
                 for clasif in clasif_many:
                     tramo, vehiculo = split_tramo_vehiculo(clasif, cut_stretch_first_pipe)
                     cols = classify(vehiculo, context=(row.get("url_fuente") or "").strip())

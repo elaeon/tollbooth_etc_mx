@@ -1,11 +1,13 @@
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
+
 from prefect import flow
 
 from src.pipeline.tasks.report_tasks import (
     task_growth_rate_report,
-    task_toll_update_date_report,
     task_manage_data,
     task_revenue,
+    task_toll_update_date_report,
 )
 
 _VEHICLE_TYPES = ["bike", "car", "bus", "ltruck", "htruck", "utruck"]

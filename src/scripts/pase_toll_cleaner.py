@@ -1,10 +1,10 @@
+import argparse
 import logging
-import pdfplumber
-import polars as pl
 import sys
 from collections import defaultdict
-import argparse
 
+import pdfplumber
+import polars as pl
 
 _log = logging.getLogger(__name__)
 _log.setLevel(logging.DEBUG)
@@ -12,8 +12,8 @@ handler = logging.StreamHandler(sys.stdout)
 handler.setLevel(logging.DEBUG)
 _log.addHandler(handler)
 
-_headers = ["tollbooth_id", "tollbooth_name", "motorbike", "car", "car-axle", "bus-2axle", "bus-3axle", "bus-4axle", 
-"truck-2axle", "truck-3axle", "truck-4axle", "truck-5axle", "truck-6axle", 
+_headers = ["tollbooth_id", "tollbooth_name", "motorbike", "car", "car-axle", "bus-2axle", "bus-3axle", "bus-4axle",
+"truck-2axle", "truck-3axle", "truck-4axle", "truck-5axle", "truck-6axle",
 "truck-7axle", "truck-8axle", "truck-9axle", "load-axle"
 ]
 _old_headers = ["via_principal"] + _headers
@@ -70,9 +70,9 @@ def main(year):
                             if i_row != j_row:
                                 add_table_to_dict(extracted_tables[i_table][i_row+1:j_row], fix_tables, i_table)
                         add_table_to_dict(extracted_tables[i_table][row[-1][1]+1:], fix_tables, i_table)
-                    
+
                     for i_table, table in enumerate(extracted_tables):
-                        if not i_table in fix_tables:
+                        if i_table not in fix_tables:
                             _fix_extracted_tables.append(table)
                         else:
                             for fix_table in fix_tables[i_table]:
@@ -92,7 +92,7 @@ def main(year):
                         start_from = 0
 
                     _map_headers, _map_headers_no_toll = map_headers(year, start_from)
-                    
+
                     if i < 16:
                         if len(df.columns) < len(_map_headers):
                             df = df.rename(_map_headers_no_toll)
@@ -102,7 +102,7 @@ def main(year):
                             if year < 2024:
                                 df = df.with_columns(pl.lit("").alias("via_principal"))
                                 empty_headers = ["via_principal"] + empty_headers
-                                
+
                             df = df.select(empty_headers + columns)
                         else:
                             df = df.rename(_map_headers)
@@ -115,13 +115,13 @@ def main(year):
                     else:
                         if df.height > 0:
                             dfs_remaind[str(df.shape)+str(i)].append(df)
-                
+
             _log.info(f"proccessed page {i}")
 
         for k, v in dfs_remaind.items():
             csv_path = f"tarifas_{year}_{k}.csv"
             pl.concat(v).write_csv(csv_path)
-            
+
         df_all = pl.concat(dfs)
         df_all = df_all.with_columns(pl.lit("pase").alias("toll_ref"))
 
@@ -144,7 +144,7 @@ def map_headers(year, start_from=0):
 def add_table_to_dict(table, tables_dict, key):
     if len(table) > 0:
         tables_dict[key].append(table)
-    
+
 
 def find_toll(table):
     for i, row in enumerate(table):
@@ -174,5 +174,5 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", help="filename year", required=True, type=int)
     args = parser.parse_args()
-    
+
     main(args.year)

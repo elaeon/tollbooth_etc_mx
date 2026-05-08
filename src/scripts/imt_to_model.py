@@ -1,8 +1,11 @@
-import os, sys
+import os
+import sys
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
-import polars as pl
 import argparse
+
+import polars as pl
 
 from src.data_files import DataModel
 

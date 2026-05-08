@@ -1,15 +1,18 @@
-import os, sys
+import os
+import sys
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
+import argparse
 import logging
+import re
+import sys
+from collections import defaultdict
+
 import pdfplumber
 import polars as pl
-import sys
-import re
-from collections import defaultdict
-import argparse
-from src.data_files import DataModel, DataStage
 
+from src.data_files import DataModel, DataStage
 
 _log = logging.getLogger(__name__)
 _log.setLevel(logging.DEBUG)
@@ -66,7 +69,7 @@ def extract_index(page_text):
             if match_tb is not None:
                 lines_dict[scope_index].update(
                     {
-                        "tollbooth_name": 
+                        "tollbooth_name":
                         re.sub(r"\s*-\s*", "-", match_tb.groupdict()["tollbooth_name"].replace("coordenadas", "").strip())
                     }
                 )
@@ -80,7 +83,7 @@ def extract_index(page_text):
             lines_dict[scope_index]["lat"] = match_lat.groupdict()["lat"]
         if match_long is not None:
             lines_dict[scope_index]["lng"] = match_long.groupdict()["lng"]
-        
+
         if match_way is not None:
             lines_dict[scope_index].update(match_way.groupdict())
 
@@ -150,7 +153,7 @@ def main(year, from_page, to_page):
                 all_df.append(df)
                 if page_num == to_page:
                     break
-        
+
         df_all = pl.concat(all_df)
         pl_exp = data_path.tb_sts_no_id.model.str_normalize()
         pl_exp.append(pl.lit("open").alias("status"))

@@ -1,8 +1,8 @@
 from prefect import task
 
-from src.data_files import PathModel
-import src.scripts.stage as stage
 import src.scripts.dv_cleaner as dv_cleaner
+import src.scripts.stage as stage
+from src.data_files import PathModel
 
 
 @task(name="pub-to-stg")

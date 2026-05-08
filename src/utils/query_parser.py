@@ -7,13 +7,13 @@ Grammar supported:
 The parser is parser-only: it returns a normalized dict or raises ValueError
 on malformed input. Endpoints should convert the parsed result to DB filters.
 """
-from typing import Any, Dict, List, Tuple
+from typing import Any
 
 _RESERVED_WORDS = {
     "empty_stretch"
 }
 
-def _split_once_colon(q: str) -> Tuple[str, str]:
+def _split_once_colon(q: str) -> tuple[str, str]:
     if ":" not in q:
         raise ValueError("query must contain a ':' separating param and value(s)")
     param, values = q.split(":", 1)
@@ -26,7 +26,7 @@ def _split_once_colon(q: str) -> Tuple[str, str]:
     return param, values
 
 
-def parse_query(query: str) -> Dict[str, Any]:
+def parse_query(query: str) -> dict[str, Any]:
     """Parse a raw query string and return a normalized structure.
 
     Raises ValueError when the string is malformed.
@@ -44,7 +44,7 @@ def parse_query(query: str) -> Dict[str, Any]:
         param = param.strip().lower()
 
     # Generic param: allow comma-separated values
-    values: List[str] = [v.strip() for v in values_str.split(",") if v.strip()]
+    values: list[str] = [v.strip() for v in values_str.split(",") if v.strip()]
     if not values:
         raise ValueError("no values found for parameter")
 
