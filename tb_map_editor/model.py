@@ -1,4 +1,4 @@
-from sqlmodel import Field, SQLModel, UniqueConstraint
+from sqlmodel import Field, SQLModel
 from pydantic_core import CoreSchema, core_schema
 from pydantic import GetCoreSchemaHandler
 from typing import Any, get_args
@@ -134,6 +134,7 @@ class Schema:
 
     @staticmethod
     def _get_polars_dtype(field_type):
+        polar_type = None
         if hasattr(field_type.annotation, Schema._polar_dtype_attr):
             polar_type = getattr(field_type.annotation, Schema._polar_dtype_attr)()
         else:
@@ -141,16 +142,9 @@ class Schema:
                 if hasattr(arg, Schema._polar_dtype_attr):
                     polar_type = getattr(arg, Schema._polar_dtype_attr)()
                     break
+        if polar_type is None:
+            raise AttributeError(f"No '{Schema._polar_dtype_attr}' found for field_type {field_type}")
         return polar_type
-
-    @classmethod
-    def dict_schema(cls, ignore=[]) -> dict:
-        dict_schema = {
-            field_name: cls._get_polars_dtype(field_type)
-            for field_name, field_type in cls.model_fields.items()
-            if field_name not in ignore
-        }
-        return dict_schema
 
 
 class TbModel(SQLModel, Schema, table=False):
@@ -180,6 +174,15 @@ class TbModel(SQLModel, Schema, table=False):
     def numeric_cols(cls) -> list[str]:
         cols = []
         return cols
+
+    @classmethod
+    def dict_schema(cls, ignore=[]) -> dict:
+        dict_schema = {
+            field_name: cls._get_polars_dtype(field_type)
+            for field_name, field_type in cls.model_fields.items()
+            if field_name not in ignore
+        }
+        return dict_schema
 
 
 class Tollbooth(TbModel, table=True):

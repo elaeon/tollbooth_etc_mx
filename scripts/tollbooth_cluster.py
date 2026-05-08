@@ -31,14 +31,16 @@ def _tollbooth_neightbours(ldf: pl.LazyFrame, hex_resolution:int = 8):
     
     return ldf_neighbour
 
-
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
+# stage.raw_to_stg(year, model_name="tb_imt")
+# sts_ids(year, start_year)
 def tollbooth_neighbours(year: int):
     data_model = DataModel(year, DataStage.stg)
     data_model_stg = DataModel(year, DataStage.stg)
-    data_model_sts = DataModel(year - 1, DataStage.prd)
+    data_model_sts = DataModel(year - 1, DataStage.stg)
 
     ldf_tb = pl.scan_parquet(
-        data_model.tollbooths.parquet
+        data_model.tollbooth.parquet
     ).select("tollbooth_id", "lat", "lng")
     ldf_tb_imt = pl.scan_parquet(
         data_model_stg.tb_imt.parquet
@@ -71,7 +73,7 @@ def tollbooth_neighbours(year: int):
     print(f"Saved file in: {data_model.tb_neighbour.parquet}")
 
 
-def get_tollbooths_osm(year: int, country_name: str) -> pl.DataFrame:
+def get_tollbooths_osm(year: int, country_name: str):
     query = f'''
     [out:json];
     area["name"="{country_name}"]->.searchArea;
@@ -120,6 +122,8 @@ def get_osm_routing_distance(lat_in: float, lng_in: float, lat_out: float, lng_o
         return -1
 
 
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
+# stage.pub_to_stg(year, model_name="tb_stretch_id")
 def tb_distance(year: int):
     data_model = DataModel(year, DataStage.stg)
 

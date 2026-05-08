@@ -6,7 +6,6 @@ import argparse
 from collections import defaultdict
 
 from tb_map_editor.data_files import DataModel, DataStage
-from tb_map_editor.model import _str_normalize
 
 
 _BIKE: list = ["motorbike"]
@@ -39,12 +38,13 @@ _VEHICLE_TYPE_DICT: dict = {
 }
 
 
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs_toll")
 def inflation_growth_rate(from_year, to_year, vehicle_type):
     years = range(from_year, to_year + 1)
     df_strech_toll_dict = {}
 
     for year in years:
-        filepath = DataModel(year, DataStage.stg).stretchs_toll.parquet
+        filepath = DataModel(year, DataStage.stg).stretch_toll.parquet
         vehicle_cols = ["stretch_id"] + _VEHICLE_TYPE_DICT[vehicle_type]
         df_strech_toll_dict[year] = pl.scan_parquet(filepath)
         
@@ -188,6 +188,7 @@ def growth_rate_exprs(start, end, prefix_col: str, result_prefix_col: str):
     return growth_rate_columns, growth_rate_exp
 
 
+# sts_ids(year, start_year)
 def tdpa_vta_growth_rate(from_year, to_year, vehicle_type):
     years = range(from_year, to_year + 1)
     df_tb_dict = {}
@@ -206,7 +207,7 @@ def tdpa_vta_growth_rate(from_year, to_year, vehicle_type):
             vehicle_type_cols[vehicle_type].append(vehicle)
 
     for year in years:
-        filepath = DataModel(year, DataStage.prd).tb_sts.parquet
+        filepath = DataModel(year, DataStage.stg).tb_sts.parquet
         df_tb_dict[year] = pl.scan_parquet(filepath).select(
             ["tollbooth_id", "tdpa", "vta"] + vehicle_type_cols[vehicle_type]
         )
@@ -240,6 +241,13 @@ def tdpa_vta_growth_rate(from_year, to_year, vehicle_type):
     return df_sts
 
 
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs")
+# stage.pub_to_stg(year, normalize=True, model_name="roads")
+# stage.pub_to_stg(year, model_name="tb_stretch_id")
+# stage.raw_to_stg(year, model_name="inflation")
+# join_tollbooths.tb_stretch_id_sts(base_year, move_year)
+# sts_ids(year, start_year)
 def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_sts: int):
     ldf_toll = inflation_growth_rate(from_year, to_year, vehicle_type)
     ldf_sts = tdpa_vta_growth_rate(from_year, to_year=to_year_sts, vehicle_type=vehicle_type)
@@ -259,12 +267,12 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_
     data_model = DataModel(to_year, DataStage.stg)
 
     ldf_strechs = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .rename({"manage": "stretch_manage"})
         .select("stretch_id", "stretch_name", "stretch_length_km", "road_id", "stretch_manage")
     )
     ldf_tollbooths = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "tollbooth_name", "state", "manage", "parent_manage", "gate_to")
         .rename({"manage": "tb_manage", "parent_manage": "parent_tb_manage"})
     )
@@ -273,7 +281,7 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_
         .select("stretch_id", "tollbooth_id_out")
     )
     ldf_road = (
-        pl.scan_parquet(data_model.roads.parquet)
+        pl.scan_parquet(data_model.road.parquet)
         .select(
             "road_id", "road_name", "operation_date",
             "start_contract_date", "end_contract_date",
@@ -336,7 +344,7 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_
     ).select("stretch_id", "tollbooth_id", "tollbooth_sts_id")
 
     ldf_sts_name = (
-        pl.scan_parquet(DataModel(to_year_sts, DataStage.prd).tb_sts.parquet)
+        pl.scan_parquet(DataModel(to_year_sts, DataStage.stg).tb_sts.parquet)
         .select("tollbooth_id", "stretch_name")
         .rename({"stretch_name": "stretch_way"})
         .join(ldf_sts, on="tollbooth_id")
@@ -376,6 +384,9 @@ def growth_rate_report(from_year: int, to_year: int, vehicle_type: str, to_year_
     print(f"Saved result in {filepath}")
 
 
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
+# tollbooth_cluster.tollbooth_neighbours(year)
+# stage.raw_to_stg(year, model_name="tb_toll_imt", normalize=True)
 def toll_update_date_report(from_year: int, to_year: int):
     years = range(from_year, to_year + 1)
     ldf_dict = {}
@@ -383,7 +394,7 @@ def toll_update_date_report(from_year: int, to_year: int):
 
     data_model = DataModel(to_year, DataStage.stg)
     ldf_tb = pl.scan_parquet(
-            data_model.tollbooths.parquet
+            data_model.tollbooth.parquet
         ).select("tollbooth_id", "manage")
     ldf_neighbour = pl.scan_parquet(
         data_model.tb_neighbour.parquet
@@ -431,12 +442,16 @@ def toll_update_date_report(from_year: int, to_year: int):
     print(f"Saved result in {filepath}")
 
 
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
+# raw_to_stg(year, model_name="tb_imt", normalize=True)
+# sts_ids(year, start_year)
+# join_tollbooths.map_tb_id(year)
 def tollbooth_names_report(year: int):
     data_model = DataModel(year, DataStage.stg)
-    data_model_sts = DataModel(year - 1, DataStage.prd)
+    data_model_sts = DataModel(year - 1, DataStage.stg)
 
     ldf_tb = pl.scan_parquet(
-        data_model.tollbooths.parquet
+        data_model.tollbooth.parquet
     ).select("tollbooth_id", "tollbooth_name")
     ldf_tb_imt = pl.scan_parquet(
         data_model.tb_imt.parquet
@@ -457,12 +472,15 @@ def tollbooth_names_report(year: int):
     print(f"Saved result in {filepath}")
 
 
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs")
+# sts_ids(year, start_year)
+# join_tollbooths.tb_stretch_id_sts(base_year, move_year)
 def stretch_names_report(year: int):
     data_model = DataModel(year, DataStage.stg)
-    data_model_sts = DataModel(year - 1, DataStage.prd)
+    data_model_sts = DataModel(year - 1, DataStage.stg)
 
     ldf_stretch = pl.scan_parquet(
-        data_model.stretchs.parquet
+        data_model.stretch.parquet
     ).select("stretch_id", "stretch_name")
     ldf_tb_sts = pl.scan_parquet(
         data_model_sts.tb_sts.parquet
@@ -479,6 +497,9 @@ def stretch_names_report(year: int):
     print(f"Saved result in {filepath}")
 
 
+# stage.pub_to_stg(year, model_name="tb_stretch_id")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs")
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
 def tollbooth_stretch_rel(year: int):
     data_model = DataModel(year, DataStage.stg)
 
@@ -486,10 +507,10 @@ def tollbooth_stretch_rel(year: int):
         data_model.tb_stretch_id.parquet
     )
     ldf_stretch = pl.scan_parquet(
-        data_model.stretchs.parquet
+        data_model.stretch.parquet
     ).select("stretch_id", "stretch_name")
     ldf_tollbooth = pl.scan_parquet(
-        data_model.tollbooths.parquet
+        data_model.tollbooth.parquet
     ).select("tollbooth_id", "tollbooth_name")
     ldf_tb_stretch_id = ldf_stretch.join(
         ldf_tb_stretch_id, on="stretch_id", how="left"
@@ -509,6 +530,10 @@ def tollbooth_stretch_rel(year: int):
     print(f"Saved result in {filepath}")
 
 
+# stage.pub_to_stg(year, model_name="tb_stretch_id")
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
+# join_tollbooths.map_tb_id(year)
+# raw_to_stg(year, model_name="tb_imt", normalize=True)
 def tollbooth_without_stretch(year: int):
     data_model = DataModel(year, DataStage.stg)
 
@@ -516,7 +541,7 @@ def tollbooth_without_stretch(year: int):
         data_model.tb_stretch_id.parquet
     )
     ldf_tollbooth = pl.scan_parquet(
-        data_model.tollbooths.parquet
+        data_model.tollbooth.parquet
     ).select("tollbooth_id", "tollbooth_name", "state")
     ldf_map_tb_id = pl.scan_parquet(
         data_model.map_tb_id.parquet
@@ -572,12 +597,16 @@ def mx_projects_report():
     print(ldf_mxpj_old.join(ldf_mxpj, on="id", how="anti").collect())
     
 
+# stage.pub_to_stg(year, model_name="tb_stretch_id")
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs_toll")
 def toll_ref(year: int):
     data_model = DataModel(year, DataStage.stg)
     data_model_pub = DataModel(year, DataStage.pub)
-    lf_stretch_id = pl.scan_csv(data_model_pub.tb_stretch_id.csv)
+    lf_stretch_id = pl.scan_parquet(data_model_pub.tb_stretch_id.parquet)
     lf_tb = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "manage", "tollbooth_name")
     )
     lf_operator = (
@@ -585,10 +614,10 @@ def toll_ref(year: int):
         .select("short_name", "toll_ref")
     )
     lf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "stretch_name")
     )
-    lf_toll = pl.scan_parquet(data_model.stretchs_toll.parquet)
+    lf_toll = pl.scan_parquet(data_model.stretch_toll.parquet)
     lf_toll = (
         lf_stretch
         .join(lf_toll, on="stretch_id", how="left")
@@ -609,6 +638,11 @@ def toll_ref(year: int):
     lf_toll.sink_csv(f"./reports/toll_ref_{year}.csv")
 
 
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs")
+# join_tollbooths.map_tb_id(year)
+# raw_to_stg(year, model_name="tb_imt", normalize=True)
+# # stage.pub_to_stg(year, model_name="tb_stretch_id")
 def tollbooth_stretch_manage(year: int):
     data_model = DataModel(year, DataStage.stg)
     
@@ -618,7 +652,7 @@ def tollbooth_stretch_manage(year: int):
         .rename({"manage": "manage_imt"})
     )
     ldf_tb = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "manage")
     )
     ldf_map_tb = (
@@ -629,7 +663,7 @@ def tollbooth_stretch_manage(year: int):
         pl.scan_parquet(data_model.tb_stretch_id.parquet)
     )
     ldf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "manage")
         .rename({"manage": "stretch_manage"})
     )
@@ -646,12 +680,16 @@ def tollbooth_stretch_manage(year: int):
     ldf_stretch.sink_csv("./reports/tollbooth_stretch_manage.csv")
 
 
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs")
+# sts_ids(year, start_year)
+# join_tollbooths.tb_stretch_id_sts(base_year, move_year)
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
 def stretch_sts(year: int):
     data_model = DataModel(year, DataStage.stg)
-    data_model_sts = DataModel(year - 1, DataStage.prd)
+    data_model_sts = DataModel(year - 1, DataStage.stg)
 
     lf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "stretch_name")
     )
     lf_sts = (
@@ -664,7 +702,7 @@ def stretch_sts(year: int):
         .select("stretch_id", "tollbooth_sts_id", "tollbooth_id")
     )
     lf_tollbooth = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "tollbooth_name")
     )
     lf_sts = (
@@ -681,7 +719,14 @@ def stretch_sts(year: int):
     )
     lf_sts.sink_csv(f"./reports/stretch_sts_{data_model_sts.attr.get("year")}.csv")
 
-
+# tb_imt_stretch_id_rel(year)
+# stage.pub_to_stg(year, model_name="tb_stretch_id")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs")
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
+# stage.raw_to_stg(year, normalize=True, model_name="tb_imt")
+# stage.raw_to_stg(year, normalize=True, model_name="tb_toll_imt")
+# join_tollbooths.map_tb_id(year)
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs_toll")
 def tb_imt_stretch_id(year: int):
     data_model = DataModel(year, DataStage.stg)
 
@@ -708,11 +753,11 @@ def tb_imt_stretch_id(year: int):
         )
     )
     ldf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "stretch_name")
     )
     ldf_tollbooth = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "tollbooth_name")
     )
     ldf_tb_imt = (
@@ -728,7 +773,7 @@ def tb_imt_stretch_id(year: int):
         .select("tollbooth_id", "tollbooth_imt_id")
     )
     ldf_stretch_toll = (
-        pl.scan_parquet(data_model.stretchs_toll.parquet)
+        pl.scan_parquet(data_model.stretch_toll.parquet)
     )
 
     ldf_toll_imt = (
@@ -787,13 +832,14 @@ def tb_imt_stretch_id(year: int):
     ldf_toll_imt = ldf_toll_imt.sort("stretch_id")
     ldf_toll_imt.sink_csv(f"./reports/tb_imt_stretch_id_{year}.csv")
 
-
+# pub_to_stg(year, normalize=False, model_name="osm_tb_distance"), 
+# pub_to_stg(year, normalize=True, model_name="stretchs")
 def stretch_length(year:int):
     data_model = DataModel(year, DataStage.stg)
     
     ldf_osm_distance = pl.scan_parquet(data_model.osm_tb_distance.parquet)
     ldf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "stretch_name", "stretch_length_km")
         .join(
             ldf_osm_distance,
@@ -804,19 +850,23 @@ def stretch_length(year:int):
     ldf_stretch.sink_csv("./reports/stretch_length.csv")
 
 
+# stage.pub_to_stg(year, model_name="tb_stretch_id")
+# stage.pub_to_stg(year, normalize=True, model_name="roads")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs")
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
 def road_manage_length(year: int):
     data_model = DataModel(year, DataStage.stg)
 
     lf_road = (
-        pl.scan_parquet(data_model.roads.parquet)
+        pl.scan_parquet(data_model.road.parquet)
         .select("road_id", "road_name", "road_length_km", "end_contract_date")
     )
     lf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "stretch_length_km", "road_id")
     )
     lf_tollbooth = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "manage", "parent_manage")
     )
     lf_tb_stretch_id = (
@@ -857,20 +907,25 @@ def road_manage_length(year: int):
     lf_tb_stretch.sink_csv(os.path.join(output_filepath, f"road_manage_length_{year}.csv"))
 
 
+# stage.pub_to_stg(year, model_name="tb_stretch_id")
+# stage.pub_to_stg(year, normalize=True, model_name="roads")
+# stage.pub_to_stg(year, normalize=True, model_name="stretchs")
+# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
+# growth_rate_report(from_year, to_year, vehicle_type, to_year_sts):
 def manage_data(from_year: int, to_year: int):
     data_model = DataModel(to_year, DataStage.stg)
 
     lf_road = (
-        pl.scan_parquet(data_model.roads.parquet)
+        pl.scan_parquet(data_model.road.parquet)
         .select("road_id", "road_length_km", "bond_code")
     )
     lf_stretch = (
-        pl.scan_parquet(data_model.stretchs.parquet)
+        pl.scan_parquet(data_model.stretch.parquet)
         .select("stretch_id", "road_id", "manage", "stretch_length_km")
         .rename({"manage": "stretch_manage"})
     )
     lf_tollbooth = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "tollbooth_name", "parent_manage", "state", "gate_to", "status")
     )
     lf_tb_stretch_id = (
@@ -1082,6 +1137,7 @@ def manage_data(from_year: int, to_year: int):
     lf_manage.sink_csv(os.path.join(output_filepath, f"manage_road_data_{from_year}_{to_year}.csv"))
 
 
+# raw_to_stg(year, model_name=manager_revenue, normalize=True)
 def revenue(from_year: int, to_year: int):
     lf_dict = {}
     range_keys = range(from_year, to_year + 1)
