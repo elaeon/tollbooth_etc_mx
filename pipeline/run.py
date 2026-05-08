@@ -21,11 +21,11 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.environ.setdefault("PREFECT_LOGGING_TO_API_WHEN_MISSING_FLOW", "ignore")
 
-from pipeline.flows.staging_flow import staging_flow, STAGING_TASKS, _STEP_TO_GROUP as _STAGING_STEPS
+from pipeline.flows.staging_flow import staging_flow, staging_tasks, STAGING_TASK_NAMES, _STEP_TO_GROUP as _STAGING_STEPS
 from pipeline.flows.report_flow import report_flow, REPORT_TASKS, _STEP_TO_GROUP as _REPORT_STEPS
 
 _ALL_FLOW_STEPS = list(_STAGING_STEPS) + list(_REPORT_STEPS)
-_ALL_TASK_NAMES = list(STAGING_TASKS) + list(REPORT_TASKS)
+_ALL_TASK_NAMES = STAGING_TASK_NAMES + list(REPORT_TASKS)
 
 
 def main():
@@ -83,12 +83,13 @@ def main():
         report_flow(args.from_year, args.to_year, from_step=args.from_step)
 
     if args.tasks:
-        staging = [t for t in args.tasks if t in STAGING_TASKS]
+        staging = [t for t in args.tasks if t in STAGING_TASK_NAMES]
         reports = [t for t in args.tasks if t in REPORT_TASKS]
         for year in range(args.from_year, args.to_year + 1):
+            tasks = staging_tasks(year)
             for name in staging:
                 print(f"[{year}] {name}")
-                STAGING_TASKS[name](year)
+                tasks[name]()
         for name in reports:
             print(f"[{args.from_year}-{args.to_year}] {name}")
             REPORT_TASKS[name](args.from_year, args.to_year)
