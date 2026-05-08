@@ -1,3 +1,48 @@
+## Running the pipeline
+
+After cloning, install dependencies with `uv sync`. 
+Download the [raw data](https://zenodo.org/records/19097759) from Zenodo and unpacked inside tollbooth_etc_mx/
+
+The `tb-pipeline` command is then available via `uv run`:
+
+```sh
+uv run tb-pipeline --from-year YEAR --to-year YEAR [--flow FLOW] [--from-step STEP] [--tasks TASK ...]
+```
+
+
+**Required arguments**
+
+| Argument | Description |
+|---|---|
+| `--from-year` | First year to process |
+| `--to-year` | Last year to process (inclusive) |
+
+**Optional arguments**
+
+| Argument | Description |
+|---|---|
+| `--flow staging\|reports\|all` | Run a Prefect flow. `staging` processes per-year data in a parallel DAG; `reports` runs the cross-year report flow; `all` runs both in sequence |
+| `--from-step STEP` | Resume a flow from a specific step, skipping everything before it (requires `--flow`) |
+| `--tasks TASK [TASK ...]` | Run individual tasks directly without a flow |
+
+**Examples**
+
+```sh
+# Full staging + report pipeline for 2024–2026
+uv run tb-pipeline --from-year 2024 --to-year 2026 --flow all
+
+# Only the staging flow
+uv run tb-pipeline --from-year 2024 --to-year 2026 --flow staging
+
+# Resume staging from the neighbours step
+uv run tb-pipeline --from-year 2025 --to-year 2026 --flow staging --from-step neighbours
+
+# Run individual tasks without a flow
+uv run tb-pipeline --from-year 2025 --to-year 2025 --tasks pub_tb dv_cleaner
+```
+
+---
+
 ## Contributions
 
 Welcome! Whether you're improving data quality, reporting issues, or enhancing the analysis, your help makes this project better.

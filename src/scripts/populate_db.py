@@ -1,7 +1,7 @@
 import argparse
-import sys
 import logging
 import sqlite3
+import sys
 
 import polars as pl
 

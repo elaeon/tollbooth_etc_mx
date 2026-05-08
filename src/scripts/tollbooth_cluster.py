@@ -29,9 +29,7 @@ def _tollbooth_neightbours(ldf: pl.LazyFrame, hex_resolution:int = 8):
 
     return ldf_neighbour
 
-# stage.pub_to_stg(year, normalize=True, model_name="tollbooths")
-# stage.raw_to_stg(year, model_name="tb_imt")
-# sts_ids(year, start_year)
+
 def tollbooth_neighbours(year: int):
     data_model = DataModel(year, DataStage.stg)
     data_model_stg = DataModel(year, DataStage.stg)
@@ -126,7 +124,7 @@ def tb_distance(year: int):
     data_model = DataModel(year, DataStage.stg)
 
     ldf_tollbooth = (
-        pl.scan_parquet(data_model.tollbooths.parquet)
+        pl.scan_parquet(data_model.tollbooth.parquet)
         .select("tollbooth_id", "lat", "lng")
     )
     ldf_tb_stretch_id = (
@@ -209,21 +207,15 @@ def inegi_state_data(year: int):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--tollbooth-neighbours", required=False, action="store_true")
     parser.add_argument("--year", required=True, type=int)
     parser.add_argument("--get-tb-osm", required=False, type=str)
     parser.add_argument("--get-osm-tb-distance", required=False, action="store_true")
-    parser.add_argument("--build-tb-distance-file", required=False, action="store_true")
     parser.add_argument("--inegi-state-data", required=False, action="store_true")
 
     args = parser.parse_args()
-    if args.tollbooth_neighbours:
-        tollbooth_neighbours(args.year)
-    elif args.get_tb_osm:
+    if args.get_tb_osm:
         get_tollbooths_osm(args.year, args.get_tb_osm)
     elif args.get_osm_tb_distance:
         tb_distance(args.year)
-    elif args.build_tb_distance_file:
-        build_tb_distance_file(args.year)
     elif args.inegi_state_data:
         inegi_state_data(args.year)
