@@ -1,11 +1,12 @@
 import os, sys
-sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
+from pathlib import Path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 import polars as pl
 import argparse
 from collections import defaultdict
 
-from tb_map_editor.data_files import DataModel, DataStage
+from src.data_files import DataModel, DataStage
 
 
 _BIKE: list = ["motorbike"]
@@ -610,7 +611,7 @@ def toll_ref(year: int):
         .select("tollbooth_id", "manage", "tollbooth_name")
     )
     lf_operator = (
-        pl.scan_csv("data/tables/area_operators_mx.csv", separator="|")
+        pl.scan_csv(Path(DataStage.pub) / "area_operators_mx.csv", separator="|")
         .select("short_name", "toll_ref")
     )
     lf_stretch = (
@@ -1234,7 +1235,7 @@ def revenue(from_year: int, to_year: int):
 
 
 def state_report(year: int):
-    lf = pl.scan_csv(f"./data/tables/{year}/inegi_state_data.csv")
+    lf = pl.scan_csv(Path(DataStage.pub) / str(year) / "inegi_state_data.csv")
     lf = (
         lf
         .with_columns(

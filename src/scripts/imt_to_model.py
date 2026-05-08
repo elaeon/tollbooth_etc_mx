@@ -1,10 +1,10 @@
 import os, sys
-sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 import polars as pl
 import argparse
 
-from tb_map_editor.data_files import DataModel
+from src.data_files import DataModel
 
 
 def tb_imt_delta(base_year:int, next_year: int):

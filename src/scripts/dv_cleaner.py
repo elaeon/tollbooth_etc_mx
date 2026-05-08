@@ -1,5 +1,5 @@
 import os, sys
-sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 import logging
 import pdfplumber
@@ -8,7 +8,7 @@ import sys
 import re
 from collections import defaultdict
 import argparse
-from tb_map_editor.data_files import DataModel, DataStage
+from src.data_files import DataModel, DataStage
 
 
 _log = logging.getLogger(__name__)

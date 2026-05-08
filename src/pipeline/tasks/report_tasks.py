@@ -1,7 +1,7 @@
 import os
 from prefect import task
 
-import scripts.reports as reports
+import src.scripts.reports as reports
 
 
 # reports.py uses output_filepath only in __main__; patch it before calling.

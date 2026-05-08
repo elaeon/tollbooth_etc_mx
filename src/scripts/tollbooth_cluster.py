@@ -1,5 +1,5 @@
 import os, sys
-sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 import polars as pl
 import polars_h3 as plh3
@@ -7,7 +7,7 @@ import argparse
 import requests
 import time
 
-from tb_map_editor.data_files import DataModel, DataStage
+from src.data_files import DataModel, DataStage
 
 
 def _tollbooth_neightbours(ldf: pl.LazyFrame, hex_resolution:int = 8):

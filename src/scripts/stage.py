@@ -1,14 +1,15 @@
 import os, sys
-sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
+from pathlib import Path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 import polars as pl
 import polars_h3 as plh3
 import polars_ds as plds
 
 from datetime import date
-from tb_map_editor import model as tb_model
-from tb_map_editor.data_files import DataModel, DataStage, PathModel
-from tb_map_editor.pipeline import DataPipeline
+from src import model as tb_model
+from src.data_files import DataModel, DataStage, PathModel
+from src.data_pipeline import DataPipeline
 
 
 def sts_ids(year: int, start_year: int):
@@ -129,7 +130,7 @@ def sts_ids(year: int, start_year: int):
 
 
 def get_parent_manage() -> pl.DataFrame:
-    df = pl.read_csv("data/tables/area_operators_mx.csv", separator="|").select("parent", "short_name")
+    df = pl.read_csv(Path(DataStage.pub) / "area_operators_mx.csv", separator="|").select("parent", "short_name")
     df = df.join(df, left_on="parent", right_on="short_name", how="left")
     while True:
         if not df.filter(pl.col("parent_right").is_not_null()).is_empty():

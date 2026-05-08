@@ -3,26 +3,26 @@ CLI entrypoint for the tollbooth_etc_mx Prefect pipeline.
 
 Usage:
     # Run a full flow
-    uv run python pipeline/run.py --from-year 2024 --to-year 2026 --flow staging
-    uv run python pipeline/run.py --from-year 2024 --to-year 2026 --flow reports
-    uv run python pipeline/run.py --from-year 2024 --to-year 2026 --flow all
+    uv run python src/pipeline/run.py --from-year 2024 --to-year 2026 --flow staging
+    uv run python src/pipeline/run.py --from-year 2024 --to-year 2026 --flow reports
+    uv run python src/pipeline/run.py --from-year 2024 --to-year 2026 --flow all
 
     # Resume a flow from a specific step (skips everything before it)
-    uv run python pipeline/run.py --from-year 2025 --to-year 2026 --flow staging --from-step neighbours
-    uv run python pipeline/run.py --from-year 2024 --to-year 2026 --flow reports --from-step manage_data
+    uv run python src/pipeline/run.py --from-year 2025 --to-year 2026 --flow staging --from-step neighbours
+    uv run python src/pipeline/run.py --from-year 2024 --to-year 2026 --flow reports --from-step manage_data
 
     # Run individual tasks directly (no flow)
-    uv run python pipeline/run.py --from-year 2025 --to-year 2025 --tasks pub_tb dv_cleaner
+    uv run python src/pipeline/run.py --from-year 2025 --to-year 2025 --tasks pub_tb dv_cleaner
 """
 import argparse
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.environ.setdefault("PREFECT_LOGGING_TO_API_WHEN_MISSING_FLOW", "ignore")
 
-from pipeline.flows.staging_flow import staging_flow, staging_tasks, STAGING_TASK_NAMES, _STEP_TO_GROUP as _STAGING_STEPS
-from pipeline.flows.report_flow import report_flow, REPORT_TASKS, _STEP_TO_GROUP as _REPORT_STEPS
+from src.pipeline.flows.staging_flow import staging_flow, staging_tasks, STAGING_TASK_NAMES, _STEP_TO_GROUP as _STAGING_STEPS
+from src.pipeline.flows.report_flow import report_flow, REPORT_TASKS, _STEP_TO_GROUP as _REPORT_STEPS
 
 _ALL_FLOW_STEPS = list(_STAGING_STEPS) + list(_REPORT_STEPS)
 _ALL_TASK_NAMES = STAGING_TASK_NAMES + list(REPORT_TASKS)

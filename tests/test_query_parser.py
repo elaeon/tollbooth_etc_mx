@@ -1,9 +1,9 @@
 import os, sys
-sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
+sys.path.append(os.path.dirname(os.path.realpath("src")))
 
 import pytest
 
-from tb_map_editor.utils.query_parser import parse_query
+from src.utils.query_parser import parse_query
 
 
 def test_simple_values():

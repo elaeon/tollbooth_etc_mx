@@ -2,19 +2,12 @@ from sqlmodel import Session, create_engine, SQLModel
 from typing import Annotated
 from sqlmodel import Session
 from fastapi import Depends
+from pathlib import Path
 
 import os
 
 
-def _get_db_project_dir():
-    project_base_dir = "tollbooth_etc_mx/tb_map_editor"
-    filepath = os.path.abspath(os.path.dirname(__file__))
-    index = filepath.find(project_base_dir)
-    db_dir = os.path.join(filepath[:index], project_base_dir, "db/")
-    return db_dir
-
-
-_db_dir = _get_db_project_dir()
+_db_dir = str(Path(__file__).resolve().parent.parent / "db")
 _sql_filename = "tb_map_editor.db"
 
 _sql_filepath = os.path.join(_db_dir, _sql_filename)

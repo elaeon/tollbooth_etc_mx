@@ -1,8 +1,8 @@
 from prefect import task
 
-from tb_map_editor.data_files import PathModel
-import scripts.stage as stage
-import scripts.dv_cleaner as dv_cleaner
+from src.data_files import PathModel
+import src.scripts.stage as stage
+import src.scripts.dv_cleaner as dv_cleaner
 
 
 @task(name="pub-to-stg")

@@ -1,7 +1,7 @@
 from prefect import task
 
-import scripts.tollbooth_cluster as tollbooth_cluster
-import scripts.join_tollbooths as join_tollbooths
+import src.scripts.tollbooth_cluster as tollbooth_cluster
+import src.scripts.join_tollbooths as join_tollbooths
 
 
 @task(name="tollbooth-neighbours")

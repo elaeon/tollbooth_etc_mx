@@ -2,16 +2,17 @@ import argparse
 import ast
 import os
 import sys
+from pathlib import Path
 
 import polars as pl
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
-from tb_map_editor.data_files import DataModel, DataStage
+from src.data_files import DataModel, DataStage
 
 
 REPORTS_PY = os.path.join(os.path.dirname(__file__), "reports.py")
-OPERATORS_CSV = "data/tables/area_operators_mx.csv"
+OPERATORS_CSV = Path(DataStage.pub) / "area_operators_mx.csv"
 
 NON_REPORT_ARGS = {"--from-year", "--to-year", "--to-year-sts"}
 

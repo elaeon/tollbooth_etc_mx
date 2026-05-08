@@ -1,12 +1,12 @@
 import os, sys
-sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 import polars as pl
 import polars_ds as plds
 import argparse
 
-from tb_map_editor.data_files import DataModel, DataStage
-from tb_map_editor.utils.tools import find_closest_tb, join_tb_stretch_id_imt
+from src.data_files import DataModel, DataStage
+from src.utils.tools import find_closest_tb, join_tb_stretch_id_imt
 
 
 def _no_tb(ldf_neighbour, ldf, scope: str, threshold: float = 0.1):

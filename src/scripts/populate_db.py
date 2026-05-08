@@ -1,12 +1,12 @@
 import os, sys
-sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 import logging
 import polars as pl
 import sqlite3
 
-from tb_map_editor.data_files import DataModel, DataStage
-from tb_map_editor.utils.connector import sqlite_url, create_db_and_tables
+from src.data_files import DataModel, DataStage
+from src.utils.connector import sqlite_url, create_db_and_tables
 
 import argparse
 

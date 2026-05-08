@@ -1,28 +1,21 @@
-import os
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, overload
 
 from . import model
 from .model import TbModel
 
+_BASE_DIR = Path(__file__).resolve().parent.parent
 
-def build_path(filename, attr: dict, folder: str) -> str:
-    levels = list(attr.values())
-    levels.append(filename)
-    base_dir = "tollbooth_etc_mx"
-    index = os.getcwd().find(base_dir)
-    if index > -1:
-        base_path = os.getcwd()[:index+len(base_dir)]
-    else:
-        raise Exception("data folder not found.")
-    path = os.path.abspath(os.path.join(base_path, folder, "/".join(map(str, levels))))
-    return path
+
+def build_path(filename: str, attr: dict, folder: str) -> str:
+    return str(_BASE_DIR.joinpath(folder, *map(str, attr.values()), filename))
 
 
 @dataclass
 class DataStage:
     stg: str = "data/staging/"
-    pub: str = "data/tables/"
+    pub: str = "data/pub/"
 
 
 @dataclass

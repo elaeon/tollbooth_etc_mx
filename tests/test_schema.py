@@ -1,7 +1,7 @@
 import os, sys
-sys.path.append(os.path.dirname(os.path.realpath("tb_map_editor")))
+sys.path.append(os.path.dirname(os.path.realpath("src")))
 
-from tb_map_editor.model import Strech
+from src.model import Strech
 import polars as pl
 
 
