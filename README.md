@@ -1,3 +1,8 @@
+# Generador de reportes de casetas de cobro de México
+
+Con un conjunto de scrapers y un pipeline de datos, se pueden generan distintos reportes en csv de todas las carreteras de cuota de México y todas sus casetas de cobro. 
+Conteniendo información curada, cruzada con 10 fuentes de datos y actualizada anualmente, se generan cerca de 80 campos de datos para ser usados en distintos reportes.
+
 ## Running the pipeline
 
 After cloning, install dependencies with `uv sync`. 
