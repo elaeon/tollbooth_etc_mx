@@ -22,3 +22,8 @@ def task_tb_imt_stretch_id_rel(year: int):
 @task(name="tb-stretch-id-sts")
 def task_tb_stretch_id_sts(base_year: int, move_year: int):
     return join_tollbooths.tb_stretch_id_sts(base_year, move_year)
+
+
+@task(name="tb_distance")
+def task_tb_distance(year: int):
+    return tollbooth_cluster.tb_distance(year)
