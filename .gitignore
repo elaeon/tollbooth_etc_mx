@@ -17,8 +17,11 @@ __pycache__/
 .playwright-cli
 .playwright
 tarifas
-docs/
 parsers/
 raw_data/
 reports/
 src/static/*
+extra_data/
+runs/
+raw_data.tar.gz
+uv.lock

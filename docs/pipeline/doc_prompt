@@ -1,0 +1,9 @@
+Create a graph that show the pipeline. This graph is a visual doc in html where it could visualized all data dependencies to build the reports
+located in src/scripts/reports.py, specifically in the arg parser arguments you can find all reports that could be made. Follow the next steps to produce the doc:
+    1. Find all data dependencies referenced in data model and used in every report
+    2. Write in a json file with the data dependencies to the report. In each node show the filename and the path to the data model (i.e data/pub/2026/roads.csv)
+    3. If you find folders with multiple years use the last one.
+    4. The final HTML should use the json file to generate the pipeline visualization, and be this should be responsive with a good style and minimal reqs.
+    5. Save the HTML and the json in a folder inside docs/pipeline.
+
+Ask questions if you need to resolve some doubts.

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipeline – tollbooth_etc_mx</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.29.2/cytoscape.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header {
+      padding: 12px 20px;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    header h1 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .legend {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      color: #64748b;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    #graph {
+      flex: 1;
+      min-width: 0;
+      background: #f1f5f9;
+    }
+
+    #panel {
+      width: 320px;
+      flex-shrink: 0;
+      background: #ffffff;
+      border-left: 1px solid #e2e8f0;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    #panel-placeholder {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    #panel-content { display: none; }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-source      { background: #dbeafe; color: #1d4ed8; }
+    .badge-task        { background: #fef3c7; color: #b45309; }
+    .badge-staging     { background: #d1fae5; color: #065f46; }
+    .badge-report_task { background: #fee2e2; color: #991b1b; }
+    .badge-report      { background: #fca5a5; color: #7f1d1d; }
+
+    .panel-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f172a;
+      word-break: break-all;
+    }
+
+    .detail-group { display: flex; flex-direction: column; gap: 4px; }
+
+    .detail-key {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #94a3b8;
+    }
+
+    .detail-value {
+      font-size: 0.8rem;
+      color: #334155;
+      word-break: break-all;
+      font-family: ui-monospace, monospace;
+    }
+
+    .schema-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+    }
+
+    .schema-table th {
+      text-align: left;
+      padding: 4px 6px;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94a3b8;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .schema-table td {
+      padding: 4px 6px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: top;
+    }
+
+    .schema-table tr:hover td { background: #f8fafc; }
+
+    .field-name { color: #2563eb; font-family: ui-monospace, monospace; }
+    .field-type { color: #16a34a; font-family: ui-monospace, monospace; }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    @media (max-width: 700px) {
+      .main { flex-direction: column; }
+      #panel { width: 100%; height: 260px; border-left: none; border-top: 1px solid #e2e8f0; }
+      #graph { flex: none; height: calc(100vh - 260px - 49px); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>tollbooth_etc_mx — Pipeline DAG</h1>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div>Source</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>Staging task</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div>Staging data</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div>Report task</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#7f1d1d"></div>Report output</div>
+  </div>
+</header>
+
+<div class="main">
+  <div id="graph"></div>
+  <div id="panel">
+    <div id="panel-placeholder">Click a node to see details</div>
+    <div id="panel-content">
+      <span id="p-badge" class="badge"></span>
+      <div class="panel-label" id="p-label"></div>
+      <hr class="divider">
+      <div class="detail-group">
+        <div class="detail-key">Path</div>
+        <div class="detail-value" id="p-path"></div>
+      </div>
+      <div class="detail-group" id="p-model-group">
+        <div class="detail-key">Model</div>
+        <div class="detail-value" id="p-model"></div>
+      </div>
+      <div class="detail-group" id="p-model-path-group">
+        <div class="detail-key">Model path</div>
+        <div class="detail-value" id="p-model-path"></div>
+      </div>
+      <div id="p-schema-group">
+        <hr class="divider">
+        <table class="schema-table">
+          <thead><tr><th>Field</th><th>Type</th></tr></thead>
+          <tbody id="p-schema-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const GRAPH = {"nodes": [{"id": "src_pdf_sts", "label": "STS PDF report", "type": "source", "path": "raw_data/sts_{year}.pdf", "model": null, "model_path": null, "schema": {}}, {"id": "src_tollbooths", "label": "tollbooths.csv", "type": "source", "path": "data/pub/2026/tollbooths.csv", "model": "Tollbooth", "model_path": "src/model.py :: Tollbooth", "schema": {"tollbooth_id": "UInt16", "legacy_id": "UInt16", "tollbooth_name": "String", "lat": "Float64", "lng": "Float64", "status": "String", "state": "String", "place": "String", "lines": "UInt16", "type": "String", "manage": "String", "gate_to": "String", "info_year": "UInt16", "anti_evation_sys": "Boolean", "in_out": "String"}}, {"id": "src_stretchs", "label": "stretchs.csv", "type": "source", "path": "data/pub/2026/stretchs.csv", "model": "Stretch", "model_path": "src/model.py :: Stretch", "schema": {"stretch_id": "UInt32", "stretch_name": "String", "stretch_length_km": "Float64", "sct_id_via": "UInt16", "road_id": "UInt16", "manage": "String", "way": "String", "info_year": "UInt16"}}, {"id": "src_roads", "label": "roads.csv", "type": "source", "path": "data/pub/2026/roads.csv", "model": "Road", "model_path": "src/model.py :: Road", "schema": {"road_id": "UInt16", "road_name": "String", "operation_date": "Date", "start_contract_date": "Date", "end_contract_date": "Date", "project_mx_id": "String", "fonadin_ref": "String", "road_length_km": "Float64", "bond_code": "String", "bond_issuance_date": "String", "bond_terms_years": "String", "bond_amount": "String", "notes": "String", "farac": "String", "info_year": "UInt16"}}, {"id": "src_stretchs_toll", "label": "stretchs_toll.csv", "type": "source", "path": "data/pub/2026/stretchs_toll.csv", "model": "StretchToll", "model_path": "src/model.py :: StretchToll", "schema": {"stretch_id": "UInt32", "motorbike": "Float64", "car": "Float64", "car_axle": "Float64", "bus_2_axle": "Float64", "bus_3_axle": "Float64", "bus_4_axle": "Float64", "truck_2_axle": "Float64", "truck_3_axle": "Float64", "truck_4_axle": "Float64", "truck_5_axle": "Float64", "truck_6_axle": "Float64", "truck_7_axle": "Float64", "truck_8_axle": "Float64", "truck_9_axle": "Float64", "load_axle": "Float64", "truck_10_axle": "Float64", "toll_ref": "String", "motorbike_axle": "Float64", "car_rush_hour": "Float64", "car_evening_hour": "Float64", "pedestrian": "Float64", "bicycle": "Float64", "car_rush_hour_2": "Float64", "car_evening_hour_2": "Float64", "car_morning_night_hour": "Float64", "info_year": "UInt16"}}, {"id": "src_tb_stretch_id", "label": "tb_stretch_id.csv", "type": "source", "path": "data/pub/2026/tb_stretch_id.csv", "model": "TbStretchId", "model_path": "src/model.py :: TbStretchId", "schema": {"stretch_id": "UInt32", "tollbooth_id_in": "UInt32", "tollbooth_id_out": "UInt32", "info_year": "UInt16"}}, {"id": "src_osm_tb_distance", "label": "osm_tb_distance.csv", "type": "source", "path": "data/pub/2026/osm_tb_distance.csv", "model": "OsmTbDistance", "model_path": "src/model.py :: OsmTbDistance", "schema": {"id": "UInt32", "stretch_id": "UInt32", "tollbooth_id_in": "UInt32", "tollbooth_id_out": "UInt32", "distance": "Float64", "info_year": "UInt16"}}, {"id": "src_tb_imt", "label": "tb_imt.csv", "type": "source", "path": "data/pub/2026/tb_imt.csv", "model": "TbImt", "model_path": "src/model.py :: TbImt", "schema": {"tollbooth_id": "UInt16", "manage": "String", "tollbooth_name": "String", "area": "String", "subarea": "String", "type": "String", "function": "String", "update_date": "Date", "calirepr": "String", "lat": "Float64", "lng": "Float64", "info_year": "UInt16"}}, {"id": "src_tb_toll_imt", "label": "tb_toll_imt.csv", "type": "source", "path": "data/pub/2026/tb_toll_imt.csv", "model": "TbTollImt", "model_path": "src/model.py :: TbTollImt", "schema": {"tollbooth_id_out": "UInt16", "tollbooth_id_in": "UInt16", "nombre_sal": "String", "nombre_ent": "String", "motorbike": "Float64", "car": "Float64", "car_axle": "Float64", "bus_2_axle": "Float64", "bus_3_axle": "Float64", "bus_4_axle": "Float64", "truck_2_axle": "Float64", "truck_3_axle": "Float64", "truck_4_axle": "Float64", "truck_5_axle": "Float64", "truck_6_axle": "Float64", "truck_7_axle": "Float64", "truck_8_axle": "Float64", "truck_9_axle": "Float64", "load_axle": "Float64", "update_date": "Date", "info_year": "UInt16"}}, {"id": "src_inflation", "label": "inflation.csv", "type": "source", "path": "data/pub/2026/inflation.csv", "model": "Inflation", "model_path": "src/model.py :: Inflation", "schema": {"year": "UInt16", "value": "Float32"}}, {"id": "src_manager_revenue", "label": "manager_revenue.csv", "type": "source", "path": "data/pub/2026/manager_revenue.csv", "model": "ManagerRevenue", "model_path": "src/model.py :: ManagerRevenue", "schema": {"stretch_name": "String", "jan": "Int64", "feb": "Int64", "mar": "Int64", "apr": "Int64", "may": "Int64", "jun": "Int64", "jul": "Int64", "ago": "Int64", "sep": "Int64", "oct": "Int64", "nov": "Int64", "dec": "Int64", "manager": "String", "info_year": "UInt16"}}, {"id": "task_dv_cleaner", "label": "dv_cleaner", "type": "task", "path": "src/scripts/dv_cleaner.py :: main", "model": null, "model_path": null, "schema": {}}, {"id": "task_pub_osm", "label": "pub_osm", "type": "task", "path": "src/scripts/stage.py :: pub_to_stg", "model": null, "model_path": null, "schema": {}}, {"id": "task_raw_inflation", "label": "raw_inflation", "type": "task", "path": "src/scripts/stage.py :: raw_to_stg", "model": null, "model_path": null, "schema": {}}, {"id": "task_pub_tb", "label": "pub_tb", "type": "task", "path": "src/scripts/stage.py :: pub_to_stg", "model": null, "model_path": null, "schema": {}}, {"id": "task_pub_stretch", "label": "pub_stretch", "type": "task", "path": "src/scripts/stage.py :: pub_to_stg", "model": null, "model_path": null, "schema": {}}, {"id": "task_pub_road", "label": "pub_road", "type": "task", "path": "src/scripts/stage.py :: pub_to_stg", "model": null, "model_path": null, "schema": {}}, {"id": "task_pub_stretch_toll", "label": "pub_stretch_toll", "type": "task", "path": "src/scripts/stage.py :: pub_to_stg", "model": null, "model_path": null, "schema": {}}, {"id": "task_pub_tb_stretch_id", "label": "pub_tb_stretch_id", "type": "task", "path": "src/scripts/stage.py :: pub_to_stg", "model": null, "model_path": null, "schema": {}}, {"id": "task_raw_tb_imt", "label": "raw_tb_imt", "type": "task", "path": "src/scripts/stage.py :: raw_to_stg", "model": null, "model_path": null, "schema": {}}, {"id": "task_raw_tb_toll_imt", "label": "raw_tb_toll_imt", "type": "task", "path": "src/scripts/stage.py :: raw_to_stg", "model": null, "model_path": null, "schema": {}}, {"id": "task_raw_manager_revenue", "label": "raw_manager_revenue", "type": "task", "path": "src/scripts/stage.py :: raw_to_stg", "model": null, "model_path": null, "schema": {}}, {"id": "task_neighbours", "label": "neighbours", "type": "task", "path": "src/scripts/tollbooth_cluster.py :: tollbooth_neighbours", "model": null, "model_path": null, "schema": {}}, {"id": "task_map_tb_id", "label": "map_tb_id", "type": "task", "path": "src/scripts/join_tollbooths.py :: map_tb_id", "model": null, "model_path": null, "schema": {}}, {"id": "task_tb_sts", "label": "tb_sts", "type": "task", "path": "src/scripts/stage.py :: sts_ids", "model": null, "model_path": null, "schema": {}}, {"id": "task_imt_stretch_id", "label": "imt_stretch_id", "type": "task", "path": "src/scripts/join_tollbooths.py :: tb_imt_stretch_id_rel", "model": null, "model_path": null, "schema": {}}, {"id": "task_sts_stretch_id", "label": "sts_stretch_id", "type": "task", "path": "src/scripts/join_tollbooths.py :: tb_stretch_id_sts", "model": null, "model_path": null, "schema": {}}, {"id": "stg_tb_sts_no_id", "label": "tb_sts_no_id.parquet", "type": "staging", "path": "data/staging/2026/tb_sts_no_id.parquet", "model": "TbSts", "model_path": "src/model.py :: TbSts", "schema": {"tollbooth_id": "UInt32", "index": "String", "tollbooth_name": "String", "stretch_name": "String", "highway": "String", "km": "Float64", "lat": "Float64", "lng": "Float64", "way": "UInt16", "tdpa": "UInt32", "motorbike": "Float64", "car": "Float64", "car_axle": "Float64", "bus": "Float64", "truck_2_axle": "Float64", "truck_3_axle": "Float64", "truck_4_axle": "Float64", "truck_5_axle": "Float64", "truck_6_axle": "Float64", "truck_7_axle": "Float64", "truck_8_axle": "Float64", "truck_9_axle": "Float64", "not_classified_vehicle": "Float64", "vta": "UInt64", "jan": "Float64", "feb": "Float64", "mar": "Float64", "apr": "Float64", "may": "Float64", "jun": "Float64", "jul": "Float64", "ago": "Float64", "sep": "Float64", "oct": "Float64", "nov": "Float64", "dec": "Float64", "info_year": "UInt16", "status": "String"}}, {"id": "stg_osm_tb_distance", "label": "osm_tb_distance.parquet", "type": "staging", "path": "data/staging/2026/osm_tb_distance.parquet", "model": "OsmTbDistance", "model_path": "src/model.py :: OsmTbDistance", "schema": {"id": "UInt32", "stretch_id": "UInt32", "tollbooth_id_in": "UInt32", "tollbooth_id_out": "UInt32", "distance": "Float64", "info_year": "UInt16"}}, {"id": "stg_inflation", "label": "inflation.parquet", "type": "staging", "path": "data/staging/2026/inflation.parquet", "model": "Inflation", "model_path": "src/model.py :: Inflation", "schema": {"year": "UInt16", "value": "Float32"}}, {"id": "stg_tollbooths", "label": "tollbooths.parquet", "type": "staging", "path": "data/staging/2026/tollbooths.parquet", "model": "Tollbooth", "model_path": "src/model.py :: Tollbooth", "schema": {"tollbooth_id": "UInt16", "legacy_id": "UInt16", "tollbooth_name": "String", "lat": "Float64", "lng": "Float64", "status": "String", "state": "String", "place": "String", "lines": "UInt16", "type": "String", "manage": "String", "gate_to": "String", "info_year": "UInt16", "anti_evation_sys": "Boolean", "in_out": "String"}}, {"id": "stg_stretchs", "label": "stretchs.parquet", "type": "staging", "path": "data/staging/2026/stretchs.parquet", "model": "Stretch", "model_path": "src/model.py :: Stretch", "schema": {"stretch_id": "UInt32", "stretch_name": "String", "stretch_length_km": "Float64", "sct_id_via": "UInt16", "road_id": "UInt16", "manage": "String", "way": "String", "info_year": "UInt16"}}, {"id": "stg_roads", "label": "roads.parquet", "type": "staging", "path": "data/staging/2026/roads.parquet", "model": "Road", "model_path": "src/model.py :: Road", "schema": {"road_id": "UInt16", "road_name": "String", "operation_date": "Date", "start_contract_date": "Date", "end_contract_date": "Date", "project_mx_id": "String", "fonadin_ref": "String", "road_length_km": "Float64", "bond_code": "String", "bond_issuance_date": "String", "bond_terms_years": "String", "bond_amount": "String", "notes": "String", "farac": "String", "info_year": "UInt16"}}, {"id": "stg_stretchs_toll", "label": "stretchs_toll.parquet", "type": "staging", "path": "data/staging/2026/stretchs_toll.parquet", "model": "StretchToll", "model_path": "src/model.py :: StretchToll", "schema": {"stretch_id": "UInt32", "motorbike": "Float64", "car": "Float64", "car_axle": "Float64", "bus_2_axle": "Float64", "bus_3_axle": "Float64", "bus_4_axle": "Float64", "truck_2_axle": "Float64", "truck_3_axle": "Float64", "truck_4_axle": "Float64", "truck_5_axle": "Float64", "truck_6_axle": "Float64", "truck_7_axle": "Float64", "truck_8_axle": "Float64", "truck_9_axle": "Float64", "load_axle": "Float64", "truck_10_axle": "Float64", "toll_ref": "String", "motorbike_axle": "Float64", "car_rush_hour": "Float64", "car_evening_hour": "Float64", "pedestrian": "Float64", "bicycle": "Float64", "car_rush_hour_2": "Float64", "car_evening_hour_2": "Float64", "car_morning_night_hour": "Float64", "info_year": "UInt16"}}, {"id": "stg_tb_stretch_id", "label": "tb_stretch_id.parquet", "type": "staging", "path": "data/staging/2026/tb_stretch_id.parquet", "model": "TbStretchId", "model_path": "src/model.py :: TbStretchId", "schema": {"stretch_id": "UInt32", "tollbooth_id_in": "UInt32", "tollbooth_id_out": "UInt32", "info_year": "UInt16"}}, {"id": "stg_tb_imt", "label": "tb_imt.parquet", "type": "staging", "path": "data/staging/2026/tb_imt.parquet", "model": "TbImt", "model_path": "src/model.py :: TbImt", "schema": {"tollbooth_id": "UInt16", "manage": "String", "tollbooth_name": "String", "area": "String", "subarea": "String", "type": "String", "function": "String", "update_date": "Date", "calirepr": "String", "lat": "Float64", "lng": "Float64", "info_year": "UInt16"}}, {"id": "stg_tb_toll_imt", "label": "tb_toll_imt.parquet", "type": "staging", "path": "data/staging/2026/tb_toll_imt.parquet", "model": "TbTollImt", "model_path": "src/model.py :: TbTollImt", "schema": {"tollbooth_id_out": "UInt16", "tollbooth_id_in": "UInt16", "nombre_sal": "String", "nombre_ent": "String", "motorbike": "Float64", "car": "Float64", "car_axle": "Float64", "bus_2_axle": "Float64", "bus_3_axle": "Float64", "bus_4_axle": "Float64", "truck_2_axle": "Float64", "truck_3_axle": "Float64", "truck_4_axle": "Float64", "truck_5_axle": "Float64", "truck_6_axle": "Float64", "truck_7_axle": "Float64", "truck_8_axle": "Float64", "truck_9_axle": "Float64", "load_axle": "Float64", "update_date": "Date", "info_year": "UInt16"}}, {"id": "stg_manager_revenue", "label": "manager_revenue.parquet", "type": "staging", "path": "data/staging/2026/manager_revenue.parquet", "model": "ManagerRevenue", "model_path": "src/model.py :: ManagerRevenue", "schema": {"stretch_name": "String", "jan": "Int64", "feb": "Int64", "mar": "Int64", "apr": "Int64", "may": "Int64", "jun": "Int64", "jul": "Int64", "ago": "Int64", "sep": "Int64", "oct": "Int64", "nov": "Int64", "dec": "Int64", "manager": "String", "info_year": "UInt16"}}, {"id": "stg_tb_neighbour", "label": "tb_neighbour.parquet", "type": "staging", "path": "data/staging/2026/tb_neighbour.parquet", "model": "TbNeighbour", "model_path": "src/model.py :: TbNeighbour", "schema": {"id": "UInt32", "tollbooth_id": "UInt32", "neighbour_id": "UInt32", "scope": "String", "distance": "Float64", "info_year": "UInt16"}}, {"id": "stg_map_tb_id", "label": "map_tb_id.parquet", "type": "staging", "path": "data/staging/2026/map_tb_id.parquet", "model": "MapTbId", "model_path": "src/model.py :: MapTbId", "schema": {"id": "UInt32", "tollbooth_id": "UInt32", "tollbooth_imt_id": "UInt32", "tollbooth_sts_id": "UInt32"}}, {"id": "stg_tb_sts", "label": "tb_sts.parquet", "type": "staging", "path": "data/staging/2026/tb_sts.parquet", "model": "TbSts", "model_path": "src/model.py :: TbSts", "schema": {"tollbooth_id": "UInt32", "index": "String", "tollbooth_name": "String", "stretch_name": "String", "highway": "String", "km": "Float64", "lat": "Float64", "lng": "Float64", "way": "UInt16", "tdpa": "UInt32", "motorbike": "Float64", "car": "Float64", "car_axle": "Float64", "bus": "Float64", "truck_2_axle": "Float64", "truck_3_axle": "Float64", "truck_4_axle": "Float64", "truck_5_axle": "Float64", "truck_6_axle": "Float64", "truck_7_axle": "Float64", "truck_8_axle": "Float64", "truck_9_axle": "Float64", "not_classified_vehicle": "Float64", "vta": "UInt64", "jan": "Float64", "feb": "Float64", "mar": "Float64", "apr": "Float64", "may": "Float64", "jun": "Float64", "jul": "Float64", "ago": "Float64", "sep": "Float64", "oct": "Float64", "nov": "Float64", "dec": "Float64", "info_year": "UInt16", "status": "String"}}, {"id": "stg_tb_imt_stretch_id", "label": "tb_imt_stretch_id.parquet", "type": "staging", "path": "data/staging/2026/tb_imt_stretch_id.parquet", "model": "TbImtStretchId", "model_path": "src/model.py :: TbImtStretchId", "schema": {"id": "UInt32", "stretch_id": "UInt32", "tollbooth_imt_id_in": "UInt32", "tollbooth_imt_id_out": "UInt32", "tollbooth_id_in": "UInt32", "tollbooth_id_out": "UInt32", "info_year": "UInt16"}}, {"id": "stg_tb_sts_stretch_id", "label": "tb_sts_stretch_id.parquet", "type": "staging", "path": "data/staging/2026/tb_sts_stretch_id.parquet", "model": "TbStsStretchId", "model_path": "src/model.py :: TbStsStretchId", "schema": {"stretch_id": "UInt32", "tollbooth_id": "UInt32", "tollbooth_sts_id": "UInt32", "info_year": "UInt16"}}, {"id": "report_growth_rate", "label": "growth_rate", "type": "report_task", "path": "src/scripts/reports.py :: growth_rate_report", "model": null, "model_path": null, "schema": {}}, {"id": "report_toll_update_date", "label": "toll_update_date", "type": "report_task", "path": "src/scripts/reports.py :: toll_update_date_report", "model": null, "model_path": null, "schema": {}}, {"id": "report_revenue", "label": "revenue", "type": "report_task", "path": "src/scripts/reports.py :: revenue", "model": null, "model_path": null, "schema": {}}, {"id": "report_manage_data", "label": "manage_data", "type": "report_task", "path": "src/scripts/reports.py :: manage_data", "model": null, "model_path": null, "schema": {}}, {"id": "report_tb_names", "label": "tb_names", "type": "report_task", "path": "src/scripts/reports.py :: tollbooth_names_report", "model": null, "model_path": null, "schema": {}}, {"id": "report_stretch_names", "label": "stretch_names", "type": "report_task", "path": "src/scripts/reports.py :: stretch_names_report", "model": null, "model_path": null, "schema": {}}, {"id": "report_tb_stretch_rel", "label": "tb_stretch_rel", "type": "report_task", "path": "src/scripts/reports.py :: tollbooth_stretch_rel", "model": null, "model_path": null, "schema": {}}, {"id": "report_tb_wo_stretch", "label": "tb_wo_stretch", "type": "report_task", "path": "src/scripts/reports.py :: tollbooth_without_stretch", "model": null, "model_path": null, "schema": {}}, {"id": "report_toll_ref", "label": "toll_ref", "type": "report_task", "path": "src/scripts/reports.py :: toll_ref", "model": null, "model_path": null, "schema": {}}, {"id": "report_tb_stretch_manage", "label": "tollbooth_stretch_manage", "type": "report_task", "path": "src/scripts/reports.py :: tollbooth_stretch_manage", "model": null, "model_path": null, "schema": {}}, {"id": "report_stretch_length", "label": "stretch_length", "type": "report_task", "path": "src/scripts/reports.py :: stretch_length", "model": null, "model_path": null, "schema": {}}, {"id": "report_road_manage", "label": "road_manage", "type": "report_task", "path": "src/scripts/reports.py :: road_manage_length", "model": null, "model_path": null, "schema": {}}, {"id": "report_stretch_sts", "label": "stretch_sts", "type": "report_task", "path": "src/scripts/reports.py :: stretch_sts", "model": null, "model_path": null, "schema": {}}, {"id": "report_state", "label": "state_report", "type": "report_task", "path": "src/scripts/reports.py :: state_report", "model": null, "model_path": null, "schema": {}}, {"id": "src_inegi_state_data", "label": "inegi_state_data.csv", "type": "source", "path": "data/pub/2026/inegi_state_data.csv", "model": null, "model_path": null, "schema": {}}, {"id": "src_area_operators", "label": "area_operators_mx.csv", "type": "source", "path": "data/pub/area_operators_mx.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_growth_rate", "label": "growth_rate_{vehicle}_{y1}_{y2}.csv", "type": "report", "path": "reports/growth_rate_{vehicle}_{y1}_{y2}.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_toll_update_date", "label": "toll_update_date_{y1}_{y2}.csv", "type": "report", "path": "reports/toll_update_date_{y1}_{y2}.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_revenue", "label": "capufe_revenue_{y1}_{y2}.csv", "type": "report", "path": "reports/capufe_revenue_{y1}_{y2}.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_manage_data", "label": "manage_road_data_{y1}_{y2}.csv", "type": "report", "path": "reports/manage_road_data_{y1}_{y2}.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_tb_names", "label": "tollbooth_names_{year}.csv", "type": "report", "path": "reports/tollbooth_names_{year}.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_stretch_names", "label": "stretch_names_{year}.csv", "type": "report", "path": "reports/stretch_names_{year}.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_tb_stretch_rel", "label": "tollbooth_stretch_rel_{year}.csv", "type": "report", "path": "reports/tollbooth_stretch_rel_{year}.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_tb_wo_stretch", "label": "tollbooth_wo_stretch{year}.csv", "type": "report", "path": "reports/tollbooth_wo_stretch{year}.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_toll_ref", "label": "toll_ref_{year}.csv", "type": "report", "path": "reports/toll_ref_{year}.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_tb_stretch_manage", "label": "tollbooth_stretch_manage.csv", "type": "report", "path": "reports/tollbooth_stretch_manage.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_stretch_length", "label": "stretch_length.csv", "type": "report", "path": "reports/stretch_length.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_road_manage", "label": "road_manage_length_{year}.csv", "type": "report", "path": "reports/road_manage_length_{year}.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_stretch_sts", "label": "stretch_sts_{year}.csv", "type": "report", "path": "reports/stretch_sts_{year}.csv", "model": null, "model_path": null, "schema": {}}, {"id": "out_state", "label": "state_data_{year}.csv", "type": "report", "path": "reports/state_data_{year}.csv", "model": null, "model_path": null, "schema": {}}], "edges": [{"from": "src_pdf_sts", "to": "task_dv_cleaner"}, {"from": "src_osm_tb_distance", "to": "task_pub_osm"}, {"from": "src_inflation", "to": "task_raw_inflation"}, {"from": "src_tollbooths", "to": "task_pub_tb"}, {"from": "src_stretchs", "to": "task_pub_stretch"}, {"from": "src_roads", "to": "task_pub_road"}, {"from": "src_stretchs_toll", "to": "task_pub_stretch_toll"}, {"from": "src_tb_stretch_id", "to": "task_pub_tb_stretch_id"}, {"from": "src_tb_imt", "to": "task_raw_tb_imt"}, {"from": "src_tb_toll_imt", "to": "task_raw_tb_toll_imt"}, {"from": "src_manager_revenue", "to": "task_raw_manager_revenue"}, {"from": "task_dv_cleaner", "to": "stg_tb_sts_no_id"}, {"from": "task_pub_osm", "to": "stg_osm_tb_distance"}, {"from": "task_raw_inflation", "to": "stg_inflation"}, {"from": "task_pub_tb", "to": "stg_tollbooths"}, {"from": "task_pub_stretch", "to": "stg_stretchs"}, {"from": "task_pub_road", "to": "stg_roads"}, {"from": "task_pub_stretch_toll", "to": "stg_stretchs_toll"}, {"from": "task_pub_tb_stretch_id", "to": "stg_tb_stretch_id"}, {"from": "task_raw_tb_imt", "to": "stg_tb_imt"}, {"from": "task_raw_tb_toll_imt", "to": "stg_tb_toll_imt"}, {"from": "task_raw_manager_revenue", "to": "stg_manager_revenue"}, {"from": "task_neighbours", "to": "stg_tb_neighbour"}, {"from": "task_map_tb_id", "to": "stg_map_tb_id"}, {"from": "task_tb_sts", "to": "stg_tb_sts"}, {"from": "task_imt_stretch_id", "to": "stg_tb_imt_stretch_id"}, {"from": "task_sts_stretch_id", "to": "stg_tb_sts_stretch_id"}, {"from": "stg_tollbooths", "to": "task_neighbours"}, {"from": "stg_tb_imt", "to": "task_neighbours"}, {"from": "stg_tollbooths", "to": "task_map_tb_id"}, {"from": "stg_tb_neighbour", "to": "task_map_tb_id"}, {"from": "stg_tb_sts_no_id", "to": "task_tb_sts"}, {"from": "stg_tb_neighbour", "to": "task_imt_stretch_id"}, {"from": "stg_tb_toll_imt", "to": "task_imt_stretch_id"}, {"from": "stg_stretchs", "to": "task_imt_stretch_id"}, {"from": "stg_stretchs_toll", "to": "task_imt_stretch_id"}, {"from": "stg_tb_imt", "to": "task_imt_stretch_id"}, {"from": "stg_tb_sts", "to": "task_sts_stretch_id"}, {"from": "stg_tollbooths", "to": "task_sts_stretch_id"}, {"from": "stg_stretchs", "to": "task_sts_stretch_id"}, {"from": "stg_tb_stretch_id", "to": "task_sts_stretch_id"}, {"from": "stg_tb_neighbour", "to": "task_sts_stretch_id"}, {"from": "stg_stretchs_toll", "to": "report_growth_rate"}, {"from": "stg_tb_sts", "to": "report_growth_rate"}, {"from": "stg_stretchs", "to": "report_growth_rate"}, {"from": "stg_tollbooths", "to": "report_growth_rate"}, {"from": "stg_tb_stretch_id", "to": "report_growth_rate"}, {"from": "stg_roads", "to": "report_growth_rate"}, {"from": "stg_inflation", "to": "report_growth_rate"}, {"from": "stg_tb_sts_stretch_id", "to": "report_growth_rate"}, {"from": "stg_tollbooths", "to": "report_toll_update_date"}, {"from": "stg_tb_neighbour", "to": "report_toll_update_date"}, {"from": "stg_tb_toll_imt", "to": "report_toll_update_date"}, {"from": "stg_manager_revenue", "to": "report_revenue"}, {"from": "stg_roads", "to": "report_manage_data"}, {"from": "stg_stretchs", "to": "report_manage_data"}, {"from": "stg_tollbooths", "to": "report_manage_data"}, {"from": "stg_tb_stretch_id", "to": "report_manage_data"}, {"from": "out_growth_rate", "to": "report_manage_data"}, {"from": "report_growth_rate", "to": "out_growth_rate"}, {"from": "report_toll_update_date", "to": "out_toll_update_date"}, {"from": "report_revenue", "to": "out_revenue"}, {"from": "report_manage_data", "to": "out_manage_data"}, {"from": "stg_tollbooths", "to": "report_tb_names"}, {"from": "stg_tb_imt", "to": "report_tb_names"}, {"from": "stg_tb_sts", "to": "report_tb_names"}, {"from": "stg_map_tb_id", "to": "report_tb_names"}, {"from": "report_tb_names", "to": "out_tb_names"}, {"from": "stg_stretchs", "to": "report_stretch_names"}, {"from": "stg_tb_sts", "to": "report_stretch_names"}, {"from": "stg_tb_sts_stretch_id", "to": "report_stretch_names"}, {"from": "report_stretch_names", "to": "out_stretch_names"}, {"from": "stg_tb_stretch_id", "to": "report_tb_stretch_rel"}, {"from": "stg_stretchs", "to": "report_tb_stretch_rel"}, {"from": "stg_tollbooths", "to": "report_tb_stretch_rel"}, {"from": "report_tb_stretch_rel", "to": "out_tb_stretch_rel"}, {"from": "stg_tb_stretch_id", "to": "report_tb_wo_stretch"}, {"from": "stg_tollbooths", "to": "report_tb_wo_stretch"}, {"from": "stg_map_tb_id", "to": "report_tb_wo_stretch"}, {"from": "stg_tb_imt", "to": "report_tb_wo_stretch"}, {"from": "report_tb_wo_stretch", "to": "out_tb_wo_stretch"}, {"from": "src_tb_stretch_id", "to": "report_toll_ref"}, {"from": "stg_tollbooths", "to": "report_toll_ref"}, {"from": "src_area_operators", "to": "report_toll_ref"}, {"from": "stg_stretchs", "to": "report_toll_ref"}, {"from": "stg_stretchs_toll", "to": "report_toll_ref"}, {"from": "report_toll_ref", "to": "out_toll_ref"}, {"from": "stg_tb_imt", "to": "report_tb_stretch_manage"}, {"from": "stg_tollbooths", "to": "report_tb_stretch_manage"}, {"from": "stg_map_tb_id", "to": "report_tb_stretch_manage"}, {"from": "stg_tb_stretch_id", "to": "report_tb_stretch_manage"}, {"from": "stg_stretchs", "to": "report_tb_stretch_manage"}, {"from": "report_tb_stretch_manage", "to": "out_tb_stretch_manage"}, {"from": "stg_osm_tb_distance", "to": "report_stretch_length"}, {"from": "stg_stretchs", "to": "report_stretch_length"}, {"from": "report_stretch_length", "to": "out_stretch_length"}, {"from": "stg_roads", "to": "report_road_manage"}, {"from": "stg_stretchs", "to": "report_road_manage"}, {"from": "stg_tollbooths", "to": "report_road_manage"}, {"from": "stg_tb_stretch_id", "to": "report_road_manage"}, {"from": "report_road_manage", "to": "out_road_manage"}, {"from": "stg_stretchs", "to": "report_stretch_sts"}, {"from": "stg_tb_sts", "to": "report_stretch_sts"}, {"from": "stg_tb_sts_stretch_id", "to": "report_stretch_sts"}, {"from": "stg_tollbooths", "to": "report_stretch_sts"}, {"from": "report_stretch_sts", "to": "out_stretch_sts"}, {"from": "src_inegi_state_data", "to": "report_state"}, {"from": "report_state", "to": "out_state"}]};
+
+const TYPE_COLOR = {
+  source:      '#3b82f6',
+  task:        '#f59e0b',
+  staging:     '#10b981',
+  report_task: '#dc2626',
+  report:      '#7f1d1d',
+};
+
+const TYPE_BORDER = {
+  source:      '#1d4ed8',
+  task:        '#b45309',
+  staging:     '#065f46',
+  report_task: '#991b1b',
+  report:      '#450a0a',
+};
+
+cytoscape.use(cytoscapeDagre);
+
+const elements = [
+  ...GRAPH.nodes.map(n => ({
+    data: { id: n.id, label: n.label, ...n },
+  })),
+  ...GRAPH.edges.map((e, i) => ({
+    data: { id: `e${i}`, source: e.from, target: e.to },
+  })),
+];
+
+const cy = cytoscape({
+  container: document.getElementById('graph'),
+  elements,
+  style: [
+    {
+      selector: 'node',
+      style: {
+        'shape': 'round-rectangle',
+        'width': 'label',
+        'height': 'label',
+        'padding': '8px',
+        'background-color': ele => TYPE_COLOR[ele.data('type')] || '#64748b',
+        'border-color': ele => TYPE_BORDER[ele.data('type')] || '#334155',
+        'border-width': 1.5,
+        'label': 'data(label)',
+        'color': '#fff',
+        'font-size': '11px',
+        'font-family': 'ui-monospace, monospace',
+        'text-valign': 'center',
+        'text-halign': 'center',
+        'text-wrap': 'wrap',
+        'text-max-width': '140px',
+        'cursor': 'pointer',
+      },
+    },
+    {
+      selector: 'node:selected',
+      style: {
+        'border-width': 3,
+        'border-color': '#f8fafc',
+      },
+    },
+    {
+      selector: 'edge',
+      style: {
+        'width': 1.5,
+        'line-color': '#64748b',
+        'target-arrow-color': '#64748b',
+        'target-arrow-shape': 'triangle',
+        'curve-style': 'bezier',
+        'arrow-scale': 0.9,
+      },
+    },
+    {
+      selector: 'edge.highlighted',
+      style: {
+        'line-color': '#0f172a',
+        'target-arrow-color': '#0f172a',
+        'width': 2.5,
+      },
+    },
+  ],
+  layout: {
+    name: 'dagre',
+    rankDir: 'TB',
+    nodeSep: 40,
+    rankSep: 60,
+    padding: 30,
+    animate: false,
+  },
+  minZoom: 0.1,
+  maxZoom: 3,
+});
+
+// ── panel ────────────────────────────────────────────────────────────────────
+const placeholder = document.getElementById('panel-placeholder');
+const content     = document.getElementById('panel-content');
+
+function showPanel(node) {
+  const d = node.data();
+  placeholder.style.display = 'none';
+  content.style.display = 'flex';
+  content.style.flexDirection = 'column';
+  content.style.gap = '12px';
+
+  document.getElementById('p-badge').textContent = d.type.replace('_', ' ');
+  document.getElementById('p-badge').className = `badge badge-${d.type}`;
+  document.getElementById('p-label').textContent = d.label;
+  document.getElementById('p-path').textContent = d.path || '–';
+
+  const modelGroup = document.getElementById('p-model-group');
+  const modelPathGroup = document.getElementById('p-model-path-group');
+  if (d.model) {
+    modelGroup.style.display = '';
+    modelPathGroup.style.display = '';
+    document.getElementById('p-model').textContent = d.model;
+    document.getElementById('p-model-path').textContent = d.model_path;
+  } else {
+    modelGroup.style.display = 'none';
+    modelPathGroup.style.display = 'none';
+  }
+
+  const schemaGroup = document.getElementById('p-schema-group');
+  const schemaBody  = document.getElementById('p-schema-body');
+  const schema = d.schema || {};
+  const entries = Object.entries(schema);
+  if (entries.length) {
+    schemaGroup.style.display = '';
+    schemaBody.innerHTML = entries.map(([f, t]) =>
+      `<tr><td class="field-name">${f}</td><td class="field-type">${t}</td></tr>`
+    ).join('');
+  } else {
+    schemaGroup.style.display = 'none';
+  }
+
+  // highlight connected edges
+  cy.edges().removeClass('highlighted');
+  node.connectedEdges().addClass('highlighted');
+}
+
+cy.on('tap', 'node', evt => showPanel(evt.target));
+cy.on('tap', evt => {
+  if (evt.target === cy) {
+    cy.edges().removeClass('highlighted');
+    placeholder.style.display = '';
+    content.style.display = 'none';
+  }
+});
+
+cy.fit(undefined, 30);
+</script>
+</body>
+</html>
